@@ -7,9 +7,9 @@ export default defineConfig({
 	outDir: './dist',
 	integrations: [
 		starlight({
-			title: 'innFactory AI Dokumentation',
+			title: 'CompanyGPT Dokumentation',
 			editLink: {
-				baseUrl: 'https://github.com/innFactory-AI/companygpt-docs/edit/main'
+				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
 			},
 			defaultLocale: 'root',
 			locales: {

@@ -17,6 +17,8 @@
 	--if-white: hsl(0, 0%, 98%);
 	/* A slightly off-white for better readability */
 
+	--sl-font: 'Sora', serif;
+
 	/* Colors (dark mode) - Using innFactory Brand */
 	--sl-color-white: var(--if-white);
 	--sl-color-gray-1: hsl(0, 0%, 90%);

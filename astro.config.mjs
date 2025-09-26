@@ -7,6 +7,7 @@ export default defineConfig({
 	outDir: './dist',
 	integrations: [
 		starlight({
+			
 			title: 'CompanyGPT Dokumentation',
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
@@ -15,7 +16,7 @@ export default defineConfig({
 			locales: {
 				root: { label: 'Deutsch', lang: 'de' },
 			},
-			customCss: ['./src/styles/global.css'],
+			customCss: ['./src/styles/global.css', '@fontsource/sora/400.css', '@fontsource/sora/700.css'],
 			logo: {
 				src: './src/assets/logo.svg',
 				alt: 'innFactory AI Dokumentation',

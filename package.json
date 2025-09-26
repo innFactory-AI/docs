@@ -1,0 +1,23 @@
+{
+  "name": "@innfactory-ai/docs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.35.3",
+    "astro": "^5.6.1",
+    "sharp": "^0.34.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/innFactory-AI/docs.git"
+  },
+  "author": "innFactory AI",
+  "license": "MIT"
+}

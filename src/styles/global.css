@@ -1,0 +1,129 @@
+:root,
+::backdrop {
+	/*
+		 * ============================================================================
+		 * CUSTOM THEME FOR INNFACTORY
+		 *
+		 * Main Color: #050505
+		 * Accent Color: #01fcfe
+		 * ============================================================================
+		 */
+
+	/* Brand colors defined for re-use */
+	--if-main: #050505;
+	--if-accent: #01fcfe;
+	--if-accent-hue: 180;
+	/* Hue of #01fcfe */
+	--if-white: hsl(0, 0%, 98%);
+	/* A slightly off-white for better readability */
+
+	/* Colors (dark mode) - Using innFactory Brand */
+	--sl-color-white: var(--if-white);
+	--sl-color-gray-1: hsl(0, 0%, 90%);
+	/* Neutral grays to match the theme */
+	--sl-color-gray-2: hsl(0, 0%, 77%);
+	--sl-color-gray-3: hsl(0, 0%, 56%);
+	--sl-color-gray-4: hsl(0, 0%, 36%);
+	--sl-color-gray-5: hsl(0, 0%, 23%);
+	--sl-color-gray-6: hsl(0, 0%, 12%);
+	/* Slightly lighter than the background */
+	--sl-color-black: var(--if-main);
+	/* Your main brand color */
+
+	/* Accent colors based on the vibrant cyan */
+	--sl-color-accent-low: hsl(var(--if-accent-hue), 50%, 20%);
+	/* Darker, less saturated cyan */
+	--sl-color-accent: var(--if-accent);
+	--sl-color-accent-high: var(--if-accent);
+
+	--sl-color-text: var(--sl-color-gray-1);
+	/* Light gray text on dark background */
+	--sl-color-text-accent: var(--sl-color-accent);
+	/* Vibrant accent for links/highlights */
+	--sl-color-text-invert: var(--sl-color-black);
+	/* Dark text on light accent bg */
+
+	--sl-color-bg: var(--sl-color-black);
+	/* Dark background */
+	--sl-color-bg-nav: var(--sl-color-gray-6);
+	--sl-color-bg-sidebar: var(--sl-color-gray-6);
+	--sl-color-bg-inline-code: var(--sl-color-gray-5);
+	--sl-color-bg-accent: var(--sl-color-accent);
+
+	--sl-color-hairline-light: var(--sl-color-gray-5);
+	--sl-color-hairline: var(--sl-color-gray-6);
+	--sl-color-hairline-shade: var(--sl-color-black);
+
+	--sl-color-backdrop-overlay: hsla(0, 0%, 5%, 0.66);
+
+	/* Optional: Keep other hues or neutralize them if they feel out of place. */
+	/* The original hues are left below for admonitions etc. */
+	--sl-hue-orange: 41;
+	--sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 22%);
+	--sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
+	--sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
+	--sl-hue-green: 101;
+	--sl-color-green-low: hsl(var(--sl-hue-green), 39%, 22%);
+	--sl-color-green: hsl(var(--sl-hue-green), 82%, 63%);
+	--sl-color-green-high: hsl(var(--sl-hue-green), 82%, 80%);
+	--sl-hue-blue: 234;
+	--sl-color-blue-low: hsl(var(--sl-hue-blue), 54%, 20%);
+	--sl-color-blue: hsl(var(--sl-hue-blue), 100%, 60%);
+	--sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
+	--sl-hue-purple: 281;
+	--sl-color-purple-low: hsl(var(--sl-hue-purple), 39%, 22%);
+	--sl-color-purple: hsl(var(--sl-hue-purple), 82%, 63%);
+	--sl-color-purple-high: hsl(var(--sl-hue-purple), 82%, 89%);
+	--sl-hue-red: 339;
+	--sl-color-red-low: hsl(var(--sl-hue-red), 39%, 22%);
+	--sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
+	--sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
+
+	/* Non-color variables remain unchanged */
+	/* ... (shadows, text sizes, etc.) ... */
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+	/* Colours (light mode) - Using innFactory Brand */
+	--sl-color-white: var(--if-main);
+	/* In light mode, 'white' is the darkest color (text) */
+	--sl-color-gray-1: hsl(0, 0%, 12%);
+	/* Inverted neutral gray scale */
+	--sl-color-gray-2: hsl(0, 0%, 23%);
+	--sl-color-gray-3: hsl(0, 0%, 36%);
+	--sl-color-gray-4: hsl(0, 0%, 56%);
+	--sl-color-gray-5: hsl(0, 0%, 77%);
+	--sl-color-gray-6: hsl(0, 0%, 94%);
+	--sl-color-gray-7: hsl(0, 0%, 97%);
+	/* Lightest gray for nav etc. */
+	--sl-color-black: hsl(0, 0%, 100%);
+	/* 'black' is the lightest color (background) */
+
+	/* Accent colors adjusted for light mode readability */
+	--sl-color-accent-high: hsl(var(--if-accent-hue), 80%, 25%);
+	/* Dark, saturated cyan */
+	--sl-color-accent: hsl(var(--if-accent-hue), 70%, 40%);
+	/* Main accent, dark enough for text */
+	--sl-color-accent-low: hsl(var(--if-accent-hue), 60%, 92%);
+	/* Very light cyan for backgrounds */
+
+	--sl-color-text-accent: var(--sl-color-accent);
+	--sl-color-text-invert: var(--sl-color-black);
+	/* White text on dark accent bg */
+
+	--sl-color-bg-nav: var(--sl-color-gray-7);
+	--sl-color-bg-sidebar: var(--sl-color-bg);
+	--sl-color-bg-inline-code: var(--sl-color-gray-6);
+	--sl-color-bg-accent: var(--sl-color-accent);
+
+	--sl-color-hairline-light: var(--sl-color-gray-6);
+	--sl-color-hairline-shade: var(--sl-color-gray-6);
+
+	--sl-color-backdrop-overlay: hsla(0, 0%, 20%, 0.66);
+
+	/* Optional: The admonition colors are also inverted */
+	/* ... (original light theme admonition colors) ... */
+}
+
+/* ... (rest of the file: media queries etc. remain unchanged) ... */

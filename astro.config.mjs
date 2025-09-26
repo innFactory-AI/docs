@@ -44,6 +44,18 @@ export default defineConfig({
 						{ label: 'User Interface', slug: 'company-gpt/user-interface' },
 						{ label: 'Einstellungen', slug: 'company-gpt/einstellungen' },
 						{ label: 'Chat', slug: 'company-gpt/chat' },
+						{ label: 'Integrationen', items: [
+							{ label: 'Websuche', slug: 'company-gpt/integrationen/websuche' },
+							{ label: 'Dateisuche', slug: 'company-gpt/integrationen/dateisuche' },
+							{ label: 'Artefakte', slug: 'company-gpt/integrationen/artefakte' },
+							{ label: 'MCP Server', slug: 'company-gpt/integrationen/mcp-server' },
+						] },
+						{ label: 'Agenten', slug: 'company-gpt/agenten' },
+						{ label: 'Prompts', slug: 'company-gpt/prompts' },
+						{ label: 'Erinnerungen', slug: 'company-gpt/erinnerungen' },
+						{ label: 'KI Einstellungen', slug: 'company-gpt/ki-einstellungen' },
+						{ label: 'Dateiverarbeitung', slug: 'company-gpt/dateiverarbeitung' },
+						{ label: 'Lesezeichen', slug: 'company-gpt/lesezeichen' },
 					]
 				},
 				{

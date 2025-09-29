@@ -56,7 +56,68 @@ Mehr Informationen zu Artefakten finden Sie hier: [Artefakte](./integrationen/ar
 
 #### Dateisuche
 
-Wenn aktiviert, wird der Agent über die unten aufgelisteten exakten Dateinamen informiert und kann dadurch relevante Informationen aus diesen Dateien abrufen. Das Abrufen funktioniert als **RAG (Retrieval Augmented Generation)** mittels ähnlichkeitssuche zwischen Abfrage und Inhalten. Dabei werden immer nur die relevanten Textstellen genutzt. Im Gegensatz hierzu steht der **Datei-Kontext**, bei dem immer der gesamte Inhalt im Kontext ist.
+Wenn aktiviert, wird der Agent über die unten aufgelisteten exakten Dateinamen informiert und kann dadurch relevante Informationen aus diesen Dateien abrufen. Das Abrufen funktioniert als **RAG (Retrieval Augmented Generation)** mittels Ähnlichkeitssuche zwischen Abfrage und Inhalten. Dabei werden immer nur die relevanten Textstellen genutzt. Im Gegensatz hierzu steht der **Datei-Kontext**, bei dem immer der gesamte Inhalt im Kontext ist.
 
+Weitere Informationen unter [Prompt Engineering / RAG](/prompt-engineering/prompt-techniken/rag)
+
+#### MCP Server 
+
+MCP Server Tools können pro Agent spezifiziert werden, auch welche Tools aus dem MCP Server der Agent nutzen kann.
+
+![mcp tools](mcp-tools.png)
+
+#### Werkzeuge und Aktionen
+
+Werkzeuge sind eingebaute Tools, die vom Agenten genutzt werden können. Diese können natürlich mit MCP-Tools kombiniert werden.
+
+![tools-and-actions](tools-and-actions.png)
+
+Aktionen sind externe API Schnittstellen die direkt über [OpenAPI Kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. 
+
+![actions-open-api](actions-open-api.png)
+
+:::tip
+Diese Funktionalität ist sehr fortgeschritten aber auch veraltet, besser ist es API Endpunkte über eigene MCP Server anzubinden.
+:::
+
+#### Kontaktdaten
+
+Jeder Agent kann mit Kontaktdaten zum Ersteller versehen werden was nützlich ist für Feedback bei geteilten Agenten.
+
+### Erweiterte Einstellungen
+
+#### Maximale Agentenschritte
+
+Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Der Standardwert ist 25 Schritte. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
+
+#### Agenten-Ketten
+
+Ermöglicht das Erstellen von Agenten-Sequenzen. Jeder Agent kann auf die Ausgaben vorheriger Agenten in der Kette zugreifen. Basiert auf der "Mixture-of-Agents"-Architektur, bei der Agenten vorherige Ausgaben als zusätzliche Informationen verwenden.
+
+### Version
+
+Jedes mal, wenn Änderungen an einem Agent gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können diese Versionen angezeigt und wiederhergestellt werden. Das ist sinnvoll, wenn man Änderungen wiederrufen möchte.
+
+## Admin Einstellungen
+
+Ein Admin Benutzer kann einstellen, welche Rechte für **Admins** und **User** gelten:
+
+- Teilen von Agenten erlaubt: `JA` oder `NEIN`
+- Erlaube Agenten zu erstellen: `JA` oder `NEIN`
+- Verwendung von Agenten erlauben: `JA` oder `NEIN`
+
+## Teilen von Agenten
+
+Wenn der Benutzer die entsprechenden Rechte hat, kann dieser Agenten teilen. Dazu muss auf den Teilen Button neben dem Speichern Button geklickt werden.
+
+![share agent](share-agent.png)
+
+Dabei kann ausgesucht werden, ob der Agent global, mit bestimmten Nutzern oder Nutzergruppen geteilt werden soll.
+
+![share-agent-details](share-agent-details.png)
+
+Dabei kann ausgewählt werden, mit welchen Rechten die anderen Benutzer auf den Agenten zugreifen können.
+
+![agent-share-rights](agent-share-rights.png)
 
 

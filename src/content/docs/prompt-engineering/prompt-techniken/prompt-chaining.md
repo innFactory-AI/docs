@@ -1,6 +1,6 @@
 ---
-title: Few-Shot Prompting
-description: Zero Shot
+title: Prompt Chaining
+description: Prompt Chaining
 ---
 
 ## Beschreibung

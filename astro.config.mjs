@@ -16,6 +16,9 @@ export default defineConfig({
 			locales: {
 				root: { label: 'Deutsch', lang: 'de' },
 			},
+			social: [
+				{  label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
+			],
 			customCss: ['./src/styles/global.css', '@fontsource/sora/400.css', '@fontsource/sora/700.css'],
 			logo: {
 				src: './src/assets/logo.svg',

@@ -70,9 +70,12 @@ export default defineConfig({
 						{ label: 'Prompts strukturieren', slug: 'prompt-engineering/prompts-strukturieren' },
 						{
 							label: 'Prompttechniken', items: [
+								{ label: 'Übersicht', slug: 'prompt-engineering/prompt-techniken/uebersicht' },
 								{ label: 'Zero-Shot Prompting', slug: 'prompt-engineering/prompt-techniken/zero-shot' },
 								{ label: 'Few-Shot Prompting', slug: 'prompt-engineering/prompt-techniken/few-shot' },
 								{ label: 'Prompt Chaining', slug: 'prompt-engineering/prompt-techniken/prompt-chaining' },
+								{ label: 'RAG', slug: 'prompt-engineering/prompt-techniken/rag' },
+								{ label: 'Tool Use', slug: 'prompt-engineering/prompt-techniken/tool-use' },
 							]
 						},
 						// { label: 'Best Practices', slug: 'prompt-engineering/best-practices' },

@@ -14,12 +14,3 @@ Prompts sind Texteingaben oder Anweisungen, die Nutzende der KI geben, um eine g
 ## Was bewirken Prompts?
 
 Die Formulierung der Prompts hat direkten Einfluss darauf, wie die KI die Aufgabe versteht und bearbeitet. Ein klarer, strukturierter Prompt führt meistens zu präziseren und brauchbareren Ergebnissen. Gute Prompts können gezielt Wissen abrufen, komplexe Aufgaben lösen oder die KI zu gewünschtem Verhalten bringen. Ungenaue oder vage Prompts führen oft zu weniger hilfreichen Antworten.
-
-## Wichtigste Elemente eines Prompts
-
-1. **Anweisung** – Was soll passieren?
-2. **Kontext** – externe Informationen oder zusätzlicher Kontext, der die Antwort beeinflusst
-3. **Eingabedaten** – Eingabe oder Frage
-4. **Ausgabe** – Wie soll die Antwort aussehen?
-
-Aber auch **Einschränkungen**, **Persona**, **Tools** und vieles mehr.

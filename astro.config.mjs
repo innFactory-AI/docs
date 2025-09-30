@@ -67,6 +67,7 @@ export default defineConfig({
 					label: 'Prompt Engineering',
 					items: [
 						{ label: 'Übersicht', slug: 'prompt-engineering/uebersicht' },
+						{ label: 'Bestandteile von Prompts', slug: 'prompt-engineering/bestandteile-von-prompts' },
 						{ label: 'Prompts formatieren', slug: 'prompt-engineering/prompts-formatieren' },
 						{ label: 'Prompts strukturieren', slug: 'prompt-engineering/prompts-strukturieren' },
 						{

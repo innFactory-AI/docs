@@ -4,7 +4,7 @@ description: Zero Shot
 ---
 
 ## Beschreibung
-Beim Few Shot Prompting werden im Prompt gezielt mehrere Beispiele von Eingaben und den dazugehörigen gewünschten Ausgaben bereitgestellt. Ziel ist es, dem Sprachmodell (LLM) durch diese Beispiele zu demonstrieren, welche Art von Antwort oder Transformation für eine bestimmte Aufgabe erwartet wird. Die bereitgestellten Beispiele dienen dem Modell als Orientierung und helfen, Unsicherheiten zu minimieren sowie die Qualität und Konsistenz der Antworten zu verbessern.
+Beim Few Shot Prompting werden im Prompt gezielt mehrere Beispiele von Eingaben und den dazugehörigen gewünschten Ausgaben bereitgestellt. Ziel ist es, dem Sprachmodell (LLM) durch diese Beispiele zu demonstrieren, welche Art von Antwort oder Transformation für eine bestimmte Aufgabe erwartet wird. Die bereitgestellten Beispiele dienen dem Modell als Orientierung und helfen, Unsicherheiten zu **minimieren** sowie die Qualität und Konsistenz der Antworten zu verbessern.
 
 Das Modell nutzt dabei sowohl sein internes Wissen als auch die Struktur, die durch die Beispiele vorgegeben wird. Dadurch eignet sich Few Shot Prompting besonders für Aufgaben, die nicht komplett selbsterklärend sind, für die eine spezifische Formatierung oder ein definierter Bewertungsmaßstab erforderlich ist. Im Prompt werden die Beispiele zum Beispiel in speziellen Blöcken wie `<Beispiele> ... </Beispiele>` eingefügt – dieses Muster macht deutlich, welche Elemente als Beispiele dienen und was vom Modell erwartet wird.
 

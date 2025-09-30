@@ -63,4 +63,3 @@ Hier ist eine Aufschlüsselung des typischen RAG-Workflows bei der Dokumentenabf
     Das LLM verarbeitet diesen umfassenden Prompt und greift direkt auf den bereitgestellten Dokumentenkontext zurück, um eine genaue, fundierte und hilfreiche Antwort zu formulieren, die dann an den Benutzer zurückgegeben wird.
 
 Dieser nahtlose Prozess stellt sicher, dass CompanyGPT Antworten liefert, die nicht nur konversationsorientiert, sondern auch sachlich fundiert und direkt relevant für die einzigartige Informationslandschaft Ihres Unternehmens sind.
-

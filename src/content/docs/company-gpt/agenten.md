@@ -1,9 +1,9 @@
 ---
 title: Agenten
-description: Agenten im CompanyGPT
+description: Entdecken Sie Agenten in CompanyGPT: fortschrittliche KI-Systeme mit Reasoning, Tool-Nutzung und Integrationen für effiziente Workflows, Dateiverarbeitung und personalisierte Interaktionen.
 ---
 
-Agenten im CompanyGPT sind fortgeschrittene Systeme, die dafür ausgelegt sind, mehr als nur Text zu generieren. Sie analysieren die Anfrage des Benutzers, erstellen einen Plan zur Erledigung, Benutzen Werkzeuge (Tools) um Informationen zu beschaffen und die Anfrage zu beantworten.
+Agenten im CompanyGPT sind fortgeschrittene Systeme, die dafür ausgelegt sind, mehr als nur Text zu generieren. Sie analysieren die Anfrage des Benutzers, erstellen einen Plan zur Erledigung, benutzen Werkzeuge (Tools), um Informationen zu beschaffen und die Anfrage zu beantworten.
 
 Fähigkeiten:
 - **Reasoning**: Können komplexe Probleme in kleinere Einheiten zerlegen und bearbeiten
@@ -14,7 +14,7 @@ Fähigkeiten:
 
 ### Name und Beschreibung
 
-Agenten sollten immer einen Namen haben, da sie über den Namen in der Modellauswahl ausgewählt werde können. Zusätzlich kann eine Beschreibung hinterlegt werden, die zusätzliche Informationen bietet.
+Agenten sollten immer einen Namen haben, da sie über den Namen in der Modellauswahl ausgewählt werden können. Zusätzlich kann eine Beschreibung hinterlegt werden, die zusätzliche Informationen bietet.
 
 ### Kategorie
 
@@ -22,15 +22,15 @@ Jeder Agent kann einer Kategorie zugewiesen werden. Sollten Agenten innerhalb de
 
 ### Anweisungen
 
-Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser Beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](../prompt-engineering/uebersicht.md). Besonders bei Agenten bietet es sich an, strukturierte und sauber formattierte Prompts zu verwerden. 
+Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](../prompt-engineering/uebersicht.md). Besonders bei Agenten bietet es sich an, strukturierte und sauber formatierte Prompts zu verwenden. 
 
 Es können außerdem Variablen wie das aktuelle Datum, die Uhrzeit oder der aktuelle Nutzer übergeben werden.
 
 ### KI Modell
 
-Das KI Modell ist das Gehirn jedes Agenten, da es die Anfragen analysiert, die Tools auswählt, und die Ergebnisse auswertet, zusammenfasst und zurückgibt. Hier kann der Ersteller zwischen allen verfügbaren Modellen wählen.
+Das KI Modell ist das Gehirn jedes Agenten, da es die Anfragen analysiert, die Tools auswählt und die Ergebnisse auswertet, zusammenfasst und zurückgibt. Hier kann der Ersteller zwischen allen verfügbaren Modellen wählen.
 
-Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführliche Beschreibung finden sie hier: [KI Einstellungen](./ki-einstellungen.md)
+Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführliche Beschreibung finden Sie hier: [KI Einstellungen](./ki-einstellungen.md)
 
 ### Fähigkeiten 
 
@@ -45,7 +45,7 @@ Gibt an, ob die Websuche für diesen Agenten aktiviert ist oder nicht. Die Infor
 Als „Kontext“ hochgeladene Dateien werden mit OCR verarbeitet, um Text zu extrahieren, der dann den Anweisungen des Agenten hinzugefügt wird. Ideal für Dokumente, Bilder mit Text oder PDFs, wenn Sie den vollständigen Textinhalt einer Datei benötigen. 
 
 :::tip
-Kontextdokumente sind immer vollständig im Kontext des Agenten / der Konversation. Hier sollten Sie sich auf das wesentliche Begrenzen, z.B. Anweisungen zur Tonalität oder vergangene Beispiel. Für Sehr lange Dokumente könnte die **Dateisuche** besser geeignet sein.
+Kontextdokumente sind immer vollständig im Kontext des Agenten / der Konversation. Hier sollten Sie sich auf das Wesentliche begrenzen, z.B. Anweisungen zur Tonalität oder vergangene Beispiele. Für sehr lange Dokumente könnte die **Dateisuche** besser geeignet sein.
 :::
 
 #### Artefakte
@@ -72,17 +72,17 @@ Werkzeuge sind eingebaute Tools, die vom Agenten genutzt werden können. Diese k
 
 ![tools-and-actions](tools-and-actions.png)
 
-Aktionen sind externe API Schnittstellen die direkt über [OpenAPI Kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. 
+Aktionen sind externe API-Schnittstellen, die direkt über [OpenAPI kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. 
 
 ![actions-open-api](actions-open-api.png)
 
 :::tip
-Diese Funktionalität ist sehr fortgeschritten aber auch veraltet, besser ist es API Endpunkte über eigene MCP Server anzubinden.
+Diese Funktionalität ist sehr fortgeschritten, aber auch veraltet; besser ist es, API-Endpunkte über eigene MCP Server anzubinden.
 :::
 
 #### Kontaktdaten
 
-Jeder Agent kann mit Kontaktdaten zum Ersteller versehen werden was nützlich ist für Feedback bei geteilten Agenten.
+Jeder Agent kann mit Kontaktdaten zum Ersteller versehen werden, was nützlich ist für Feedback bei geteilten Agenten.
 
 ### Erweiterte Einstellungen
 
@@ -96,11 +96,11 @@ Ermöglicht das Erstellen von Agenten-Sequenzen. Jeder Agent kann auf die Ausgab
 
 ### Version
 
-Jedes mal, wenn Änderungen an einem Agent gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können diese Versionen angezeigt und wiederhergestellt werden. Das ist sinnvoll, wenn man Änderungen wiederrufen möchte.
+Jedes Mal, wenn Änderungen an einem Agenten gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können diese Versionen angezeigt und widerrufen werden. Das ist sinnvoll, wenn man Änderungen widerrufen möchte.
 
 ## Admin Einstellungen
 
-Ein Admin Benutzer kann einstellen, welche Rechte für **Admins** und **User** gelten:
+Ein Admin-Benutzer kann einstellen, welche Rechte für **Admins** und **User** gelten:
 
 - Teilen von Agenten erlaubt: `JA` oder `NEIN`
 - Erlaube Agenten zu erstellen: `JA` oder `NEIN`
@@ -108,7 +108,7 @@ Ein Admin Benutzer kann einstellen, welche Rechte für **Admins** und **User** g
 
 ## Teilen von Agenten
 
-Wenn der Benutzer die entsprechenden Rechte hat, kann dieser Agenten teilen. Dazu muss auf den Teilen Button neben dem Speichern Button geklickt werden.
+Wenn der Benutzer die entsprechenden Rechte hat, kann dieser Agenten teilen. Dazu muss auf den Teilen-Button neben dem Speichern-Button geklickt werden.
 
 ![share agent](share-agent.png)
 
@@ -119,5 +119,3 @@ Dabei kann ausgesucht werden, ob der Agent global, mit bestimmten Nutzern oder N
 Dabei kann ausgewählt werden, mit welchen Rechten die anderen Benutzer auf den Agenten zugreifen können.
 
 ![agent-share-rights](agent-share-rights.png)
-
-

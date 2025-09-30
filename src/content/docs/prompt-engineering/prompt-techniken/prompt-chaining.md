@@ -12,7 +12,7 @@ Durch Prompt Chaining kann das Modell systematischer arbeiten, Fehlerquellen ver
 ## Vorteile
 
 - Komplexe Aufgaben werden beherrschbar, indem sie in simple, sequenzielle Schritte zerlegt werden.
-- Die Ergebnisse jedes Teilschritts können manuell überprüft oder angepasst werden wodurch die Kontrolle erhöht wird.
+- Die Ergebnisse jedes Teilschritts können manuell überprüft oder angepasst werden, wodurch die Kontrolle erhöht wird.
 - Geringeres Risiko von Missverständnissen und Fehlern seitens des Modells, da die Aufgaben klar strukturiert und getrennt werden.
 
 ## Typische Beispiele
@@ -37,4 +37,3 @@ Prompt 3: „Generiere einen Bericht basierend auf der Zusammenfassung.“
 ## Einsatzbereiche
 
 Prompt Chaining eignet sich besonders, wenn Aufgaben zu umfangreich oder zu komplex sind, um sie zuverlässig in einem einzigen Prompt zu bearbeiten. Das Vorgehen ist ideal für die Verarbeitung von Rohdaten, automatisierte Content-Pipelines, Analyse-Workflows, sowie jede Art von Schritt-für-Schritt-Prozess, bei dem eine hohe Genauigkeit oder Nachvollziehbarkeit gefordert ist.
-

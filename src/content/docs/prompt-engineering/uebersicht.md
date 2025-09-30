@@ -22,5 +22,4 @@ Die Formulierung der Prompts hat direkten Einfluss darauf, wie die KI die Aufgab
 3. **Eingabedaten** – Eingabe oder Frage
 4. **Ausgabe** – Wie soll die Antwort aussehen?
 
-Aber auch **Einschränkungen**, **Persona**, **Tools**, und viele mehr.
-
+Aber auch **Einschränkungen**, **Persona**, **Tools** und vieles mehr.

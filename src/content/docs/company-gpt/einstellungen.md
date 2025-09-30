@@ -1,6 +1,6 @@
 ---
 title: Einstellungen
-description: Einführung in die Funktionalitäten von CompanyGPT
+description: Übersicht und Konfiguration der CompanyGPT Einstellungen, inklusive Personalisierung, Chat-Optionen, Befehle, Sprachfunktionen, Datenverwaltung und Kontoeinstellungen.
 ---
 
 Die Einstellungen können über das Benutzermenü in der linken unteren Ecke aufgerufen werden.
@@ -22,19 +22,19 @@ Sprache, in der die Benutzeroberfläche angezeigt wird.
 
 ### Benutzernachrichten als Markdown
 
-Regelt die Darstellung der Benutzernachrichten als Markdown. Markdown ist eine leichte Syntax zur Auszeichnung von Texten. KIs Antworten ebenfalls in Markdown, und die Inhalte werden entsprechend dargestellt (z.B. fett). Diese Eintellung regelt, ob die Benutzernachrichten ebenfalls formattiert dargestellt werden sollen.
+Regelt die Darstellung der Benutzernachrichten als Markdown. Markdown ist eine leichte Syntax zur Auszeichnung von Texten. KIs antworten ebenfalls in Markdown, und die Inhalte werden entsprechend dargestellt (z.B. fett). Diese Einstellung regelt, ob die Benutzernachrichten ebenfalls formatiert dargestellt werden sollen.
 
 ### Automatisch zur neuesten Nachricht scrollen 
 
-Diese Einstellung regelt, ob vorhandene Chats automatisch nach ganz unten zur neuesten Nachricht scrollen sollen, wenn Sie geöffnet werden.
+Diese Einstellung regelt, ob vorhandene Chats automatisch nach ganz unten zur neuesten Nachricht scrollen sollen, wenn sie geöffnet werden.
 
 ### Rechte Seitenleiste verstecken 
 
-Dauerhaftes verstecken der rechten Seitenleiste.
+Dauerhaftes Verstecken der rechten Seitenleiste.
 
 ### Archivierte Chats 
 
-Ansicht der Archivierten Chats mit Möglichkeit zur Wiederherstellung oder dauerthaft löschen.
+Ansicht der archivierten Chats mit Möglichkeit zur Wiederherstellung oder dauerhaftem Löschen.
 
 ## Chat 
 
@@ -44,12 +44,12 @@ Auswahl der Schriftgröße, in der die Chatnachrichten dargestellt werden sollen
 
 ### Chatrichtung 
 
-- `ltr`: Links nach Rechts 
+- `ltr`: Links nach rechts 
 - `rtl`: Rechts nach links
 
 ### Enter drücken, um Nachrichten zu senden
 
-Wenn aktiviert, reicht `Enter` zum senden von Nachrichten. Neue Zeilen können mit `Shift + Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg / Cmd + Enter` zum senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu.
+Wenn aktiviert, reicht `Enter` zum Senden von Nachrichten. Neue Zeilen können mit `Shift + Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg / Cmd + Enter` zum Senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu.
 
 ### Chat-Eingabe im Willkommensbildschirm zentrieren
 
@@ -57,7 +57,7 @@ Chat-Eingabe im Willkommensbildschirm zentriert oder mittig unten.
 
 ### Denkprozess-Dropdowns standardmäßig öffnen
 
-Wenn KI Modelle nachdenken, kann der Denkprozess standardmäßig angezeigt oder hinter einen Dropdown verborgen werden und bei Bedarf geöffnet werden.
+Wenn KI-Modelle nachdenken, kann der Denkprozess standardmäßig angezeigt oder hinter einem Dropdown verborgen und bei Bedarf geöffnet werden.
 
 ### Code immer anzeigen, wenn der Code-Interpreter verwendet wird
 
@@ -73,7 +73,7 @@ Wenn aktiviert, werden der Text und die Anhänge, die in das Chat-Formular einge
 
 ## Befehle
 
-Befehle sind Kurzbefehle, die in der Nachrichteneingabe ausgeführt werden können und so schnell auf Modelle, Prompts, Mehrfachantworten zugreifen zu können.
+Befehle sind Kurzbefehle, die in der Nachrichteneingabe ausgeführt werden können und so schnell auf Modelle, Prompts, Mehrfachantworten zugreifen können.
 
 ### Befehl @ zum Wechseln von Modellen
 
@@ -85,15 +85,15 @@ Schaltet den Befehl "+" zum Hinzufügen einer Mehrfachantwort-Einstellung um.
 
 ### Befehl / für Promptvorlage
 
-Schaltet den Befehl "/" zur Auswahl einer Eingabeaufforderung über die Tastatur um
+Schaltet den Befehl "/" zur Auswahl einer Promptvorlage über die Tastatur um.
 
 ## Sprache
 
-Im CompanyGPT stehen sowohl Sprache zu Text (STT) und Text zu Sprache (TTS) zur Verfügung. Beides kann sowhl über die integrierte Browser-Engine, als auch über LLMs genutzt werden (die LLMs müssen entsprechend konfiguriert sein). 
+Im CompanyGPT stehen sowohl Sprache zu Text (STT) als auch Text zu Sprache (TTS) zur Verfügung. Beides kann sowohl über die integrierte Browser-Engine als auch über LLMs genutzt werden (die LLMs müssen entsprechend konfiguriert sein). 
 
 ### Sprache zu Text 
 
-Kann genutzt werden, um Prompteingaben zu diktieren, statt zu tippen. 
+Kann genutzt werden, um Prompteingaben zu diktieren, anstatt zu tippen. 
 
 Engines:
 - `Extern`: LLM
@@ -119,13 +119,13 @@ Stimme: Verfügbare Stimmen, entweder der Browser-Engine oder KI
 
 ### Gespeicherte Erinnerungen verwenden
 
-Erlaube der KI bei den Antworten auf deine gespeicherten Erinnerungen zuzugreifen und sie zu verwenden.
+Erlaube der KI, bei den Antworten auf deine gespeicherten Erinnerungen zuzugreifen und sie zu verwenden.
 
 ## Datensteuerung
 
 ### Konversationen Importieren 
 
-Konversationen können aus einer exportierten JSON Datei Importiert werden, um sie Beispielsweise mit den Kollegen zu teilen.
+Konversationen können aus einer exportierten JSON-Datei importiert werden, um sie beispielsweise mit den Kollegen zu teilen.
 
 ### Geteilte Links 
 
@@ -133,11 +133,11 @@ Ansicht der über Links geteilten Konversationen. Die Links können wieder aufge
 
 ### Benutzer API-Keys 
 
-Falls KI API Keys auf Benutzerebene vergeben wurden, können diese hier wiederrufen werden.
+Falls KI-API-Keys auf Benutzerebene vergeben wurden, können diese hier widerrufen werden.
 
 ### TTS-Cache-Speicher 
 
-TTS Cache Speicher kann geleert werden, falls verwendet.
+Der TTS-Cache-Speicher kann geleert werden, falls er verwendet wird.
 
 ### Alle Chats löschen
 
@@ -151,7 +151,7 @@ Das Löschen aller Chats kann nicht rückgängig gemacht werden.
 
 ### Benutzernamen in Nachrichten anzeigen
 
-Wenn aktiviert, wird der Benutzername des Absenders über jeder Nachricht angezeigt, die gesendet wird. Wenn deaktiviert, wird "Du" über den Nachrichten angezeigt
+Wenn aktiviert, wird der Benutzername des Absenders über jeder Nachricht angezeigt, die gesendet wird. Wenn deaktiviert, wird "Du" über den Nachrichten angezeigt.
 
 ### Profilbild
 

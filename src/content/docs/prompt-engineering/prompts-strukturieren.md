@@ -1,3 +1,4 @@
+
 ---
 title: Prompts strukturieren
 description: Einführung in die Funktionalitäten von CompanyGPT
@@ -51,8 +52,8 @@ Du bist ein Marketingexperte.
 
 # Kontext
 Inhalt einer Produktbroschüre.
-Überschriften sind besonders hilfreich, wenn Prompts umfangreicher werden oder wenn mehrere thematische Ebenen abgedeckt werden sollen. Sie fördern Übersichtlichkeit und Verständlichkeit – sowohl für die KI als auch für die menschlichen Prompt-Autoren.
 ```
+Überschriften sind besonders hilfreich, wenn Prompts umfangreicher werden oder wenn mehrere thematische Ebenen abgedeckt werden sollen. Sie fördern Übersichtlichkeit und Verständlichkeit – sowohl für die KI als auch für die menschlichen Prompt-Autoren.
 
 ## Wann sind Abschnitte und Überschriften sinnvoll?
 

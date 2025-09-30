@@ -1,6 +1,6 @@
 ---
-title: Tools nutzen und Aktionen ausführen mit companyGPT
-description: Erweiterung der Fähigkeiten von companyGPT durch externe Tools und Prozesse
+title: Tools nutzen und Aktionen ausführen mit CompanyGPT
+description: Erweiterung der Fähigkeiten von CompanyGPT durch externe Tools und Prozesse
 ---
 
 ## Tools nutzen und Aktionen ausführen mit CompanyGPT

@@ -1,6 +1,6 @@
 ---
 title: Zero-Shot Prompting
-description: Erfahre, was Zero-Shot Prompting ist: Die einfachste Methode im Prompt Engineering, bei der KI-Modelle Aufgaben ohne Beispiele lösen, basierend auf ihrem antrainierten Wissen. Ideal für schnelle Fakten, Übersetzungen und Standardaufgaben.
+description: Erfahre, was Zero-Shot Prompting ist. Die einfachste Methode im Prompt Engineering, bei der KI-Modelle Aufgaben ohne Beispiele lösen, basierend auf ihrem antrainierten Wissen. Ideal für schnelle Fakten, Übersetzungen und Standardaufgaben.
 ---
 
 ## Beschreibung

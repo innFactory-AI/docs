@@ -1,6 +1,6 @@
 ---
 title: Was ist CompanyGPT?
-description: Einführung in die Funktionalitäten von CompanyGPT
+description: innFactory CompanyGPT - Der DSGVO-konforme KI-Assistent für Unternehmen. Steigern Sie Produktivität, automatisieren Sie Prozesse und bleiben Sie compliant mit voller Datenkontrolle.
 ---
 
 innFactory CompanyGPT ist Ihr sicherer und flexibler KI-Assistent für höchste Produktivität, angelehnt an die intuitive Oberfläche und Funktionen von ChatGPT.

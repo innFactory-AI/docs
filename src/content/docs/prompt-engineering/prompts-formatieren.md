@@ -1,6 +1,6 @@
 ---
 title: Prompts formatieren
-description: Einführung in die Funktionalitäten von CompanyGPT
+description: Erfahre, wie du Prompts für KI-Systeme wie CompanyGPT mithilfe von Markdown präzise formatierst. Optimiere deine Kommunikation durch Überschriften, Listen, Tabellen und Absätze für strukturierte und klare Anweisungen.
 ---
 
 Die richtige Formatierung von Prompts trägt maßgeblich dazu bei, dass KI-Systeme komplexe Aufgaben strukturierter, klarer und präziser bearbeiten können. Durch eine übersichtliche Gliederung wird der Informationsgehalt für die KI leichter verständlich, und auch für menschliche Nutzer*innen sind formatierte Prompts besser nachvollziehbar.

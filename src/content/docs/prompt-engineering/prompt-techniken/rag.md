@@ -1,11 +1,11 @@
 ---
 title: RAG - Retrieval Augmented Generation und Tool
-description: RAG - Retrieval Augmented Generation
+description: Entdecken Sie, wie Retrieval Augmented Generation (RAG) Large Language Models (LLMs) wie CompanyGPT verbessert. Erfahren Sie mehr über die RAG-Funktion als spezialisiertes Tool, ihre Vorteile für Genauigkeit, Domänenspezifität und die Reduzierung von Halluzinationen sowie den detaillierten Workflow zur effizienten Dateiverarbeitung.
 ---
 
 ## RAG verstehen: Retrieval Augmented Generation
 
-In der Welt der Large Language Models (LLMs) ist **RAG (Retrieval Augmented Generation)** eine leistungsstarke Technik, die entwickelt wurde, um die Fähigkeiten und die Genauigkeit generativer KI zu verbessern. Im Wesentlichen ermöglicht RAG den KI-Modellen im CompanyGPT auf aktuelle, spezifische und oft proprietäre Informationen aus externen und internen Quellen zuzugreifen und diese zu nutzen, über das Wissen hinaus, auf das sie trainiert wurden.
+In der Welt der Large Language Models (LLMs) ist **RAG (Retrieval Augmented Generation)** eine leistungsstarke Technik, die entwickelt wurde, um die Fähigkeiten und die Genauigkeit generativer KI zu verbessern. Im Wesentlichen ermöglicht RAG den KI-Modellen im CompanyGPT, auf aktuelle, spezifische und oft proprietäre Informationen aus externen und internen Quellen zuzugreifen und diese zu nutzen, über ihr ursprüngliches Trainingswissen hinaus.
 
 ### Was ist RAG?
 
@@ -15,12 +15,12 @@ Man kann sich RAG so vorstellen, dass es dem LLM ein "offenes Buch" zur Verfügu
 
 ### RAG als spezialisiertes Tool
 
-Wie bereits erläutert, kann RAG als eine spezialisierte Art von "Tool" innerhalb eines umfassenderen [Tool-Use-Frameworks](./tool-use.md) betrachtet werden. Während allgemeine Tools Aktionen ausführen (wie das Senden einer E-Mail oder das Aktualisieren einer Datenbank) oder Echtzeitdaten abrufen könnten, besteht die primäre Funktion von RAG in der **Informationsbeschaffung für die kontextuelle Textgenerierung**. Es ist speziell darauf ausgelegt:
+Wie bereits erläutert, kann RAG als eine spezialisierte Art von "Tool" innerhalb eines umfassenderen [Tool-Use-Frameworks](./tool-use.md) betrachtet werden. Während allgemeine Tools Aktionen ausführen (wie das Senden einer E-Mail oder das Aktualisieren einer Datenbank) oder Echtzeitdaten abrufen können, besteht die primäre Funktion von RAG in der **Informationsbeschaffung für die kontextuelle Textgenerierung**. Es ist speziell darauf ausgelegt:
 
-*   **Antworten auf Fakten zu stützen:** Um zu verhindern, dass das LLM "halluziniert" oder falsche Informationen generiert.
-*   **Auf proprietäres Wissen zuzugreifen:** CompanyGPT kann Fragen auf der Grundlage Ihrer internen Dokumente, Richtlinien oder Daten beantworten.
-*   **Aktuelle Informationen bereitzustellen:** Um sicherzustellen, dass die Antworten die neuesten Informationen in Ihrer Wissensbasis widerspiegeln, auch wenn diese nicht Teil der ursprünglichen Trainingsdaten des LLM waren.
-*   **Kontext zu erweitern:** Dem LLM reichhaltige, relevante Details für umfassendere und hilfreichere Antworten zu liefern.
+*   **Antworten auf Fakten zu stützen.** Um zu verhindern, dass das LLM "halluziniert" oder falsche Informationen generiert.
+*   **Auf proprietäres Wissen zuzugreifen.** CompanyGPT kann Fragen auf der Grundlage Ihrer internen Dokumente, Richtlinien oder Daten beantworten.
+*   **Aktuelle Informationen bereitzustellen.** Um sicherzustellen, dass die Antworten die neuesten Informationen in Ihrer Wissensbasis widerspiegeln, auch wenn diese nicht Teil der ursprünglichen Trainingsdaten des LLM waren.
+*   **Kontext zu erweitern.** Dem LLM reichhaltige, relevante Details für umfassendere und hilfreichere Antworten zu liefern.
 
 ### Warum RAG mit CompanyGPT nutzen?
 

@@ -26,7 +26,7 @@ export default defineConfig({
 
 			},
 			tagline: 'Dokumentation und Anleitungen zu CompanyGPT, dem internen ChatGPT für Unternehmen. Prompt Engineering und vieles mehr.',
-			favicon: './src/assets/favicon-32x32.png',
+			favicon: 'favicon.svg',
 			lastUpdated: true,
 			titleDelimiter: '|',
 			markdown: {

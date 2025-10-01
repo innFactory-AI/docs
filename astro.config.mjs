@@ -40,7 +40,6 @@ export default defineConfig({
 					items: [
 						// Each item here is one entry in the navigation menu.
 						{ label: 'CompanyGPT', slug: 'intro/company-gpt' },
-						{ label: 'Glossar', slug: 'intro/glossar' },
 					],
 				},
 				{

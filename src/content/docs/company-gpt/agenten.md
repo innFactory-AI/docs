@@ -119,3 +119,9 @@ Dabei kann ausgesucht werden, ob der Agent global, mit bestimmten Nutzern oder N
 Dabei kann ausgewählt werden, mit welchen Rechten die anderen Benutzer auf den Agenten zugreifen können.
 
 ![agent-share-rights](agent-share-rights.png)
+
+## Agenten-Marktplatz
+
+Geteilte aber auch eigene Agenten sind über den Agenten-Marktplatz einsehbar.
+
+![agent-marketplace](agent-marketplace.png)

@@ -2,14 +2,16 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics'
+import starlightLlmsTxt from 'starlight-llms-txt'
 
 
 // https://astro.build/config
 export default defineConfig({
 	outDir: './dist',
+	site: 'https://docs.company-gpt.com',
 	integrations: [
 		starlight({
-
+			
 			title: 'CompanyGPT Dokumentation',
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
@@ -37,6 +39,15 @@ export default defineConfig({
 			description: 'Dokumentation und Anleitungen zu CompanyGPT, dem internen ChatGPT für Unternehmen. Prompt Engineering und vieles mehr.',
 			// social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
 			plugins: [
+				starlightLlmsTxt({
+					projectName: "innFactory CompanyGPT Documentation",
+					description: "Dokumentation und Anleitungen zu CompanyGPT, dem internen ChatGPT für Unternehmen. Prompt Engineering und vieles mehr.",
+					details: "innFactory AI Consulting GmbH - https://innfactory.ai",
+					optionalLinks: [
+						{ label: 'Website', url: 'https://innfactory.ai' },
+						{ label: 'CompanyGPT', url: 'https://company-gpt.com' },
+					]
+				}),
 				starlightSidebarTopics([
 					{
 						label: 'Dokumentation',

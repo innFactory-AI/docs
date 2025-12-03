@@ -74,6 +74,11 @@ export default defineConfig({
 										{ label: 'MCP Server', slug: 'company-gpt/integrationen/mcp-server' },
 									]
 								},
+								{
+									label: 'Addons', items: [
+										{ label: 'KI Suche', slug: 'company-gpt/addons/ki-suche' },
+									]
+								},
 								{ label: 'Agenten', slug: 'company-gpt/agenten' },
 								{ label: 'Prompts', slug: 'company-gpt/prompts' },
 								{ label: 'Erinnerungen', slug: 'company-gpt/erinnerungen' },

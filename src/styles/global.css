@@ -126,6 +126,48 @@
 
 	/* Optional: The admonition colors are also inverted */
 	/* ... (original light theme admonition colors) ... */
-}
+	.starlight-aside--note {
+		background-color: hsl(var(--sl-hue-blue), 54%, 92%);
+	}
 
-/* ... (rest of the file: media queries etc. remain unchanged) ... */
+	.starlight-aside--tip {
+		background-color: hsl(var(--sl-hue-purple), 82%, 95%);
+	}
+	.starlight-aside--danger {
+		background-color: hsl(var(--sl-hue-red), 82%, 95%);
+	}
+
+	.starlight-aside--caution {
+		background-color: hsl(var(--sl-hue-orange), 82%, 95%);
+	}
+
+	.starlight-aside__title {
+		color: var(--sl-color);
+	}
+
+	.starlight-aside--note .starlight-aside__title {
+		color: hsl(var(--sl-hue-blue), 54%, 40%);
+	}
+	.starlight-aside--tip .starlight-aside__title {
+		color: hsl(var(--sl-hue-purple), 82%, 30%);
+	}
+	.starlight-aside--danger .starlight-aside__title {
+		color: hsl(var(--sl-hue-red), 82%, 40%);
+	}
+	.starlight-aside--caution .starlight-aside__title {
+		color: hsl(var(--sl-hue-orange), 82%, 40%);
+	}
+
+	.starlight-aside--note .starlight-aside__content a {
+		color: hsl(var(--sl-hue-blue), 54%, 40%);
+	}
+	.starlight-aside--tip .starlight-aside__content a {
+		color: hsl(var(--sl-hue-purple), 82%, 30%);
+	}
+	.starlight-aside--danger .starlight-aside__content a {
+		color: hsl(var(--sl-hue-red), 82%, 40%);
+	}
+	.starlight-aside--caution .starlight-aside__content a {
+		color: hsl(var(--sl-hue-orange), 82%, 40%);
+	}
+}

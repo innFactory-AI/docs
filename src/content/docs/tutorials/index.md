@@ -7,4 +7,9 @@ In dieser Rubrik finden Sie Tutorials und Anleitungen zu vielen Themen rund um d
 
 ## Agenten
 
-- [Meeting Notizen Agent](./agenten/meeting-notizen-agent)
+- [Meeting Notizen Agent](/tutorials/agenten/meeting-notizen-agent)
+- [Rechner Agent](/tutorials/agenten/rechner-agent)
+
+## KI Suche
+
+- [Upload zur KI-Suche über n8n](/tutorials/addons/ki-suche-n8n/)

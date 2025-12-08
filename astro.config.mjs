@@ -117,10 +117,16 @@ export default defineConfig({
 							label: 'Agenten erstellen',
 							items: [
 								{ label: 'Meeting Notizen Agent', slug: 'tutorials/agenten/meeting-notizen-agent' },
+								{ label: 'Rechner Agent', slug: 'tutorials/agenten/rechner-agent' },
 							]
 
+						}, {
+							label: 'Addons nutzen',
+							items: [
+								{ label: 'Upload zu KI Suche mit n8n', slug: 'tutorials/addons/ki-suche-n8n' },
+							]
 						}]
-					}
+					},
 				])
 			],
 			// sidebar: [

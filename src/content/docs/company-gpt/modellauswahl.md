@@ -1,4 +1,7 @@
-# KI-Modelle – Wann welches Modell nutzen
+---
+title: KI-Modelle – Wann welches Modell nutzen
+description: Wann welches KI Modell nutzen? Diese Übersicht hilft Ihnen.
+---
 
 **Faustregel:**
 - **Schnell & günstig** → Mini / Flash / Nano

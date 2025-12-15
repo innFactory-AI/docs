@@ -62,7 +62,7 @@ description: Wann welches KI Modell nutzen? Diese Übersicht hilft Ihnen.
 ## Perplexity AI
 - **Für:** Nachschlagen, Überblick, Faktencheck, Recherche
 - **Wann:** Fragen mit Fakten und Quellen
-- **Warum?** Antwort **mit Quellen**, nicht nur Meinung
+- **Warum?** Antwort **mit Quellen**
 
 ---
 

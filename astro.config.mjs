@@ -63,6 +63,7 @@ export default defineConfig({
 						{
 							label: 'CompanyGPT',
 							items: [
+								{ label: 'Modellauswahl', slug: 'company-gpt/modellauswahl' },
 								{ label: 'User Interface', slug: 'company-gpt/user-interface' },
 								{ label: 'Einstellungen', slug: 'company-gpt/einstellungen' },
 								{ label: 'Chat', slug: 'company-gpt/chat' },

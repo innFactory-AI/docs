@@ -5,7 +5,7 @@ description: Learn how to use bookmarks in CompanyGPT to quickly find conversati
 
 Bookmarks can be added to conversations to find them more quickly. This also allows chats on specific topics to be grouped together.
 
-![bookmark](bookmark.png)
+![bookmark](bookmark-en.png)
 
 These can be given a `title` and `description`.
 

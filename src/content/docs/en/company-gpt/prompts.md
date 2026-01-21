@@ -7,7 +7,7 @@ Prompts in CompanyGPT are prompt templates that can be saved and used at any tim
 
 Prompt templates can be viewed, created, modified, or used in the right sidebar under **Prompts**.
 
-![prompts](prompts.png)
+![prompts](prompts-en.png)
 
 ## Components of prompt templates
 
@@ -21,11 +21,11 @@ Prompt templates can be viewed, created, modified, or used in the right sidebar 
 - **Special variables**: These are predefined and do not need to be set manually, but are filled automatically. These are **date**, **time**, **user**.
 - **Custom variables**: Custom variables can be set within the text. These are marked with double curly brackets, e.g., `{{ COLOR }}` => creates the variable `COLOR`
 
-![variables](variables.png)
+![variables](variables-en.png)
 
 As soon as the prompt is executed, an input window for the variables opens.
 
-![variables-input](variables-input.png)
+![variables-input](variables-input-en.png)
 
 Dropdowns can also be selected as a selection menu for the variables. The following syntax is required for this:
 
@@ -35,6 +35,6 @@ Dropdowns can also be selected as a selection menu for the variables. The follow
 # Example
 {{ color:red|green|blue}}
 ```
-![colors](colors.png)
+![colors](colors-en.png)
 
 Prompt templates can be used very effectively for recurring tasks, for [prompt chaining](/prompt-engineering/prompt-techniques/prompt-chaining), or in conjunction with [agents](/company-gpt/agents/).

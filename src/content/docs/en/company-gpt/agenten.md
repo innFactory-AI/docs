@@ -114,7 +114,7 @@ If the user has the appropriate rights, they can share agents. To do this, click
 
 You can choose whether the agent should be shared globally, with specific users, or with user groups.
 
-![share-agent-details](share-agent-details-en.png)
+![share-agent-details](share-agents-details-en.png)
 
 You can select the rights with which other users can access the agent.
 
@@ -124,4 +124,4 @@ You can select the rights with which other users can access the agent.
 
 Shared agents as well as your own agents can be viewed via the Agent Marketplace.
 
-![agent-marketplace](agent-marketplace-ens.png)
+![agent-marketplace](agent-marketplace-en.png)

@@ -53,7 +53,6 @@ Messages in the chat have quick actions:
 Message histories can be shared publicly or exported to different file formats. 
 
 ![share-and-export](share-and-export-en.png)
-
 ### Sharing 
 
 Message histories can be shared via links. To do this, an anonymized, publicly available link is generated that can be accessed by anyone. A QR code can also be created. 

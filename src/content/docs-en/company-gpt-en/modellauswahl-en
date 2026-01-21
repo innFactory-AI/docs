@@ -1,0 +1,74 @@
+---
+title: AI models – When to use which model
+description: When to use which AI model? This overview will help you.
+---
+
+**Rule of thumb:**
+- **Fast & inexpensive** → Mini / Flash / Nano
+- **Standard & reliable** → Large all-round models
+- **Complex & critical** → Most powerful models
+- **EU / internal / data protection** → Stackit models
+
+---
+
+## OpenAI
+
+### gpt-4o mini
+- **For:** short questions, simple texts, quick answers
+- **When:** everyday use, chat, summarizing, brainstorming
+- **Why:** very fast and inexpensive, sufficient for ~80% of cases
+
+### gpt-4o
+- **For:** standard all-round tasks
+- **When:** when quality is more important than pure speed
+- **Why:** strong in text comprehension, structure, and logic
+
+### gpt-4.1
+- **For:** complex analyses, clear arguments
+- **When:** strategy, concepts, in-depth explanations
+- **Why:** more precise and stable than gpt-4o
+
+### gpt-4.1 mini
+- **For:** better quality while maintaining high speed
+- **When:** when gpt-4o mini is too superficial
+- **Why:** good balance between quality and performance
+
+### gpt-5 mini
+- **For:** demanding tasks with efficiency
+- **When:** coding, structured outputs, longer texts
+- **Why:** more modern and robust than the GPT-4 series
+
+### gpt-5 nano
+- **For:** extremely simple, fast tasks
+- **When:** auto-complete, short answers, mass tasks
+- **Why:** extremely fast and inexpensive, but limited depth
+
+---
+
+## Google
+
+### Gemini 2.5 Flash
+- **For:** maximum speed
+- **When:** quick queries, brainstorming, iterations
+- **Why:** very fast, good at overview and context
+
+### Gemini 2.5 Pro
+- **For:** deep thinking and large contexts
+- **When:** complex documents, comparisons, analyses
+- **Why:** Google's strongest model with high structural quality
+
+---
+
+## Perplexity AI
+- **For:** looking things up, overview, fact checking, research
+- **When:** questions with facts and sources
+- **Why?** Answer **with sources**
+
+---
+
+## Quick decision-making aid
+
+- **“I just want a good answer”** → gpt-4o
+- **“I need it fast”** → gpt-4o mini or Gemini 2.5 Flash
+- **“It's complicated or important”** → gpt-4.1, gpt-5 mini, or Gemini 2.5 Pro
+- **“Search documents”** → Gemini 2.5 Flash

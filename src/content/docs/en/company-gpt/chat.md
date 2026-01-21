@@ -5,7 +5,7 @@ description: CompanyGPT Chat Interface - Communication with AI models, prompt in
 
 The chat is the main interface for communicating with the various language models and agents.
 
-![chat interface](./chat.png)
+![chat interface](./chat-en.png)
 
 :::caution[Always keep in mind]
 All messages and files in the current chat are always part of the context. It is therefore a good idea to use a separate chat for each topic.
@@ -15,7 +15,7 @@ All messages and files in the current chat are always part of the context. It is
 
 Chat messages or prompts are entered via the input field.
 
-![Prompt input](chat-input.png)
+![Prompt input](chat-input-en.png)
 
 :::tip
 Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/prompt-engineering/overview)
@@ -52,7 +52,7 @@ Messages in the chat have quick actions:
 
 Message histories can be shared publicly or exported to different file formats. 
 
-![share-and-export](share-and-export.png)
+![share-and-export](share-and-export-en.png)
 
 ### Sharing 
 
@@ -66,7 +66,7 @@ Message histories can be shared via links. To do this, an anonymized, publicly a
 
 Message histories can also be exported. This has the advantage that they can be saved as files in different formats. Histories in JSON format can also be [imported](../settings/#import-conversations) again.
 
-![export-chat](export-chat.png)
+![export-chat](export-chat-en.png)
 
 To export, you must select a file name and format.
 

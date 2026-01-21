@@ -5,7 +5,7 @@ description: Discover the CompanyGPT user interface—a detailed overview of cha
 
 The CompanyGPT user interface allows you to communicate with different AI models, create agents, manage prompt templates, and much more. 
 
-![companygpt ui](ui.png)
+![companygpt ui](ui-en.png)
 
 ## Quick Selection 
 
@@ -18,11 +18,11 @@ The CompanyGPT user interface allows you to communicate with different AI models
 
 ## Model selection
 
-![model-selection](model-selection.png)
+![model-selection](model-selection-en.png)
 
 ## Right sidebar
 
-![right-sidebar](right-sidebar.png)
+![right-sidebar](right-sidebar-en.png)
 
 - [Create and edit agents](/company-gpt/agents/)
 - [Prompt templates](/company-gpt/prompts/)
@@ -34,7 +34,7 @@ The CompanyGPT user interface allows you to communicate with different AI models
 
 ## Chat input
 
-![chat-input](chat-input.png)
+![chat-input](chat-input-en.png)
 
 - Prompt input
 - [Files](/company-gpt/file-processing/)

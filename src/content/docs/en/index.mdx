@@ -1,54 +1,34 @@
 ---
 title: CompanyGPT Documentation
-description: Here you will find descriptions for all functions 
+description: Documentation of all CompanyGPT features.
 template: splash
 hero:
-  tagline: Documentation and instructions for CompanyGPT, the internal AI chat for companies, prompt engineering, and much more.
+  tagline: Documentation and guides for CompanyGPT – the internal enterprise AI chat, prompt engineering, and more.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: to the documentation
+    - text: Go to Documentation
       link: /intro/company-gpt
       icon: right-arrow
-    - text: to the website
+    - text: Visit Website
       link: https://innfactory.ai/company-gpt-dsgvo-konformes-chatgpt-fur-ihr-unternehmen/
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 ## Topics
 
 <CardGrid>
-	<Card title="User Interface" icon="pencil">
-		Everything about the [User Interface](company-gpt/user-interface/) and how to use it.
-	</Card>
-	<Card title="Settings" icon="add-document">
-		[Einstellungen](company-gpt/einstellungen) for users regarding appearance, text-to-speech, speech-to-text, and more.
-	<Card title="Chat" icon="setting">
-		[Hauptinterface zur Kommunikation](company-gpt/chat) with AI models and AI agents.
-	</Card>
-	<Card title="Integrations" icon="open-book">
-		[MCP-Server](company-gpt/integrationen/mcp-server), [Websuche](company-gpt/integrationen/websuche) and more.
-	</Card>
-	<Card title="Agents" icon="open-book">
-		Easily create your own [Agenten](company-gpt/agenten).
-	</Card>
-	<Card title="Prompts" icon="open-book">
-		Everything about [Prompts](prompt-engineering/uebersicht) and [Promptvorlagen](company-gpt/prompts).
-	</Card>
-	<Card title="Reminders" icon="open-book">
-		[Erinnerungen](company-gpt/erinnerungen) in CompanyGPT.
-	</Card>
-	<Card title="AI Settings" icon="open-book">
-		Everything about [KI-Einstellungen](company-gpt/ki-einstellungen).
-	</Card>
-	<Card title="File processing" icon="open-book">
-		The possibilities of [Dateiverarbeitung](company-gpt/dateiverarbeitung) in CompanyGPT.
-	</Card>
-	<Card title="Bookmarks" icon="open-book">
-		[Lesezeichen](company-gpt/lesezeichen) in CompanyGPT.
-	</Card>
-	
+  <LinkCard title="User Interface" href="/company-gpt/user-interface/" description="How the UI works and how to use it." />
+  <LinkCard title="Settings" href="/company-gpt/einstellungen/" description="Appearance, text-to-speech, speech-to-text, language, and more." />
+  <LinkCard title="Chat" href="/company-gpt/chat/" description="The main interface for communicating with models and agents." />
+  <LinkCard title="Integrations" href="/company-gpt/integrationen/" description="MCP servers, web search, and more." />
+  <LinkCard title="Agents" href="/company-gpt/agenten/" description="Create your own agents easily." />
+  <LinkCard title="Prompts" href="/prompt-engineering/uebersicht/" description="Prompts and prompt templates." />
+  <LinkCard title="Memories" href="/company-gpt/erinnerungen/" description="Memories inside CompanyGPT." />
+  <LinkCard title="AI Settings" href="/company-gpt/ki-einstellungen/" description="All AI-related settings." />
+  <LinkCard title="File Processing" href="/company-gpt/dateiverarbeitung/" description="What CompanyGPT can do with uploaded files." />
+  <LinkCard title="Bookmarks" href="/company-gpt/lesezeichen/" description="Bookmarks inside CompanyGPT." />
 </CardGrid>

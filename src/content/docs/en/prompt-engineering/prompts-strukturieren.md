@@ -1,4 +1,3 @@
-
 ---
 title: Structuring prompts
 description: Introduction to the functionalities of CompanyGPT

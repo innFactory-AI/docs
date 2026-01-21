@@ -13,7 +13,7 @@ More information about MCP can be found here: [Prompt Engineering / MCP](/prompt
 
 MCP servers can be added in the right sidebar via the MCP settings. Admin users can configure how MCP servers can be used. Permissions can be assigned for use, creation, and sharing. 
 
-![add-mcp](add-mcp.png)
+![add-mcp](add-mcp-en.png))
 
 Clicking on **+ Add MCP** opens the dialog for adding MCP servers. 
 

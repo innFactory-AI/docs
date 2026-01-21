@@ -9,7 +9,7 @@ The settings can be accessed via the user menu in the lower left corner.
 
 Basic settings can be configured under **General**: 
 
-![general](general.png)
+![general](general-en.png)
 
 ### Design
 - Light

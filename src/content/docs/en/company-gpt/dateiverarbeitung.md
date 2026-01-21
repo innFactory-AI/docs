@@ -11,7 +11,7 @@ Files can be processed in different ways in CompanyGPT. Depending on the type, t
 - Upload for file search: Process as text, break down into sections, and convert as embeddings using an embedding model. Similarity search during query.
 :::
 
-![files](files.png)
+![files](files-en.png)
 
 ## Upload to AI provider
 
@@ -25,7 +25,7 @@ Here, files, such as PDFs, are uploaded and all text is extracted using OCR (Opt
 
 **Limitation**: No images in the texts are processed. Azure's `Document API`, based on Mistral OCR, only allows documents with a maximum length of 30 pages and a file size of 50 MB. 
 
-![files-text-ocr](files-text-ocr.png)
+![files-text-ocr](files-text-ocr-en.png)
 
 ## File search
 

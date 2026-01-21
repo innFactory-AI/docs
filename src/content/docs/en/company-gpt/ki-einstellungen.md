@@ -3,9 +3,9 @@ title: AI Settings
 description: Manage and customize AI settings in CompanyGPT. Create profiles with individual instructions and configure detailed parameters such as temperature, context tokens, penalties, and streaming for tailored AI responses.
 ---
 
-Custom profiles can be created and saved under **AI Settings**. These profiles include a name, specific instructions for the AI, and detailed AI parameters. This allows you to define customized presets that can be used flexibly in conversations.
+Custom profiles can be created and saved under **Parameters**. These profiles include a name, specific instructions for the AI, and detailed AI parameters. This allows you to define customized presets that can be used flexibly in conversations.
 
-![ai-settings](ai-settings.png)
+![ai-settings](ai-settings-en.png)
 
 ## Custom instructions
 

@@ -64,13 +64,13 @@ For more information, see [Prompt Engineering / RAG](/prompt-engineering/prompt-
 
 MCP Server tools can be specified per agent, including which tools from the MCP Server the agent can use.
 
-![mcp tools](mcp-tools.png)
+![mcp tools](mcp-tools-en.png)
 
 #### Tools and Actions
 
 Tools are built-in tools that can be used by the agent. These can of course be combined with MCP tools.
 
-![tools-and-actions](tools-and-actions.png)
+![tools-and-actions](tools-and-actions-en.png)
 
 Actions are external API interfaces that can be connected directly via [OpenAPI-compatible schemas](https://spec.openapis.org/oas/latest.html). 
 
@@ -114,14 +114,14 @@ If the user has the appropriate rights, they can share agents. To do this, click
 
 You can choose whether the agent should be shared globally, with specific users, or with user groups.
 
-![share-agent-details](share-agent-details.png)
+![share-agent-details](share-agent-details-en.png)
 
 You can select the rights with which other users can access the agent.
 
-![agent-share-rights](agent-share-rights.png)
+![agent-share-rights](agent-share-rights-en.png)
 
 ## Agent Marketplace
 
 Shared agents as well as your own agents can be viewed via the Agent Marketplace.
 
-![agent-marketplace](agent-marketplace.png)
+![agent-marketplace](agent-marketplace-ens.png)

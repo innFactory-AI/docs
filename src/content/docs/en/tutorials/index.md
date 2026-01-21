@@ -1,7 +1,6 @@
 ---
-Title: Tutorials
-Description: Here you will find tutorials of all kinds
-
+title: Tutorials
+description: Here you will find tutorials of all kinds
 ---
 
 In this section, you will find tutorials and instructions on many topics related to CompanyGPT.

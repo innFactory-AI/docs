@@ -52,7 +52,7 @@ export default defineConfig({
 				starlightSidebarTopics([
 					{
 						label: 'Dokumentation',
-						link: '/intro/company-gpt',
+						link: 'intro/company-gpt',
 						icon: 'open-book',
 						items: [{
 							label: 'Einführung',
@@ -113,7 +113,7 @@ export default defineConfig({
 					},
 					{
 						label: 'Tutorials',
-						link: '/tutorials',
+						link: 'tutorials',
 						icon: 'rocket',
 						items: [{
 							label: 'Agenten erstellen',

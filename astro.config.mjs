@@ -16,9 +16,10 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
 			},
-			defaultLocale: 'root',
+			defaultLocale: 'de',
 			locales: {
-				root: { label: 'Deutsch', lang: 'de' },
+				de: { label: 'DE', lang: 'de'},
+				en: { label: 'EN', lang: 'en'},
 			},
 			social: [
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }

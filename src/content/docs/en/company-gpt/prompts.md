@@ -37,4 +37,4 @@ Dropdowns can also be selected as a selection menu for the variables. The follow
 ```
 ![colors](colors-en.png)
 
-Prompt templates can be used very effectively for recurring tasks, for [prompt chaining](/prompt-engineering/prompt-techniques/prompt-chaining), or in conjunction with [agents](/company-gpt/agents/).
+Prompt templates can be used very effectively for recurring tasks, for [prompt chaining](/en/prompt-engineering/prompt-techniken/prompt-chaining), or in conjunction with [agents](/en/company-gpt/agenten/).

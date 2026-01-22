@@ -18,16 +18,16 @@ Die Eingabe von Chatnachrichten bzw. Prompts erfolgt über das Eingabefeld.
 ![Prompteingabe](chat-input.png)
 
 :::tip
-Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/prompt-engineering/uebersicht)
+Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht)
 :::
 
 ## Integrationen
 
 Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werden durch:
-- [Websuche](/company-gpt/integrationen/websuche)
-- [Dateisuche](/company-gpt/integrationen/dateisuche)
-- [Artefakte](/company-gpt/integrationen/artefakte)
-- [MCP Server](/company-gpt/integrationen/mcp-server)
+- [Websuche](/de/company-gpt/integrationen/websuche)
+- [Dateisuche](/de/company-gpt/integrationen/dateisuche)
+- [Artefakte](/de/company-gpt/integrationen/artefakte)
+- [MCP Server](/de/company-gpt/integrationen/mcp-server)
 
 Diese können im jeweiligen Chat für einzelne Nachrichten aktiviert oder deaktiviert werden.
 
@@ -42,7 +42,7 @@ Im Chat befindliche Nachrichten haben Schnellaktionen:
 ![Chatnachrichten Schnellaktionen](chat-quick-actions.png)
 
 - **Neu generieren** und **Nachrichtenvarianten**: Über `Neu generieren` können mehrere Antwortvarianten generiert werden, zwischen denen umgeschalten werden kann.
-- **Vorlesen**: Über [Text-zu-Sprache](/company-gpt/einstellungen/#text-zu-sprache) kann die Nachricht über die eingestellte Engine vorgelesen werden.
+- **Vorlesen**: Über [Text-zu-Sprache](/de/company-gpt/einstellungen/#text-zu-sprache) kann die Nachricht über die eingestellte Engine vorgelesen werden.
 - **Kopieren**: Kopiert den gesamten Inhalt der Nachricht in die Zwischenablage.
 - **Bearbeiten und neu generieren**: Die Nachricht kann nachträglich noch bearbeitet und entweder gespeichert oder mit Änderungen neu generiert werden. Das ist sinnvoll, wenn man dem Kontext noch Informationen hinzufügen oder ändern möchte.
 - **Verzweigen**: Ermöglicht es, an einem bestimmten Punkt eine neue Konversation mit allen vorangegangenen Nachrichten abzuzweigen. Das ist hilfreich, wenn man beispielsweise in unterschiedliche Richtungen denken möchte.
@@ -64,7 +64,7 @@ Nachrichtenverläufe können über Links geteilt werden. Dazu wird ein anonymisi
 
 ### Export
 
-Nachrichtenverläufe können auch exportiert werden. Das hat den Vorteil, dass sie in unterschiedlichen Formaten als Datei gespeichert werden können. Verläufe im JSON-Format können ebenfalls wieder [importiert](../einstellungen/#konversationen-importieren) werden.
+Nachrichtenverläufe können auch exportiert werden. Das hat den Vorteil, dass sie in unterschiedlichen Formaten als Datei gespeichert werden können. Verläufe im JSON-Format können ebenfalls wieder [importiert](/de/company-gpt/einstellungen/#konversationen-importieren) werden.
 
 ![export-chat](export-chat.png)
 

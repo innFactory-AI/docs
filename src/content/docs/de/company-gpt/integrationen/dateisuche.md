@@ -8,8 +8,8 @@ Die Dateisuche ermöglicht es, die Inhalte von Dateien ähnlich der Abfrage zu d
 :::note[Wofür eignet sich Dateisuche?]
 Am besten für längere Textinhalte, die nicht in Gänze verarbeitet werden müssen, sondern einzelne Abschnitte zur Frage passend gesucht und in Antworten einbezogen werden sollen.
 
-Weitere Informationen hier: [Dateiverarbeitung](/company-gpt/dateiverarbeitung/)
+Weitere Informationen hier: [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/)
 :::
 
 
-Die Dateien werden nicht in Gänze dem Kontext hinzugefügt, sondern es werden nur passende Inhalte durch Ähnlichkeitssuche zurückgegeben. Diese Funktionsweise nennt sich [**RAG - Retrieval Augmented Generation**](/prompt-engineering/prompt-techniken/rag) und erweitert das Wissen von KI und KI-Agenten im CompanyGPT um domänenspezifische, interne oder auch geheime Dokumente. Dabei wird der Inhalt über ein KI-Modell in Embeddings (Vektoren) umgewandelt. Bei Suchen wird wiederum die Suchanfrage ebenfalls in Vektoren umgewandelt und mathematisch die Nähe berechnet. Dadurch kann man **inhaltliche Nähe** sehr viel besser als beispielsweise über eine Volltextsuche abbilden. 
+Die Dateien werden nicht in Gänze dem Kontext hinzugefügt, sondern es werden nur passende Inhalte durch Ähnlichkeitssuche zurückgegeben. Diese Funktionsweise nennt sich [**RAG - Retrieval Augmented Generation**](/de/prompt-engineering/prompt-techniken/rag) und erweitert das Wissen von KI und KI-Agenten im CompanyGPT um domänenspezifische, interne oder auch geheime Dokumente. Dabei wird der Inhalt über ein KI-Modell in Embeddings (Vektoren) umgewandelt. Bei Suchen wird wiederum die Suchanfrage ebenfalls in Vektoren umgewandelt und mathematisch die Nähe berechnet. Dadurch kann man **inhaltliche Nähe** sehr viel besser als beispielsweise über eine Volltextsuche abbilden. 

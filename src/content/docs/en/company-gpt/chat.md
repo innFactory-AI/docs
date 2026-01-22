@@ -18,16 +18,16 @@ Chat messages or prompts are entered via the input field.
 ![Prompt input](chat-input-en.png)
 
 :::tip
-Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/prompt-engineering/overview)
+Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht)
 :::
 
 ## Integrations
 
 In addition to the actual prompt input, the context can be further expanded by:
-- [Web Search](/company-gpt/integrations/websearch)
-- [File search](/company-gpt/integrations/file-search)
-- [Artifacts](/company-gpt/integrations/artifacts)
-- [MCP Server](/company-gpt/integrations/mcp-server)
+- [Websuche](/en/company-gpt/integrationen/websuche)
+- [Dateisuche](/en/company-gpt/integrationen/dateisuche)
+- [Artefakte](/en/company-gpt/integrationen/artefakte)
+- [MCP Server](/en/company-gpt/integrationen/mcp-server)
 
 These can be enabled or disabled for individual messages in the respective chat.
 
@@ -42,7 +42,7 @@ Messages in the chat have quick actions:
 ![Chat message quick actions](chat-quick-actions.png)
 
 - **Regenerate** and **Message Variants**: Using `Regenerate`, several response variants can be generated, between which you can switch.
-- **Read Aloud**: Using [Text-to-Speech](/company-gpt/settings/#text-to-speech), the message can be read aloud using the set engine.
+- **Read Aloud**: Using [Text-to-Speech](/en/company-gpt/einstellungen/#text-to-speech), the message can be read aloud using the set engine.
 - **Copy**: Copies the entire content of the message to the clipboard.
 - **Edit and regenerate**: The message can be edited afterwards and either saved or regenerated with changes. This is useful if you want to add or change information in the context.
 - **Branch**: Allows you to branch off at a certain point with all previous messages. This is helpful if, for example, you want to think in different directions.
@@ -63,7 +63,7 @@ Message histories can be shared via links. To do this, an anonymized, publicly a
 
 ### Export
 
-Message histories can also be exported. This has the advantage that they can be saved as files in different formats. Histories in JSON format can also be [imported](../settings/#import-conversations) again.
+Message histories can also be exported. This has the advantage that they can be saved as files in different formats. Histories in JSON format can also be [imported](/en/company-gpt/einstellungen/#konversationen-importieren) again.
 
 ![export-chat](export-chat-en.png)
 

@@ -12,8 +12,8 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 ![quick-selection](quick-selection.png)
 
 - Seitenleiste verbergen
-- [Agent Marketplace](/company-gpt/agenten/#agenten-marktplatz)
-- [Lesezeichen](/company-gpt/lesezeichen)
+- [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
+- [Lesezeichen](/de/company-gpt/lesezeichen)
 - Neuer Chat
 
 ## Modellauswahl
@@ -24,12 +24,12 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 
 ![right-sidebar](right-sidebar.png)
 
-- [Erstellen und Bearbeiten von Agenten](/company-gpt/agenten/)
-- [Promptvorlagen](/company-gpt/prompts/)
-- [Erinnerungen](/company-gpt/erinnerungen/)
-- [KI Einstellungen](/company-gpt/ki-einstellungen/)
-- [Dateien](/company-gpt/dateiverarbeitung/)
-- [Lesezeichen](/company-gpt/lesezeichen)
+- [Erstellen und Bearbeiten von Agenten](/de/company-gpt/agenten/)
+- [Promptvorlagen](/de/company-gpt/prompts/)
+- [Erinnerungen](/de/company-gpt/erinnerungen/)
+- [KI Einstellungen](/de/company-gpt/ki-einstellungen/)
+- [Dateien](/de/company-gpt/dateiverarbeitung/)
+- [Lesezeichen](/de/company-gpt/lesezeichen)
 - Seitenleiste ausblenden
 
 ## Chateingabe
@@ -37,9 +37,9 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 ![chat-input](chat-input.png)
 
 - Prompteingabe
-- [Dateien](/company-gpt/dateiverarbeitung/)
+- [Dateien](/de/company-gpt/dateiverarbeitung/)
 - Einstellungen der Erweiterungen
-- [Websuche](/company-gpt/integrationen/websuche/)
-- [Dateisuche](/company-gpt/integrationen/dateisuche/)
-- [Artefakte](/company-gpt/integrationen/artefakte/)
-- Auswahl [MCP Server](/company-gpt/integrationen/mcp-server/)
+- [Websuche](/de/company-gpt/integrationen/websuche/)
+- [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
+- [Artefakte](/de/company-gpt/integrationen/artefakte/)
+- Auswahl [MCP Server](/de/company-gpt/integrationen/mcp-server/)

@@ -12,8 +12,8 @@ The CompanyGPT user interface allows you to communicate with different AI models
 ![quick-selection](quick-selection.png)
 
 - Hide sidebar
-- [Agent Marketplace](/company-gpt/agents/#agent-marketplace)
-- [Bookmarks](/company-gpt/bookmarks)
+- [Agent Marketplace](/en/company-gpt/agenten/#agent-marketplace)
+- [Bookmarks](/en/company-gpt/lesezeichen)
 - New chat
 
 ## Model selection
@@ -24,12 +24,12 @@ The CompanyGPT user interface allows you to communicate with different AI models
 
 ![right-sidebar](right-sidebar-en.png)
 
-- [Create and edit agents](/company-gpt/agents/)
-- [Prompt templates](/company-gpt/prompts/)
-- [Reminders](/company-gpt/reminders/)
-- [AI settings](/company-gpt/ai-settings/)
-- [Files](/company-gpt/file-processing/)
-- [Bookmarks](/company-gpt/bookmarks)
+- [Create and edit agents](/en/company-gpt/agenten/)
+- [Prompt templates](/en/company-gpt/prompts/)
+- [Reminders](/en/company-gpt/erinnerungen/)
+- [AI settings](/en/company-gpt/ki-einstellungen/)
+- [Files](/en/company-gpt/dateiverarbeitung/)
+- [Bookmarks](/en/company-gpt/lesezeichen)
 - Hide sidebar
 
 ## Chat input
@@ -37,9 +37,9 @@ The CompanyGPT user interface allows you to communicate with different AI models
 ![chat-input](chat-input-en.png)
 
 - Prompt input
-- [Files](/company-gpt/file-processing/)
+- [Files](/en/company-gpt/dateiverarbeitung/)
 - Extension settings
-- [Web search](/company-gpt/integrations/web-search/)
-- [File search](/company-gpt/integrations/file-search/)
-- [Artifacts](/company-gpt/integrations/artifacts/)
-- Select [MCP Server](/company-gpt/integrations/mcp-server/)
+- [Web search](/en/company-gpt/integrationen/websuche/)
+- [File search](/en/company-gpt/integrationen/dateisuche/)
+- [Artifacts](/en/company-gpt/integrationen/artefakte/)
+- Select [MCP Server](/en/company-gpt/integrationen/mcp-server/)

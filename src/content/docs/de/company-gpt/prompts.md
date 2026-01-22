@@ -37,4 +37,4 @@ Es können außerdem auch Dropdowns als Auswahlmenü für die Variablen ausgewä
 ```
 ![colors](colors.png)
 
-Promptvorlagen können sehr effektiv für wiederkehrende Aufgaben, für [Prompt-Chaining](/prompt-engineering/prompt-techniken/prompt-chaining) oder in Verbindung mit [Agenten](/company-gpt/agenten/) genutzt werden.
+Promptvorlagen können sehr effektiv für wiederkehrende Aufgaben, für [Prompt-Chaining](/de/prompt-engineering/prompt-techniken/prompt-chaining) oder in Verbindung mit [Agenten](/de/company-gpt/agenten/) genutzt werden.

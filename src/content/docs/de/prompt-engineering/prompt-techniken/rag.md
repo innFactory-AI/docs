@@ -15,7 +15,7 @@ Man kann sich RAG so vorstellen, dass es dem LLM ein "offenes Buch" zur Verfügu
 
 ### RAG als spezialisiertes Tool
 
-Wie bereits erläutert, kann RAG als eine spezialisierte Art von "Tool" innerhalb eines umfassenderen [Tool-Use-Frameworks](./tool-use.md) betrachtet werden. Während allgemeine Tools Aktionen ausführen (wie das Senden einer E-Mail oder das Aktualisieren einer Datenbank) oder Echtzeitdaten abrufen können, besteht die primäre Funktion von RAG in der **Informationsbeschaffung für die kontextuelle Textgenerierung**. Es ist speziell darauf ausgelegt:
+Wie bereits erläutert, kann RAG als eine spezialisierte Art von "Tool" innerhalb eines umfassenderen [Tool-Use-Frameworks](/de/prompt-engineering/prompt-techniken/tool-use) betrachtet werden. Während allgemeine Tools Aktionen ausführen (wie das Senden einer E-Mail oder das Aktualisieren einer Datenbank) oder Echtzeitdaten abrufen können, besteht die primäre Funktion von RAG in der **Informationsbeschaffung für die kontextuelle Textgenerierung**. Es ist speziell darauf ausgelegt:
 
 *   **Antworten auf Fakten zu stützen.** Um zu verhindern, dass das LLM "halluziniert" oder falsche Informationen generiert.
 *   **Auf proprietäres Wissen zuzugreifen.** CompanyGPT kann Fragen auf der Grundlage Ihrer internen Dokumente, Richtlinien oder Daten beantworten.

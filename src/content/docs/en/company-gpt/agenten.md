@@ -22,7 +22,7 @@ Each agent can be assigned to a category. If agents are shared between users wit
 
 ### Instructions
 
-The instructions are the actual prompt for the agent. This describes what the agent has to do, how it should behave, etc. Information on effective prompting for agents can be found here: [Prompt Engineering](/prompt-engineering/overview). Especially with agents, it is advisable to use structured and cleanly formatted prompts. 
+The instructions are the actual prompt for the agent. This describes what the agent has to do, how it should behave, etc. Information on effective prompting for agents can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht). Especially with agents, it is advisable to use structured and cleanly formatted prompts. 
 
 Variables such as the current date, time, or current user can also be passed on.
 
@@ -30,7 +30,7 @@ Variables such as the current date, time, or current user can also be passed on.
 
 The AI model is the brain of every agent, as it analyzes requests, selects tools, and evaluates, summarizes, and returns results. Here, the creator can choose between all available models.
 
-In addition to the model, the AI parameters can be adjusted. A detailed description can be found here: [AI settings](/company-gpt/ai-settings)
+In addition to the model, the AI parameters can be adjusted. A detailed description can be found here: [AI settings](/en/company-gpt/ki-einstellungen)
 
 ### Capabilities
 
@@ -38,7 +38,7 @@ Each agent has built-in capabilities that can be activated as needed.
 
 #### Web search
 
-Specifies whether web search is enabled for this agent or not. Information about web search can be found here: [Web Search](/company-gpt/integrations/web-search).
+Specifies whether web search is enabled for this agent or not. Information about web search can be found here: [Web Search](/en/company-gpt/integrationen/websuche).
 
 #### File Context (OCR)
 
@@ -52,13 +52,13 @@ Context documents are always complete in the context of the agent/conversation. 
 
 Enables the use of code artifacts for this agent. By default, additional special instructions for using artifacts are added unless “Custom Prompt Mode” is enabled.
 
-More information about artifacts can be found here: [Artifacts](/company-gpt/integrations/artifacts).
+More information about artifacts can be found here: [Artifacts](/en/company-gpt/integrationen/artefakte).
 
 #### File Search
 
 When enabled, the agent is informed of the exact file names listed below and can thus retrieve relevant information from these files. Retrieval works as **RAG (Retrieval Augmented Generation)** using similarity searches between queries and content. Only relevant text passages are used. This contrasts with **file context**, where the entire content is always in context.
 
-For more information, see [Prompt Engineering / RAG](/prompt-engineering/prompt-techniken/rag)
+For more information, see [Prompt Engineering / RAG](/en/prompt-engineering/prompt-techniken/rag)
 
 #### MCP Server 
 

@@ -3,7 +3,7 @@ title: Memories
 description: Memories in CompanyGPT
 ---
 
-When [memories are enabled](/company-gpt/settings/#using-stored-memories), CompanyGPT can remember facts, preferences, and project details across individual conversations. This not only makes your interactions more personal and relevant, but also significantly more efficient.
+When [memories are enabled](/en/company-gpt/einstellungen/#use-saved-memories), CompanyGPT can remember facts, preferences, and project details across individual conversations. This not only makes your interactions more personal and relevant, but also significantly more efficient.
 
 CompanyGPT's memories can be fed in two ways: automatically and manually.
 

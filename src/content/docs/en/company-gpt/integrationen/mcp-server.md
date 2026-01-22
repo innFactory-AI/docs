@@ -7,7 +7,7 @@ The Model Context Protocol (MCP) is a specialized protocol and interface that en
 
 The MCP is based on a client-server architecture in which CompanyGPT, as the client, consumes the “tools” provided by the server. An MCP server can contain any number of such tools, with the integrated LLM independently deciding which tool to use and which parameters to pass. After execution, the LLM evaluates the results and formulates an appropriate response to the user.
 
-More information about MCP can be found here: [Prompt Engineering / MCP](/prompt-engineering/prompt-techniken/tool-use#das-mcp-model-context-protocol-als-tool)
+More information about MCP can be found here: [Prompt Engineering / MCP](/en//prompt-engineering/prompt-techniken/tool-use#das-mcp-model-context-protocol-als-tool)
 
 ## Add MCP Server
 
@@ -32,7 +32,7 @@ The following properties can be assigned:
 - **Manual OAuth**: OAuth 2.1 compliant client registration with client ID, secret, redirect URI, authorization and token URL.
 - **I trust this application**: Checkbox for confirmation.
 
-Once initialization is successful, the MCP server is now displayed in the overview in the right sidebar and can be used via [Chat](/company-gpt/chat/#integrations) or in [Agents](/company-gpt/agents/).
+Once initialization is successful, the MCP server is now displayed in the overview in the right sidebar and can be used via [Chat](/en/company-gpt/chat/#integrations) or in [Agents](/en/company-gpt/agenten/).
 
 ## Share MCP Server
 

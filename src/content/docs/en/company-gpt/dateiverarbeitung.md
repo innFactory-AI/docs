@@ -29,9 +29,9 @@ Here, files, such as PDFs, are uploaded and all text is extracted using OCR (Opt
 
 ## File search
 
-Documents can also be uploaded for file search. The contents are indexed and stored in the database. These can then be searched by the AI models as needed and the answers can be enriched by the results. Information on how this works can be found here: [RAG - Retrieval Augmented Generation](/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
+Documents can also be uploaded for file search. The contents are indexed and stored in the database. These can then be searched by the AI models as needed and the answers can be enriched by the results. Information on how this works can be found here: [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/#rag-workflow-for-file-processing)
 
-**Limitation**: The documents are only accessible to the respective user. To make documents accessible to multiple users or the entire organization in the file search, they can be integrated via [agents](/company-gpt/agents) or via the [AI search](/company-gpt/addons/ai-search).
+**Limitation**: The documents are only accessible to the respective user. To make documents accessible to multiple users or the entire organization in the file search, they can be integrated via [agents](/en/company-gpt/agenten) or via the [AI search](/en/company-gpt/addons/ki-suche).
 
 ## SharePoint integration
 

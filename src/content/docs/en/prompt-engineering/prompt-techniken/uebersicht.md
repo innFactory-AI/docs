@@ -9,10 +9,10 @@ The prompt techniques presented here can all be implemented very well in Company
 
 Example agent prompt (structural):
 
-- [Prompt reasonably structured](/prompt-engineering/structuring-prompts)
-- [Prompt formatted to emphasize certain aspects of the instructions](/prompt-engineering/formatting-prompts)
-- [Few-shot examples](/prompt-engineering/prompt-techniques/few-shot) for possible inputs and responses
-- [Tool use](/prompt-engineering/prompt-techniques/tool-use/) to obtain information, perform actions, often via [MCP](/prompt-engineering/prompt-techniques/tool-use/#das-mcp-model-context-protocol-als-tool)
-- [RAG](/prompt-engineering/prompt-techniques/rag/) for internal knowledge
+- [Prompt reasonably structured](/en/prompt-engineering/prompts-strukturieren)
+- [Prompt formatted to emphasize certain aspects of the instructions](/en/prompt-engineering/prompts-formatieren)
+- [Few-shot examples](/en/prompt-engineering/prompt-techniken/few-shot) for possible inputs and responses
+- [Tool use](/en/prompt-engineering/prompt-techniken/tool-use/) to obtain information, perform actions, often via [MCP](/en/prompt-engineering/prompt-techniken/tool-use/#das-mcp-model-context-protocol-als-tool)
+- [RAG](/en/prompt-engineering/prompt-techniken/rag/) for internal knowledge
 
 The combination of several prompt techniques significantly increases accuracy and thus performance. However, there is of course no **miracle cure**; the various prompt techniques must be tried out and tested in terms of their performance in specific cases.

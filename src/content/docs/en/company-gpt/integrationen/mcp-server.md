@@ -7,7 +7,7 @@ The Model Context Protocol (MCP) is a specialized protocol and interface that en
 
 The MCP is based on a client-server architecture in which CompanyGPT, as the client, consumes the “tools” provided by the server. An MCP server can contain any number of such tools, with the integrated LLM independently deciding which tool to use and which parameters to pass. After execution, the LLM evaluates the results and formulates an appropriate response to the user.
 
-More information about MCP can be found here: [Prompt Engineering / MCP](/en//prompt-engineering/prompt-techniken/tool-use#das-mcp-model-context-protocol-als-tool)
+More information about MCP can be found here: [Prompt Engineering / MCP](/en/prompt-engineering/prompt-techniken/tool-use#the-mcp-model-context-protocol-as-a-tool)
 
 ## Add MCP Server
 

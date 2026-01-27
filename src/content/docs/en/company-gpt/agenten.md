@@ -74,7 +74,7 @@ Tools are built-in tools that can be used by the agent. These can of course be c
 
 Actions are external API interfaces that can be connected directly via [OpenAPI-compatible schemas](https://spec.openapis.org/oas/latest.html). 
 
-![actions-open-api](actions-open-api.png)
+![actions-open-api](actions-open-api-en.png)
 
 :::tip
 This functionality is very advanced, but also outdated; it is better to connect API endpoints via your own MCP servers.

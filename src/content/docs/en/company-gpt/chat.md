@@ -42,10 +42,10 @@ Messages in the chat have quick actions:
 ![Chat message quick actions](chat-quick-actions.png)
 
 - **Regenerate** and **Message Variants**: Using `Regenerate`, several response variants can be generated, between which you can switch.
-- **Read Aloud**: Using [Text-to-Speech](/en/company-gpt/einstellungen/#text-to-speech), the message can be read aloud using the set engine.
+- **Generate audio**: Using [Text-to-Speech](/en/company-gpt/einstellungen/#text-to-speech), the message can be read aloud using the set engine.
 - **Copy**: Copies the entire content of the message to the clipboard.
 - **Edit and regenerate**: The message can be edited afterwards and either saved or regenerated with changes. This is useful if you want to add or change information in the context.
-- **Branch**: Allows you to branch off at a certain point with all previous messages. This is helpful if, for example, you want to think in different directions.
+- **Branch out**: Allows you to branch off at a certain point with all previous messages. This is helpful if, for example, you want to think in different directions.
 - **Feedback**: Feedback on messages is only retained in context, but this allows the user to signal whether a message was good or not.
 
 ## Sharing and exporting
@@ -53,6 +53,7 @@ Messages in the chat have quick actions:
 Message histories can be shared publicly or exported to different file formats. 
 
 ![share-and-export](share-and-export-en.png)
+
 ### Sharing 
 
 Message histories can be shared via links. To do this, an anonymized, publicly available link is generated that can be accessed by anyone. A QR code can also be created. 

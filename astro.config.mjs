@@ -20,7 +20,7 @@ export default defineConfig({
 			// 		},
 			// 	}
 			// ],			
-			title: 'CompanyGPT Dokumentation',
+			title: { de: 'CompanyGPT Dokumentation', en: 'CompanyGPT Documentation' },
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
 			},

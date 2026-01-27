@@ -27,7 +27,7 @@ To highlight important words or instructions.
 - Italics (`*italics*`)
 - Bold + italics (`***boldanditalics***`)
 
-### Numbered lists
+### Ordered lists
 
 ```
 1. Point 1
@@ -36,7 +36,7 @@ To highlight important words or instructions.
     3.1 Point 3.1
 ```
 
-### Unnumbered lists
+### Unordered lists
 
 ```
 - Text here

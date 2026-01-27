@@ -11,14 +11,23 @@ export default defineConfig({
 	site: 'https://docs.company-gpt.com',
 	integrations: [
 		starlight({
-			
+			// head: [
+			// 	{
+			// 		tag: 'script',
+			// 		attrs: {
+			// 			src: '/src/analytics.js',
+			// 			async: true,
+			// 		},
+			// 	}
+			// ],			
 			title: 'CompanyGPT Dokumentation',
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
 			},
-			defaultLocale: 'root',
+			defaultLocale: 'de',
 			locales: {
-				root: { label: 'Deutsch', lang: 'de' },
+				de: { label: 'Deutsch', lang: 'de' },
+				en: { label: 'English', lang: 'en' },
 			},
 			social: [
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
@@ -50,59 +59,68 @@ export default defineConfig({
 				}),
 				starlightSidebarTopics([
 					{
-						label: 'Dokumentation',
-						link: '/intro/company-gpt',
+						label: { de: 'Dokumentation', en: 'Documentation' },
+						link: 'intro/company-gpt',
 						icon: 'open-book',
 						items: [{
 							label: 'Einführung',
+							translations: { en: 'Introduction' },
 							items: [
 								// Each item here is one entry in the navigation menu.
-								{ label: 'CompanyGPT', slug: 'intro/company-gpt' },
+								{ label: 'CompanyGPT', translations: { en: 'CompanyGPT' }, slug: 'intro/company-gpt' },
 							],
 						},
 						{
 							label: 'CompanyGPT',
+							translations: { en: 'CompanyGPT' },
 							items: [
-								{ label: 'Modellauswahl', slug: 'company-gpt/modellauswahl' },
-								{ label: 'User Interface', slug: 'company-gpt/user-interface' },
-								{ label: 'Einstellungen', slug: 'company-gpt/einstellungen' },
-								{ label: 'Chat', slug: 'company-gpt/chat' },
+								{ label: 'Modellauswahl', translations: { en: 'Model selection' }, slug: 'company-gpt/modellauswahl' },
+								{ label: 'User Interface', translations: { en: 'User Interface' }, slug: 'company-gpt/user-interface' },
+								{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/einstellungen' },
+								{ label: 'Chat', translations: { en: 'Chat' }, slug: 'company-gpt/chat' },
 								{
-									label: 'Integrationen', items: [
-										{ label: 'Websuche', slug: 'company-gpt/integrationen/websuche' },
-										{ label: 'Dateisuche', slug: 'company-gpt/integrationen/dateisuche' },
-										{ label: 'Artefakte', slug: 'company-gpt/integrationen/artefakte' },
-										{ label: 'MCP Server', slug: 'company-gpt/integrationen/mcp-server' },
+									label: 'Integrationen',
+									translations: { en: 'Integrations' },
+									items: [
+										{ label: 'Websuche', translations: { en: 'Web Search' }, slug: 'company-gpt/integrationen/websuche' },
+										{ label: 'Dateisuche', translations: { en: 'File Search' }, slug: 'company-gpt/integrationen/dateisuche' },
+										{ label: 'Artefakte', translations: { en: 'Artifacts' }, slug: 'company-gpt/integrationen/artefakte' },
+										{ label: 'MCP Server', translations: { en: 'MCP Servers' }, slug: 'company-gpt/integrationen/mcp-server' },
 									]
 								},
 								{
-									label: 'Addons', items: [
-										{ label: 'KI Suche', slug: 'company-gpt/addons/ki-suche' },
+									label: 'Addons',
+									translations: { en: 'Add-ons' },
+									items: [
+										{ label: 'KI Suche', translations: { en: 'AI Search' }, slug: 'company-gpt/addons/ki-suche' },
 									]
 								},
-								{ label: 'Agenten', slug: 'company-gpt/agenten' },
-								{ label: 'Prompts', slug: 'company-gpt/prompts' },
-								{ label: 'Erinnerungen', slug: 'company-gpt/erinnerungen' },
-								{ label: 'KI Einstellungen', slug: 'company-gpt/ki-einstellungen' },
-								{ label: 'Dateiverarbeitung', slug: 'company-gpt/dateiverarbeitung' },
-								{ label: 'Lesezeichen', slug: 'company-gpt/lesezeichen' },
+								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
+								{ label: 'Prompts', translations: { en: 'Prompts' }, slug: 'company-gpt/prompts' },
+								{ label: 'Erinnerungen', translations: { en: 'Memories' }, slug: 'company-gpt/erinnerungen' },
+								{ label: 'KI Einstellungen', translations: { en: 'AI Settings' }, slug: 'company-gpt/ki-einstellungen' },
+								{ label: 'Dateiverarbeitung', translations: { en: 'File processing' }, slug: 'company-gpt/dateiverarbeitung' },
+								{ label: 'Lesezeichen', translations: { en: 'Bookmarks' }, slug: 'company-gpt/lesezeichen' },
 							]
 						},
 						{
 							label: 'Prompt Engineering',
+							translations: { en: 'Prompt Engineering' },
 							items: [
-								{ label: 'Übersicht', slug: 'prompt-engineering/uebersicht' },
-								{ label: 'Bestandteile von Prompts', slug: 'prompt-engineering/bestandteile-von-prompts' },
-								{ label: 'Prompts formatieren', slug: 'prompt-engineering/prompts-formatieren' },
-								{ label: 'Prompts strukturieren', slug: 'prompt-engineering/prompts-strukturieren' },
+								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'prompt-engineering/uebersicht' },
+								{ label: 'Bestandteile von Prompts', translations: { en: 'Components of Prompts' }, slug: 'prompt-engineering/bestandteile-von-prompts' },
+								{ label: 'Prompts formatieren', translations: { en: 'Formatting prompts' }, slug: 'prompt-engineering/prompts-formatieren' },
+								{ label: 'Prompts strukturieren', translations: { en: 'Structuring prompts' }, slug: 'prompt-engineering/prompts-strukturieren' },
 								{
-									label: 'Prompttechniken', items: [
-										{ label: 'Übersicht', slug: 'prompt-engineering/prompt-techniken/uebersicht' },
-										{ label: 'Zero-Shot Prompting', slug: 'prompt-engineering/prompt-techniken/zero-shot' },
-										{ label: 'Few-Shot Prompting', slug: 'prompt-engineering/prompt-techniken/few-shot' },
-										{ label: 'Prompt Chaining', slug: 'prompt-engineering/prompt-techniken/prompt-chaining' },
-										{ label: 'RAG', slug: 'prompt-engineering/prompt-techniken/rag' },
-										{ label: 'Tool Use', slug: 'prompt-engineering/prompt-techniken/tool-use' },
+									label: 'Prompttechniken',
+									translations: { en: 'Prompt techniques' },
+									items: [
+										{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'prompt-engineering/prompt-techniken/uebersicht' },
+										{ label: 'Zero-Shot Prompting', translations: { en: 'Zero-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/zero-shot' },
+										{ label: 'Few-Shot Prompting', translations: { en: 'Few-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/few-shot' },
+										{ label: 'Prompt Chaining', translations: { en: 'Prompt chaining' }, slug: 'prompt-engineering/prompt-techniken/prompt-chaining' },
+										{ label: 'RAG', translations: { en: 'RAG' }, slug: 'prompt-engineering/prompt-techniken/rag' },
+										{ label: 'Tool Use', translations: { en: 'Tool use' }, slug: 'prompt-engineering/prompt-techniken/tool-use' },
 									]
 								},
 								// { label: 'Best Practices', slug: 'prompt-engineering/best-practices' },
@@ -111,20 +129,22 @@ export default defineConfig({
 						]
 					},
 					{
-						label: 'Tutorials',
-						link: '/tutorials',
+						label: { de: 'Tutorials', en: 'Tutorials' },
+						link: 'tutorials',
 						icon: 'rocket',
 						items: [{
 							label: 'Agenten erstellen',
+							translations: { en: 'Create agents' },
 							items: [
-								{ label: 'Meeting Notizen Agent', slug: 'tutorials/agenten/meeting-notizen-agent' },
-								{ label: 'Rechner Agent', slug: 'tutorials/agenten/rechner-agent' },
+								{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
+								{ label: 'Rechner Agent', translations: { en: 'Calculator Agent' }, slug: 'tutorials/agenten/rechner-agent' },
 							]
 
 						}, {
 							label: 'Addons nutzen',
+							translations: { en: 'Using add-ons' },
 							items: [
-								{ label: 'Upload zu KI Suche mit n8n', slug: 'tutorials/addons/ki-suche-n8n' },
+								{ label: 'Upload zu KI Suche mit n8n', translations: { en: 'Upload to AI Search with n8n' }, slug: 'tutorials/addons/ki-suche-n8n' },
 							]
 						}]
 					},

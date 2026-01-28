@@ -7,10 +7,10 @@ In this section, you will find tutorials and instructions on many topics related
 
 ## Agents
 
-- [Meeting Notes Agent](/tutorials/agents/meeting-notes-agent)
+- [Meeting Notes Agent](/en/tutorials/agents/meeting-notes-agent)
 
-- [Computer Agent](/tutorials/agents/computer-agent)
+- [Computer Agent](/en/tutorials/agents/computer-agent)
 
 ## AI Search
 
-- [Upload to AI Search via n8n](/tutorials/addons/ai-search-n8n/)
+- [Upload to AI Search via n8n](/en/tutorials/addons/ai-search-n8n/)

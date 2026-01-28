@@ -3,7 +3,7 @@ title: Upload zur KI Suche über n8n
 description: Beschreibung Meeting NOtizen Agent erstellen
 ---
 
-Wenn sie das [Addon KI-Suche für den CompanyGPT](/company-gpt/addons/ki-suche/) aktiviert haben, können Sie über n8n ganz einfach Dokumente bereitstellen. Die KI Suche stellt mehrere Endpunkte bereit, die genutzt werden können. 
+Wenn sie das [Addon KI-Suche für den CompanyGPT](/de/company-gpt/addons/ki-suche/) aktiviert haben, können Sie über n8n ganz einfach Dokumente bereitstellen. Die KI Suche stellt mehrere Endpunkte bereit, die genutzt werden können. 
 
 ## Upload einer PDF per Fomular
 

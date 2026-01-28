@@ -3,7 +3,7 @@ title: Upload to AI Search via n8n
 description: Description Create Meeting Notes Agent
 ---
 
-If you have activated the [AI Search add-on for CompanyGPT](/company-gpt/addons/ki-suche/), you can easily provide documents via n8n. AI Search provides several endpoints that can be used. 
+If you have activated the [AI Search add-on for CompanyGPT](/en/company-gpt/addons/ki-suche/), you can easily provide documents via n8n. AI Search provides several endpoints that can be used. 
 
 ## Upload a PDF via form
 

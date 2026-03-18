@@ -7,10 +7,6 @@ The Tough Customer Simulator simulates an aggressive or illogical customer or ne
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: tough-customer-simulator

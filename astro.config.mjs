@@ -138,6 +138,21 @@ export default defineConfig({
 							items: [
 								{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
 								{ label: 'Rechner Agent', translations: { en: 'Calculator Agent' }, slug: 'tutorials/agenten/rechner-agent' },
+								{ label: 'Authentic Message Composer', translations: { en: 'Authentic Message Composer' }, slug: 'tutorials/agenten/authentic-message-composer' },
+								{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
+								{ label: 'Socratic Coach', translations: { en: 'Socratic Coach' }, slug: 'tutorials/agenten/socratic-coach' },
+								{ label: '80/20 Analyst', translations: { en: '80/20 Analyst' }, slug: 'tutorials/agenten/8020-analyst' },
+								{ label: 'Jargon Killer', translations: { en: 'Jargon Killer' }, slug: 'tutorials/agenten/jargon-killer' },
+								{ label: 'Tough Customer Simulator', translations: { en: 'Tough Customer Simulator' }, slug: 'tutorials/agenten/tough-customer-simulator' },
+								{ label: 'Code Janitor', translations: { en: 'Code Janitor' }, slug: 'tutorials/agenten/code-janitor' },
+								{ label: 'Text Translator', translations: { en: 'Text Translator' }, slug: 'tutorials/agenten/text-translator' },
+								{ label: 'RFP Assistant', translations: { en: 'RFP Assistant' }, slug: 'tutorials/agenten/rfp-assistant' },
+								{ label: 'Runbook Navigator', translations: { en: 'Runbook Navigator' }, slug: 'tutorials/agenten/runbook-navigator' },
+								{ label: 'Confluence Architect', translations: { en: 'Confluence Architect' }, slug: 'tutorials/agenten/confluence-architect' },
+								{ label: 'n8n Workflow Architect', translations: { en: 'n8n Workflow Architect' }, slug: 'tutorials/agenten/n8n-workflow-architect' },
+								{ label: 'Fake News Checker', translations: { en: 'Fake News Checker' }, slug: 'tutorials/agenten/fake-news-checker' },
+								{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
+								{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
 							]
 
 						}, {

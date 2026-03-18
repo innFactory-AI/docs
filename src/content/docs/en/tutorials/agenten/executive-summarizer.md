@@ -7,10 +7,6 @@ The Executive Summarizer condenses lengthy documents, email threads, or meeting 
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: executive-summarizer

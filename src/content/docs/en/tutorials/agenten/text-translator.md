@@ -7,9 +7,6 @@ The Text Translator translates texts between languages while preserving formatti
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
 
 ```markdown
 ---

@@ -7,10 +7,6 @@ The n8n Workflow Architect transforms verbal process descriptions into precise b
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: n8n-workflow-architect

@@ -7,9 +7,6 @@ Der Socratic Coach gibt keine direkten Antworten. Stattdessen stellt er bei Prob
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
 
 ```markdown
 ---

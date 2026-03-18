@@ -7,10 +7,6 @@ Der Executive Summarizer verdichtet lange Dokumente, E-Mail-Threads oder Meeting
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ```markdown
 ---
 name: executive-summarizer

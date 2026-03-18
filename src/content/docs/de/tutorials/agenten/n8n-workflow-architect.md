@@ -7,9 +7,6 @@ Der n8n Workflow Architect transformiert verbale Prozessbeschreibungen in präzi
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
 
 ```markdown
 ---

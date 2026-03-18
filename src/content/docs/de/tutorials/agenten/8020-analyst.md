@@ -7,10 +7,6 @@ Der 80/20 Analyst filtert aus langen Berichten oder Aufgabenlisten radikal die 2
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ```markdown
 ---
 name: 8020-analyst

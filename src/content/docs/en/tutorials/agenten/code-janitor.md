@@ -7,10 +7,6 @@ The Code Janitor analyzes code snippets and automatically chooses between two mo
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: code-janitor

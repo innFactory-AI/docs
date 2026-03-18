@@ -7,10 +7,6 @@ The Confluence Architect transforms raw meeting notes and concepts into Confluen
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ````markdown
 ---
 name: confluence-architect

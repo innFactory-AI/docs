@@ -7,10 +7,6 @@ The Jargon Killer takes bloated corporate language and rewrites it into crystal-
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: jargon-killer

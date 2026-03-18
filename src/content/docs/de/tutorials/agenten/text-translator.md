@@ -7,10 +7,6 @@ Der Text Translator übersetzt Texte zwischen Sprachen und bewahrt dabei Formati
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ```markdown
 ---
 name: text-translator

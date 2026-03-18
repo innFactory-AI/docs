@@ -7,10 +7,6 @@ Der Confluence Architect wandelt rohe Meeting-Notizen und Konzepte in Confluence
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ````markdown
 ---
 name: confluence-architect

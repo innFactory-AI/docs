@@ -7,9 +7,6 @@ The Socratic Coach provides no direct answers. Instead, it asks targeted counter
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
 
 ```markdown
 ---

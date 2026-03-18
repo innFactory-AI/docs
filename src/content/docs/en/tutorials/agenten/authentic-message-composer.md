@@ -7,10 +7,6 @@ The Authentic Message Composer drafts replies to emails, Slack messages, and Wha
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: authentic-message-composer

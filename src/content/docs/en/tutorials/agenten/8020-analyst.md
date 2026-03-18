@@ -7,10 +7,6 @@ The 80/20 Analyst radically filters the 20% from lengthy reports or task lists t
 
 ## System Instructions
 
-:::tip
-The entire system instruction is entered as a prompt. The agent does not require any additional tools.
-:::
-
 ```markdown
 ---
 name: 8020-analyst

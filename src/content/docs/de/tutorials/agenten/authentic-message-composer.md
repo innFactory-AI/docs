@@ -7,10 +7,6 @@ Der Authentic Message Composer beantwortet E-Mails, Slack-Nachrichten und WhatsA
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ```markdown
 ---
 name: authentic-message-composer

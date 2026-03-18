@@ -7,10 +7,6 @@ Der Code Janitor analysiert Code-Snippets und wählt automatisch zwischen zwei M
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
-
 ```markdown
 ---
 name: code-janitor

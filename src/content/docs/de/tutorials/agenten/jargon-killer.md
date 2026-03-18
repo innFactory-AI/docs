@@ -7,9 +7,6 @@ Der Jargon Killer nimmt aufgeblähtes Corporate-Geschwurbel und schreibt es in g
 
 ## Systemanweisung
 
-:::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent benötigt keine zusätzlichen Tools.
-:::
 
 ```markdown
 ---

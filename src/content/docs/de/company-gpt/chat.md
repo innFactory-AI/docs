@@ -24,6 +24,7 @@ Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Pro
 ## Integrationen
 
 Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werden durch:
+
 - [Websuche](/de/company-gpt/integrationen/websuche)
 - [Dateisuche](/de/company-gpt/integrationen/dateisuche)
 - [Artefakte](/de/company-gpt/integrationen/artefakte)
@@ -33,7 +34,7 @@ Diese können im jeweiligen Chat für einzelne Nachrichten aktiviert oder deakti
 
 ## Nachrichten
 
-Der Nachrichtenverlauf entwickelt sich mit der Zeit innerhalb der Konversation zwischen User und KI-Modell(en). Der Benutzer kann nach jeder Nachricht ein anderes Modell oder einen anderen Agenten nutzen, welche natürlich immer den gesamten vorherigen Kontext bekommen. 
+Der Nachrichtenverlauf entwickelt sich mit der Zeit innerhalb der Konversation zwischen User und KI-Modell(en). Der Benutzer kann nach jeder Nachricht ein anderes Modell oder einen anderen Agenten nutzen, welche natürlich immer den gesamten vorherigen Kontext bekommen.
 
 ### Nachrichtenoptionen
 
@@ -50,13 +51,13 @@ Im Chat befindliche Nachrichten haben Schnellaktionen:
 
 ## Teilen und Exportieren
 
-Nachrichtenverläufe können öffentlich geteilt oder in unterschiedliche Dateiformate exportiert werden. 
+Nachrichtenverläufe können öffentlich geteilt oder in unterschiedliche Dateiformate exportiert werden.
 
 ![share-and-export](share-and-export.png)
 
-### Teilen 
+### Teilen
 
-Nachrichtenverläufe können über Links geteilt werden. Dazu wird ein anonymisierter, öffentlich verfügbarer Link generiert, der von jedem abgerufen werden kann. Außerdem kann auch noch ein QR-Code erstellt werden. 
+Nachrichtenverläufe können über Links geteilt werden. Dazu wird ein anonymisierter, öffentlich verfügbarer Link generiert, der von jedem abgerufen werden kann. Außerdem kann auch noch ein QR-Code erstellt werden.
 
 :::caution
 "Öffentlich" versteht hier die gleiche Sichtbarkeit wie der CompanyGPT. Sollte der CompanyGPT nur aus dem Firmennetzwerk erreichbar sein, bedeutet "öffentlich" auch nur im Firmennetzwerk.
@@ -70,7 +71,8 @@ Nachrichtenverläufe können auch exportiert werden. Das hat den Vorteil, dass s
 
 Für den Export muss ein Dateiname sowie das Format ausgewählt werden.
 
-Außerdem können, je nach Dateiformat folgende Einstellungen getätigt werden: 
+Außerdem können, je nach Dateiformat folgende Einstellungen getätigt werden:
+
 - **Endpunktoptionen einbeziehen**: Die Modellnamen werden in den Informationen mitgespeichert.
 - **Alle Nachrichtenzweige exportieren**: Falls Verzweigungen bestehen, können diese mitexportiert werden.
 - **Sequenziell oder Rekursiv** (nur JSON): Darstellung der Nachrichten innerhalb des JSON-Objekts, entweder als flache Liste von Nachrichten oder als rekursive Liste mit verschachtelten Nachrichten.

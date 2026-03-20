@@ -3,11 +3,11 @@ title: User Interface
 description: Discover the CompanyGPT user interface—a detailed overview of chat features, model selection, sidebar, prompt input, Agent Marketplace, and more.
 ---
 
-The CompanyGPT user interface allows you to communicate with different AI models, create agents, manage prompt templates, and much more. 
+The CompanyGPT user interface allows you to communicate with different AI models, create agents, manage prompt templates, and much more.
 
 ![companygpt ui](ui-en.png)
 
-## Quick Selection 
+## Quick Selection
 
 ![quick-selection](quick-selection.png)
 
@@ -19,6 +19,14 @@ The CompanyGPT user interface allows you to communicate with different AI models
 ## Model selection
 
 ![model-selection](model-selection-en.png)
+
+You can find a list of currently available models under [Model Selection](/en/company-gpt/model-selection).
+
+## Chat history
+
+The chat history displays all chats created in the past. Chats can be shared, renamed, duplicated, archived and deleted. You can also use the search function to search through the entire chat history.
+
+![chat-verlauf](chat-verlauf.png)
 
 ## Right sidebar
 

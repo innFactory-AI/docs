@@ -9,7 +9,7 @@ Microsoft plant, die OpenAI-Modelle GPT-4o und GPT-4o-mini bis Ende März 2026 e
 
 ### Dynamisches Model Routing
 
-CompanyGPT verfügt über ein intelligentes, dynamisches Model Routing. Das System prüft Ihre Prompts in Echtzeit auf Komplexität sowie Kontextanforderungen und leitet die Anfrage automatisch an das am besten geeignete LLM weiter. Standardfragen werden von kleineren, extrem schnellen Modellen verarbeitet, während komplexe analytische Aufgaben an die High-End- Modelle geroutet werden. Sie sparen signifikant Token-Kosten und erhalten schnellere Antworten, ohne manuelle Anpassungen vornehmen zu müssen.
+Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Routing von CompanyGPT zu aktivieren. Das System analysiert Ihren Prompt und wählt automatisch das effizienteste OpenAI-Modell: Schnelle, kleinere Modelle für Standardfragen und High-End-Modelle für komplexe Analysen. So sparen Sie ohne manuellen Aufwand Zeit und Token-Kosten.
 
 ### Faustregel:
 
@@ -21,6 +21,12 @@ CompanyGPT verfügt über ein intelligentes, dynamisches Model Routing. Das Syst
 ---
 
 ## OpenAI
+
+### o3-mini
+
+- **Für:** Logik, Mathematik, Coding und komplexes Problemlösen
+- **Wann:** wenn die KI erst intern "nachdenken" (Reasoning) muss, bevor sie antwortet
+- **Warum:** kombiniert extrem schnelles Output-Tempo mit tiefgehender logischer Präzision
 
 ### gpt-4o mini
 
@@ -57,6 +63,48 @@ CompanyGPT verfügt über ein intelligentes, dynamisches Model Routing. Das Syst
 - **Für:** extrem einfache, schnelle Tasks
 - **Wann:** Autovervollständigung, kurze Antworten, Massentasks
 - **Warum:** extrem schnell und günstig, aber begrenzte Tiefe
+
+### gpt-5.1-chat
+
+- **Für:** interaktive Dialoge und Agenten-Workflows
+- **Wann:** Support, flüssige Konversationen, striktes Befolgen von Anweisungen
+- **Warum:** optimiert auf natürliche Sprache und das Halten des Kontexts im Chat
+
+### gpt-5.2-chat
+
+- **Für:** anspruchsvollere Dialoge mit hoher Faktentreue
+- **Wann:** komplexe Beratung, Brainstorming, detaillierte Erklärungen im Chat
+- **Warum:** verbesserte Logik und stark reduzierte Halluzinationen im direkten Gespräch
+
+### gpt-5.2
+
+- **Für:** schwerste analytische Allround-Aufgaben
+- **Wann:** große Dokumentenmengen, komplexe Datenanalyse, strategische Planung
+- **Warum:** das Flaggschiff der 5.2-Generation, pure Qualität steht vor Geschwindigkeit
+
+### gpt-5.2-codex
+
+- **Für:** reine Softwareentwicklung und Systemarchitektur
+- **Wann:** Code schreiben, refactoren, debuggen, Architektur planen
+- **Warum:** isolierter Spezialist, der Allround-Modelle bei Programmieraufgaben schlägt
+
+### gpt-5.3-chat
+
+- **Für:** hochdynamische Echtzeit-Interaktionen
+- **Wann:** komplexe Multi-Turn-Dialoge, feine Nuancen in der Sprache
+- **Warum:** extrem geringe Latenz und perfektes Verständnis für den Gesprächsverlauf
+
+### gpt-5.4
+
+- **Für:** das absolute Maximum an Leistungsfähigkeit
+- **Wann:** wenn Kosten nachrangig sind und das beste Ergebnis für extrem komplexe Probleme gebraucht wird
+- **Warum:** das stärkste Allround-Modell der 5er-Serie für tiefgreifende Aufgaben
+
+### gpt-5.4-mini
+
+- **Für:** State-of-the-Art Qualität bei Massentasks
+- **Wann:** Verarbeitung großer Datensätze, Routineaufgaben auf sehr hohem Niveau
+- **Warum:** effizientester Weg, die moderne 5.4-Architektur schnell und kostengünstig einzusetzen
 
 ---
 

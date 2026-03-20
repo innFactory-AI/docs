@@ -9,7 +9,7 @@ Microsoft plans to phase out the OpenAI models GPT-4o and GPT-4o-mini by the end
 
 ### Dynamic Model Routing
 
-CompanyGPT features intelligent, dynamic model routing. The system checks your prompts in real time for complexity and contextual requirements, and automatically forwards the request to the most suitable LLM. Standard queries are processed by smaller, extremely fast models, whilst complex analytical tasks are routed to high-end models. You save significantly on token costs and receive faster responses without having to make manual adjustments.
+Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’s dynamic routing. The system analyses your prompt and automatically selects the most efficient OpenAI model: fast, smaller models for standard queries and high-end models for complex analyses. This saves you time and token costs without any manual effort.
 
 ### Rule of thumb:
 
@@ -21,6 +21,12 @@ CompanyGPT features intelligent, dynamic model routing. The system checks your p
 ---
 
 ## OpenAI
+
+### o3-mini
+
+- **For:** logic, maths, coding and complex problem-solving
+- **When:** when the AI needs to ‘think’ (reason) internally before responding
+- **Why:** combines extremely fast output speed with in-depth logical precision
 
 ### gpt-4o mini
 
@@ -57,6 +63,48 @@ CompanyGPT features intelligent, dynamic model routing. The system checks your p
 - **For:** extremely simple, fast tasks
 - **When:** auto-complete, short answers, mass tasks
 - **Why:** extremely fast and inexpensive, but limited depth
+
+### gpt-5.1-chat
+
+- **For:** interactive dialogues and agent workflows
+- **When:** support, fluid conversations, strict adherence to instructions
+- **Why:** optimised for natural language and maintaining context in chat
+
+### gpt-5.2-chat
+
+- **For:** more demanding dialogues with high factual accuracy
+- **When:** complex advice, brainstorming, detailed explanations in chat
+- **Why:** improved logic and significantly reduced hallucinations in direct conversation
+
+### gpt-5.2
+
+- **For:** the most demanding analytical all-round tasks
+- **When:** large volumes of documents, complex data analysis, strategic planning
+- **Why:** the flagship of the 5.2 generation; pure quality takes precedence over speed
+
+### gpt-5.2-codex
+
+- **For:** pure software development and system architecture
+- **When:** writing code, refactoring, debugging, planning architecture
+- **Why:** a specialised model that outperforms all-round models in programming tasks
+
+### gpt-5.3-chat
+
+- **For:** highly dynamic real-time interactions
+- **When:** complex multi-turn dialogues, subtle nuances in language
+- **Why:** extremely low latency and perfect understanding of the conversation flow
+
+### gpt-5.4
+
+- **For:** the absolute maximum in performance
+- **When:** when cost is a secondary consideration and the best results are required for extremely complex problems
+- **Why:** the most powerful all-round model in the 5 series for in-depth tasks
+
+### gpt-5.4-mini
+
+- **For:** state-of-the-art quality for high-volume tasks
+- **When:** processing large datasets, routine tasks at a very high level
+- **Why:** the most efficient way to deploy the modern 5.4 architecture quickly and cost-effectively
 
 ---
 

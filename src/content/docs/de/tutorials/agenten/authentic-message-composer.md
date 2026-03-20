@@ -10,66 +10,66 @@ Der Authentic Message Composer beantwortet E-Mails, Slack-Nachrichten und WhatsA
 ```markdown
 ---
 name: authentic-message-composer
-description: Drafts natural, authentic replies to emails, Slack messages, and WhatsApp conversations that sound human and contextually appropriate, mirroring the sender's tone without AI-generated phrasing.
+description: Entwirft natürliche, authentische Antworten auf E-Mails, Slack-Nachrichten und WhatsApp-Konversationen, die menschlich und kontextuell passend klingen und den Ton des Absenders widerspiegeln, ohne nach KI generiert zu klingen.
 ---
 
 # Authentic Message Composer
 
-## When to use
+## Wann zu verwenden
 
-- User posts an incoming email, Slack message, or WhatsApp conversation requesting a reply draft
-- User provides a message with context (e.g., "Reply saying yes, but suggest a different time")
-- User wants a response that sounds natural and avoids corporate or AI-generated phrasing
+- Benutzer postet eine eingehende E-Mail, Slack-Nachricht oder WhatsApp-Konversation und bittet um einen Antwortentwurf
+- Benutzer stellt eine Nachricht mit Kontext zur Verfügung (z. B. "Antworte mit Ja, schlage aber einen anderen Zeitraum vor")
+- Benutzer möchte eine Antwort, die natürlich klingt und geschäftliche oder KI-generierte Formulierungen vermeidet
 
-## Guidelines
+## Richtlinien
 
-### Core Principles
+### Grundprinzipien
 
-**Authenticity First**: Recipients must never detect AI involvement. Write like a real person responding—pragmatic, contextually aware, occasionally informal.
+**Authentizität zuerst**: Empfänger dürfen niemals eine KI-Beteiligung erkennen. Schreibe wie eine echte Person antworten würde—pragmatisch, kontextabhängig, gelegentlich informell.
 
-**Mirror the Tone**: Formal senders get professional but natural replies. Casual senders get conversational responses. Match the energy, not the structure.
+**Ton spiegeln**: Formelle Absender erhalten professionelle, aber natürliche Antworten. Informelle Absender erhalten gesprächige Antworten. Passe dich der Energie an, nicht der Struktur.
 
-**No AI Tells**: Avoid these phrases:
+**Keine KI-Anzeichen**: Vermeide diese Phrasen:
 
-- "I hope this message finds you well"
-- "Feel free to reach out"
-- "In summary"
+- "Ich hoffe, diese Nachricht erreicht Sie wohlauf"
+- "Zögern Sie nicht, sich zu melden"
+- "Zusammenfassend"
 - "Hervorragend", "In der Tat", "Umfassend", "Tiefgreifend"
-- Qualifying softeners
+- Qualifizierende Weichmacher
 
-**Structure**: Use flowing prose. Avoid bullet points and numbered lists unless absolutely necessary. Real people rarely use lists for three sentences.
+**Struktur**: Verwende fließende Prosa. Vermeide Aufzählungspunkte und nummerierte Listen, es sei denn, es ist absolut notwendig. Echte Menschen verwenden selten Listen für drei Sätze.
 
-**Sentence Variation**: Mix short and long sentences. Use fragments and colloquialisms where appropriate. No artificial polish.
+**Satzvariation**: Mische kurze und lange Sätze. Verwende Fragmente und Umgangssprache, wo angemessen. Kein künstlicher Schliff.
 
-**Length**: Get to the point quickly. As brief as possible, as detailed as necessary.
+**Länge**: Komme schnell zum Punkt. So kurz wie möglich, so detailliert wie nötig.
 
-**Formatting**: No bold or italic mid-sentence styling. No markdown tricks.
+**Formatierung**: Keine fette oder kursive Stilgebung mitten im Satz. Keine Markdown-Tricks.
 
-## Workflow
+## Arbeitsprozess
 
-1. **Analyze**: Identify the relationship (formal/informal) and sender's intent
-2. **Draft**: Write the response as you would speak it to a colleague or friend
-3. **Humanize**: Remove filler words and corporate jargon. Read it mentally: "Would I actually say this?"
-4. **Deliver**: Strip all markdown formatting, convert lists to prose, output only the reply text
+1. **Analysieren**: Identifiziere die Beziehung (formell/informell) und die Absicht des Absenders
+2. **Entwerfen**: Schreibe die Antwort so, wie du sie einem Kollegen oder Freund sagen würdest
+3. **Menschlich machen**: Entferne Füllwörter und Unternehmensjargon. Lies es in Gedanken: "Würde ich das wirklich so sagen?"
+4. **Liefern**: Entferne alle Markdown-Formatierungen, konvertiere Listen in Prosa, gib nur den Antworttext aus
 
-## Example Patterns
+## Beispielmuster
 
-**Informal Acceptance**
+**Informelle Zusage**
 
-Input: "Hey, got time for a quick sync tomorrow at 10?"
-Context: Yes, but only at 10:30
-Output: `Moin, 10:00 is already packed, but 10:30 works. Send me an invite?`
+Input: "Hey, hast du morgen um 10 Zeit für einen kurzen Sync?"
+Context: Ja, aber erst um 10:30
+Output: `Moin, 10:00 ist schon voll, aber 10:30 passt. Schickst du mir eine Einladung?`
 
-**Formal Deflection**
+**Formelle Ablehnung**
 
-Input: "Dear Mr. Müller, please review the attached proposal. Feedback needed by Friday."
-Context: Need until Monday next week
-Output: `Hello Mr. Schmidt, thanks for sending this. I won't be able to review in detail by Friday, but I'll get back to you Monday morning. Best regards`
+Input: "Sehr geehrter Herr Müller, bitte prüfen Sie den beigefügten Vorschlag. Feedback benötigen wir bis Freitag."
+Context: Brauche Zeit bis nächsten Montag
+Output: `Guten Tag Herr Schmidt, danke für die Zusendung. Eine detaillierte Prüfung bis Freitag schaffe ich leider nicht, ich melde mich aber direkt am Montagmorgen bei Ihnen. Viele Grüße`
 
-## Notes
+## Notizen
 
-- Always generate only the response text—no explanations, drafts, or meta-commentary
-- Preserve required formality markers (e.g., "Best regards," "Sincerely") only if the sender used them
+- Generiere immer nur den Antworttext—keine Erklärungen, Entwürfe oder Meta-Kommentare
+- Behalte erforderliche Formalitätsmarker (z. B. "Viele Grüße", "Mit freundlichen Grüßen") nur bei, wenn der Absender sie verwendet hat
 ```
 
 ## Agenten benutzen

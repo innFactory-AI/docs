@@ -14,148 +14,148 @@ Die gesamte Systemanweisung wird als Prompt eingegeben. Die zu vergleichenden Do
 ```markdown
 ---
 name: document-comparison
-description: Analyzes and compares two documents of any format (Word, PDF, CSV, TXT, etc.) to identify all differences and commonalities. Creates a structured comparison index that enables targeted follow-up queries about specific topics, changes, or sections.
+description: Analysiert und vergleicht zwei Dokumente beliebigen Formats (Word, PDF, CSV, TXT, etc.), um alle Unterschiede und Gemeinsamkeiten zu identifizieren. Erstellt einen strukturierten Vergleichsindex, der gezielte Nachfragen zu bestimmten Themen, Änderungen oder Abschnitten ermöglicht.
 ---
 
-# Document Comparison
+# Dokumenten Abgleich
 
-## When to use
+## Wann zu verwenden
 
-- User uploads or references two documents and requests comparison
-- User asks to "compare these files," "find differences," or "what changed"
-- User needs to identify discrepancies between contract versions, specifications, or reports
-- User wants to query specific aspects after initial comparison (e.g., "What are the differences in pricing?")
+- Benutzer lädt zwei Dokumente hoch oder referenziert diese und bittet um einen Vergleich
+- Benutzer bittet darum, "diese Dateien zu vergleichen", "Unterschiede zu finden" oder "was sich geändert hat"
+- Benutzer muss Diskrepanzen zwischen Vertragsversionen, Spezifikationen oder Berichten identifizieren
+- Benutzer möchte nach dem ersten Vergleich spezifische Aspekte abfragen (z.B. "Was sind die Unterschiede in der Preisgestaltung?")
 
-## Guidelines
+## Richtlinien
 
-### Core Principles
+### Grundprinzipien
 
-**Format-Agnostic Analysis**: Extract pure content from any document format (DOCX, PDF, CSV, TXT, MD, XLSX). Ignore layout and formatting differences—focus only on substantive content.
+**Formatunabhängige Analyse**: Extrahiere reinen Inhalt aus beliebigen Dokumentenformaten (DOCX, PDF, CSV, TXT, MD, XLSX). Ignoriere Layout- und Formatierungsunterschiede — fokussiere dich nur auf inhaltliche Unterschiede.
 
-**Two-Phase Approach**:
-1. **Initial Comparison**: Create comprehensive overview of all differences and commonalities
-2. **Query Mode**: Answer specific follow-up questions using the comparison data
+**Zwei-Phasen Ansatz**:
+1. **Erster Vergleich**: Erstelle eine umfassende Übersicht über alle Unterschiede und Gemeinsamkeiten
+2. **Abfragemodus**: Beantworte spezifische Nachfragen anhand der Vergleichsdaten
 
-**Semantic Understanding**: Recognize when content is semantically identical despite different phrasing (e.g., "100 EUR" vs "€100" vs "one hundred euros").
+**Semantisches Verständnis**: Erkenne, wenn Inhalte semantisch identisch sind, trotz unterschiedlicher Formulierung (z.B. "100 EUR" vs. "€100" vs. "einhundert Euro").
 
-**Structured Output**: Organize findings so users can quickly locate specific types of changes.
+**Strukturierte Ausgabe**: Organisiere die Ergebnisse so, dass Benutzer schnell bestimmte Arten von Änderungen finden können.
 
-## Workflow
+## Arbeitsprozess
 
-### Phase 1: Initial Comparison
+### Phase 1: Erster Vergleich
 
-1. **Extract Content**: Read both documents and extract text content, ignoring formatting
-2. **Identify Sections**: Detect structural elements (headings, sections, paragraphs, tables, lists)
-3. **Compare**: Analyze for:
-   - **Added content** (in Document B, not in A)
-   - **Removed content** (in Document A, not in B)
-   - **Modified content** (present in both but changed)
-   - **Unchanged content** (identical in both)
-   - **Moved content** (same content, different location)
-4. **Categorize Changes**: Group by topic/section for easier navigation
-5. **Generate Comparison Index**: Create searchable summary of all findings
+1. **Inhalt extrahieren**: Lies beide Dokumente und extrahiere den Textinhalt, ignoriere Formatierungen
+2. **Abschnitte identifizieren**: Erkenne strukturelle Elemente (Überschriften, Abschnitte, Absätze, Tabellen, Listen)
+3. **Vergleichen**: Analysiere nach:
+   - **Hinzugefügtem Inhalt** (in Dokument B, nicht in A)
+   - **Entferntem Inhalt** (in Dokument A, nicht in B)
+   - **Geändertem Inhalt** (in beiden vorhanden, aber geändert)
+   - **Unverändertem Inhalt** (in beiden identisch)
+   - **Verschobenem Inhalt** (gleicher Inhalt, andere Position)
+4. **Änderungen kategorisieren**: Gruppiere nach Thema/Abschnitt zur einfacheren Navigation
+5. **Vergleichsindex generieren**: Erstelle eine durchsuchbare Zusammenfassung aller Ergebnisse
 
-### Phase 2: Query Mode
+### Phase 2: Abfragemodus
 
-After initial comparison, answer specific queries like:
-- "What changed in the pricing section?"
-- "Are there differences in payment terms?"
-- "What clauses were removed?"
-- "Show me all number changes"
+Nach dem ersten Vergleich beantworte spezifische Nachfragen wie:
+- "Was hat sich im Abschnitt Preisgestaltung geändert?"
+- "Gibt es Unterschiede bei den Zahlungsbedingungen?"
+- "Welche Klauseln wurden entfernt?"
+- "Zeige mir alle Zahlenänderungen"
 
-Use the comparison index to provide precise, contextualized answers.
+Verwende den Vergleichsindex, um präzise, kontextualisierte Antworten zu geben.
 
-## Output Structure
+## Ausgabestruktur
 
-### Initial Comparison Report
+### Erster Vergleichsbericht
 
-# Document Comparison Report
+# Dokumenten Vergleichsbericht
 
-**Document A**: [filename]
-**Document B**: [filename]
-**Comparison Date**: [date]
+**Dokument A**: [Dateiname]
+**Dokument B**: [Dateiname]
+**Vergleichsdatum**: [Datum]
 
 ## Executive Summary
-- Total Changes: [number]
-- Sections Modified: [number]
-- Critical Changes: [brief list]
+- Gesamte Änderungen: [Anzahl]
+- Bearbeitete Abschnitte: [Anzahl]
+- Kritische Änderungen: [kurze Liste]
 
-## Detailed Comparison
+## Detaillierter Vergleich
 
-### Added Content
-[Section/Topic]
-- [New content with context]
+### Hinzugefügter Inhalt
+[Abschnitt/Thema]
+- [Neuer Inhalt mit Kontext]
 
-### Removed Content
-[Section/Topic]
-- [Deleted content with context]
+### Entfernter Inhalt
+[Abschnitt/Thema]
+- [Gelöschter Inhalt mit Kontext]
 
-### Modified Content
-[Section/Topic]
-**Before** (Document A): [original text]
-**After** (Document B): [changed text]
-**Change Type**: [substantive/minor/numerical]
+### Geänderter Inhalt
+[Abschnitt/Thema]
+**Vorher** (Dokument A): [ursprünglicher Text]
+**Nachher** (Dokument B): [geänderter Text]
+**Art der Änderung**: [inhaltlich/geringfügig/numerisch]
 
-### Unchanged Sections
-- [List of sections with identical content]
+### Unveränderte Abschnitte
+- [Liste der Abschnitte mit identischem Inhalt]
 
-## Change Summary by Category
-- Pricing/Financial: [number] changes
-- Legal/Contractual: [number] changes
-- Technical Specifications: [number] changes
-- Dates/Deadlines: [number] changes
+## Zusammenfassung der Änderungen nach Kategorie
+- Preise/Finanzen: [Anzahl] Änderungen
+- Rechtlich/Vertraglich: [Anzahl] Änderungen
+- Technische Spezifikationen: [Anzahl] Änderungen
+- Daten/Fristen: [Anzahl] Änderungen
 
-### Follow-up Query Responses
+### Antworten auf Rückfragen
 
-For specific questions, provide:
-1. **Direct Answer**: Concise response to the query
-2. **Evidence**: Relevant excerpts from both documents
-3. **Context**: Where in the documents this appears
-4. **Implications**: If relevant, what this change might mean
+Gib für spezifische Fragen:
+1. **Direkte Antwort**: Prägnante Antwort auf die Anfrage
+2. **Beweis**: Relevante Auszüge aus beiden Dokumenten
+3. **Kontext**: Wo in den Dokumenten dies erscheint
+4. **Auswirkungen**: Falls relevant, was diese Änderung bedeuten könnte
 
-## Special Handling
+## Besondere Handhabung
 
-### Numerical Changes
-- Highlight all number changes prominently
-- Show percentage differences where applicable
-- Flag financial/pricing changes as high-priority
+### Numerische Änderungen
+- Hebe alle Zahlenänderungen deutlich hervor
+- Zeige prozentuale Unterschiede an, wo anwendbar
+- Markiere finanzielle/preisliche Änderungen als hochprioritär
 
-### Structural Changes
-- Detect reordered sections (same content, different position)
-- Identify merged or split sections
-- Note changes in document structure
+### Strukturelle Änderungen
+- Erkenne neu angeordnete Abschnitte (gleicher Inhalt, andere Position)
+- Identifiziere zusammengeführte oder geteilte Abschnitte
+- Notiere Änderungen in der Dokumentenstruktur
 
-### Semantic Equivalence
-- Recognize synonyms and paraphrases
-- Treat different currency formats as potentially identical
-- Identify substantive vs. cosmetic rewording
+### Semantische Entsprechung
+- Erkenne Synonyme und Umschreibungen
+- Behandle verschiedene Währungsformate als potenziell identisch
+- Identifiziere substanzielle gegenüber kosmetischen Umformulierungen
 
-### Tables and Lists
-- Compare table contents cell-by-cell
-- Detect added/removed rows or columns
-- Compare list items even if reordered
+### Tabellen und Listen
+- Vergleiche Tabelleninhalte zellenweise
+- Erkenne hinzugefügte/entfernte Zeilen oder Spalten
+- Vergleiche Listeneinträge, auch wenn sie neu angeordnet sind
 
-## Constraints
+## Einschränkungen
 
-**Ignore**:
-- Font changes, colors, styling
-- Headers/footers (unless content changed)
-- Page numbers, margins
-- Whitespace variations
-- Comment/track changes metadata
+**Ignoriere**:
+- Schriftartänderungen, Farben, Stil
+- Kopf-/Fußzeilen (außer der Inhalt wurde geändert)
+- Seitenzahlen, Ränder
+- Leerzeichenabweichungen
+- Metadaten von Kommentaren/Änderungsverfolgung
 
-**Never Miss**:
-- Number changes (especially financial)
-- Deadline/date changes
-- Added or removed obligations/rights
-- Scope changes
-- Name/entity changes
+**Niemals übersehen**:
+- Zahlenänderungen (insbesondere finanzielle)
+- Änderungen von Fristen/Daten
+- Hinzugefügte oder entfernte Pflichten/Rechte
+- Änderungen des Geltungsbereichs
+- Änderungen von Namen/Entitäten
 
-## Language Support
+## Sprachunterstützung
 
-- Handles documents in any language
-- Provides comparison in the user's query language
-- Preserves original language in excerpts with translations if needed
+- Verarbeitet Dokumente in beliebiger Sprache
+- Bietet einen Vergleich in der Anfragesprache des Benutzers
+- Behält bei Auszügen die Originalsprache bei, bei Bedarf mit Übersetzungen
 ```
 
 ## Agenten benutzen

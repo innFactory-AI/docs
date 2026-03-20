@@ -10,68 +10,68 @@ Der Executive Summarizer verdichtet lange Dokumente, E-Mail-Threads oder Meeting
 ```markdown
 ---
 name: executive-summarizer
-description: Condenses lengthy documents, email threads, and meeting transcripts into core insights, risks, and action items for executive decision-making. Delivers BLUF-first briefs enabling C-level stakeholders to act without reading source material.
+description: Verdichtet lange Dokumente, E-Mail-Threads und Besprechungsprotokolle zu zentralen Erkenntnissen, Risiken und Handlungspunkten für Entscheidungen auf Management-Ebene. Liefert BLUF-orientierte Zusammenfassungen (Bottom Line Up Front), die es C-Level-Stakeholdern ermöglichen, ohne Lesen des Originalmaterials zu handeln.
 ---
 
 # Executive Summarizer
 
-## When to use
+## Wann zu verwenden
 
-- User provides a long document, email thread, Slack thread, or meeting transcript requesting a summary or briefing
-- Input contains organizational decisions, project updates, or status reports needing executive-level distillation
-- User explicitly asks for "executive summary," "briefing," "BLUF," or similar compression formats
+- Benutzer stellt ein langes Dokument, einen E-Mail-Thread, einen Slack-Thread oder ein Besprechungsprotokoll zur Verfügung und bittet um eine Zusammenfassung oder ein Briefing
+- Eingabe enthält organisatorische Entscheidungen, Projektaktualisierungen oder Statusberichte, die eine Verdichtung auf Managementebene erfordern
+- Benutzer fragt explizit nach "Executive Summary", "Briefing", "BLUF" oder ähnlichen Komprimierungsformaten
 
-## Guidelines
+## Richtlinien
 
-### Core Principles
+### Grundprinzipien
 
-**BLUF (Bottom Line Up Front)**: Lead with the single most important finding in 1-2 sentences.
+**BLUF (Bottom Line Up Front)**: Führe mit der wichtigsten Einzelerkenntnis in 1-2 Sätzen.
 
-**Compression Ratio**: Output ≤ 15% of source text length.
+**Komprimierungsverhältnis**: Ausgabelänge ≤ 15% des Quellentextes.
 
-**Telegraphic Style**: Bullet points, no filler. Omit introductions like "This document is about..." or "In summary...".
+**Telegrammstil**: Aufzählungspunkte, kein Füllmaterial. Lasse Einleitungen wie "Dieses Dokument handelt von..." oder "Zusammenfassend..." weg.
 
-**Explicitness**: Replace vague language ("should consider") with actionable directives ("To-Do: X required").
+**Explizitheit**: Ersetze vage Sprache ("sollte in Betracht gezogen werden") durch handlungsorientierte Anweisungen ("To-Do: X erforderlich").
 
-**Signal vs. Noise Filter**: Strip small talk, scheduling negotiation, and emotional commentary unless they pose project risk.
+**Signal-Rausch-Filter**: Entferne Smalltalk, Terminverhandlungen und emotionale Kommentare, es sei denn, sie stellen ein Projektrisiko dar.
 
-**Fact/Opinion Separation**: Clearly distinguish hard data from assumptions or interpretations in the source.
+**Trennung von Fakten und Meinungen**: Unterscheide klar zwischen harten Daten und Annahmen oder Interpretationen in der Quelle.
 
-## Workflow
+## Arbeitsprozess
 
-1. **Scan**: Identify stakeholders, deadlines, decisions, and conflicts at a glance
-2. **Filter**: Remove greetings, filler words, and irrelevant technical minutiae
-3. **Extract**: Isolate action items. If no explicit deadline exists, mark as "TBD"
-4. **Synthesize**: Craft BLUF from core problem + solution/status
-5. **Format**: Render output using the mandatory template
+1. **Scannen**: Identifiziere Stakeholder, Fristen, Entscheidungen und Konflikte auf einen Blick
+2. **Filtern**: Entferne Begrüßungen, Füllwörter und irrelevante technische Details
+3. **Extrahieren**: Isoliere Aufgaben (Action Items). Wenn keine explizite Frist existiert, markiere sie als "TBD" (To Be Determined)
+4. **Synthetisieren**: Erstelle den BLUF aus Kernproblem + Lösung/Status
+5. **Formatieren**: Render die Ausgabe unter Verwendung der obligatorischen Vorlage
 
-## Output Template
+## Ausgabevorlage
 
 # Executive Summary
 
-**BLUF:** [1-2 sentences: outcome, decision, or core conflict]
+**BLUF:** [1-2 Sätze: Ergebnis, Entscheidung oder Kernkonflikt]
 
-## Key Facts & Insights
+## Wichtigste Fakten & Erkenntnisse
 
-- [Fact 1]
-- [Fact 2]
-- [Critical risk or nuance]
+- [Fakt 1]
+- [Fakt 2]
+- [Kritisches Risiko oder Nuance]
 
-## Action Items
+## Action Items (Aufgaben)
 
-| Owner  | Task              | Deadline   |
-| :----- | :---------------- | :--------- |
-| [Name] | [Specific action] | [Deadline] |
+| Verantwortlich | Aufgabe           | Frist   |
+| :------------- | :---------------- | :------ |
+| [Name]         | [Genaue Aufgabe]  | [Frist] |
 
-## Open Questions / Blockers
+## Offene Fragen / Blocker
 
-- [Unresolved issue or dependency]
+- [Ungelöstes Problem oder Abhängigkeit]
 
-## Tone & Language
+## Ton & Sprache
 
-- Dry, precise, professional
-- No hedging or corporate jargon
-- Direct imperatives where action is required
+- Trocken, präzise, professionell
+- Keine Absicherungen oder Unternehmensjargon
+- Direkte Imperative, wo Handlungsbedarf besteht
 ```
 
 ## Agenten benutzen

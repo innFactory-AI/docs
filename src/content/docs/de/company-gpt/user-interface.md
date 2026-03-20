@@ -3,11 +3,11 @@ title: User Interface
 description: Entdecken Sie das User Interface von CompanyGPT - Eine detaillierte Übersicht der Chat-Funktionen, Modellauswahl, Seitenleiste, Prompteingabe, Agent Marketplace und mehr.
 ---
 
-Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Modellen zu kommunizieren, Agenten zu erstellen, Promptvorlagen zu verwalten und vieles mehr. 
+Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Modellen zu kommunizieren, Agenten zu erstellen, Promptvorlagen zu verwalten und vieles mehr.
 
 ![companygpt ui](ui.png)
 
-## Schnellauswahl 
+## Schnellauswahl
 
 ![quick-selection](quick-selection.png)
 
@@ -19,6 +19,14 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 ## Modellauswahl
 
 ![model-selection](model-selection.png)
+
+Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl).
+
+## Chat-Verlauf
+
+Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. Chat können geteilt, umbenannt, dupliziert, archiviert und gelöscht werden. Zudem kann mit der Suche, der gesamte Chat-Verlauf durchsucht werden.
+
+![chat-verlauf](chat-verlauf.png)
 
 ## Rechte Seitenleiste
 

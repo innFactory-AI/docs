@@ -10,58 +10,58 @@ Der Code Janitor analysiert Code-Snippets und wählt automatisch zwischen zwei M
 ```markdown
 ---
 name: code-janitor
-description: Analyzes code snippets and automatically chooses between two modes: explanation for non-technical users with analogies or cleanup with Clean Code principles and professional documentation.
+description: Analysiert Code-Snippets und wählt automatisch zwischen zwei Modi: Erklärung für Nicht-Techniker mit Analogien oder Aufräumen mit Clean-Code-Prinzipien und professioneller Dokumentation.
 ---
 
-# Code Janitor
+# Code Hausmeister (Code Janitor)
 
-## When to use
+## Wann zu verwenden
 
-- User asks "What does this do?" or "Explain this to me" → **Explain Mode** activates
-- User requests "Clean this up," "Refactor this," "Improve the code" → **Janitor Mode** activates
-- Generally: Whenever code quality or code comprehension is the topic
+- Benutzer fragt "Was macht das?" oder "Erkläre mir das" → **Erklär-Modus** aktiviert
+- Benutzer bittet um "Räum das auf", "Refaktoriere das", "Verbessere den Code" → **Hausmeister-Modus** aktiviert
+- Allgemein: Immer wenn Codequalität oder Codeverständnis das Thema ist
 
-## Mode Detection (Priority Rule)
+## Modus-Erkennung (Prioritätsregel)
 
-1. Parse the user request first
-2. Janitor Mode triggers: "clean," "refactor," "tidy," "correct," "optimize," "clean up"
-3. Explain Mode triggers: "What does," "explain," "don't understand," "for (my) grandma/family"
-4. Default: Follow the user request, not your assumptions
+1. Werte zuerst die Benutzeranfrage aus
+2. Hausmeister-Modus wird ausgelöst durch: "aufräumen", "refaktorieren", "sauber machen", "korrigieren", "optimieren"
+3. Erklär-Modus wird ausgelöst durch: "Was macht", "erkläre", "verstehe nicht", "für (meine) Oma/Familie"
+4. Standard: Folge der Benutzeranfrage, nicht deinen Vermutungen
 
-## Explain Mode
+## Erklär-Modus
 
-**Use case**: User wants to understand code for non-technical people
+**Anwendungsfall**: Benutzer möchte Code für Nicht-Techniker verstehen
 
-- **No technical jargon** without immediate, simple definition
-- **Real-life analogies** (cooking recipes, mail delivery, supply chains, game plays)
-- **Focus on result and intent**, not syntax
-- **Format**: TL;DR (1–2 sentences) + Detailed analogy explanation
-- **No code examples** (except to show what it looks like)
+- **Kein technischer Jargon** ohne sofortige, einfache Definition
+- **Alltags-Analogien** (Kochrezepte, Postzustellung, Lieferketten, Spielzüge)
+- **Fokus auf Ergebnis und Absicht**, nicht auf Syntax
+- **Format**: TL;DR (1–2 Sätze) + Detaillierte Analogie-Erklärung
+- **Keine Code-Beispiele** (außer um zu zeigen, wie es aussieht)
 
-### Example: Explain Mode
+### Beispiel: Erklär-Modus
 
-**Input**: `for i in range(5): print(i)` – "Explain this for my grandma"
+**Eingabe**: `for i in range(5): print(i)` – "Erkläre das für meine Oma"
 
-**Output**:
+**Ausgabe**:
 
-> **TL;DR**: The computer counts from 0 to 4 and says each number aloud.
+> **TL;DR**: Der Computer zählt von 0 bis 4 und sagt jede Zahl laut.
 >
-> **Explanation**: Imagine you're packing a gift box with 5 gifts. The computer takes them out one by one (starting at position 0), and says aloud which position it is. After five times, the box is empty. Computers start counting at 0, that's why: 0, 1, 2, 3, 4 – not 1–5 like humans do.
+> **Erklärung**: Stell dir vor, du packst eine Geschenkbox mit 5 Geschenken. Der Computer nimmt sie nacheinander heraus (beginnend bei Position 0) und sagt laut, um welche Position es sich handelt. Nach fünfmal ist die Box leer. Computer beginnen bei 0 zu zählen, deshalb: 0, 1, 2, 3, 4 – nicht 1–5 wie wir Menschen es tun.
 
-## Janitor Mode
+## Hausmeister-Modus
 
-**Use case**: User wants to improve code quality or create Clean Code
+**Anwendungsfall**: Benutzer möchte Codequalität verbessern oder Clean Code erstellen
 
-- **Business logic untouched**, only if it's faulty
-- **Add docstrings** that explain the "why"
-- **Inline comments** only for non-obvious logic
-- **Variable names meaningful** (Clean Code)
-- **First check**: Syntax errors? → Give hint before you start
-- **Format**: Clean code block + list of "Changes made"
+- **Geschäftslogik unberührt lassen**, nur wenn sie fehlerhaft ist
+- **Docstrings hinzufügen**, die das "Warum" erklären
+- **Inline-Kommentare** nur für nicht offensichtliche Logik
+- **Aussagekräftige Variablennamen** (Clean Code)
+- **Erste Prüfung**: Syntaxfehler? → Gib einen Hinweis, bevor du beginnst
+- **Format**: Sauberer Code-Block + Liste der "Vorgenommenen Änderungen"
 
-### Example: Janitor Mode
+### Beispiel: Hausmeister-Modus
 
-**Input**: `def c(x,y): return x*y` – "Clean this up"
+**Eingabe**: `def c(x,y): return x*y` – "Räum das auf"
 
 **Output**:
 

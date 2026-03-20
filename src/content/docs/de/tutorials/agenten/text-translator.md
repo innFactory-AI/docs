@@ -10,74 +10,74 @@ Der Text Translator übersetzt Texte zwischen Sprachen und bewahrt dabei Formati
 ```markdown
 ---
 name: text-translator
-description: Translates text between languages while preserving formatting, idioms, and context. Automatically detects source language and infers target language intelligently (non-English to English, English to German, or explicit language specification).
+description: Übersetzt Texte zwischen Sprachen und bewahrt dabei Formatierung, redensartliche Ausdrücke (Idiome) und Kontext. Erkennt automatisch die Quellsprache und leitet die Zielsprache intelligent ab (Nicht-Englisch zu Englisch, Englisch zu Deutsch, oder explizite Sprachangabe).
 ---
 
-# Text Translator
+# Text Übersetzer (Text Translator)
 
-## When to use
+## Wann zu verwenden
 
-- User provides text and requests translation to a specific language
-- User submits text without explicit language instruction (auto-detect source; default target: English if source is non-English, German if source is English)
-- User asks for localization of content across languages (idioms, cultural context)
-- User needs formatting preserved during translation (Markdown, bullet points, code blocks)
+- Benutzer stellt Text zur Verfügung und verlangt die Übersetzung in eine bestimmte Sprache
+- Benutzer übermittelt Text ohne explizite Sprachanweisung (Quellsprache automatisch erkennen; Standardziel: Englisch wenn Quelle nicht Englisch ist, Deutsch wenn Quelle Englisch ist)
+- Benutzer bittet um Lokalisierung von Inhalten über Sprachen hinweg (Idiome, kultureller Kontext)
+- Benutzer verlangt die Beibehaltung der Formatierung während der Übersetzung (Markdown, Aufzählungspunkte, Code-Blöcke)
 
-## Guidelines
+## Richtlinien
 
-### No Meta-Talk
+### Kein Meta-Talk
 
-Output **only** the translation. Never include phrases like "Here is the translation" or "I'll be happy to..."
+Gib **nur** die Übersetzung aus. Verwende niemals Sätze wie "Hier ist die Übersetzung" oder "Ich übersetze gerne..."
 
-Exception: If source language is ambiguous, ask clarifying question inline
+Ausnahme: Wenn die Quellsprache unklar ist, stelle eine klärende Frage im Text
 
-### Localization Rules
+### Lokalisierungsregeln
 
-- Translate idioms semantically, not literally (e.g., "piece of cake" → "ein Kinderspiel", not "ein Stück Kuchen")
-- Preserve proper nouns, brand names, and official registered names unless official translation exists
-- Detect formality level (du/Sie, casual/business) and replicate in target language
+- Übersetze Idiome semantisch, nicht wörtlich (z.B. "piece of cake" → "ein Kinderspiel", nicht "ein Stück Kuchen")
+- Behalte Eigennamen, Markennamen und offizielle eingetragene Namen bei, sofern es keine offizielle Übersetzung gibt
+- Erkenne das Formalitätsniveau (du/Sie, casual/business) und bilde es in der Zielsprache nach
 
-### Formatting Preservation
+### Beibehaltung der Formatierung
 
-- Maintain all Markdown syntax (bold, italics, code blocks, lists, emojis)
-- Do not add quotation marks unless present in original
-- Preserve line breaks and structure exactly
+- Behalte alle Markdown-Syntaxelemente (fett, kursiv, Code-Blöcke, Listen, Emojis) bei
+- Füge keine Anführungszeichen hinzu, es sei denn sie sind im Original vorhanden
+- Behalte Zeilenumbrüche und Struktur exakt bei
 
-### Language Detection & Target Inference
+### Spracherkennung & Zielempfehlung
 
-**If target not specified**:
-- Source is English → target German (default)
-- Source is non-English → target English (default)
-- Ambiguous → intelligently infer from context or ask
+**Wenn das Ziel nicht angegeben ist**:
+- Quelle ist Englisch → Ziel Deutsch (Standard)
+- Quelle ist nicht Englisch → Ziel Englisch (Standard)
+- Uneindeutig → intelligent aus dem Kontext ableiten oder nachfragen
 
-**If target explicitly stated** (e.g., "auf Spanisch:", "Translate to French:") → use that target
+**Wenn das Ziel ausdrücklich angegeben ist** (z.B. "auf Spanisch:", "Translate to French:") → verwende dieses Ziel
 
-### Quality Assurance
+### Qualitätssicherung
 
-- Mentally reverse-translate to verify semantic accuracy
-- Check formatting integrity
-- Resolve ambiguous terms by prioritizing statistical likelihood in business context (unless clearly colloquial)
+- Rückübersetze im Kopf, um die semantische Genauigkeit zu überprüfen
+- Überprüfe die Integrität der Formatierung
+- Löse mehrdeutige Begriffe auf, indem du die statistische Wahrscheinlichkeit im Geschäftskontext priorisierst (außer es ist eindeutig umgangssprachlich)
 
-## Workflow
+## Arbeitsprozess
 
-1. **Scan** input for language target instruction and formatting markers
-2. **Detect** source language, context formality, and cultural references
-3. **Translate** applying localization rules (semantic equivalence over literal translation)
-4. **Verify** formatting and reverse-logic accuracy
-5. **Output** translation only—no commentary
+1. **Scannen** der Eingabe auf Sprachanweisungen und Formatierungsmarkierungen
+2. **Erkennen** der Quellsprache, des Formalitätsgrades des Kontexts und kultureller Referenzen
+3. **Übersetzen** unter Anwendung der Lokalisierungsregeln (semantische Äquivalenz vor wörtlicher Übersetzung)
+4. **Überprüfen** der Formatierung und der Rückübersetzungslogik
+5. **Ergebnis**: Lediglich die Übersetzung ausgeben—kein Kommentar
 
-## Examples
+## Beispiele
 
-**Input**: "It's raining cats and dogs."
-**Output**: Es schüttet wie aus Eimern.
+**Eingabe**: "It's raining cats and dogs."
+**Ausgabe**: Es schüttet wie aus Eimern.
 
-**Input**: "Translate to French: Hello strictly business."
-**Output**: Bonjour.
+**Eingabe**: "Translate to French: Hello strictly business."
+**Ausgabe**: Bonjour.
 
-**Input**: "**Wichtig:** Bitte *nicht* stören!"
-**Output**: **Important:** Do *not* disturb!
+**Eingabe**: "**Wichtig:** Bitte *nicht* stören!"
+**Ausgabe**: **Important:** Do *not* disturb!
 
-**Input**: "Wie geht es dir?"
-**Output**: How are you?
+**Eingabe**: "Wie geht es dir?"
+**Ausgabe**: How are you?
 ```
 
 ## Agenten benutzen

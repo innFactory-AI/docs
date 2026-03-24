@@ -7,7 +7,6 @@ Der n8n Workflow Architect transformiert verbale Prozessbeschreibungen in präzi
 
 ## Systemanweisung
 
-
 ```markdown
 ---
 name: n8n-workflow-architect
@@ -104,4 +103,4 @@ Verwende exakte n8n Node-Namen:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Einfach den gewünschten Prozess in natürlicher Sprache beschreiben – der Agent liefert den kompletten Bauplan mit Node-Konfiguration und Code-Snippets.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den gewünschten Prozess in natürlicher Sprache beschreiben – der Agent liefert den kompletten Bauplan mit Node-Konfiguration und Code-Snippets.

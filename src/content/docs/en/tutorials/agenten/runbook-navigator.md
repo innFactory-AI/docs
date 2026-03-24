@@ -96,4 +96,4 @@ Reference runbooks by ID/link when available (e.g., "See RB-2024-PAYMENT-502").
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). **Important:** The relevant runbooks and technical documentation must be stored as context documents. Paste an error message into the chat — the agent immediately delivers the matching step-by-step instructions.
+The agent can be created under [Agents](/en/company-gpt/agenten/). **Important:** The relevant runbooks and technical documentation must be stored as context documents. Paste an error message into the chat — the agent immediately delivers the matching step-by-step instructions.

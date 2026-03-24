@@ -86,4 +86,4 @@ Nur reiner Text. Keine Anführungszeichen, keine Meta-Kommentare, keine Erkläru
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Einfach ein Szenario beschreiben oder direkt mit einem typischen Kundenkontakt-Satz starten – der Agent bleibt konsequent in der Rolle des schwierigen Kunden.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach ein Szenario beschreiben oder direkt mit einem typischen Kundenkontakt-Satz starten – der Agent bleibt konsequent in der Rolle des schwierigen Kunden.

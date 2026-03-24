@@ -70,4 +70,4 @@ description: Transforms raw meeting notes, Slack logs, and unstructured thoughts
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste raw meeting notes or unstructured thoughts — the agent immediately delivers Confluence-ready Markdown.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste raw meeting notes or unstructured thoughts — the agent immediately delivers Confluence-ready Markdown.

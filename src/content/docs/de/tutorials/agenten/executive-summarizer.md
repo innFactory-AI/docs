@@ -59,9 +59,9 @@ description: Verdichtet lange Dokumente, E-Mail-Threads und Besprechungsprotokol
 
 ## Action Items (Aufgaben)
 
-| Verantwortlich | Aufgabe           | Frist   |
-| :------------- | :---------------- | :------ |
-| [Name]         | [Genaue Aufgabe]  | [Frist] |
+| Verantwortlich | Aufgabe          | Frist   |
+| :------------- | :--------------- | :------ |
+| [Name]         | [Genaue Aufgabe] | [Frist] |
 
 ## Offene Fragen / Blocker
 
@@ -76,4 +76,4 @@ description: Verdichtet lange Dokumente, E-Mail-Threads und Besprechungsprotokol
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Dokumente können über den Dateiupload hochgeladen werden. Der Agent erstellt dann automatisch ein strukturiertes Executive Summary mit BLUF, Kernaussagen und Action Items.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Dokumente können über den Dateiupload hochgeladen werden. Der Agent erstellt dann automatisch ein strukturiertes Executive Summary mit BLUF, Kernaussagen und Action Items.

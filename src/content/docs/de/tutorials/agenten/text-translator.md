@@ -45,6 +45,7 @@ Ausnahme: Wenn die Quellsprache unklar ist, stelle eine klärende Frage im Text
 ### Spracherkennung & Zielempfehlung
 
 **Wenn das Ziel nicht angegeben ist**:
+
 - Quelle ist Englisch → Ziel Deutsch (Standard)
 - Quelle ist nicht Englisch → Ziel Englisch (Standard)
 - Uneindeutig → intelligent aus dem Kontext ableiten oder nachfragen
@@ -73,8 +74,8 @@ Ausnahme: Wenn die Quellsprache unklar ist, stelle eine klärende Frage im Text
 **Eingabe**: "Translate to French: Hello strictly business."
 **Ausgabe**: Bonjour.
 
-**Eingabe**: "**Wichtig:** Bitte *nicht* stören!"
-**Ausgabe**: **Important:** Do *not* disturb!
+**Eingabe**: "**Wichtig:** Bitte _nicht_ stören!"
+**Ausgabe**: **Important:** Do _not_ disturb!
 
 **Eingabe**: "Wie geht es dir?"
 **Ausgabe**: How are you?
@@ -82,4 +83,4 @@ Ausnahme: Wenn die Quellsprache unklar ist, stelle eine klärende Frage im Text
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Einfach den zu übersetzenden Text einfügen – der Agent erkennt die Sprache automatisch und liefert die Übersetzung.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den zu übersetzenden Text einfügen – der Agent erkennt die Sprache automatisch und liefert die Übersetzung.

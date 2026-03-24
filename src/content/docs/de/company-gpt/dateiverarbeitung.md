@@ -30,9 +30,9 @@ Hierbei werden die Dateien, zum Beispiel PDFs, hochgeladen und mit Hilfe von OCR
 
 ## Dateisuche
 
-Dokumente können auch für die Dateisuche hochgeladen werden. Dabei werden die Inhalte indexiert und in der Datenbank gespeichert. Diese können dann durch die KI-Modelle bei Bedarf durchsucht und die Antworten durch die Ergebnisse angereichert werden. Informationen zur Funktionsweise finden Sie hier: [RAG - Retrieval Augmented Generation](/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
+Dokumente können auch für die Dateisuche hochgeladen werden. Dabei werden die Inhalte indexiert und in der Datenbank gespeichert. Diese können dann durch die KI-Modelle bei Bedarf durchsucht und die Antworten durch die Ergebnisse angereichert werden. Informationen zur Funktionsweise finden Sie hier: [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
 
-**Limitierung**: Die Dokumente sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/company-gpt/agenten) oder auch über die [KI Suche](/company-gpt/addons/ki-suche) integriert werden.
+**Limitierung**: Die Dokumente sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/de/company-gpt/agenten) oder auch über die [KI Suche](/de/company-gpt/addons/ki-suche) integriert werden.
 
 ## SharePoint-Integration
 

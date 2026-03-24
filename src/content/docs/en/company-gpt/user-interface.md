@@ -20,7 +20,7 @@ The CompanyGPT user interface allows you to communicate with different AI models
 
 ![model-selection](model-selection-en.png)
 
-You can find a list of currently available models under [Model Selection](/en/company-gpt/model-selection).
+You can find a list of currently available models under [Model Selection](/en/company-gpt/modellauswahl).
 
 ## Chat history
 

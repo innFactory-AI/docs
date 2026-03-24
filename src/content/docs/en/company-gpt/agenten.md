@@ -6,6 +6,7 @@ description: Discover agents in CompanyGPT—advanced AI systems with reasoning,
 Agents in CompanyGPT are advanced systems designed to do more than just generate text. They analyze the user's request, create a plan for completion, use tools to obtain information, and respond to the request.
 
 Capabilities:
+
 - **Reasoning**: Can break down complex problems into smaller units and process them
 - **Tool Usage**: Can decide which tools to use for which tasks
 - **Action**: Can execute tools to obtain information
@@ -22,7 +23,7 @@ Each agent can be assigned to a category. If agents are shared between users wit
 
 ### Instructions
 
-The instructions are the actual prompt for the agent. This describes what the agent has to do, how it should behave, etc. Information on effective prompting for agents can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht). Especially with agents, it is advisable to use structured and cleanly formatted prompts. 
+The instructions are the actual prompt for the agent. This describes what the agent has to do, how it should behave, etc. Information on effective prompting for agents can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht). Especially with agents, it is advisable to use structured and cleanly formatted prompts.
 
 Variables such as the current date, time, or current user can also be passed on.
 
@@ -42,7 +43,7 @@ Specifies whether web search is enabled for this agent or not. Information about
 
 #### File Context (OCR)
 
-Files uploaded as “context” are processed with OCR to extract text, which is then added to the agent's instructions. Ideal for documents, images with text, or PDFs when you need the full text content of a file. 
+Files uploaded as “context” are processed with OCR to extract text, which is then added to the agent's instructions. Ideal for documents, images with text, or PDFs when you need the full text content of a file.
 
 :::tip
 Context documents are always complete in the context of the agent/conversation. Here, you should limit yourself to the essentials, e.g., instructions on tone or past examples. For very long documents, **file search** might be more suitable.
@@ -60,7 +61,7 @@ When enabled, the agent is informed of the exact file names listed below and can
 
 For more information, see [Prompt Engineering / RAG](/en/prompt-engineering/prompt-techniken/rag)
 
-#### MCP Server 
+#### MCP Server
 
 MCP Server tools can be specified per agent, including which tools from the MCP Server the agent can use.
 
@@ -72,7 +73,7 @@ Tools are built-in tools that can be used by the agent. These can of course be c
 
 ![tools-and-actions](tools-and-actions-en.png)
 
-Actions are external API interfaces that can be connected directly via [OpenAPI-compatible schemas](https://spec.openapis.org/oas/latest.html). 
+Actions are external API interfaces that can be connected directly via [OpenAPI-compatible schemas](https://spec.openapis.org/oas/latest.html).
 
 ![actions-open-api](actions-open-api-en.png)
 
@@ -119,6 +120,10 @@ You can choose whether the agent should be shared globally, with specific users,
 You can select the rights with which other users can access the agent.
 
 ![agent-share-rights](agent-share-rights-en.png)
+
+## Our agents
+
+At [**Agents**](/en/tutorials) you will find a selection of agents that we have developed for various use cases. You can use these directly or as a template for your own agents.
 
 ## Agent Marketplace
 

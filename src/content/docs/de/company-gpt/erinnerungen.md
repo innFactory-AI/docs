@@ -3,7 +3,7 @@ title: Erinnerungen
 description: Erinnerungen im CompanyGPT
 ---
 
-Wenn [Erinnerungen aktiviert](/company-gpt/einstellungen/#gespeicherte-erinnerungen-verwenden) sind, dann kann sich CompanyGPT über einzelne Unterhaltungen hinweg an Fakten, Vorlieben und Projektdetails erinnern. Das macht Ihre Interaktionen nicht nur persönlicher und relevanter, sondern auch deutlich effizienter.
+Wenn [Erinnerungen aktiviert](/de/company-gpt/einstellungen/#gespeicherte-erinnerungen-verwenden) sind, dann kann sich CompanyGPT über einzelne Unterhaltungen hinweg an Fakten, Vorlieben und Projektdetails erinnern. Das macht Ihre Interaktionen nicht nur persönlicher und relevanter, sondern auch deutlich effizienter.
 
 Die Erinnerungen von CompanyGPT kann auf zwei Arten gefüttert werden: automatisch und manuell.
 

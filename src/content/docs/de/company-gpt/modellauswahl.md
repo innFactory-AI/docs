@@ -88,12 +88,6 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 - **Wann:** große Dokumentenmengen, komplexe Datenanalyse, strategische Planung
 - **Warum:** das Flaggschiff der 5.2-Generation, pure Qualität steht vor Geschwindigkeit (wird durch GPT-5.4 abgelöst)
 
-### gpt-5.2 pro
-
-- **Für:** Aufgaben mit Bedarf an höherer Präzision
-- **Wann:** wenn die Basisversion von 5.2 nicht genau genug war
-- **Warum:** Veraltet, mittlerweile durch GPT-5.4 Pro ersetzt
-
 ### gpt-5.2-codex
 
 - **Für:** reine Softwareentwicklung und Systemarchitektur

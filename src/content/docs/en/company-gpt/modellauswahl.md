@@ -28,6 +28,12 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 - **When:** when the AI needs to ‘think’ (reason) internally before responding
 - **Why:** combines extremely fast output speed with in-depth logical precision
 
+### o3
+
+- **For:** pure reasoning
+- **When:** when deep thinking takes precedence over pure speed
+- **Why:** specialized reasoning focus for complex logic (slightly slower)
+
 ### gpt-4o mini
 
 - **For:** short questions, simple texts, quick answers
@@ -80,7 +86,13 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 
 - **For:** the most demanding analytical all-round tasks
 - **When:** large volumes of documents, complex data analysis, strategic planning
-- **Why:** the flagship of the 5.2 generation; pure quality takes precedence over speed
+- **Why:** the flagship of the 5.2 generation; pure quality takes precedence over speed (will be replaced by GPT-5.4)
+
+### gpt-5.2 pro
+
+- **For:** tasks requiring higher precision
+- **When:** when the basic version of 5.2 was not precise enough
+- **Why:** Deprecated, now replaced by GPT-5.4 Pro
 
 ### gpt-5.2-codex
 
@@ -94,21 +106,75 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 - **When:** complex multi-turn dialogues, subtle nuances in language
 - **Why:** extremely low latency and perfect understanding of the conversation flow
 
+### gpt-5.3 Codex
+
+- **For:** autonomous software development
+- **When:** agentic coding and code optimization
+- **Why:** self-optimizing special model, 25% faster than gpt-5.2
+
 ### gpt-5.4
 
-- **For:** the absolute maximum in performance
+- **For:** the absolute maximum in performance (Recommended)
 - **When:** when cost is a secondary consideration and the best results are required for extremely complex problems
-- **Why:** the most powerful all-round model in the 5 series for in-depth tasks
+- **Why:** New flagship (1M context), 33% fewer hallucinations, native computer use
+
+### gpt-5.4 Pro
+
+- **For:** maximum precision for the most complex tasks
+- **When:** when deepest reasoning is required and higher costs/latency are accepted
+- **Why:** offers the deepest reasoning of all OpenAI models
 
 ### gpt-5.4-mini
 
 - **For:** state-of-the-art quality for high-volume tasks
 - **When:** processing large datasets, routine tasks at a very high level
-- **Why:** the most efficient way to deploy the modern 5.4 architecture quickly and cost-effectively
+- **Why:** 2x faster than its predecessor, ideal for quick code edits and classification
+
+### gpt-5.4 nano
+
+- **For:** repetitive tasks and sub-agents
+- **When:** when the lowest latency is absolutely necessary
+- **Why:** extremely fast, but with a limited feature set
 
 ---
 
 ## Google
+
+### Gemini 3.1 Pro (GA)
+
+- **For:** complex reasoning and massive contexts (Recommended)
+- **When:** processing huge documents (2M tokens) and multimodal tasks
+- **Why:** Google's current, most powerful all-round flagship
+
+### Gemini 3.1 Flash (GA)
+
+- **For:** highest speed with large contexts
+- **When:** fast processing of up to 1M tokens
+- **Why:** fastest model of the 3.x series, extremely strong price-performance ratio
+
+### Gemini 3.1 Flash Thinking
+
+- **For:** complex STEM tasks
+- **When:** mathematical or logical problems that require an internal thought process
+- **Why:** extended reasoning (takes time to think, hence higher latency)
+
+### Gemini 3.1 Pro Deep Research
+
+- **For:** long analysis tasks and multi-hop research
+- **When:** in-depth internet research across multiple sources
+- **Why:** specialized model for complex information gathering (not universally applicable)
+
+### Gemini 3 Pro (Preview)
+
+- **For:** reasoning-first approaches and multimodal tasks
+- **When:** testing reasoning capabilities
+- **Why:** deprecated preview predecessor (replaced by 3.1 Pro GA)
+
+### Gemini 3 Flash (Preview)
+
+- **For:** fast multimodal tasks
+- **When:** early tests of flash speed
+- **Why:** deprecated preview predecessor (replaced by 3.1 Flash GA)
 
 ### Gemini 2.5 Flash
 
@@ -120,7 +186,13 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 
 - **For:** deep thinking and large contexts
 - **When:** complex documents, comparisons, analyses
-- **Why:** Google's strongest model with high structural quality
+- **Why:** Google's formerly strongest model with high structural quality (Deprecated)
+
+### Gemini 2.0 Flash
+
+- **For:** simple, extremely cheap tasks
+- **When:** when absolute cost efficiency is what counts
+- **Why:** deprecated, but proven entry-level model (Deprecated)
 
 ### Gemini Image Tools / Nano Banana
 
@@ -135,20 +207,32 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 ### Claude 4.6 Opus
 
 - **For:** maximum complexity and in-depth analysis
-- **When:** strategic planning, extremely long contexts, the most challenging logic tasks
-- **Why:** Anthropic’s most powerful model, when precision takes absolute priority over cost and speed
+- **When:** strategic planning, extremely long contexts (1M), the most challenging logic tasks
+- **Why:** Anthropic’s most powerful model for agent teams and parallel workflows (highest costs)
 
 ### Claude 4.6 Sonnet
 
-- **For:** programming, complex text processing and demanding all-round tasks
+- **For:** programming, complex text processing and demanding all-round tasks (Recommended)
 - **When:** software development, code refactoring, deep text comprehension, structured data extraction
-- **Why:** The sweet spot of the range. Extremely strong at coding (often at or above Opus level) whilst remaining efficient
+- **Why:** The sweet spot of the range. Opus-class performance at the Sonnet price (1M context)
 
 ### Claude 4.5 Haiku
 
 - **For:** very fast processing with high logical precision
 - **When:** filtering large amounts of data, UI-based chatbots, simple to medium tasks in bulk
-- **Why:** the fastest and most affordable model in the 3.5 series, often outperforms older flagship models
+- **Why:** very fast and cost-efficient (less reasoning than Sonnet/Opus)
+
+### Claude 4.5 Sonnet
+
+- **For:** good balance between performance and latency
+- **When:** tasks that require up to 200k token context
+- **Why:** deprecated model, outperformed by 4.6
+
+### Claude 4.5 Opus
+
+- **For:** premium quality and high reasoning performance of the previous generation
+- **When:** complex tasks using an older model stack
+- **Why:** deprecated flagship, replaced by Opus 4.6
 
 ---
 
@@ -162,7 +246,8 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 
 ## Quick decision-making aid
 
-- **“I just want a good answer”** → gpt-4o
-- **“I need it fast”** → gpt-4o mini or Gemini 2.5 Flash
-- **“It's complicated or important”** → gpt-4.1, gpt-5 mini, or Gemini 2.5 Pro
-- **“Search documents”** → Gemini 2.5 Flash
+- **“I just want a good answer”** → gpt-5 mini / Claude 4.6 Sonnet
+- **“I need it fast”** → gpt-5 nano, gpt-5.4 mini, or Gemini 3.1 Flash
+- **“I want to program / write code”** → Claude 4.6 Sonnet / GPT-5.3 Codex
+- **“It's complicated or extremely important”** → gpt-5.4, gpt-5.4 Pro, or Gemini 3.1 Pro
+- **“Search documents”** → Gemini 3.1 Flash / Claude 4.6 Sonnet

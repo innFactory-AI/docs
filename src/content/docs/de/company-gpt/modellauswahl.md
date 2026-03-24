@@ -28,6 +28,12 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 - **Wann:** wenn die KI erst intern "nachdenken" (Reasoning) muss, bevor sie antwortet
 - **Warum:** kombiniert extrem schnelles Output-Tempo mit tiefgehender logischer Präzision
 
+### o3
+
+- **Für:** pures Reasoning
+- **Wann:** wenn tiefes Nachdenken über reiner Geschwindigkeit steht
+- **Warum:** spezialisierter Reasoning-Fokus für komplexe Logik (etwas langsamer)
+
 ### gpt-4o mini
 
 - **Für:** kurze Fragen, einfache Texte, schnelle Antworten
@@ -80,7 +86,13 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 - **Für:** schwerste analytische Allround-Aufgaben
 - **Wann:** große Dokumentenmengen, komplexe Datenanalyse, strategische Planung
-- **Warum:** das Flaggschiff der 5.2-Generation, pure Qualität steht vor Geschwindigkeit
+- **Warum:** das Flaggschiff der 5.2-Generation, pure Qualität steht vor Geschwindigkeit (wird durch GPT-5.4 abgelöst)
+
+### gpt-5.2 pro
+
+- **Für:** Aufgaben mit Bedarf an höherer Präzision
+- **Wann:** wenn die Basisversion von 5.2 nicht genau genug war
+- **Warum:** Veraltet, mittlerweile durch GPT-5.4 Pro ersetzt
 
 ### gpt-5.2-codex
 
@@ -94,21 +106,75 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 - **Wann:** komplexe Multi-Turn-Dialoge, feine Nuancen in der Sprache
 - **Warum:** extrem geringe Latenz und perfektes Verständnis für den Gesprächsverlauf
 
+### gpt-5.3 Codex
+
+- **Für:** autonome Softwareentwicklung
+- **Wann:** Agentic Coding und Code-Optimierung
+- **Warum:** selbstoptimierendes Spezialmodell, 25% schneller als gpt-5.2
+
 ### gpt-5.4
 
-- **Für:** das absolute Maximum an Leistungsfähigkeit
+- **Für:** das absolute Maximum an Leistungsfähigkeit (Empfohlen)
 - **Wann:** wenn Kosten nachrangig sind und das beste Ergebnis für extrem komplexe Probleme gebraucht wird
-- **Warum:** das stärkste Allround-Modell der 5er-Serie für tiefgreifende Aufgaben
+- **Warum:** Neues Flaggschiff (1M Kontext), 33% weniger Halluzinationen, Native Computer Use
+
+### gpt-5.4 Pro
+
+- **Für:** maximale Präzision bei komplexesten Aufgaben
+- **Wann:** wenn tiefstes Reasoning gefordert ist und höhere Kosten/Latenz in Kauf genommen werden
+- **Warum:** bietet das tiefste Reasoning aller OpenAI-Modelle
 
 ### gpt-5.4-mini
 
 - **Für:** State-of-the-Art Qualität bei Massentasks
 - **Wann:** Verarbeitung großer Datensätze, Routineaufgaben auf sehr hohem Niveau
-- **Warum:** effizientester Weg, die moderne 5.4-Architektur schnell und kostengünstig einzusetzen
+- **Warum:** 2x schneller als der Vorgänger, ideal für schnelle Code-Edits und Klassifikation
+
+### gpt-5.4 nano
+
+- **Für:** repetitive Tasks und Sub-Agenten
+- **Wann:** wenn die niedrigste Latenz zwingend erforderlich ist
+- **Warum:** rasend schnell, aber mit eingeschränktem Funktionsumfang
 
 ---
 
 ## Google
+
+### Gemini 3.1 Pro (GA)
+
+- **Für:** Komplexes Reasoning und gigantische Kontexte (Empfohlen)
+- **Wann:** Verarbeitung riesiger Dokumente (2M Token) und multimodale Aufgaben
+- **Warum:** Das aktuelle, stärkste Allround-Flaggschiff von Google
+
+### Gemini 3.1 Flash (GA)
+
+- **Für:** Höchste Geschwindigkeit bei großen Kontexten
+- **Wann:** schnelle Verarbeitung von bis zu 1M Token
+- **Warum:** Schnellstes Modell der 3.x-Reihe, extrem starkes Preis-Leistungs-Verhältnis
+
+### Gemini 3.1 Flash Thinking
+
+- **Für:** Komplexe MINT-Aufgaben (STEM)
+- **Wann:** mathematische oder logische Probleme, die einen internen Denkprozess erfordern
+- **Warum:** Erweitertes Reasoning (nimmt sich Zeit zum Denken, daher höhere Latenz)
+
+### Gemini 3.1 Pro Deep Research
+
+- **Für:** Lange Analyseaufgaben und Multi-Hop-Recherche
+- **Wann:** tiefgehende Internet-Recherche über mehrere Quellen hinweg
+- **Warum:** Spezialisiertes Modell für komplexe Informationsbeschaffung (nicht universell einsetzbar)
+
+### Gemini 3 Pro (Preview)
+
+- **Für:** Reasoning-first Ansätze und multimodale Tasks
+- **Wann:** Tests von Reasoning-Fähigkeiten
+- **Warum:** Veralteter Preview-Vorgänger (abgelöst durch 3.1 Pro GA)
+
+### Gemini 3 Flash (Preview)
+
+- **Für:** Schnelle multimodale Aufgaben
+- **Wann:** frühe Tests der Flash-Geschwindigkeit
+- **Warum:** Veralteter Preview-Vorgänger (abgelöst durch 3.1 Flash GA)
 
 ### Gemini 2.5 Flash
 
@@ -120,7 +186,13 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 - **Für:** tiefes Denken und große Kontexte
 - **Wann:** komplexe Dokumente, Vergleiche, Analysen
-- **Warum:** Googles stärkstes Modell mit hoher Strukturqualität
+- **Warum:** Googles ehemals stärkstes Modell mit hoher Strukturqualität (Abgekündigt)
+
+### Gemini 2.0 Flash
+
+- **Für:** Einfache, extrem günstige Aufgaben
+- **Wann:** wenn absolute Kosteneffizienz zählt
+- **Warum:** Veraltetes, aber bewährtes Einstiegsmodell (Abgekündigt)
 
 ### Gemini Image Tools / Nano Banana
 
@@ -135,20 +207,32 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 ### Claude 4.6 Opus
 
 - **Für:** höchste Komplexität und tiefgreifende Analysen
-- **Wann:** strategische Planung, extrem lange Kontexte, schwerste Logikaufgaben
-- **Warum:** Anthropics stärkstes Modell, wenn Präzision absolut vor Kosten und Geschwindigkeit geht
+- **Wann:** strategische Planung, extrem lange Kontexte (1M), schwerste Logikaufgaben
+- **Warum:** Anthropics stärkstes Modell für Agent Teams und Parallel-Workflows (höchste Kosten)
 
 ### Claude 4.6 Sonnet
 
-- **Für:** Programmieren, komplexe Textverarbeitung und anspruchsvolle Allround-Aufgaben
-- **Wann:** Softwareentwicklung, Code-Refactoring, tiefes Textverständnis, strukturierte Datenextraktion
-- **Warum:** Der Sweetspot der Reihe. Extrem stark im Coden (oft auf oder über Opus-Level) und dabei effizient
+- **Für:** Programmieren, komplexe Textverarbeitung und anspruchsvolle Allround-Aufgaben (Empfohlen)
+- **Wann:** Softwareentwicklung, Code-Refactoring, tiefes Textverständnis
+- **Warum:** Der Sweetspot der Reihe. Opus-Klasse Performance zum Sonnet-Preis (1M Kontext)
 
 ### Claude 4.5 Haiku
 
 - **Für:** sehr schnelle Verarbeitung bei hoher logischer Präzision
 - **Wann:** große Datenmengen filtern, UI-basierte Chatbots, einfache bis mittlere Tasks in Masse
-- **Warum:** das schnellste und günstigste Modell der 3.5-Serie, schlägt oft ältere Flaggschiff-Modelle
+- **Warum:** sehr schnell und kosteneffizient (weniger Reasoning als Sonnet/Opus)
+
+### Claude 4.5 Sonnet
+
+- **Für:** Gute Balance aus Leistung und Latenz
+- **Wann:** Aufgaben, die bis zu 200k Token Kontext benötigen
+- **Warum:** Veraltetes Modell, wurde durch 4.6 übertroffen
+
+### Claude 4.5 Opus
+
+- **Für:** Premium-Qualität und hohe Reasoning-Leistung der Vorgänger-Generation
+- **Wann:** komplexe Aufgaben mit älterem Modell-Stack
+- **Warum:** Veraltetes Flaggschiff, abgelöst durch Opus 4.6
 
 ---
 
@@ -162,8 +246,8 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## Schnelle Entscheidungshilfe
 
-- **„Ich will einfach eine gute Antwort“** → gpt-5 mini / Claude 4.5 Sonnet
-- **„Es soll schnell gehen“** → gpt-5 nano oder Gemini 2.5 Flash
-- **„Ich will programmieren / Code schreiben“** → Claude 4.5 Sonnet
-- **„Es ist kompliziert oder extrem wichtig“** → gpt-4.1, gpt-5 mini oder Gemini 2.5 Pro
-- **„Dokumente durchsuchen“** → Gemini 2.5 Flash
+- **„Ich will einfach eine gute Antwort“** → gpt-5 mini / Claude 4.6 Sonnet
+- **„Es soll schnell gehen“** → gpt-5 nano, gpt-5.4 mini oder Gemini 3.1 Flash
+- **„Ich will programmieren / Code schreiben“** → Claude 4.6 Sonnet / GPT-5.3 Codex
+- **„Es ist kompliziert oder extrem wichtig“** → gpt-5.4, gpt-5.4 Pro oder Gemini 3.1 Pro
+- **„Dokumente durchsuchen“** → Gemini 3.1 Flash / Claude 4.6 Sonnet

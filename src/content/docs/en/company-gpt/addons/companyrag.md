@@ -1,137 +1,138 @@
 ---
-title: KI Suche
-description: Addon KI Suche
+title: CompanyRAG
+description: CompanyRAG Add-on
 ---
 
-Mit dem KI Suche Addon können Sie große Mengen an Dokumenten für Ihre Agenten über die MCP-Schnittstelle verfügbar machen. Die Dokumente können aus unterschiedlichen Quellen indexiert werden und über die [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag)-Methodik integriert werden. Es gibt hierbei keine Limitierung was die Länge der einzelnen Dokumente oder die Gesamtzahl angeht.
+With the CompanyRAG add-on, you can make large quantities of documents available to your agents via the MCP interface. The documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag) methodology. There are no limitations on the length of individual documents or the total number of documents.
 
-Die Indexierung kann hierbei einmalig oder wiederkehrend, basierend auf Ihrem Anwendungsfall, implementiert werden.
+Indexing can be implemented once or on a recurring basis, depending on your use case.
 
-## RAG-Benutzeroberfläche
+## CompanyRAG User Interface
 
-Die Benutzeroberfläche ermöglicht es, einzelne und mehrere Dateien oder ganze Datenquellen zur Indexierung hinzuzufügen.
-Die Oberfläche gliedert sich in:
-- [Dateien](#dateien)
-- [Sammlungen](#sammlungen)
-- [Quellen](#quellen)
-- [Aufträge](#aufträge)
-- [Hochladen](#hochladen)
+The user interface allows you to add individual and multiple files or entire data sources for indexing.
+The interface is divided into:
+- [Files](#files)
+- [Collections](#collections)
+- [Sources](#sources)
+- [Jobs](#jobs)
+- [Upload](#upload)
 
-### Dateien
+### Files
 
-Eine Übersicht aller Dateien, die dem Service hinzugefügt wurden.
-Die Übersicht enthält:
-- **Name**: Dokumentenbezeichnung des Dokuments (teilweise gekürzt - Mouseover-Funktion für Vollanzeige)
-- **Sammlung**: Die Sammlung, die der Datei zugewiesen wurde
-- **Größe**: Dateigröße
-- **Status**: Status des zugehörigen Auftrags
-  - Abgeschlossen: Dokument wurde erfolgreich indexiert
-  - Ausstehend: Auftrag der Indexierung steht noch aus
-  - Fehlgeschlagen: Indexierung nicht erfolgreich
-- **Zuletzt indexiert**: Datum und Zeit des letzten abgeschlossenen Indexierungsauftrags
-- **Aktionen**:
-  - Neu indexieren: Legt einen neuen Auftrag zur Indexierung an
-  - Löschen: Löscht die Datei aus dem Service inklusive zugehörige Aufträge und indexierte Form
+An overview of all files that have been added to the service.
+The overview includes:
+- **Name**: Document designation of the document (partially abbreviated - hover function for full display)
+- **Collection**: The collection that the file has been assigned to
+- **Size**: File size
+- **Status**: Status of the associated job
+  - Completed: Document has been successfully indexed
+  - Pending: Indexing job is still pending
+  - Failed: Indexing was not successful
+- **Last indexed**: Date and time of the last completed indexing job
+- **Actions**:
+  - Re-index: Creates a new indexing job
+  - Delete: Deletes the file from the service including associated jobs and indexed form
 
-### Sammlungen
+### Collections
 
-Sammlungen sind Speicherorte und ermöglichen es, Dokumente und Berechtigungen zu organisieren.
+Collections are storage locations and allow you to organize documents and permissions.
 
-#### Sammlungen erstellen
+#### Create Collections
 
 ![create-collection](create-collection.png)
 
-Neben Namen und Beschreibung kann auch die Sichtbarkeit festgelegt werden:
+In addition to name and description, visibility can also be set:
 
-- Privat: Nur Sie können auf diese Sammlung und damit verknüpfte Dokumente zugreifen. Sie können jedoch später weitere Freigaben hinzufügen.
-- Öffentlich: Jeder kann die Sammlung sehen und Dateien daraus anzeigen.
+- Private: Only you can access this collection and associated documents. However, you can add further shares later.
+- Public: Everyone can see the collection and display files from it.
 
-Alle Sammlungen, die Sie besitzen, erscheinen unter dem Reiter `Meine`. Spezifisch für Sie geteilte Sammlungen (Rolle Admin oder Viewer) werden unter `Mit mir geteilt` angezeigt. Unter `Öffentlich` werden alle öffentlich sichtbaren Sammlungen angezeigt.
+All collections you own appear under the `My` tab. Collections specifically shared with you (Admin or Viewer role) are shown under `Shared with me`. Under `Public`, all publicly visible collections are displayed.
 
-#### Sammlungen-Aktionen
+#### Collection Actions
 
-![share-edit-delete-collections](options-collections.png)
-  Teilen  Bearbeiten                       Löschen
+![share-edit-delete-collections](actions-collections.png)
+   Share   Edit                          Delete
 
-- **Teilen:**
-  - **Typ**: Mit einzelnen Nutzern, einer Entra-Gruppe oder der ganzen Organisation teilen.
-  - **Rolle**: Viewer (Sammlung und zugehörige Dokumente können angezeigt werden) oder Admin (Sammlung und zugehörige Dokumente können bearbeitet werden)
-  Nach Bestätigung durch `Add Share` wird die Freigabe erteilt und in die Liste `Current Shares` aufgenommen.
-- **Bearbeiten**: Name und Beschreibung der Sammlung ändern.
-- **Löschen**: Sammlung löschen.
+- **Share:**
+  - **Type**: Share with individual users, an Entra group, or the entire organization.
+  - **Role**: Viewer (collection and associated documents can be viewed) or Admin (collection and associated documents can be edited)
+  After confirmation via `Add Share`, the share is granted and added to the `Current Shares` list.
+- **Edit**: Change the name and description of the collection.
+- **Delete**: Delete the collection.
 
 :::danger
-Das Löschen einer Sammlung löscht alle verknüpften Dokumente und Aufträge der Sammlung unwiderruflich!
+Deleting a collection permanently deletes all associated documents and jobs of the collection!
 :::
 
-### Quellen
+### Sources
 
-Teams und SharePoint als Dokumentenquellen anbinden und Synchronisierung verwalten
+Connect Teams and SharePoint as document sources and manage synchronization
 
-#### SharePoint anbinden
+#### Connect SharePoint
 
-Über den Button "+ SharePoint verbinden" startet die Auswahl.
+Click the "+ Connect SharePoint" button to start the selection.
 
 ![connect_sharepoint_flow](connect_sharepoint.png)
 
-1. **Website oder Team auswählen**: Auswahl der SharePoint-Website oder des Teams
-2. **Bibliothek auswählen**: Bibliotheken der/des ausgewählten Website/Teams
-3. **Ordner durchsuchen**: Auswahl des Ordners und der Dateitypen zur Synchronisierung. Festlegung der Sammlung, in die die Dateien synchronisiert werden sollen.
+1. **Select website or team**: Select the SharePoint website or team
+2. **Select library**: Libraries of the selected website/team
+3. **Browse folder**: Select the folder and file types for synchronization. Set the collection where the files should be synchronized to.
 
 :::note
-Nur Ordner sind auswählbar. Alle unterstützten Dateien in diesem Ordner und in darunter liegenden hierarchischen Ebenen (Unterordner) werden automatisch synchronisiert.
+Only folders are selectable. All supported files in this folder and in underlying hierarchical levels (subfolders) are automatically synchronized.
 :::
 
-Nach der Verbindung erscheint der Ordner unter "Alle Quellen" als Aktiv. Die Synchronisation muss einmalig über den Button "Jetzt synchronisieren" angestoßen werden. Anschließend werden die verbundenen Dokumente als Aufträge zur Synchronisation hinzugefügt und zukünftige Inhalte des Ordners automatisch synchronisiert.
+After connection, the folder appears under "All Sources" as Active. Synchronization must be initiated once via the "Synchronize now" button. Subsequently, the connected documents are added as synchronization jobs and future contents of the folder are automatically synchronized.
 
-#### Quellen-Aktionen
+#### Source Actions
 
-- **Jetzt synchronisieren**: Initiale/Manuelle Synchronisation starten
-- **Pausieren/Fortsetzen**: Ausgewählte Quellen deaktivieren oder reaktivieren
-- **Löschen**: Entfernen der Datenquelle - Bereits synchronisierte Dateien bleiben in der Sammlung bestehen
+- **Synchronize now**: Start initial/manual synchronization
+- **Pause/Resume**: Deactivate or reactivate selected sources
+- **Delete**: Remove the data source - already synchronized files remain in the collection
 
-### Aufträge
+### Jobs
 
-Indexierungsaufträge und Status anzeigen
+Display indexing jobs and status
 
 Status:
-- Ausstehend: Das Dokument wird demnächst indexiert
-- Läuft: Das Dokument wird gerade indexiert
-- Abgeschlossen: Das Dokument wurde indexiert
-- Fehlgeschlagen: Das Dokument konnte nicht indexiert werden. Weitere Informationen können der Spalte "Fehler" entnommen werden.
+- Pending: Document will be indexed soon
+- Running: Document is currently being indexed
+- Completed: Document has been indexed
+- Failed: Document could not be indexed. Further information can be found in the "Error" column.
 
-Aktionen:
-- Löschen: Löscht den Auftrag aus der Warteschlange oder dem Verlauf. Status Abgeschlossen → Indexierte Datei bleibt bestehen. Status Ausstehend → Die Datei wird nicht indexiert. Laufende Prozesse können nicht gelöscht werden.
-- Wiederholen
+Actions:
+- Delete: Deletes the job from the queue or history. Status Completed → Indexed file remains. Status Pending → File will not be indexed. Running processes cannot be deleted.
+- Retry
 
-### Hochladen
+### Upload
 
-Einzelne und mehrere Dateien manuell zur Indexierung hochladen.
+Upload individual and multiple files manually for indexing.
 
-Unterstützte Formate: PDF, DOCX, DOC, TXT, MD, RTF, HTML, HTM, XML, CSV, JSON, EML, XLSX, XLS, PPTX, PPT
+Supported formats: PDF, DOCX, DOC, TXT, MD, RTF, HTML, HTM, XML, CSV, JSON, EML, XLSX, XLS, PPTX, PPT
 
-## AI-Suche
+## CompanyRAG in CompanyGPT
 
-Über den [MCP-Server](/de/company-gpt/integrationen/mcp-server/) "ai-search" lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle (dem Nutzer zur Verfügung stehenden) Sammlungen zu durchsuchen
-(s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/)).
+Via the [MCP Server](/en/company-gpt/integrations/mcp-server/) "ai-search", the RAG service can be connected with CompanyGPT to search indexed documents across all (available to the user) collections
+(see [Similarity Search](/en/prompt-engineering/prompt-techniques/rag/)).
 
-Folgende spezialisierte Such-Tools für die RAG-Collection – von semantischer Suche über Dokument-Abruf bis zur Metadaten-Filterung – stehen dabei zur Verfügung:
+The following specialized search tools for the RAG Collection – from semantic search to document retrieval to metadata filtering – are available:
 
 1. **search_content**:
-Semantische Ähnlichkeitssuche für allgemeine Anfragen. Standardwahl für die meisten Nutzerfragen.
-Erforderliche Parameter: query (Suchtext), source (Technischer Name der Sammlung)
-Optional: topK (Anzahl Ergebnisse: Standard 5, max. 20)
+Semantic similarity search for general queries. Default choice for most user questions.
+Required parameters: query (search text), source (technical name of the collection)
+Optional: topK (number of results: default 5, max 20)
 
 2. **find_content_by_source**:
-Abrufen aller Inhalte aus einem spezifischen Dokument. Nutzen bei Anfragen zu einzelnen Dokumenten (z.B. "Was steht in Dokumentation.md?").
-Erforderliche Parameter: source (Dokumentname), collection (Technischer Name der Sammlung)
+Retrieve all content from a specific document. Use for queries about individual documents (e.g., "What's in documentation.md?").
+Required parameters: source (document name), collection (technical name of the collection)
 
 3. **find_content_by_metadata**:
-Filterung von Inhalten nach Metadaten-Attributen. Nutzen bei gefilterten Ergebnissen (z.B. "Alle dringenden Aufgaben von 2026").
-Erforderliche Parameter: filter (JSON-Objekt mit Operatoren $and, $or, $not), collection (Technischer Name der Sammlung)
+Filter content by metadata attributes. Use for filtered results (e.g., "All urgent tasks from 2026").
+Required parameters: filter (JSON object with operators $and, $or, $not), collection (technical name of the collection)
 
-Der MCP-Server kann für einen erleichterten Umgang einem Agenten hinzugefügt werden.
-Eine [Anweisung](/de/company-gpt/agenten/#anweisungen) für einen Such-Agenten könnte beispielsweise wie folgt sein:
+The MCP server can be added to an agent for easier use.
+An [instruction](/en/company-gpt/agents/#instructions) for a search agent that should search in the "rag" collection could be, for example, as follows:
+
 ```text
 <identity>
 You are a knowledge retrieval agent for the innFactory AI knowledge base. Your sole purpose is to search and retrieve information from the internal knowledge base and provide it to users. You do not create content, you only retrieve and present existing information.

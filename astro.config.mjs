@@ -92,7 +92,7 @@ export default defineConfig({
 									label: 'Addons',
 									translations: { en: 'Add-ons' },
 									items: [
-										{ label: 'KI Suche', translations: { en: 'AI Search' }, slug: 'company-gpt/addons/ki-suche' },
+										{ label: 'CompanyRAG', translations: { en: 'CompanyRAG' }, slug: 'company-gpt/addons/companyrag' },
 										{ label: 'Fileforge', translations: { en: 'Fileforge' }, slug: 'company-gpt/addons/fileforge' },
 									]
 								},

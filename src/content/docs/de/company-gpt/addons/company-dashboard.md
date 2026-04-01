@@ -1,32 +1,41 @@
 ---
 title: companyDASHBOARD
-description: Volle Transparenz über die KI-Nutzung in Ihrem Unternehmen – Aktive Nutzer, Token-Verbrauch, Agenten-Performance und Tool-Nutzung auf einen Blick.
+description: Admin-Dashboard zur Auswertung der CompanyGPT-Nutzung mit KPIs zu aktiven Nutzern, Token-Verbrauch, Agenten-Performance und Tool-Aufrufen.
 ---
 
-Mit dem companyDASHBOARD verstehen Sie, wie Ihre KI wirklich genutzt wird. Das Admin Dashboard gibt Ihnen einen vollständigen Überblick über die CompanyGPT-Nutzung in Ihrem Unternehmen – von aktiven Nutzern über Token-Verbrauch bis hin zur Performance einzelner Agenten.
+Das companyDASHBOARD ist ein Admin-Dashboard zur Auswertung der CompanyGPT-Nutzung im Unternehmen. Es stellt Metriken zu Nutzeraktivität, Token-Verbrauch, Agenten-Performance und Tool-Aufrufen bereit und unterstützt den Export für weitere Verarbeitung.
 
-## KPIs auf einen Blick
+## KPIs
 
-Das Dashboard stellt zehn aussagekräftige Metriken für datenbasierte Entscheidungen bereit. Auf systemweiter Ebene sehen Sie die Gesamtanzahl konfigurierter Agenten, alle registrierten Nutzer sowie die im gewählten Zeitraum aktiven Nutzer – jeweils mit Trendvergleich zur Vorperiode. Anfragen und Konversationen werden ebenfalls zeitraumbezogen ausgewiesen.
+Das Dashboard erfasst zehn Metriken, jeweils mit Trendvergleich zur Vorperiode:
 
-Den Kern der Kostensteuerung bilden die Token-Metriken: Input- und Output-Tokens werden getrennt erfasst und bilden die Basis für jede Kostenberechnung. Ergänzt wird das Bild durch die Nutzung externer Ressourcen – MCP-Tool-Aufrufe, Websuchen durch KI-Agenten sowie verarbeitete Dateien wie PDFs und Dokumente.
+**Systemweite Metriken:**
+- Anzahl konfigurierter Agenten
+- Registrierte Nutzer gesamt
+- Aktive Nutzer im gewählten Zeitraum
+- Anfragen und Konversationen im gewählten Zeitraum
+
+**Token-Metriken:**
+- Input-Tokens und Output-Tokens (getrennt erfasst, Basis für Kostenberechnung)
+
+**Ressourcennutzung:**
+- MCP-Tool-Aufrufe
+- Websuchen durch KI-Agenten
+- Verarbeitete Dateien (PDF, Word u. a.)
 
 ![Dashboard KPI-Übersicht](admin-dashboard.png)
 
-## AI Agent Statistics
+## Agenten-Statistik
 
-Die Agenten-Tabelle zeigt granular, welche KI-Agenten wie intensiv genutzt werden. Sie lässt sich nach Anfragen oder Token-Verbrauch sortieren und macht auf einen Blick sichtbar, welches Modell hinter jedem Agenten steckt – ob GPT, Gemini oder Claude. Input- und Output-Tokens werden pro Agent separat ausgewiesen. Über einen Drill-Down lassen sich einzelne Agenten für tiefere Einblicke aufklappen; eine Suchfunktion ermöglicht den direkten Zugriff auf bestimmte Agenten oder Modelle.
+Die Agenten-Tabelle listet alle KI-Agenten mit folgenden Informationen:
 
-<!-- Screenshot: Agent Statistics Tabelle -->
+- Anzahl Anfragen und Token-Verbrauch (Input und Output getrennt)
+- Verwendetes Modell (z. B. GPT, Gemini, Claude)
+- Drill-down auf Agentenebene für detaillierte Auswertungen
+- Suchfunktion zur Filterung nach Agent oder Modell
 
-## Zeitraumfilter & CSV-Export
+Die Tabelle kann nach Anfragen oder Token-Verbrauch sortiert werden.
 
-Alle Metriken lassen sich für beliebige Zeiträume auswerten – von einzelnen Tagen bis zu Jahresübersichten. Die Ergebnisse können per CSV-Export direkt in Excel weiterverarbeitet oder für interne Berichte genutzt werden.
+## Zeitraumfilter und CSV-Export
 
-## Warum companyDASHBOARD?
-
-Das companyDASHBOARD schafft volle Transparenz: Keine Blackbox, keine blinden Flecken – Sie sehen genau, wie Ihre KI genutzt wird. Token- und Infrastrukturkosten bleiben stets im Blick, sodass Sie frühzeitig auf unerwartete Kostentreiber reagieren können.
-
-Für Compliance und interne Audits protokolliert das Dashboard alle Agenten-Aktivitäten vollständig und DSGVO-konform. Gleichzeitig liefert es die Nutzungszahlen und Produktivitätsdaten, mit denen Sie den ROI Ihrer KI-Investition konkret belegen können.
-
-Darüber hinaus erkennen Sie, welche Teams und Nutzer die KI aktiv einsetzen – und wo noch ungenutztes Potenzial liegt. Kombiniert mit der Agenten-Performance-Analyse lässt sich die Modellauswahl gezielt optimieren, um maximale Effizienz aus Ihrer KI-Infrastruktur herauszuholen.
+Alle Metriken können für beliebige Zeiträume ausgewertet werden. Die Ergebnisse lassen sich als CSV exportieren und weiterverarbeiten.

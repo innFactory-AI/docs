@@ -1,6 +1,6 @@
 ---
-title: Fileforge
-description: Addon Fileforge
+title: Addon companyFILES
+description: KI-gestützte Dokumentenerstellung für CompanyGPT – Excel, Word, PowerPoint und PDF per natürlicher Sprache erstellen, konvertieren und verwalten.
 ---
 
 Mit dem Fileforge Addon können aus einfachen Prompts und Rohdaten komplexe Dateien generiert, konvertiert und umfassend verwaltet werden.

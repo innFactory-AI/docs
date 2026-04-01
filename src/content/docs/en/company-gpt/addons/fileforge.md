@@ -1,9 +1,9 @@
 ---
-title: Fileforge
-description: Addon Fileforge
+title: companyFILES
+description: Addon companyFILES
 ---
 
-With the Fileforge addon, complex files can be generated, converted and comprehensively managed from simple prompts and raw data.
+With the companyFILES addon, complex files can be generated, converted and comprehensively managed from simple prompts and raw data.
 
 ## Comprehensive document creation
 
@@ -26,7 +26,7 @@ Result:
 
 ## Data Processing & Code Export
 
-Structured data such as JSON or CSV can be converted directly into clean Excel spreadsheets or Word documents. In addition, any text-based files and code scripts can be created (e.g. B. SQL, JSON, YAML, XML, HTML, Python or JS).
+Structured data such as JSON or CSV can be converted directly into clean Excel spreadsheets or Word documents. In addition, any text-based files and code scripts can be created (e.g. SQL, JSON, YAML, XML, HTML, Python or JS).
 
 **Example: Meeting minutes in PDF document**
 
@@ -38,7 +38,7 @@ Result:
 
 ![Meeting minutes in PDF document result](fileforge-md-pdf-ergebnis.png)
 
-## Visual Charts & Charts
+## Visual Diagrams & Charts
 
 Raw numbers can be visualized directly as meaningful graphics.
 
@@ -55,7 +55,7 @@ Raw numbers can be visualized directly as meaningful graphics.
 
 ## File Conversion & Data Extraction
 
-- **Conversion:** You can flexibly switch between formats (Excel ↔, CSV/JSON, Word ↔, PDF, Markdown ↔, HTML, etc.).
+- **Conversion:** You can flexibly switch between formats (Excel ↔ CSV/JSON, Word ↔ PDF, Markdown ↔ HTML, etc.).
 - **Extraction:** Data and texts can be read and extracted from existing Excel, Word and PDF files.
 - **Image Editing:** The size of images can be changed and converted to other graphic formats.
 

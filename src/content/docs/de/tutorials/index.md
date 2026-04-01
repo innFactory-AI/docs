@@ -25,6 +25,6 @@ In dieser Rubrik finden Sie Tutorials und Anleitungen zu vielen Themen rund um d
 - [Text Translator](/de/tutorials/agenten/text-translator)
 - [Tough Customer Simulator](/de/tutorials/agenten/tough-customer-simulator)
 
-## KI Suche
+## companyRAG
 
-- [Upload zur KI-Suche über n8n](/de/tutorials/addons/ki-suche-n8n/)
+- [Upload zu companyRAG über n8n](/de/tutorials/addons/ki-suche-n8n/)

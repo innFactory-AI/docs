@@ -4,7 +4,7 @@ description: When to use which AI model? This overview will help you.
 ---
 
 :::note[OpenAI model updates]
-Microsoft plans to phase out the OpenAI models GPT-4o and GPT-4o-mini by the end of March 2026 and replace them with newer generations such as GPT 5.1 and GPT 4.1-mini.
+Microsoft discontinued the OpenAI GPT-4o and GPT-4o-mini models as planned at the end of March 2026 and replaced them with the newer generations GPT 5.1 and GPT 4.1-mini.
 :::
 
 ### Dynamic Model Routing
@@ -135,6 +135,12 @@ Simply select ‘auto’ from the OpenAI model selection to enable CompanyGPT’
 - **For:** repetitive tasks and sub-agents
 - **When:** when the lowest latency is absolutely necessary
 - **Why:** extremely fast, but with a limited feature set
+
+### gpt-Image 1.5
+
+- **For:** Image generation
+- **When:** when images need to be generated
+- **Why:** OpenAI's image generation model
 
 ---
 

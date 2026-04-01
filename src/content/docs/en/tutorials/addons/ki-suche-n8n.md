@@ -1,9 +1,9 @@
 ---
-title: Upload to AI Search via n8n
+title: Upload to companyRAG via n8n
 description: Description Create Meeting Notes Agent
 ---
 
-If you have activated the [AI Search add-on for CompanyGPT](/en/company-gpt/addons/ki-suche/), you can easily provide documents via n8n. AI Search provides several endpoints that can be used. 
+If you have activated the [companyRAG add-on for CompanyGPT](/en/company-gpt/addons/ki-suche/), you can easily provide documents via n8n. companyRAG provides several endpoints that can be used. 
 
 ## Upload a PDF via form
 

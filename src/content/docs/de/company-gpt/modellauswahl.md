@@ -4,7 +4,7 @@ description: Wann welches KI Modell nutzen? Diese Übersicht hilft Ihnen.
 ---
 
 :::note[Modell-Updates bei OpenAI]
-Microsoft plant, die OpenAI-Modelle GPT-4o und GPT-4o-mini bis Ende März 2026 einzustellen und durch neuere Generationen wie GPT 5.1 und GPT 4.1-mini zu ersetzen.
+Microsoft hat die OpenAI-Modelle GPT-4o und GPT-4o-mini wie geplant Ende März 2026 eingestellt und sie durch die neueren Generationen GPT 5.1 und GPT 4.1-mini ersetzt.
 :::
 
 ### Dynamisches Model Routing
@@ -129,6 +129,12 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 - **Für:** repetitive Tasks und Sub-Agenten
 - **Wann:** wenn die niedrigste Latenz zwingend erforderlich ist
 - **Warum:** rasend schnell, aber mit eingeschränktem Funktionsumfang
+
+### gpt-Image 1.5
+
+- **Für:** Bildgenerierung
+- **Wann:** wenn Bilder generiert werden sollen
+- **Warum:** OpenAI's Bildgenerierungsmodell
 
 ---
 

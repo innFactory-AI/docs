@@ -6,6 +6,7 @@ description: Entdecken Sie Agenten in CompanyGPT - fortschrittliche KI-Systeme m
 Agenten im CompanyGPT sind fortgeschrittene Systeme, die dafür ausgelegt sind, mehr als nur Text zu generieren. Sie analysieren die Anfrage des Benutzers, erstellen einen Plan zur Erledigung, benutzen Werkzeuge (Tools), um Informationen zu beschaffen und die Anfrage zu beantworten.
 
 Fähigkeiten:
+
 - **Reasoning**: Können komplexe Probleme in kleinere Einheiten zerlegen und bearbeiten
 - **Tool Usage**: Können entscheiden, welche Tools für welche Aufgabe genutzt werden sollen
 - **Action**: Können Tools ausführen, um Informationen zu beschaffen
@@ -22,7 +23,7 @@ Jeder Agent kann einer Kategorie zugewiesen werden. Sollten Agenten innerhalb de
 
 ### Anweisungen
 
-Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](/prompt-engineering/uebersicht). Besonders bei Agenten bietet es sich an, strukturierte und sauber formatierte Prompts zu verwenden. 
+Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht). Besonders bei Agenten bietet es sich an, strukturierte und sauber formatierte Prompts zu verwenden.
 
 Es können außerdem Variablen wie das aktuelle Datum, die Uhrzeit oder der aktuelle Nutzer übergeben werden.
 
@@ -30,19 +31,19 @@ Es können außerdem Variablen wie das aktuelle Datum, die Uhrzeit oder der aktu
 
 Das KI Modell ist das Gehirn jedes Agenten, da es die Anfragen analysiert, die Tools auswählt und die Ergebnisse auswertet, zusammenfasst und zurückgibt. Hier kann der Ersteller zwischen allen verfügbaren Modellen wählen.
 
-Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführliche Beschreibung finden Sie hier: [KI Einstellungen](/company-gpt/ki-einstellungen)
+Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführliche Beschreibung finden Sie hier: [KI Einstellungen](/de/company-gpt/ki-einstellungen)
 
-### Fähigkeiten 
+### Fähigkeiten
 
-Jeder Agent hat eingebaute Fähigkeiten, die bei Bedarf aktiviert werden können. 
+Jeder Agent hat eingebaute Fähigkeiten, die bei Bedarf aktiviert werden können.
 
-#### Websuche 
+#### Websuche
 
-Gibt an, ob die Websuche für diesen Agenten aktiviert ist oder nicht. Die Informationen zur Websuche finden Sie hier: [Websuche](/company-gpt/integrationen/websuche).
+Gibt an, ob die Websuche für diesen Agenten aktiviert ist oder nicht. Die Informationen zur Websuche finden Sie hier: [Websuche](/de/company-gpt/integrationen/websuche).
 
 #### Datei-Kontext (OCR)
 
-Als „Kontext“ hochgeladene Dateien werden mit OCR verarbeitet, um Text zu extrahieren, der dann den Anweisungen des Agenten hinzugefügt wird. Ideal für Dokumente, Bilder mit Text oder PDFs, wenn Sie den vollständigen Textinhalt einer Datei benötigen. 
+Als „Kontext“ hochgeladene Dateien werden mit OCR verarbeitet, um Text zu extrahieren, der dann den Anweisungen des Agenten hinzugefügt wird. Ideal für Dokumente, Bilder mit Text oder PDFs, wenn Sie den vollständigen Textinhalt einer Datei benötigen.
 
 :::tip
 Kontextdokumente sind immer vollständig im Kontext des Agenten / der Konversation. Hier sollten Sie sich auf das Wesentliche begrenzen, z.B. Anweisungen zur Tonalität oder vergangene Beispiele. Für sehr lange Dokumente könnte die **Dateisuche** besser geeignet sein.
@@ -52,15 +53,15 @@ Kontextdokumente sind immer vollständig im Kontext des Agenten / der Konversati
 
 Aktiviert die Verwendung von Code-Artefakten für diesen Agenten. Standardmäßig werden zusätzliche, spezielle Anweisungen für die Nutzung von Artefakten hinzugefügt, es sei denn, der "Benutzerdefinierte Prompt-Modus" ist aktiviert.
 
-Mehr Informationen zu Artefakten finden Sie hier: [Artefakte](/company-gpt/integrationen/artefakte).
+Mehr Informationen zu Artefakten finden Sie hier: [Artefakte](/de/company-gpt/integrationen/artefakte).
 
 #### Dateisuche
 
 Wenn aktiviert, wird der Agent über die unten aufgelisteten exakten Dateinamen informiert und kann dadurch relevante Informationen aus diesen Dateien abrufen. Das Abrufen funktioniert als **RAG (Retrieval Augmented Generation)** mittels Ähnlichkeitssuche zwischen Abfrage und Inhalten. Dabei werden immer nur die relevanten Textstellen genutzt. Im Gegensatz hierzu steht der **Datei-Kontext**, bei dem immer der gesamte Inhalt im Kontext ist.
 
-Weitere Informationen unter [Prompt Engineering / RAG](/prompt-engineering/prompt-techniken/rag)
+Weitere Informationen unter [Prompt Engineering / RAG](/de/prompt-engineering/prompt-techniken/rag)
 
-#### MCP Server 
+#### MCP Server
 
 MCP Server Tools können pro Agent spezifiziert werden, auch welche Tools aus dem MCP Server der Agent nutzen kann.
 
@@ -72,7 +73,7 @@ Werkzeuge sind eingebaute Tools, die vom Agenten genutzt werden können. Diese k
 
 ![tools-and-actions](tools-and-actions.png)
 
-Aktionen sind externe API-Schnittstellen, die direkt über [OpenAPI kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. 
+Aktionen sind externe API-Schnittstellen, die direkt über [OpenAPI kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können.
 
 ![actions-open-api](actions-open-api.png)
 
@@ -119,6 +120,10 @@ Dabei kann ausgesucht werden, ob der Agent global, mit bestimmten Nutzern oder N
 Dabei kann ausgewählt werden, mit welchen Rechten die anderen Benutzer auf den Agenten zugreifen können.
 
 ![agent-share-rights](agent-share-rights.png)
+
+## Unsere Agenten
+
+Unter [**Agenten**](/de/tutorials) finden Sie eine Auswahl an Agenten, die wir für verschiedene Anwendungsfälle entwickelt haben. Diese können Sie direkt nutzen oder als Vorlage für Ihre eigenen Agenten verwenden.
 
 ## Agenten-Marktplatz
 

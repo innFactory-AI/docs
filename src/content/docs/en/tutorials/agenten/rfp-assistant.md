@@ -85,4 +85,4 @@ This skill requires access to:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). **Important:** The relevant compliance and security documents must be stored as context documents. Then simply copy the questions from the questionnaire into the chat — the agent delivers copy-paste ready answers.
+The agent can be created under [Agents](/en/company-gpt/agenten/). **Important:** The relevant compliance and security documents must be stored as context documents. Then simply copy the questions from the questionnaire into the chat — the agent delivers copy-paste ready answers.

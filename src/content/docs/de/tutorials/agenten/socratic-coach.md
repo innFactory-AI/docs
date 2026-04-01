@@ -7,7 +7,6 @@ Der Socratic Coach gibt keine direkten Antworten. Stattdessen stellt er bei Prob
 
 ## Systemanweisung
 
-
 ```markdown
 ---
 name: socratic-coach
@@ -78,4 +77,4 @@ Das Coaching-Gespräch endet erst, wenn der Benutzer ausdrücklich angibt, die L
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt. Der Agent eignet sich besonders für Coaching-Situationen, in denen Mitarbeiter eigenständig Lösungen erarbeiten sollen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt. Der Agent eignet sich besonders für Coaching-Situationen, in denen Mitarbeiter eigenständig Lösungen erarbeiten sollen.

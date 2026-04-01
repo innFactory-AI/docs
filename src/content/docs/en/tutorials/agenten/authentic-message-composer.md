@@ -74,6 +74,6 @@ Output: `Hello Mr. Schmidt, thanks for sending this. I won't be able to review i
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). No tools are required, the system instruction and name are sufficient.
+The agent can be created under [Agents](/en/company-gpt/agenten/). No tools are required, the system instruction and name are sufficient.
 
 Simply copy the incoming message into the chat and provide the desired context (e.g., "Reply with yes, but suggest a different time"). The agent creates a natural response that can be copied and sent directly.

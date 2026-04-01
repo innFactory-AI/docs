@@ -148,18 +148,23 @@ Nachdem das Bild gezeigt wurde, biete an:
 ## Häufige Anwendungsfälle
 
 ### Präsentationsgrafiken
+
 **Ansatz**: Klar, professionell, hohe Lesbarkeit (16:9, einfacher Hintergrund)
 
 ### Social Media Content
+
 **Ansatz**: Auffällig, trendbewusst, optimiert für Mobilgeräte (1:1 oder 9:16)
 
 ### Concept Art / Kreative Projekte
+
 **Ansatz**: Fantasievoll, detailliert, künstlerische Freiheit
 
 ### Produktvisualisierung
+
 **Ansatz**: Klar, fokussiert, Werbefotografie-Stil
 
 ### Editorial/Blog Bilder
+
 **Ansatz**: Konzeptionell, illustrativ, unterstützt geschriebenen Inhalt (16:9 oder 3:2)
 
 ## Notizen
@@ -173,4 +178,4 @@ Nachdem das Bild gezeigt wurde, biete an:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Bildbeschreibung eingeben – der Agent erstellt einen optimierten Prompt und generiert das Bild. Verfeinerungen sind iterativ möglich.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Bildbeschreibung eingeben – der Agent erstellt einen optimierten Prompt und generiert das Bild. Verfeinerungen sind iterativ möglich.

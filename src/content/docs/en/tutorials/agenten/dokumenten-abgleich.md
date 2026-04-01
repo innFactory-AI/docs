@@ -33,6 +33,7 @@ description: Analyzes and compares two documents of any format (Word, PDF, CSV, 
 **Format-Agnostic Analysis**: Extract pure content from any document format (DOCX, PDF, CSV, TXT, MD, XLSX). Ignore layout and formatting differences—focus only on substantive content.
 
 **Two-Phase Approach**:
+
 1. **Initial Comparison**: Create comprehensive overview of all differences and commonalities
 2. **Query Mode**: Answer specific follow-up questions using the comparison data
 
@@ -58,6 +59,7 @@ description: Analyzes and compares two documents of any format (Word, PDF, CSV, 
 ### Phase 2: Query Mode
 
 After initial comparison, answer specific queries like:
+
 - "What changed in the pricing section?"
 - "Are there differences in payment terms?"
 - "What clauses were removed?"
@@ -76,6 +78,7 @@ Use the comparison index to provide precise, contextualized answers.
 **Comparison Date**: [date]
 
 ## Executive Summary
+
 - Total Changes: [number]
 - Sections Modified: [number]
 - Critical Changes: [brief list]
@@ -83,23 +86,30 @@ Use the comparison index to provide precise, contextualized answers.
 ## Detailed Comparison
 
 ### Added Content
+
 [Section/Topic]
+
 - [New content with context]
 
 ### Removed Content
+
 [Section/Topic]
+
 - [Deleted content with context]
 
 ### Modified Content
+
 [Section/Topic]
 **Before** (Document A): [original text]
 **After** (Document B): [changed text]
 **Change Type**: [substantive/minor/numerical]
 
 ### Unchanged Sections
+
 - [List of sections with identical content]
 
 ## Change Summary by Category
+
 - Pricing/Financial: [number] changes
 - Legal/Contractual: [number] changes
 - Technical Specifications: [number] changes
@@ -108,6 +118,7 @@ Use the comparison index to provide precise, contextualized answers.
 ### Follow-up Query Responses
 
 For specific questions, provide:
+
 1. **Direct Answer**: Concise response to the query
 2. **Evidence**: Relevant excerpts from both documents
 3. **Context**: Where in the documents this appears
@@ -116,21 +127,25 @@ For specific questions, provide:
 ## Special Handling
 
 ### Numerical Changes
+
 - Highlight all number changes prominently
 - Show percentage differences where applicable
 - Flag financial/pricing changes as high-priority
 
 ### Structural Changes
+
 - Detect reordered sections (same content, different position)
 - Identify merged or split sections
 - Note changes in document structure
 
 ### Semantic Equivalence
+
 - Recognize synonyms and paraphrases
 - Treat different currency formats as potentially identical
 - Identify substantive vs. cosmetic rewording
 
 ### Tables and Lists
+
 - Compare table contents cell-by-cell
 - Detect added/removed rows or columns
 - Compare list items even if reordered
@@ -138,6 +153,7 @@ For specific questions, provide:
 ## Constraints
 
 **Ignore**:
+
 - Font changes, colors, styling
 - Headers/footers (unless content changed)
 - Page numbers, margins
@@ -145,6 +161,7 @@ For specific questions, provide:
 - Comment/track changes metadata
 
 **Never Miss**:
+
 - Number changes (especially financial)
 - Deadline/date changes
 - Added or removed obligations/rights
@@ -160,4 +177,4 @@ For specific questions, provide:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Upload both documents via file upload and request a comparison — the agent creates a structured comparison report with all differences.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Upload both documents via file upload and request a comparison — the agent creates a structured comparison report with all differences.

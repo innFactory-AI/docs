@@ -7,7 +7,6 @@ The Socratic Coach provides no direct answers. Instead, it asks targeted counter
 
 ## System Instructions
 
-
 ```markdown
 ---
 name: socratic-coach
@@ -78,4 +77,4 @@ The coaching conversation ends only when the user explicitly states they have fo
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). No tools are required. The agent is particularly suitable for coaching situations where employees should independently develop solutions.
+The agent can be created under [Agents](/en/company-gpt/agenten/). No tools are required. The agent is particularly suitable for coaching situations where employees should independently develop solutions.

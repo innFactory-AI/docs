@@ -65,4 +65,4 @@ Kompromisslos auf umsetzbare Essentials filtern. 20% des Aufwands bringen 80% de
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Einfach den langen Bericht oder die Aufgabenliste in den Chat kopieren – der Agent destilliert automatisch die wichtigsten Punkte heraus.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den langen Bericht oder die Aufgabenliste in den Chat kopieren – der Agent destilliert automatisch die wichtigsten Punkte heraus.

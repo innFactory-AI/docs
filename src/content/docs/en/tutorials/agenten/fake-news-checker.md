@@ -90,4 +90,4 @@ Every main assertion must be labeled with exactly one of:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Ideally equipped with a web search tool for source research. Paste a claim or text — the agent delivers a structured fact-check with source citations.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Ideally equipped with a web search tool for source research. Paste a claim or text — the agent delivers a structured fact-check with source citations.

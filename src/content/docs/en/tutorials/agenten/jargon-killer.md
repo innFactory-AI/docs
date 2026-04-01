@@ -78,4 +78,4 @@ Ruthlessly cut:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Simply paste the bloated text into the chat — the agent immediately delivers the clear, direct version.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Simply paste the bloated text into the chat — the agent immediately delivers the clear, direct version.

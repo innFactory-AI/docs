@@ -96,4 +96,4 @@ Referenziere Runbooks nach IDs/Links, falls verfügbar (z.B. "Siehe RB-2024-PAYM
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. **Wichtig:** Die relevanten Runbooks und technische Dokumentation müssen als Kontextdokumente hinterlegt werden. Fehlermeldung in den Chat werfen – der Agent liefert sofort die passende Schritt-für-Schritt-Anleitung.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. **Wichtig:** Die relevanten Runbooks und technische Dokumentation müssen als Kontextdokumente hinterlegt werden. Fehlermeldung in den Chat werfen – der Agent liefert sofort die passende Schritt-für-Schritt-Anleitung.

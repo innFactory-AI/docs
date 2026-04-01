@@ -3,12 +3,16 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics'
 import starlightLlmsTxt from 'starlight-llms-txt'
+import { rehypeEagerFirstImage } from './src/plugins/rehype-eager-first-image.mjs';
 
 
 // https://astro.build/config
 export default defineConfig({
 	outDir: './dist',
 	site: 'https://docs.company-gpt.com',
+	markdown: {
+		rehypePlugins: [rehypeEagerFirstImage],
+	},
 	integrations: [
 		starlight({
 			// head: [
@@ -92,8 +96,10 @@ export default defineConfig({
 									label: 'Addons',
 									translations: { en: 'Add-ons' },
 									items: [
-										{ label: 'CompanyRAG', translations: { en: 'CompanyRAG' }, slug: 'company-gpt/addons/companyrag' },
-										{ label: 'Fileforge', translations: { en: 'Fileforge' }, slug: 'company-gpt/addons/fileforge' },
+										{ label: 'companyRAG', translations: { en: 'companyRAG' }, slug: 'company-gpt/addons/companyrag' },
+										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/fileforge' },
+										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
+										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },
 									]
 								},
 								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
@@ -160,7 +166,7 @@ export default defineConfig({
 							label: 'Addons nutzen',
 							translations: { en: 'Using add-ons' },
 							items: [
-								{ label: 'Upload zu KI Suche mit n8n', translations: { en: 'Upload to AI Search with n8n' }, slug: 'tutorials/addons/ki-suche-n8n' },
+								{ label: 'Upload zu companyRAG mit n8n', translations: { en: 'Upload to companyRAG with n8n' }, slug: 'tutorials/addons/ki-suche-n8n' },
 							]
 						}]
 					},

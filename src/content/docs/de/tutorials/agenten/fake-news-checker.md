@@ -90,4 +90,4 @@ Jede Hauptaussage muss mit genau einem von folgenden Begriffen versehen werden:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Idealerweise mit Web-Suche-Tool für Quellenrecherche. Behauptung oder Text einfügen – der Agent liefert eine strukturierte Faktenprüfung mit Quellennachweisen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Idealerweise mit Web-Suche-Tool für Quellenrecherche. Behauptung oder Text einfügen – der Agent liefert eine strukturierte Faktenprüfung mit Quellennachweisen.

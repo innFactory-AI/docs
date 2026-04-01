@@ -78,4 +78,4 @@ Gnadenlos streichen:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Einfach den aufgeblähten Text in den Chat kopieren – der Agent liefert sofort die klare, direkte Version zurück.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den aufgeblähten Text in den Chat kopieren – der Agent liefert sofort die klare, direkte Version zurück.

@@ -103,4 +103,4 @@ Use exact n8n node names:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Simply describe the desired process in natural language — the agent delivers the complete blueprint with node configuration and code snippets.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Simply describe the desired process in natural language — the agent delivers the complete blueprint with node configuration and code snippets.

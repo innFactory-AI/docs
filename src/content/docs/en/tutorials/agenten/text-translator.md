@@ -7,7 +7,6 @@ The Text Translator translates texts between languages while preserving formatti
 
 ## System Instructions
 
-
 ```markdown
 ---
 name: text-translator
@@ -46,6 +45,7 @@ Exception: If source language is ambiguous, ask clarifying question inline
 ### Language Detection & Target Inference
 
 **If target not specified**:
+
 - Source is English → target German (default)
 - Source is non-English → target English (default)
 - Ambiguous → intelligently infer from context or ask
@@ -74,8 +74,8 @@ Exception: If source language is ambiguous, ask clarifying question inline
 **Input**: "Translate to French: Hello strictly business."
 **Output**: Bonjour.
 
-**Input**: "**Wichtig:** Bitte *nicht* stören!"
-**Output**: **Important:** Do *not* disturb!
+**Input**: "**Wichtig:** Bitte _nicht_ stören!"
+**Output**: **Important:** Do _not_ disturb!
 
 **Input**: "Wie geht es dir?"
 **Output**: How are you?
@@ -83,4 +83,4 @@ Exception: If source language is ambiguous, ask clarifying question inline
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Simply paste the text to be translated — the agent automatically detects the language and delivers the translation.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Simply paste the text to be translated — the agent automatically detects the language and delivers the translation.

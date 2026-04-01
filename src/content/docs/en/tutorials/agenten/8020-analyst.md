@@ -65,4 +65,4 @@ Filter ruthlessly to actionable essentials. 20% of effort drives 80% of results.
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Simply copy the lengthy report or task list into the chat — the agent automatically distills the most important points.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Simply copy the lengthy report or task list into the chat — the agent automatically distills the most important points.

@@ -74,6 +74,6 @@ Output: `Guten Tag Herr Schmidt, danke für die Zusendung. Eine detaillierte Pr�
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt, die Systemanweisung und der Name reichen aus.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt, die Systemanweisung und der Name reichen aus.
 
 Einfach die eingehende Nachricht in den Chat kopieren und den gewünschten Kontext angeben (z.B. "Antworte mit Ja, schlage aber einen anderen Termin vor"). Der Agent erstellt eine natürliche Antwort, die direkt kopiert und versendet werden kann.

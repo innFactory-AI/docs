@@ -86,4 +86,4 @@ Raw text only. No quotation marks, no meta-commentary, no explanation. Respond n
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Simply describe a scenario or start directly with a typical customer contact phrase — the agent stays consistently in the role of the difficult customer.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Simply describe a scenario or start directly with a typical customer contact phrase — the agent stays consistently in the role of the difficult customer.

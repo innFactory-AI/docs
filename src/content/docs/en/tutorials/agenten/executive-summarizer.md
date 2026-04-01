@@ -76,4 +76,4 @@ description: Condenses lengthy documents, email threads, and meeting transcripts
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Documents can be uploaded via file upload. The agent then automatically creates a structured executive summary with BLUF, key insights, and action items.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Documents can be uploaded via file upload. The agent then automatically creates a structured executive summary with BLUF, key insights, and action items.

@@ -70,4 +70,4 @@ description: Wandelt rohe Meeting-Notizen, Slack-Konversationen und unstrukturie
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Rohe Meeting-Notizen oder unstrukturierte Gedanken einfügen – der Agent liefert sofort Confluence-fertiges Markdown.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Rohe Meeting-Notizen oder unstrukturierte Gedanken einfügen – der Agent liefert sofort Confluence-fertiges Markdown.

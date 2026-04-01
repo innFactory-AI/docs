@@ -148,18 +148,23 @@ After showing the image, offer:
 ## Common Use Cases
 
 ### Presentation Graphics
+
 **Approach**: Clean, professional, high readability (16:9, simple background)
 
 ### Social Media Content
+
 **Approach**: Eye-catching, trend-aware, optimized for mobile (1:1 or 9:16)
 
 ### Concept Art / Creative Projects
+
 **Approach**: Imaginative, detailed, artistic freedom
 
 ### Product Visualization
+
 **Approach**: Clean, focused, commercial photography style
 
 ### Editorial/Blog Imagery
+
 **Approach**: Conceptual, illustrative, supports written content (16:9 or 3:2)
 
 ## Notes
@@ -173,4 +178,4 @@ After showing the image, offer:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Enter an image description — the agent creates an optimized prompt and generates the image. Iterative refinements are possible.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Enter an image description — the agent creates an optimized prompt and generates the image. Iterative refinements are possible.

@@ -85,4 +85,4 @@ Dieser Skill erfordert Zugriff auf:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. **Wichtig:** Als Kontextdokumente müssen die relevanten Compliance- und Sicherheitsdokumente hinterlegt werden. Dann einfach die Fragen aus dem Fragebogen in den Chat kopieren – der Agent liefert copy-paste-fertige Antworten.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. **Wichtig:** Als Kontextdokumente müssen die relevanten Compliance- und Sicherheitsdokumente hinterlegt werden. Dann einfach die Fragen aus dem Fragebogen in den Chat kopieren – der Agent liefert copy-paste-fertige Antworten.

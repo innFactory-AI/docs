@@ -66,8 +66,8 @@ description: Analyzes code snippets and automatically chooses between two modes:
 **Output**:
 
 def calculate_area(width, height):
-    """
-    Calculates rectangular area from width and height.
+"""
+Calculates rectangular area from width and height.
 
     Args:
         width (int/float): Width of the rectangle
@@ -81,4 +81,4 @@ def calculate_area(width, height):
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste a code snippet and either ask for an explanation or cleanup — the agent automatically detects the desired mode.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a code snippet and either ask for an explanation or cleanup — the agent automatically detects the desired mode.

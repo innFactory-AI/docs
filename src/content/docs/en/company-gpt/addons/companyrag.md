@@ -112,8 +112,8 @@ Supported formats: PDF, DOCX, DOC, TXT, MD, RTF, HTML, HTM, XML, CSV, JSON, EML,
 
 ## CompanyRAG in CompanyGPT
 
-Via the [MCP Server](/en/company-gpt/integrations/mcp-server/) "ai-search", the RAG service can be connected with CompanyGPT to search indexed documents across all (available to the user) collections
-(see [Similarity Search](/en/prompt-engineering/prompt-techniques/rag/)).
+Via the [MCP Server](/en/company-gpt/integrationen/mcp-server/) "ai-search", the RAG service can be connected with CompanyGPT to search indexed documents across all (available to the user) collections
+(see [Similarity Search](/en/prompt-engineering/prompt-techniken/rag/#rag-workflow-for-file-processing))
 
 The following specialized search tools for the RAG Collection – from semantic search to document retrieval to metadata filtering – are available:
 
@@ -131,7 +131,7 @@ Filter content by metadata attributes. Use for filtered results (e.g., "All urge
 Required parameters: filter (JSON object with operators $and, $or, $not), collection (technical name of the collection)
 
 The MCP server can be added to an agent for easier use.
-An [instruction](/en/company-gpt/agents/#instructions) for a search agent that should search in the "rag" collection could be, for example, as follows:
+An [instruction](/en/company-gpt/agenten/#instructions) for a search agent that should search in the "rag" collection could be, for example, as follows:
 
 ```text
 <identity>

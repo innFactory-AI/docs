@@ -13,8 +13,6 @@ Agenten für Content-Erstellung, Texten, Social Media und E-Mail-Marketing.
 - [Content-Stratege](/de/tutorials/agenten/content-strategy/) – Content-Planung mit Pillar-Struktur und Keyword-Strategie
 - [Copy-Editor](/de/tutorials/agenten/copy-editing/) – Bestehende Texte mit dem Sieben-Sweep-Framework verbessern
 - [Social-Media-Content-Ersteller](/de/tutorials/agenten/social-content/) – Posts für LinkedIn, Twitter/X, Instagram und TikTok
-- [Anzeigenkreativ-Generator](/de/tutorials/agenten/ad-creative/) – Headlines und Ad-Copy für Google, Meta und LinkedIn
-- [Lead-Magnet-Builder](/de/tutorials/agenten/lead-magnets/) – Kostenlose Angebote zur E-Mail-Listengewinnung
 - [E-Mail-Sequenz-Designer](/de/tutorials/agenten/email-sequence/) – Automatisierte Willkommens-, Nurture- und Re-Engagement-Flows
 - [Cold-E-Mail-Verfasser](/de/tutorials/agenten/cold-email/) – B2B-Kaltakquise-E-Mails und Follow-up-Sequenzen
 - [Bildgenerierung](/de/tutorials/agenten/bildgenerierung/) – KI-generierte Bilder mit optimierten Prompts
@@ -26,10 +24,8 @@ Agenten für Vertrieb, Conversion-Optimierung, Preisgestaltung und Wachstumsstra
 - [Sales-Enablement-Assistent](/de/tutorials/agenten/sales-enablement/) – Pitch-Decks, One-Pager und Demo-Skripte
 - [Launch-Stratege](/de/tutorials/agenten/launch-strategy/) – Produkt-Launches mit ORB-Framework und 5-Phasen-Plan
 - [Preisstratege](/de/tutorials/agenten/pricing-strategy/) – Pricing-Modelle, Tier-Strukturen und Monetarisierung
-- [Empfehlungsprogramm-Designer](/de/tutorials/agenten/referral-program/) – Referral- und Affiliate-Programme
 - [A/B-Test-Planer](/de/tutorials/agenten/ab-test-setup/) – Experimente mit Hypothesen und statistischer Grundlage
 - [Conversion-Rate-Optimierer](/de/tutorials/agenten/page-cro/) – CRO-Analyse für Landingpages und Preisseiten
-- [Marketing-Psychologie-Coach](/de/tutorials/agenten/marketing-psychology/) – Verhaltensmodelle und Überzeugungsprinzipien
 
 ## Produktivität & Büro
 
@@ -50,7 +46,6 @@ Agenten für Analyse, Planung, Faktencheck und strategische Entscheidungen.
 
 - [80/20 Analyst](/de/tutorials/agenten/8020-analyst/) – Die 20 % herausfiltern, die 80 % des Ergebnisses bringen
 - [Brainstorming-Facilitator](/de/tutorials/agenten/brainstorming/) – Ideen in durchdachte Konzepte entwickeln
-- [Product-Manager-Coach](/de/tutorials/agenten/product-manager/) – PRDs prüfen, Roadmaps planen, Metriken analysieren
 - [Fake News Checker](/de/tutorials/agenten/fake-news-checker/) – Texte auf Falschinformationen prüfen
 - [Direct Technical Analyst](/de/tutorials/agenten/direct-technical-analyst/) – Technische Probleme ehrlich und ohne Beschönigung analysieren
 - [RFP Assistant](/de/tutorials/agenten/rfp-assistant/) – Standardantworten für Sicherheitsfragebögen finden

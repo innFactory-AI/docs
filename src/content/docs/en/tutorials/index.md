@@ -13,8 +13,6 @@ Agents for content creation, copywriting, social media, and email marketing.
 - [Content Strategist](/en/tutorials/agenten/content-strategy/) – Content planning with pillar structure and keyword strategy
 - [Copy Editor](/en/tutorials/agenten/copy-editing/) – Improve existing copy with the Seven Sweeps Framework
 - [Social Content Creator](/en/tutorials/agenten/social-content/) – Posts for LinkedIn, Twitter/X, Instagram, and TikTok
-- [Ad Creative Generator](/en/tutorials/agenten/ad-creative/) – Headlines and ad copy for Google, Meta, and LinkedIn
-- [Lead Magnet Builder](/en/tutorials/agenten/lead-magnets/) – Free offers to grow your email list
 - [Email Sequence Designer](/en/tutorials/agenten/email-sequence/) – Automated welcome, nurture, and re-engagement flows
 - [Cold Email Writer](/en/tutorials/agenten/cold-email/) – B2B cold outreach emails and follow-up sequences
 - [Image Generation](/en/tutorials/agenten/bildgenerierung/) – AI-generated images with optimized prompts
@@ -26,10 +24,8 @@ Agents for sales, conversion optimization, pricing, and growth strategy.
 - [Sales Enablement Assistant](/en/tutorials/agenten/sales-enablement/) – Pitch decks, one-pagers, and demo scripts
 - [Launch Strategist](/en/tutorials/agenten/launch-strategy/) – Product launches with ORB Framework and 5-phase plan
 - [Pricing Strategist](/en/tutorials/agenten/pricing-strategy/) – Pricing models, tier structures, and monetization
-- [Referral Program Designer](/en/tutorials/agenten/referral-program/) – Referral and affiliate programs
 - [A/B Test Planner](/en/tutorials/agenten/ab-test-setup/) – Experiments with hypotheses and statistical rigor
 - [Conversion Rate Optimizer](/en/tutorials/agenten/page-cro/) – CRO analysis for landing pages and pricing pages
-- [Marketing Psychology Coach](/en/tutorials/agenten/marketing-psychology/) – Behavioral models and persuasion principles
 
 ## Productivity & Office
 
@@ -50,7 +46,6 @@ Agents for analysis, planning, fact-checking, and strategic decisions.
 
 - [80/20 Analyst](/en/tutorials/agenten/8020-analyst/) – Filter out the 20% that drives 80% of the result
 - [Brainstorming Facilitator](/en/tutorials/agenten/brainstorming/) – Develop ideas into well-formed concepts
-- [Product Manager Coach](/en/tutorials/agenten/product-manager/) – Review PRDs, plan roadmaps, analyze metrics
 - [Fake News Checker](/en/tutorials/agenten/fake-news-checker/) – Verify texts for misinformation
 - [Direct Technical Analyst](/en/tutorials/agenten/direct-technical-analyst/) – Honest, no-sugarcoating technical analysis
 - [RFP Assistant](/en/tutorials/agenten/rfp-assistant/) – Find standard responses for security questionnaires

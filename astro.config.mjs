@@ -148,8 +148,7 @@ export default defineConfig({
 								{ label: 'Content-Stratege', translations: { en: 'Content Strategist' }, slug: 'tutorials/agenten/content-strategy' },
 								{ label: 'Copy-Editor', translations: { en: 'Copy Editor' }, slug: 'tutorials/agenten/copy-editing' },
 								{ label: 'Social-Media-Content-Ersteller', translations: { en: 'Social Content Creator' }, slug: 'tutorials/agenten/social-content' },
-								{ label: 'Anzeigenkreativ-Generator', translations: { en: 'Ad Creative Generator' }, slug: 'tutorials/agenten/ad-creative' },
-								{ label: 'Lead-Magnet-Builder', translations: { en: 'Lead Magnet Builder' }, slug: 'tutorials/agenten/lead-magnets' },
+
 								{ label: 'E-Mail-Sequenz-Designer', translations: { en: 'Email Sequence Designer' }, slug: 'tutorials/agenten/email-sequence' },
 								{ label: 'Cold-E-Mail-Verfasser', translations: { en: 'Cold Email Writer' }, slug: 'tutorials/agenten/cold-email' },
 								{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
@@ -162,10 +161,10 @@ export default defineConfig({
 								{ label: 'Sales-Enablement-Assistent', translations: { en: 'Sales Enablement Assistant' }, slug: 'tutorials/agenten/sales-enablement' },
 								{ label: 'Launch-Stratege', translations: { en: 'Launch Strategist' }, slug: 'tutorials/agenten/launch-strategy' },
 								{ label: 'Preisstratege', translations: { en: 'Pricing Strategist' }, slug: 'tutorials/agenten/pricing-strategy' },
-								{ label: 'Empfehlungsprogramm-Designer', translations: { en: 'Referral Program Designer' }, slug: 'tutorials/agenten/referral-program' },
+	
 								{ label: 'A/B-Test-Planer', translations: { en: 'A/B Test Planner' }, slug: 'tutorials/agenten/ab-test-setup' },
 								{ label: 'Conversion-Rate-Optimierer', translations: { en: 'Conversion Rate Optimizer' }, slug: 'tutorials/agenten/page-cro' },
-								{ label: 'Marketing-Psychologie-Coach', translations: { en: 'Marketing Psychology Coach' }, slug: 'tutorials/agenten/marketing-psychology' },
+	
 							]
 						},
 						{
@@ -188,7 +187,7 @@ export default defineConfig({
 							items: [
 								{ label: '80/20 Analyst', translations: { en: '80/20 Analyst' }, slug: 'tutorials/agenten/8020-analyst' },
 								{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator' }, slug: 'tutorials/agenten/brainstorming' },
-								{ label: 'Product-Manager-Coach', translations: { en: 'Product Manager Coach' }, slug: 'tutorials/agenten/product-manager' },
+	
 								{ label: 'Fake News Checker', translations: { en: 'Fake News Checker' }, slug: 'tutorials/agenten/fake-news-checker' },
 								{ label: 'Direct Technical Analyst', translations: { en: 'Direct Technical Analyst' }, slug: 'tutorials/agenten/direct-technical-analyst' },
 								{ label: 'RFP Assistant', translations: { en: 'RFP Assistant' }, slug: 'tutorials/agenten/rfp-assistant' },

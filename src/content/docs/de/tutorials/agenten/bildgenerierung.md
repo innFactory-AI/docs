@@ -8,7 +8,7 @@ Der Bildgenerierungs-Agent erstellt KI-generierte Bilder mit detaillierten Promp
 ## Systemanweisung
 
 :::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent sollte mit einem Bildgenerierungs-Tool ausgestattet werden, sofern verfügbar.
+Die gesamte Systemanweisung wird als Prompt eingegeben. Der Agent muss mit einem Bildgenerierungs-Tool ausgestattet werden.
 :::
 
 ```markdown

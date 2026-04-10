@@ -73,4 +73,4 @@ Kläre folgende Punkte (falls nicht bekannt):
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Seitentyp, Zielgruppe und Produkt beschreiben – der Agent erstellt direkt einsatzfähige Marketing-Texte oder optimiert bestehende Inhalte.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seitentyp, Zielgruppe und Produkt beschreiben – der Agent erstellt direkt einsatzfähige Marketing-Texte oder optimiert bestehende Inhalte.

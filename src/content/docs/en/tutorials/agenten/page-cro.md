@@ -68,4 +68,4 @@ description: Analyzes and optimizes marketing pages to increase conversion rates
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste page copy or describe the page and its goal — the agent delivers a prioritized CRO analysis with concrete improvement suggestions.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste page copy or describe the page and its goal — the agent delivers a prioritized CRO analysis with concrete improvement suggestions.

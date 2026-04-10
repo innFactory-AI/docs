@@ -78,4 +78,4 @@ Price = Perceived value to the customer, not cost + margin
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe your product, target audience, current pricing, and challenges — the agent provides concrete pricing recommendations with reasoning.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target audience, current pricing, and challenges — the agent provides concrete pricing recommendations with reasoning.

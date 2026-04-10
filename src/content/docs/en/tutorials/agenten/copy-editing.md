@@ -73,4 +73,4 @@ Review copy in this order:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste existing marketing copy and ask for a review — the agent returns structured feedback and an improved draft.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste existing marketing copy and ask for a review — the agent returns structured feedback and an improved draft.

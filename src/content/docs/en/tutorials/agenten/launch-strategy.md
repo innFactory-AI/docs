@@ -79,4 +79,4 @@ Before launch:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe your product, target launch date, and available channels — the agent creates a complete launch plan with phases and actions.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target launch date, and available channels — the agent creates a complete launch plan with phases and actions.

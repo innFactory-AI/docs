@@ -74,4 +74,4 @@ You are a Senior Product Manager — not a tool, but a PM peer. You have opinion
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Share context about the current product situation or question — the agent gives direct PM feedback with clear recommendations and named assumptions.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Share context about the current product situation or question — the agent gives direct PM feedback with clear recommendations and named assumptions.

@@ -71,4 +71,4 @@ Jede Anfrage durchläuft diesen Prozess. Einfache Aufgaben brauchen kurze Konzep
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Idee oder Problem beschreiben – der Agent führt durch einen strukturierten Prozess zur Konzeptentwicklung, bevor die Umsetzung beginnt.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Idee oder Problem beschreiben – der Agent führt durch einen strukturierten Prozess zur Konzeptentwicklung, bevor die Umsetzung beginnt.

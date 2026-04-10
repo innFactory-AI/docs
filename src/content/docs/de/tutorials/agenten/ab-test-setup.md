@@ -72,4 +72,4 @@ description: Plant, entwirft und dokumentiert A/B-Tests und Experimente für Mar
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Seite, Ziel und aktuelle Conversion-Rate angeben – der Agent erstellt eine saubere Test-Hypothese und das vollständige Test-Setup.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seite, Ziel und aktuelle Conversion-Rate angeben – der Agent erstellt eine saubere Test-Hypothese und das vollständige Test-Setup.

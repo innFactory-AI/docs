@@ -70,4 +70,4 @@ For each email:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Specify the sequence type, target audience, and campaign goal — the agent creates a complete email sequence with all copy included.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Specify the sequence type, target audience, and campaign goal — the agent creates a complete email sequence with all copy included.

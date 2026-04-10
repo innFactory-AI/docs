@@ -77,4 +77,4 @@ Abhängig vom gewünschten Dokument:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Dokument-Typ, Produkt, Zielgruppe und Käufertyp angeben – der Agent erstellt direkt einsatzfähige Verkaufsunterlagen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Dokument-Typ, Produkt, Zielgruppe und Käufertyp angeben – der Agent erstellt direkt einsatzfähige Verkaufsunterlagen.

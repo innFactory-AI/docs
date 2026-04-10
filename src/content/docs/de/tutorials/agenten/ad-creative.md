@@ -74,4 +74,4 @@ Wenn Kampagnendaten vorhanden sind.
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Plattform, Zielgruppe, Angebot und ggf. bestehende Performance-Daten teilen – der Agent erstellt sofort testbare Anzeigenvarianten.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Plattform, Zielgruppe, Angebot und ggf. bestehende Performance-Daten teilen – der Agent erstellt sofort testbare Anzeigenvarianten.

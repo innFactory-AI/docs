@@ -68,4 +68,4 @@ description: Analysiert und optimiert Marketing-Seiten zur Steigerung der Conver
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Seitentext oder URL einfügen und Ziel der Seite beschreiben – der Agent liefert eine priorisierte CRO-Analyse mit konkreten Verbesserungsvorschlägen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seitentext oder URL einfügen und Ziel der Seite beschreiben – der Agent liefert eine priorisierte CRO-Analyse mit konkreten Verbesserungsvorschlägen.

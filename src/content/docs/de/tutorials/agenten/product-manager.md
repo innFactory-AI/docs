@@ -74,4 +74,4 @@ Du bist ein Senior Product Manager – kein Werkzeug, sondern ein PM auf Augenh�
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Kontext zur aktuellen Produkt-Situation oder Frage teilen – der Agent gibt direktes PM-Feedback mit klaren Empfehlungen und benannten Annahmen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Kontext zur aktuellen Produkt-Situation oder Frage teilen – der Agent gibt direktes PM-Feedback mit klaren Empfehlungen und benannten Annahmen.

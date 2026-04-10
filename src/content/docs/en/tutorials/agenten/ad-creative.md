@@ -74,4 +74,4 @@ When campaign data is available.
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Share the platform, target audience, offer, and any existing performance data — the agent produces immediately testable ad variants.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Share the platform, target audience, offer, and any existing performance data — the agent produces immediately testable ad variants.

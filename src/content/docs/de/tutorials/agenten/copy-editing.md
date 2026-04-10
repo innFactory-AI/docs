@@ -73,4 +73,4 @@ Führe die Überprüfung in dieser Reihenfolge durch:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Bestehenden Marketing-Text einfügen und um Überprüfung bitten – der Agent gibt strukturiertes Feedback und einen verbesserten Entwurf zurück.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Bestehenden Marketing-Text einfügen und um Überprüfung bitten – der Agent gibt strukturiertes Feedback und einen verbesserten Entwurf zurück.

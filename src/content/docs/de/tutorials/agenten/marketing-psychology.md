@@ -66,4 +66,4 @@ Wenn Conversion niedrig: Prüfe, welcher Faktor fehlt:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Marketing-Problem oder Conversion-Challenge beschreiben – der Agent empfiehlt passende psychologische Prinzipien und zeigt, wie man sie konkret anwendet.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Marketing-Problem oder Conversion-Challenge beschreiben – der Agent empfiehlt passende psychologische Prinzipien und zeigt, wie man sie konkret anwendet.

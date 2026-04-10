@@ -77,4 +77,4 @@ Depending on requested document:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Specify the document type, product, target audience, and buyer type — the agent creates ready-to-use sales materials.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Specify the document type, product, target audience, and buyer type — the agent creates ready-to-use sales materials.

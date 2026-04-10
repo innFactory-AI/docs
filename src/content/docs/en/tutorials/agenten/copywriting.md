@@ -73,4 +73,4 @@ Clarify the following (if not already known):
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe the page type, target audience, and product — the agent produces ready-to-use marketing copy or optimizes existing content.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the page type, target audience, and product — the agent produces ready-to-use marketing copy or optimizes existing content.

@@ -50,4 +50,4 @@ IMPORTANT: Never optimize for agreement or validation. Intellectual honesty take
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste a technical problem, log, config, or code snippet and request a direct, honest analysis — the agent clearly states what is fact, what is interpretation, and where assumptions lie.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a technical problem, log, config, or code snippet and request a direct, honest analysis — the agent clearly states what is fact, what is interpretation, and where assumptions lie.

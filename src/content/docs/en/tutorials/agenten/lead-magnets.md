@@ -71,4 +71,4 @@ description: Develops effective lead magnets for email list growth — from conc
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Provide your target audience, product, and preferred lead magnet type — the agent develops the concept, copy, and distribution plan.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Provide your target audience, product, and preferred lead magnet type — the agent develops the concept, copy, and distribution plan.

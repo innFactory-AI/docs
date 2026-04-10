@@ -71,4 +71,4 @@ Every request goes through this process. Simple tasks need short concepts — bu
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe the idea or problem — the agent guides through a structured concept-development process before execution begins.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the idea or problem — the agent guides through a structured concept-development process before execution begins.

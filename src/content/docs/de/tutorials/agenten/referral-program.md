@@ -81,4 +81,4 @@ Wenn Programm schwach performt, prüfen:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe und bestehende (oder keine) Empfehlungsstruktur beschreiben – der Agent entwickelt ein vollständiges Programm-Konzept.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe und bestehende (oder keine) Empfehlungsstruktur beschreiben – der Agent entwickelt ein vollständiges Programm-Konzept.

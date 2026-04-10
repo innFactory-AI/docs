@@ -72,4 +72,4 @@ description: Plans, designs, and documents A/B tests and experiments for marketi
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Provide the page, goal, and current conversion rate — the agent creates a clean test hypothesis and the complete test setup.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Provide the page, goal, and current conversion rate — the agent creates a clean test hypothesis and the complete test setup.

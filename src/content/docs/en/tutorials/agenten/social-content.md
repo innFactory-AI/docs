@@ -71,4 +71,4 @@ From one blog post, create:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Provide the topic, platform, and target audience — the agent creates ready-to-publish posts or a complete weekly plan.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Provide the topic, platform, and target audience — the agent creates ready-to-publish posts or a complete weekly plan.

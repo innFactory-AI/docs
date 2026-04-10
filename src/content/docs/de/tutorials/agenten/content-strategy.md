@@ -69,4 +69,4 @@ Bewerte jede Idee nach: Suchvolumen × Conversion-Potenzial × Umsetzungsaufwand
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe und aktuelle Content-Situation beschreiben – der Agent erstellt eine strukturierte Content-Strategie mit konkreten Themenideen und Prioritäten.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe und aktuelle Content-Situation beschreiben – der Agent erstellt eine strukturierte Content-Strategie mit konkreten Themenideen und Prioritäten.

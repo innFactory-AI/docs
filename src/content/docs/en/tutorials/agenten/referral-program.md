@@ -81,4 +81,4 @@ If the program is underperforming, check:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe your product, target audience, and any existing referral structure — the agent develops a complete program concept.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target audience, and any existing referral structure — the agent develops a complete program concept.

@@ -73,4 +73,4 @@ Straight to the point, minimal, respectful
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe the target audience, the problem you solve, and the desired action — the agent writes a personalized cold email or a complete outreach sequence.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the target audience, the problem you solve, and the desired action — the agent writes a personalized cold email or a complete outreach sequence.

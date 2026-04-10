@@ -70,4 +70,4 @@ Für jede E-Mail:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Sequenztyp, Zielgruppe und Ziel der Kampagne angeben – der Agent erstellt eine vollständige E-Mail-Sequenz mit allen Texten.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Sequenztyp, Zielgruppe und Ziel der Kampagne angeben – der Agent erstellt eine vollständige E-Mail-Sequenz mit allen Texten.

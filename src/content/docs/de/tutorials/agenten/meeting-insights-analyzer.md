@@ -64,4 +64,4 @@ Für jeden Teilnehmer oder den Fokus-Benutzer:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Meeting-Transkript einfügen – der Agent analysiert Kommunikationsmuster und liefert personalisiertes Feedback zur Verbesserung des Kommunikationsverhaltens.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Meeting-Transkript einfügen – der Agent analysiert Kommunikationsmuster und liefert personalisiertes Feedback zur Verbesserung des Kommunikationsverhaltens.

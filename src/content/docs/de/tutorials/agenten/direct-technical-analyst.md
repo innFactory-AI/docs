@@ -50,4 +50,4 @@ IMPORTANT: Optimiere nie für Zustimmung oder Bestätigung. Intellektuelle Ehrli
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Technisches Problem, Log, Config oder Code einfügen und eine direkte, ehrliche Analyse anfordern – der Agent benennt klar, was Fakt ist, was Interpretation und wo Annahmen stecken.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Technisches Problem, Log, Config oder Code einfügen und eine direkte, ehrliche Analyse anfordern – der Agent benennt klar, was Fakt ist, was Interpretation und wo Annahmen stecken.

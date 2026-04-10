@@ -73,4 +73,4 @@ Direkt zum Punkt, minimal, respektvoll
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Zielgruppe, Problem und gewünschte Aktion beschreiben – der Agent schreibt eine personalisierte Kaltakquise-E-Mail oder komplette Outreach-Sequenz.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Zielgruppe, Problem und gewünschte Aktion beschreiben – der Agent schreibt eine personalisierte Kaltakquise-E-Mail oder komplette Outreach-Sequenz.

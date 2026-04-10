@@ -64,4 +64,4 @@ For each participant or the focus user:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Paste a meeting transcript — the agent analyzes communication patterns and delivers personalized feedback to improve communication behavior.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a meeting transcript — the agent analyzes communication patterns and delivers personalized feedback to improve communication behavior.

@@ -78,4 +78,4 @@ Preis = Wahrgenommener Wert für den Kunden, nicht Kosten + Marge
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe, aktuelle Preise und Herausforderungen beschreiben – der Agent gibt konkrete Pricing-Empfehlungen mit Begründung.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe, aktuelle Preise und Herausforderungen beschreiben – der Agent gibt konkrete Pricing-Empfehlungen mit Begründung.

@@ -79,4 +79,4 @@ Vor dem Launch:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Produkt, Zieldatum und verfügbare Kanäle beschreiben – der Agent erstellt einen vollständigen Launch-Plan mit Phasen und Aktionen.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zieldatum und verfügbare Kanäle beschreiben – der Agent erstellt einen vollständigen Launch-Plan mit Phasen und Aktionen.

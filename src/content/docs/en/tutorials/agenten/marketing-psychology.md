@@ -66,4 +66,4 @@ When conversion is low, check which factor is missing:
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe your marketing problem or conversion challenge — the agent recommends fitting psychological principles and shows how to apply them concretely.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your marketing problem or conversion challenge — the agent recommends fitting psychological principles and shows how to apply them concretely.

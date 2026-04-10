@@ -71,4 +71,4 @@ Aus einem Blog-Artikel werden:
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Thema, Plattform und Zielgruppe angeben – der Agent erstellt sofort veröffentlichungsfähige Posts oder einen vollständigen Wochenplan.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Thema, Plattform und Zielgruppe angeben – der Agent erstellt sofort veröffentlichungsfähige Posts oder einen vollständigen Wochenplan.

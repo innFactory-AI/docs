@@ -69,4 +69,4 @@ Score each idea by: Search volume × Conversion potential × Implementation effo
 
 ## Using the Agent
 
-The agent can be created under [Agents](/company-gpt/agenten/). Describe your product, target audience, and current content situation — the agent creates a structured content strategy with concrete topic ideas and priorities.
+The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target audience, and current content situation — the agent creates a structured content strategy with concrete topic ideas and priorities.

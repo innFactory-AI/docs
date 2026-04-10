@@ -71,4 +71,4 @@ description: Entwickelt effektive Lead-Magneten zur E-Mail-Listengewinnung – v
 
 ## Agenten benutzen
 
-Der Agent kann unter [Agenten](/company-gpt/agenten/) angelegt werden. Zielgruppe, Produkt und gewünschten Lead-Magnet-Typ angeben – der Agent entwickelt Konzept, Text und Verteilungsplan.
+Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Zielgruppe, Produkt und gewünschten Lead-Magnet-Typ angeben – der Agent entwickelt Konzept, Text und Verteilungsplan.

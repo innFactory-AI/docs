@@ -215,7 +215,8 @@ export default defineConfig({
 							label: 'Addons nutzen',
 							translations: { en: 'Using add-ons' },
 							items: [
-								{ label: 'Upload zu companyRAG mit n8n', translations: { en: 'Upload to companyRAG with n8n' }, slug: 'tutorials/addons/ki-suche-n8n' },
+								{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
+								{ label: 'Upload zu CompanyRAG über n8n', translations: { en: 'Upload to CompanyRAG via n8n' }, slug: 'tutorials/addons/upload-companyrag-n8n' },
 							]
 						},
 					]

@@ -3,7 +3,7 @@ title: Tutorials
 description: Agenten-Vorlagen und Anleitungen für Marketing, Vertrieb, Produktivität, Strategie und mehr.
 ---
 
-In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen rund um den CompanyGPT. Alle Agenten können direkt unter [Agenten](/company-gpt/agenten/) angelegt werden.
+In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen rund um den CompanyGPT. Alle Agenten können direkt unter [Agenten](/de/company-gpt/agenten/) angelegt werden.
 
 ## Marketing & Content
 
@@ -66,6 +66,7 @@ Agenten zum Üben und Trainieren von Kommunikation und Problemlösung.
 - [Socratic Coach](/de/tutorials/agenten/socratic-coach/) – Durch gezielte Gegenfragen zur eigenen Lösung führen
 - [Tough Customer Simulator](/de/tutorials/agenten/tough-customer-simulator/) – Deeskalation mit einem schwierigen Kunden üben
 
-## companyRAG
+## CompanyRAG
 
-- [Upload zur KI-Suche über n8n](/de/tutorials/addons/ki-suche-n8n/)
+- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
+- [Upload zu CompanyRAG über n8n](/de/tutorials/addons/upload-companyrag-n8n/) – Dokumente per n8n-Workflow bereitstellen

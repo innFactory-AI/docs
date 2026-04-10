@@ -3,7 +3,7 @@ title: Tutorials
 description: Ready-to-use agent templates and guides for marketing, sales, productivity, strategy, and more.
 ---
 
-This section contains ready-to-use agent templates and guides for CompanyGPT. All agents can be created directly under [Agents](/company-gpt/agenten/).
+This section contains ready-to-use agent templates and guides for CompanyGPT. All agents can be created directly under [Agents](/en/company-gpt/agenten/).
 
 ## Marketing & Content
 
@@ -68,4 +68,4 @@ Agents for practicing and training communication and problem-solving.
 
 ## AI Search
 
-- [Upload to AI Search via n8n](/en/tutorials/addons/ki-suche-n8n/)
+- [Upload to AI Search via n8n](/en/tutorials/addons/upload-companyrag-n8n/)

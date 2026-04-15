@@ -18,4 +18,4 @@ Agent mode allows you to easily create your own AI agents using natural language
 - Corporate branding
 - Compliance & training included
 
-For more information, visit the <a href="https://innfactory.ai/company-gpt-dsgvo-konformes-chatgpt-fur-ihr-unternehmen/" target="_blank">CompanyGPT website</a>.
+For more information, visit the <a href="https://innfactory.ai/en/services/companygpt/" target="_blank">CompanyGPT website</a>.

@@ -23,7 +23,7 @@ Geben Sie einfach einen Befehl wie:
 
 ### Über die Seitenleiste
 
-In der rechten Seitenleiste finden Sie den Bereich „Erinnerungen“. Dort können Sie neue Informationen manuell eintragen, bestehende einsehen oder löschen.
+In der linke Seitenleiste finden Sie den Bereich „Erinnerungen“. Dort können Sie neue Informationen manuell eintragen, bestehende einsehen oder löschen.
 
 Jede Erinnerung wird als ein „Schlüssel-Wert-Paar“ gespeichert. Das bedeutet, es gibt ein Stichwort (den Schlüssel) und die dazugehörige Information (den Wert).
 

@@ -1,20 +1,12 @@
 ---
 title: User Interface
-description: Entdecken Sie das User Interface von CompanyGPT - Eine detaillierte Übersicht der Chat-Funktionen, Modellauswahl, Seitenleiste, Prompteingabe, Agent Marketplace und mehr.
+description: Übersicht der CompanyGPT Benutzeroberfläche – Modellauswahl, Chat-Funktionen, Integrationen und Seitenleiste.
 ---
 
 Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Modellen zu kommunizieren, Agenten zu erstellen, Promptvorlagen zu verwalten und vieles mehr.
 
 ![companygpt ui](ui.png)
 
-## Schnellauswahl
-
-![quick-selection](quick-selection.png)
-
-- Seitenleiste verbergen
-- [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
-- [Lesezeichen](/de/company-gpt/lesezeichen)
-- Neuer Chat
 
 ## Modellauswahl
 
@@ -22,32 +14,48 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 
 Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl).
 
+## Chat-Eingabe
+
+![chat-input](chat-input.gif)
+Prompts lassen sich über Tastatur oder Mikrofon eingeben.
+<br>
+<br>
+**[Dateien](/de/company-gpt/dateiverarbeitung/) hinzufügen:**
+![ui-doc-select](ui-doc-select.png)
+<br>
+**Einstellungen der Integrationen:**
+![ui-extensions](ui-extend.png)
+- [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
+- [Websuche](/de/company-gpt/integrationen/websuche/)
+- [Artefakte](/de/company-gpt/integrationen/artefakte/)
+- [MCP Server](/de/company-gpt/integrationen/mcp-server/)
+
+Durch Auswahl des Stecknadel-Symbols lassen sich die Integrationen dauerhaft an die Chat-Leiste anpinnen.
+
 ## Chat-Verlauf
 
-Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. Chat können geteilt, umbenannt, dupliziert, archiviert und gelöscht werden. Zudem kann mit der Suche, der gesamte Chat-Verlauf durchsucht werden.
+Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. Chats können geteilt, umbenannt, dupliziert, archiviert und gelöscht werden. Zudem kann mit der Suche der gesamte Chat-Verlauf durchsucht werden.
 
 ![chat-verlauf](chat-verlauf.png)
 
-## Rechte Seitenleiste
 
-![right-sidebar](right-sidebar.png)
+## Seitenleiste
 
-- [Erstellen und Bearbeiten von Agenten](/de/company-gpt/agenten/)
-- [Promptvorlagen](/de/company-gpt/prompts/)
-- [Erinnerungen](/de/company-gpt/erinnerungen/)
-- [KI Einstellungen](/de/company-gpt/ki-einstellungen/)
-- [Dateien](/de/company-gpt/dateiverarbeitung/)
-- [Lesezeichen](/de/company-gpt/lesezeichen)
-- Seitenleiste ausblenden
 
-## Chateingabe
-
-![chat-input](chat-input.png)
-
-- Prompteingabe
-- [Dateien](/de/company-gpt/dateiverarbeitung/)
-- Einstellungen der Erweiterungen
-- [Websuche](/de/company-gpt/integrationen/websuche/)
-- [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
-- [Artefakte](/de/company-gpt/integrationen/artefakte/)
-- Auswahl [MCP Server](/de/company-gpt/integrationen/mcp-server/)
+<div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
+  <img src="/src/content/docs/de/company-gpt/quick-selection.png" alt="quick-selection" style="width:300px; height:auto; flex-shrink:0;">
+  <div style="flex:1; min-width:300px;">
+    <ol>
+      <li>Seitenleiste verbergen</li>
+      <li>Neuer Chat</li>
+      <li><a href="/de/company-gpt/user-interface/#chat-verlauf">Chat-Verlauf</a> und <a href="/de/company-gpt/agenten/#agenten-marktplatz">Agent Marketplace</a></li>
+      <li><a href="/de/company-gpt/agenten/">Erstellen und Bearbeiten von Agenten</a></li>
+      <li><a href="/de/company-gpt/prompts/">Promptvorlagen</a></li>
+      <li><a href="/de/company-gpt/erinnerungen/">Erinnerungen</a></li>
+      <li><a href="/de/company-gpt/lesezeichen">Lesezeichen</a></li>
+      <li><a href="/de/company-gpt/dateiverarbeitung/">Dateien</a></li>
+      <li><a href="/de/company-gpt/ki-einstellungen/">KI-Einstellungen</a></li>
+      <li><a href="/de/company-gpt/integrationen/mcp-server/">MCP-Einstellungen</a></li>
+    </ol>
+  </div>
+</div>

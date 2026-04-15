@@ -23,7 +23,7 @@ Simply enter a command such as:
 
 ### Via the sidebar
 
-In the right sidebar, you will find the “Reminders” section. There you can manually enter new information, view existing information, or delete it.
+In the left sidebar, you will find the “Reminders” section. There you can manually enter new information, view existing information, or delete it.
 
 Each reminder is stored as a “key-value pair.” This means there is a keyword (the key) and the corresponding information (the value).
 

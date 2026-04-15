@@ -1,53 +1,61 @@
 ---
 title: User Interface
-description: Discover the CompanyGPT user interface—a detailed overview of chat features, model selection, sidebar, prompt input, Agent Marketplace, and more.
+description: CompanyGPT User Interface Overview – Model Selection, Chat Features, Integrations, and Sidebar.
 ---
 
-The CompanyGPT user interface allows you to communicate with different AI models, create agents, manage prompt templates, and much more.
+The User Interface in CompanyGPT allows you to communicate with different AI models, create agents, manage prompt templates, and much more.
 
-![companygpt ui](ui-en.png)
+![companygpt ui](ui.png)
 
-## Quick Selection
 
-![quick-selection](quick-selection.png)
+## Model Selection
 
-- Hide sidebar
-- [Agent Marketplace](/en/company-gpt/agenten/#agent-marketplace)
-- [Bookmarks](/en/company-gpt/lesezeichen)
-- New chat
+![model-selection](model-selection.png)
 
-## Model selection
+A list of currently available models can be found under [Model Selection](/en/company-gpt/modellauswahl).
 
-![model-selection](model-selection-en.png)
+## Chat Input
 
-You can find a list of currently available models under [Model Selection](/en/company-gpt/modellauswahl).
+![chat-input](chat-input.gif)
+Prompts can be entered via keyboard or microphone.
+<br>
+<br>
+**[Add Files](/en/company-gpt/dateiverarbeitung/):**
+![ui-doc-select](ui-doc-select.png)
+<br>
+**Integration Settings:**
+![ui-extensions](ui-extend.png)
+- [File Search](/en/company-gpt/integrationen/dateisuche/)
+- [Web Search](/en/company-gpt/integrationen/websuche/)
+- [Artifacts](/en/company-gpt/integrationen/artefakte/)
+- [MCP Server](/en/company-gpt/integrationen/mcp-server/)
 
-## Chat history
+By selecting the pin icon, you can pin the integrations permanently to the chat bar.
 
-The chat history displays all chats created in the past. Chats can be shared, renamed, duplicated, archived and deleted. You can also use the search function to search through the entire chat history.
+## Chat History
+
+The chat history displays all chats that have been created in the past. Chats can be shared, renamed, duplicated, archived, and deleted. Additionally, the entire chat history can be searched using the search function.
 
 ![chat-verlauf](chat-verlauf.png)
 
-## Right sidebar
 
-![right-sidebar](right-sidebar-en.png)
+## Sidebar
 
-- [Create and edit agents](/en/company-gpt/agenten/)
-- [Prompt templates](/en/company-gpt/prompts/)
-- [Reminders](/en/company-gpt/erinnerungen/)
-- [AI settings](/en/company-gpt/ki-einstellungen/)
-- [Files](/en/company-gpt/dateiverarbeitung/)
-- [Bookmarks](/en/company-gpt/lesezeichen)
-- Hide sidebar
 
-## Chat input
-
-![chat-input](chat-input-en.png)
-
-- Prompt input
-- [Files](/en/company-gpt/dateiverarbeitung/)
-- Extension settings
-- [Web search](/en/company-gpt/integrationen/websuche/)
-- [File search](/en/company-gpt/integrationen/dateisuche/)
-- [Artifacts](/en/company-gpt/integrationen/artefakte/)
-- Select [MCP Server](/en/company-gpt/integrationen/mcp-server/)
+<div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
+  <img src="/src/content/docs/de/company-gpt/quick-selection.png" alt="quick-selection" style="width:300px; height:auto; flex-shrink:0;">
+  <div style="flex:1; min-width:300px;">
+    <ol>
+      <li>Hide Sidebar</li>
+      <li>New Chat</li>
+      <li><a href="/en/company-gpt/user-interface/#chat-verlauf">Chat History</a> and <a href="/en/company-gpt/agenten/#agenten-marktplatz">Agent Marketplace</a></li>
+      <li><a href="/en/company-gpt/agenten/">Create and Edit Agents</a></li>
+      <li><a href="/en/company-gpt/prompts/">Prompt Templates</a></li>
+      <li><a href="/en/company-gpt/erinnerungen/">Memories</a></li>
+      <li><a href="/en/company-gpt/lesezeichen">Bookmarks</a></li>
+      <li><a href="/en/company-gpt/dateiverarbeitung/">Files</a></li>
+      <li><a href="/en/company-gpt/ki-einstellungen/">AI Settings</a></li>
+      <li><a href="/en/company-gpt/integrationen/mcp-server/">MCP Settings</a></li>
+    </ol>
+  </div>
+</div>

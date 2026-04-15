@@ -7,6 +7,10 @@ Unter **KI-Einstellungen** können benutzerdefinierte Profile erstellt und gespe
 
 ![ai-settings](ai-settings.png)
 
+:::tip{icon="rocket"}
+Wenn Sie den Mauszeiger über eine Einstellung bewegen, werden zusätzliche Informationen angezeigt.
+:::
+
 ## Benutzerdefinierte Anweisung
 
 In diesem Feld wird eine spezifische Anweisung hinterlegt, die das Verhalten der KI während einer Konversation steuert. Sie dient dazu, der KI eine Rolle, einen Stil oder bestimmte Aufgaben vorzugeben.
@@ -41,6 +45,7 @@ Der Top P-Parameter steuert die Auswahl der Token durch das Modell auf Basis ihr
 ### Frequency Penalty (Häufigkeitsstrafe)
 
 Ein Wert zwischen -2.0 und 2.0. Positive Werte reduzieren die Wahrscheinlichkeit, dass das Modell bereits häufig verwendete Token wiederholt. Dies fördert die Erzeugung neuer und vielfältigerer Formulierungen im Text.
+
 
 ### Presence Penalty (Anwesenheitsstrafe)
 

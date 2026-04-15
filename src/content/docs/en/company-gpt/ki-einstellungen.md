@@ -6,7 +6,9 @@ description: Manage and customize AI settings in CompanyGPT. Create profiles wit
 Custom profiles can be created and saved under **Parameters**. These profiles include a name, specific instructions for the AI, and detailed AI parameters. This allows you to define customized presets that can be used flexibly in conversations.
 
 ![ai-settings](ai-settings-en.png)
-
+:::tip[Did you know?]{icon="rocket"}
+When you hover your mouse over a settings option, additional information will be displayed.
+:::
 ## Custom instructions
 
 This field is used to store specific instructions that control the behavior of the AI during a conversation. It serves to assign the AI a role, style, or specific tasks.

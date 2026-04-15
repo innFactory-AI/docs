@@ -18,4 +18,4 @@ Durch den Agenten-Modus können Sie sehr einfach mit natürlicher Sprache eigene
 - Corporate Branding
 - Compliance & Schulung inklusive
 
-Mehr Informationen finden Sie auf der <a href="https://innfactory.ai/company-gpt-dsgvo-konformes-chatgpt-fur-ihr-unternehmen/" target="_blank">CompanyGPT Webseite</a>
+Mehr Informationen finden Sie auf der <a href="https://innfactory.ai/de/leistungen/companygpt/" target="_blank">CompanyGPT Webseite</a>

@@ -61,7 +61,45 @@ Rohe Zahlen können direkt als aussagekräftige Grafiken visualisiert werden.
 
 ## Intelligentes Vorlagen-Management
 
-Eigene, benutzerdefinierte oder globale Admin-Templates (DOCX, XLSX, POTX) können hochgeladen werden. Diese Vorlagen werden von CompanyGPT auf Zuruf mit aktuellen Daten befüllt (z. B. durch dynamisches Ersetzen von Platzhaltern in Word oder das Befüllen von Tabellen in Excel). Das automatische Ausfüllen von PDF-Formularen wird ebenfalls nativ unterstützt.
+Vorlagen ermöglichen die wiederverwendbare Dokumentenerstellung. Sie können jedoch nicht einfach ein fertiges Dokument hochladen – das Dokument muss zuerst mit Platzhaltern vorbereitet werden.
+
+### Vorlagen vorbereiten
+
+Vorlagen verwenden die doppelte geschweifte Klammer-Syntax: `{{Platzhalter}}`. Sie müssen das Dokument (Word, Excel, PowerPoint) in der nativen Anwendung öffnen und Platzhalter wie `{{Firmenname}}`, `{{Datum}}`, `{{Adresse}}` an den Stellen einfügen, wo CompanyGPT dynamische Inhalte einsetzen soll. Die Platzhalternamen können Sie frei wählen, sie sollten jedoch aussagekräftig sein.
+
+- **Word (.docx):** Platzieren Sie `{{Platzhalter}}` direkt im Dokumenttext. Beispiel: "Sehr geehrte/r {{Anrede}} {{Nachname}}, ..." oder eine Tabellenzelle mit `{{Rechnungsbetrag}}`
+- **Excel (.xlsx):** Platzieren Sie `{{Platzhalter}}` in einzelne Zellen. Beispiel: Zelle A1 enthält `{{Mitarbeitername}}`, Zelle B1 enthält `{{Abteilung}}`
+- **PowerPoint (.pptx / .potx):** Platzieren Sie `{{Platzhalter}}` in Textfelder auf Folien. Beispiel: Titelfolie mit `{{Projektname}}`, Inhaltsfolie mit `{{Zusammenfassung}}`
+
+:::tip
+Verwenden Sie aussagekräftige Platzhalternamen wie `{{Kundenname}}` statt `{{K1}}`. So erkennt CompanyGPT den Kontext und kann die Platzhalter zuverlässiger mit den richtigen Daten befüllen.
+:::
+
+:::caution
+Ein normales, fertig ausgefülltes Dokument ohne Platzhalter kann nicht als Vorlage verwendet werden. CompanyGPT benötigt die `{{Platzhalter}}`-Markierungen, um zu erkennen, welche Stellen dynamisch ersetzt werden sollen.
+:::
+
+### Vorlage hochladen
+
+Vorlagen können Sie im Tab **Vorlagen** einsehen und im Tab **Vorlage hochladen** hochladen. Unterstützte Formate: `.docx`, `.xlsx`, `.potx`, `.pptx`.
+
+Upload-Felder:
+- **Vorlagenname** (Pflichtfeld): Eindeutiger technischer Name (z. B. `rechnungs-vorlage`)
+- **Anzeigename**: Benutzerfreundlicher Name (z. B. `Rechnungsvorlage`)
+- **Beschreibung**: Kurze Beschreibung des Verwendungszwecks
+- **Schlagwörter**: Kommagetrennte Tags zur besseren Auffindbarkeit
+
+![Vorlage hochladen](vorlage-hochladen-de.png)
+
+:::note
+Admins können globale Vorlagen hochladen, die für alle Benutzer sichtbar sind.
+:::
+
+### Vorlage im Chat verwenden
+
+Nach dem Hochladen referenzieren Sie die Vorlage im Chat und geben die Daten für die Platzhalter an. CompanyGPT ersetzt alle `{{Platzhalter}}` mit den bereitgestellten Werten und generiert das fertige Dokument.
+
+Beispiel-Prompt: "Erstelle eine Rechnung mit der Vorlage 'Rechnungsvorlage'. Kundenname: Muster GmbH, Rechnungsbetrag: 1.500 €, Datum: 15.04.2026"
 
 ## Dateiverwaltung & Organisation
 

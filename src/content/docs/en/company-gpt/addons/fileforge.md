@@ -61,7 +61,45 @@ Raw numbers can be visualized directly as meaningful graphics.
 
 ## Intelligent Template Management
 
-You can upload your own, custom or global admin templates (DOCX, XLSX, POTX). These templates are filled with current data by CompanyGPT on demand (e.g. by dynamically replacing placeholders in Word or filling tables in Excel). Auto-filling of PDF forms is also natively supported.
+Templates enable reusable document generation with dynamic content. However, you cannot simply upload a finished document — it must be prepared with placeholders first.
+
+### Preparing Templates
+
+Templates use double curly brace syntax: `{{placeholder}}`. Open the document in its native application and insert placeholders like `{{CompanyName}}`, `{{Date}}`, `{{Address}}` wherever CompanyGPT should insert dynamic content. Placeholder names are freely choosable but should be descriptive.
+
+- **Word (.docx):** Place `{{placeholder}}` directly in the document text. Example: "Dear {{Salutation}} {{LastName}}, ..." or a table cell with `{{InvoiceAmount}}`
+- **Excel (.xlsx):** Place `{{placeholder}}` in individual cells. Example: Cell A1 with `{{EmployeeName}}`, Cell B1 with `{{Department}}`
+- **PowerPoint (.pptx / .potx):** Place `{{placeholder}}` in text boxes on slides. Example: Title slide with `{{ProjectName}}`, content slide with `{{Summary}}`
+
+:::tip
+Use descriptive placeholder names like `{{CustomerName}}` instead of `{{C1}}`. This helps CompanyGPT understand the context and fill placeholders more reliably with the correct data.
+:::
+
+:::caution
+A regular, fully completed document without placeholders cannot be used as a template. CompanyGPT requires the `{{placeholder}}` markers to identify which parts should be dynamically replaced.
+:::
+
+### Uploading Templates
+
+Templates can be viewed in the **Templates** tab and uploaded in the **Upload Template** tab. Supported formats: `.docx`, `.xlsx`, `.potx`, `.pptx`
+
+Upload fields:
+- **Template Name** (required): Unique technical name (e.g. `invoice-template`)
+- **Display Name**: User-friendly name (e.g. `Invoice Template`)
+- **Description**: Brief description of the template's purpose
+- **Tags**: Comma-separated tags for better discoverability
+
+![Upload Template](vorlage-hochladen-en.png)
+
+:::note
+Admins can upload global templates that are visible to all users.
+:::
+
+### Using Templates in Chat
+
+Once uploaded, reference the template in the chat and provide the data for the placeholders. CompanyGPT replaces all `{{placeholder}}` markers with the provided values and generates the finished document.
+
+Example prompt: "Create an invoice using the 'Invoice Template'. Customer name: Sample Inc., Invoice amount: $1,500, Date: April 15, 2026"
 
 ## File Management & Organization
 

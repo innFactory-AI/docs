@@ -8,7 +8,7 @@ The Document Comparison agent analyzes the pure content of two files regardless 
 ## System Instructions
 
 :::tip
-The entire system instruction is entered as a prompt. The documents to be compared can be uploaded via file upload.
+The entire system instruction is entered as a prompt. The documents to be compared can be uploaded via file upload. For this agent, the "Upload to AI provider" mode works best.
 :::
 
 ```markdown

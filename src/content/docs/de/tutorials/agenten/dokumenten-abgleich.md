@@ -8,7 +8,7 @@ Der Dokumenten-Abgleich-Agent analysiert den reinen Inhalt zweier Dateien unabh�
 ## Systemanweisung
 
 :::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Die zu vergleichenden Dokumente können über den Dateiupload hochgeladen werden.
+Die gesamte Systemanweisung wird als Prompt eingegeben. Die zu vergleichenden Dokumente können über den Dateiupload hochgeladen werden. Für diesen Agenten funktioniert der Modus „Hochladen zum KI-Anbieter" am besten.
 :::
 
 ```markdown

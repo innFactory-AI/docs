@@ -8,7 +8,7 @@ The Image Generation agent creates AI-generated images with detailed prompts opt
 ## System Instructions
 
 :::tip
-The entire system instruction is entered as a prompt. The agent should be equipped with an image generation tool if available.
+The entire system instruction is entered as a prompt. The agent must be equipped with an image generation tool.
 :::
 
 ```markdown

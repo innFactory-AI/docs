@@ -1,9 +1,9 @@
 ---
 title: Upload zu companyRAG über n8n
-description: Beschreibung Meeting NOtizen Agent erstellen
+description: Dokumente per n8n-Workflow an CompanyRAG bereitstellen
 ---
 
-Wenn sie das [companyRAG Addon für den CompanyGPT](/de/company-gpt/addons/ki-suche/) aktiviert haben, können Sie über n8n ganz einfach Dokumente bereitstellen. companyRAG stellt mehrere Endpunkte bereit, die genutzt werden können. 
+Wenn Sie das [CompanyRAG Addon](/de/company-gpt/addons/companyrag/) aktiviert haben, können Sie über n8n Dokumente bereitstellen. CompanyRAG stellt mehrere Endpunkte bereit, die in n8n-Workflows genutzt werden können.
 
 ## Upload einer PDF per Fomular
 

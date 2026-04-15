@@ -86,7 +86,7 @@ export default defineConfig({
 									label: 'Integrationen',
 									translations: { en: 'Integrations' },
 									items: [
-										{ label: 'Websuche', translations: { en: 'Web Search' }, slug: 'company-gpt/integrationen/websuche' },
+										{ label: 'Websuche & WebFetch', translations: { en: 'Web Search & WebFetch' }, slug: 'company-gpt/integrationen/websuche' },
 										{ label: 'Dateisuche', translations: { en: 'File Search' }, slug: 'company-gpt/integrationen/dateisuche' },
 										{ label: 'Artefakte', translations: { en: 'Artifacts' }, slug: 'company-gpt/integrationen/artefakte' },
 										{ label: 'MCP Server', translations: { en: 'MCP Servers' }, slug: 'company-gpt/integrationen/mcp-server' },

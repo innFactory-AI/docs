@@ -43,7 +43,7 @@ Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. 
 
 
 <div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
-  <img src="/src/content/docs/de/company-gpt/quick-selection.png" alt="quick-selection" style="width:300px; height:auto; flex-shrink:0;">
+  <img src="/src/content/docs/de/company-gpt/sidebar-quick-selection.png" alt="sidebar-quick-selection" style="width:300px; height:auto; flex-shrink:0;">
   <div style="flex:1; min-width:300px;">
     <ol>
       <li>Seitenleiste verbergen</li>

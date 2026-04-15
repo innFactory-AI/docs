@@ -1,7 +1,6 @@
-Ich ---
+---
 title: Web Search & WebFetch
 description: Learn how CompanyGPT uses Web Search to find current information from the internet and WebFetch to retrieve content from specific web pages.
-
 ---
 
 ## Web Search

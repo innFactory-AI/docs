@@ -41,21 +41,15 @@ The chat history displays all chats that have been created in the past. Chats ca
 
 ## Sidebar
 
+![sidebar-quick-selection](sidebar-quick-selection.png)
 
-<div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
-  <img src="/src/content/docs/de/company-gpt/sidebar-quick-selection.png" alt="sidebar-quick-selection" style="width:300px; height:auto; flex-shrink:0;">
-  <div style="flex:1; min-width:300px;">
-    <ol>
-      <li>Hide Sidebar</li>
-      <li>New Chat</li>
-      <li><a href="/en/company-gpt/user-interface/#chat-verlauf">Chat History</a> and <a href="/en/company-gpt/agenten/#agenten-marktplatz">Agent Marketplace</a></li>
-      <li><a href="/en/company-gpt/agenten/">Create and Edit Agents</a></li>
-      <li><a href="/en/company-gpt/prompts/">Prompt Templates</a></li>
-      <li><a href="/en/company-gpt/erinnerungen/">Memories</a></li>
-      <li><a href="/en/company-gpt/lesezeichen">Bookmarks</a></li>
-      <li><a href="/en/company-gpt/dateiverarbeitung/">Files</a></li>
-      <li><a href="/en/company-gpt/ki-einstellungen/">AI Settings</a></li>
-      <li><a href="/en/company-gpt/integrationen/mcp-server/">MCP Settings</a></li>
-    </ol>
-  </div>
-</div>
+1. Hide Sidebar
+2. New Chat
+3. [Chat History](/en/company-gpt/user-interface/#chat-verlauf) and [Agent Marketplace](/en/company-gpt/agenten/#agenten-marktplatz)
+4. [Create and Edit Agents](/en/company-gpt/agenten/)
+5. [Prompt Templates](/en/company-gpt/prompts/)
+6. [Memories](/en/company-gpt/erinnerungen/)
+7. [Bookmarks](/en/company-gpt/lesezeichen)
+8. [Files](/en/company-gpt/dateiverarbeitung/)
+9. [AI Settings](/en/company-gpt/ki-einstellungen/)
+10. [MCP Settings](/en/company-gpt/integrationen/mcp-server/)

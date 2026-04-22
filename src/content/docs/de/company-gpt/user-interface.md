@@ -42,20 +42,15 @@ Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. 
 ## Seitenleiste
 
 
-<div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
-  <img src="/src/content/docs/de/company-gpt/sidebar-quick-selection.png" alt="sidebar-quick-selection" style="width:300px; height:auto; flex-shrink:0;">
-  <div style="flex:1; min-width:300px;">
-    <ol>
-      <li>Seitenleiste verbergen</li>
-      <li>Neuer Chat</li>
-      <li><a href="/de/company-gpt/user-interface/#chat-verlauf">Chat-Verlauf</a> und <a href="/de/company-gpt/agenten/#agenten-marktplatz">Agent Marketplace</a></li>
-      <li><a href="/de/company-gpt/agenten/">Erstellen und Bearbeiten von Agenten</a></li>
-      <li><a href="/de/company-gpt/prompts/">Promptvorlagen</a></li>
-      <li><a href="/de/company-gpt/erinnerungen/">Erinnerungen</a></li>
-      <li><a href="/de/company-gpt/lesezeichen">Lesezeichen</a></li>
-      <li><a href="/de/company-gpt/dateiverarbeitung/">Dateien</a></li>
-      <li><a href="/de/company-gpt/ki-einstellungen/">KI-Einstellungen</a></li>
-      <li><a href="/de/company-gpt/integrationen/mcp-server/">MCP-Einstellungen</a></li>
-    </ol>
-  </div>
-</div>
+![sidebar-quick-selection](sidebar-quick-selection.png)
+
+1. Seitenleiste verbergen
+2. Neuer Chat
+3. [Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf) und [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
+4. [Erstellen und Bearbeiten von Agenten](/de/company-gpt/agenten/)
+5. [Promptvorlagen](/de/company-gpt/prompts/)
+6. [Erinnerungen](/de/company-gpt/erinnerungen/)
+7. [Lesezeichen](/de/company-gpt/lesezeichen)
+8. [Dateien](/de/company-gpt/dateiverarbeitung/)
+9. [KI-Einstellungen](/de/company-gpt/ki-einstellungen/)
+10. [MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)

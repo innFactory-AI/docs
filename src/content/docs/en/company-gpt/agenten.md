@@ -37,9 +37,17 @@ In addition to the model, the AI parameters can be adjusted. A detailed descript
 
 Each agent has built-in capabilities that can be activated as needed.
 
-#### Web search
+#### Web Search
 
-Specifies whether web search is enabled for this agent or not. Information about web search can be found here: [Web Search](/en/company-gpt/integrationen/websuche).
+:::note
+The "Web Search" checkbox under agent capabilities is deprecated and currently non-functional. It will be removed in an upcoming version.
+:::
+
+Web search is activated via the model parameters of the selected AI model. Click on the AI model and open its settings. There you will find the **"Web Search"** toggle – for Google Gemini models, this is called **"Grounding with Google Search"**.
+
+Additionally, you can add the **WebFetch** tool via an **MCP Server**. This uses a headless browser to crawl specific URLs – comparable to directly visiting a website in your browser.
+
+For more information about web search, see: [Web Search](/en/company-gpt/integrationen/websuche).
 
 #### File Context (OCR)
 

@@ -39,7 +39,15 @@ Jeder Agent hat eingebaute Fähigkeiten, die bei Bedarf aktiviert werden können
 
 #### Websuche
 
-Gibt an, ob die Websuche für diesen Agenten aktiviert ist oder nicht. Die Informationen zur Websuche finden Sie hier: [Websuche](/de/company-gpt/integrationen/websuche).
+:::note
+Der „Web-Suche"-Toggle unter den Agenten-Fähigkeiten ist veraltet und funktioniert aktuell nicht. Er wird in einer kommenden Version entfernt.
+:::
+
+Die Websuche wird über die Modell-Parameter des gewählten KI-Modells aktiviert. Klicken Sie dazu auf das KI-Modell und öffnen Sie dessen Einstellungen. Dort finden Sie den Toggle **„Web-Suche"** – bei Google-Gemini-Modellen heißt dieser **„Fundierung mit der Google Suche"**.
+
+Zusätzlich können Sie über einen **MCP Server** das Tool **WebFetch** hinzufügen. Dieses nutzt einen Headless-Browser, um konkrete URLs zu crawlen – vergleichbar mit dem direkten Aufrufen einer Webseite im Browser.
+
+Weitere Informationen zur Websuche finden Sie hier: [Websuche](/de/company-gpt/integrationen/websuche).
 
 #### Datei-Kontext (OCR)
 

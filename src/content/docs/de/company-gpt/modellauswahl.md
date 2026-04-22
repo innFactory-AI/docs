@@ -3,10 +3,6 @@ title: Modellauswahl
 description: Wann welches KI Modell nutzen? Diese Übersicht hilft Ihnen.
 ---
 
-:::note[Modell-Updates bei OpenAI]
-Microsoft hat die OpenAI-Modelle GPT-4o und GPT-4o-mini wie geplant Ende März 2026 eingestellt und sie durch die neueren Generationen GPT 5.1 und GPT 4.1-mini ersetzt.
-:::
-
 ### Dynamisches Model Routing
 
 Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Routing von CompanyGPT zu aktivieren. Das System analysiert Ihren Prompt und wählt automatisch das effizienteste OpenAI-Modell: Schnelle, kleinere Modelle für Standardfragen und High-End-Modelle für komplexe Analysen. So sparen Sie ohne manuellen Aufwand Zeit und Token-Kosten.

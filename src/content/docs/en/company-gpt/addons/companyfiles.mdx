@@ -150,23 +150,6 @@ Use descriptive placeholder names like `{{CustomerName}}` instead of `{{C1}}`. T
 A regular, fully completed document without placeholders cannot be used as a template. CompanyGPT requires the `{{placeholder}}` markers to identify which parts should be dynamically replaced.
 :::
 
-### Uploading Templates
-
-Templates can be viewed in the **Templates** tab and uploaded in the **Upload Template** tab. Supported formats: `.docx`, `.xlsx`, `.potx`, `.pptx`
-
-Upload fields:
-
-- **Template Name** (required): Unique technical name (e.g. `invoice-template`)
-- **Display Name**: User-friendly name (e.g. `Invoice Template`)
-- **Description**: Brief description of the template's purpose
-- **Tags**: Comma-separated tags for better discoverability
-
-![Upload Template](vorlage-hochladen-en.png)
-
-:::note
-Admins can upload global templates that are visible to all users.
-:::
-
 ### Using Templates in Chat
 
 Once uploaded, reference the template in the chat and provide the data for the placeholders. CompanyGPT replaces all `{{placeholder}}` markers with the provided values and generates the finished document.

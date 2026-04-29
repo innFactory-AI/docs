@@ -122,7 +122,7 @@ Integration mit Microsoft Outlook für Kalender-Funktionen.
 **firecrawl_scrape (WebFetch)**
 Extrahiert Inhalte von Webseiten für die KI-Verarbeitung.
 
-**create_document (fileforge)**
+**create_document (companyFILES)**
 Erstellt und bearbeitet Dokumente in verschiedenen Formaten.
 
 :::hinweis[Performance-Monitoring]

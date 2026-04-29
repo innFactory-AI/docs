@@ -97,7 +97,7 @@ export default defineConfig({
 									translations: { en: 'Add-ons' },
 									items: [
 										{ label: 'companyRAG', translations: { en: 'companyRAG' }, slug: 'company-gpt/addons/companyrag' },
-										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/fileforge' },
+										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },
 									]

@@ -7,7 +7,6 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 
 ![companygpt ui](ui.png)
 
-
 ## Modellauswahl
 
 ![model-selection](model-selection.png)
@@ -25,6 +24,7 @@ Prompts lassen sich über Tastatur oder Mikrofon eingeben.
 <br>
 **Einstellungen der Integrationen:**
 ![ui-extensions](ui-extend.png)
+
 - [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
 - [Websuche](/de/company-gpt/integrationen/websuche/)
 - [Artefakte](/de/company-gpt/integrationen/artefakte/)
@@ -38,24 +38,16 @@ Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. 
 
 ![chat-verlauf](chat-verlauf.png)
 
-
 ## Seitenleiste
 
-
-<div style="display:flex; align-items:flex-start; gap:2rem; flex-wrap:wrap;">
-  <img src="/src/content/docs/de/company-gpt/sidebar-quick-selection.png" alt="sidebar-quick-selection" style="width:300px; height:auto; flex-shrink:0;">
-  <div style="flex:1; min-width:300px;">
-    <ol>
-      <li>Seitenleiste verbergen</li>
-      <li>Neuer Chat</li>
-      <li><a href="/de/company-gpt/user-interface/#chat-verlauf">Chat-Verlauf</a> und <a href="/de/company-gpt/agenten/#agenten-marktplatz">Agent Marketplace</a></li>
-      <li><a href="/de/company-gpt/agenten/">Erstellen und Bearbeiten von Agenten</a></li>
-      <li><a href="/de/company-gpt/prompts/">Promptvorlagen</a></li>
-      <li><a href="/de/company-gpt/erinnerungen/">Erinnerungen</a></li>
-      <li><a href="/de/company-gpt/lesezeichen">Lesezeichen</a></li>
-      <li><a href="/de/company-gpt/dateiverarbeitung/">Dateien</a></li>
-      <li><a href="/de/company-gpt/ki-einstellungen/">KI-Einstellungen</a></li>
-      <li><a href="/de/company-gpt/integrationen/mcp-server/">MCP-Einstellungen</a></li>
-    </ol>
-  </div>
-</div>
+- Seitenleiste verbergen
+- Neuer Chat
+- [Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf)
+- [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
+- [Agenten](/de/company-gpt/agenten/)
+- [Promptvorlagen](/de/company-gpt/prompts/)
+- [Erinnerungen](/de/company-gpt/erinnerungen/)
+- [Lesezeichen](/de/company-gpt/lesezeichen)
+- [Dateien](/de/company-gpt/dateiverarbeitung/)
+- [KI-Einstellungen](/de/company-gpt/ki-einstellungen/)
+- [MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)

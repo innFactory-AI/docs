@@ -37,6 +37,9 @@ export default defineConfig({
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
 			],
 			customCss: ['./src/styles/global.css', '@fontsource/sora/400.css', '@fontsource/sora/700.css'],
+			components: {
+				SocialIcons: './src/components/SocialIcons.astro',
+			},
 			logo: {
 				src: './src/assets/logo.svg',
 				alt: 'innFactory AI Dokumentation',

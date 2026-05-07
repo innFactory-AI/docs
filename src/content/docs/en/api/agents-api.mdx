@@ -1,0 +1,210 @@
+---
+title: Agents API
+description: Programmatic access to CompanyGPT agents via the Agents API – OpenAI-compatible and Open Responses API.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+The Agents API allows external applications, scripts, and services to communicate with CompanyGPT agents programmatically. CompanyGPT is based on [LibreChat](https://librechat.ai) and exposes two API-compatible interfaces.
+
+## Overview
+
+The Agents API provides two interfaces:
+
+- **OpenAI-compatible Chat Completions** — `POST /api/agents/v1/chat/completions`
+- **Open Responses API** — `POST /api/agents/v1/responses`
+
+Both interfaces are authenticated via API keys and support streaming responses, making it easy to integrate CompanyGPT agents into existing workflows that already use the OpenAI SDK or similar tooling.
+
+## Prerequisites
+
+To use the Agents API, the following prerequisites must be met:
+
+1. **API access must be enabled** — An administrator must enable the `remoteAgents` configuration.
+2. **Generate an API key** — Once access is enabled, you can create an API key in the CompanyGPT interface under Settings.
+3. **Find your agent ID** — Each agent has a unique ID (e.g. `agent_ulS_lcjGw...`) that you use as the `model` parameter.
+
+:::tip
+You can find the agent ID in the URL when you open an agent in CompanyGPT, or via the `GET /api/agents/v1/models` endpoint which lists all available agents as models.
+:::
+
+:::caution
+Agents that use MCP servers with OAuth authentication may **not** work via the API. OAuth flows require an interactive browser session, which cannot be performed through the API.
+:::
+
+## Authentication
+
+All requests to the Agents API must be authenticated with a Bearer token:
+
+```
+Authorization: Bearer sk-your-api-key
+```
+
+API keys are generated in the CompanyGPT interface and follow the format `sk-...`.
+
+## Endpoints
+
+### Chat Completions (OpenAI-compatible)
+
+```
+POST /api/agents/v1/chat/completions
+```
+
+Compatible with the OpenAI Chat Completions format. The `model` parameter corresponds to the agent ID.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const stream = await client.chat.completions.create({
+    model: "agent_ulS_lcjGw...", // Agent ID
+    messages: [
+        {
+            role: "user",
+            content: "What can you help me with?",
+        },
+    ],
+    stream: true,
+});
+
+let contentBuffer = "";
+const toolCalls = new Map();
+
+for await (const event of stream) {
+    const delta = event.choices?.[0]?.delta;
+    if (!delta) continue;
+
+    // Stream text content
+    if (delta.content) {
+        contentBuffer += delta.content;
+        process.stdout.write(delta.content);
+    }
+
+    // Handle tool calls
+    if (delta.tool_calls) {
+        for (const toolCall of delta.tool_calls) {
+            const toolId = toolCall.index || 0;
+            if (!toolCalls.has(toolId)) {
+                toolCalls.set(toolId, {
+                    id: toolCall.id,
+                    name: toolCall.function?.name || "",
+                    arguments: "",
+                });
+            }
+            if (toolCall.function?.arguments) {
+                toolCalls.get(toolId).arguments += toolCall.function.arguments;
+            }
+        }
+    }
+}
+
+console.log(`\nDone. Tool calls: ${toolCalls.size}`);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/chat/completions \
+  -H "Authorization: Bearer sk-your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "messages": [
+      {"role": "user", "content": "What can you help me with?"}
+    ],
+    "stream": true
+  }'
+```
+  </TabItem>
+</Tabs>
+
+### Open Responses API
+
+```
+POST /api/agents/v1/responses
+```
+
+The Open Responses API follows the [Open Responses standard](https://www.openresponses.org/) — an open inference standard designed for agentic workflows with native support for tool use, structured outputs, and streaming. This is the primary interface going forward.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const stream = await client.responses.create({
+    model: "agent_ulS_lcjGwTAG2Ly3zTcgz", // Agent ID
+    input: [
+        {
+            role: "user",
+            content: "What can you help me with?",
+        },
+    ],
+    stream: true,
+});
+
+for await (const event of stream) {
+    console.log(event);
+}
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
+  -H "Authorization: Bearer sk-your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "input": "What can you help me with?"
+  }'
+```
+  </TabItem>
+</Tabs>
+
+### List Available Agents
+
+```
+GET /api/agents/v1/models
+```
+
+Returns all agents accessible with your API key as a list of models.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const models = await client.models.list();
+console.log(models);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl https://<COMPANYGPT URL>/api/agents/v1/models \
+  -H "Authorization: Bearer sk-your-api-key"
+```
+  </TabItem>
+</Tabs>
+
+## Token Usage
+
+All Agents API requests are counted against the user's token balance (when token spending is configured). Both input and output tokens are tracked, including cache tokens for providers that support them (OpenAI, Anthropic).
+
+## Related Documentation
+
+- [Agents](/en/company-gpt/agenten) — Creating and configuring agents in CompanyGPT
+- [MCP Servers](/en/company-gpt/integrationen/mcp-server) — MCP server integrations

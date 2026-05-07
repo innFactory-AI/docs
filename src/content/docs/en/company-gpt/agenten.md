@@ -129,6 +129,14 @@ You can select the rights with which other users can access the agent.
 
 ![agent-share-rights](agent-share-rights-en.png)
 
+### Agents API
+
+Agents can also be accessed externally via the [Agents API](/en/api/agents-api/). The agent is automatically available to every owner via the API if general API access is enabled.
+
+![api-share](api-share.png)
+
+![api-share-details](api-share-details.png)
+
 ## Our agents
 
 At [**Agents**](/en/tutorials) you will find a selection of agents that we have developed for various use cases. You can use these directly or as a template for your own agents.

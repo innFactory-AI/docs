@@ -114,13 +114,6 @@ export default defineConfig({
 							]
 						},
 						{
-							label: 'API',
-							translations: { en: 'API' },
-							items: [
-								{ label: 'companyRAG API', translations: { en: 'companyRAG API' }, slug: 'api/company-rag-api' },
-							]
-						},
-						{
 							label: 'Prompt Engineering',
 							translations: { en: 'Prompt Engineering' },
 							items: [
@@ -146,25 +139,40 @@ export default defineConfig({
 						]
 					},
 					{
+						label: { de: 'API Referenz', en: 'API Reference' },
+						link: 'api',
+						icon: 'laptop',
+						items: [
+							{
+								label: 'API',
+								translations: { en: 'API' },
+								items: [
+									{ label: 'companyRAG API', translations: { en: 'companyRAG API' }, slug: 'api/company-rag-api' },
+									{ label: 'Agents API', translations: { en: 'Agents API' }, slug: 'api/agents-api' },
+								]
+							},
+						]
+					},
+					{
 						label: { de: 'Tutorials', en: 'Tutorials' },
 						link: 'tutorials',
 						icon: 'rocket',
 						items: [
-							{ 
+							{
 								label: 'Addons',
 								translations: { en: 'Addons' },
 								items: [
 									{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
 								]
 							},
-							{ 
+							{
 								label: 'MCP',
 								translations: { en: 'MCP' },
 								items: [
 									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
 								]
 							},
-							{ 
+							{
 								label: 'Agenten',
 								translations: { en: 'Agents' },
 								items: [
@@ -241,7 +249,7 @@ export default defineConfig({
 									},
 								]
 							}
-							
+
 						]
 					},
 				])

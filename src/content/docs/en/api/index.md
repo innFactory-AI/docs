@@ -7,4 +7,5 @@ Welcome to the API Reference. Here you'll find documentation for all available A
 
 ## APIs
 
-- [companyRAG API](/en/api/company-rag-api/) – API interface for the CompanyRAG Indexer
+- [CompanyRAG API](/en/api/company-rag-api/) – API interface for the CompanyRAG Indexer
+- [CompanyGPT Agents API](/de/api/agents-api/) - API for CompanyGPT Agents

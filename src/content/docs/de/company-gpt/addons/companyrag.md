@@ -137,9 +137,3 @@ Folgende spezialisierte Such-Tools für die RAG-Collection – von semantischer 
 Der MCP Server kann für einen erleichterten Umgang einem [Agenten](/de/company-gpt/agenten/) hinzugefügt werden.
 
 Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passender Anweisung finden Sie im Tutorial **[CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/).**
-
-## Upload zu CompanyRAG über n8n
-
-Wenn Sie das CompanyRAG Addon aktiviert haben, können Sie Dokumente auch über [n8n](https://innfactory.ai/de/leistungen/n8n/) automatisiert bereitstellen. CompanyRAG stellt mehrere API-Endpunkte bereit, die sich direkt in n8n-Workflows einbinden lassen – vom Formular-Upload bis zum CURL-basierten Batch-Import.
-
-Eine ausführliche Anleitung mit fertigen Workflow-Vorlagen und Endpunkt-Dokumentation finden Sie im Tutorial **[Upload zu CompanyRAG über n8n](/de/tutorials/addons/upload-companyrag-n8n/).**

@@ -139,90 +139,118 @@ export default defineConfig({
 						]
 					},
 					{
+						label: { de: 'API Referenz', en: 'API Reference' },
+						link: 'api',
+						icon: 'laptop',
+						items: [
+							{
+								label: 'API',
+								translations: { en: 'API' },
+								items: [
+									{ label: 'companyRAG API', translations: { en: 'companyRAG API' }, slug: 'api/company-rag-api' },
+									{ label: 'Agents API', translations: { en: 'Agents API' }, slug: 'api/agents-api' },
+								]
+							},
+						]
+					},
+					{
 						label: { de: 'Tutorials', en: 'Tutorials' },
 						link: 'tutorials',
 						icon: 'rocket',
 						items: [
-						{
-							label: 'Marketing & Content',
-							translations: { en: 'Marketing & Content' },
-							items: [
-								{ label: 'Copywriting-Experte', translations: { en: 'Copywriting Expert' }, slug: 'tutorials/agenten/copywriting' },
-								{ label: 'Content-Stratege', translations: { en: 'Content Strategist' }, slug: 'tutorials/agenten/content-strategy' },
-								{ label: 'Copy-Editor', translations: { en: 'Copy Editor' }, slug: 'tutorials/agenten/copy-editing' },
-								{ label: 'Social-Media-Content-Ersteller', translations: { en: 'Social Content Creator' }, slug: 'tutorials/agenten/social-content' },
+							{
+								label: 'Addons',
+								translations: { en: 'Addons' },
+								items: [
+									{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
+								]
+							},
+							{
+								label: 'MCP',
+								translations: { en: 'MCP' },
+								items: [
+									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
+								]
+							},
+							{
+								label: 'Agenten',
+								translations: { en: 'Agents' },
+								items: [
+									{
+										label: 'Marketing & Content',
+										translations: { en: 'Marketing & Content' },
+										items: [
+											{ label: 'Copywriting-Experte', translations: { en: 'Copywriting Expert' }, slug: 'tutorials/agenten/copywriting' },
+											{ label: 'Content-Stratege', translations: { en: 'Content Strategist' }, slug: 'tutorials/agenten/content-strategy' },
+											{ label: 'Copy-Editor', translations: { en: 'Copy Editor' }, slug: 'tutorials/agenten/copy-editing' },
+											{ label: 'Social-Media-Content-Ersteller', translations: { en: 'Social Content Creator' }, slug: 'tutorials/agenten/social-content' },
 
-								{ label: 'E-Mail-Sequenz-Designer', translations: { en: 'Email Sequence Designer' }, slug: 'tutorials/agenten/email-sequence' },
-								{ label: 'Cold-E-Mail-Verfasser', translations: { en: 'Cold Email Writer' }, slug: 'tutorials/agenten/cold-email' },
-								{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
-							]
-						},
-						{
-							label: 'Vertrieb & Wachstum',
-							translations: { en: 'Sales & Growth' },
-							items: [
-								{ label: 'Sales-Enablement-Assistent', translations: { en: 'Sales Enablement Assistant' }, slug: 'tutorials/agenten/sales-enablement' },
-								{ label: 'Launch-Stratege', translations: { en: 'Launch Strategist' }, slug: 'tutorials/agenten/launch-strategy' },
-								{ label: 'Preisstratege', translations: { en: 'Pricing Strategist' }, slug: 'tutorials/agenten/pricing-strategy' },
-	
-								{ label: 'A/B-Test-Planer', translations: { en: 'A/B Test Planner' }, slug: 'tutorials/agenten/ab-test-setup' },
-								{ label: 'Conversion-Rate-Optimierer', translations: { en: 'Conversion Rate Optimizer' }, slug: 'tutorials/agenten/page-cro' },
-	
-							]
-						},
-						{
-							label: 'Produktivität & Büro',
-							translations: { en: 'Productivity & Office' },
-							items: [
-								{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
-								{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
-								{ label: 'Meeting-Insights-Analysator', translations: { en: 'Meeting Insights Analyzer' }, slug: 'tutorials/agenten/meeting-insights-analyzer' },
-								{ label: 'Authentic Message Composer', translations: { en: 'Authentic Message Composer' }, slug: 'tutorials/agenten/authentic-message-composer' },
-								{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
-								{ label: 'Confluence Architect', translations: { en: 'Confluence Architect' }, slug: 'tutorials/agenten/confluence-architect' },
-								{ label: 'Text Translator', translations: { en: 'Text Translator' }, slug: 'tutorials/agenten/text-translator' },
-								{ label: 'Jargon Killer', translations: { en: 'Jargon Killer' }, slug: 'tutorials/agenten/jargon-killer' },
-							]
-						},
-						{
-							label: 'Strategie & Analyse',
-							translations: { en: 'Strategy & Analysis' },
-							items: [
-								{ label: '80/20 Analyst', translations: { en: '80/20 Analyst' }, slug: 'tutorials/agenten/8020-analyst' },
-								{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator' }, slug: 'tutorials/agenten/brainstorming' },
-	
-								{ label: 'Fake News Checker', translations: { en: 'Fake News Checker' }, slug: 'tutorials/agenten/fake-news-checker' },
-								{ label: 'Direct Technical Analyst', translations: { en: 'Direct Technical Analyst' }, slug: 'tutorials/agenten/direct-technical-analyst' },
-								{ label: 'RFP Assistant', translations: { en: 'RFP Assistant' }, slug: 'tutorials/agenten/rfp-assistant' },
-							]
-						},
-						{
-							label: 'Technik & Automatisierung',
-							translations: { en: 'Tech & Automation' },
-							items: [
-								{ label: 'Code Janitor', translations: { en: 'Code Janitor' }, slug: 'tutorials/agenten/code-janitor' },
-								{ label: 'Rechner Agent', translations: { en: 'Calculator Agent' }, slug: 'tutorials/agenten/rechner-agent' },
-								{ label: 'n8n Workflow Architect', translations: { en: 'n8n Workflow Architect' }, slug: 'tutorials/agenten/n8n-workflow-architect' },
-								{ label: 'Runbook Navigator', translations: { en: 'Runbook Navigator' }, slug: 'tutorials/agenten/runbook-navigator' },
-							]
-						},
-						{
-							label: 'Coaching & Simulation',
-							translations: { en: 'Coaching & Simulation' },
-							items: [
-								{ label: 'Socratic Coach', translations: { en: 'Socratic Coach' }, slug: 'tutorials/agenten/socratic-coach' },
-								{ label: 'Tough Customer Simulator', translations: { en: 'Tough Customer Simulator' }, slug: 'tutorials/agenten/tough-customer-simulator' },
-							]
-						},
-						{
-							label: 'Addons nutzen',
-							translations: { en: 'Using add-ons' },
-							items: [
-								{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
-								{ label: 'Upload zu CompanyRAG über n8n', translations: { en: 'Upload to CompanyRAG via n8n' }, slug: 'tutorials/addons/upload-companyrag-n8n' },
-							]
-						},
-					]
+											{ label: 'E-Mail-Sequenz-Designer', translations: { en: 'Email Sequence Designer' }, slug: 'tutorials/agenten/email-sequence' },
+											{ label: 'Cold-E-Mail-Verfasser', translations: { en: 'Cold Email Writer' }, slug: 'tutorials/agenten/cold-email' },
+											{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
+										]
+									},
+									{
+										label: 'Vertrieb & Wachstum',
+										translations: { en: 'Sales & Growth' },
+										items: [
+											{ label: 'Sales-Enablement-Assistent', translations: { en: 'Sales Enablement Assistant' }, slug: 'tutorials/agenten/sales-enablement' },
+											{ label: 'Launch-Stratege', translations: { en: 'Launch Strategist' }, slug: 'tutorials/agenten/launch-strategy' },
+											{ label: 'Preisstratege', translations: { en: 'Pricing Strategist' }, slug: 'tutorials/agenten/pricing-strategy' },
+
+											{ label: 'A/B-Test-Planer', translations: { en: 'A/B Test Planner' }, slug: 'tutorials/agenten/ab-test-setup' },
+											{ label: 'Conversion-Rate-Optimierer', translations: { en: 'Conversion Rate Optimizer' }, slug: 'tutorials/agenten/page-cro' },
+
+										]
+									},
+									{
+										label: 'Produktivität & Büro',
+										translations: { en: 'Productivity & Office' },
+										items: [
+											{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
+											{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
+											{ label: 'Meeting-Insights-Analysator', translations: { en: 'Meeting Insights Analyzer' }, slug: 'tutorials/agenten/meeting-insights-analyzer' },
+											{ label: 'Authentic Message Composer', translations: { en: 'Authentic Message Composer' }, slug: 'tutorials/agenten/authentic-message-composer' },
+											{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
+											{ label: 'Confluence Architect', translations: { en: 'Confluence Architect' }, slug: 'tutorials/agenten/confluence-architect' },
+											{ label: 'Text Translator', translations: { en: 'Text Translator' }, slug: 'tutorials/agenten/text-translator' },
+											{ label: 'Jargon Killer', translations: { en: 'Jargon Killer' }, slug: 'tutorials/agenten/jargon-killer' },
+										]
+									},
+									{
+										label: 'Strategie & Analyse',
+										translations: { en: 'Strategy & Analysis' },
+										items: [
+											{ label: '80/20 Analyst', translations: { en: '80/20 Analyst' }, slug: 'tutorials/agenten/8020-analyst' },
+											{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator' }, slug: 'tutorials/agenten/brainstorming' },
+
+											{ label: 'Fake News Checker', translations: { en: 'Fake News Checker' }, slug: 'tutorials/agenten/fake-news-checker' },
+											{ label: 'Direct Technical Analyst', translations: { en: 'Direct Technical Analyst' }, slug: 'tutorials/agenten/direct-technical-analyst' },
+											{ label: 'RFP Assistant', translations: { en: 'RFP Assistant' }, slug: 'tutorials/agenten/rfp-assistant' },
+										]
+									},
+									{
+										label: 'Technik & Automatisierung',
+										translations: { en: 'Tech & Automation' },
+										items: [
+											{ label: 'Code Janitor', translations: { en: 'Code Janitor' }, slug: 'tutorials/agenten/code-janitor' },
+											{ label: 'Rechner Agent', translations: { en: 'Calculator Agent' }, slug: 'tutorials/agenten/rechner-agent' },
+											{ label: 'n8n Workflow Architect', translations: { en: 'n8n Workflow Architect' }, slug: 'tutorials/agenten/n8n-workflow-architect' },
+											{ label: 'Runbook Navigator', translations: { en: 'Runbook Navigator' }, slug: 'tutorials/agenten/runbook-navigator' },
+										]
+									},
+									{
+										label: 'Coaching & Simulation',
+										translations: { en: 'Coaching & Simulation' },
+										items: [
+											{ label: 'Socratic Coach', translations: { en: 'Socratic Coach' }, slug: 'tutorials/agenten/socratic-coach' },
+											{ label: 'Tough Customer Simulator', translations: { en: 'Tough Customer Simulator' }, slug: 'tutorials/agenten/tough-customer-simulator' },
+										]
+									},
+								]
+							}
+
+						]
 					},
 				])
 			],

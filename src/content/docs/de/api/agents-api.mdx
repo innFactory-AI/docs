@@ -1,0 +1,210 @@
+---
+title: Agents API
+description: Programmatischer Zugriff auf CompanyGPT-Agenten über die Agents API – OpenAI-kompatibel und Open Responses API.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Die Agents API ermöglicht es externen Anwendungen, Skripten und Diensten, mit CompanyGPT-Agenten programmatisch zu kommunizieren. CompanyGPT stellt zwei OpenAI-kompatible Schnittstellen bereit.
+
+## Übersicht
+
+Die Agents API bietet zwei Schnittstellen:
+
+- **OpenAI-kompatible Chat Completions** — `POST /api/agents/v1/chat/completions`
+- **Open Responses API** — `POST /api/agents/v1/responses`
+
+Beide Schnittstellen werden per API-Key authentifiziert und unterstützen Streaming-Antworten. Sie lassen sich damit nahtlos in bestehende Workflows integrieren, die bereits das OpenAI SDK oder ähnliche Bibliotheken verwenden.
+
+## Voraussetzungen
+
+Um die Agents API nutzen zu können, müssen folgende Voraussetzungen erfüllt sein:
+
+1. **API-Zugriff muss aktiviert sein** — Ein Administrator muss die `remoteAgents`-Konfiguration aktivieren.
+2. **API-Key generieren** — Sobald der Zugriff aktiviert ist, kannst du in der CompanyGPT-Oberfläche unter den Einstellungen einen API-Key erstellen.
+3. **Agenten-ID ermitteln** — Jeder Agent hat eine eindeutige ID (z. B. `agent_ulS_lcjGw...`), die du als `model`-Parameter verwendest.
+
+:::tip
+Die Agenten-ID findest du in der URL, wenn du einen Agenten in CompanyGPT öffnest, oder über den Endpunkt `GET /api/agents/v1/models`, der alle verfügbaren Agenten als Modelle auflistet.
+:::
+
+:::caution
+Agenten, die MCP-Server mit OAuth-Authentifizierung verwenden, funktionieren möglicherweise **nicht** über die API. OAuth-Flows erfordern eine interaktive Browser-Sitzung, die per API nicht durchgeführt werden kann.
+:::
+
+## Authentifizierung
+
+Alle Anfragen an die Agents API müssen mit einem Bearer-Token authentifiziert werden:
+
+```
+Authorization: Bearer sk-dein-api-key
+```
+
+API-Keys werden in der CompanyGPT-Oberfläche generiert und haben das Format `sk-...`.
+
+## Endpunkte
+
+### Chat Completions (OpenAI-kompatibel)
+
+```
+POST /api/agents/v1/chat/completions
+```
+
+Kompatibel mit dem OpenAI Chat Completions Format. Der `model`-Parameter entspricht der Agenten-ID.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-dein-api-key",
+});
+
+const stream = await client.chat.completions.create({
+    model: "agent_ulS_lcjGw...", // Agenten-ID
+    messages: [
+        {
+            role: "user",
+            content: "Was kannst du für mich tun?",
+        },
+    ],
+    stream: true,
+});
+
+let contentBuffer = "";
+const toolCalls = new Map();
+
+for await (const event of stream) {
+    const delta = event.choices?.[0]?.delta;
+    if (!delta) continue;
+
+    // Textinhalt streamen
+    if (delta.content) {
+        contentBuffer += delta.content;
+        process.stdout.write(delta.content);
+    }
+
+    // Tool-Aufrufe verarbeiten
+    if (delta.tool_calls) {
+        for (const toolCall of delta.tool_calls) {
+            const toolId = toolCall.index || 0;
+            if (!toolCalls.has(toolId)) {
+                toolCalls.set(toolId, {
+                    id: toolCall.id,
+                    name: toolCall.function?.name || "",
+                    arguments: "",
+                });
+            }
+            if (toolCall.function?.arguments) {
+                toolCalls.get(toolId).arguments += toolCall.function.arguments;
+            }
+        }
+    }
+}
+
+console.log(`\nFertig. Tool-Aufrufe: ${toolCalls.size}`);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/chat/completions \
+  -H "Authorization: Bearer sk-dein-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "messages": [
+      {"role": "user", "content": "Was kannst du für mich tun?"}
+    ],
+    "stream": true
+  }'
+```
+  </TabItem>
+</Tabs>
+
+### Open Responses API
+
+```
+POST /api/agents/v1/responses
+```
+
+Die Open Responses API folgt dem [Open Responses Standard](https://www.openresponses.org/) – einem offenen Inferenz-Standard, der für agentische Workflows entwickelt wurde und nativ Tool-Nutzung, strukturierte Ausgaben und Streaming unterstützt. Dies ist die primäre Schnittstelle für die Zukunft.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-dein-api-key",
+});
+
+const stream = await client.responses.create({
+    model: "agent_ulS_lcjGwTAG2Ly3zTcgz", // Agenten-ID
+    input: [
+        {
+            role: "user",
+            content: "Was kannst du für mich tun?",
+        },
+    ],
+    stream: true,
+});
+
+for await (const event of stream) {
+    console.log(event);
+}
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
+  -H "Authorization: Bearer sk-dein-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "input": "Was kannst du für mich tun?"
+  }'
+```
+  </TabItem>
+</Tabs>
+
+### Verfügbare Agenten abrufen
+
+```
+GET /api/agents/v1/models
+```
+
+Gibt alle für deinen API-Key zugänglichen Agenten als Modell-Liste zurück.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-dein-api-key",
+});
+
+const models = await client.models.list();
+console.log(models);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl https://<COMPANYGPT URL>/api/agents/v1/models \
+  -H "Authorization: Bearer sk-dein-api-key"
+```
+  </TabItem>
+</Tabs>
+
+## Token-Verbrauch
+
+Alle Anfragen an die Agents API werden gegen das Token-Guthaben des Benutzers verrechnet (sofern Token-Spending konfiguriert ist). Sowohl Eingabe- als auch Ausgabe-Tokens werden gezählt, inklusive Cache-Tokens bei unterstützten Anbietern (OpenAI, Anthropic).
+
+## Verwandte Dokumentation
+
+- [Agenten](/de/company-gpt/agenten) — Agenten in CompanyGPT erstellen und konfigurieren
+- [MCP Server](/de/company-gpt/integrationen/mcp-server) — MCP-Server-Integrationen

@@ -5,6 +5,8 @@ dist/
 
 .vscode/
 
+out/*
+.next/
 # dependencies
 node_modules/
 

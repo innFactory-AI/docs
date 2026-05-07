@@ -1,6 +1,6 @@
 ---
 title: Tutorials
-description: Agenten-Vorlagen und Anleitungen für Marketing, Vertrieb, Produktivität, Strategie und mehr.
+description: Agenten-Vorlagen und Anleitungen für Marketing, Vertrieb, Produktivität, Strategie, MCP und mehr.
 ---
 
 In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen rund um den CompanyGPT. Alle Agenten können direkt unter [Agenten](/de/company-gpt/agenten/) angelegt werden.
@@ -70,3 +70,7 @@ Agenten zum Üben und Trainieren von Kommunikation und Problemlösung.
 
 - [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
 - [Upload zu CompanyRAG über n8n](/de/tutorials/addons/upload-companyrag-n8n/) – Dokumente per n8n-Workflow bereitstellen
+
+## MCP Anbindungen
+
+- [Confluence anbinden] (/de/tutorials/MCP/connect_confluence/) – Nutzung des Atlassian Rovo MCP Servers

@@ -155,6 +155,13 @@ export default defineConfig({
 								]
 							},
 							{ 
+								label: 'MCP',
+								translations: { en: 'MCP' },
+								items: [
+									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
+								]
+							},
+							{ 
 								label: 'Agenten',
 								translations: { en: 'Agents' },
 								items: [
@@ -230,14 +237,8 @@ export default defineConfig({
 										]
 									},
 								]
-							},
-							{ 
-								label: 'MCP',
-								translations: { en: 'MCP' },
-								items: [
-									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
-								]
-							},
+							}
+							
 						]
 					},
 				])

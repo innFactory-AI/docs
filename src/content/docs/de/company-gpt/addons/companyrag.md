@@ -117,7 +117,7 @@ Unterstützte Formate: PDF, DOCX, DOC, TXT, MD, RTF, HTML, HTM, XML, CSV, JSON, 
 ## CompanyRAG in CompanyGPT
 
 Über den [MCP Server](/de/company-gpt/integrationen/mcp-server/) `ai-search` lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle (dem Nutzer zur Verfügung stehenden) Sammlungen zu durchsuchen
-(s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/)).
+(s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)).
 
 Folgende spezialisierte Such-Tools für die RAG-Collection – von semantischer Suche über Dokument-Abruf bis zur Metadaten-Filterung – stehen dabei zur Verfügung:
 

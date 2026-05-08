@@ -150,6 +150,28 @@ Use descriptive placeholder names like `{{CustomerName}}` instead of `{{C1}}`. T
 A regular, fully completed document without placeholders cannot be used as a template. CompanyGPT requires the `{{placeholder}}` markers to identify which parts should be dynamically replaced.
 :::
 
+# Advanced Template Syntax
+
+Besides simple `{{placeholder}}` markings, Word templates support advanced expression syntax for dynamic content such as loops to create rows in tables.
+
+## Table Loops in Word
+
+Loops in Word tables are controlled via dedicated rows. The `FOR` and `END-FOR` commands are placed in their own table rows respectively:
+
+| Name | Since Joined |
+|---|---|
+| `{FOR person IN people}` | |
+| `{= $person.name}` | `{= $person.joiningYear}` |
+| `{END-FOR person}` | |
+
+- The **FOR row** marks the loop start – it is removed during rendering.
+- The **body row** is duplicated for each entry in the array.
+- The **END-FOR row** closes the loop – it is also removed.
+
+:::caution
+The `FOR` and `END-FOR` rows must be **complete table rows** – place the command in the first cell, the remaining cells of the row stay empty. Commands within a cell of a regular row do not function as loop control.
+:::
+
 ### Using Templates in Chat
 
 Once uploaded, reference the template in the chat and provide the data for the placeholders. CompanyGPT replaces all `{{placeholder}}` markers with the provided values and generates the finished document.

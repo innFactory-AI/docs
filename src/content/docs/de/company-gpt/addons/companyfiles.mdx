@@ -164,6 +164,28 @@ Verwenden Sie aussagekräftige Platzhalternamen wie `{{Kundenname}}` statt `{{K1
 Ein normales, fertig ausgefülltes Dokument ohne Platzhalter kann nicht als Vorlage verwendet werden. CompanyGPT benötigt die `{{Platzhalter}}`-Markierungen, um zu erkennen, welche Stellen dynamisch ersetzt werden sollen.
 :::
 
+### Erweiterte Vorlagen-Syntax
+
+Neben einfachen `{{Platzhalter}}`-Markierungen unterstützen Word-Vorlagen eine erweiterte Ausdrucks-Syntax für dynamische Inhalte wie beispielsweise Schleifen, um Zeilen in Tabellen zu erstellen. 
+
+#### Tabellen-Schleifen in Word
+
+Schleifen in Word-Tabellen werden über dedizierte Zeilen gesteuert. Die `FOR`- und `END-FOR`-Befehle stehen jeweils in einer eigenen Tabellenzeile:
+
+| Name | Eingetreten seit |
+|---|---|
+| `{FOR person IN personen}` | |
+| `{= $person.name}` | `{= $person.eintrittsjahr}` |
+| `{END-FOR person}` | |
+
+- Die **FOR-Zeile** markiert den Schleifenbeginn – sie wird beim Rendern entfernt.
+- Die **Körper-Zeile** wird für jeden Eintrag im Array dupliziert.
+- Die **END-FOR-Zeile** schließt die Schleife ab – sie wird ebenfalls entfernt.
+
+:::caution
+Die `FOR`- und `END-FOR`-Zeilen müssen **vollständige Tabellenzeilen** sein – platzieren Sie den Befehl in der ersten Zelle, die restlichen Zellen der Zeile bleiben leer. Befehle innerhalb einer Zelle einer normalen Zeile funktionieren nicht als Schleifensteuerung.
+:::
+
 ### Vorlage im Chat verwenden
 
 Nach dem Hochladen referenzieren Sie die Vorlage im Chat und geben die Daten für die Platzhalter an. CompanyGPT ersetzt alle `{{Platzhalter}}` mit den bereitgestellten Werten und generiert das fertige Dokument.

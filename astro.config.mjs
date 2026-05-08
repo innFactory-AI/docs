@@ -172,9 +172,25 @@ export default defineConfig({
 									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
 								]
 							},
-							{
-								label: 'Agenten',
-								translations: { en: 'Agents' },
+						{
+							label: 'Skills',
+							translations: { en: 'Skills' },
+							items: [
+								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
+								{ label: 'Charts & Diagramme', translations: { en: 'Charts & Diagrams' }, slug: 'tutorials/skills/files/charts-diagram-skill' },
+								{ label: 'Konvertierung', translations: { en: 'Convert' }, slug: 'tutorials/skills/files/convert-skill' },
+								{ label: 'Excel', translations: { en: 'Excel' }, slug: 'tutorials/skills/files/excel-skill' },
+								{ label: 'Dateiverwaltung', translations: { en: 'File Management' }, slug: 'tutorials/skills/files/file-management-skill' },
+								{ label: 'PDF', translations: { en: 'PDF' }, slug: 'tutorials/skills/files/pdf-skill' },
+								{ label: 'PowerPoint', translations: { en: 'PowerPoint' }, slug: 'tutorials/skills/files/powerpoint-skill' },
+								{ label: 'Einstellungen & UI', translations: { en: 'Settings & UI' }, slug: 'tutorials/skills/files/settings-ui-skill' },
+								{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'tutorials/skills/files/templates-skill' },
+								{ label: 'Word & ODT', translations: { en: 'Word & ODT' }, slug: 'tutorials/skills/files/word-odt-skill' },
+							]
+						},
+						{
+							label: 'Agenten',
+							translations: { en: 'Agents' },
 								items: [
 									{
 										label: 'Marketing & Content',

@@ -65,3 +65,13 @@ Von hier aus können Sie den Skill:
 :::note
 Die **Beschreibung** legt fest, wann der Skill automatisch aktiviert wird. Formulieren Sie sie so, dass der Assistent den richtigen Anwendungsfall erkennt.
 :::
+
+## Skills zu Agenten hinzufügen
+
+Skills können auch direkt einem [Agenten](/de/company-gpt/agenten/) zugewiesen werden. Öffnen Sie dazu die Agenten-Einstellungen und aktivieren Sie den **Skills**-Toggle. Standardmäßig hat der Agent Zugriff auf den gesamten Skill-Katalog.
+
+![Skills-Toggle in den Agenten-Einstellungen aktivieren](./skills-agent-enable-de.png)
+
+Über **Add Skills** können Sie gezielt einzelne Skills auswählen, die der Agent verwenden darf. So lässt sich der Funktionsumfang eines Agenten präzise steuern.
+
+![Skill-Katalog zum Hinzufügen von Skills zu einem Agenten](./skills-agent-add-de.png)

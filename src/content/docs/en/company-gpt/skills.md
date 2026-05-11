@@ -65,3 +65,13 @@ Open a skill and click **Edit** to adjust name, description, instructions, and c
 :::note
 The **Description** determines when the skill is activated automatically. Write it so the assistant can recognize the correct use case.
 :::
+
+## Adding skills to agents
+
+Skills can also be assigned directly to an [agent](/en/company-gpt/agents/). Open the agent settings and enable the **Skills** toggle. By default, the agent has access to the full skill catalog.
+
+![Enabling the Skills toggle in the agent settings](./skills-agent-enable-en.png)
+
+Click **Add Skills** to select specific skills that the agent is allowed to use. This lets you precisely control an agent's capabilities.
+
+![Skill catalog for adding skills to an agent](./skills-agent-add-en.png)

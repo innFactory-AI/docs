@@ -133,9 +133,3 @@ Required parameters: filter (JSON object with operators $and, $or, $not), collec
 The MCP server can be added to an [agent](/en/company-gpt/agenten/) for easier use.
 
 A step-by-step guide for setting up a search agent with a suitable instruction can be found in the tutorial **[Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/).**
-
-## Upload to CompanyRAG via n8n
-
-If you have activated the CompanyRAG add-on, you can also provide documents automatically via [n8n](https://innfactory.ai/de/leistungen/n8n/). CompanyRAG provides several API endpoints that can be integrated directly into n8n workflows – from form uploads to CURL-based batch imports.
-
-A detailed guide with ready-made workflow templates and endpoint documentation can be found in the tutorial **[Upload to CompanyRAG via n8n](/en/tutorials/addons/upload-companyrag-n8n/).**

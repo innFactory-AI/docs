@@ -15,15 +15,15 @@ export default defineConfig({
 	},
 	integrations: [
 		starlight({
-			// head: [
-			// 	{
-			// 		tag: 'script',
-			// 		attrs: {
-			// 			src: '/src/analytics.js',
-			// 			async: true,
-			// 		},
-			// 	}
-			// ],			
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						src: '/scripts/skill-download.js',
+						defer: true,
+					},
+				},
+			],
 			title: { de: 'CompanyGPT Dokumentation', en: 'CompanyGPT Documentation' },
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'

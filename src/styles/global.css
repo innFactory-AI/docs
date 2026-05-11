@@ -171,3 +171,34 @@
 		color: hsl(var(--sl-hue-orange), 82%, 40%);
 	}
 }
+
+/* Skill Download Button */
+.skill-download-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 1rem 0;
+	padding: 0.5rem 1rem;
+	background: transparent;
+	color: var(--sl-color-accent);
+	border: 1px solid var(--sl-color-accent);
+	border-radius: 0.5rem;
+	font-family: var(--sl-font);
+	font-size: 0.875rem;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background 0.2s, color 0.2s;
+	text-decoration: none;
+}
+
+.skill-download-btn:hover,
+.skill-download-btn:focus {
+	background: var(--sl-color-accent);
+	color: var(--sl-color-text-invert);
+	outline: none;
+}
+
+.skill-download-btn svg {
+	width: 1em;
+	height: 1em;
+}

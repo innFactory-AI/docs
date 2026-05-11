@@ -1,0 +1,304 @@
+src/content/docs/de/company-gpt/erinnerungen.md:Wenn [Erinnerungen aktiviert](/de/company-gpt/einstellungen/#gespeicherte-erinnerungen-verwenden) sind, dann kann sich CompanyGPT über einzelne Unterhaltungen hinweg an Fakten, Vorlieben und Projektdetails erinnern. Das macht Ihre Interaktionen nicht nur persönlicher und relevanter, sondern auch deutlich effizienter.
+src/content/docs/de/company-gpt/chat.md:Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht)
+src/content/docs/de/company-gpt/chat.md:- [Websuche](/de/company-gpt/integrationen/websuche)
+src/content/docs/de/company-gpt/chat.md:- [Dateisuche](/de/company-gpt/integrationen/dateisuche)
+src/content/docs/de/company-gpt/chat.md:- [Artefakte](/de/company-gpt/integrationen/artefakte)
+src/content/docs/de/company-gpt/chat.md:- [MCP Server](/de/company-gpt/integrationen/mcp-server)
+src/content/docs/de/company-gpt/chat.md:- **Vorlesen**: Über [Text-zu-Sprache](/de/company-gpt/einstellungen/#text-zu-sprache) kann die Nachricht über die eingestellte Engine vorgelesen werden.
+src/content/docs/de/company-gpt/chat.md:Nachrichtenverläufe können auch exportiert werden. Das hat den Vorteil, dass sie in unterschiedlichen Formaten als Datei gespeichert werden können. Verläufe im JSON-Format können ebenfalls wieder [importiert](/de/company-gpt/einstellungen/#konversationen-importieren) werden.
+src/content/docs/de/company-gpt/addons/companyrag.md:Mit dem CompanyRAG Addon können Sie große Mengen an Dokumenten für Ihre Agenten über die MCP-Schnittstelle verfügbar machen. Die Dokumente können aus unterschiedlichen Quellen indexiert werden und über die [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag)-Methodik integriert werden. Es gibt hierbei keine Limitierung was die Länge der einzelnen Dokumente oder die Gesamtzahl angeht.
+src/content/docs/de/company-gpt/addons/companyrag.md:Über den [MCP Server](/de/company-gpt/integrationen/mcp-server/) `ai-search` lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle (dem Nutzer zur Verfügung stehenden) Sammlungen zu durchsuchen
+src/content/docs/de/company-gpt/addons/companyrag.md:(s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)).
+src/content/docs/de/company-gpt/addons/companyrag.md:Der MCP Server kann für einen erleichterten Umgang einem [Agenten](/de/company-gpt/agenten/) hinzugefügt werden.
+src/content/docs/de/company-gpt/addons/companyrag.md:Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passender Anweisung finden Sie im Tutorial **[CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/).**
+src/content/docs/de/company-gpt/user-interface.md:Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl).
+src/content/docs/de/company-gpt/user-interface.md:**[Dateien](/de/company-gpt/dateiverarbeitung/) hinzufügen:**
+src/content/docs/de/company-gpt/user-interface.md:- [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
+src/content/docs/de/company-gpt/user-interface.md:- [Websuche](/de/company-gpt/integrationen/websuche/)
+src/content/docs/de/company-gpt/user-interface.md:- [Artefakte](/de/company-gpt/integrationen/artefakte/)
+src/content/docs/de/company-gpt/user-interface.md:- [MCP Server](/de/company-gpt/integrationen/mcp-server/)
+src/content/docs/de/company-gpt/user-interface.md:- [Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf)
+src/content/docs/de/company-gpt/user-interface.md:- [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
+src/content/docs/de/company-gpt/user-interface.md:- [Agenten](/de/company-gpt/agenten/)
+src/content/docs/de/company-gpt/user-interface.md:- [Promptvorlagen](/de/company-gpt/prompts/)
+src/content/docs/de/company-gpt/user-interface.md:- [Erinnerungen](/de/company-gpt/erinnerungen/)
+src/content/docs/de/company-gpt/user-interface.md:- [Lesezeichen](/de/company-gpt/lesezeichen)
+src/content/docs/de/company-gpt/user-interface.md:- [Dateien](/de/company-gpt/dateiverarbeitung/)
+src/content/docs/de/company-gpt/user-interface.md:- [KI-Einstellungen](/de/company-gpt/ki-einstellungen/)
+src/content/docs/de/company-gpt/user-interface.md:- [MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)
+src/content/docs/de/company-gpt/integrationen/dateisuche.md:Weitere Informationen hier: [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/)
+src/content/docs/de/company-gpt/integrationen/dateisuche.md:Die Dateien werden nicht in Gänze dem Kontext hinzugefügt, sondern es werden nur passende Inhalte durch Ähnlichkeitssuche zurückgegeben. Diese Funktionsweise nennt sich [**RAG - Retrieval Augmented Generation**](/de/prompt-engineering/prompt-techniken/rag) und erweitert das Wissen von KI und KI-Agenten im CompanyGPT um domänenspezifische, interne oder auch geheime Dokumente. Dabei wird der Inhalt über ein KI-Modell in Embeddings (Vektoren) umgewandelt. Bei Suchen wird wiederum die Suchanfrage ebenfalls in Vektoren umgewandelt und mathematisch die Nähe berechnet. Dadurch kann man **inhaltliche Nähe** sehr viel besser als beispielsweise über eine Volltextsuche abbilden. 
+src/content/docs/de/company-gpt/integrationen/mcp-server.md:Mehr Informationen zu MCP finden Sie hier: [Prompt Engineering / MCP](/de/prompt-engineering/prompt-techniken/tool-use#das-mcp-model-context-protocol-als-tool)
+src/content/docs/de/company-gpt/integrationen/mcp-server.md:Bei erfolgreicher Initialisierung wird der MCP Server in der rechten Seitenleiste nun in der Übersicht angezeigt und kann über den [Chat](/de/company-gpt/chat/#integrationen) oder in [Agenten](/de/company-gpt/agenten/) genutzt werden.
+src/content/docs/de/company-gpt/agenten.md:Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht). Besonders bei Agenten bietet es sich an, strukturierte und sauber formatierte Prompts zu verwenden.
+src/content/docs/de/company-gpt/agenten.md:Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführliche Beschreibung finden Sie hier: [KI Einstellungen](/de/company-gpt/ki-einstellungen)
+src/content/docs/de/company-gpt/agenten.md:Weitere Informationen zur Websuche finden Sie hier: [Websuche](/de/company-gpt/integrationen/websuche).
+src/content/docs/de/company-gpt/agenten.md:Mehr Informationen zu Artefakten finden Sie hier: [Artefakte](/de/company-gpt/integrationen/artefakte).
+src/content/docs/de/company-gpt/agenten.md:Weitere Informationen unter [Prompt Engineering / RAG](/de/prompt-engineering/prompt-techniken/rag)
+src/content/docs/de/company-gpt/agenten.md:Agenten können auch von außen über die [Agents API](/de/api/agents-api/). Der Agent steht jedem Besitzer automatisch über die API zur Verfügung, wenn der generelle API Zugriff aktiviert ist. 
+src/content/docs/de/company-gpt/agenten.md:Unter [**Agenten**](/de/tutorials) finden Sie eine Auswahl an Agenten, die wir für verschiedene Anwendungsfälle entwickelt haben. Diese können Sie direkt nutzen oder als Vorlage für Ihre eigenen Agenten verwenden.
+src/content/docs/de/company-gpt/prompts.md:Promptvorlagen können sehr effektiv für wiederkehrende Aufgaben, für [Prompt-Chaining](/de/prompt-engineering/prompt-techniken/prompt-chaining) oder in Verbindung mit [Agenten](/de/company-gpt/agenten/) genutzt werden.
+src/content/docs/de/company-gpt/dateiverarbeitung.md:Dokumente können auch für die Dateisuche hochgeladen werden. Dabei werden die Inhalte indexiert und in der Datenbank gespeichert. Diese können dann durch die KI-Modelle bei Bedarf durchsucht und die Antworten durch die Ergebnisse angereichert werden. Informationen zur Funktionsweise finden Sie hier: [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
+src/content/docs/de/company-gpt/dateiverarbeitung.md:**Limitierung**: Die Dokumente sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/de/company-gpt/agenten) oder auch über [companyRAG](/de/company-gpt/addons/companyrag) integriert werden.
+src/content/docs/de/prompt-engineering/prompt-techniken/rag.md:Wie bereits erläutert, kann RAG als eine spezialisierte Art von "Tool" innerhalb eines umfassenderen [Tool-Use-Frameworks](/de/prompt-engineering/prompt-techniken/tool-use) betrachtet werden. Während allgemeine Tools Aktionen ausführen (wie das Senden einer E-Mail oder das Aktualisieren einer Datenbank) oder Echtzeitdaten abrufen können, besteht die primäre Funktion von RAG in der **Informationsbeschaffung für die kontextuelle Textgenerierung**. Es ist speziell darauf ausgelegt:
+src/content/docs/de/prompt-engineering/prompt-techniken/uebersicht.md:- [Prompt vernünftig strukturiert](/de/prompt-engineering/prompts-strukturieren)
+src/content/docs/de/prompt-engineering/prompt-techniken/uebersicht.md:- [Prompt formatiert, um Akzente in den Anweisungen zu setzen](/de/prompt-engineering/prompts-formatieren)
+src/content/docs/de/prompt-engineering/prompt-techniken/uebersicht.md:- [Few-Shot-Beispiele](/de/prompt-engineering/prompt-techniken/few-shot) für mögliche Eingaben und Antworten
+src/content/docs/de/prompt-engineering/prompt-techniken/uebersicht.md:- [Tool-Use](/de/prompt-engineering/prompt-techniken/tool-use/), um Informationen zu beschaffen, Aktionen auszuführen, oftmals auch über [MCP](/de/prompt-engineering/prompt-techniken/tool-use/#das-mcp-model-context-protocol-als-tool)
+src/content/docs/de/prompt-engineering/prompt-techniken/uebersicht.md:- [RAG](/de/prompt-engineering/prompt-techniken/rag/) für internes Wissen
+src/content/docs/de/index.mdx:		Alles zum [User Interface](/de/company-gpt/user-interface/) und wie Sie es nutzen.
+src/content/docs/de/index.mdx:		[Einstellungen](/de/company-gpt/einstellungen) für Benutzer zum Aussehen, Text-zu-Sprache, Sprache-zu-Text und mehr.
+src/content/docs/de/index.mdx:		Das [Hauptinterface zur Kommunikation](/de/company-gpt/chat) mit KI-Modellen und KI-Agenten.
+src/content/docs/de/index.mdx:		[MCP-Server](/de/company-gpt/integrationen/mcp-server), [Websuche](/de/company-gpt/integrationen/websuche) und mehr.
+src/content/docs/de/index.mdx:		Erstellen Sie ganz einfach eigene [Agenten](/de/company-gpt/agenten).
+src/content/docs/de/index.mdx:		Alles zu [Prompts](/de/prompt-engineering/uebersicht) und [Promptvorlagen](/de/company-gpt/prompts).
+src/content/docs/de/index.mdx:		[Erinnerungen](/de/company-gpt/erinnerungen) im CompanyGPT.
+src/content/docs/de/index.mdx:		Alles zu [KI-Einstellungen](/de/company-gpt/ki-einstellungen).
+src/content/docs/de/index.mdx:		Die Möglichkeiten der [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung) im CompanyGPT.
+src/content/docs/de/index.mdx:		[Lesezeichen](/de/company-gpt/lesezeichen) im CompanyGPT.
+src/content/docs/de/api/agents-api.mdx:- [Agenten](/de/company-gpt/agenten) — Agenten in CompanyGPT erstellen und konfigurieren
+src/content/docs/de/api/agents-api.mdx:- [MCP Server](/de/company-gpt/integrationen/mcp-server) — MCP-Server-Integrationen
+src/content/docs/de/api/index.md:- [CompanyRAG API](/de/api/company-rag-api/) – API-Schnittstelle für den CompanyRAG Indexer
+src/content/docs/de/api/index.md:- [CompanyGPT Agents API](/de/api/agents-api/) - API für CompanyGPT Agents 
+src/content/docs/de/api/company-rag-api.md:Alle Endpunkte in dieser Spezifikation erfordern eine Authentifizierung über [API Key](/de/company-gpt/addons/companyrag/#api-schl%C3%BCssel). Der API Key muss im `Authorization`-Header im Bearer Token-Format übermittelt werden.
+src/content/docs/de/tutorials/addons/companyrag-in-companygpt.md:Über den [MCP Server](/de/company-gpt/integrationen/mcp-server/) `ai-search` lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle (dem Nutzer zur Verfügung stehenden) Sammlungen zu durchsuchen
+src/content/docs/de/tutorials/addons/companyrag-in-companygpt.md:(s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/)).
+src/content/docs/de/tutorials/addons/companyrag-in-companygpt.md:Der MCP Server kann für einen erleichterten Umgang einem [Agenten](/de/company-gpt/agenten/) hinzugefügt werden.
+src/content/docs/de/tutorials/addons/companyrag-in-companygpt.md:Eine [Anweisung](/de/company-gpt/agenten/#anweisungen) für einen Such-Agenten, der in der Sammlung "rag" suchen soll, könnte beispielsweise wie folgt sein:
+src/content/docs/de/tutorials/MCP/connect_confluence.md:Wenn Sie das Kollaborationstool Confluence nutzen, besteht die Möglichkeit dieses über den Atlassian Rovo [MCP Server](/de/company-gpt/integrationen/mcp-server/) wie folgt an Ihr CompanyGPT anzubinden:
+src/content/docs/de/tutorials/agenten/authentic-message-composer.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt, die Systemanweisung und der Name reichen aus.
+src/content/docs/de/tutorials/agenten/code-janitor.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Code-Snippet einfügen und entweder um Erklärung oder Aufräumen bitten – der Agent erkennt automatisch den gewünschten Modus.
+src/content/docs/de/tutorials/agenten/executive-summarizer.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Dokumente können über den Dateiupload hochgeladen werden. Der Agent erstellt dann automatisch ein strukturiertes Executive Summary mit BLUF, Kernaussagen und Action Items.
+src/content/docs/de/tutorials/agenten/launch-strategy.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zieldatum und verfügbare Kanäle beschreiben – der Agent erstellt einen vollständigen Launch-Plan mit Phasen und Aktionen.
+src/content/docs/de/tutorials/agenten/jargon-killer.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den aufgeblähten Text in den Chat kopieren – der Agent liefert sofort die klare, direkte Version zurück.
+src/content/docs/de/tutorials/agenten/fake-news-checker.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Idealerweise mit Web-Suche-Tool für Quellenrecherche. Behauptung oder Text einfügen – der Agent liefert eine strukturierte Faktenprüfung mit Quellennachweisen.
+src/content/docs/de/tutorials/agenten/ab-test-setup.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seite, Ziel und aktuelle Conversion-Rate angeben – der Agent erstellt eine saubere Test-Hypothese und das vollständige Test-Setup.
+src/content/docs/de/tutorials/agenten/email-sequence.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Sequenztyp, Zielgruppe und Ziel der Kampagne angeben – der Agent erstellt eine vollständige E-Mail-Sequenz mit allen Texten.
+src/content/docs/de/tutorials/agenten/cold-email.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Zielgruppe, Problem und gewünschte Aktion beschreiben – der Agent schreibt eine personalisierte Kaltakquise-E-Mail oder komplette Outreach-Sequenz.
+src/content/docs/de/tutorials/agenten/copy-editing.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Bestehenden Marketing-Text einfügen und um Überprüfung bitten – der Agent gibt strukturiertes Feedback und einen verbesserten Entwurf zurück.
+src/content/docs/de/tutorials/agenten/page-cro.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seitentext oder URL einfügen und Ziel der Seite beschreiben – der Agent liefert eine priorisierte CRO-Analyse mit konkreten Verbesserungsvorschlägen.
+src/content/docs/de/tutorials/agenten/tough-customer-simulator.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach ein Szenario beschreiben oder direkt mit einem typischen Kundenkontakt-Satz starten – der Agent bleibt konsequent in der Rolle des schwierigen Kunden.
+src/content/docs/de/tutorials/agenten/brainstorming.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Idee oder Problem beschreiben – der Agent führt durch einen strukturierten Prozess zur Konzeptentwicklung, bevor die Umsetzung beginnt.
+src/content/docs/de/tutorials/agenten/meeting-insights-analyzer.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Meeting-Transkript einfügen – der Agent analysiert Kommunikationsmuster und liefert personalisiertes Feedback zur Verbesserung des Kommunikationsverhaltens.
+src/content/docs/de/tutorials/agenten/pricing-strategy.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe, aktuelle Preise und Herausforderungen beschreiben – der Agent gibt konkrete Pricing-Empfehlungen mit Begründung.
+src/content/docs/de/tutorials/agenten/confluence-architect.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Rohe Meeting-Notizen oder unstrukturierte Gedanken einfügen – der Agent liefert sofort Confluence-fertiges Markdown.
+src/content/docs/de/tutorials/agenten/social-content.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Thema, Plattform und Zielgruppe angeben – der Agent erstellt sofort veröffentlichungsfähige Posts oder einen vollständigen Wochenplan.
+src/content/docs/de/tutorials/agenten/8020-analyst.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den langen Bericht oder die Aufgabenliste in den Chat kopieren – der Agent destilliert automatisch die wichtigsten Punkte heraus.
+src/content/docs/de/tutorials/agenten/meeting-notizen-agent.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt, die Systemanweisung und der Name reichen hier. Über den Dateiupload als OCR oder zu KI-Modell können Transkripte (beispielsweise aus MS Teams) hochgeladen werden – der Agent erstellt dann basierend auf der Systemanweisung das strukturierte Protokoll.
+src/content/docs/de/tutorials/agenten/text-translator.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den zu übersetzenden Text einfügen – der Agent erkennt die Sprache automatisch und liefert die Übersetzung.
+src/content/docs/de/tutorials/agenten/socratic-coach.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Es werden keine Tools benötigt. Der Agent eignet sich besonders für Coaching-Situationen, in denen Mitarbeiter eigenständig Lösungen erarbeiten sollen.
+src/content/docs/de/tutorials/agenten/dokumenten-abgleich.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Beide Dokumente über den Dateiupload hochladen und um Vergleich bitten – der Agent erstellt einen strukturierten Vergleichsreport mit allen Unterschieden.
+src/content/docs/de/tutorials/agenten/sales-enablement.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Dokument-Typ, Produkt, Zielgruppe und Käufertyp angeben – der Agent erstellt direkt einsatzfähige Verkaufsunterlagen.
+src/content/docs/de/tutorials/agenten/runbook-navigator.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. **Wichtig:** Die relevanten Runbooks und technische Dokumentation müssen als Kontextdokumente hinterlegt werden. Fehlermeldung in den Chat werfen – der Agent liefert sofort die passende Schritt-für-Schritt-Anleitung.
+src/content/docs/de/tutorials/agenten/content-strategy.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Produkt, Zielgruppe und aktuelle Content-Situation beschreiben – der Agent erstellt eine strukturierte Content-Strategie mit konkreten Themenideen und Prioritäten.
+src/content/docs/de/tutorials/agenten/rfp-assistant.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. **Wichtig:** Als Kontextdokumente müssen die relevanten Compliance- und Sicherheitsdokumente hinterlegt werden. Dann einfach die Fragen aus dem Fragebogen in den Chat kopieren – der Agent liefert copy-paste-fertige Antworten.
+src/content/docs/de/tutorials/agenten/n8n-workflow-architect.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Einfach den gewünschten Prozess in natürlicher Sprache beschreiben – der Agent liefert den kompletten Bauplan mit Node-Konfiguration und Code-Snippets.
+src/content/docs/de/tutorials/agenten/rechner-agent.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. **Wichtig:** Als Werkzeug muss der Rechner hinzugefügt werden, damit der Agent korrekte Berechnungen durchführen kann. Einfach die Rechenaufgabe oder Fragestellung eingeben – der Agent nutzt automatisch den Rechner für exakte Ergebnisse.
+src/content/docs/de/tutorials/agenten/bildgenerierung.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Bildbeschreibung eingeben – der Agent erstellt einen optimierten Prompt und generiert das Bild. Verfeinerungen sind iterativ möglich.
+src/content/docs/de/tutorials/agenten/direct-technical-analyst.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Technisches Problem, Log, Config oder Code einfügen und eine direkte, ehrliche Analyse anfordern – der Agent benennt klar, was Fakt ist, was Interpretation und wo Annahmen stecken.
+src/content/docs/de/tutorials/agenten/copywriting.md:Der Agent kann unter [Agenten](/de/company-gpt/agenten/) angelegt werden. Seitentyp, Zielgruppe und Produkt beschreiben – der Agent erstellt direkt einsatzfähige Marketing-Texte oder optimiert bestehende Inhalte.
+src/content/docs/de/tutorials/index.md:In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen rund um den CompanyGPT. Alle Agenten können direkt unter [Agenten](/de/company-gpt/agenten/) angelegt werden.
+src/content/docs/de/tutorials/index.md:- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
+src/content/docs/de/tutorials/index.md:- [Confluence verbinden](/de/tutorials/MCP/connect_confluence/) – Nutzung des Atlassian Rovo MCP Servers
+src/content/docs/de/tutorials/index.md:- [Übersicht](/de/tutorials/skills/) – Überblick über alle verfügbaren Skills
+src/content/docs/de/tutorials/index.md:- [Charts & Diagramme](/de/tutorials/skills/files/charts-diagram-skill/) – Diagramme und Visualisierungen erstellen
+src/content/docs/de/tutorials/index.md:- [Konvertierung](/de/tutorials/skills/files/convert-skill/) – Dateien zwischen Formaten konvertieren
+src/content/docs/de/tutorials/index.md:- [Excel](/de/tutorials/skills/files/excel-skill/) – Excel-Dateien erstellen und bearbeiten
+src/content/docs/de/tutorials/index.md:- [Dateiverwaltung](/de/tutorials/skills/files/file-management-skill/) – Dateien verwalten und organisieren
+src/content/docs/de/tutorials/index.md:- [PDF](/de/tutorials/skills/files/pdf-skill/) – PDF-Dateien erstellen und bearbeiten
+src/content/docs/de/tutorials/index.md:- [PowerPoint](/de/tutorials/skills/files/powerpoint-skill/) – Präsentationen erstellen und bearbeiten
+src/content/docs/de/tutorials/index.md:- [Einstellungen & UI](/de/tutorials/skills/files/settings-ui-skill/) – Benutzeroberfläche und Einstellungen anpassen
+src/content/docs/de/tutorials/index.md:- [Vorlagen](/de/tutorials/skills/files/templates-skill/) – Vorlagen erstellen und verwenden
+src/content/docs/de/tutorials/index.md:- [Word & ODT](/de/tutorials/skills/files/word-odt-skill/) – Word- und ODT-Dokumente erstellen und bearbeiten
+src/content/docs/de/tutorials/index.md:- [Copywriting-Experte](/de/tutorials/agenten/copywriting/) – Marketing-Texte für Landingpages, Homepages und mehr
+src/content/docs/de/tutorials/index.md:- [Content-Stratege](/de/tutorials/agenten/content-strategy/) – Content-Planung mit Pillar-Struktur und Keyword-Strategie
+src/content/docs/de/tutorials/index.md:- [Copy-Editor](/de/tutorials/agenten/copy-editing/) – Bestehende Texte mit dem Sieben-Sweep-Framework verbessern
+src/content/docs/de/tutorials/index.md:- [Social-Media-Content-Ersteller](/de/tutorials/agenten/social-content/) – Posts für LinkedIn, Twitter/X, Instagram und TikTok
+src/content/docs/de/tutorials/index.md:- [E-Mail-Sequenz-Designer](/de/tutorials/agenten/email-sequence/) – Automatisierte Willkommens-, Nurture- und Re-Engagement-Flows
+src/content/docs/de/tutorials/index.md:- [Cold-E-Mail-Verfasser](/de/tutorials/agenten/cold-email/) – B2B-Kaltakquise-E-Mails und Follow-up-Sequenzen
+src/content/docs/de/tutorials/index.md:- [Bildgenerierung](/de/tutorials/agenten/bildgenerierung/) – KI-generierte Bilder mit optimierten Prompts
+src/content/docs/de/tutorials/index.md:- [Sales-Enablement-Assistent](/de/tutorials/agenten/sales-enablement/) – Pitch-Decks, One-Pager und Demo-Skripte
+src/content/docs/de/tutorials/index.md:- [Launch-Stratege](/de/tutorials/agenten/launch-strategy/) – Produkt-Launches mit ORB-Framework und 5-Phasen-Plan
+src/content/docs/de/tutorials/index.md:- [Preisstratege](/de/tutorials/agenten/pricing-strategy/) – Pricing-Modelle, Tier-Strukturen und Monetarisierung
+src/content/docs/de/tutorials/index.md:- [A/B-Test-Planer](/de/tutorials/agenten/ab-test-setup/) – Experimente mit Hypothesen und statistischer Grundlage
+src/content/docs/de/tutorials/index.md:- [Conversion-Rate-Optimierer](/de/tutorials/agenten/page-cro/) – CRO-Analyse für Landingpages und Preisseiten
+src/content/docs/de/tutorials/index.md:- [Executive Summarizer](/de/tutorials/agenten/executive-summarizer/) – Dokumente und Threads auf das Wesentliche verdichten
+src/content/docs/de/tutorials/index.md:- [Meeting Notizen Agent](/de/tutorials/agenten/meeting-notizen-agent/) – Protokolle aus Rohtranskripten erstellen
+src/content/docs/de/tutorials/index.md:- [Meeting-Insights-Analysator](/de/tutorials/agenten/meeting-insights-analyzer/) – Kommunikationsmuster in Meetings aufdecken
+src/content/docs/de/tutorials/index.md:- [Authentic Message Composer](/de/tutorials/agenten/authentic-message-composer/) – Natürliche Antworten auf E-Mails und Nachrichten
+src/content/docs/de/tutorials/index.md:- [Dokumenten Abgleich](/de/tutorials/agenten/dokumenten-abgleich/) – Zwei Dateien auf Unterschiede vergleichen
+src/content/docs/de/tutorials/index.md:- [Confluence Architect](/de/tutorials/agenten/confluence-architect/) – Meeting-Notizen in Confluence-Markdown umwandeln
+src/content/docs/de/tutorials/index.md:- [Text Translator](/de/tutorials/agenten/text-translator/) – Texte unter Beibehaltung von Formatierung übersetzen
+src/content/docs/de/tutorials/index.md:- [Jargon Killer](/de/tutorials/agenten/jargon-killer/) – Corporate-Sprache in klare Formulierungen umschreiben
+src/content/docs/de/tutorials/index.md:- [80/20 Analyst](/de/tutorials/agenten/8020-analyst/) – Die 20 % herausfiltern, die 80 % des Ergebnisses bringen
+src/content/docs/de/tutorials/index.md:- [Brainstorming-Facilitator](/de/tutorials/agenten/brainstorming/) – Ideen in durchdachte Konzepte entwickeln
+src/content/docs/de/tutorials/index.md:- [Fake News Checker](/de/tutorials/agenten/fake-news-checker/) – Texte auf Falschinformationen prüfen
+src/content/docs/de/tutorials/index.md:- [Direct Technical Analyst](/de/tutorials/agenten/direct-technical-analyst/) – Technische Probleme ehrlich und ohne Beschönigung analysieren
+src/content/docs/de/tutorials/index.md:- [RFP Assistant](/de/tutorials/agenten/rfp-assistant/) – Standardantworten für Sicherheitsfragebögen finden
+src/content/docs/de/tutorials/index.md:- [Code Janitor](/de/tutorials/agenten/code-janitor/) – Code erklären oder mit Clean-Code-Prinzipien aufräumen
+src/content/docs/de/tutorials/index.md:- [Rechner Agent](/de/tutorials/agenten/rechner-agent/) – Berechnungen mit Werkzeugnutzung durchführen
+src/content/docs/de/tutorials/index.md:- [n8n Workflow Architect](/de/tutorials/agenten/n8n-workflow-architect/) – Prozessbeschreibungen in n8n-Baupläne umwandeln
+src/content/docs/de/tutorials/index.md:- [Runbook Navigator](/de/tutorials/agenten/runbook-navigator/) – Technische Dokumentation auf Fehlerbilder prüfen
+src/content/docs/de/tutorials/index.md:- [Socratic Coach](/de/tutorials/agenten/socratic-coach/) – Durch gezielte Gegenfragen zur eigenen Lösung führen
+src/content/docs/de/tutorials/index.md:- [Tough Customer Simulator](/de/tutorials/agenten/tough-customer-simulator/) – Deeskalation mit einem schwierigen Kunden üben
+src/content/docs/de/tutorials/skills/index.md:- [Charts und Diagramme](/de/tutorials/skills/files/charts-diagram-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Konvertierung](/de/tutorials/skills/files/convert-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Excel](/de/tutorials/skills/files/excel-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Dateiverwaltung](/de/tutorials/skills/files/file-management-skill)
+src/content/docs/de/tutorials/skills/index.md:- [PDF](/de/tutorials/skills/files/pdf-skill)
+src/content/docs/de/tutorials/skills/index.md:- [PowerPoint](/de/tutorials/skills/files/powerpoint-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Einstellungen & UI](/de/tutorials/skills/files/settings-ui-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Vorlagen](/de/tutorials/skills/files/templates-skill)
+src/content/docs/de/tutorials/skills/index.md:- [Word & ODT](/de/tutorials/skills/files/word-odt-skill)
+src/content/docs/en/company-gpt/erinnerungen.md:When [memories are enabled](/en/company-gpt/einstellungen/#use-saved-memories), CompanyGPT can remember facts, preferences, and project details across individual conversations. This not only makes your interactions more personal and relevant, but also significantly more efficient.
+src/content/docs/en/company-gpt/chat.md:Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht)
+src/content/docs/en/company-gpt/chat.md:- [Websearch](/en/company-gpt/integrationen/websuche)
+src/content/docs/en/company-gpt/chat.md:- [File Search](/en/company-gpt/integrationen/dateisuche)
+src/content/docs/en/company-gpt/chat.md:- [Artifacts](/en/company-gpt/integrationen/artefakte)
+src/content/docs/en/company-gpt/chat.md:- [MCP Server](/en/company-gpt/integrationen/mcp-server)
+src/content/docs/en/company-gpt/chat.md:- **Generate audio**: Using [Text-to-Speech](/en/company-gpt/einstellungen/#text-to-speech), the message can be read aloud using the set engine.
+src/content/docs/en/company-gpt/chat.md:Message histories can also be exported. This has the advantage that they can be saved as files in different formats. Histories in JSON format can also be [imported](/en/company-gpt/einstellungen/#konversationen-importieren) again.
+src/content/docs/en/company-gpt/addons/companyrag.md:With the CompanyRAG add-on, you can make large quantities of documents available to your agents via the MCP interface. The documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag) methodology. There are no limitations on the length of individual documents or the total number of documents.
+src/content/docs/en/company-gpt/addons/companyrag.md:Via the [MCP Server](/en/company-gpt/integrationen/mcp-server/) "ai-search", the RAG service can be connected with CompanyGPT to search indexed documents across all (available to the user) collections
+src/content/docs/en/company-gpt/addons/companyrag.md:(see [Similarity Search](/en/prompt-engineering/prompt-techniken/rag/#rag-workflow-for-file-processing))
+src/content/docs/en/company-gpt/addons/companyrag.md:The MCP server can be added to an [agent](/en/company-gpt/agenten/) for easier use.
+src/content/docs/en/company-gpt/addons/companyrag.md:A step-by-step guide for setting up a search agent with a suitable instruction can be found in the tutorial **[Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/).**
+src/content/docs/en/company-gpt/addons/companyrag.md:A detailed guide with ready-made workflow templates and endpoint documentation can be found in the tutorial **[Upload to CompanyRAG via n8n](/en/tutorials/addons/upload-companyrag-n8n/).**
+src/content/docs/en/company-gpt/user-interface.md:A list of currently available models can be found under [Model Selection](/en/company-gpt/modellauswahl).
+src/content/docs/en/company-gpt/user-interface.md:**[Add Files](/en/company-gpt/dateiverarbeitung/):**
+src/content/docs/en/company-gpt/user-interface.md:- [File Search](/en/company-gpt/integrationen/dateisuche/)
+src/content/docs/en/company-gpt/user-interface.md:- [Web Search](/en/company-gpt/integrationen/websuche/)
+src/content/docs/en/company-gpt/user-interface.md:- [Artifacts](/en/company-gpt/integrationen/artefakte/)
+src/content/docs/en/company-gpt/user-interface.md:- [MCP Server](/en/company-gpt/integrationen/mcp-server/)
+src/content/docs/en/company-gpt/user-interface.md:- [Chat History](/en/company-gpt/user-interface/#chat-verlauf)
+src/content/docs/en/company-gpt/user-interface.md:- [Agent Marketplace](/en/company-gpt/agenten/#agenten-marktplatz)
+src/content/docs/en/company-gpt/user-interface.md:- [Agents](/en/company-gpt/agenten/)
+src/content/docs/en/company-gpt/user-interface.md:- [Prompt templates](/en/company-gpt/prompts/)
+src/content/docs/en/company-gpt/user-interface.md:- [Reminders](/en/company-gpt/erinnerungen/)
+src/content/docs/en/company-gpt/user-interface.md:- [Bookmarks](/en/company-gpt/lesezeichen)
+src/content/docs/en/company-gpt/user-interface.md:- [Files](/en/company-gpt/dateiverarbeitung/)
+src/content/docs/en/company-gpt/user-interface.md:- [AI Settings](/en/company-gpt/ki-einstellungen/)
+src/content/docs/en/company-gpt/user-interface.md:- [MCP Settings](/en/company-gpt/integrationen/mcp-server/)
+src/content/docs/en/company-gpt/integrationen/dateisuche.md:Further information here: [File processing](/en/company-gpt/dateiverarbeitung/)
+src/content/docs/en/company-gpt/integrationen/dateisuche.md:The files are not added to the context in their entirety; instead, only relevant content is returned through a similarity search. This functionality is called [**RAG - Retrieval Augmented Generation**](/en/prompt-engineering/prompt-techniken/rag) and expands the knowledge of AI and AI agents in CompanyGPT with domain-specific, internal, or even confidential documents. The content is converted into embeddings (vectors) using an AI model. When searching, the search query is also converted into vectors and the proximity is calculated mathematically. This allows **content proximity** to be mapped much better than, for example, using a full-text search.
+src/content/docs/en/company-gpt/integrationen/mcp-server.md:More information about MCP can be found here: [Prompt Engineering / MCP](/en/prompt-engineering/prompt-techniken/tool-use#the-mcp-model-context-protocol-as-a-tool)
+src/content/docs/en/company-gpt/integrationen/mcp-server.md:Once initialization is successful, the MCP server is now displayed in the overview in the right sidebar and can be used via [Chat](/en/company-gpt/chat/#integrations) or in [Agents](/en/company-gpt/agenten/).
+src/content/docs/en/company-gpt/agenten.md:The instructions are the actual prompt for the agent. This describes what the agent has to do, how it should behave, etc. Information on effective prompting for agents can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht). Especially with agents, it is advisable to use structured and cleanly formatted prompts.
+src/content/docs/en/company-gpt/agenten.md:In addition to the model, the AI parameters can be adjusted. A detailed description can be found here: [AI settings](/en/company-gpt/ki-einstellungen)
+src/content/docs/en/company-gpt/agenten.md:For more information about web search, see: [Web Search](/en/company-gpt/integrationen/websuche).
+src/content/docs/en/company-gpt/agenten.md:More information about artifacts can be found here: [Artifacts](/en/company-gpt/integrationen/artefakte).
+src/content/docs/en/company-gpt/agenten.md:For more information, see [Prompt Engineering / RAG](/en/prompt-engineering/prompt-techniken/rag)
+src/content/docs/en/company-gpt/agenten.md:Agents can also be accessed externally via the [Agents API](/en/api/agents-api/). The agent is automatically available to every owner via the API if general API access is enabled.
+src/content/docs/en/company-gpt/agenten.md:At [**Agents**](/en/tutorials) you will find a selection of agents that we have developed for various use cases. You can use these directly or as a template for your own agents.
+src/content/docs/en/company-gpt/prompts.md:Prompt templates can be used very effectively for recurring tasks, for [prompt chaining](/en/prompt-engineering/prompt-techniken/prompt-chaining), or in conjunction with [agents](/en/company-gpt/agenten/).
+src/content/docs/en/company-gpt/dateiverarbeitung.md:Documents can also be uploaded for file search. The contents are indexed and stored in the database. These can then be searched by the AI models as needed and the answers can be enriched by the results. Information on how this works can be found here: [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/#rag-workflow-for-file-processing)
+src/content/docs/en/company-gpt/dateiverarbeitung.md:**Limitation**: The documents are only accessible to the respective user. To make documents accessible to multiple users or the entire organization in the file search, they can be integrated via [agents](/en/company-gpt/agenten) or via [companyRAG](/en/company-gpt/addons/ki-suche).
+src/content/docs/en/prompt-engineering/prompt-techniken/rag.md:As explained above, RAG can be viewed as a specialized type of “tool” within a broader [tool use framework](/en/prompt-engineering/prompt-techniken/tool-use). While general tools can perform actions (such as sending an email or updating a database) or retrieve real-time data, RAG's primary function is to **gather information for contextual text generation**. It is specifically designed to:
+src/content/docs/en/prompt-engineering/prompt-techniken/uebersicht.md:- [Prompt reasonably structured](/en/prompt-engineering/prompts-strukturieren)
+src/content/docs/en/prompt-engineering/prompt-techniken/uebersicht.md:- [Prompt formatted to emphasize certain aspects of the instructions](/en/prompt-engineering/prompts-formatieren)
+src/content/docs/en/prompt-engineering/prompt-techniken/uebersicht.md:- [Few-shot examples](/en/prompt-engineering/prompt-techniken/few-shot) for possible inputs and responses
+src/content/docs/en/prompt-engineering/prompt-techniken/uebersicht.md:- [Tool use](/en/prompt-engineering/prompt-techniken/tool-use/) to obtain information, perform actions, often via [MCP](/en/prompt-engineering/prompt-techniken/tool-use/#das-mcp-model-context-protocol-als-tool)
+src/content/docs/en/prompt-engineering/prompt-techniken/uebersicht.md:- [RAG](/en/prompt-engineering/prompt-techniken/rag/) for internal knowledge
+src/content/docs/en/index.mdx:		Everything about the [User Interface](/en/company-gpt/user-interface/) and how to use it.
+src/content/docs/en/index.mdx:		[Settings](/en/company-gpt/einstellungen) for users regarding appearance, text-to-speech, speech-to-text and more.
+src/content/docs/en/index.mdx:		The [main interface for communication](/en/company-gpt/chat) with AI models and AI agents.
+src/content/docs/en/index.mdx:		[MCP server](/en/company-gpt/integrationen/mcp-server), [web search](/en/company-gpt/integrationen/websuche) and more.
+src/content/docs/en/index.mdx:		Easily create your own [agents](/en/company-gpt/agenten).
+src/content/docs/en/index.mdx:		Everything about [Prompts](/en/prompt-engineering/uebersicht) and [Prompt templates](/en/company-gpt/prompts).
+src/content/docs/en/index.mdx:		[Reminders](/en/company-gpt/erinnerungen) in CompanyGPT.
+src/content/docs/en/index.mdx:		Everything about [AI settings](/en/company-gpt/ki-einstellungen).
+src/content/docs/en/index.mdx:		The possibilities of [file processing](/en/company-gpt/dateiverarbeitung) in CompanyGPT.
+src/content/docs/en/index.mdx:		[Bookmarks](/en/company-gpt/lesezeichen) in CompanyGPT.
+src/content/docs/en/api/agents-api.mdx:- [Agents](/en/company-gpt/agenten) — Creating and configuring agents in CompanyGPT
+src/content/docs/en/api/agents-api.mdx:- [MCP Servers](/en/company-gpt/integrationen/mcp-server) — MCP server integrations
+src/content/docs/en/api/index.md:- [CompanyRAG API](/en/api/company-rag-api/) – API interface for the CompanyRAG Indexer
+src/content/docs/en/api/index.md:- [CompanyGPT Agents API](/de/api/agents-api/) - API for CompanyGPT Agents
+src/content/docs/en/tutorials/addons/companyrag-in-companygpt.md:Via the [MCP Server](/en/company-gpt/integrationen/mcp-server/) `ai-search`, the RAG service can be connected to CompanyGPT to search indexed documents across all (available to the user) collections
+src/content/docs/en/tutorials/addons/companyrag-in-companygpt.md:(see [Similarity Search](/en/prompt-engineering/prompt-techniken/rag/)).
+src/content/docs/en/tutorials/addons/companyrag-in-companygpt.md:The MCP Server can be added to an [agent](/en/company-gpt/agenten/) for easier handling.
+src/content/docs/en/tutorials/addons/companyrag-in-companygpt.md:An [instruction](/en/company-gpt/agenten/#anweisungen) for a search agent that should search in the "rag" collection could look like this, for example:
+src/content/docs/en/tutorials/MCP/connect_confluence.md:If you use the collaboration tool Confluence, you have the option to connect it to your CompanyGPT via the Atlassian Rovo [MCP Server](/en/company-gpt/integrationen/mcp-server/) as follows:
+src/content/docs/en/tutorials/agenten/authentic-message-composer.md:The agent can be created under [Agents](/en/company-gpt/agenten/). No tools are required, the system instruction and name are sufficient.
+src/content/docs/en/tutorials/agenten/code-janitor.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a code snippet and either ask for an explanation or cleanup — the agent automatically detects the desired mode.
+src/content/docs/en/tutorials/agenten/executive-summarizer.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Documents can be uploaded via file upload. The agent then automatically creates a structured executive summary with BLUF, key insights, and action items.
+src/content/docs/en/tutorials/agenten/launch-strategy.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target launch date, and available channels — the agent creates a complete launch plan with phases and actions.
+src/content/docs/en/tutorials/agenten/jargon-killer.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Simply paste the bloated text into the chat — the agent immediately delivers the clear, direct version.
+src/content/docs/en/tutorials/agenten/fake-news-checker.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Ideally equipped with a web search tool for source research. Paste a claim or text — the agent delivers a structured fact-check with source citations.
+src/content/docs/en/tutorials/agenten/ab-test-setup.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Provide the page, goal, and current conversion rate — the agent creates a clean test hypothesis and the complete test setup.
+src/content/docs/en/tutorials/agenten/email-sequence.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Specify the sequence type, target audience, and campaign goal — the agent creates a complete email sequence with all copy included.
+src/content/docs/en/tutorials/agenten/cold-email.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the target audience, the problem you solve, and the desired action — the agent writes a personalized cold email or a complete outreach sequence.
+src/content/docs/en/tutorials/agenten/copy-editing.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste existing marketing copy and ask for a review — the agent returns structured feedback and an improved draft.
+src/content/docs/en/tutorials/agenten/page-cro.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste page copy or describe the page and its goal — the agent delivers a prioritized CRO analysis with concrete improvement suggestions.
+src/content/docs/en/tutorials/agenten/tough-customer-simulator.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Simply describe a scenario or start directly with a typical customer contact phrase — the agent stays consistently in the role of the difficult customer.
+src/content/docs/en/tutorials/agenten/brainstorming.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the idea or problem — the agent guides through a structured concept-development process before execution begins.
+src/content/docs/en/tutorials/agenten/meeting-insights-analyzer.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a meeting transcript — the agent analyzes communication patterns and delivers personalized feedback to improve communication behavior.
+src/content/docs/en/tutorials/agenten/pricing-strategy.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target audience, current pricing, and challenges — the agent provides concrete pricing recommendations with reasoning.
+src/content/docs/en/tutorials/agenten/confluence-architect.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste raw meeting notes or unstructured thoughts — the agent immediately delivers Confluence-ready Markdown.
+src/content/docs/en/tutorials/agenten/social-content.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Provide the topic, platform, and target audience — the agent creates ready-to-publish posts or a complete weekly plan.
+src/content/docs/en/tutorials/agenten/8020-analyst.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Simply copy the lengthy report or task list into the chat — the agent automatically distills the most important points.
+src/content/docs/en/tutorials/agenten/meeting-notizen-agent.md:The agent can be created under [Agents](/en/company-gpt/agenten/). No tools are required; the system instructions and the name are sufficient. Transcripts (e.g., from MS Teams) can be uploaded via file upload as OCR or to the AI model – the agent then creates the structured minutes based on the system instructions.
+src/content/docs/en/tutorials/agenten/text-translator.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Simply paste the text to be translated — the agent automatically detects the language and delivers the translation.
+src/content/docs/en/tutorials/agenten/socratic-coach.md:The agent can be created under [Agents](/en/company-gpt/agenten/). No tools are required. The agent is particularly suitable for coaching situations where employees should independently develop solutions.
+src/content/docs/en/tutorials/agenten/dokumenten-abgleich.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Upload both documents via file upload and request a comparison — the agent creates a structured comparison report with all differences.
+src/content/docs/en/tutorials/agenten/sales-enablement.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Specify the document type, product, target audience, and buyer type — the agent creates ready-to-use sales materials.
+src/content/docs/en/tutorials/agenten/runbook-navigator.md:The agent can be created under [Agents](/en/company-gpt/agenten/). **Important:** The relevant runbooks and technical documentation must be stored as context documents. Paste an error message into the chat — the agent immediately delivers the matching step-by-step instructions.
+src/content/docs/en/tutorials/agenten/content-strategy.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe your product, target audience, and current content situation — the agent creates a structured content strategy with concrete topic ideas and priorities.
+src/content/docs/en/tutorials/agenten/rfp-assistant.md:The agent can be created under [Agents](/en/company-gpt/agenten/). **Important:** The relevant compliance and security documents must be stored as context documents. Then simply copy the questions from the questionnaire into the chat — the agent delivers copy-paste ready answers.
+src/content/docs/en/tutorials/agenten/n8n-workflow-architect.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Simply describe the desired process in natural language — the agent delivers the complete blueprint with node configuration and code snippets.
+src/content/docs/en/tutorials/agenten/rechner-agent.md:The agent can be created under [Agents](/en/company-gpt/agenten/). **Important:** The calculator must be added as a tool so the agent can perform correct calculations. Simply enter the math problem or question – the agent automatically uses the calculator for exact results.
+src/content/docs/en/tutorials/agenten/bildgenerierung.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Enter an image description — the agent creates an optimized prompt and generates the image. Iterative refinements are possible.
+src/content/docs/en/tutorials/agenten/direct-technical-analyst.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Paste a technical problem, log, config, or code snippet and request a direct, honest analysis — the agent clearly states what is fact, what is interpretation, and where assumptions lie.
+src/content/docs/en/tutorials/agenten/copywriting.md:The agent can be created under [Agents](/en/company-gpt/agenten/). Describe the page type, target audience, and product — the agent produces ready-to-use marketing copy or optimizes existing content.
+src/content/docs/en/tutorials/index.md:This section contains ready-to-use agent templates and guides for CompanyGPT. All agents can be created directly under [Agents](/en/company-gpt/agenten/).
+src/content/docs/en/tutorials/index.md:- [Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/) – Set up a search agent with the MCP Server ai-search
+src/content/docs/en/tutorials/index.md:- [Connect Confluence](/en/tutorials/MCP/connect_confluence/) – Using the Atlassian Rovo MCP Server
+src/content/docs/en/tutorials/index.md:- [Overview](/en/tutorials/skills/) – Overview of all available skills
+src/content/docs/en/tutorials/index.md:- [Charts & Diagrams](/en/tutorials/skills/files/charts-diagram-skill/) – Create diagrams and visualizations
+src/content/docs/en/tutorials/index.md:- [Convert](/en/tutorials/skills/files/convert-skill/) – Convert files between formats
+src/content/docs/en/tutorials/index.md:- [Excel](/en/tutorials/skills/files/excel-skill/) – Create and edit Excel files
+src/content/docs/en/tutorials/index.md:- [File Management](/en/tutorials/skills/files/file-management-skill/) – Manage and organize files
+src/content/docs/en/tutorials/index.md:- [PDF](/en/tutorials/skills/files/pdf-skill/) – Create and edit PDF files
+src/content/docs/en/tutorials/index.md:- [PowerPoint](/en/tutorials/skills/files/powerpoint-skill/) – Create and edit presentations
+src/content/docs/en/tutorials/index.md:- [Settings & UI](/en/tutorials/skills/files/settings-ui-skill/) – Customize the user interface and settings
+src/content/docs/en/tutorials/index.md:- [Templates](/en/tutorials/skills/files/templates-skill/) – Create and use templates
+src/content/docs/en/tutorials/index.md:- [Word & ODT](/en/tutorials/skills/files/word-odt-skill/) – Create and edit Word and ODT documents
+src/content/docs/en/tutorials/index.md:- [Copywriting Expert](/en/tutorials/agenten/copywriting/) – Marketing copy for landing pages, homepages, and more
+src/content/docs/en/tutorials/index.md:- [Content Strategist](/en/tutorials/agenten/content-strategy/) – Content planning with pillar structure and keyword strategy
+src/content/docs/en/tutorials/index.md:- [Copy Editor](/en/tutorials/agenten/copy-editing/) – Improve existing copy with the Seven Sweeps Framework
+src/content/docs/en/tutorials/index.md:- [Social Content Creator](/en/tutorials/agenten/social-content/) – Posts for LinkedIn, Twitter/X, Instagram, and TikTok
+src/content/docs/en/tutorials/index.md:- [Email Sequence Designer](/en/tutorials/agenten/email-sequence/) – Automated welcome, nurture, and re-engagement flows
+src/content/docs/en/tutorials/index.md:- [Cold Email Writer](/en/tutorials/agenten/cold-email/) – B2B cold outreach emails and follow-up sequences
+src/content/docs/en/tutorials/index.md:- [Image Generation](/en/tutorials/agenten/bildgenerierung/) – AI-generated images with optimized prompts
+src/content/docs/en/tutorials/index.md:- [Sales Enablement Assistant](/en/tutorials/agenten/sales-enablement/) – Pitch decks, one-pagers, and demo scripts
+src/content/docs/en/tutorials/index.md:- [Launch Strategist](/en/tutorials/agenten/launch-strategy/) – Product launches with ORB Framework and 5-phase plan
+src/content/docs/en/tutorials/index.md:- [Pricing Strategist](/en/tutorials/agenten/pricing-strategy/) – Pricing models, tier structures, and monetization
+src/content/docs/en/tutorials/index.md:- [A/B Test Planner](/en/tutorials/agenten/ab-test-setup/) – Experiments with hypotheses and statistical rigor
+src/content/docs/en/tutorials/index.md:- [Conversion Rate Optimizer](/en/tutorials/agenten/page-cro/) – CRO analysis for landing pages and pricing pages
+src/content/docs/en/tutorials/index.md:- [Executive Summarizer](/en/tutorials/agenten/executive-summarizer/) – Condense documents and threads to the essentials
+src/content/docs/en/tutorials/index.md:- [Meeting Notes Agent](/en/tutorials/agenten/meeting-notizen-agent/) – Create meeting minutes from raw transcripts
+src/content/docs/en/tutorials/index.md:- [Meeting Insights Analyzer](/en/tutorials/agenten/meeting-insights-analyzer/) – Uncover communication patterns in meetings
+src/content/docs/en/tutorials/index.md:- [Authentic Message Composer](/en/tutorials/agenten/authentic-message-composer/) – Natural replies to emails and messages
+src/content/docs/en/tutorials/index.md:- [Document Comparison](/en/tutorials/agenten/dokumenten-abgleich/) – Compare two files for differences
+src/content/docs/en/tutorials/index.md:- [Confluence Architect](/en/tutorials/agenten/confluence-architect/) – Convert meeting notes into Confluence-ready markdown
+src/content/docs/en/tutorials/index.md:- [Text Translator](/en/tutorials/agenten/text-translator/) – Translate text while preserving formatting
+src/content/docs/en/tutorials/index.md:- [Jargon Killer](/en/tutorials/agenten/jargon-killer/) – Rewrite corporate jargon into clear language
+src/content/docs/en/tutorials/index.md:- [80/20 Analyst](/en/tutorials/agenten/8020-analyst/) – Filter out the 20% that drives 80% of the result
+src/content/docs/en/tutorials/index.md:- [Brainstorming Facilitator](/en/tutorials/agenten/brainstorming/) – Develop ideas into well-formed concepts
+src/content/docs/en/tutorials/index.md:- [Fake News Checker](/en/tutorials/agenten/fake-news-checker/) – Verify texts for misinformation
+src/content/docs/en/tutorials/index.md:- [Direct Technical Analyst](/en/tutorials/agenten/direct-technical-analyst/) – Honest, no-sugarcoating technical analysis
+src/content/docs/en/tutorials/index.md:- [RFP Assistant](/en/tutorials/agenten/rfp-assistant/) – Find standard responses for security questionnaires
+src/content/docs/en/tutorials/index.md:- [Code Janitor](/en/tutorials/agenten/code-janitor/) – Explain code or clean it up with Clean Code principles
+src/content/docs/en/tutorials/index.md:- [Calculator Agent](/en/tutorials/agenten/rechner-agent/) – Perform calculations using tool use
+src/content/docs/en/tutorials/index.md:- [n8n Workflow Architect](/en/tutorials/agenten/n8n-workflow-architect/) – Turn process descriptions into n8n blueprints
+src/content/docs/en/tutorials/index.md:- [Runbook Navigator](/en/tutorials/agenten/runbook-navigator/) – Check technical documentation for known error patterns
+src/content/docs/en/tutorials/index.md:- [Socratic Coach](/en/tutorials/agenten/socratic-coach/) – Guide to solutions through targeted counter-questions
+src/content/docs/en/tutorials/index.md:- [Tough Customer Simulator](/en/tutorials/agenten/tough-customer-simulator/) – Practice de-escalation with a difficult customer
+src/content/docs/en/tutorials/skills/index.md:- [Charts and Diagrams](/en/tutorials/skills/files/charts-diagram-skill)
+src/content/docs/en/tutorials/skills/index.md:- [Convert](/en/tutorials/skills/files/convert-skill)
+src/content/docs/en/tutorials/skills/index.md:- [Excel](/en/tutorials/skills/files/excel-skill)
+src/content/docs/en/tutorials/skills/index.md:- [File Management](/en/tutorials/skills/files/file-management-skill)
+src/content/docs/en/tutorials/skills/index.md:- [PDF](/en/tutorials/skills/files/pdf-skill)
+src/content/docs/en/tutorials/skills/index.md:- [PowerPoint](/en/tutorials/skills/files/powerpoint-skill)
+src/content/docs/en/tutorials/skills/index.md:- [Settings & UI](/en/tutorials/skills/files/settings-ui-skill)
+src/content/docs/en/tutorials/skills/index.md:- [Templates](/en/tutorials/skills/files/templates-skill)
+src/content/docs/en/tutorials/skills/index.md:- [Word & ODT](/en/tutorials/skills/files/word-odt-skill)

@@ -3,6 +3,9 @@ title: User Interface
 description: Übersicht der CompanyGPT Benutzeroberfläche – Modellauswahl, Chat-Funktionen, Integrationen und Seitenleiste.
 ---
 
+import sidebarImg from "./ui-sidebar.png";
+import chatVerlaufImg from "./chat-verlauf.png";
+
 Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Modellen zu kommunizieren, Agenten zu erstellen, Promptvorlagen zu verwalten und vieles mehr.
 
 ![companygpt ui](ui.png)
@@ -17,11 +20,11 @@ Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de
 
 ![chat-input](chat-input.gif)
 Prompts lassen sich über Tastatur oder Mikrofon eingeben.
-<br>
-<br>
+<br />
+<br />
 **[Dateien](/de/company-gpt/dateiverarbeitung/) hinzufügen:**
 ![ui-doc-select](ui-doc-select.png)
-<br>
+<br />
 **Einstellungen der Integrationen:**
 ![ui-extensions](ui-extend.png)
 
@@ -36,18 +39,25 @@ Durch Auswahl des Stecknadel-Symbols lassen sich die Integrationen dauerhaft an 
 
 Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. Chats können geteilt, umbenannt, dupliziert, archiviert und gelöscht werden. Zudem kann mit der Suche der gesamte Chat-Verlauf durchsucht werden.
 
-![chat-verlauf](chat-verlauf.png)
+<img src={chatVerlaufImg.src} alt="Chat-Verlauf" style="width: 50%;" />
 
 ## Seitenleiste
 
-- Seitenleiste verbergen
-- Neuer Chat
-- [Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf)
-- [Agent Marketplace](/de/company-gpt/agenten/#agenten-marktplatz)
-- [Agenten](/de/company-gpt/agenten/)
-- [Promptvorlagen](/de/company-gpt/prompts/)
-- [Erinnerungen](/de/company-gpt/erinnerungen/)
-- [Lesezeichen](/de/company-gpt/lesezeichen)
-- [Dateien](/de/company-gpt/dateiverarbeitung/)
-- [KI-Einstellungen](/de/company-gpt/ki-einstellungen/)
-- [MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)
+<div style="display: flex; gap: 2rem; align-items: flex-start;">
+  <img src={sidebarImg.src} alt="CompanyGPT Seitenleiste" style="width: 60px; flex-shrink: 0;" />
+  <div>
+
+1. **Seitenleiste verbergen**
+2. **Neuer Chat**
+3. **[Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf)**
+4. **[Agenten erstellen](/de/company-gpt/agenten/)**
+5. **[Skills](#)** *(Link folgt noch)*
+6. **[Prompts](/de/company-gpt/prompts/)**
+7. **[Erinnerungen](/de/company-gpt/erinnerungen/)**
+8. **[Lesezeichen](/de/company-gpt/lesezeichen)**
+9. **[Dateien anhängen](/de/company-gpt/dateiverarbeitung/)**
+10. **[KI-Einstellungen](/de/company-gpt/ki-einstellungen/)**
+11. **[MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)**
+
+  </div>
+</div>

@@ -106,6 +106,7 @@ export default defineConfig({
 									]
 								},
 								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
+								{ label: 'Skills', translations: { en: 'Skills' }, slug: 'company-gpt/skills' },
 								{ label: 'Prompts', translations: { en: 'Prompts' }, slug: 'company-gpt/prompts' },
 								{ label: 'Erinnerungen', translations: { en: 'Memories' }, slug: 'company-gpt/erinnerungen' },
 								{ label: 'KI Einstellungen', translations: { en: 'AI Settings' }, slug: 'company-gpt/ki-einstellungen' },

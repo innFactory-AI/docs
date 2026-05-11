@@ -15,15 +15,15 @@ export default defineConfig({
 	},
 	integrations: [
 		starlight({
-			// head: [
-			// 	{
-			// 		tag: 'script',
-			// 		attrs: {
-			// 			src: '/src/analytics.js',
-			// 			async: true,
-			// 		},
-			// 	}
-			// ],			
+			head: [
+				{
+					tag: 'script',
+					attrs: {
+						src: '/scripts/skill-download.js',
+						defer: true,
+					},
+				},
+			],
 			title: { de: 'CompanyGPT Dokumentation', en: 'CompanyGPT Documentation' },
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
@@ -106,6 +106,7 @@ export default defineConfig({
 									]
 								},
 								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
+								{ label: 'Skills', translations: { en: 'Skills' }, slug: 'company-gpt/skills' },
 								{ label: 'Prompts', translations: { en: 'Prompts' }, slug: 'company-gpt/prompts' },
 								{ label: 'Erinnerungen', translations: { en: 'Memories' }, slug: 'company-gpt/erinnerungen' },
 								{ label: 'KI Einstellungen', translations: { en: 'AI Settings' }, slug: 'company-gpt/ki-einstellungen' },

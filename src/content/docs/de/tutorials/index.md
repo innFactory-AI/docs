@@ -5,7 +5,30 @@ description: Agenten-Vorlagen und Anleitungen für Marketing, Vertrieb, Produkti
 
 In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen rund um den CompanyGPT. Alle Agenten können direkt unter [Agenten](/de/company-gpt/agenten/) angelegt werden.
 
-## Marketing & Content
+## Addons
+
+- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
+
+## MCP
+
+- [Confluence verbinden](/de/tutorials/mcp/connect_confluence/) – Nutzung des Atlassian Rovo MCP Servers
+
+## Skills
+
+- [Übersicht](/de/tutorials/skills/) – Überblick über alle verfügbaren Skills
+- [Charts & Diagramme](/de/tutorials/skills/files/charts-diagram-skill/) – Diagramme und Visualisierungen erstellen
+- [Konvertierung](/de/tutorials/skills/files/convert-skill/) – Dateien zwischen Formaten konvertieren
+- [Excel](/de/tutorials/skills/files/excel-skill/) – Excel-Dateien erstellen und bearbeiten
+- [Dateiverwaltung](/de/tutorials/skills/files/file-management-skill/) – Dateien verwalten und organisieren
+- [PDF](/de/tutorials/skills/files/pdf-skill/) – PDF-Dateien erstellen und bearbeiten
+- [PowerPoint](/de/tutorials/skills/files/powerpoint-skill/) – Präsentationen erstellen und bearbeiten
+- [Einstellungen & UI](/de/tutorials/skills/files/settings-ui-skill/) – Benutzeroberfläche und Einstellungen anpassen
+- [Vorlagen](/de/tutorials/skills/files/templates-skill/) – Vorlagen erstellen und verwenden
+- [Word & ODT](/de/tutorials/skills/files/word-odt-skill/) – Word- und ODT-Dokumente erstellen und bearbeiten
+
+## Agenten
+
+### Marketing & Content
 
 Agenten für Content-Erstellung, Texten, Social Media und E-Mail-Marketing.
 
@@ -17,7 +40,7 @@ Agenten für Content-Erstellung, Texten, Social Media und E-Mail-Marketing.
 - [Cold-E-Mail-Verfasser](/de/tutorials/agenten/cold-email/) – B2B-Kaltakquise-E-Mails und Follow-up-Sequenzen
 - [Bildgenerierung](/de/tutorials/agenten/bildgenerierung/) – KI-generierte Bilder mit optimierten Prompts
 
-## Vertrieb & Wachstum
+### Vertrieb & Wachstum
 
 Agenten für Vertrieb, Conversion-Optimierung, Preisgestaltung und Wachstumsstrategie.
 
@@ -27,7 +50,7 @@ Agenten für Vertrieb, Conversion-Optimierung, Preisgestaltung und Wachstumsstra
 - [A/B-Test-Planer](/de/tutorials/agenten/ab-test-setup/) – Experimente mit Hypothesen und statistischer Grundlage
 - [Conversion-Rate-Optimierer](/de/tutorials/agenten/page-cro/) – CRO-Analyse für Landingpages und Preisseiten
 
-## Produktivität & Büro
+### Produktivität & Büro
 
 Agenten für Meetings, Dokumente, Kommunikation und Büroarbeit.
 
@@ -40,7 +63,7 @@ Agenten für Meetings, Dokumente, Kommunikation und Büroarbeit.
 - [Text Translator](/de/tutorials/agenten/text-translator/) – Texte unter Beibehaltung von Formatierung übersetzen
 - [Jargon Killer](/de/tutorials/agenten/jargon-killer/) – Corporate-Sprache in klare Formulierungen umschreiben
 
-## Strategie & Analyse
+### Strategie & Analyse
 
 Agenten für Analyse, Planung, Faktencheck und strategische Entscheidungen.
 
@@ -50,7 +73,7 @@ Agenten für Analyse, Planung, Faktencheck und strategische Entscheidungen.
 - [Direct Technical Analyst](/de/tutorials/agenten/direct-technical-analyst/) – Technische Probleme ehrlich und ohne Beschönigung analysieren
 - [RFP Assistant](/de/tutorials/agenten/rfp-assistant/) – Standardantworten für Sicherheitsfragebögen finden
 
-## Technik & Automatisierung
+### Technik & Automatisierung
 
 Agenten für Code, Workflows und technische Dokumentation.
 
@@ -59,18 +82,9 @@ Agenten für Code, Workflows und technische Dokumentation.
 - [n8n Workflow Architect](/de/tutorials/agenten/n8n-workflow-architect/) – Prozessbeschreibungen in n8n-Baupläne umwandeln
 - [Runbook Navigator](/de/tutorials/agenten/runbook-navigator/) – Technische Dokumentation auf Fehlerbilder prüfen
 
-## Coaching & Simulation
+### Coaching & Simulation
 
 Agenten zum Üben und Trainieren von Kommunikation und Problemlösung.
 
 - [Socratic Coach](/de/tutorials/agenten/socratic-coach/) – Durch gezielte Gegenfragen zur eigenen Lösung führen
 - [Tough Customer Simulator](/de/tutorials/agenten/tough-customer-simulator/) – Deeskalation mit einem schwierigen Kunden üben
-
-## CompanyRAG
-
-- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
-- [Upload zu CompanyRAG über n8n](/de/tutorials/addons/upload-companyrag-n8n/) – Dokumente per n8n-Workflow bereitstellen
-
-## MCP Anbindungen
-
-- [Confluence anbinden] (/de/tutorials/MCP/connect_confluence/) – Nutzung des Atlassian Rovo MCP Servers

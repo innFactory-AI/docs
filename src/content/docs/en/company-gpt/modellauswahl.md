@@ -214,21 +214,12 @@ These open-source models run in the STACKIT Cloud (EU/Germany) and are particula
 
 ---
 
-## Perplexity AI
-
-- **For:** research, fact-checking, lookups, and overviews with source citations
-- **When:** questions that require current facts, web sources, or well-founded derivations
-- **Why:** answers always come **with citable sources** — from quick fact checks to in-depth multi-source research
-
----
-
 ## Quick decision-making aid
 
 - **"I just want a very good answer"** → GPT 5.1 / GPT 5 Mini / Claude Sonnet 4.6
 - **"It should be as fast and inexpensive as possible"** → GPT 5 Nano / GPT 5.4 Mini / Gemini 2.5 Flash / Claude Haiku 4.5
 - **"I want to program / write code"** → GPT 5.2 Codex / Claude Sonnet 4.6
 - **"It's complicated or extremely important"** → GPT 5.5 / GPT 5.4 / Claude Opus 4.6 / Gemini 2.5 Pro
-- **"I need sources from the web"** → Perplexity AI
 - **"Data protection (EU/Germany) is mandatory"** → STACKIT models (e.g., Llama 3.3 70B Instruct)
 - **"I work in chat (dialogue)"** → GPT 5.3 Chat / GPT 5.2 Chat / GPT 5.1 Chat
 - **"I need images"** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

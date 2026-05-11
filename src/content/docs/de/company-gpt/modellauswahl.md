@@ -214,21 +214,12 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eigne
 
 ---
 
-## Perplexity AI
-
-- **Für:** Recherche, Faktencheck, Nachschlagen und Überblick mit Quellenangaben
-- **Wann:** Fragen, die aktuelle Fakten, Web-Quellen oder eine fundierte Herleitung erfordern
-- **Warum:** Antworten immer **mit zitierbaren Quellen** — von schnellen Faktenchecks bis hin zu tiefgehender Multi-Source-Recherche
-
----
-
 ## Schnelle Entscheidungshilfe
 
 - **„Ich will einfach eine sehr gute Antwort“** → GPT 5.1 / GPT 5 Mini / Claude Sonnet 4.6
 - **„Es soll maximal schnell und günstig sein“** → GPT 5 Nano / GPT 5.4 Mini / Gemini 2.5 Flash / Claude Haiku 4.5
 - **„Ich will programmieren / Code schreiben“** → GPT 5.2 Codex / Claude Sonnet 4.6
 - **„Es ist kompliziert oder extrem wichtig“** → GPT 5.5 / GPT 5.4 / Claude Opus 4.6 / Gemini 2.5 Pro
-- **„Ich brauche Quellen aus dem Web“** → Perplexity AI
 - **„Datenschutz (EU/Deutschland) ist Pflicht“** → STACKIT-Modelle (z. B. Llama 3.3 70B Instruct)
 - **„Ich arbeite im Chat (Dialog)“** → GPT 5.3 Chat / GPT 5.2 Chat / GPT 5.1 Chat
 - **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

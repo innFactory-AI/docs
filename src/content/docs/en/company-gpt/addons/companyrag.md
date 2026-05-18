@@ -133,3 +133,7 @@ Required parameters: filter (JSON object with operators $and, $or, $not), collec
 The MCP server can be added to an [agent](/en/company-gpt/agenten/) for easier use.
 
 A step-by-step guide for setting up a search agent with a suitable instruction can be found in the tutorial **[Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/).**
+
+## Downloads 
+
+- [companyRAG Windows Syncer 2.5.0](/downloads/companyRAG-syncer-windows-v2.5.0.zip)

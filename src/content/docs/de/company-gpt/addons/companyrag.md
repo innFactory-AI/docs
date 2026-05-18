@@ -137,3 +137,7 @@ Folgende spezialisierte Such-Tools für die RAG-Collection – von semantischer 
 Der MCP Server kann für einen erleichterten Umgang einem [Agenten](/de/company-gpt/agenten/) hinzugefügt werden.
 
 Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passender Anweisung finden Sie im Tutorial **[CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/).**
+
+## Downloads 
+
+- [companyRAG Windows Syncer 2.5.0](/downloads/companyRAG-syncer-windows-v2.5.0.zip)

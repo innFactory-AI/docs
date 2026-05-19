@@ -10,8 +10,7 @@ Use this skill when asked to build a presentation, create slides, or export cont
 ````markdown
 ---
 name: powerpoint-skill
-description: >-
-  Create PowerPoint (.pptx) presentations with companyFILES MCP tools. Use when asked to build a presentation, create slides, generate a deck, or export content as PowerPoint. For template-based PowerPoint creation with placeholders, images, charts, or speaker notes, use templates-skill instead.
+description: Create PowerPoint (.pptx) presentations with companyFILES MCP tools. Use when asked to build a presentation, create slides, generate a deck, or export content as PowerPoint. For template-based PowerPoint creation with placeholders, images, charts, or speaker notes, use templates-skill instead.
 ---
 
 # PowerPoint Skill

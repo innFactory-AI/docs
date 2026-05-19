@@ -10,8 +10,7 @@ Use this skill when asked to visualize data, create charts, draw diagrams, or em
 ````markdown
 ---
 name: charts-diagrams-skill
-description: >-
-  Create interactive charts and diagrams with companyFILES MCP tools. Use when asked to visualize data, create a bar/line/pie/scatter/bubble chart, draw a flowchart, sequence diagram, ER diagram, Gantt chart, or any Mermaid diagram. Also covers embedding charts or diagrams into Word, PDF, or PowerPoint documents.
+description: Create interactive charts and diagrams with companyFILES MCP tools. Use when asked to visualize data, create a bar/line/pie/scatter/bubble chart, draw a flowchart, sequence diagram, ER diagram, Gantt chart, or any Mermaid diagram. Also covers embedding charts or diagrams into Word, PDF, or PowerPoint documents.
 ---
 
 # Charts & Diagrams Skill

@@ -10,8 +10,7 @@ Use this skill when asked to create, edit, or read Excel files, apply formulas, 
 ````markdown
 ---
 name: excel-skill
-description: >-
-  Create, read, and modify Excel (.xlsx) spreadsheets with companyFILES MCP tools. Use when asked to create a spreadsheet, export data to Excel, read or parse an Excel file, edit cells, add sheets, apply formulas, conditional formatting, or auto-filters. Covers CSV-to-Excel, JSON-to-Excel, 2D array input, advanced multi-sheet workbooks, and in-place modification.
+description: Create, read, and modify Excel (.xlsx) spreadsheets with companyFILES MCP tools. Use when asked to create a spreadsheet, export data to Excel, read or parse an Excel file, edit cells, add sheets, apply formulas, conditional formatting, or auto-filters. Covers CSV-to-Excel, JSON-to-Excel, 2D array input, advanced multi-sheet workbooks, and in-place modification.
 ---
 
 # Excel Skill

@@ -10,8 +10,7 @@ Verwende diesen Skill, wenn du Dateien hochladen oder finden, Download-Links abr
 ````markdown
 ---
 name: file-management-skill
-description: >-
-  Upload, download, list, search, and manage files with companyFILES MCP tools. Use when asked to upload a file, find a document, list stored files, get a download link, search documents by name or type, create a ZIP archive, or save a text/code file. Also covers discovering LibreChat file IDs for use in other tools.
+description: Upload, download, list, search, and manage files with companyFILES MCP tools. Use when asked to upload a file, find a document, list stored files, get a download link, search documents by name or type, create a ZIP archive, or save a text/code file. Also covers discovering LibreChat file IDs for use in other tools.
 ---
 
 # File Management Skill

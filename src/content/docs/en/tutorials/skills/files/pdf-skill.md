@@ -10,8 +10,7 @@ Use this skill when asked to generate PDFs, extract text from PDFs, or fill and 
 ````markdown
 ---
 name: pdf-skill
-description: >-
-  Create and read PDF documents, and fill PDF forms with companyFILES MCP tools. Use when asked to generate a PDF report, export content as PDF, create a PDF from HTML or Markdown, read or extract text from a PDF, fill a PDF form, or flatten a form for final delivery.
+description: Create and read PDF documents, and fill PDF forms with companyFILES MCP tools. Use when asked to generate a PDF report, export content as PDF, create a PDF from HTML or Markdown, read or extract text from a PDF, fill a PDF form, or flatten a form for final delivery.
 ---
 
 # PDF Skill

@@ -10,8 +10,7 @@ Verwende diesen Skill, wenn du Dateien durchsuchen, den Dateimanager öffnen, Vo
 ````markdown
 ---
 name: settings-ui-skill
-description: >-
-  Open the companyFILES web UI, view settings, and get help on available tools. Use when asked to show documents, browse files, open the file manager, manage templates, change settings, view branding/colors, or get help on how to use companyFILES tools. Also use when the user wants an interactive embedded view instead of raw JSON.
+description: Open the companyFILES web UI, view settings, and get help on available tools. Use when asked to show documents, browse files, open the file manager, manage templates, change settings, view branding/colors, or get help on how to use companyFILES tools. Also use when the user wants an interactive embedded view instead of raw JSON.
 ---
 
 # Settings & UI Skill

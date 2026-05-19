@@ -10,8 +10,7 @@ Use this skill when asked to convert a file between formats such as Word to PDF,
 ````markdown
 ---
 name: convert-skill
-description: >-
-  Convert documents between formats with companyFILES MCP tools. Use when asked to convert a file, change format, export Word to PDF, convert Excel to CSV or JSON, transform Markdown to Word or PDF, or convert HTML to Word. Also covers listing all supported conversion pairs.
+description: Convert documents between formats with companyFILES MCP tools. Use when asked to convert a file, change format, export Word to PDF, convert Excel to CSV or JSON, transform Markdown to Word or PDF, or convert HTML to Word. Also covers listing all supported conversion pairs.
 ---
 
 # Convert Skill

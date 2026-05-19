@@ -10,8 +10,7 @@ Verwende diesen Skill, wenn du Berichte, Briefe oder Dokumente im Word- oder Ope
 ````markdown
 ---
 name: word-odt-skill
-description: >-
-  Create and read Word (.docx) and ODT (.odt) documents with companyFILES MCP tools. Use when asked to write a report, letter, or document in Word or OpenDocument format, convert Markdown or HTML to Word/ODT, extract text from a Word file, or create a document with headers, footers, table of contents, or page numbers.
+description: Create and read Word (.docx) and ODT (.odt) documents with companyFILES MCP tools. Use when asked to write a report, letter, or document in Word or OpenDocument format, convert Markdown or HTML to Word/ODT, extract text from a Word file, or create a document with headers, footers, table of contents, or page numbers.
 ---
 
 # Word & ODT Skill

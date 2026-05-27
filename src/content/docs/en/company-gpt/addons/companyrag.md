@@ -136,4 +136,4 @@ A step-by-step guide for setting up a search agent with a suitable instruction c
 
 ## Downloads 
 
-- [companyRAG Windows Syncer 2.5.0](/downloads/companyRAG-syncer-windows-v2.5.0.zip)
+- [companyRAG Windows Syncer 2.6.2](/downloads/companyRAG-syncer-windows-v2.6.2.zip)

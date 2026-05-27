@@ -140,4 +140,4 @@ Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passen
 
 ## Downloads 
 
-- [companyRAG Windows Syncer 2.5.0](/downloads/companyRAG-syncer-windows-v2.5.0.zip)
+- [companyRAG Windows Syncer 2.6.2](/downloads/companyRAG-syncer-windows-v2.6.2.zip)

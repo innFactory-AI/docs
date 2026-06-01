@@ -1,16 +1,16 @@
 ---
 title: Kanalökonomie
-description: Berechne vollständig belastete Kosten pro Kanal, Channel-ROI unter drei Perspektiven und optimiere den Channel-Mix zwischen direktem und partnergeführtem Vertrieb.
+description: Berechne vollständig belastete Kosten pro Kanal, Channel-ROI unter drei Perspektiven und optimiere den Channel-Mix zwischen direktem und partnergeführtem Vertrieb. Bereite pro Kanal Zahlen zu CAC, ACV, Support-Kosten, Partnerrabatten, Churn-Rate und Deal-Velocity vor.
 ---
 
-Verwende diesen Skill für das quartalsweise Channel-Review, wenn du wissen möchtest, welcher Kanal nach Abzug aller Kosten profitabel ist – inklusive CAC, Support, Partnerrabatten, Deal-Velocity-Unterschieden und Retention-Differenzial.
+Verwende diesen Skill für das quartalsweise Channel-Review, wenn du wissen möchtest, welcher Kanal nach Abzug aller Kosten profitabel ist – inklusive CAC, Support, Partnerrabatten, Deal-Velocity-Unterschieden und Retention-Differenzial. Bereite pro Kanal Zahlen zu CAC, ACV, Support-Kosten, Partnerrabatten, Churn-Rate und Deal-Velocity vor.
 
 ## Skill
 
 ````markdown
 ---
 name: channel-economics
-description: "Use when reviewing or rebalancing direct vs. partner-led channel economics — computing fully-loaded cost-to-serve per channel, channel ROI with cash / LTV / marginal lenses, and optimal channel mix subject to constraints. For Head of Commercial, RevOps, and VP Sales doing quarterly channel review. Outputs cost to serve, channel ROI verdicts (DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT), a sensitivity-tested channel-mix recommendation, and the diminishing-returns inflection."
+description: "Use when reviewing or rebalancing direct vs. partner-led channel economics — computing fully-loaded cost-to-serve per channel, channel ROI with cash / LTV / marginal lenses, and optimal channel mix subject to constraints. For Head of Commercial, RevOps, and VP Sales doing quarterly channel review. Outputs cost to serve, channel ROI verdicts (DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT), a sensitivity-tested channel-mix recommendation, and the diminishing-returns inflection. Requires per-channel data: CAC, ACV, support costs, partner discounts, churn rate, and deal velocity."
 ---
 
 # channel-economics
@@ -23,15 +23,15 @@ Help Head of Commercial / RevOps / VP Sales answer three questions at the quarte
 2. **What is the ROI of each channel under three lenses?** (cash ROI year-1, LTV-adjusted ROI, marginal ROI)
 3. **What is the optimal channel mix subject to our strategic constraints?**
 
-The skill emits **per-channel verdicts** (DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT), a **sensitivity-tested mix recommendation**, and **the diminishing-returns inflection point**.
+Der Skill liefert **kanalspezifische Verdicts** (DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT), eine **sensitivitätsgetestete Mix-Empfehlung** und den **Diminishing-Returns-Inflektionspunkt**.
 
 ## When to use
 
-- Quarterly channel review: pipeline is 60/40 or 50/50 direct vs partner and you don't know which is profitable
-- Considering hiring a channel manager
-- Partner program ROI question from the board
-- A segment is over-indexed to one channel
-- About to expand into a new region and need to decide direct-first vs partner-first
+- Quarterly channel review: pipeline ist 60/40 oder 50/50 direct vs. partner – Profitabilität unklar
+- Überlegung, einen Channel Manager einzustellen
+- Partner-Programm-ROI-Frage vom Board
+- Ein Segment ist zu stark auf einen Kanal konzentriert
+- Expansion in eine neue Region: direct-first vs. partner-first entscheiden
 
 **Do not use for:**
 - Designing partner tiers, joint GTM motion → `partnerships-architect`
@@ -41,31 +41,56 @@ The skill emits **per-channel verdicts** (DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT
 
 ## Workflow
 
-### Step 1 — Intake channel data
+### Step 1 — Kanaldaten erfassen
 
-Fill `assets/channel_data_template.md` (~20 min). Capture per channel: deal count TTM, ARR TTM, avg deal size, gross margin %, CAC, sales-cycle days, retention rate, expansion rate, partner discount %, all attributable costs.
+Stelle folgende Daten pro Kanal bereit (ca. 20 Min. Aufwand). Die Analyse verwendet diese Eingaben direkt:
 
-### Step 2 — Compute cost-to-serve per channel
+```
+Kanal: [Direct / Partner / Self-Serve / ...]
+Deals TTM (Anzahl):
+ARR TTM (€):
+Durchschnittliche Deal-Größe (€):
+Bruttomarge (%):
+CAC (€):
+Sales-Zyklus (Tage):
+Retention-Rate (%):
+Expansion-Rate (%):
+Partner-Rabatt (%):
+Direkte Kosten (€): [Headcount, MDF, Enablement, Tools]
+Zugeordnete Gemeinkosten (€):
+```
 
-Run `scripts/cost_to_serve_calculator.py --input channel.json --output markdown`.
+### Step 2 — Vollständig belastete Cost-to-Serve berechnen
 
-Output: fully-loaded cost-to-serve **per deal** AND **per dollar of ARR**, with direct costs broken out from allocated overhead, and a "true gross margin" line.
+Teile deine Kanaldaten mit. Die Analyse berechnet:
 
-### Step 3 — Compute ROI per channel under three lenses
+- Vollständig belastete Kosten **pro Deal** und **pro Euro ARR**
+- Aufschlüsselung: direkte Kosten vs. zugeordnete Gemeinkosten
+- „True Gross Margin"-Linie pro Kanal
 
-Run `scripts/channel_roi_analyzer.py --input roi.json --profile saas --output markdown`.
+Die Berechnung folgt dieser Logik:
+- Cost-to-Serve/Deal = (Direkte Kosten + Gemeinkosten) / Anzahl Deals
+- True Gross Margin = ARR × Bruttomarge% − Cost-to-Serve
 
-Output: per channel, three ROI numbers (Cash year-1, LTV-adjusted, Marginal), the diminishing-returns inflection point, and a verdict: DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT.
+### Step 3 — ROI pro Kanal unter drei Perspektiven berechnen
 
-### Step 4 — Optimize channel mix
+Ergänze deine Daten um LTV-Annahmen (durchschnittliche Kundenlaufzeit, Expansion). Die Analyse berechnet:
 
-Run `scripts/channel_mix_optimizer.py --input mix.json --profile saas --output markdown`.
+- **Cash ROI Year-1**: `(ARR Year-1 − vollständige Kosten) / vollständige Kosten × 100`
+- **LTV-adjusted ROI**: `(LTV − CAC) / CAC × 100` unter Berücksichtigung von Retention- und Expansion-Differenzial
+- **Marginal ROI**: ROI des nächsten investierten Euros, inkl. Diminishing-Returns-Inflektionspunkt
+- Verdict pro Kanal: **DOUBLE-DOWN / MAINTAIN / DEFUND / EXIT**
 
-Output: recommended mix that maximizes effective ARR subject to constraints, plus a sensitivity table.
+### Step 4 — Optimalen Channel-Mix ermitteln
 
-### Step 5 — Decide
+Gib deine strategischen Constraints an (z. B. Mindest-Partneranteil, Kapazitätsgrenzen, Budget). Die Analyse empfiehlt:
 
-Take the three reports into the quarterly channel review.
+- Mix, der den effektiven ARR unter gegebenen Constraints maximiert
+- Sensitivitätstabelle: Was passiert bei ±10 % Shift zwischen Kanälen?
+
+### Step 5 — Entscheiden
+
+Die drei Analysen (Cost-to-Serve, ROI-Verdicts, Mix-Empfehlung) werden als strukturierte Ausgabe für das quartalsweise Channel-Review aufbereitet.
 
 ## Anti-patterns
 
@@ -87,7 +112,7 @@ Take the three reports into the quarterly channel review.
 6. **"Is your channel-mix dogma blocking a profitable segment?"**
 7. **"What overhead-allocation methodology are you applying — and is it consistent across direct and partner?"**
 
-Walk depth-first. Lock 1-3 before opening 4-7. Then invoke `cost_to_serve_calculator.py` → `channel_roi_analyzer.py` → `channel_mix_optimizer.py` in sequence.
+Fragen werden depth-first bearbeitet. Fragen 1–3 klären, bevor 4–7 geöffnet werden. Danach folgen Cost-to-Serve-Berechnung → ROI-Analyse → Mix-Optimierung in dieser Reihenfolge.
 ````
 
 Quelle: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

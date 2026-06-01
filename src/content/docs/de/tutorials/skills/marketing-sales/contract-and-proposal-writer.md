@@ -1,79 +1,70 @@
 ---
 title: Vertrags- & Angebotserstellung
-description: Erstelle professionelle, jurisdiktionsgerechte Geschäftsdokumente – Freelance-Verträge, Projektangebote, SOWs, NDAs und MSAs – für US, EU, UK und DACH (deutsches Recht).
+description: Erstelle professionelle, jurisdiktionsgerechte Geschäftsdokumente – Freelance-Verträge, Projektangebote, SOWs, NDAs und MSAs – für US, EU, UK und DACH. Benötigt werden Vertragsparteien, Projektumfang, Vergütung, Laufzeit, Jurisdiktion und etwaige Sonderbedingungen.
 ---
 
-Verwende diesen Skill beim Erstellen eines Freelance-Vertrags, beim Vorbereiten eines Kundenangebots, beim Schreiben eines SOW für ein neues Engagement oder beim Erstellen eines NDA vor dem Austausch sensibler Informationen.
+Verwende diesen Skill beim Erstellen eines Freelance-Vertrags, beim Vorbereiten eines Kundenangebots, beim Schreiben eines SOW für ein neues Engagement oder beim Erstellen eines NDA vor dem Austausch sensibler Informationen. Halte Vertragsparteien (Namen, Adressen, Rollen), den Projektumfang bzw. die Leistungsbeschreibung, Vergütung, Laufzeit, Jurisdiktion (US/EU/UK/DACH) und etwaige Sonderbedingungen wie IP-Abtretung oder White-Label-Klauseln bereit.
 
 ## Skill
 
 ````markdown
 ---
 name: "contract-and-proposal-writer"
-description: "Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs. Structured Markdown output with docx conversion instructions. Covers US (Delaware), EU (GDPR), UK, and DACH (German law) jurisdictions. Not a substitute for legal counsel — use as strong starting points."
+description: "Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs. Structured Markdown output with docx conversion instructions. Covers US (Delaware), EU (GDPR), UK, and DACH (German law) jurisdictions. Not a substitute for legal counsel — use as strong starting points. Requires: contracting parties (names, addresses, roles), project scope/deliverables, compensation, term/duration, jurisdiction (US/EU/UK/DACH), and any special conditions (e.g. IP assignment, white-label, subcontractors)."
 ---
 
 # Contract & Proposal Writer
 
-Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs.
+Erstelle professionelle, jurisdiktionsgerechte Geschäftsdokumente: Freelance-Verträge, Projektangebote, SOWs, NDAs und MSAs.
 
-**Not a substitute for legal counsel.** Use these templates as strong starting points; review with an attorney for high-value or complex engagements.
+**Kein Ersatz für Rechtsberatung.** Diese Dokumente sind starke Ausgangspunkte – bei hochwertigen oder komplexen Engagements mit einem Anwalt prüfen lassen.
 
 ---
 
 ## Core Capabilities
 
-- Freelance development contracts (fixed-price & hourly)
-- Project proposals with timeline/budget breakdown
-- Statements of Work (SOW) with deliverables matrix
-- NDAs (mutual & one-way)
+- Freelance-Entwicklungsverträge (Festpreis & Stunden)
+- Projektangebote mit Zeit- und Budgetaufschlüsselung
+- Statements of Work (SOW) mit Deliverables-Matrix
+- NDAs (gegenseitig & einseitig)
 - Master Service Agreements (MSA)
-- Jurisdiction-specific clauses (US/EU/UK/DACH)
-- GDPR Data Processing Addenda (EU/DACH)
+- Jurisdiktionsspezifische Klauseln (US/EU/UK/DACH)
+- DSGVO-Auftragsverarbeitungsverträge (EU/DACH)
 
 ---
 
 ## Key Clauses Reference
 
-| Clause | Options |
-|--------|---------|
-| Payment terms | Net-30, milestone-based, monthly retainer |
-| IP ownership | Work-for-hire (US), assignment (EU/UK), license-back |
-| Liability cap | 1x contract value (standard), 3x (high-risk) |
-| Termination | For cause (14-day cure), convenience (30/60/90-day notice) |
-| Confidentiality | 2-5 year term, perpetual for trade secrets |
-| Warranty | "As-is" disclaimer, limited 30/90-day fix warranty |
-| Dispute resolution | Arbitration (AAA/ICC), courts (jurisdiction-specific) |
+| Klausel | Optionen |
+|---------|---------|
+| Zahlungskonditionen | Netto-30, meilensteinbasiert, monatliches Retainer |
+| IP-Eigentümerschaft | Work-for-hire (US), Abtretung (EU/UK), Rücklizenz |
+| Haftungsbeschränkung | 1× Vertragswert (Standard), 3× (Hochrisiko) |
+| Kündigung | Aus wichtigem Grund (14-Tage-Frist), ordentlich (30/60/90 Tage) |
+| Vertraulichkeit | 2–5 Jahre, dauerhaft für Geschäftsgeheimnisse |
+| Gewährleistung | „As-is"-Haftungsausschluss, begrenzte 30/90-Tage-Nachbesserung |
+| Streitbeilegung | Schiedsverfahren (AAA/ICC), Gerichte (jurisdiktionsspezifisch) |
 
 ---
 
 ## Workflow
 
-### 1. Gather Requirements
+### 1. Anforderungen erfassen
 
-Ask the user:
+Beantworte folgende Fragen, um das Dokument zu generieren:
 
-    1. Document type? (contract / proposal / SOW / NDA / MSA)
-    2. Jurisdiction? (US-Delaware / EU / UK / DACH)
-    3. Engagement type? (fixed-price / hourly / retainer)
-    4. Parties? (names, roles, business addresses)
-    5. Scope summary? (1-3 sentences)
-    6. Total value or hourly rate?
-    7. Start date / end date or duration?
-    8. Special requirements? (IP assignment, white-label, subcontractors)
+1. Dokumenttyp? (Vertrag / Angebot / SOW / NDA / MSA)
+2. Jurisdiktion? (US-Delaware / EU / UK / DACH)
+3. Engagement-Typ? (Festpreis / Stunden / Retainer)
+4. Parteien? (Namen, Rollen, Geschäftsadressen)
+5. Leistungsbeschreibung? (1–3 Sätze)
+6. Gesamtwert oder Stundensatz?
+7. Startdatum / Enddatum oder Laufzeit?
+8. Besondere Anforderungen? (IP-Abtretung, White-Label, Subunternehmer)
 
-### 2. Convert to DOCX
+### 2. Dokument als Markdown erhalten
 
-```bash
-# Install pandoc
-brew install pandoc        # macOS
-apt install pandoc         # Ubuntu
-
-# Basic conversion
-pandoc contract.md -o contract.docx \
-  --reference-doc=reference.docx \
-  -V geometry:margin=1in
-```
+Das Dokument wird vollständig als strukturiertes Markdown ausgegeben – bereit zum Kopieren, Bearbeiten und Weiterverarbeiten. Für die Konvertierung in DOCX oder PDF kann das Markdown in ein Textverarbeitungsprogramm (z. B. Word, Google Docs) eingefügt oder über ein Pandoc-kompatibles Tool weiterverarbeitet werden.
 
 ---
 

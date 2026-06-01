@@ -1,16 +1,16 @@
 ---
 title: Prompt Engineer Toolkit
-description: Analyze and rewrite AI prompts for better output, create reusable prompt templates for marketing use cases, run A/B tests, and structure end-to-end AI content workflows with versioning.
+description: Analyze and rewrite AI prompts for better output, create reusable prompt templates for marketing use cases, run A/B tests, and structure end-to-end AI content workflows with versioning. Have your current prompt(s) as text ready, along with examples of desired and undesired outputs — test cases are optional but strongly recommended.
 ---
 
-Use this skill when you want to improve prompts for AI-assisted marketing, build reusable prompt templates, or optimize AI content workflows — including A/B testing, versioning, and regression safety.
+Use this skill when you want to improve prompts for AI-assisted marketing, build reusable prompt templates, or optimize AI content workflows — including A/B testing, versioning, and regression safety. Have your current prompt(s) ready as plain text, along with concrete examples of desired and undesired outputs; a set of test cases with realistic inputs greatly improves evaluation quality but is optional.
 
 ## Skill
 
 ````markdown
 ---
 name: "prompt-engineer-toolkit"
-description: "Analyzes and rewrites prompts for better AI output, creates reusable prompt templates for marketing use cases (ad copy, email campaigns, social media), and structures end-to-end AI content workflows. Use when the user wants to improve prompts for AI-assisted marketing, build prompt templates, or optimize AI content workflows. Also use when the user mentions 'prompt engineering,' 'improve my prompts,' 'AI writing quality,' 'prompt templates,' or 'AI content workflow.'"
+description: "Analyzes and rewrites prompts for better AI output, creates reusable prompt templates for marketing use cases (ad copy, email campaigns, social media), and structures end-to-end AI content workflows. Use when the user wants to improve prompts for AI-assisted marketing, build prompt templates, or optimize AI content workflows. Requires the current prompt(s) as plain text and examples of desired and undesired outputs; test cases with realistic inputs are optional but strongly recommended. Also use when the user mentions 'prompt engineering,' 'improve my prompts,' 'AI writing quality,' 'prompt templates,' or 'AI content workflow.'"
 ---
 
 # Prompt Engineer Toolkit
@@ -35,47 +35,76 @@ Use this skill to move prompts from ad-hoc drafts to production assets with repe
 
 ## Key Workflows
 
-### 1. Run Prompt A/B Test
+### 1. Run a Prompt A/B Evaluation
 
-```bash
-python3 scripts/prompt_tester.py \
-  --prompt-a-file prompts/a.txt \
-  --prompt-b-file prompts/b.txt \
-  --cases-file testcases.json \
-  --runner-cmd 'my-llm-cli --prompt {prompt} --input {input}' \
-  --format text
+Provide both prompt variants and your test cases in this format, and I will evaluate each prompt against every test case, then aggregate the scores:
+
+**Prompt A and Prompt B:** Paste the full text of each prompt variant.
+
+**Test cases:**
+
 ```
+Test Case ID | Input (realistic production example)       | Must Contain              | Must NOT Contain     | Required Format/Regex
+-------------|---------------------------------------------|---------------------------|----------------------|----------------------
+TC01         | "Write a subject line for a summer sale..." | "sale", "summer", CTA     | "free!!!", all-caps  | Max 60 characters
+TC02         | "Summarize this product for LinkedIn..."    | company name, value prop  | generic filler       | 3 sentences max
+...
+```
+
+I will score each output per case across four dimensions:
+- **Content coverage**: required markers present
+- **Safety compliance**: forbidden phrases absent
+- **Format compliance**: regex/structure requirements met
+- **Length sanity**: output within expected bounds
+
+I will then aggregate scores across all test cases and recommend the winning prompt with evidence.
 
 ### 2. Choose Winner With Evidence
 
-The tester scores outputs per case and aggregates:
-- expected content coverage
-- forbidden content violations
-- regex/format compliance
-- output length sanity
+After evaluation, I will produce a summary table:
+
+```
+Metric                    | Prompt A | Prompt B
+--------------------------|----------|----------
+Avg content coverage      |   82%    |   94%
+Safety violations         |    1     |    0
+Format compliance         |   90%    |   95%
+Length within bounds      |   85%    |   100%
+Overall recommendation    |          |  WINNER
+```
+
+The winner is promoted only if it improves the average score **and** keeps violation count at zero.
 
 ### 3. Version Prompts
 
-```bash
-# Add version
-python3 scripts/prompt_versioner.py add \
-  --name support_classifier \
-  --prompt-file prompts/support_v3.txt \
-  --author alice
+I will maintain a structured version log for your prompts. Provide:
 
-# Diff versions
-python3 scripts/prompt_versioner.py diff --name support_classifier --from-version 2 --to-version 3
+```
+Prompt name:
+Version number:
+Author:
+Change note (what changed and why):
+Prompt text (full):
+```
 
-# Changelog
-python3 scripts/prompt_versioner.py changelog --name support_classifier
+I will keep the full history and can show a diff between any two versions by comparing them side-by-side and highlighting changed sentences or instructions.
+
+**Version log format:**
+
+```
+Name: support_classifier
+v1 | alice | 2025-01-10 | Initial version
+v2 | bob   | 2025-02-15 | Added tone constraint (professional only)
+v3 | alice | 2025-03-01 | Removed ambiguous instruction in step 3
 ```
 
 ### 4. Regression Loop
 
-1. Store baseline version.
-2. Propose prompt edits.
-3. Re-run A/B test.
-4. Promote only if score and safety constraints improve.
+1. Store the current prompt as the baseline version.
+2. Propose your edited prompt candidate.
+3. Provide the same test cases used for the baseline evaluation.
+4. I will compare scores between baseline and candidate.
+5. I will recommend promoting the candidate only if the average score improves and violation count stays at zero.
 
 ## Pitfalls & Best Practices
 
@@ -112,9 +141,9 @@ Each test case should define:
 
 1. Create baseline prompt version.
 2. Propose candidate prompt.
-3. Run A/B suite against same cases.
-4. Promote only if winner improves average and keeps violation count at zero.
-5. Track post-release feedback and feed new failure cases back into test suite.
+3. Run A/B evaluation against the same test cases.
+4. Promote only if the winner improves the average score and keeps violation count at zero.
+5. Track post-release feedback and feed new failure cases back into the test suite.
 ````
 
 Source: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

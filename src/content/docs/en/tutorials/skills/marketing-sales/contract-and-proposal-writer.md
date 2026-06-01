@@ -1,23 +1,23 @@
 ---
 title: Contract & Proposal Writer
-description: Generate professional, jurisdiction-aware business documents — freelance contracts, project proposals, SOWs, NDAs, and MSAs — for US, EU, UK, and DACH (German law).
+description: Generate professional, jurisdiction-aware business documents — freelance contracts, project proposals, SOWs, NDAs, and MSAs — for US, EU, UK, and DACH (German law). Have the contracting parties, project scope, compensation, duration, jurisdiction, and any special terms ready before you start.
 ---
 
-Use this skill when creating a freelance contract, preparing a client proposal, writing an SOW for a new engagement, or drafting an NDA before sharing sensitive information.
+Use this skill when creating a freelance contract, preparing a client proposal, writing an SOW for a new engagement, or drafting an NDA before sharing sensitive information. To generate a complete document, have the names and roles of both contracting parties, the project scope and deliverables, the compensation amount or rate, the engagement duration, your target jurisdiction (US/EU/UK/DACH), and any special terms (IP assignment, white-labeling, subcontractors) ready.
 
 ## Skill
 
 ````markdown
 ---
 name: "contract-and-proposal-writer"
-description: "Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs. Structured Markdown output with docx conversion instructions. Covers US (Delaware), EU (GDPR), UK, and DACH (German law) jurisdictions. Not a substitute for legal counsel — use as strong starting points."
+description: "Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs. Structured Markdown output. Covers US (Delaware), EU (GDPR), UK, and DACH (German law) jurisdictions. Requires the contracting parties' names and roles, project scope and deliverables, compensation or rate, engagement duration, target jurisdiction (US/EU/UK/DACH), and any special terms (IP assignment, white-label, subcontractors). Not a substitute for legal counsel — use as strong starting points."
 ---
 
 # Contract & Proposal Writer
 
 Generate professional, jurisdiction-aware business documents: freelance contracts, project proposals, SOWs, NDAs, and MSAs.
 
-**Not a substitute for legal counsel.** Use these templates as strong starting points; review with an attorney for high-value or complex engagements.
+**Not a substitute for legal counsel.** Use these documents as strong starting points; review with an attorney for high-value or complex engagements.
 
 ---
 
@@ -51,7 +51,7 @@ Generate professional, jurisdiction-aware business documents: freelance contract
 
 ### 1. Gather Requirements
 
-Ask the user:
+Provide answers to the following questions and I will generate the full document:
 
     1. Document type? (contract / proposal / SOW / NDA / MSA)
     2. Jurisdiction? (US-Delaware / EU / UK / DACH)
@@ -62,18 +62,9 @@ Ask the user:
     7. Start date / end date or duration?
     8. Special requirements? (IP assignment, white-label, subcontractors)
 
-### 2. Convert to DOCX
+### 2. Export to DOCX
 
-```bash
-# Install pandoc
-brew install pandoc        # macOS
-apt install pandoc         # Ubuntu
-
-# Basic conversion
-pandoc contract.md -o contract.docx \
-  --reference-doc=reference.docx \
-  -V geometry:margin=1in
-```
+I will generate the document in clean Markdown. To convert it to a Word document (.docx), you can use **Pandoc** — a free, open-source conversion tool available at [pandoc.org](https://pandoc.org). Paste the Markdown output into any Markdown-to-Word converter, or ask your IT team to run the conversion.
 
 ---
 

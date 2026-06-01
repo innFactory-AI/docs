@@ -1,155 +1,141 @@
 ---
 title: Kampagnen-Analytics
-description: Analysiere Marketingkampagnen mit Multi-Touch-Attribution, Funnel-Konversionsanalyse und ROI-Berechnung – inkl. ROAS, CPA und Benchmark-Vergleichen.
+description: Analysiere Marketingkampagnen mit Multi-Touch-Attribution, Funnel-Konversionsanalyse und ROI-Berechnung – inkl. ROAS, CPA und Benchmark-Vergleichen. Benötigt werden Kampagnendaten je Kanal (Ausgaben, Klicks, Conversions, Umsatz) sowie Funnel-Stufenzahlen (Leads, MQLs, SQLs, Closed-Won).
 ---
 
-Verwende diesen Skill, wenn du Marketingkampagnen analysierst, Anzeigenperformance auswertete, Attributionsmodelle anwendest, Conversion-Raten analysierst oder Marketing-ROI, ROAS und CPA berechnest.
+Verwende diesen Skill, wenn du Marketingkampagnen analysierst, Anzeigenperformance auswertete, Attributionsmodelle anwendest, Conversion-Raten analysierst oder Marketing-ROI, ROAS und CPA berechnest. Bereite dafür Kampagnendaten je Kanal vor (Werbeausgaben, Klicks, Conversions, Umsatz) sowie Funnel-Stufenzahlen wie Leads, MQLs, SQLs und Closed-Won.
 
 ## Skill
 
 ````markdown
 ---
 name: "campaign-analytics"
-description: Analyzes campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation for marketing optimization. Use when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels.
+description: Analyzes campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation for marketing optimization. Use when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels. Requires campaign data per channel (ad spend, clicks, conversions, revenue) and funnel stage numbers (Leads, MQLs, SQLs, Closed-Won).
 ---
 
 # Campaign Analytics
 
-Production-grade campaign performance analysis with multi-touch attribution modeling, funnel conversion analysis, and ROI calculation.
+Professionelle Kampagnenanalyse mit Multi-Touch-Attribution, Funnel-Konversionsanalyse und ROI-Berechnung. Stelle deine Kampagnendaten im unten beschriebenen Format bereit – die Analyse, Berechnungen und Empfehlungen werden direkt aus deinen Eingaben abgeleitet.
 
 ---
 
-## Input Requirements
+## Eingabeformate
 
-### Attribution Analyzer
+### Attribution-Analyse
 
-```json
-{
-  "journeys": [
-    {
-      "journey_id": "j1",
-      "touchpoints": [
-        {"channel": "organic_search", "timestamp": "2025-10-01T10:00:00", "interaction": "click"},
-        {"channel": "email", "timestamp": "2025-10-05T14:30:00", "interaction": "open"},
-        {"channel": "paid_search", "timestamp": "2025-10-08T09:15:00", "interaction": "click"}
-      ],
-      "converted": true,
-      "revenue": 500.00
-    }
-  ]
-}
+Beschreibe die Customer Journeys deiner Conversions. Gib für jede Journey die Touchpoints mit Kanal und Zeitpunkt an sowie ob die Journey konvertiert hat und welchen Umsatz sie erzielt hat:
+
+```
+Journey-ID: j1
+Touchpoints:
+  1. Kanal: organic_search | Zeitpunkt: 2025-10-01 | Interaktion: click
+  2. Kanal: email         | Zeitpunkt: 2025-10-05 | Interaktion: open
+  3. Kanal: paid_search   | Zeitpunkt: 2025-10-08 | Interaktion: click
+Konvertiert: ja
+Umsatz: 500,00 €
 ```
 
-### Funnel Analyzer
+### Funnel-Analyse
 
-```json
-{
-  "funnel": {
-    "stages": ["Awareness", "Interest", "Consideration", "Intent", "Purchase"],
-    "counts": [10000, 5200, 2800, 1400, 420]
-  }
-}
+Gib die Anzahl der Nutzer pro Funnel-Stufe an:
+
+```
+Stufen:     Awareness | Interest | Consideration | Intent | Purchase
+Nutzeranzahl: 10.000  |   5.200  |     2.800     |  1.400 |    420
 ```
 
-### Campaign ROI Calculator
+### Kampagnen-ROI
 
-```json
-{
-  "campaigns": [
-    {
-      "name": "Spring Email Campaign",
-      "channel": "email",
-      "spend": 5000.00,
-      "revenue": 25000.00,
-      "impressions": 50000,
-      "clicks": 2500,
-      "leads": 300,
-      "customers": 45
-    }
-  ]
-}
+Gib pro Kampagne folgende Kennzahlen an:
+
+```
+Kampagne:     Spring Email Campaign
+Kanal:        email
+Ausgaben:     5.000 €
+Umsatz:       25.000 €
+Impressionen: 50.000
+Klicks:       2.500
+Leads:        300
+Kunden:       45
 ```
 
 ---
 
-## Typical Analysis Workflow
+## Analyse-Workflow
 
-For a complete campaign review, run the three scripts in sequence:
+Für eine vollständige Kampagnenbewertung führe die drei Analysen in dieser Reihenfolge durch:
 
-```bash
-# Step 1 — Attribution: understand which channels drive conversions
-python scripts/attribution_analyzer.py campaign_data.json --model time-decay
+**Schritt 1 — Attribution:** Welche Kanäle treiben Conversions?
 
-# Step 2 — Funnel: identify where prospects drop off
-python scripts/funnel_analyzer.py funnel_data.json
+Teile deine Journey-Daten mit (s. Eingabeformat oben). Gib an, welches Attributionsmodell verwendet werden soll. Die Analyse berechnet die Kanalgewichtung nach dem gewählten Modell und gibt die Attribution pro Kanal aus.
 
-# Step 3 — ROI: calculate profitability and benchmark
-python scripts/campaign_roi_calculator.py campaign_data.json
-```
+**Schritt 2 — Funnel:** Wo verlieren wir Interessenten?
+
+Teile deine Funnel-Stufendaten mit. Die Analyse berechnet die stufenweise Konversionsrate, die Drop-off-Quote je Stufe, identifiziert den größten Engpass und gibt die Gesamt-Konversionsrate aus.
+
+**Schritt 3 — ROI:** Welche Kampagnen sind profitabel?
+
+Teile deine Kampagnendaten mit. Die Analyse berechnet ROI, ROAS, CPA, CPL, CAC, CTR und CVR und markiert Kampagnen, die unter Benchmark-Schwellenwerten liegen.
 
 ---
 
-## Scripts
+## Attributionsmodelle
 
-### 1. attribution_analyzer.py
+| Modell | Beschreibung | Geeignet für |
+|--------|-------------|--------------|
+| First-Touch | 100 % Gewichtung auf ersten Touchpoint | Brand-Awareness-Kampagnen |
+| Last-Touch | 100 % Gewichtung auf letzten Touchpoint | Direct-Response-Kampagnen |
+| Linear | Gleiche Gewichtung aller Touchpoints | Ausgewogene Multi-Channel-Bewertung |
+| Time-Decay | Mehr Gewicht auf zeitlich nahe Touchpoints | Kurze Sales-Zyklen |
+| Position-Based | 40/20/40-Split (erster/mittlere/letzter) | Full-Funnel-Marketing |
 
-Implements five industry-standard attribution models:
+Gib an, welches Modell (oder welche Modelle im Vergleich) du verwenden möchtest.
 
-| Model | Description | Best For |
-|-------|-------------|----------|
-| First-Touch | 100% credit to first interaction | Brand awareness campaigns |
-| Last-Touch | 100% credit to last interaction | Direct response campaigns |
-| Linear | Equal credit to all touchpoints | Balanced multi-channel evaluation |
-| Time-Decay | More credit to recent touchpoints | Short sales cycles |
-| Position-Based | 40/20/40 split (first/middle/last) | Full-funnel marketing |
+---
 
-### 2. funnel_analyzer.py
+## Berechnete Metriken
 
-Analyzes conversion funnels to identify bottlenecks:
+### Funnel-Analyse
+- Konversionsrate pro Stufe (Stufe n → Stufe n+1)
+- Drop-off-Prozentsatz pro Stufe
+- Automatische Engpass-Identifikation
+- Gesamt-Funnel-Konversionsrate
+- Segmentvergleich (wenn mehrere Segmente angegeben)
 
-- Stage-to-stage conversion rates and drop-off percentages
-- Automatic bottleneck identification
-- Overall funnel conversion rate
-- Segment comparison when multiple segments are provided
-
-### 3. campaign_roi_calculator.py
-
-Calculates comprehensive ROI metrics:
-
-- **ROI**: Return on investment percentage
-- **ROAS**: Return on ad spend ratio
-- **CPA**: Cost per acquisition
-- **CPL**: Cost per lead
-- **CAC**: Customer acquisition cost
-- **CTR**: Click-through rate
-- **CVR**: Conversion rate (leads to customers)
-- Flags underperforming campaigns against industry benchmarks
+### ROI-Berechnung
+- **ROI**: `(Umsatz − Ausgaben) / Ausgaben × 100`
+- **ROAS**: `Umsatz / Ausgaben`
+- **CPA**: `Ausgaben / Kunden`
+- **CPL**: `Ausgaben / Leads`
+- **CAC**: `Ausgaben / Neukunden`
+- **CTR**: `Klicks / Impressionen × 100`
+- **CVR**: `Kunden / Leads × 100`
+- Markierung von Kampagnen unter Benchmark-Schwellenwerten
 
 ---
 
 ## Best Practices
 
-1. **Use multiple attribution models** — Compare at least 3 models to triangulate channel value.
-2. **Set appropriate lookback windows** — Match your time-decay half-life to your average sales cycle length.
-3. **Segment your funnels** — Compare segments (channel, cohort, geography) to identify performance drivers.
-4. **Benchmark against your own history first** — Industry benchmarks provide context, but historical data is more relevant.
-5. **Run ROI analysis at regular intervals** — Weekly for active campaigns, monthly for strategic review.
-6. **Include all costs** — Factor in creative, tooling, and labor costs alongside media spend.
+1. **Mehrere Attributionsmodelle vergleichen** — Mindestens 3 Modelle analysieren, um den Kanalwert zu triangulieren.
+2. **Lookback-Fenster anpassen** — Time-Decay-Halbwertszeit an den durchschnittlichen Sales-Zyklus anpassen.
+3. **Funnels segmentieren** — Segmente (Kanal, Kohorte, Geografie) vergleichen, um Performance-Treiber zu identifizieren.
+4. **Eigene Historie zuerst benchmarken** — Branchen-Benchmarks liefern Kontext, historische Daten sind relevanter.
+5. **ROI-Analyse regelmäßig durchführen** — Wöchentlich bei aktiven Kampagnen, monatlich für strategische Reviews.
+6. **Alle Kosten einbeziehen** — Creative-, Tool- und Personalkosten neben den Mediaausgaben berücksichtigen.
 
 ---
 
-## Limitations
+## Einschränkungen
 
-- No statistical significance testing — Scripts provide descriptive metrics only.
-- Offline analysis — Scripts analyze static JSON snapshots; no real-time data connections.
-- Single-currency — All monetary values assumed to be in the same currency.
-- No cross-device tracking — Attribution operates on provided journey data as-is.
+- Keine Signifikanztests — die Analyse liefert deskriptive Metriken.
+- Einheitliche Währung vorausgesetzt — alle Geldwerte müssen in derselben Währung angegeben werden.
+- Kein Cross-Device-Tracking — die Attribution basiert ausschließlich auf den bereitgestellten Journey-Daten.
 
-## Related Skills
+## Verwandte Skills
 
-- **analytics-tracking**: For setting up tracking. NOT for analyzing data (that's this skill).
-- **ab-test-setup**: For designing experiments to test what analytics reveals.
-- **paid-ads**: For optimizing ad spend based on analytics findings.
+- **analytics-tracking**: Für das Einrichten von Tracking. Nicht für die Datenanalyse (das ist dieser Skill).
+- **ab-test-setup**: Für das Designen von Experimenten auf Basis der Analytics-Erkenntnisse.
+- **paid-ads**: Für die Optimierung von Werbeausgaben auf Grundlage der Analytics-Ergebnisse.
 ````
 
 Quelle: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

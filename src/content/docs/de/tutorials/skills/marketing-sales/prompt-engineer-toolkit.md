@@ -1,127 +1,148 @@
 ---
 title: Prompt-Engineer-Toolkit
-description: Analysiere und verbessere KI-Prompts, erstelle wiederverwendbare Prompt-Vorlagen für Marketing und führe A/B-Tests für konsistente, reproduzierbare KI-Outputs durch.
+description: Analysiere und verbessere KI-Prompts, erstelle wiederverwendbare Prompt-Vorlagen für Marketing und führe A/B-Tests für konsistente, reproduzierbare KI-Outputs durch. Stelle den oder die aktuellen Prompts als Text bereit, ergänzt um Beispiele für erwünschte und unerwünschte Ausgaben sowie optionale Testfälle.
 ---
 
-Verwende diesen Skill, wenn du Prompts für KI-gestütztes Marketing verbessern, Prompt-Vorlagen erstellen oder KI-Content-Workflows optimieren möchtest. Auch geeignet für Prompt-Engineering, Versionierung und Regressionssicherung.
+Verwende diesen Skill, wenn du Prompts für KI-gestütztes Marketing verbessern, Prompt-Vorlagen erstellen oder KI-Content-Workflows optimieren möchtest. Auch geeignet für Prompt-Engineering, Versionierung und Regressionssicherung. Stelle dazu den aktuellen Prompt(s) als Text bereit, ergänzt um Beispiele für erwünschte und unerwünschte Ausgaben – Testfälle mit Input-Output-Paaren sind optional, aber empfohlen.
 
 ## Skill
 
 ````markdown
 ---
 name: "prompt-engineer-toolkit"
-description: "Analyzes and rewrites prompts for better AI output, creates reusable prompt templates for marketing use cases (ad copy, email campaigns, social media), and structures end-to-end AI content workflows. Use when the user wants to improve prompts for AI-assisted marketing, build prompt templates, or optimize AI content workflows. Also use when the user mentions 'prompt engineering,' 'improve my prompts,' 'AI writing quality,' 'prompt templates,' or 'AI content workflow.'"
+description: "Analyzes and rewrites prompts for better AI output, creates reusable prompt templates for marketing use cases (ad copy, email campaigns, social media), and structures end-to-end AI content workflows. Use when the user wants to improve prompts for AI-assisted marketing, build prompt templates, or optimize AI content workflows. Also use when the user mentions 'prompt engineering,' 'improve my prompts,' 'AI writing quality,' 'prompt templates,' or 'AI content workflow.' Requires: the current prompt(s) as text, examples of desired and undesired outputs, and optionally test cases with input-output pairs."
 ---
 
 # Prompt Engineer Toolkit
 
 ## Overview
 
-Use this skill to move prompts from ad-hoc drafts to production assets with repeatable testing, versioning, and regression safety. Apply it when:
-- Launching a new LLM feature that needs reliable outputs
-- Prompt quality degrades after model or instruction changes
-- Multiple team members edit prompts and need history/diffs
-- You need evidence-based prompt choice for production rollout
-- You want consistent prompt governance across environments
+Verwende diesen Skill, um Prompts von Ad-hoc-Entwürfen zu produktionsfähigen Assets mit reproduzierbarer Bewertung, Versionierung und Regressionssicherung weiterzuentwickeln. Einsetzen wenn:
+
+- Ein neues LLM-Feature zuverlässige Outputs benötigt
+- Prompt-Qualität nach Modell- oder Anweisungsänderungen nachlässt
+- Mehrere Teammitglieder Prompts bearbeiten und Versionsverlauf benötigen
+- Evidenzbasierte Prompt-Auswahl für den Produktiv-Rollout erforderlich ist
+- Konsistente Prompt-Governance über Umgebungen hinweg gewünscht ist
 
 ## Core Capabilities
 
-- A/B prompt evaluation against structured test cases
-- Quantitative scoring for adherence, relevance, and safety checks
-- Prompt version tracking with immutable history and changelog
-- Prompt diffs to review behavior-impacting edits
-- Reusable prompt templates and selection guidance
-- Regression-friendly workflows for model/prompt updates
+- A/B-Prompt-Evaluation anhand strukturierter Testfälle
+- Quantitatives Scoring für Adherence, Relevanz und Safety-Checks
+- Prompt-Versionsverfolgung mit unveränderlichem Verlauf und Changelog
+- Prompt-Diffs zur Überprüfung verhaltensrelevanter Änderungen
+- Wiederverwendbare Prompt-Vorlagen und Auswahlhilfe
+- Regressionssichere Workflows für Modell- und Prompt-Updates
 
 ## Key Workflows
 
-### 1. Run Prompt A/B Test
+### 1. Prompt-A/B-Test durchführen
 
-Prepare JSON test cases and run:
+Stelle zwei Prompt-Varianten und deine Testfälle im folgenden Format bereit:
 
-```bash
-python3 scripts/prompt_tester.py \
-  --prompt-a-file prompts/a.txt \
-  --prompt-b-file prompts/b.txt \
-  --cases-file testcases.json \
-  --runner-cmd 'my-llm-cli --prompt {prompt} --input {input}' \
-  --format text
+```
+=== Prompt A ===
+[Vollständiger Prompt-Text]
+
+=== Prompt B ===
+[Vollständiger Prompt-Text]
+
+=== Testfälle ===
+Testfall 1:
+  Input: [realistischer Produktions-Input]
+  Muss enthalten: [erforderliche Inhalte/Marker]
+  Darf nicht enthalten: [verbotene Phrasen oder unsichere Inhalte]
+  Erwartetes Format/Regex: [strukturelle Anforderungen]
+
+Testfall 2:
+  ...
 ```
 
-### 2. Choose Winner With Evidence
+Die Analyse bewertet beide Prompts pro Testfall nach:
+- Abdeckung erwarteter Inhalte
+- Verstöße gegen verbotene Inhalte
+- Format-Compliance (Struktur, Länge)
+- Output-Konsistenz
 
-The tester scores outputs per case and aggregates:
+Ergebnis: aggregierter Score pro Prompt + Empfehlung des Gewinners mit Begründung.
 
-- expected content coverage
-- forbidden content violations
-- regex/format compliance
-- output length sanity
+### 2. Gewinner mit Evidenz auswählen
 
-### 3. Version Prompts
+Das Scoring aggregiert über alle Testfälle:
 
-```bash
-# Add version
-python3 scripts/prompt_versioner.py add \
-  --name support_classifier \
-  --prompt-file prompts/support_v3.txt \
-  --author alice
+- Abdeckung erwarteter Inhalte (expected content coverage)
+- Verletzungen verbotener Inhalte (forbidden content violations)
+- Regex-/Format-Compliance
+- Output-Längen-Plausibilität
 
-# Diff versions
-python3 scripts/prompt_versioner.py diff --name support_classifier --from-version 2 --to-version 3
+Der Gewinner wird nur promoviert, wenn Score und Safety-Constraints sich verbessern.
 
-# Changelog
-python3 scripts/prompt_versioner.py changelog --name support_classifier
+### 3. Prompts versionieren
+
+Stelle den Prompt-Text und die Metadaten bereit, um eine neue Version zu erfassen:
+
+```
+Prompt-Name: support_classifier
+Version: 3
+Autor: alice
+Änderungsnotiz: Tone angepasst, Ausgabeformat explizit gemacht
+Prompt-Text:
+[vollständiger Prompt]
 ```
 
-### 4. Regression Loop
+Für einen Versions-Diff: beide Versionen mit Namen und Versionsnummern angeben. Die Analyse zeigt verhaltensrelevante Unterschiede zwischen den Versionen.
 
-1. Store baseline version.
-2. Propose prompt edits.
-3. Re-run A/B test.
-4. Promote only if score and safety constraints improve.
+Für ein Changelog: Prompt-Namen angeben – alle Versionen mit Autor, Datum und Änderungsnotiz werden aufgelistet.
+
+### 4. Regression-Loop
+
+1. Baseline-Version festhalten (Format s. oben).
+2. Kandidaten-Prompt vorschlagen.
+3. A/B-Test gegen dieselben Testfälle durchführen (Format s. Schritt 1).
+4. Nur promovieren, wenn Score und Safety-Constraints sich verbessern.
 
 ## Pitfalls & Best Practices
 
-**Avoid these mistakes:**
-1. Picking prompts from single-case outputs — use a realistic, edge-case-rich test suite.
-2. Changing prompt and model simultaneously — always isolate variables.
-3. Missing `must_not_contain` (forbidden-content) checks in evaluation criteria.
-4. Editing prompts without version metadata, author, or change rationale.
-5. Skipping semantic diffs before deploying a new prompt version.
-6. Optimizing one benchmark while harming edge cases — track the full suite.
-7. Model swap without rerunning the baseline A/B suite.
+**Diese Fehler vermeiden:**
+1. Prompts anhand von Einzelfall-Outputs auswählen — immer einen realistischen, edge-case-reichen Test-Suite verwenden.
+2. Prompt und Modell gleichzeitig ändern — Variablen immer isolieren.
+3. `must_not_contain`-Checks (verbotene Inhalte) in den Evaluierungskriterien vergessen.
+4. Prompts ohne Versions-Metadaten, Autor oder Änderungsbegründung bearbeiten.
+5. Semantische Diffs vor dem Deployment einer neuen Prompt-Version überspringen.
+6. Eine Benchmark-Metrik optimieren und dabei Edge Cases verschlechtern — immer die vollständige Suite tracken.
+7. Modell-Swap ohne erneutes Ausführen der Baseline-A/B-Suite.
 
-**Before promoting any prompt, confirm:**
-- [ ] Task intent is explicit and unambiguous.
-- [ ] Output schema/format is explicit.
-- [ ] Safety and exclusion constraints are explicit.
-- [ ] No contradictory instructions.
-- [ ] No unnecessary verbosity tokens.
-- [ ] A/B score improves and violation count stays at zero.
+**Vor dem Promovieren eines Prompts sicherstellen:**
+- [ ] Task-Intent ist explizit und eindeutig.
+- [ ] Ausgabe-Schema/Format ist explizit.
+- [ ] Safety- und Ausschluss-Constraints sind explizit.
+- [ ] Keine widersprüchlichen Anweisungen.
+- [ ] Keine unnötigen Verbosity-Token.
+- [ ] A/B-Score verbessert sich und Violation-Count bleibt bei null.
 
 ## Evaluation Design
 
-Each test case should define:
+Jeder Testfall sollte folgendes definieren:
 
-- `input`: realistic production-like input
-- `expected_contains`: required markers/content
-- `forbidden_contains`: disallowed phrases or unsafe content
-- `expected_regex`: required structural patterns
+- `input`: realistischer, produktionsähnlicher Input
+- `expected_contains`: erforderliche Marker/Inhalte
+- `forbidden_contains`: verbotene Phrasen oder unsichere Inhalte
+- `expected_regex`: erforderliche strukturelle Muster
 
 ## Versioning Policy
 
-- Use semantic prompt identifiers per feature (`support_classifier`, `ad_copy_shortform`).
-- Record author + change note for every revision.
-- Never overwrite historical versions.
-- Diff before promoting a new prompt to production.
+- Semantische Prompt-Identifier pro Feature verwenden (`support_classifier`, `ad_copy_shortform`).
+- Autor + Änderungsnotiz für jede Revision erfassen.
+- Historische Versionen niemals überschreiben.
+- Diff durchführen, bevor ein neuer Prompt in die Produktion promoviert wird.
 
 ## Rollout Strategy
 
-1. Create baseline prompt version.
-2. Propose candidate prompt.
-3. Run A/B suite against same cases.
-4. Promote only if winner improves average and keeps violation count at zero.
-5. Track post-release feedback and feed new failure cases back into test suite.
+1. Baseline-Prompt-Version erstellen.
+2. Kandidaten-Prompt vorschlagen.
+3. A/B-Suite gegen dieselben Testfälle ausführen.
+4. Nur promovieren, wenn der Gewinner den Durchschnitt verbessert und Violation-Count bei null bleibt.
+5. Post-Release-Feedback tracken und neue Failure-Cases in die Test-Suite einspeisen.
 ````
 
 Quelle: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

@@ -1,16 +1,16 @@
 ---
 title: Sales Engineer
-description: Analysiere RFP/RFI-Antworten auf Lücken, erstelle Wettbewerbsmatrizen und plane Proof-of-Concept-Engagements für den Pre-Sales-Bereich.
+description: Analysiere RFP/RFI-Antworten auf Lücken, erstelle Wettbewerbsmatrizen und plane Proof-of-Concept-Engagements für den Pre-Sales-Bereich. Benötigt werden das RFP/RFI-Dokument oder eine Anforderungsliste, eigene Produktfeatures, Wettbewerberprodukte zum Vergleich sowie optional POC-Anforderungen.
 ---
 
-Verwende diesen Skill beim Beantworten von RFPs, Angeboten oder Proposals, beim Vergleich von Produktfeatures mit Wettbewerbern, beim Planen eines POC oder Sales-Demos sowie bei der Vorbereitung technischer Proposals und Win/Loss-Analysen.
+Verwende diesen Skill beim Beantworten von RFPs, Angeboten oder Proposals, beim Vergleich von Produktfeatures mit Wettbewerbern, beim Planen eines POC oder Sales-Demos sowie bei der Vorbereitung technischer Proposals und Win/Loss-Analysen. Halte das RFP/RFI-Dokument oder eine strukturierte Anforderungsliste, deine eigenen Produktfeatures, die Wettbewerberprodukte zum Vergleich und – falls relevant – die POC-Anforderungen bereit.
 
 ## Skill
 
 ````markdown
 ---
 name: "sales-engineer"
-description: Analyzes RFP/RFI responses for coverage gaps, builds competitive feature comparison matrices, and plans proof-of-concept (POC) engagements for pre-sales engineering. Use when responding to RFPs, bids, or proposal requests; comparing product features against competitors; planning or scoring a customer POC or sales demo; preparing a technical proposal; or performing win/loss competitor analysis.
+description: Analyzes RFP/RFI responses for coverage gaps, builds competitive feature comparison matrices, and plans proof-of-concept (POC) engagements for pre-sales engineering. Use when responding to RFPs, bids, or proposal requests; comparing product features against competitors; planning or scoring a customer POC or sales demo; preparing a technical proposal; or performing win/loss competitor analysis. Requires: the RFP/RFI document or a structured requirements list, own product features, competitor products for comparison, and optionally POC requirements.
 ---
 
 # Sales Engineer Skill
@@ -28,13 +28,27 @@ description: Analyzes RFP/RFI responses for coverage gaps, builds competitive fe
 - [ ] Document security and compliance requirements
 - [ ] Assess competitive landscape for this opportunity
 
-**Tools:** Run `rfp_response_analyzer.py` to score initial requirement alignment.
+**RFP-Analyse:** Stelle die RFP/RFI-Anforderungen im folgenden Format bereit. Die Analyse berechnet den Coverage-Score, identifiziert Lücken und gibt eine Bid/No-Bid-Empfehlung aus:
 
-```bash
-python scripts/rfp_response_analyzer.py assets/sample_rfp_data.json --format json > phase1_rfp_results.json
+```
+Anforderung                          | Priorität   | Unser Status
+Single-Sign-On (SSO)                 | must-have   | Full
+REST API mit Webhook-Support         | must-have   | Partial
+On-Premise-Deployment                | nice-to-have| Gap
+DSGVO-Konformität                    | must-have   | Full
+SLA 99,9 % Uptime                    | must-have   | Full
+Benutzerdefinierte Reporting-Exports | nice-to-have| Planned
+...
 ```
 
-**Validation checkpoint:** Coverage score must be >50% and must-have gaps ≤3 before proceeding to Phase 2.
+Coverage-Kategorien: Full (100 %), Partial (50 %), Planned (25 %), Gap (0 %).
+
+**Bid/No-Bid-Logik:**
+- **Bid:** Coverage > 70 % UND must-have Gaps ≤ 3
+- **Conditional Bid:** Coverage 50–70 % ODER must-have Gaps 2–3
+- **No-Bid:** Coverage < 50 % ODER must-have Gaps > 3
+
+**Validation checkpoint:** Coverage-Score > 50 % und must-have Gaps ≤ 3 erforderlich, bevor Phase 2 beginnt.
 
 ---
 
@@ -49,13 +63,21 @@ python scripts/rfp_response_analyzer.py assets/sample_rfp_data.json --format jso
 - [ ] Build competitive differentiation strategy
 - [ ] Create solution architecture diagrams
 
-**Tools:** Run `competitive_matrix_builder.py` using Phase 1 data.
+**Competitive-Matrix-Analyse:** Stelle Feature-Daten pro Anbieter bereit. Die Analyse berechnet den Wettbewerbs-Score und identifiziert Differenziatoren und Schwachstellen:
 
-```bash
-python scripts/competitive_matrix_builder.py competitive_data.json --format json > phase2_competitive.json
+```
+Feature                  | Priorität (1–3) | Unser Produkt | Wettbewerber A | Wettbewerber B
+SSO / SAML               | 3               | Full          | Full           | Partial
+REST API                 | 3               | Full          | Limited        | Full
+On-Premise               | 2               | None          | Full           | None
+Mobile App               | 1               | Partial       | Full           | Full
+Custom Reporting         | 2               | Full          | Partial        | None
+SLA 99,9 %               | 3               | Full          | Full           | Partial
 ```
 
-**Validation checkpoint:** Confirm at least one strong differentiator exists per customer priority.
+Feature-Scoring: Full (3), Partial (2), Limited (1), None (0). Gewichteter Score = Σ(Feature-Score × Priorität).
+
+**Validation checkpoint:** Mindestens ein starker Differenziator pro Kunden-Priorität muss vorhanden sein.
 
 ---
 
@@ -70,6 +92,8 @@ python scripts/competitive_matrix_builder.py competitive_data.json --format json
 - [ ] Rehearse failure scenarios and recovery paths
 - [ ] Collect feedback and adjust approach
 
+Für die Erstellung eines Demo-Skripts: Stakeholder-Rollen, Haupt-Use-Cases und bekannte Einwände angeben. Das Skript wird mit Agenda, rollenbezogenen Talking Points und Einwand-Antworten ausgegeben.
+
 ---
 
 ### Phase 4: POC & Evaluation
@@ -83,13 +107,25 @@ python scripts/competitive_matrix_builder.py competitive_data.json --format json
 - [ ] Track progress against success criteria
 - [ ] Generate evaluation scorecard
 
-**Tools:** Run `poc_planner.py` to generate the complete POC plan.
+**POC-Plan:** Stelle folgende Angaben bereit. Der vollständige POC-Plan wird mit Zeitplan, Ressourcenbedarf, Erfolgskriterien und Bewertungs-Scorecard ausgegeben:
 
-```bash
-python scripts/poc_planner.py poc_data.json --format json > phase4_poc_plan.json
+```
+Kunde:
+Produkt/Lösung:
+POC-Dauer (Wochen):
+Primäre Use Cases:
+Erfolgskriterien:
+Beteiligte Stakeholder (Anzahl/Rollen):
+Bekannte Risiken:
 ```
 
-**Validation checkpoint:** POC conversion requires scorecard score >60% across all evaluation dimensions.
+**Standard-Phaseneinteilung:**
+- **Woche 1:** Setup — Umgebungsbereitstellung, Datenmigration, Konfiguration
+- **Wochen 2–3:** Core Testing — primäre Use Cases, Integrationstests
+- **Woche 4:** Advanced Testing — Edge Cases, Performance, Security
+- **Woche 5:** Evaluation — Scorecard-Abschluss, Stakeholder-Review, Go/No-Go
+
+**Validation checkpoint:** POC-Konvertierung erfordert Scorecard-Score > 60 % über alle Bewertungsdimensionen.
 
 ---
 
@@ -104,52 +140,42 @@ python scripts/poc_planner.py poc_data.json --format json > phase4_poc_plan.json
 - [ ] Support pricing and packaging discussions
 - [ ] Conduct win/loss analysis post-decision
 
----
-
-## Python Automation Tools
-
-### 1. RFP Response Analyzer
-
-**Purpose:** Parse RFP/RFI requirements, score coverage, identify gaps, and generate bid/no-bid recommendations.
-
-**Coverage Categories:** Full (100%), Partial (50%), Planned (25%), Gap (0%).
-
-**Bid/No-Bid Logic:**
-- **Bid:** Coverage >70% AND must-have gaps ≤3
-- **Conditional Bid:** Coverage 50–70% OR must-have gaps 2–3
-- **No-Bid:** Coverage <50% OR must-have gaps >3
-
-### 2. Competitive Matrix Builder
-
-**Purpose:** Generate feature comparison matrices, calculate competitive scores, identify differentiators and vulnerabilities.
-
-**Feature Scoring:** Full (3), Partial (2), Limited (1), None (0).
-
-### 3. POC Planner
-
-**Purpose:** Generate structured POC plans with timeline, resource allocation, success criteria, and evaluation scorecards.
-
-**Default Phase Breakdown:**
-- **Week 1:** Setup — environment provisioning, data migration, configuration
-- **Weeks 2–3:** Core Testing — primary use cases, integration testing
-- **Week 4:** Advanced Testing — edge cases, performance, security
-- **Week 5:** Evaluation — scorecard completion, stakeholder review, go/no-go
+Für die Erstellung eines technischen Proposals: POC-Ergebnisse, offene Einwände und Implementierungsanforderungen angeben. Das Proposal wird mit Executive Summary, Solution Architecture, Implementierungsplan und Risikobewertung ausgegeben.
 
 ---
 
-## Asset Templates
+## Analyse-Ausgaben
 
-| Template | Purpose |
-|----------|---------|
-| `assets/technical_proposal_template.md` | Technical proposal with executive summary, solution architecture, implementation plan |
-| `assets/demo_script_template.md` | Demo script with agenda, talking points, objection handling |
-| `assets/poc_scorecard_template.md` | POC evaluation scorecard with weighted scoring |
+### RFP-Analyse
+- Coverage-Score (gesamt und nach Kategorie)
+- Priorisierte Lücken-Liste (must-have / nice-to-have)
+- Bid/No-Bid-Empfehlung mit Begründung
+- Empfohlene Antwort-Strategie pro Anforderungs-Gap
+
+### Competitive Matrix
+- Gewichteter Score pro Anbieter
+- Top-Differenziatoren (unsere Stärken vs. Wettbewerb)
+- Vulnerabilitäten (Bereiche, in denen Wettbewerber führen)
+- Empfohlene Positionierungsstrategie
+
+### POC-Scorecard-Vorlage
+
+| Bewertungsdimension | Gewichtung | Score (0–100) | Gewichteter Score |
+|---------------------|-----------|--------------|------------------|
+| Funktionale Abdeckung | 30 % | — | — |
+| Integrationsqualität | 25 % | — | — |
+| Performance | 20 % | — | — |
+| Usability | 15 % | — | — |
+| Security/Compliance | 10 % | — | — |
+| **Gesamt** | 100 % | — | — |
+
+---
 
 ## Integration Points
 
-- **Marketing Skills** - Leverage competitive intelligence and messaging frameworks
-- **Product Team** - Coordinate on roadmap items flagged as "Planned" in RFP analysis
-- **Customer Success** - Hand off POC results and success criteria to CSM
+- **Marketing Skills** — Competitive intelligence und Messaging Frameworks nutzen
+- **Product Team** — Roadmap-Items koordinieren, die als „Planned" in der RFP-Analyse markiert sind
+- **Customer Success** — POC-Ergebnisse und Erfolgskriterien an CSM übergeben
 ````
 
 Quelle: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

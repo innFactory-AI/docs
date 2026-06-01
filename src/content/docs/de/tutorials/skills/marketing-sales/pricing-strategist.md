@@ -1,16 +1,16 @@
 ---
 title: Preisstratege
-description: Wähle das passende Preismodell (Abo, nutzungsbasiert, wertbasiert, Freemium oder Hybrid), führe Van-Westendorp-Analysen durch und gestalte Good/Better/Best-Paket-Tiers.
+description: Wähle das passende Preismodell (Abo, nutzungsbasiert, wertbasiert, Freemium oder Hybrid), führe Van-Westendorp-Analysen durch und gestalte Good/Better/Best-Paket-Tiers. Bereite Produktbeschreibung, Zielkundensegmente, aktuelle Preisstruktur sowie optional WTP-Umfragedaten oder Wettbewerbspreise vor.
 ---
 
-Verwende diesen Skill beim Entwerfen oder Überarbeiten von Produktpreisen – für die Auswahl des Preismodells, die Durchführung von WTP-Analysen oder die Gestaltung von Pricing-Tiers.
+Verwende diesen Skill beim Entwerfen oder Überarbeiten von Produktpreisen – für die Auswahl des Preismodells, die Durchführung von WTP-Analysen oder die Gestaltung von Pricing-Tiers. Bereite eine Produktbeschreibung, Zielkundensegmente, die aktuelle Preisstruktur (falls vorhanden) sowie optional WTP-Umfragedaten (mind. N=30) oder Wettbewerbspreise vor.
 
 ## Skill
 
 ````markdown
 ---
 name: pricing-strategist
-description: "Use when designing or revisiting product pricing — selecting a pricing model (subscription seat-based, usage-based, value-based, freemium, or hybrid), running Van Westendorp Price Sensitivity Meter analysis on WTP survey data, or designing Good/Better/Best packaging tiers. Recommends a model and a price range with trade-offs, never a single number."
+description: "Use when designing or revisiting product pricing — selecting a pricing model (subscription seat-based, usage-based, value-based, freemium, or hybrid), running Van Westendorp Price Sensitivity Meter analysis on WTP survey data, or designing Good/Better/Best packaging tiers. Recommends a model and a price range with trade-offs, never a single number. Requires: product description, target customer segments, current pricing structure (if any), and optionally WTP survey data (min. N=30) or competitor pricing."
 ---
 
 # pricing-strategist
@@ -23,7 +23,7 @@ Help Commercial, Product Marketing, and CMO functions answer three questions at 
 2. **What does the customer actually pay before it feels too expensive?** (Van Westendorp PSM)
 3. **How should we package this into tiers?** (Good / Better / Best)
 
-The skill recommends **a model and a range**. The human picks the number and owns the trade-offs.
+Der Skill empfiehlt **ein Modell und eine Preisspanne**. Die finale Zahl und die Trade-offs bleiben beim Menschen.
 
 ## When to use
 
@@ -40,45 +40,86 @@ The skill recommends **a model and a range**. The human picks the number and own
 
 ## Workflow
 
-### Step 1 — Assess customer context
+### Step 1 — Kundenkontext erfassen
 
-Capture: industry, deal size avg, customer count, value drivers, adoption curve, consumption pattern (seat / usage / value / hybrid), competitor models.
+Beantworte diese Fragen, um den Kontext zu liefern:
 
-### Step 2 — Pick the pricing model
+```
+Branche:
+Durchschnittliche Deal-Größe:
+Anzahl bestehender Kunden:
+Wert-Treiber (was löst das Produkt):
+Adoptionskurve (viral / top-down / bottom-up):
+Nutzungsmuster (Seat / Usage / Value / Hybrid):
+Wettbewerber-Modelle:
+```
 
-Run `scripts/pricing_model_picker.py --input brief.json --profile saas --output markdown`.
+### Step 2 — Preismodell auswählen
 
-Output ranks 5 models by fit-score 0-100 with trade-offs:
-- low usage variance + high seat-attach → subscription wins
-- power-law usage + variable customer value → usage-based wins
+Auf Basis deiner Eingaben werden die 5 gängigen Modelle nach Fit-Score (0–100) bewertet und mit Trade-offs aufgelistet:
 
-### Step 3 — Validate WTP with Van Westendorp PSM
+| Modell | Fit-Score | Hauptargument | Trade-off |
+|--------|-----------|---------------|-----------|
+| Subscription (Seat-based) | — | Vorhersehbarer Umsatz | Benachteiligt kleine Nutzer |
+| Usage-based | — | Aligns value + cost | Umsatzvolatilität |
+| Value-based | — | Maximale Monetarisierung | Schwer skalierbar ohne Metric |
+| Freemium | — | Adoption-Flywheel | Conversion-Druck |
+| Hybrid | — | Flexibility | Komplexität |
 
-If you have survey data (≥ 4 questions per respondent: too cheap / bargain / getting expensive / too expensive), run `scripts/wtp_analyzer.py`.
+Entscheidungsregeln:
+- Geringe Usage-Varianz + hohe Seat-Attach → Subscription gewinnt
+- Power-Law-Usage + variabler Kundenwert → Usage-based gewinnt
 
-Output: 4 intersection points (OPP, IDP, PMC, PME) and the Range of Acceptable Prices.
+### Step 3 — WTP validieren mit Van Westendorp PSM
 
-PSM gives a **range**, not the price.
+Wenn Survey-Daten vorhanden sind (≥ 4 Fragen pro Respondenten: zu günstig / günstig / teuer / zu teuer), stelle die aggregierten Antworten bereit:
 
-### Step 4 — Design packaging
+```
+Anzahl Respondenten: N
+Frage 1 „zu günstig": Median-Wert / Verteilung
+Frage 2 „günstig/Schnäppchen": Median-Wert / Verteilung
+Frage 3 „teuer/aber akzeptabel": Median-Wert / Verteilung
+Frage 4 „zu teuer": Median-Wert / Verteilung
+```
 
-Run `scripts/packaging_designer.py --input features.json --profile saas --output markdown`.
+Die Analyse berechnet die **4 Schnittpunkte des PSM**:
 
-Output: 3-tier Good/Better/Best assignment with anti-pattern flags:
-- decoy tier
-- feature dump
-- no upgrade trigger
-- Bronze loss leader
-- Enterprise no-anchor
+| Schnittpunkt | Bedeutung |
+|---|---|
+| **OPP** (Optimal Price Point) | Schnittpunkt „zu günstig" & „zu teuer" |
+| **IDP** (Indifference Price Point) | Schnittpunkt „günstig" & „teuer" |
+| **PMC** (Point of Marginal Cheapness) | Untergrenze des akzeptablen Preisbereichs |
+| **PME** (Point of Marginal Expensiveness) | Obergrenze des akzeptablen Preisbereichs |
 
-### Step 5 — Decide
+PSM liefert eine **Spanne** (Range of Acceptable Prices), keinen fixen Preis. Mindestens N = 30 Respondenten erforderlich.
 
-Take model + range + packaging into the pricing committee. Skill does not commit the number — you do.
+### Step 4 — Packaging gestalten
+
+Stelle die verfügbaren Features und ihre Wichtigkeit für verschiedene Kundensegmente bereit:
+
+```
+Feature             | Segment A | Segment B | Segment C | Einschätzung
+Feature X           | must-have | nice-to-have | –      | Core
+Feature Y           | –         | must-have | must-have | Advanced
+Feature Z (Limits)  | 100/Monat | 1.000/Monat | unlimited| Differenzierung
+```
+
+Die Analyse erstellt die 3-Tier-Zuweisung (Good/Better/Best) und prüft auf Packaging-Anti-Patterns:
+
+- **Decoy Tier** — mittlerer Tier existiert nur zum Preisanker
+- **Feature Dump** — Best-Tier enthält zu viele unrelevante Features
+- **No Upgrade Trigger** — kein klarer Limit oder Workflow, der ein Upgrade erzwingt
+- **Bronze Loss Leader** — Good-Tier ist zu großzügig für Conversion
+- **Enterprise No-Anchor** — kein Preis-Anker für Enterprise-Tier
+
+### Step 5 — Entscheiden
+
+Modell + Spanne + Packaging werden als strukturierte Empfehlung ausgegeben und im Pricing-Committee besprochen. Der Skill legt keine finale Zahl fest – das bleibt eine menschliche Entscheidung.
 
 ## Anti-patterns
 
 - **Recommending a specific number.** This skill emits a model and a range. Final price is a human commercial decision.
-- **Using PSM with N < 30.** Statistical noise dominates. The script warns; respect the warning.
+- **Using PSM with N < 30.** Statistical noise dominates.
 - **Treating PSM as "the price."** PSM gives a Range of Acceptable Prices (RAP) and an Optimal Price Point (OPP).
 - **Picking value-based pricing without a measurable value metric.**
 - **Designing tiers before picking a model.**
@@ -93,7 +134,7 @@ Take model + range + packaging into the pricing committee. Skill does not commit
 5. **"What sample size do you have for WTP analysis, and is it segmented?"**
 6. **"What's the ONE feature that forces a tier upgrade?"**
 
-Walk depth-first. Lock 1-3 before opening 4-6. Then invoke `pricing_model_picker.py` → `wtp_analyzer.py` → `packaging_designer.py` in sequence.
+Fragen werden depth-first bearbeitet. Fragen 1–3 klären, bevor 4–6 geöffnet werden. Danach folgen Modell-Auswahl → PSM-Analyse → Packaging-Design in dieser Reihenfolge.
 ````
 
 Quelle: [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) — MIT License

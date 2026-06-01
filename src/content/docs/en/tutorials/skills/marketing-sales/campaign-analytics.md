@@ -1,16 +1,16 @@
 ---
 title: Campaign Analytics
-description: Analyze campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation. Includes ROAS, CPA, CAC, and industry benchmark comparisons.
+description: Analyze campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation. Provide ad spend, clicks, conversions, and revenue per channel, plus funnel stage counts (Leads → MQLs → SQLs → Closed-Won).
 ---
 
-Use this skill when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels.
+Use this skill when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels. Before starting, prepare your campaign data per channel (ad spend, clicks, conversions, and revenue) as well as your funnel stage counts — at minimum Leads, MQLs, SQLs, and Closed-Won.
 
 ## Skill
 
 ````markdown
 ---
 name: "campaign-analytics"
-description: Analyzes campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation for marketing optimization. Use when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels.
+description: Analyzes campaign performance with multi-touch attribution, funnel conversion analysis, and ROI calculation for marketing optimization. Use when analyzing marketing campaigns, ad performance, attribution models, conversion rates, or calculating marketing ROI, ROAS, CPA, and campaign metrics across channels. Requires campaign data per channel (ad spend, clicks, conversions, revenue) and funnel stage counts (Leads, MQLs, SQLs, Closed-Won).
 ---
 
 # Campaign Analytics
@@ -21,24 +21,17 @@ Production-grade campaign performance analysis with multi-touch attribution mode
 
 ## Typical Analysis Workflow
 
-```bash
-# Step 1 — Attribution: understand which channels drive conversions
-python scripts/attribution_analyzer.py campaign_data.json --model time-decay
+Provide your campaign data in the input formats below and I will perform the following steps in sequence:
 
-# Step 2 — Funnel: identify where prospects drop off
-python scripts/funnel_analyzer.py funnel_data.json
-
-# Step 3 — ROI: calculate profitability and benchmark
-python scripts/campaign_roi_calculator.py campaign_data.json
-```
+1. **Attribution Analysis** — Apply your chosen attribution model to identify which channels drive conversions
+2. **Funnel Analysis** — Calculate stage-to-stage conversion rates and pinpoint the largest drop-off bottlenecks
+3. **ROI Calculation** — Compute all key metrics (ROAS, CPA, CAC, CPL, CTR, CVR) and compare against industry benchmarks
 
 ---
 
-## Scripts
+## Attribution Models
 
-### 1. attribution_analyzer.py
-
-Implements five industry-standard attribution models:
+I implement five industry-standard attribution models. Specify which model(s) you want applied:
 
 | Model | Description | Best For |
 |-------|-------------|----------|
@@ -48,26 +41,34 @@ Implements five industry-standard attribution models:
 | Time-Decay | More credit to recent touchpoints | Short sales cycles |
 | Position-Based | 40/20/40 split (first/middle/last) | Full-funnel marketing |
 
-### 2. funnel_analyzer.py
+For Time-Decay, I will ask for your average sales cycle length to calibrate the half-life appropriately.
 
-Analyzes conversion funnels to identify bottlenecks:
+---
+
+## Funnel Analysis
+
+I will calculate:
 
 - Stage-to-stage conversion rates and drop-off percentages
 - Automatic bottleneck identification (largest absolute and relative drops)
 - Overall funnel conversion rate
 - Segment comparison when multiple segments are provided
 
-### 3. campaign_roi_calculator.py
+---
 
-Calculates comprehensive ROI metrics with industry benchmarking:
+## ROI Metrics Calculated
 
-- **ROI**: Return on investment percentage
-- **ROAS**: Return on ad spend ratio
-- **CPA**: Cost per acquisition
-- **CPL**: Cost per lead
-- **CAC**: Customer acquisition cost
-- **CTR**: Click-through rate
-- **CVR**: Conversion rate (leads to customers)
+I compute the following metrics from your input data:
+
+- **ROI**: `(Revenue - Total Cost) / Total Cost × 100`
+- **ROAS**: `Revenue / Ad Spend`
+- **CPA**: `Total Cost / Conversions`
+- **CPL**: `Total Cost / Leads`
+- **CAC**: `Total Cost / New Customers`
+- **CTR**: `Clicks / Impressions × 100`
+- **CVR**: `Customers / Leads × 100`
+
+I will flag each metric against typical industry benchmarks and highlight where performance is above or below average.
 
 ---
 
@@ -75,31 +76,45 @@ Calculates comprehensive ROI metrics with industry benchmarking:
 
 ### Attribution Input
 
-```json
-{
-  "journeys": [
-    {
-      "journey_id": "j1",
-      "touchpoints": [
-        {"channel": "organic_search", "timestamp": "2025-10-01T10:00:00", "interaction": "click"},
-        {"channel": "paid_search", "timestamp": "2025-10-08T09:15:00", "interaction": "click"}
-      ],
-      "converted": true,
-      "revenue": 500.00
-    }
-  ]
-}
+Provide your customer journey data in this format:
+
 ```
+Journey ID | Touchpoints (channel, date, interaction type) | Converted (yes/no) | Revenue
+-----------|------------------------------------------------|-------------------|--------
+j1         | organic_search 2025-10-01, paid_search 2025-10-08 | yes            | €500
+j2         | social_ad 2025-10-03, email 2025-10-10, paid_search 2025-10-12 | yes | €750
+j3         | paid_search 2025-10-05 | no                                          | —
+```
+
+Or paste raw journey data in any structured format (CSV, table, JSON) and I will parse it.
 
 ### Funnel Input
 
-```json
-{
-  "funnel": {
-    "stages": ["Awareness", "Interest", "Consideration", "Intent", "Purchase"],
-    "counts": [10000, 5200, 2800, 1400, 420]
-  }
-}
+Provide your funnel stage counts:
+
+```
+Stage        | Count
+-------------|------
+Awareness    | 10000
+Interest     |  5200
+Consideration|  2800
+Intent       |  1400
+Purchase     |   420
+```
+
+### ROI Input
+
+Provide these values:
+
+```
+Total ad spend:        €___
+Total revenue:         €___
+Total leads:           ___
+Total conversions:     ___
+New customers:         ___
+Total impressions:     ___
+Total clicks:          ___
+Additional costs (creative, labor, tooling): €___
 ```
 
 ---

@@ -68,7 +68,17 @@ Das Löschen einer Sammlung löscht alle verknüpften Dokumente und Aufträge de
 
 ### Quellen
 
-Teams und SharePoint als Dokumentenquellen anbinden und Synchronisierung verwalten
+Unterschiedliche Quellen zur automatische Synchronisation von Daten in companyRAG.
+
+#### Webcrawl 
+
+Einzelne Webseiten, Listen (in CSV Dateien), sowie gesamte Website Sitemaps können gecrawlt und indexiert werden. Dabei können Sie einstellen, wie häufig das Crawling wiederholt werden soll. Bei einzelnen Seiten wird immer die gesamte Seite neu indexiert. Bei Sitemap Crawlings wir nur die Differenz anhand des letzten Crawls sowie des Änderungsdatums berücksichtigt.
+
+![website-crawl](website-crawl.png)
+
+Bei Sitemap Crawls kann über den `Path Prefix` bestimmt werden, welche Seiten indexiert werden. So würde beispielsweise `/news/` nur alle Seiten indexieren, die `/news` im Pfad haben.
+
+![sitemap-crawl](sitemap-crawl.png)
 
 #### SharePoint anbinden
 

@@ -66,7 +66,17 @@ Deleting a collection permanently deletes all associated documents and jobs of t
 
 ### Sources
 
-Connect Teams and SharePoint as document sources and manage synchronization
+Different sources for automatic synchronization of data into companyRAG.
+
+#### Webcrawl
+
+Individual web pages, lists (in CSV files), and entire website sitemaps can be crawled and indexed. You can set how frequently the crawling should be repeated. For individual pages, the entire page is always re-indexed. For sitemap crawls, only the difference based on the last crawl and the modification date is taken into account.
+
+![website-crawl](website-crawl.png)
+
+For sitemap crawls, the `Path Prefix` can be used to determine which pages are indexed. For example, `/news/` would only index all pages that have `/news` in the path.
+
+![sitemap-crawl](sitemap-crawl.png)
 
 #### Connect SharePoint
 

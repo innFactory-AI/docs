@@ -10,7 +10,7 @@ Use this skill when asked to fill a template, use a company letterhead or invoic
 ````markdown
 ---
 name: templates-skill
-description: Create documents from templates using companyFILES MCP tools. Use when asked to fill a template, use a company template, create a document from a predefined layout, fill placeholders, use a letterhead, fill an invoice template, or create from a DOCX/XLSX/POTX/ODT template. Covers Word, Excel, ODT, and PowerPoint template filling, including image placeholders and loop/repeat syntax.
+description: 'Create documents from templates using companyFILES MCP tools. Use when asked to fill a template, use a company template, create a document from a predefined layout, fill placeholders, use a letterhead, fill an invoice template, or create from a DOCX/XLSX/POTX/ODT template. Covers Word, Excel, ODT, and PowerPoint template filling, including image placeholders and loop/repeat syntax.'
 ---
 
 # Templates Skill
@@ -40,10 +40,20 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 ### list_templates
 ```json
 {
-  "type": "docx"
+  "type": "potx"
 }
 ```
-Returns template names, placeholder lists, slide info (for POTX), field definitions (for PDF forms), and upload dates. Scope is `"user"` (personal) or `"global"`.
+Returns template names, placeholder lists, and upload dates. Scope is `"user"` (personal) or `"global"`.
+
+For **POTX/PPTX** templates the response includes a per-slide breakdown:
+- `slideNumber` — 1-based slide index
+- `layoutName` — PowerPoint layout name (e.g. `"Title Slide"`, `"Two Content"`)
+- `layoutType` — value from a `{{slide_type:xxx}}` marker on that slide (e.g. `"section"`, `"default"`, `"text-image"`)
+- `textPlaceholders` — `{{key}}` placeholders on this slide
+- `imagePlaceholders` — `{%name}` placeholders on this slide
+- `chartPlaceholders` — `{{name}}` chart container placeholders on this slide
+
+Use this breakdown to know exactly which placeholder goes on which slide before calling `create_powerpoint_from_template`. Filter by `type` to narrow results: `"docx"`, `"xlsx"`, `"potx"`, `"odt"`, `"pdf"`.
 
 ---
 
@@ -171,8 +181,15 @@ Fills `{{placeholder}}` syntax in ODT templates.
 
 ### create_powerpoint_from_template
 
-Text placeholders: `{{key}}`. Image placeholders: `{%name}` in the alt text of an image shape.
+Placeholder syntax:
+- **Text:** `{{key}}` anywhere in a text box
+- **Image:** `{%name}` in the **alt text** (`descr` attribute) of an image shape
+- **Chart:** `{{name}}` in the **alt text** of a chart container shape
+- **Layout marker:** `{{slide_type:default}}`, `{{slide_type:section}}`, `{{slide_type:text-image}}` — invisible metadata marker; declares the slide's role. Cleared automatically from the output.
 
+Always run `list_templates` first — for POTX/PPTX it returns a per-slide breakdown including `layoutName`, `layoutType` (from the `{{slide_type:xxx}}` marker), and which text/image/chart placeholders belong to each slide.
+
+**Basic usage (single-record fill):**
 ```json
 {
   "template_name": "corporate_deck",
@@ -195,19 +212,86 @@ Text placeholders: `{{key}}`. Image placeholders: `{%name}` in the alt text of a
       "datasets": [{"label": "Revenue", "values": [100,150,120,180]}]
     }
   },
+  "filename": "q4_deck",
+  "folder": "presentations"
+}
+```
+
+`speaker_notes` keys are **1-based** slide numbers.
+
+**Single-source repeat** (duplicate one slide per data record):
+```json
+{
+  "template_name": "team_deck",
   "repeat": {
     "slide": 3,
     "data": [
       {"name": "Alice", "role": "Engineer"},
       {"name": "Bob", "role": "Designer"}
     ]
-  },
-  "filename": "q4_deck",
-  "folder": "presentations"
+  }
+}
+```
+`repeat.slide` is the 1-based slide number to duplicate; the slide is replaced by N copies, one per data record.
+
+**Multi-source repeat** (route each record to the slide matching its `slide_type`):
+
+Use this when the template has multiple layout slides marked with `{{slide_type:xxx}}` and each data record should use a different layout.
+
+```json
+{
+  "template_name": "dynamic_deck",
+  "repeat": {
+    "data": [
+      { "slide_type": "section",    "title": "Chapter 1" },
+      { "slide_type": "default",    "title": "Results",      "content": "Revenue up 15%" },
+      { "slide_type": "text-image", "title": "Architecture", "bullets": "Fast\nScalable" }
+    ]
+  }
 }
 ```
 
-`speaker_notes` keys are **1-based** slide numbers. `repeat.slide` duplicates that slide once per data item.
+Omit `repeat.slide` when using `slide_type` routing — the matching template slide is found automatically from its `{{slide_type:xxx}}` marker. The `slide_type` values (`default`, `section`, `text-image`) correspond to the same layout names used in `create_powerpoint`.
+
+## Post-Template Editing (Iterative Updates)
+
+Every template tool returns a `document_id`. That ID can be passed directly to the iterative editing tools from **word-odt-skill** and **powerpoint-skill** to further modify the filled document without regenerating from scratch.
+
+### After `create_word_from_template` / `create_word_from_template_with_images`
+
+| Goal | Tool |
+|------|------|
+| Inspect current content | `read_word_content { "document_id": "<id>" }` |
+| Add more sections at the end | `append_to_word { "document_id": "<id>", "content": "...", "add_page_break": true }` |
+| Fully rewrite the document | `replace_word_content { "document_id": "<id>", "content": "..." }` |
+
+Example — fill a template then append a custom appendix:
+```json
+// Step 1: fill the template
+{ "template_name": "report", "data": { "title": "Annual Report" } }
+// → returns document_id "abc123"
+
+// Step 2: append extra content
+{ "document_id": "abc123", "content": "## Appendix A\n\nAdditional data...", "add_page_break": true }
+```
+
+### After `create_powerpoint_from_template`
+
+| Goal | Tool |
+|------|------|
+| Inspect existing slides | `read_powerpoint_slides { "document_id": "<id>" }` |
+| Add new slides at the end | `append_slides_to_powerpoint { "document_id": "<id>", "slides": [...] }` |
+| Replace a specific slide | `update_powerpoint_slide { "document_id": "<id>", "slide_number": 3, "slides": [...] }` |
+
+Example — fill a template then append a custom closing slide:
+```json
+// Step 1: fill the template
+{ "template_name": "corporate_deck", "placeholders": { "title": "Q4 Results" } }
+// → returns document_id "def456"
+
+// Step 2: add a closing slide
+{ "document_id": "def456", "slides": [{ "type": "section", "title": "Thank You", "subtitle": "Questions?" }] }
+```
 
 ## Key Notes
 
@@ -216,4 +300,6 @@ Text placeholders: `{{key}}`. Image placeholders: `{%name}` in the alt text of a
 - User templates take priority over global templates with the same name.
 - `replace_missing: false` (default) leaves unfilled `{{placeholder}}` tokens intact; `true` replaces them with empty string.
 - Warnings about missing placeholders are included in the response when applicable.
+- After filling a template, use the iterative tools (`append_to_word`, `append_slides_to_powerpoint`, etc.) to add or update content — the `document_id` stays the same throughout.
+
 ````

@@ -30,6 +30,18 @@ Tools for creating and editing PowerPoint (.pptx) presentations.
 
 ---
 
+## Available Slide Types
+
+Every slide tool (`create_powerpoint`, `append_slides_to_powerpoint`, `update_powerpoint_slide`) uses one of three layout types via the `type` field:
+
+- **`default`** — standard content slide: accent bar, title, then stacked content (text, bullets, code, table, image)
+- **`section`** — dark full-screen divider slide: large centred title, optional subtitle — use to separate chapters
+- **`text-image`** — split layout: title at top, text/bullets on the left, image on the right (shows a skeleton box if no image is given)
+
+When using Markdown mode (no `slides` array), all slides get the `default` layout automatically.
+
+---
+
 ## Slide Layouts
 
 Three built-in layout types are available for `create_powerpoint`, `append_slides_to_powerpoint`, and `update_powerpoint_slide`:

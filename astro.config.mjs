@@ -269,7 +269,25 @@ export default defineConfig({
 
 						]
 					},
-				])
+					{
+						label: { de: 'Changelog', en: 'Changelog' },
+						link: 'changelog/',
+						icon: 'list-format',
+						// Empty items keeps this a "group" topic so the plugin generates a
+						// locale-aware URL (/de/changelog/, /en/changelog/). The `id` lets the
+						// custom pages under src/pages associate with this topic (see `topics`
+						// below) so they keep the main topics navigation in the sidebar.
+						id: 'changelog',
+						items: [],
+					},
+				], {
+					// The changelog pages live in src/pages (not the docs collection). Map them
+					// to the `changelog` topic so the topics navigation (Documentation / API /
+					// Tutorials / Changelog) still renders on them and users can get back to docs.
+					topics: {
+						changelog: ['/de/changelog', '/de/changelog/**', '/en/changelog', '/en/changelog/**'],
+					},
+				})
 			],
 			// sidebar: [
 			// 	{

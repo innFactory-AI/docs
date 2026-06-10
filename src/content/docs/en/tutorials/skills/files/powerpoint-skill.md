@@ -48,9 +48,9 @@ Three built-in layout types are available for `create_powerpoint`, `append_slide
 
 | `type` | Visual | Key fields |
 |--------|--------|------------|
-| `"default"` | Accent bar + title + stacked content (current default) | `title`, `content`, `bullets`, `code`, `table`, `image` |
+| `"default"` | Accent bar + title + stacked content (current default) | `title`, `content`, `bullets`, `code`, `table`, `htmlTable`, `image` |
 | `"section"` | Dark background, large centred title — section divider | `title`, `subtitle` |
-| `"text-image"` | Title at top; text/bullets on left, image on right | `title`, `content`, `bullets`, `image`, `imageAlt` |
+| `"text-image"` | Title at top; text/bullets on left, image on right | `title`, `content`, `bullets`, `htmlTable`, `image`, `imageAlt` |
 
 When `image` is omitted from a `"text-image"` slide, a skeleton placeholder box is shown on the right (useful for draft decks).
 
@@ -91,7 +91,8 @@ Pass a `slides` array instead of (or in addition to) `markdown`. When `slides` i
     {
       "type": "default",
       "title": "Key Metrics",
-      "bullets": ["Revenue: €1.2M", "Growth: 15%", "NPS: 72"]
+      "bullets": ["Revenue: €1.2M", "Growth: 15%", "NPS: 72"],
+      "htmlTable": "<table><tr><th style=\"background-color:#1F2937;color:#fff\">Region</th><th style=\"background-color:#1F2937;color:#fff\">Q1</th><th style=\"background-color:#1F2937;color:#fff\">Q2</th></tr><tr><td style=\"font-weight:bold\">DACH</td><td style=\"color:#16A34A\">€1.2M</td><td style=\"color:#16A34A\">€1.4M</td></tr><tr><td style=\"font-weight:bold\">US</td><td>€0.8M</td><td style=\"color:#16A34A\">€1.1M</td></tr></table>"
     },
     {
       "type": "text-image",
@@ -195,6 +196,34 @@ Inspect an existing presentation before editing:
 ```
 
 Returns `{ slide_count, slides: [{ slideNumber, title, textLines }] }`.
+
+---
+
+## Styled Tables with htmlTable
+
+Use `htmlTable` instead of the plain `table` field when you need per-cell styling (colours, bold, alignment). Both `"default"` and `"text-image"` slides support it; `htmlTable` takes precedence over `table` when both are present.
+
+**Supported inline CSS properties:**
+
+| CSS property | Effect in slide |
+|---|---|
+| `background-color: #hex` | Cell fill colour |
+| `color: #hex` | Text colour |
+| `font-weight: bold` | Bold text |
+| `font-style: italic` | Italic text |
+| `text-align: left\|center\|right` | Text alignment |
+
+`<th>` elements are automatically styled as header cells (bold + theme header background/text colour) unless overridden by inline styles.
+
+```json
+{
+  "type": "default",
+  "title": "Revenue by Region",
+  "htmlTable": "<table><tr><th>Region</th><th>Q1</th><th>vs PY</th></tr><tr><td style=\"font-weight:bold\">DACH</td><td>€1.2M</td><td style=\"color:#16A34A\">+18%</td></tr><tr><td style=\"font-weight:bold\">US</td><td>€0.8M</td><td style=\"color:#DC2626\">-3%</td></tr></table>"
+}
+```
+
+For plain tables without per-cell styling, the simpler `table: string[][]` field is sufficient.
 
 ---
 

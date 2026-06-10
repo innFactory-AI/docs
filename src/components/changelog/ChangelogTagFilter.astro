@@ -1,0 +1,72 @@
+---
+import { TAG_HUE, t, type ChangelogTag } from './tags';
+
+interface Props {
+	tags: ChangelogTag[];
+	locale: 'de' | 'en';
+}
+
+const { tags, locale } = Astro.props;
+const strings = t(locale);
+---
+
+<div class="changelog-controls">
+	<label class="changelog-search">
+		<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+		<input type="search" placeholder={strings.search} data-changelog-search aria-label={strings.search} />
+	</label>
+
+	{
+		tags.length > 0 && (
+			<div class="changelog-filter" role="group">
+				<button type="button" class="changelog-pill is-active" data-filter-tag="">
+					{strings.allTags}
+				</button>
+				{tags.map((tag) => (
+					<button
+						type="button"
+						class="changelog-pill"
+						data-filter-tag={tag}
+						style={`--tag-hue: ${TAG_HUE[tag] ?? 200};`}
+					>
+						{tag}
+					</button>
+				))}
+			</div>
+		)
+	}
+</div>
+
+<script>
+	const search = document.querySelector<HTMLInputElement>('[data-changelog-search]');
+	const pills = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter-tag]'));
+	const items = Array.from(document.querySelectorAll<HTMLElement>('.changelog-item'));
+	const empty = document.querySelector<HTMLElement>('.changelog-empty');
+
+	let activeTag = '';
+
+	function apply() {
+		const query = (search?.value ?? '').trim().toLowerCase();
+		let visible = 0;
+		for (const item of items) {
+			const tags = (item.dataset.tags ?? '').split(' ').filter(Boolean);
+			const text = item.textContent?.toLowerCase() ?? '';
+			const matchesTag = !activeTag || tags.includes(activeTag);
+			const matchesQuery = !query || text.includes(query);
+			const show = matchesTag && matchesQuery;
+			item.hidden = !show;
+			if (show) visible++;
+		}
+		if (empty) empty.hidden = visible !== 0;
+	}
+
+	for (const pill of pills) {
+		pill.addEventListener('click', () => {
+			activeTag = pill.dataset.filterTag ?? '';
+			for (const p of pills) p.classList.toggle('is-active', p === pill);
+			apply();
+		});
+	}
+
+	search?.addEventListener('input', apply);
+</script>

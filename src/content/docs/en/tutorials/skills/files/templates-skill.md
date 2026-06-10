@@ -301,5 +301,4 @@ Example — fill a template then append a custom closing slide:
 - `replace_missing: false` (default) leaves unfilled `{{placeholder}}` tokens intact; `true` replaces them with empty string.
 - Warnings about missing placeholders are included in the response when applicable.
 - After filling a template, use the iterative tools (`append_to_word`, `append_slides_to_powerpoint`, etc.) to add or update content — the `document_id` stays the same throughout.
-
 ````

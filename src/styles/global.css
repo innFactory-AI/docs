@@ -202,3 +202,403 @@
 	width: 1em;
 	height: 1em;
 }
+
+/* ============================================================================
+ * CHANGELOG
+ * ========================================================================== */
+
+.changelog-page,
+.changelog-entry {
+	max-width: 56rem;
+	margin-inline: auto;
+	width: 100%;
+}
+
+/*
+ * Both changelog layouts use the `splash` template, which still renders
+ * Starlight's built-in page title. We render our own heading, so hide the
+ * default one — but only on changelog pages, never globally.
+ */
+main:has(.changelog-page) .content-panel:has(h1#_top),
+main:has(.changelog-entry) .content-panel:has(h1#_top) {
+	display: none;
+}
+
+.changelog-header h1,
+.changelog-entry__title {
+	font-size: clamp(2.25rem, 5vw, 3.5rem);
+	font-weight: 700;
+	line-height: 1.08;
+	margin: 0 0 1.5rem;
+	border: 0;
+	padding: 0;
+}
+
+/* --- Controls: search + tag pills --- */
+.changelog-controls {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-bottom: 3rem;
+}
+
+.changelog-search {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	max-width: 24rem;
+	padding: 0.5rem 0.9rem;
+	border: 1px solid var(--sl-color-hairline-light);
+	border-radius: 999px;
+	background: var(--sl-color-bg-nav);
+	color: var(--sl-color-gray-3);
+	transition: border-color 150ms ease;
+}
+
+.changelog-search:focus-within {
+	border-color: var(--sl-color-accent);
+}
+
+.changelog-search svg {
+	width: 1.1em;
+	height: 1.1em;
+	flex-shrink: 0;
+}
+
+.changelog-search input {
+	border: 0;
+	background: transparent;
+	color: var(--sl-color-white);
+	font: inherit;
+	font-size: 0.9375rem;
+	width: 100%;
+	outline: none;
+}
+
+.changelog-filter {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.changelog-filter .changelog-pill {
+	--tag-hue: 180;
+	/* Reset native <button> box so every pill is sized identically. */
+	-webkit-appearance: none;
+	appearance: none;
+	box-sizing: border-box;
+	display: inline-flex;
+	align-items: center;
+	align-self: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	height: 2rem;
+	margin: 0;
+	padding: 0 0.85rem;
+	border-radius: 999px;
+	font: inherit;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1;
+	white-space: nowrap;
+	cursor: pointer;
+	/* Same resting look as content tags so filter + content stay consistent. */
+	background: hsl(var(--tag-hue) 60% 50% / 0.12);
+	color: hsl(var(--tag-hue) 70% 72%);
+	border: 1px solid hsl(var(--tag-hue) 60% 50% / 0.3);
+	transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.changelog-pill:hover {
+	border-color: hsl(var(--tag-hue) 70% 55% / 0.6);
+}
+
+/* "Alle" / reset pill — neutral, so it reads as "no filter" not a product. */
+.changelog-pill[data-filter-tag=''] {
+	background: var(--sl-color-gray-6);
+	color: var(--sl-color-gray-2);
+	border-color: var(--sl-color-hairline-light);
+}
+
+.changelog-pill[data-filter-tag='']:hover {
+	border-color: var(--sl-color-gray-4);
+	color: var(--sl-color-white);
+}
+
+.changelog-pill[data-filter-tag=''].is-active {
+	background: var(--sl-color-gray-5);
+	border-color: var(--sl-color-gray-4);
+	color: var(--sl-color-white);
+}
+
+:root[data-theme='light'] .changelog-pill[data-filter-tag=''].is-active {
+	background: var(--sl-color-gray-6);
+	border-color: var(--sl-color-gray-4);
+	color: var(--sl-color-black);
+}
+
+.changelog-pill.is-active {
+	background: hsl(var(--tag-hue) 70% 55% / 0.28);
+	border-color: hsl(var(--tag-hue) 70% 55%);
+	color: hsl(var(--tag-hue) 75% 82%);
+}
+
+:root[data-theme='light'] .changelog-pill {
+	background: hsl(var(--tag-hue) 60% 45% / 0.1);
+	color: hsl(var(--tag-hue) 70% 30%);
+	border-color: hsl(var(--tag-hue) 60% 45% / 0.28);
+}
+
+:root[data-theme='light'] .changelog-pill.is-active {
+	background: hsl(var(--tag-hue) 65% 45% / 0.2);
+	border-color: hsl(var(--tag-hue) 65% 45%);
+	color: hsl(var(--tag-hue) 70% 25%);
+}
+
+/* --- Tag pills --- */
+.changelog-tag {
+	--tag-hue: 180;
+	display: inline-flex;
+	align-items: center;
+	padding: 0.2rem 0.6rem;
+	border-radius: 999px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1.3;
+	background: hsl(var(--tag-hue) 60% 50% / 0.16);
+	color: hsl(var(--tag-hue) 70% 72%);
+	border: 1px solid hsl(var(--tag-hue) 60% 50% / 0.35);
+}
+
+:root[data-theme='light'] .changelog-tag {
+	background: hsl(var(--tag-hue) 60% 45% / 0.12);
+	color: hsl(var(--tag-hue) 70% 30%);
+	border-color: hsl(var(--tag-hue) 60% 45% / 0.3);
+}
+
+/* --- Timeline --- */
+.changelog-timeline {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.changelog-timeline::before {
+	content: '';
+	position: absolute;
+	left: 5px;
+	top: 0.6rem;
+	bottom: 0.6rem;
+	width: 1px;
+	background: var(--sl-color-hairline-light);
+}
+
+.changelog-item {
+	position: relative;
+	padding: 0 0 3.5rem 2.5rem;
+}
+
+.changelog-item:last-child {
+	padding-bottom: 0;
+}
+
+.changelog-item::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0.5rem;
+	width: 11px;
+	height: 11px;
+	border-radius: 50%;
+	background: var(--sl-color-accent);
+	box-shadow: 0 0 0 4px var(--sl-color-bg);
+}
+
+.changelog-item__meta {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.changelog-item__date {
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+}
+
+.changelog-item__more {
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: var(--sl-color-text-accent);
+	text-decoration: none;
+}
+
+.changelog-item__more:hover {
+	text-decoration: underline;
+}
+
+.changelog-item__title {
+	text-decoration: none;
+	color: inherit;
+}
+
+.changelog-item__title h2 {
+	font-size: clamp(1.5rem, 3vw, 2.1rem);
+	font-weight: 700;
+	line-height: 1.15;
+	margin: 0 0 0.75rem;
+	border: 0;
+	padding: 0;
+	transition: color 150ms ease;
+}
+
+.changelog-item__title:hover h2 {
+	color: var(--sl-color-text-accent);
+}
+
+.changelog-item__excerpt {
+	color: var(--sl-color-gray-2);
+	margin: 0 0 1rem;
+	max-width: 48rem;
+}
+
+.changelog-item__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin-bottom: 1rem;
+}
+
+.changelog-item__author {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+
+.changelog-item__author img {
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.changelog-empty {
+	color: var(--sl-color-gray-3);
+	padding: 2rem 0;
+}
+
+/* --- Single entry --- */
+.changelog-entry__back {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--sl-color-gray-2);
+	text-decoration: none;
+	margin-bottom: 2rem;
+}
+
+.changelog-entry__back:hover {
+	color: var(--sl-color-text-accent);
+}
+
+.changelog-entry__topline {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.25rem;
+}
+
+.changelog-entry__meta {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	font-size: 0.8125rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+}
+
+.changelog-entry__author {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	text-transform: none;
+	letter-spacing: normal;
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+
+.changelog-entry__author img {
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.changelog-entry__tags {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin-bottom: 1.5rem;
+}
+
+.changelog-entry__hero {
+	width: 100%;
+	border-radius: 0.75rem;
+	margin-bottom: 2rem;
+}
+
+/* --- Share links --- */
+.changelog-share {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.changelog-share__label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--sl-color-gray-3);
+	margin-right: 0.25rem;
+}
+
+.changelog-share__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	border: 1px solid var(--sl-color-hairline-light);
+	background: transparent;
+	color: var(--sl-color-gray-2);
+	cursor: pointer;
+	transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+}
+
+.changelog-share__btn:hover {
+	border-color: var(--sl-color-accent);
+	color: var(--sl-color-text-accent);
+}
+
+.changelog-share__btn svg {
+	width: 1rem;
+	height: 1rem;
+}
+
+.changelog-share__btn.is-copied {
+	border-color: var(--sl-color-accent);
+	color: var(--sl-color-text-accent);
+}

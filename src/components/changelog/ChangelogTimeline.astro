@@ -1,0 +1,57 @@
+---
+import ChangelogTag from './ChangelogTag.astro';
+import { formatDate, t, type ChangelogTag as Tag } from './tags';
+
+interface Entry {
+	url: string;
+	title: string;
+	excerpt: string;
+	date: Date;
+	tags: Tag[];
+	author: { name: string; avatar?: string };
+}
+
+interface Props {
+	entries: Entry[];
+	locale: 'de' | 'en';
+}
+
+const { entries, locale } = Astro.props;
+const strings = t(locale);
+---
+
+<ol class="changelog-timeline">
+	{
+		entries.map((entry) => (
+			<li class="changelog-item" data-tags={entry.tags.join(' ')}>
+				<div class="changelog-item__meta">
+					<time class="changelog-item__date" datetime={entry.date.toISOString()}>
+						{formatDate(entry.date, locale)}
+					</time>
+					<a class="changelog-item__more" href={entry.url}>
+						{strings.readMore} <span aria-hidden="true">→</span>
+					</a>
+				</div>
+				<a class="changelog-item__title" href={entry.url}>
+					<h2>{entry.title}</h2>
+				</a>
+				<p class="changelog-item__excerpt">{entry.excerpt}</p>
+				{entry.tags.length > 0 && (
+					<div class="changelog-item__tags">
+						{entry.tags.map((tag) => (
+							<ChangelogTag tag={tag} />
+						))}
+					</div>
+				)}
+				<div class="changelog-item__author">
+					{entry.author.avatar && (
+						<img src={entry.author.avatar} alt="" width="28" height="28" loading="lazy" />
+					)}
+					<span>{entry.author.name}</span>
+				</div>
+			</li>
+		))
+	}
+</ol>
+
+<p class="changelog-empty" hidden>{strings.empty}</p>

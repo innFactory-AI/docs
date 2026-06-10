@@ -1,0 +1,12 @@
+---
+import { TAG_HUE, type ChangelogTag } from './tags';
+
+interface Props {
+	tag: ChangelogTag;
+}
+
+const { tag } = Astro.props;
+const hue = TAG_HUE[tag] ?? 200;
+---
+
+<span class="changelog-tag" style={`--tag-hue: ${hue};`} data-tag={tag}>{tag}</span>

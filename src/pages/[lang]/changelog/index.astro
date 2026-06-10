@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ChangelogTimeline from '../../../components/changelog/ChangelogTimeline.astro';
+import ChangelogTagFilter from '../../../components/changelog/ChangelogTagFilter.astro';
+import { CHANGELOG_TAGS } from '../../../content.config';
+import { t, type ChangelogTag } from '../../../components/changelog/tags';
+
+export function getStaticPaths() {
+	return [{ params: { lang: 'de' } }, { params: { lang: 'en' } }];
+}
+
+const { lang } = Astro.params as { lang: 'de' | 'en' };
+const strings = t(lang);
+
+const all = await getCollection(
+	'changelog',
+	(entry) => entry.data.lang === lang && (import.meta.env.DEV || !entry.data.draft)
+);
+
+const entries = all
+	.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+	.map((entry) => {
+		const slug = entry.id.replace(/^[a-z]{2}\//, '');
+		return {
+			url: `/${lang}/changelog/${slug}/`,
+			title: entry.data.title,
+			excerpt: entry.data.excerpt,
+			date: entry.data.date,
+			tags: entry.data.tags,
+			author: entry.data.author,
+		};
+	});
+
+// Tags that actually appear, ordered by the canonical tag list.
+const present = new Set(entries.flatMap((e) => e.tags));
+const usedTags = CHANGELOG_TAGS.filter((tag) => present.has(tag)) as ChangelogTag[];
+---
+
+<StarlightPage
+	frontmatter={{ title: strings.title, tableOfContents: false, pagefind: false }}
+>
+	<div class="changelog-page not-content">
+		<header class="changelog-header">
+			<h1>{strings.title}</h1>
+		</header>
+		<ChangelogTagFilter tags={usedTags} locale={lang} />
+		<ChangelogTimeline entries={entries} locale={lang} />
+	</div>
+</StarlightPage>

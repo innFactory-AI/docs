@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from 'astro:content';
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import ChangelogTag from '../../../components/changelog/ChangelogTag.astro';
+import ShareLinks from '../../../components/changelog/ShareLinks.astro';
+import { formatDate, t } from '../../../components/changelog/tags';
+
+export async function getStaticPaths() {
+	const entries = await getCollection(
+		'changelog',
+		(entry) => import.meta.env.DEV || !entry.data.draft
+	);
+	return entries.map((entry) => {
+		const match = entry.id.match(/^([a-z]{2})\/(.+)$/);
+		const lang = (match?.[1] ?? 'en') as 'de' | 'en';
+		const slug = match?.[2] ?? entry.id;
+		return { params: { lang, slug }, props: { entry } };
+	});
+}
+
+const { lang } = Astro.params as { lang: 'de' | 'en' };
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const strings = t(lang);
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<StarlightPage
+	frontmatter={{ title: entry.data.title, tableOfContents: false, pagefind: true }}
+>
+	<article class="changelog-entry">
+		<header class="changelog-entry__header not-content">
+			<a class="changelog-entry__back" href={`/${lang}/changelog/`}>
+				<span aria-hidden="true">←</span> {strings.back}
+			</a>
+
+			<h1 class="changelog-entry__title">{entry.data.title}</h1>
+
+			<div class="changelog-entry__topline">
+				<div class="changelog-entry__meta">
+					<time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date, lang)}</time>
+					<span class="changelog-entry__author">
+						{entry.data.author.avatar && (
+							<img src={entry.data.author.avatar} alt="" width="24" height="24" loading="lazy" />
+						)}
+						{entry.data.author.name}
+					</span>
+				</div>
+				<ShareLinks url={shareUrl} title={entry.data.title} locale={lang} />
+			</div>
+
+			{entry.data.tags.length > 0 && (
+				<div class="changelog-entry__tags">
+					{entry.data.tags.map((tag) => (
+						<ChangelogTag tag={tag} />
+					))}
+				</div>
+			)}
+
+			{entry.data.image && (
+				<img class="changelog-entry__hero" src={entry.data.image} alt="" loading="eager" />
+			)}
+		</header>
+
+		<div class="changelog-entry__body">
+			<Content />
+		</div>
+	</article>
+</StarlightPage>

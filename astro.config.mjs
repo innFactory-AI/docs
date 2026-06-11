@@ -174,21 +174,46 @@ export default defineConfig({
 								]
 							},
 						{
-							label: 'Skills',
-							translations: { en: 'Skills' },
-							items: [
-								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
-								{ label: 'Charts & Diagramme', translations: { en: 'Charts & Diagrams' }, slug: 'tutorials/skills/files/charts-diagram-skill' },
-								{ label: 'Konvertierung', translations: { en: 'Convert' }, slug: 'tutorials/skills/files/convert-skill' },
-								{ label: 'Excel', translations: { en: 'Excel' }, slug: 'tutorials/skills/files/excel-skill' },
-								{ label: 'Dateiverwaltung', translations: { en: 'File Management' }, slug: 'tutorials/skills/files/file-management-skill' },
-								{ label: 'PDF', translations: { en: 'PDF' }, slug: 'tutorials/skills/files/pdf-skill' },
-								{ label: 'PowerPoint', translations: { en: 'PowerPoint' }, slug: 'tutorials/skills/files/powerpoint-skill' },
-								{ label: 'Einstellungen & UI', translations: { en: 'Settings & UI' }, slug: 'tutorials/skills/files/settings-ui-skill' },
-								{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'tutorials/skills/files/templates-skill' },
-								{ label: 'Word & ODT', translations: { en: 'Word & ODT' }, slug: 'tutorials/skills/files/word-odt-skill' },
-							]
-						},
+						label: 'Skills',
+						translations: { en: 'Skills' },
+						items: [
+							{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
+							{
+								label: 'CompanyFILES',
+								translations: { en: 'CompanyFILES' },
+								items: [
+									{ label: 'Charts & Diagramme', translations: { en: 'Charts & Diagrams' }, slug: 'tutorials/skills/files/charts-diagram-skill' },
+									{ label: 'Konvertierung', translations: { en: 'Convert' }, slug: 'tutorials/skills/files/convert-skill' },
+									{ label: 'Excel', translations: { en: 'Excel' }, slug: 'tutorials/skills/files/excel-skill' },
+									{ label: 'Dateiverwaltung', translations: { en: 'File Management' }, slug: 'tutorials/skills/files/file-management-skill' },
+									{ label: 'PDF', translations: { en: 'PDF' }, slug: 'tutorials/skills/files/pdf-skill' },
+									{ label: 'PowerPoint', translations: { en: 'PowerPoint' }, slug: 'tutorials/skills/files/powerpoint-skill' },
+									{ label: 'Einstellungen & UI', translations: { en: 'Settings & UI' }, slug: 'tutorials/skills/files/settings-ui-skill' },
+									{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'tutorials/skills/files/templates-skill' },
+									{ label: 'Word & ODT', translations: { en: 'Word & ODT' }, slug: 'tutorials/skills/files/word-odt-skill' },
+								]
+							},
+							{
+								label: 'Marketing & Sales',
+								translations: { en: 'Marketing & Sales' },
+								items: [
+									{ label: 'Content-Produktion', translations: { en: 'Content Production' }, slug: 'tutorials/skills/marketing-sales/content-production' },
+									{ label: 'Marketing Demand & Acquisition', translations: { en: 'Marketing Demand & Acquisition' }, slug: 'tutorials/skills/marketing-sales/marketing-demand-acquisition' },
+									{ label: 'Marketing-Strategie & PMM', translations: { en: 'Marketing Strategy & PMM' }, slug: 'tutorials/skills/marketing-sales/marketing-strategy-pmm' },
+									{ label: 'Social-Media-Analyse', translations: { en: 'Social Media Analyzer' }, slug: 'tutorials/skills/marketing-sales/social-media-analyzer' },
+									{ label: 'Kampagnen-Analytics', translations: { en: 'Campaign Analytics' }, slug: 'tutorials/skills/marketing-sales/campaign-analytics' },
+									{ label: 'Video-Content-Stratege', translations: { en: 'Video Content Strategist' }, slug: 'tutorials/skills/marketing-sales/video-content-strategist' },
+									{ label: 'Prompt-Engineer-Toolkit', translations: { en: 'Prompt Engineer Toolkit' }, slug: 'tutorials/skills/marketing-sales/prompt-engineer-toolkit' },
+									{ label: 'Sales Engineer', translations: { en: 'Sales Engineer' }, slug: 'tutorials/skills/marketing-sales/sales-engineer' },
+									{ label: 'Vertrags- & Angebotserstellung', translations: { en: 'Contract & Proposal Writer' }, slug: 'tutorials/skills/marketing-sales/contract-and-proposal-writer' },
+									{ label: 'Commercial Skills (Orchestrator)', translations: { en: 'Commercial Skills (Orchestrator)' }, slug: 'tutorials/skills/marketing-sales/commercial-skills' },
+									{ label: 'Preisstratege', translations: { en: 'Pricing Strategist' }, slug: 'tutorials/skills/marketing-sales/pricing-strategist' },
+									{ label: 'Kanalökonomie', translations: { en: 'Channel Economics' }, slug: 'tutorials/skills/marketing-sales/channel-economics' },
+									{ label: 'Commercial Policy', translations: { en: 'Commercial Policy' }, slug: 'tutorials/skills/marketing-sales/commercial-policy' },
+								]
+							},
+						]
+					},
 						{
 							label: 'Agenten',
 							translations: { en: 'Agents' },

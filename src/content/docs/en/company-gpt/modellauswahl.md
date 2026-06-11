@@ -134,6 +134,18 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## Anthropic
 
+### Claude Opus 4.8
+
+- **For:** ultimate complexity, limitless analytics, and autonomous multi-agent systems
+- **When:** mission-critical research, massive system architectures, unsolvable logic problems
+- **Why:** Anthropic's absolute flagship of the 4.8 generation with maximum reasoning capability and error-free long-term context
+
+### Claude Opus 4.7
+
+- **For:** Very complex data processing and highly linked logic
+- **When:** In-depth data analysis, advanced RAG via huge knowledge bases
+- **Why:** Further development of 4.6 with significantly better coherence at gigantic context sets
+
 ### Claude Opus 4.6
 
 - **For:** highest complexity and in-depth analyses

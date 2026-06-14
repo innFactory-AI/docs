@@ -134,9 +134,21 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## Anthropic
 
+### Claude Opus 4.8
+
+- **Für:** ultimative Komplexität, grenzenlose Analysen und autonome Multi-Agenten-Systeme
+- **Wann:** unternehmenskritische Forschung, massive Systemarchitekturen, unlösbare Logikaufgaben
+- **Warum:** Anthropics absolutes Flaggschiff der 4.8-Generation mit maximaler Reasoning-Fähigkeit und fehlerfreiem Langzeit-Kontext
+
+### Claude Opus 4.7
+
+- **Für:** sehr komplexe Datenverarbeitung und hochgradig verknüpfte Logik
+- **Wann:** tiefgehende Datenanalysen, fortgeschrittenes RAG über riesige Wissensdatenbanken
+- **Warum:** Weiterentwicklung von 4.6 mit signifikant besserer Kohärenz bei gigantischen Kontextmengen
+
 ### Claude Opus 4.6
 
-- **Für:** höchste Komplexität und tiefgreifende Analysen
+- **Für:** hohe Komplexität und tiefgreifende Analysen
 - **Wann:** strategische Planung, extrem lange Kontexte (1M), schwerste Logikaufgaben
 - **Warum:** stärkstes in CompanyGPT verfügbares Anthropic-Modell für Agent Teams und Parallel-Workflows (höchste Kosten)
 

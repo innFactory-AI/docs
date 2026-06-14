@@ -1,6 +1,6 @@
 ---
 title: Channel Economics
-description: Compute fully-loaded cost-to-serve per channel, channel ROI under three lenses, and optimize the channel mix between direct and partner-led sales. Have your per-channel numbers ready: CAC, ACV, support costs, partner discounts, churn rate, and deal velocity.
+description: Compute fully-loaded cost-to-serve per channel, channel ROI, and optimize the channel mix between direct and partner-led sales.
 ---
 
 Use this skill for the quarterly channel review when you want to know which channel is profitable after all costs — including CAC, support, partner discounts, deal velocity differences, and retention differential. To get accurate results, prepare per-channel numbers for CAC, ACV, support cost allocation, partner discount percentages, churn rate, and average deal velocity before starting.

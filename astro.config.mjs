@@ -330,7 +330,7 @@ export default defineConfig({
 											{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
 											{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
 											{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
-											{ label: 'CompanyGPT Helper', translations: { en: 'CompanyGPT Helper' }, slug: 'tutorials/agenten/companygpt-helper' },
+											//{ label: 'CompanyGPT Helper', translations: { en: 'CompanyGPT Helper' }, slug: 'tutorials/agenten/companygpt-helper' },
 										]
 									},
 									{

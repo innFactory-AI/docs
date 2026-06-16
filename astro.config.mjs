@@ -175,51 +175,152 @@ export default defineConfig({
 									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
 								]
 							},
-						{
-							label: 'Skills',
-							translations: { en: 'Skills' },
-							items: [
-								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
-								{ label: 'Charts & Diagramme', translations: { en: 'Charts & Diagrams' }, slug: 'tutorials/skills/files/charts-diagram-skill' },
-								{ label: 'Konvertierung', translations: { en: 'Convert' }, slug: 'tutorials/skills/files/convert-skill' },
-								{ label: 'Excel', translations: { en: 'Excel' }, slug: 'tutorials/skills/files/excel-skill' },
-								{ label: 'Dateiverwaltung', translations: { en: 'File Management' }, slug: 'tutorials/skills/files/file-management-skill' },
-								{ label: 'PDF', translations: { en: 'PDF' }, slug: 'tutorials/skills/files/pdf-skill' },
-								{ label: 'PowerPoint', translations: { en: 'PowerPoint' }, slug: 'tutorials/skills/files/powerpoint-skill' },
-								{ label: 'Einstellungen & UI', translations: { en: 'Settings & UI' }, slug: 'tutorials/skills/files/settings-ui-skill' },
-								{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'tutorials/skills/files/templates-skill' },
-								{ label: 'Word & ODT', translations: { en: 'Word & ODT' }, slug: 'tutorials/skills/files/word-odt-skill' },
-							]
-						},
-						{
-							label: 'Agenten',
-							translations: { en: 'Agents' },
+							{
+								label: 'Skills',
+								translations: { en: 'Skills' },
+								items: [
+									{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
+									{
+										label: 'companyFILES',
+										translations: { en: 'companyFILES' },
+										items: [
+											{ label: 'Charts & Diagramme', translations: { en: 'Charts & Diagrams' }, slug: 'tutorials/skills/files/charts-diagram-skill' },
+											{ label: 'Konvertierung', translations: { en: 'Convert' }, slug: 'tutorials/skills/files/convert-skill' },
+											{ label: 'Excel', translations: { en: 'Excel' }, slug: 'tutorials/skills/files/excel-skill' },
+											{ label: 'Dateiverwaltung', translations: { en: 'File Management' }, slug: 'tutorials/skills/files/file-management-skill' },
+											{ label: 'PDF', translations: { en: 'PDF' }, slug: 'tutorials/skills/files/pdf-skill' },
+											{ label: 'PowerPoint', translations: { en: 'PowerPoint' }, slug: 'tutorials/skills/files/powerpoint-skill' },
+											{ label: 'Einstellungen & UI', translations: { en: 'Settings & UI' }, slug: 'tutorials/skills/files/settings-ui-skill' },
+											{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'tutorials/skills/files/templates-skill' },
+											{ label: 'Word & ODT', translations: { en: 'Word & ODT' }, slug: 'tutorials/skills/files/word-odt-skill' },
+										]
+									},
+									{
+										label: 'Customer Success',
+										translations: { en: 'Customer Success' },
+										items: [
+											{ label: 'Onboarding-Plan', translations: { en: 'Onboarding Plan' }, slug: 'tutorials/skills/customer-success/onboarding-plan-skill' },
+											{ label: 'QBR-Builder', translations: { en: 'QBR Builder' }, slug: 'tutorials/skills/customer-success/qbr-builder-skill' },
+											{ label: 'Kundengesundheit', translations: { en: 'Customer Health' }, slug: 'tutorials/skills/customer-success/customer-health-skill' },
+											{ label: 'Eskalations-Brief', translations: { en: 'Escalation Brief' }, slug: 'tutorials/skills/customer-success/escalation-brief-skill' },
+											{ label: 'Vertragsverlängerung', translations: { en: 'Renewal Prep' }, slug: 'tutorials/skills/customer-success/renewal-prep-skill' },
+											{ label: 'Success-Plan', translations: { en: 'Success Plan' }, slug: 'tutorials/skills/customer-success/success-plan-skill' },
+										]
+									},
+									{
+										label: 'Engineering',
+										translations: { en: 'Engineering' },
+										items: [
+											{ label: 'Deployment-Vorbereitung', translations: { en: 'Deployment Prep' }, slug: 'tutorials/skills/engineering/deployment-prep-skill' },
+											{ label: 'Code-Review', translations: { en: 'Code Review' }, slug: 'tutorials/skills/engineering/code-review-skill' },
+											{ label: 'Standup', translations: { en: 'Standup' }, slug: 'tutorials/skills/engineering/standup-skill' },
+											{ label: 'Tech-Debt', translations: { en: 'Tech Debt' }, slug: 'tutorials/skills/engineering/tech-debt-skill' },
+											{ label: 'Debugging', translations: { en: 'Debugging' }, slug: 'tutorials/skills/engineering/debugging-skill' },
+											{ label: 'Technische Doku', translations: { en: 'Tech Docs' }, slug: 'tutorials/skills/engineering/tech-docs-skill' },
+											{ label: 'Architektur-Design', translations: { en: 'Architecture Design' }, slug: 'tutorials/skills/engineering/architecture-design-skill' },
+											{ label: 'Postmortem', translations: { en: 'Postmortem' }, slug: 'tutorials/skills/engineering/postmortem-skill' },
+											{ label: 'Test-Planung', translations: { en: 'Test Planning' }, slug: 'tutorials/skills/engineering/test-planning-skill' },
+										]
+									},
+									{
+										label: 'Human Resources',
+										translations: { en: 'Human Resources' },
+										items: [
+											{ label: 'Interview-Leitfaden', translations: { en: 'Interview Guide' }, slug: 'tutorials/skills/human-resources/interview-guide-skill' },
+											{ label: 'Leistungsbeurteilung', translations: { en: 'Performance Review' }, slug: 'tutorials/skills/human-resources/performance-review-skill' },
+											{ label: 'Mitarbeiter-Onboarding', translations: { en: 'Employee Onboarding' }, slug: 'tutorials/skills/human-resources/employee-onboarding-skill' },
+											{ label: 'Lernplan', translations: { en: 'Learning Plan' }, slug: 'tutorials/skills/human-resources/learning-plan-skill' },
+											{ label: 'Vergütung', translations: { en: 'Compensation' }, slug: 'tutorials/skills/human-resources/compensation-skill' },
+											{ label: 'Stellenbeschreibung', translations: { en: 'Job Description' }, slug: 'tutorials/skills/human-resources/job-description-skill' },
+										]
+									},
+									{
+										label: 'IT Knowledge Management',
+										translations: { en: 'IT Knowledge Management' },
+										items: [
+											{ label: 'Change Request', translations: { en: 'Change Request' }, slug: 'tutorials/skills/it-knowledge-management/change-request-skill' },
+											{ label: 'Security-Assessment', translations: { en: 'Security Assessment' }, slug: 'tutorials/skills/it-knowledge-management/security-assessment-skill' },
+											{ label: 'Vendor-Assessment', translations: { en: 'Vendor Assessment' }, slug: 'tutorials/skills/it-knowledge-management/vendor-assessment-skill' },
+											{ label: 'IT-Doku', translations: { en: 'IT Docs' }, slug: 'tutorials/skills/it-knowledge-management/it-docs-skill' },
+											{ label: 'Incident Response', translations: { en: 'Incident Response' }, slug: 'tutorials/skills/it-knowledge-management/incident-response-skill' },
+											{ label: 'Knowledge Article', translations: { en: 'Knowledge Article' }, slug: 'tutorials/skills/it-knowledge-management/knowledge-article-skill' },
+										]
+									},
+									{
+										label: 'Marketing',
+										translations: { en: 'Marketing' },
+										items: [
+											{ label: 'Content-Entwurf', translations: { en: 'Content Draft' }, slug: 'tutorials/skills/marketing/content-draft-skill' },
+											{ label: 'Brand Voice', translations: { en: 'Brand Voice' }, slug: 'tutorials/skills/marketing/brand-voice-skill' },
+											{ label: 'Performance-Report', translations: { en: 'Performance Report' }, slug: 'tutorials/skills/marketing/performance-report-skill' },
+											{ label: 'Kampagnen-Planung', translations: { en: 'Campaign Planning' }, slug: 'tutorials/skills/marketing/campaign-planning-skill' },
+											{ label: 'E-Mail-Sequenz', translations: { en: 'Email Sequence' }, slug: 'tutorials/skills/marketing/email-sequence-skill' },
+											{ label: 'SEO-Audit', translations: { en: 'SEO Audit' }, slug: 'tutorials/skills/marketing/seo-audit-skill' },
+										]
+									},
+									{
+										label: 'Operations',
+										translations: { en: 'Operations' },
+										items: [
+											{ label: 'Change-Management', translations: { en: 'Change Management' }, slug: 'tutorials/skills/operations/change-management-skill' },
+											{ label: 'Statusbericht', translations: { en: 'Status Report' }, slug: 'tutorials/skills/operations/status-report-skill' },
+											{ label: 'Kapazitätsplanung', translations: { en: 'Capacity Planning' }, slug: 'tutorials/skills/operations/capacity-planning-skill' },
+											{ label: 'Prozess-Doku', translations: { en: 'Process Doc' }, slug: 'tutorials/skills/operations/process-doc-skill' },
+											{ label: 'Prozessoptimierung', translations: { en: 'Process Optimization' }, slug: 'tutorials/skills/operations/process-optimization-skill' },
+											{ label: 'Risikobewertung', translations: { en: 'Risk Assessment' }, slug: 'tutorials/skills/operations/risk-assessment-skill' },
+											{ label: 'Runbook', translations: { en: 'Runbook' }, slug: 'tutorials/skills/operations/runbook-skill' },
+											{ label: 'Compliance-Tracking', translations: { en: 'Compliance Tracking' }, slug: 'tutorials/skills/operations/compliance-tracking-skill' },
+										]
+									},
+									{
+										label: 'Product Management',
+										translations: { en: 'Product Management' },
+										items: [
+											{ label: 'Wettbewerber-Briefing', translations: { en: 'Competitor Brief' }, slug: 'tutorials/skills/product-management/competitor-brief-skill' },
+											{ label: 'Sprint-Planung', translations: { en: 'Sprint Planning' }, slug: 'tutorials/skills/product-management/sprint-planning-skill' },
+											{ label: 'Stakeholder-Update', translations: { en: 'Stakeholder Update' }, slug: 'tutorials/skills/product-management/stakeholder-update-skill' },
+											{ label: 'Research-Synthese', translations: { en: 'Research Synthesis' }, slug: 'tutorials/skills/product-management/research-synthesis-skill' },
+											{ label: 'Metriken-Review', translations: { en: 'Metrics Review' }, slug: 'tutorials/skills/product-management/metrics-review-skill' },
+											{ label: 'Produkt-Brainstorming', translations: { en: 'Product Brainstorm' }, slug: 'tutorials/skills/product-management/product-brainstorm-skill' },
+											{ label: 'Roadmap-Update', translations: { en: 'Roadmap Update' }, slug: 'tutorials/skills/product-management/roadmap-update-skill' },
+											{ label: 'Produkt-Spec', translations: { en: 'Product Spec' }, slug: 'tutorials/skills/product-management/product-spec-skill' },
+										]
+									},
+									{
+										label: 'Productivity',
+										translations: { en: 'Productivity' },
+										items: [
+											{ label: 'Meeting-Vorbereitung', translations: { en: 'Meeting Prep' }, slug: 'tutorials/skills/productivity/meeting-prep-skill' },
+											{ label: 'Wochenrückblick', translations: { en: 'Weekly Review' }, slug: 'tutorials/skills/productivity/weekly-review-skill' },
+											{ label: 'Memory-Management', translations: { en: 'Memory Management' }, slug: 'tutorials/skills/productivity/memory-management-skill' },
+										]
+									},
+									{
+										label: 'Sales',
+										translations: { en: 'Sales' },
+										items: [
+											{ label: 'Deal-Strategie', translations: { en: 'Deal Strategy' }, slug: 'tutorials/skills/sales/deal-strategy-skill' },
+											{ label: 'Account-Research', translations: { en: 'Account Research' }, slug: 'tutorials/skills/sales/account-research-skill' },
+											{ label: 'Forecast', translations: { en: 'Forecast' }, slug: 'tutorials/skills/sales/forecast-skill' },
+											{ label: 'Battlecard', translations: { en: 'Battlecard' }, slug: 'tutorials/skills/sales/battlecard-skill' },
+											{ label: 'Gesprächsvorbereitung', translations: { en: 'Call Prep' }, slug: 'tutorials/skills/sales/call-prep-skill' },
+											{ label: 'Pipeline-Review', translations: { en: 'Pipeline Review' }, slug: 'tutorials/skills/sales/pipeline-review-skill' },
+											{ label: 'Sales-Asset', translations: { en: 'Sales Asset' }, slug: 'tutorials/skills/sales/sales-asset-skill' },
+											{ label: 'Outreach', translations: { en: 'Outreach' }, slug: 'tutorials/skills/sales/outreach-skill' },
+											{ label: 'Gesprächszusammenfassung', translations: { en: 'Call Summary' }, slug: 'tutorials/skills/sales/call-summary-skill' },
+										]
+									},
+								]
+							},
+							{
+								label: 'Agenten',
+								translations: { en: 'Agents' },
 								items: [
 									{
 										label: 'Marketing & Content',
 										translations: { en: 'Marketing & Content' },
 										items: [
-											{ label: 'Copywriting-Experte', translations: { en: 'Copywriting Expert' }, slug: 'tutorials/agenten/copywriting' },
-											{ label: 'Content-Stratege', translations: { en: 'Content Strategist' }, slug: 'tutorials/agenten/content-strategy' },
-											{ label: 'Copy-Editor', translations: { en: 'Copy Editor' }, slug: 'tutorials/agenten/copy-editing' },
-											{ label: 'Social-Media-Content-Ersteller', translations: { en: 'Social Content Creator' }, slug: 'tutorials/agenten/social-content' },
-
-											{ label: 'E-Mail-Sequenz-Designer', translations: { en: 'Email Sequence Designer' }, slug: 'tutorials/agenten/email-sequence' },
-											{ label: 'Cold-E-Mail-Verfasser', translations: { en: 'Cold Email Writer' }, slug: 'tutorials/agenten/cold-email' },
 											{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
-										]
-									},
-									{
-										label: 'Vertrieb & Wachstum',
-										translations: { en: 'Sales & Growth' },
-										items: [
-											{ label: 'Sales-Enablement-Assistent', translations: { en: 'Sales Enablement Assistant' }, slug: 'tutorials/agenten/sales-enablement' },
-											{ label: 'Launch-Stratege', translations: { en: 'Launch Strategist' }, slug: 'tutorials/agenten/launch-strategy' },
-											{ label: 'Preisstratege', translations: { en: 'Pricing Strategist' }, slug: 'tutorials/agenten/pricing-strategy' },
-
-											{ label: 'A/B-Test-Planer', translations: { en: 'A/B Test Planner' }, slug: 'tutorials/agenten/ab-test-setup' },
-											{ label: 'Conversion-Rate-Optimierer', translations: { en: 'Conversion Rate Optimizer' }, slug: 'tutorials/agenten/page-cro' },
-
 										]
 									},
 									{
@@ -228,42 +329,15 @@ export default defineConfig({
 										items: [
 											{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
 											{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
-											{ label: 'Meeting-Insights-Analysator', translations: { en: 'Meeting Insights Analyzer' }, slug: 'tutorials/agenten/meeting-insights-analyzer' },
-											{ label: 'Authentic Message Composer', translations: { en: 'Authentic Message Composer' }, slug: 'tutorials/agenten/authentic-message-composer' },
 											{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
-											{ label: 'Confluence Architect', translations: { en: 'Confluence Architect' }, slug: 'tutorials/agenten/confluence-architect' },
-											{ label: 'Text Translator', translations: { en: 'Text Translator' }, slug: 'tutorials/agenten/text-translator' },
-											{ label: 'Jargon Killer', translations: { en: 'Jargon Killer' }, slug: 'tutorials/agenten/jargon-killer' },
+											{ label: 'CompanyGPT Helper', translations: { en: 'CompanyGPT Helper' }, slug: 'tutorials/agenten/companygpt-helper' },
 										]
 									},
 									{
 										label: 'Strategie & Analyse',
 										translations: { en: 'Strategy & Analysis' },
 										items: [
-											{ label: '80/20 Analyst', translations: { en: '80/20 Analyst' }, slug: 'tutorials/agenten/8020-analyst' },
 											{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator' }, slug: 'tutorials/agenten/brainstorming' },
-
-											{ label: 'Fake News Checker', translations: { en: 'Fake News Checker' }, slug: 'tutorials/agenten/fake-news-checker' },
-											{ label: 'Direct Technical Analyst', translations: { en: 'Direct Technical Analyst' }, slug: 'tutorials/agenten/direct-technical-analyst' },
-											{ label: 'RFP Assistant', translations: { en: 'RFP Assistant' }, slug: 'tutorials/agenten/rfp-assistant' },
-										]
-									},
-									{
-										label: 'Technik & Automatisierung',
-										translations: { en: 'Tech & Automation' },
-										items: [
-											{ label: 'Code Janitor', translations: { en: 'Code Janitor' }, slug: 'tutorials/agenten/code-janitor' },
-											{ label: 'Rechner Agent', translations: { en: 'Calculator Agent' }, slug: 'tutorials/agenten/rechner-agent' },
-											{ label: 'n8n Workflow Architect', translations: { en: 'n8n Workflow Architect' }, slug: 'tutorials/agenten/n8n-workflow-architect' },
-											{ label: 'Runbook Navigator', translations: { en: 'Runbook Navigator' }, slug: 'tutorials/agenten/runbook-navigator' },
-										]
-									},
-									{
-										label: 'Coaching & Simulation',
-										translations: { en: 'Coaching & Simulation' },
-										items: [
-											{ label: 'Socratic Coach', translations: { en: 'Socratic Coach' }, slug: 'tutorials/agenten/socratic-coach' },
-											{ label: 'Tough Customer Simulator', translations: { en: 'Tough Customer Simulator' }, slug: 'tutorials/agenten/tough-customer-simulator' },
 										]
 									},
 								]

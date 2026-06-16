@@ -10,6 +10,9 @@ out/*
 # dependencies
 node_modules/
 
+/skills/
+tutorials/skills/
+
 # logs
 npm-debug.log*
 yarn-debug.log*

@@ -85,6 +85,7 @@ export default defineConfig({
 								{ label: 'User Interface', translations: { en: 'User Interface' }, slug: 'company-gpt/user-interface' },
 								{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/einstellungen' },
 								{ label: 'Chat', translations: { en: 'Chat' }, slug: 'company-gpt/chat' },
+								{ label: 'Projekte', translations: { en: 'Projects' }, slug: 'company-gpt/projekte' },
 								{
 									label: 'Integrationen',
 									translations: { en: 'Integrations' },

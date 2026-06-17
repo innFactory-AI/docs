@@ -8,6 +8,7 @@ This section contains ready-to-use agent templates and guides for CompanyGPT. Al
 ## Addons
 
 - [Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/) – Set up a search agent with the MCP Server ai-search
+- [Help Agent with a Web Crawl Source](/en/tutorials/addons/companygpt-hilfe-agent/) – Crawl a sitemap on a schedule, index it, and serve it as an agent
 
 ## MCP
 

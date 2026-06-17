@@ -8,6 +8,7 @@ In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen ru
 ## Addons
 
 - [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
+- [Hilfe-Agent mit Webcrawl-Quelle](/de/tutorials/addons/companygpt-hilfe-agent/) – Sitemap regelmäßig crawlen, indexieren und als Agent bereitstellen
 
 ## MCP
 

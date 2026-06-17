@@ -166,6 +166,7 @@ export default defineConfig({
 								translations: { en: 'Addons' },
 								items: [
 									{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
+									{ label: 'CompanyGPT Hilfe Agent', translations: { en: 'CompanyGPT Help Agent' }, slug: 'tutorials/addons/companygpt-hilfe-agent' },
 								]
 							},
 							{

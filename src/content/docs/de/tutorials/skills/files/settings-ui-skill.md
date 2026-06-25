@@ -32,7 +32,6 @@ User says "show my files" / "open file manager"    → open_companyfiles_ui page
 User says "manage / browse templates"               → open_companyfiles_ui page="templates"
 User says "upload a file" (via UI)                  → open_companyfiles_ui page="documents"
 User says "open settings" / "change preferences"   → open_companyfiles_ui page="settings"
-User wants to see charts dashboard                  → open_companyfiles_ui page="charts"
 
 User asks about settings / colors / logo            → get_settings
 User asks how to use a tool / needs examples        → help (with topic)
@@ -52,13 +51,13 @@ Renders the companyFILES SPA as an embedded interactive iframe in the chat.
 }
 ```
 
-Available pages:
+Available pages (enum — only these four values are accepted):
 | Page | Shows |
 |------|-------|
 | `documents` | File list, upload, download, folder navigation |
 | `templates` | Template browser, upload personal templates |
+| `upload` | File upload view |
 | `settings` | Org/user branding, colors, logo, language |
-| `charts` | Dashboard of all interactive charts created this session |
 
 > Note: UI widgets require a chat client that supports MCP UI rendering (e.g. LibreChat). Google Gemini falls back to text.
 
@@ -99,13 +98,13 @@ Get detailed usage examples for a specific tool category.
 }
 ```
 
-Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `image`, `zip`, `assets`, `upload`, `templates`, `admin`, `settings`, `convert`, `read`, `ui`, `all`
+Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `zip`, `assets`, `upload`, `templates`, `admin`, `settings`, `convert`, `read`, `ui`, `all`
 
 Omitting `topic` (or using `"all"`) returns the full help document and also opens the embedded UI.
 
 ## Key Notes
 
 - `open_companyfiles_ui` is the default tool for any request to browse, view, or manage files/templates/settings interactively.
-- Settings colors (`primaryColor`, `secondaryColor`, `accentColor`) are automatically used as the theme in all document and chart creation tools.
-- To edit settings programmatically, use the admin API (`PUT /api/admin/settings` with `X-API-Key`). For self-service user settings, use the UI.
+- Settings colors (`primaryColor`, `secondaryColor`, `accentColor`) are automatically used as the theme in all document and chart creation tools. `get_settings` only returns this core subset; the full settings model holds many more org/user-overridable fields that also feed generated documents — extended colors (`headingColor`, `bodyTextColor`, `linkColor`, `tableHeaderBg`, `tableHeaderText`, `codeBg`), typography (`fontHeading`, `fontBody`, `fontCode`, `fontSize*`), and document defaults (`defaultPageSize`, `defaultPageOrientation`, `defaultHeaderText`, `defaultFooterText`, `defaultShowPageNumbers`, `defaultPageNumberPosition`, `defaultPageNumberFormat`, `logoInHeader`, `logoHeaderHeight`).
+- To edit settings, use the UI (`open_companyfiles_ui page="settings"`) or, for admins, `PUT /api/ui/admin/settings` (gated by an admin UI session/bearer token — the legacy `X-API-Key` admin routes were removed).
 ````

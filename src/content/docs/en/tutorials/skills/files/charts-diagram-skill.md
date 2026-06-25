@@ -44,39 +44,61 @@ User wants to SAVE a diagram as a document   → see word-odt-skill or pdf-skill
 
 ### show_interactive_chart (PREFERRED for charts)
 
-Supported chart types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatter`, `bubble`, `polarArea`
+Supported chart types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatter`, `bubble`, `polarArea`, `waterfall`, `funnel`, `area`, `stackedBar`, `horizontalBar`
 
 ```json
 {
   "chart_type": "bar",
-  "labels": ["Q1","Q2","Q3","Q4"],
+  "labels": ["Q1", "Q2", "Q3", "Q4"],
   "datasets": [
-    {"label": "Revenue", "data": [100, 150, 120, 180]},
-    {"label": "Costs",   "data": [80,  110, 90,  140]}
+    { "label": "Revenue", "data": [100, 150, 120, 180] },
+    { "label": "Costs", "data": [80, 110, 90, 140] }
   ],
-  "title": "Quarterly Performance"
+  "title": "Quarterly Performance",
+  "x_axis_label": "Quarter",
+  "y_axis_label": "EUR"
 }
 ```
 
+Optional: `x_axis_label`, `y_axis_label`, and `options` (a raw Chart.js options object merged over the defaults). Datasets also accept `borderWidth` and `fill`.
+
 **Scatter chart** (use `{x, y}` data points):
+
 ```json
 {
   "chart_type": "scatter",
   "labels": [],
-  "datasets": [{"label": "Points", "data": [{"x":1,"y":2},{"x":3,"y":4}]}]
+  "datasets": [
+    {
+      "label": "Points",
+      "data": [
+        { "x": 1, "y": 2 },
+        { "x": 3, "y": 4 }
+      ]
+    }
+  ]
 }
 ```
 
 **Bubble chart** (add `r` for radius):
+
 ```json
 {
   "chart_type": "bubble",
   "labels": [],
-  "datasets": [{"label": "Bubbles", "data": [{"x":1,"y":2,"r":10},{"x":3,"y":4,"r":5}]}]
+  "datasets": [
+    {
+      "label": "Bubbles",
+      "data": [
+        { "x": 1, "y": 2, "r": 10 },
+        { "x": 3, "y": 4, "r": 5 }
+      ]
+    }
+  ]
 }
 ```
 
-The widget includes: zoom/pan, chart type switcher, PNG/SVG/CSV export, and clipboard copy.
+The widget includes: zoom/pan, chart type switcher, export (PNG at 1x/2x/4x, JPG, SVG, CSV), and clipboard copy.
 
 ---
 
@@ -86,15 +108,17 @@ Supported diagram types (Mermaid syntax): flowchart, sequence, class, state, ER,
 
 ```json
 {
-  "mermaid_code": "graph TD\n  A[Start] --> B{Decision}\n  B -->|Yes| C[Do this]\n  B -->|No| D[Do that]\n  C --> E[End]\n  D --> E",
+  "code": "graph TD\n  A[Start] --> B{Decision}\n  B -->|Yes| C[Do this]\n  B -->|No| D[Do that]\n  C --> E[End]\n  D --> E",
   "title": "Decision Flow",
   "theme": "default"
 }
 ```
 
+The Mermaid source goes in the **`code`** parameter (not `mermaid_code`).
+
 **Themes:** `default`, `dark`, `forest`, `neutral`
 
-The widget includes: pan/zoom, SVG export, and PNG export.
+The widget includes: pan/zoom, SVG export, PNG export (1x/2x/4x), and "Copy Mermaid Code".
 
 ---
 
@@ -149,5 +173,5 @@ Supported types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatter`, `bubble`,
 - Document-embedding tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink`.
 - The org/user color palette is automatically applied to chart colors when configured in settings.
 - Google Gemini models cannot render interactive widgets — responses fall back to text/JSON data.
-- `area`, `stackedBar`, `horizontalBar` are mapped to their static equivalents when rendering as images.
+- `show_interactive_chart` and `create_chart_document` accept all 13 chart types; `area`, `stackedBar`, `horizontalBar` are mapped to their static equivalents when rendering as images. `embed_chart_in_document` only accepts the 8 base types and rejects the extended ones — use `create_chart_document` for those.
 ````

@@ -1,9 +1,9 @@
 ---
 title: Templates Skill
-description: Create documents from templates using companyFILES MCP tools.
+description: Create documents from templates using companyFILES MCP tools — Word, Excel, ODT, and PowerPoint, including image placeholders, charts, and loop/repeat syntax.
 ---
 
-Use this skill when asked to fill a template, use a company letterhead or invoice layout, or create documents from DOCX, XLSX, POTX, or ODT templates.
+Use this skill when asked to fill a template, use a company letterhead or invoice layout, fill placeholders, or create documents from DOCX, XLSX, POTX, or ODT templates — including image placeholders, charts, and slide repeat, plus iterative edits to the filled document.
 
 ## Skill
 
@@ -24,7 +24,7 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 | `list_templates` | List all available templates (personal + global) with placeholder info |
 | `create_word_from_template` | Fill a DOCX template with `{placeholder}` syntax |
 | `create_word_from_template_with_images` | Fill a DOCX template with text and image placeholders |
-| `create_excel_from_template` | Fill an XLSX template at specific cell addresses |
+| `create_excel_from_template` | Fill an XLSX template by cell address **or** `{{placeholder}}` name (auto-routed) |
 | `fill_excel_template` | Fill an XLSX template using `{{placeholder}}` syntax |
 | `create_odt_from_template` | Fill an ODT template with `{{placeholder}}` syntax |
 | `create_powerpoint_from_template` | Fill a POTX/PPTX template with text, images, charts, speaker notes, slide repeat |
@@ -43,7 +43,7 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
   "type": "potx"
 }
 ```
-Returns template names, placeholder lists, and upload dates. Scope is `"user"` (personal) or `"global"`.
+Returns per template: `name`, `displayName`, `description`, `category`, `tags`, placeholder lists, `loopSources`, `fields` (for PDF form templates), `size`, `isDefault`, upload dates, and scope (`"user"` personal or `"global"`).
 
 For **POTX/PPTX** templates the response includes a per-slide breakdown:
 - `slideNumber` — 1-based slide index
@@ -118,13 +118,13 @@ Image via stored document (no re-upload needed):
 }
 ```
 
-The org/user logo is **auto-injected** into `{%logo}` placeholders if configured in settings and no logo is provided.
+The org/user logo is **auto-injected** only into a placeholder named exactly `logo` (i.e. `{%logo}`) — and only when configured in settings and no `logo` value is passed. Differently-named image placeholders (e.g. `{%companyLogo}`) are **not** auto-filled.
 
 ---
 
 ### create_excel_from_template
 
-Fills cells by address (e.g. `"A1"`, `"Sheet2!B3"`). Use `list_templates` to see available XLSX templates.
+Accepts **either** cell addresses (e.g. `"A1"`, `"Sheet2!B3"`) **or** `{{placeholder}}` names (pass the bare name without `{{ }}`) in `cell_values` — it auto-routes based on the keys you pass; mixed keys default to placeholder mode. Use `list_templates` to see available XLSX templates.
 
 ```json
 {
@@ -208,8 +208,8 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
   },
   "charts": {
     "revenue_chart": {
-      "labels": ["Q1","Q2","Q3","Q4"],
-      "datasets": [{"label": "Revenue", "values": [100,150,120,180]}]
+      "labels": ["Q1", "Q2", "Q3", "Q4"],
+      "datasets": [{ "label": "Revenue", "values": [100, 150, 120, 180] }]
     }
   },
   "filename": "q4_deck",
@@ -226,13 +226,13 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
   "repeat": {
     "slide": 3,
     "data": [
-      {"name": "Alice", "role": "Engineer"},
-      {"name": "Bob", "role": "Designer"}
+      { "name": "Alice", "role": "Engineer" },
+      { "name": "Bob", "role": "Designer" }
     ]
   }
 }
 ```
-`repeat.slide` is the 1-based slide number to duplicate; the slide is replaced by N copies, one per data record.
+`repeat.slide` is the 1-based slide number to duplicate; the slide is replaced by N copies, one per data record. By default, slides that are **not** repeated are removed from the output — set `repeat.keep_unused_slides: true` to keep them. `create_powerpoint_from_template` also accepts top-level `title` and `author`.
 
 **Multi-source repeat** (route each record to the slide matching its `slide_type`):
 
@@ -243,8 +243,8 @@ Use this when the template has multiple layout slides marked with `{{slide_type:
   "template_name": "dynamic_deck",
   "repeat": {
     "data": [
-      { "slide_type": "section",    "title": "Chapter 1" },
-      { "slide_type": "default",    "title": "Results",      "content": "Revenue up 15%" },
+      { "slide_type": "section", "title": "Chapter 1" },
+      { "slide_type": "default", "title": "Results", "content": "Revenue up 15%" },
       { "slide_type": "text-image", "title": "Architecture", "bullets": "Fast\nScalable" }
     ]
   }
@@ -296,6 +296,8 @@ Example — fill a template then append a custom closing slide:
 ## Key Notes
 
 - All create tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
+- When `folder` is omitted, the filled document is filed under a folder named after `template_name`.
+- `create_word_from_template_with_images` falls back to a global `default.docx` if the named template is missing, whereas `create_word_from_template` does not — verify the template exists with `list_templates` first.
 - Template names are **case-sensitive** — always verify with `list_templates` first.
 - User templates take priority over global templates with the same name.
 - `replace_missing: false` (default) leaves unfilled `{{placeholder}}` tokens intact; `true` replaces them with empty string.

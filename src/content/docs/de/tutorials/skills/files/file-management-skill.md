@@ -45,7 +45,7 @@ User wants to create a code/text file         → create_text_file
 
 ### upload_file
 
-Max size: 15 MB. Content must be base64-encoded.
+Max size: 50 MB by default (configurable via `MAX_FILE_SIZE_MB`). Content must be base64-encoded.
 
 ```json
 {
@@ -126,13 +126,13 @@ Max total uncompressed size: 50 MB.
 }
 ```
 
-ZIP archives are **temporary** (auto-deleted after 1 day by default). They do not appear in `list_documents`.
+ZIP archives are **temporary** (auto-deleted after 1 day by default). They do not appear in `list_documents`. If some `document_ids` can't be resolved the ZIP is still created from the rest, and the unresolved IDs are returned in a `missingDocumentIds` field plus a `warning` (rather than failing).
 
 ---
 
 ### create_text_file
 
-Supported extensions: `.sql`, `.csv`, `.json`, `.xml`, `.html`, `.css`, `.js`, `.ts`, `.py`, `.java`, `.go`, `.rs`, `.rb`, `.php`, `.c`, `.cpp`, `.yaml`, `.yml`, `.md`, `.txt`, `.sh`, `.bash`, `.env`, `.ini`, `.conf`
+Works with essentially **any** text/code extension (`.sql`, `.csv`, `.json`, `.xml`, `.html`, `.css`, `.js`, `.ts`, `.tsx`, `.jsx`, `.py`, `.java`, `.kt`, `.swift`, `.scala`, `.go`, `.rs`, `.rb`, `.php`, `.c`, `.h`, `.cpp`, `.cs`, `.yaml`, `.yml`, `.toml`, `.md`, `.txt`, `.log`, `.sh`, `.bash`, `.zsh`, `.env`, `.ini`, `.cfg`, `.conf`, `.properties`, `.graphql`, `.proto`, …). The list is a **blocklist, not an allowlist** — any unblocked text extension is accepted. A few executable extensions are blocked for security (e.g. `.ps1`, `.bat`, `.exe`) and will be rejected even though they're text.
 
 ```json
 {
@@ -152,7 +152,7 @@ Supported extensions: `.sql`, `.csv`, `.json`, `.xml`, `.html`, `.css`, `.js`, `
 
 ## Key Notes
 
-- `upload_file` validates file size (max 15 MB) and extension.
+- `upload_file` validates file size (max 50 MB by default, via `MAX_FILE_SIZE_MB`) and extension.
 - `document_id` from any create/upload tool can be reused in ZIP creation, template image injection (`document_id` in image placeholders), and `doc:` URI references in Markdown/HTML.
 - Documents are auto-deleted after `DOCUMENT_RETENTION_DAYS` (default 365 days).
 - For interactive file browsing, use `open_companyfiles_ui` from the **settings-ui-skill**.

@@ -24,9 +24,11 @@ Tools for creating PDF documents, reading PDF content, and filling/flattening PD
 | `create_pdf` | Create PDF from Markdown with headers, footers, page numbers |
 | `create_pdf_from_html` | Create PDF from HTML with custom CSS |
 | `read_pdf` | Extract text and metadata from a PDF |
-| `list_pdf_form_templates` | List available PDF form templates and their fields |
-| `fill_pdf_form` | Fill a PDF form — fields remain editable |
-| `fill_and_flatten_pdf_form` | Fill and flatten a PDF form (read-only / final) |
+| `read_pdf_form_fields` | List the fillable fields of **any** uploaded/created PDF (no template needed) |
+| `fill_pdf_form_fields` | Fill **any** uploaded/created PDF's fields, saving a new PDF (`flatten` for read-only) |
+| `list_pdf_form_templates` | List pre-registered PDF form templates and their fields |
+| `fill_pdf_form` | Fill a registered template form — fields remain editable |
+| `fill_and_flatten_pdf_form` | Fill and flatten a registered template form (read-only / final) |
 
 ## Decision Guide
 
@@ -38,9 +40,12 @@ User wants to CREATE a PDF from...
 User wants to READ a PDF → read_pdf
 
 User wants to FILL a PDF form...
-  Keep fields editable → fill_pdf_form
-  Finalize / lock form → fill_and_flatten_pdf_form
-  (first discover available forms and their fields: list_pdf_form_templates)
+  An uploaded/arbitrary PDF (PREFERRED, no registration needed):
+    1. read_pdf_form_fields   (discover exact field names + types)
+    2. fill_pdf_form_fields   (set flatten=true to lock the result)
+  A pre-registered template form:
+    1. list_pdf_form_templates  (discover available templates + fields)
+    2. fill_pdf_form            (editable) OR fill_and_flatten_pdf_form (locked)
 ```
 
 ## Tool Usage
@@ -76,7 +81,7 @@ User wants to FILL a PDF form...
 }
 ```
 
-Supports inline images via `doc:<documentId>` URI: `<img src="doc:abc123..." />`.
+Supports inline images via `doc:<documentId>` (stored doc) or `lc:<file_id>` (LibreChat attachment) URI: `<img src="doc:abc123..." />`. The same applies to Markdown images in `create_pdf`: `![alt](doc:<uuid>)` or `![alt](lc:<file_id>)`.
 
 ### read_pdf
 ```json
@@ -84,7 +89,39 @@ Supports inline images via `doc:<documentId>` URI: `<img src="doc:abc123..." />`
   "file_content": "<base64-encoded pdf>"
 }
 ```
-Or pass `librechat_file_id` instead. Returns extracted text and metadata.
+Accepts any one of `file_content` (base64), `librechat_file_id`, or `document_id`. Returns extracted text and metadata.
+
+### read_pdf_form_fields
+
+Inspect the form fields of **any** uploaded or created PDF — no template registration needed. Accepts `document_id` **or** `librechat_file_id`.
+
+```json
+{
+  "document_id": "abc12345-..."
+}
+```
+
+Returns `{ document_id, filename, fieldCount, fields }`, where each field has `name`, `type` (`text`, `checkbox`, `dropdown`, `radio`), current value, and (for dropdown/radio) `options`. Call this first to get exact field names before filling. (Date fields appear as `text`; signature fields are not listed.)
+
+### fill_pdf_form_fields
+
+Fill the fields of any uploaded/created PDF and save the result as a **new** PDF (the original blank form is preserved). Accepts `document_id` **or** `librechat_file_id`.
+
+```json
+{
+  "document_id": "abc12345-...",
+  "values": {
+    "fullName": "Alice Smith",
+    "agree": true,
+    "department": "Engineering"
+  },
+  "flatten": false,
+  "filename": "application_alice",
+  "folder": "applications"
+}
+```
+
+Values: strings for text/date/dropdown/radio fields, booleans for checkboxes. Set `flatten: true` to make the result read-only.
 
 ### list_pdf_form_templates
 ```json
@@ -134,8 +171,9 @@ Form is **flattened** (read-only) — use for final/archival copies.
 ## Key Notes
 
 - All create tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
-- PDF form templates are managed via the admin API (upload via `POST /api/admin/pdf-forms`).
+- **To fill an arbitrary uploaded PDF**, use `read_pdf_form_fields` + `fill_pdf_form_fields` — no template registration needed. The `*_pdf_form` / `*_form_templates` tools only work with pre-registered templates.
+- Pre-registered PDF form templates are managed via the admin API (upload via `POST /api/admin/pdf-forms`).
+- When `folder` is omitted on `fill_pdf_form` / `fill_and_flatten_pdf_form`, the output is filed under a folder named after the template.
 - Field value types: strings for text/dropdown/radio fields, booleans for checkboxes.
-- Always call `list_pdf_form_templates` first to discover available templates and exact field names.
 - Org/user color theme is automatically applied when configured.
 ````

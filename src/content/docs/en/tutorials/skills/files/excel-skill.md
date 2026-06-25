@@ -38,7 +38,7 @@ User wants to create Excel from...
   2D array / table    → create_excel
   Complex workbook    → create_excel_advanced  (formulas, multiple sheets, formatting)
 
-User wants to edit an existing Excel file → modify_excel  (requires document_id)
+User wants to edit an existing Excel file → modify_excel  (requires document_id or librechat_file_id)
 
 User wants to read / parse Excel content...
   Just values         → read_excel
@@ -102,9 +102,11 @@ User wants to read / parse Excel content...
 
 **Conditional formatting types:** `greaterThan`, `lessThan`, `equal`, `between`, `containsText`, `duplicateValues`
 
+**Other per-sheet options:** `column_widths` (number array), `protected` (boolean). Top-level: `named_ranges` and `properties` (`{title, subject, author, company}`). Individual cells may also be objects: `{"value": ..., "formula": ..., "comment": ..., "validation": ..., "style": ..., "numberFormat": ...}`.
+
 ### modify_excel
 
-Modifies an existing Excel file **in-place** — same document ID, content replaced.
+Modifies an existing Excel file. Identify the target with `document_id` (updated **in-place** — same ID) **or** `librechat_file_id` (a LibreChat attachment; if the volume isn't writable the modified copy is saved as a **new** document).
 
 ```json
 {
@@ -132,21 +134,22 @@ Modifies an existing Excel file **in-place** — same document ID, content repla
   "sheet_name": "Sheet1"
 }
 ```
-Alternatively pass `librechat_file_id` instead of `file_content`.
+Accepts any one of `file_content` (base64), `librechat_file_id`, or `document_id` (most common — reading a previously created/stored file). `sheet_name` is optional.
 
 ### read_excel_detailed
 ```json
 {
-  "file_content": "<base64-encoded xlsx>",
-  "include_headers": true
+  "document_id": "<id of stored xlsx>",
+  "include_headers": true,
+  "sheet_name": "Sheet1"
 }
 ```
-Returns values, formulas, comments, validation rules, hyperlinks, named ranges, merged cells, and workbook properties.
+Same input options as `read_excel` (`file_content` / `librechat_file_id` / `document_id`, optional `sheet_name`). Returns values, formulas, comments, validation rules, hyperlinks, named ranges, merged cells, and workbook properties.
 
 ## Key Notes
 
 - All create tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
-- `modify_excel` requires a `document_id` pointing to an `.xlsx` file; it errors if the doc type is not Excel.
+- `modify_excel` requires a `document_id` or `librechat_file_id` pointing to an `.xlsx` file; it errors if the doc type is not Excel. With `librechat_file_id` the result may be saved as a new document rather than in-place.
 - Cell addresses support sheet prefix: `"Sheet2!B3"`.
 - The org/user color theme is automatically applied when configured in settings.
 - To fill a template with `{{placeholder}}` syntax, use `fill_excel_template` from the **templates-skill** instead.

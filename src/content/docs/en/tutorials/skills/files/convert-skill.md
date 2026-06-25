@@ -28,12 +28,13 @@ Tools for converting documents between formats.
 
 | From | To |
 |------|----|
-| Excel | CSV, JSON, Markdown |
-| CSV | Excel |
-| JSON | Excel |
-| Word | PDF, Text, Markdown |
-| Markdown | Word, PDF, HTML |
-| HTML | Word, PDF |
+| Excel | CSV, JSON, Markdown, HTML |
+| CSV | Excel, JSON, Markdown, HTML |
+| JSON | Excel, CSV, Markdown |
+| Word | Text, Markdown, HTML, PDF |
+| Markdown | Word, PDF, HTML, Text, ODT |
+| HTML | Word, PDF, Markdown, Text, ODT |
+| PDF | Text |
 
 > When in doubt, call `get_supported_conversions` to get the full current list.
 
@@ -41,7 +42,7 @@ Tools for converting documents between formats.
 
 ### convert_document
 
-Input can be base64 file content or a `librechat_file_id`.
+Input can be base64 `file_content`, a `librechat_file_id`, or a `document_id` (stored companyFILES doc).
 
 ```json
 {
@@ -65,7 +66,8 @@ Using a LibreChat file ID:
 }
 ```
 
-`from_format` / `to_format` values: `excel`, `word`, `pdf`, `csv`, `json`, `markdown`, `html`, `text`
+`from_format` (source) values: `excel`, `word`, `pdf`, `csv`, `json`, `markdown`, `html` — note `text` is **not** a valid source.
+`to_format` (target) values: `excel`, `word`, `pdf`, `csv`, `json`, `markdown`, `html`, `text`, `odt`.
 
 Returns `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
 

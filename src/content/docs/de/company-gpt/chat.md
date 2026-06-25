@@ -21,6 +21,12 @@ Die Eingabe von Chatnachrichten bzw. Prompts erfolgt über das Eingabefeld.
 Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht)
 :::
 
+### Kontextanzeige
+
+![kontextfenster](kontextfenster.png)
+
+Zeigt die Nutzung im aktuellen Kontext an.
+
 ## Integrationen
 
 Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werden durch:
@@ -48,6 +54,12 @@ Im Chat befindliche Nachrichten haben Schnellaktionen:
 - **Bearbeiten und neu generieren**: Die Nachricht kann nachträglich noch bearbeitet und entweder gespeichert oder mit Änderungen neu generiert werden. Das ist sinnvoll, wenn man dem Kontext noch Informationen hinzufügen oder ändern möchte.
 - **Verzweigen**: Ermöglicht es, an einem bestimmten Punkt eine neue Konversation mit allen vorangegangenen Nachrichten abzuzweigen. Das ist hilfreich, wenn man beispielsweise in unterschiedliche Richtungen denken möchte.
 - **Feedback**: Feedback zu Nachrichten bleibt nur im Kontext erhalten, so kann der Benutzer aber signalisieren, ob eine Nachricht gut war oder nicht.
+
+### Zitieren 
+
+Zum zitieren eines bestimmten Inhaltes, einfach markieren und "Zum Chat hinzufügen" auswählen:
+
+![citation](citation.png)
 
 ## Teilen und Exportieren
 

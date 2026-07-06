@@ -69,6 +69,9 @@ export default defineConfig({
 						label: { de: 'Dokumentation', en: 'Documentation' },
 						link: 'intro/company-gpt',
 						icon: 'open-book',
+						// Lets unlisted pages (e.g. the hidden onboarding page, via the `topic`
+						// frontmatter field) associate with this topic without being listed in it.
+						id: 'documentation',
 						items: [{
 							label: 'Einführung',
 							translations: { en: 'Introduction' },

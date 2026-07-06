@@ -48,10 +48,11 @@ Beantwortet Fragen zu internen Richtlinien, Prozessen und Wissen – wie ein Kol
 
 Beispiel-Prompts:
 
-- „Wie beantrage ich Urlaub laut unserer Reiserichtlinie?“
-- „Fasse mir den Onboarding-Prozess für neue Mitarbeitende zusammen.“
-- „Welche Regeln gelten für Homeoffice?“
-- „Wo finde ich Informationen zur IT-Sicherheitsrichtlinie?“
+- „Wie stelle ich einen Urlaubsantrag?“
+- „Was regelt unsere Homeoffice-Betriebsvereinbarung?“
+- „An wen wende ich mich bei IT-Problemen?“
+- „Was besagt unsere Datenschutzrichtlinie?“
+- „Wie läuft das Onboarding neuer Mitarbeitender ab?“
 
 ### Datensatz-Abfrage
 
@@ -61,10 +62,11 @@ Beantwortet gezielte Fragen zu einem strukturierten Datensatz, statt nur einzeln
 
 Beispiel-Prompts:
 
-- „Wie viele Einträge aus 2025 betreffen die Kategorie Support?“
-- „Liste mir alle offenen Vorgänge mit hoher Priorität auf.“
-- „Welche drei Themen kommen im Datensatz am häufigsten vor?“
-- „Gib mir eine kurze Statistik nach Monat.“
+- „Was sind die Top 10 Produkte nach Umsatz?“
+- „Wie viele Kunden kommen pro Filiale?“
+- „Zeige mir den durchschnittlichen Rabatt pro Produktkategorie.“
+- „Vergleiche die Versandgeschwindigkeit zwischen den Filialen.“
+- „Welche Produkte haben aktuell niedrige Lagerbestände?“
 
 ### Generischer RAG-Agent (KI-Themen)
 

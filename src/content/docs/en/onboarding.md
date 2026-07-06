@@ -48,10 +48,11 @@ Answers questions about internal policies, processes, and knowledge — like a c
 
 Sample prompts:
 
-- "How do I request vacation according to our travel policy?"
-- "Summarize the onboarding process for new employees."
-- "What are the rules for working from home?"
-- "Where can I find information about the IT security policy?"
+- "How do I submit a vacation request?"
+- "What does our home office agreement regulate?"
+- "Who do I contact for IT issues?"
+- "What does our data protection policy state?"
+- "How does the onboarding process for new employees work?"
 
 ### Dataset Query
 
@@ -61,10 +62,11 @@ Answers targeted questions about a structured dataset, rather than just summariz
 
 Sample prompts:
 
-- "How many entries from 2025 relate to the Support category?"
-- "List all open tickets with high priority."
-- "What are the three most common topics in the dataset?"
-- "Give me a short breakdown by month."
+- "What are the top 10 products by revenue?"
+- "How many customers do we have per store?"
+- "Show me the average discount per product category."
+- "Compare shipping speed across stores."
+- "Which products currently have low stock levels?"
 
 ### Generic RAG Agent (AI Topics)
 

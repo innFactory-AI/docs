@@ -107,11 +107,13 @@ export default defineConfig({
 										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },
+										{ label: 'companyTRANSCRIBE', translations: { en: 'companyTRANSCRIBE' }, slug: 'company-gpt/addons/company-transcribe' },
 										{ label: 'companyM365', translations: { en: 'companyM365' }, slug: 'company-gpt/addons/companym365' },
 									]
 								},
 								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
 								{ label: 'Skills', translations: { en: 'Skills' }, slug: 'company-gpt/skills' },
+								{ label: 'Code Interpreter', translations: { en: 'Code Interpreter' }, slug: 'company-gpt/code-interpreter' },
 								{ label: 'Prompts', translations: { en: 'Prompts' }, slug: 'company-gpt/prompts' },
 								{ label: 'Erinnerungen', translations: { en: 'Memories' }, slug: 'company-gpt/erinnerungen' },
 								{ label: 'KI Einstellungen', translations: { en: 'AI Settings' }, slug: 'company-gpt/ki-einstellungen' },

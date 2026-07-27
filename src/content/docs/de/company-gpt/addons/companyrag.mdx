@@ -12,11 +12,25 @@ Die Indexierung kann hierbei einmalig oder wiederkehrend, basierend auf Ihrem An
 Die Benutzeroberfläche ermöglicht es, einzelne und mehrere Dateien oder ganze Datenquellen zur Indexierung hinzuzufügen.
 Die Oberfläche gliedert sich in:
 
-- [Dateien](#dateien)
-- [Sammlungen](#sammlungen)
-- [Quellen](#quellen)
-- [Aufträge](#aufträge)
-- [Hochladen](#hochladen)
+import sidebarImg from "./rag-sidebar.png";
+
+
+<div style="display: flex; gap: 2rem; align-items: flex-start;">
+  <img src={sidebarImg.src} alt="companyRAG Seitenleiste" style="width: 60px; flex-shrink: 0;" />
+  <div>
+  
+
+1. [Dateien](#dateien)
+2. [Sammlungen](#sammlungen)
+3. [Quellen](#quellen)
+4. [Integrationen](#integrationen)
+5. [Aufträge](#aufträge)
+6. [Hochladen](#hochladen)
+7. [API-Schlüssel](#api-schlüssel) *(nur für Administratoren)*
+8. [Audit Protokoll](#audit-protokoll) *(nur für Administratoren)*
+
+  </div>
+</div>
 
 ### Dateien
 
@@ -102,6 +116,20 @@ Nach der Verbindung erscheint der Ordner unter "Alle Quellen" als Aktiv. Die Syn
 - **Pausieren/Fortsetzen**: Ausgewählte Quellen deaktivieren oder reaktivieren
 - **Löschen**: Entfernen der Datenquelle - Bereits synchronisierte Dateien bleiben in der Sammlung bestehen
 
+### Integrationen
+
+Eine Übersicht aller angebundenen Drittsysteme (wie SharePoint, Firecrawl oder Custom-APIs), die als automatische Datenquellen dienen.
+Die Übersicht enthält:
+
+- **Name**: Die selbst gewählte Bezeichnung der eingerichteten Integration.
+- **Typ**: Die Art der Schnittstelle (z. B. *SharePoint* für Dateiordner, *Firecrawl* für Webseiten-Inhalte oder *Custom*).
+- **Status**: Der Verbindungsstatus zum externen System:
+  - Aktiv: Die Verbindung steht und ist betriebsbereit.
+  - Fehlerhaft / Abgelaufen: Die Verbindung ist unterbrochen oder die Anmeldung muss erneuert werden.
+- **Aktionen**:
+  - Verbindung testen / Re-Autorisieren: Prüft die Erreichbarkeit oder erneuert abgelaufene Zugriffsrechte (z. B. durch erneuten Login).
+  - Löschen: Trennt die Verbindung zum Drittsystem dauerhaft. *(Bereits importierte Dateien bleiben in den Sammlungen erhalten, werden jedoch nicht mehr automatisch aktualisiert).*
+
 ### Aufträge
 
 Indexierungsaufträge und Status anzeigen
@@ -123,6 +151,31 @@ Aktionen:
 Einzelne und mehrere Dateien manuell zur Indexierung hochladen.
 
 Unterstützte Formate: PDF, DOCX, DOC, TXT, MD, RTF, HTML, HTM, XML, CSV, JSON, EML, XLSX, XLS, PPTX, PPT
+
+### API-Schlüssel *(nur für Administratoren)*
+
+Hier können Administratoren API-Schlüssel erstellen und verwalten, um andere Programme und eigene Tools sicher mit dem RAG-Service zu verbinden.
+
+Die Übersicht zeigt:
+
+- **Name**: Der frei gewählte Name des Schlüssels (z. B. „Intranet-Suche“), um ihn später zuzuordnen.
+- **Schlüssel**: Der gekürzte API-Schlüssel (z. B. `sk-...1a2b`), um ihn zu identifizieren.
+- **Erstellt am / Zuletzt verwendet**: Zeigt, wann der Schlüssel erstellt und wann er das letzte Mal für eine Abfrage genutzt wurde.
+- **Aktionen**:
+  - **Erstellen**: Generiert einen neuen Schlüssel. *(Achtung: Der Schlüssel wird nur einmalig direkt nach der Erstellung komplett angezeigt. Kopiere ihn sofort an einen sicheren Ort!)*
+  - **Löschen (Widerrufen)**: Sperrt den Schlüssel sofort und unwiderruflich. Alle damit verknüpften Programme verlieren sofort den Zugriff.
+
+### Audit-Protokoll *(nur für Administratoren)*
+
+Das Audit-Protokoll ist ein lückenloses Protokoll (Logbuch), das alle wichtigen Änderungen und Aktivitäten im RAG-Service aufzeichnet. Es dient Administratoren zur Sicherheit, Nachvollziehbarkeit und zur schnellen Fehlersuche.
+
+Die Übersicht zeigt:
+
+- **Zeitstempel**: Das genaue Datum und die Uhrzeit der Aktivität.
+- **Akteur (Nutzer)**: Wer die Aktion durchgeführt hat (z. B. ein bestimmter Administrator oder ein automatisierter API-Schlüssel).
+- **Aktion**: Was genau getan wurde (z. B. „Datei gelöscht“, „Integration erstellt“, „Sammlung geteilt“ oder „API-Schlüssel widerrufen“).
+- **Details**: Zusätzliche Informationen zum Ereignis (z. B. der Name der betroffenen Datei oder die ID der geänderten Sammlung).
+- **Suche & Filter**: Ermöglicht es, das Protokoll gezielt nach bestimmten Zeiträumen, Nutzern oder bestimmten Aktionen zu durchsuchen.
 
 ## CompanyRAG in CompanyGPT
 

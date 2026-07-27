@@ -1,0 +1,26 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import { Badge } from '@astrojs/starlight/components';
+
+const { entry } = Astro.locals.starlightRoute;
+const isBeta = entry.data.beta === true;
+---
+
+{
+	isBeta ? (
+		<div class="page-title-beta">
+			<Default><slot /></Default>
+			<Badge text="Beta" variant="caution" size="medium" />
+		</div>
+	) : (
+		<Default><slot /></Default>
+	)
+}
+
+<style>
+	.page-title-beta {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+	}
+</style>

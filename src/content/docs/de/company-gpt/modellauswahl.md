@@ -82,7 +82,7 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## Google
 
-### Gemini 3.5 Flash-Lite
+### Gemini 3.1 Flash-Lite
 
 - **Für:** maximale Geschwindigkeit und Kosteneffizienz
 - **Wann:** schnelles Nachfragen, einfache Massenaufgaben, Echtzeit-Übersetzungen
@@ -174,10 +174,10 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eigne
 
 ## Schnelle Entscheidungshilfe
 
-- **„Ich will einfach eine sehr gute Antwort“** → GPT 5.1 / GPT 5 Mini / Claude Sonnet 4.6
-- **„Es soll maximal schnell und günstig sein“** → GPT 5 Nano / GPT 5.4 Mini / Gemini 2.5 Flash / Claude Haiku 4.5
-- **„Ich will programmieren / Code schreiben“** → GPT 5.2 Codex / Claude Sonnet 4.6
-- **„Es ist kompliziert oder extrem wichtig“** → GPT 5.5 / GPT 5.4 / Claude Opus 4.6 / Gemini 2.5 Pro
+- **„Ich will einfach eine sehr gute Antwort“** → gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
+- **„Es soll maximal schnell und günstig sein“** → gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **„Ich will programmieren / Code schreiben“** → Claude Sonnet 4.6 / gpt-5.4
+- **„Es ist kompliziert oder extrem wichtig“** → gpt-5.4 / gpt-5.1
 - **„Datenschutz (EU/Deutschland) ist Pflicht“** → STACKIT-Modelle (z. B. Llama 3.3 70B Instruct)
-- **„Ich arbeite im Chat (Dialog)“** → GPT 5.3 Chat / GPT 5.2 Chat / GPT 5.1 Chat
+- **„Ich weiß nicht, welches Modell passt“** → auto (dynamisches Routing)
 - **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

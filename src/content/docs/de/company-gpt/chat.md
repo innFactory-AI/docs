@@ -33,8 +33,8 @@ Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werd
 
 - [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
 - [Websuche](/de/company-gpt/integrationen/websuche/)
-- [Skills](/hier-link-fuer-skills-einfuegen/)
-- [Code ausführen](/hier-link-fuer-code-ausfuehren-einfuegen/)
+- [Skills](/de/company-gpt/skills/)
+- [Code ausführen](/de/company-gpt/code-interpreter/)
 - [Artefakte](/de/company-gpt/integrationen/artefakte/)
 - [MCP Server](/de/company-gpt/integrationen/mcp-server/)
 

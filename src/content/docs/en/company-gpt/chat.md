@@ -24,10 +24,12 @@ Information on prompt engineering and prompt instructions can be found here: [Pr
 ## Integrations
 
 In addition to the actual prompt input, the context can be further expanded by:
-- [Websearch](/en/company-gpt/integrationen/websuche)
-- [File Search](/en/company-gpt/integrationen/dateisuche)
-- [Artifacts](/en/company-gpt/integrationen/artefakte)
-- [MCP Server](/en/company-gpt/integrationen/mcp-server)
+- [File Search](/en/company-gpt/integrationen/dateisuche/)
+- [Websearch](/en/company-gpt/integrationen/websuche/)
+- [Skills](/en/company-gpt/skills/)
+- [Run Code](/en/company-gpt/code-interpreter/)
+- [Artifacts](/en/company-gpt/integrationen/artefakte/)
+- [MCP Server](/en/company-gpt/integrationen/mcp-server/)
 
 These can be enabled or disabled for individual messages in the respective chat.
 

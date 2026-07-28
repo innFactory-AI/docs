@@ -31,10 +31,12 @@ Zeigt die Nutzung im aktuellen Kontext an.
 
 Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werden durch:
 
-- [Websuche](/de/company-gpt/integrationen/websuche)
-- [Dateisuche](/de/company-gpt/integrationen/dateisuche)
-- [Artefakte](/de/company-gpt/integrationen/artefakte)
-- [MCP Server](/de/company-gpt/integrationen/mcp-server)
+- [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
+- [Websuche](/de/company-gpt/integrationen/websuche/)
+- [Skills](/de/company-gpt/skills/)
+- [Code ausführen](/de/company-gpt/code-interpreter/)
+- [Artefakte](/de/company-gpt/integrationen/artefakte/)
+- [MCP Server](/de/company-gpt/integrationen/mcp-server/)
 
 Diese können im jeweiligen Chat für einzelne Nachrichten aktiviert oder deaktiviert werden.
 

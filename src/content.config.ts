@@ -35,6 +35,16 @@ const changelog = defineCollection({
 });
 
 export const collections = {
-	docs: defineCollection({ loader: docsLoader(), schema: docsSchema({ extend: topicSchema }) }),
+	docs: defineCollection({
+		loader: docsLoader(),
+		schema: docsSchema({
+			extend: topicSchema.merge(
+				z.object({
+					/** Marks the page as a beta feature: shows a Beta badge next to the page title. */
+					beta: z.boolean().optional(),
+				})
+			),
+		}),
+	}),
 	changelog,
 };

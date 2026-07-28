@@ -18,89 +18,59 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## OpenAI
 
-### GPT 5.5
+### gpt-5.4
 
-- **For:** coding, professional knowledge work, and the most complex tasks
-- **When:** software development, strategic decisions, critical analyses, high-stakes outputs
-- **Why:** latest flagship (1M context) with the highest overall performance across all categories
+- **For:** complex problems and maximum intelligence
+- **When:** demanding coding, scientific analyses, strategic planning
+- **Why:** OpenAI's most advanced model with unmatched logical reasoning
 
-### GPT 5.4
+### gpt-5.1
 
-- **For:** coding and demanding analyses with very long context
-- **When:** large document volumes, extensive reports, long-context workflows
-- **Why:** more affordable than GPT 5.5 while still delivering strong quality (1M context)
+- **For:** deep thinking with high reliability
+- **When:** complex documents, data analyses, advanced text work
+- **Why:** strong GPT-5 generation performance optimized for practical use
 
-### GPT 5.4 Mini
+### gpt-5-mini
 
-- **For:** high quality with high throughput, coding, and autonomous agents
-- **When:** batch processing, scaled content workflows, computer use, subagents
-- **Why:** strongest mini model (400K context) with support for computer use and subagents
+- **For:** high quality at high speed
+- **When:** everyday programming tasks, structured research, logical iterations
+- **Why:** excellent balance of GPT-5 intelligence and fast processing time
 
-### GPT 5.3 Chat
+### gpt-5-nano
 
-- **For:** dynamic real-time interaction
-- **When:** assistant dialogues, iterative coordination, quick follow-up questions in chat
-- **Why:** chat-optimized for smooth conversations and strong context retention
+- **For:** ultra-fast answers and simple assistance
+- **When:** quick questions, simple formatting, text corrections
+- **Why:** extremely resource-efficient model of the GPT-5 family with minimal latency
 
-### GPT 5.2 Codex
+### gpt-4.1
 
-- **For:** software development and technical implementation
-- **When:** writing code, refactoring, debugging, creating tests
-- **Why:** specialized for development tasks with high code quality
+- **For:** reliable problem-solving and standard contexts
+- **When:** text optimization, research, logical comparisons
+- **Why:** the proven, refined workhorse for demanding everyday tasks
 
-### GPT 5.2
+### gpt-4.1-mini
 
-- **For:** challenging analysis and structuring tasks
-- **When:** complex evaluations, difficult trade-offs, precise reasoning
-- **Why:** strong reasoning model for demanding general workloads
+- **For:** fast processing at low cost
+- **When:** structured text creation, data pre-sorting, simple conversations
+- **Why:** compact version of GPT-4.1, optimized for efficiency and speed
 
-### GPT 5.2 Chat
+### gpt-4o
 
-- **For:** demanding dialogues with high reliability
-- **When:** consulting-like conversations, long interactions, precise follow-ups
-- **Why:** optimized for chat quality and more robust against hallucinations
+- **For:** versatile multimodality and fluid interaction
+- **When:** image and speech processing, creative drafts, brainstorming
+- **Why:** the established flagship model for fast, multimedia tasks
 
-### GPT 5.1 Chat
+### gpt-4o-mini
 
-- **For:** interactive dialogues and agent workflows
-- **When:** support, fluent conversations, strict adherence to instructions
-- **Why:** chat-optimized for natural language and stable context management
+- **For:** high speed at minimal cost
+- **When:** simple chat assistants, fast filtering of large data volumes
+- **Why:** extremely inexpensive lightweight model with solid base intelligence
 
-### GPT 5.1
+### auto
 
-- **For:** versatile general-purpose tasks
-- **When:** structured texts, analyses, automations without a primary chat focus
-- **Why:** balanced quality, speed, and reliability for everyday use
-
-### GPT 5 Mini
-
-- **For:** demanding tasks with efficiency
-- **When:** coding, structured outputs, longer texts
-- **Why:** more modern and robust than the GPT-4 series
-
-### GPT 5 Nano
-
-- **For:** extremely simple, fast tasks
-- **When:** auto-completion, short answers, mass tasks
-- **Why:** extremely fast and inexpensive, but limited depth
-
-### O3 Mini
-
-- **For:** logic, mathematics, coding, and step-by-step reasoning
-- **When:** when clean derivation is more important than style or creativity
-- **Why:** strongly optimized for precise problem-solving and rational derivations
-
-### GPT 4.1
-
-- **For:** complex analyses, clean argumentation
-- **When:** strategy, concepts, in-depth explanations
-- **Why:** more precise and stable than GPT 4o
-
-### GPT 4.1 Mini
-
-- **For:** better quality while still maintaining high speed
-- **When:** when GPT 4o mini is too superficial
-- **Why:** a good middle ground between quality and performance
+- **For:** automated efficiency without manual selection
+- **When:** varying tasks, straightforward workflows
+- **Why:** automatically selects the most suitable model based on the complexity of your request
 
 ### GPT Image 1.5
 
@@ -112,17 +82,17 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## Google
 
-### Gemini 2.5 Flash
+### Gemini 3.1 Flash-Lite
 
-- **For:** maximum speed
-- **When:** quick follow-up questions, brainstorming, iterations
-- **Why:** very fast, good for overview and context
+- **For:** maximum speed and cost efficiency
+- **When:** quick follow-up questions, simple bulk tasks, real-time translations
+- **Why:** extremely short response time at unbeatably low cost
 
-### Gemini 2.5 Pro
+### Gemini 3.5 Flash
 
-- **For:** deep thinking and large contexts
-- **When:** complex documents, comparisons, analyses
-- **Why:** Google's strong model for high quality on complex tasks
+- **For:** autonomous reasoning at high speed
+- **When:** complex workflows, deep analyses, demanding coding
+- **Why:** Google's fast model with flexible thinking levels for smarter tasks
 
 ### Gemini Image Tools / Nano Banana
 
@@ -133,12 +103,6 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 ---
 
 ## Anthropic
-
-### Claude Opus 4.6
-
-- **For:** highest complexity and in-depth analyses
-- **When:** strategic planning, extremely long contexts (1M), most difficult logic tasks
-- **Why:** strongest Anthropic model available in CompanyGPT for agent teams and parallel workflows (highest costs)
 
 ### Claude Sonnet 4.6
 
@@ -158,68 +122,62 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 These open-source models run in the STACKIT Cloud (EU/Germany) and are particularly suited for workloads with high requirements for data protection, data sovereignty, and internal compliance.
 
-### Mistral Nemo Instruct
-
-- **For:** fast, general instruct tasks
-- **When:** internal assistants, standard QA, summaries with EU hosting
-- **Why:** efficient all-rounder with a good balance of quality, latency, and cost
-
-### Qwen 3 VL Embedding 8B
-
-- **For:** multimodal embeddings (text/image) for search and retrieval
-- **When:** semantic search, RAG indexing, similarity search across mixed data
-- **Why:** specialized in vector representations rather than classic chat responses
-
-### Qwen 3 VL 235B
-
-- **For:** multimodal high-end analysis with image and text understanding
-- **When:** visual document analysis, complex image-text tasks, demanding inference
-- **Why:** very powerful VL model for deeper understanding of multimodal content
-
-### GPT OSS 20B
-
-- **For:** lightweight open-source text tasks
-- **When:** cost-sensitive internal workflows with controllable infrastructure
-- **Why:** compact OSS approach for solid quality with lower resource requirements
-
-### Llama 3.1 8B Instruct
-
-- **For:** fast inference for standard instruct use cases
-- **When:** chatbots, classification, extraction, and simple automations
-- **Why:** small model size with high efficiency and solid production maturity
-
-### Llama 3.3 70B Instruct
-
-- **For:** more demanding generation and reasoning in the EU stack
-- **When:** more complex enterprise questions, longer responses, better level of detail
-- **Why:** 70B class provides significantly more quality than small models while retaining OSS flexibility
-
-### GPT OSS 120B
+### openai/gpt-oss-120b
 
 - **For:** highest OSS quality for complex text tasks
 - **When:** when internally hosted top performance is required instead of maximum speed
 - **Why:** large open-source model for strong analytical and linguistic results
 
-### E5 Mistral 7B Instruct
+### Qwen/Qwen3-VL-235B-A22B-Instruct-FP8
 
-- **For:** high-quality text embeddings for retrieval and ranking
-- **When:** vector search, document retrieval, relevance ranking in RAG pipelines
-- **Why:** proven embedding model for precise semantic search applications
+- **For:** multimodal high-end analysis with image and text understanding
+- **When:** visual document analysis, complex image-text tasks, demanding inference
+- **Why:** very powerful VL model for deeper understanding of multimodal content
 
-### Gemma 3 27B
+### cortecs/Llama-3.3-70B-Instruct-FP8-Dynamic
+
+- **For:** more demanding generation and reasoning in the EU stack
+- **When:** more complex enterprise questions, longer responses, better level of detail
+- **Why:** the 70B class provides significantly more quality than small models while retaining OSS flexibility
+
+### google/gemma-3-27b-it
 
 - **For:** versatile instruct tasks with good efficiency
 - **When:** internal assistants, knowledge work, structured text production
 - **Why:** strong mid-range between small fast and large expensive OSS models
 
+### Qwen/Qwen3.6-27B
+
+- **For:** versatile text tasks and strong multilingual understanding
+- **When:** creative writing, logical problem-solving, precise translations
+- **Why:** the latest Qwen generation with an optimal balance of compact size and high intelligence
+
+### openai/gpt-oss-20b
+
+- **For:** lightweight open-source text tasks
+- **When:** cost-sensitive internal workflows with controllable infrastructure
+- **Why:** compact OSS approach for solid quality with lower resource requirements
+
+### Qwen/Qwen3-VL-Embedding-8B
+
+- **For:** multimodal embeddings (text/image) for search and retrieval
+- **When:** semantic search, RAG indexing, similarity search across mixed data
+- **Why:** specialized in vector representations rather than classic chat responses
+
+### intfloat/e5-mistral-7b-instruct
+
+- **For:** high-quality text embeddings for retrieval and ranking
+- **When:** vector search, document retrieval, relevance ranking in RAG pipelines
+- **Why:** proven embedding model for precise semantic search applications
+
 ---
 
 ## Quick decision-making aid
 
-- **"I just want a very good answer"** → GPT 5.1 / GPT 5 Mini / Claude Sonnet 4.6
-- **"It should be as fast and inexpensive as possible"** → GPT 5 Nano / GPT 5.4 Mini / Gemini 2.5 Flash / Claude Haiku 4.5
-- **"I want to program / write code"** → GPT 5.2 Codex / Claude Sonnet 4.6
-- **"It's complicated or extremely important"** → GPT 5.5 / GPT 5.4 / Claude Opus 4.6 / Gemini 2.5 Pro
+- **"I just want a very good answer"** → gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
+- **"It should be as fast and inexpensive as possible"** → gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **"I want to program / write code"** → Claude Sonnet 4.6 / gpt-5.4
+- **"It's complicated or extremely important"** → gpt-5.4 / gpt-5.1
 - **"Data protection (EU/Germany) is mandatory"** → STACKIT models (e.g., Llama 3.3 70B Instruct)
-- **"I work in chat (dialogue)"** → GPT 5.3 Chat / GPT 5.2 Chat / GPT 5.1 Chat
+- **"I don't know which model fits"** → auto (dynamic routing)
 - **"I need images"** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

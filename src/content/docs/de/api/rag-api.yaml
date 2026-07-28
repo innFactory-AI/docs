@@ -1,0 +1,2396 @@
+openapi: 3.0.3
+info:
+  title: CompanyRAG Indexer API - API Key Authentication
+  description: |
+    OpenAPI specification for all endpoints in the CompanyRAG Indexer that support API Key authentication.
+
+    ## Authentication
+
+    All endpoints in this specification require authentication via API Key using the `Authorization` header with Bearer token format.
+
+    API Keys are generated via the admin panel and have the format `rag_<64-character-hex-string>`.
+
+    **Authentication Header:**
+    ```
+    Authorization: Bearer rag_<api-key>
+    ```
+
+    **Alternative (Cookie-based for browser clients):**
+    The API also supports `access_token` cookie as fallback authentication.
+
+    ## Error Handling
+
+    Most errors follow this format:
+    ```json
+    {
+      "error": "Error message description"
+    }
+    ```
+    A few endpoints (noted per-operation below) return a plain-text body via `http.Error` instead of this JSON shape.
+
+    Common HTTP status codes:
+    - `400 Bad Request`: Invalid request parameters
+    - `401 Unauthorized`: Missing or invalid authentication
+    - `403 Forbidden`: Insufficient permissions
+    - `404 Not Found`: Resource not found
+    - `409 Conflict`: Resource state conflict (e.g. duplicate, cannot retry/delete in current state)
+    - `500 Internal Server Error`: Server-side error
+
+  version: '1.0.0'
+  contact:
+    name: CompanyRAG Support
+    url: 'https://github.com/innfactory/companyRAG'
+  license:
+    name: MIT
+
+servers:
+  - url: 'http://localhost:8080'
+    description: Local development server
+  - url: 'https://api.companyrag.example.com'
+    description: Production server (replace with actual domain)
+
+security:
+  - BearerAuth: []
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: |
+        API Key authentication using Bearer token.
+        Format: `Bearer rag_<64-character-hex>`
+
+        Example:
+        ```
+        Authorization: Bearer rag_a1b2c3d4e5f6...
+        ```
+
+  schemas:
+    Error:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error message
+
+    StatusMessage:
+      type: object
+      description: Generic status acknowledgement returned by several action endpoints
+      required:
+        - status
+      properties:
+        status:
+          type: string
+
+    # ============== File Schemas ==============
+
+    FileInfo:
+      type: object
+      description: File metadata (mirrors handlers.FileInfo)
+      required:
+        - id
+        - name
+        - blobPath
+        - status
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique file identifier
+        name:
+          type: string
+          description: Original file name
+        blobPath:
+          type: string
+          description: Path in blob storage
+        sizeBytes:
+          type: integer
+          format: int64
+          nullable: true
+          description: File size in bytes
+        contentType:
+          type: string
+          nullable: true
+          description: MIME type
+        status:
+          type: string
+          enum: [pending, indexed, indexed_with_warning, failed]
+          description: File processing status
+        collectionId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Associated collection ID
+        collectionName:
+          type: string
+          nullable: true
+          description: Associated collection name
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: ISO 8601 last update timestamp
+        lastIndexedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO 8601 last indexing timestamp
+        sourceMetadata:
+          type: object
+          nullable: true
+          description: Source-specific metadata (ACL fields, SharePoint item info, etc.); omitted/empty for files with no metadata
+          additionalProperties: true
+
+    FileListResponse:
+      type: object
+      description: Paginated list of files (handlers.FileListResponse)
+      required:
+        - files
+        - total
+        - page
+        - pageSize
+        - totalPages
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileInfo'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+
+    FileUploadRequest:
+      type: object
+      description: File upload request (multipart/form-data)
+      required:
+        - file
+        - collectionId
+      properties:
+        file:
+          type: string
+          format: binary
+          description: File to upload
+        collectionId:
+          type: string
+          format: uuid
+          description: Target collection ID. Required — uploads with no collection are rejected (400).
+        metadata:
+          type: string
+          description: Optional JSON-encoded object merged into the file's source metadata (e.g. custom ACL fields)
+
+    UploadResponse:
+      type: object
+      description: Response for POST /files (handlers.UploadResponse)
+      required:
+        - file
+        - jobId
+      properties:
+        file:
+          $ref: '#/components/schemas/FileInfo'
+        jobId:
+          type: string
+          format: uuid
+          description: ID of the indexing job queued for this upload
+
+    FileDetailResponse:
+      type: object
+      description: Response for GET /files/{fileId} (handlers.FileDetailResponse)
+      required:
+        - file
+        - jobs
+      properties:
+        file:
+          $ref: '#/components/schemas/FileInfo'
+        jobs:
+          type: array
+          description: Full job history for this file (newest first)
+          items:
+            $ref: '#/components/schemas/JobInfo'
+
+    ReindexFileResponse:
+      type: object
+      description: Response for POST /files/{fileId}/reindex
+      required:
+        - status
+        - jobId
+        - file
+      properties:
+        status:
+          type: string
+          example: queued
+        jobId:
+          type: string
+          format: uuid
+        file:
+          $ref: '#/components/schemas/FileInfo'
+
+    # ============== Job Schemas ==============
+
+    JobInfo:
+      type: object
+      description: Indexing job information (handlers.JobInfo)
+      required:
+        - id
+        - fileId
+        - type
+        - status
+        - retryCount
+        - maxRetries
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique job identifier
+        fileId:
+          type: string
+          format: uuid
+          description: Associated file ID
+        fileName:
+          type: string
+          nullable: true
+          description: Name of the file being processed (list endpoint only)
+        collectionId:
+          type: string
+          format: uuid
+          nullable: true
+          description: Associated collection ID (list endpoint only)
+        collectionName:
+          type: string
+          nullable: true
+          description: Associated collection name (list endpoint only)
+        type:
+          type: string
+          enum: [index, reindex, delete, rebuild_fts]
+          description: Job action type (JSON key is "type"; the Go field is named Action)
+        status:
+          type: string
+          enum: [queued, running, completed, failed, cancelled]
+          description: Current job status
+        retryCount:
+          type: integer
+          description: Number of retries attempted
+        maxRetries:
+          type: integer
+          description: Maximum allowed retries
+        error:
+          type: string
+          nullable: true
+          description: Error message if job failed
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 creation timestamp
+        startedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO 8601 start timestamp
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: ISO 8601 completion timestamp
+        queuePosition:
+          type: integer
+          nullable: true
+          description: 1-based position in the global FIFO queue; present only for jobs currently in 'queued' status (list endpoint only)
+
+    StatusCounts:
+      type: object
+      description: Per-status job counts, scoped to the caller's accessible collections (handlers/database.StatusCounts)
+      required:
+        - queued
+        - running
+        - completed
+        - failed
+        - total
+      properties:
+        queued:
+          type: integer
+        running:
+          type: integer
+        completed:
+          type: integer
+        failed:
+          type: integer
+        total:
+          type: integer
+
+    QueueStats:
+      type: object
+      description: |
+        Global (unscoped) queue depth indicator. Deliberately not filtered by collection or
+        document ACL: the worker drains one global FIFO queue, so jobs the caller cannot see
+        still delay theirs.
+      required:
+        - queued
+        - running
+      properties:
+        queued:
+          type: integer
+        running:
+          type: integer
+
+    JobListResponse:
+      type: object
+      description: Paginated list of jobs (handlers.JobListResponse)
+      required:
+        - jobs
+        - total
+        - page
+        - pageSize
+        - totalPages
+        - deletableFailedCount
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobInfo'
+        total:
+          type: integer
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalPages:
+          type: integer
+        statusCounts:
+          allOf:
+            - $ref: '#/components/schemas/StatusCounts'
+          nullable: true
+        queueStats:
+          allOf:
+            - $ref: '#/components/schemas/QueueStats'
+          nullable: true
+          description: Absent when the best-effort queue-stats query fails
+        deletableFailedCount:
+          type: integer
+          description: |
+            Write-scoped (admin-role collections only) count of failed jobs — what
+            "Delete/Retry All Failed" can actually act on. Distinct from statusCounts.failed,
+            which is read-scoped for the informational badge.
+
+    JobDetailResponse:
+      type: object
+      description: Response for GET /jobs/{jobId} (handlers.JobDetailResponse)
+      required:
+        - job
+      properties:
+        job:
+          $ref: '#/components/schemas/JobInfo'
+        file:
+          allOf:
+            - $ref: '#/components/schemas/FileInfo'
+          nullable: true
+          description: Present when the job's file could still be resolved
+
+    ReindexAllResponse:
+      type: object
+      description: Response for POST /reindex-all (handlers.ReindexAllResponse)
+      required:
+        - status
+        - fileCount
+        - jobIds
+      properties:
+        status:
+          type: string
+          enum: [no_files, queued]
+        fileCount:
+          type: integer
+        jobIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+
+    BulkActionResponse:
+      type: object
+      description: Response for POST /jobs/retry-all-failed and DELETE /jobs/failed (handlers.BulkActionResponse)
+      required:
+        - status
+        - count
+      properties:
+        status:
+          type: string
+          example: queued
+        count:
+          type: integer
+
+    BulkFileDeleteRequest:
+      type: object
+      description: |
+        Request for POST /files/bulk-delete (handlers.BulkFileDeleteRequest). Exactly one
+        mode must be used: an explicit fileIds list (max 100), or a status filter with
+        optional collectionIds/search refinements.
+      properties:
+        fileIds:
+          type: array
+          maxItems: 100
+          items:
+            type: string
+            format: uuid
+        status:
+          type: string
+          enum: [pending, indexed, indexed_with_warning, failed]
+        collectionIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        search:
+          type: string
+
+    BulkFileDeleteResponse:
+      type: object
+      description: |
+        Response for POST /files/bulk-delete (handlers.BulkFileDeleteResponse). count is the
+        number of files actually deleted; failedCount counts files whose teardown errored
+        (the operation continues past individual failures). Files the caller may not delete
+        are silently skipped and appear in neither count.
+      required:
+        - status
+        - count
+        - failedCount
+      properties:
+        status:
+          type: string
+          example: deleted
+        count:
+          type: integer
+        failedCount:
+          type: integer
+
+    # ============== Collection Schemas ==============
+
+    CollectionInfo:
+      type: object
+      description: |
+        Collection record as returned by POST /api/collections, GET /api/collections/{id} and
+        PUT /api/collections/{id} (database.Collection, encoded as-is — this is a different,
+        lower-level shape than the enriched CollectionResponse used by the list endpoint).
+      required:
+        - id
+        - name
+        - displayName
+        - description
+        - owner_id
+        - visibility
+        - searchLanguage
+        - type
+        - chunkingStrategy
+        - datasetMode
+        - structuredExtractionEnabled
+        - imageDescriptionsEnabled
+        - imageDescriptionMode
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        created_by:
+          type: string
+          format: uuid
+          nullable: true
+        owner_id:
+          type: string
+          format: uuid
+        visibility:
+          type: string
+          enum: [private, shared, public]
+        searchLanguage:
+          type: string
+          description: PostgreSQL text search dictionary, e.g. "english"
+        type:
+          type: string
+          enum: [rag, dataset]
+        chunkingStrategy:
+          type: string
+          enum: [recursive, markdown, semantic]
+        chunkSize:
+          type: integer
+          nullable: true
+        chunkOverlap:
+          type: integer
+          nullable: true
+        datasetMode:
+          type: string
+          enum: ['', imported, live]
+          description: Empty for "rag" collections; "imported" or "live" for "dataset" collections
+        liveSchema:
+          type: object
+          nullable: true
+          description: Live-dataset / structured-extraction schema (see LiveSchema)
+        lastIngestedAt:
+          type: string
+          format: date-time
+          nullable: true
+        structuredExtractionEnabled:
+          type: boolean
+        extractionInstructions:
+          type: string
+          description: Omitted from the JSON body when empty
+        extractionMaxPages:
+          type: integer
+          nullable: true
+        imageDescriptionsEnabled:
+          type: boolean
+        imageDescriptionMode:
+          type: string
+          enum: ['', all, empty_pages]
+        embeddingModel:
+          type: string
+          description: Omitted from the JSON body when empty
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CollectionOwnerInfo:
+      type: object
+      required:
+        - id
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+        email:
+          type: string
+        name:
+          type: string
+
+    CollectionResponse:
+      type: object
+      description: |
+        Enriched collection representation returned ONLY by GET /api/collections (the list
+        endpoint) — adds RBAC/display metadata not present on CollectionInfo.
+      required:
+        - id
+        - name
+        - displayName
+        - description
+        - ownerId
+        - visibility
+        - searchLanguage
+        - collectionType
+        - structuredExtractionEnabled
+        - imageDescriptionsEnabled
+        - tableSizeBytes
+        - myRole
+        - shareCount
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        ownerId:
+          type: string
+          format: uuid
+        owner:
+          allOf:
+            - $ref: '#/components/schemas/CollectionOwnerInfo'
+          nullable: true
+        visibility:
+          type: string
+          enum: [private, shared, public]
+        searchLanguage:
+          type: string
+        collectionType:
+          type: string
+          enum: [rag, dataset]
+        datasetMode:
+          type: string
+          enum: [imported, live]
+        liveSchema:
+          type: object
+          nullable: true
+        structuredExtractionEnabled:
+          type: boolean
+        extractionInstructions:
+          type: string
+        extractionMaxPages:
+          type: integer
+          nullable: true
+        imageDescriptionsEnabled:
+          type: boolean
+        imageDescriptionMode:
+          type: string
+          enum: [all, empty_pages]
+        tableSizeBytes:
+          type: integer
+          format: int64
+          description: Total on-disk size of the vector table including indexes
+        myRole:
+          type: string
+          enum: [owner, admin, viewer]
+        shareCount:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    CollectionListResponse:
+      type: object
+      description: |
+        Response for GET /api/collections. Note there is no pagination — the endpoint returns
+        every collection the "filter" query selects in a single array.
+      required:
+        - collections
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/CollectionResponse'
+
+    ColumnDef:
+      type: object
+      description: One column of a live-dataset / structured-extraction table (livestore.ColumnDef)
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [text, integer, numeric, boolean, timestamp]
+        primary:
+          type: boolean
+          description: Marks this column as the table's natural key (dedup / upsert target). At most one per table.
+        nullable:
+          type: boolean
+          nullable: true
+          description: Defaults to true when omitted; a primary column is always NOT NULL regardless of this value
+
+    TableDef:
+      type: object
+      description: One table of a live-dataset / structured-extraction schema (livestore.TableDef)
+      required:
+        - columns
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/ColumnDef'
+        relationships:
+          type: array
+          items:
+            type: object
+          description: Optional foreign-key style relationships between tables
+
+    StructuredExtractionRequest:
+      type: object
+      description: Enables LLM field extraction on a "rag" collection (CreateCollectionRequest.structuredExtraction)
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+        instructions:
+          type: string
+        maxPages:
+          type: integer
+          nullable: true
+          description: Cost guardrail — caps how many pages of a document extraction scans. Omit or set <= 0 for no cap.
+
+    CreateCollectionRequest:
+      type: object
+      description: |
+        Either "name" or "displayName" must be provided (not enforceable as a plain JSON Schema
+        `required`). When "datasetMode" is "live", "tables" is required and describes the
+        live-dataset schema; the same field also carries the extraction schema when
+        structuredExtraction.enabled is true on a "rag" collection.
+      properties:
+        name:
+          type: string
+          description: Technical name; auto-generated from displayName when omitted
+        displayName:
+          type: string
+        description:
+          type: string
+        visibility:
+          type: string
+          enum: [private, shared, public]
+          default: private
+        searchLanguage:
+          type: string
+          default: english
+          description: PostgreSQL text search dictionary
+        chunkingStrategy:
+          type: string
+          enum: [recursive, markdown, semantic]
+          default: recursive
+        chunkSize:
+          type: integer
+          nullable: true
+          description: Only honoured when chunkingStrategy is "recursive"
+        chunkOverlap:
+          type: integer
+          nullable: true
+          description: Only honoured when chunkingStrategy is "recursive"
+        type:
+          type: string
+          enum: [rag, dataset]
+          default: rag
+        datasetMode:
+          type: string
+          enum: [imported, live]
+          default: imported
+          description: Applies to type="dataset" only
+        tables:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/TableDef'
+          description: Required when datasetMode="live"; also used as the extraction schema when structuredExtraction.enabled is true
+        structuredExtraction:
+          $ref: '#/components/schemas/StructuredExtractionRequest'
+        embeddingModel:
+          type: string
+          description: Catalog model id (see GET /api/embedding-models); falls back to the server default when omitted
+        imageDescriptionsEnabled:
+          type: boolean
+          default: false
+        imageDescriptionMode:
+          type: string
+          enum: [all, empty_pages]
+          default: all
+
+    UpdateCollectionRequest:
+      type: object
+      properties:
+        displayName:
+          type: string
+        description:
+          type: string
+        searchLanguage:
+          type: string
+          description: Changing this queues a rebuild_fts job
+        extractionInstructions:
+          type: string
+          nullable: true
+          description: Updates the structured-extraction prompt; ignored unless the collection has extraction enabled
+        imageDescriptionsEnabled:
+          type: boolean
+          nullable: true
+        imageDescriptionMode:
+          type: string
+          enum: [all, empty_pages]
+          nullable: true
+
+    # ============== Collection Share Schemas ==============
+
+    ShareInfo:
+      type: object
+      description: A collection share (handlers.ShareResponse)
+      required:
+        - id
+        - collection_id
+        - type
+        - target
+        - targetDisplay
+        - role
+        - created_at
+      properties:
+        id:
+          type: string
+          format: uuid
+        collection_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [user, entra_group, public]
+        target:
+          type: string
+          description: Email for "user" shares, Entra group ID for "entra_group" shares, empty for "public"
+        targetDisplay:
+          type: string
+          description: Human-readable label (e.g. resolved Entra group name); falls back to "target"
+        role:
+          type: string
+          enum: [viewer, admin]
+        created_at:
+          type: string
+          format: date-time
+
+    CreateShareRequest:
+      type: object
+      description: target is required unless type is "public"
+      required:
+        - type
+        - role
+      properties:
+        type:
+          type: string
+          enum: [user, entra_group, public]
+        target:
+          type: string
+        targetDisplay:
+          type: string
+        role:
+          type: string
+          enum: [viewer, admin]
+
+    UpdateShareRequest:
+      type: object
+      required:
+        - role
+      properties:
+        role:
+          type: string
+          enum: [viewer, admin]
+
+    # ============== Source Schemas ==============
+
+    SourceConfig:
+      type: object
+      description: Data source configuration (database.SourceConfig)
+      required:
+        - id
+        - name
+        - sourceType
+        - config
+        - enabled
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        sourceType:
+          type: string
+          enum: [webcrawl, sharepoint, nextcloud, git]
+        config:
+          type: object
+          description: Source-specific configuration
+          additionalProperties: true
+        enabled:
+          type: boolean
+        syncSchedule:
+          type: string
+          enum: [hourly, daily, weekly]
+          nullable: true
+        collectionId:
+          type: string
+          format: uuid
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        lastSyncAt:
+          type: string
+          format: date-time
+          nullable: true
+
+    SourceConfigListItem:
+      description: |
+        Element of the array returned by GET /api/sources — a SourceConfig plus runtime fields
+        (handlers.SourceConfigResponse embeds *database.SourceConfig)
+      allOf:
+        - $ref: '#/components/schemas/SourceConfig'
+        - type: object
+          required:
+            - syncInProgress
+          properties:
+            syncInProgress:
+              type: boolean
+            createdByEmail:
+              type: string
+
+    SourceCreateRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          enum: [webcrawl, sharepoint, nextcloud, git]
+          description: JSON key is "type"; not supported combined with syncSchedule for "sharepoint" sources
+        config:
+          type: object
+          additionalProperties: true
+        enabled:
+          type: boolean
+        syncSchedule:
+          type: string
+          enum: [hourly, daily, weekly]
+          nullable: true
+          description: Not supported for "sharepoint" sources
+        collectionId:
+          type: string
+          format: uuid
+          nullable: true
+
+    SourceUpdateRequest:
+      type: object
+      description: type is immutable and not part of this request
+      properties:
+        name:
+          type: string
+        config:
+          type: object
+          additionalProperties: true
+        enabled:
+          type: boolean
+        syncSchedule:
+          type: string
+          nullable: true
+          description: 'null/omitted: leave unchanged; "": clear; "hourly"/"daily"/"weekly": set'
+        collectionId:
+          type: string
+          format: uuid
+          nullable: true
+
+    # ============== Live-Dataset Ingestion Schemas ==============
+
+    IngestRequest:
+      type: object
+      required:
+        - rows
+      properties:
+        rows:
+          type: array
+          maxItems: 10000
+          items:
+            type: object
+            additionalProperties: true
+
+    IngestRowError:
+      type: object
+      required:
+        - index
+        - error
+      properties:
+        index:
+          type: integer
+          description: 0-based index into the request's "rows" array
+        error:
+          type: string
+
+    IngestResponse:
+      type: object
+      required:
+        - inserted
+        - rejected
+        - errors
+      properties:
+        inserted:
+          type: integer
+        rejected:
+          type: integer
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/IngestRowError'
+
+    # ============== API Key Schemas ==============
+
+    APIKeyInfo:
+      type: object
+      description: API Key information (as returned by GET /admin/api-keys)
+      required:
+        - id
+        - userId
+        - userEmail
+        - clientName
+        - permissions
+        - createdAt
+        - revoked
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        userEmail:
+          type: string
+        clientName:
+          type: string
+          description: Human-readable name for the key
+        permissions:
+          type: array
+          items:
+            type: string
+          description: Array of permissions (e.g., ["read", "write"])
+        createdAt:
+          type: string
+          format: date-time
+        lastUsedAt:
+          type: string
+          format: date-time
+          nullable: true
+        revoked:
+          type: boolean
+
+    APIKeyCreateRequest:
+      type: object
+      required:
+        - clientName
+      properties:
+        clientName:
+          type: string
+          description: Human-readable name for this API key
+        permissions:
+          type: array
+          items:
+            type: string
+          description: 'Requested permissions (default: [''read''])'
+
+    CreateAPIKeyResponse:
+      type: object
+      description: Response for POST /admin/api-keys. The raw key is shown only once and is never stored or returned again.
+      required:
+        - id
+        - key
+        - clientName
+        - permissions
+      properties:
+        id:
+          type: string
+          format: uuid
+        key:
+          type: string
+          description: The actual API key (shown only once)
+        clientName:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+
+    # ============== Embedding Model Catalog ==============
+
+    EmbeddingModelInfo:
+      type: object
+      required:
+        - id
+        - label
+        - provider
+      properties:
+        id:
+          type: string
+        label:
+          type: string
+        provider:
+          type: string
+
+    EmbeddingModelsResponse:
+      type: object
+      required:
+        - default
+        - models
+      properties:
+        default:
+          type: string
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmbeddingModelInfo'
+
+paths:
+  # ============== File Endpoints ==============
+
+  /files:
+    get:
+      summary: List files
+      description: |
+        Get paginated list of files accessible to the authenticated user.
+        Results are filtered based on the user's collection permissions.
+      operationId: listFiles
+      tags:
+        - Files
+      parameters:
+        - name: page
+          in: query
+          description: Page number (1-indexed, default 1)
+          schema:
+            type: integer
+            minimum: 1
+        - name: pageSize
+          in: query
+          description: Items per page (default 20, max 100)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: collectionIds
+          in: query
+          description: Comma-separated list of collection UUIDs to filter by (intersected with the caller's accessible collections)
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Filter by file status
+          schema:
+            type: string
+            enum: [pending, indexed, indexed_with_warning, failed]
+        - name: search
+          in: query
+          description: Case-insensitive substring match on file name
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Upload a file
+      description: |
+        Upload a new file to a collection. The file will be queued for indexing.
+        Only the collection owner or a collection admin may upload.
+
+        **Request Body:** multipart/form-data
+        - `file` (required): The file to upload (binary)
+        - `collectionId` (required): Target collection UUID
+        - `metadata` (optional): JSON-encoded object merged into the file's source metadata
+      operationId: uploadFile
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FileUploadRequest'
+      responses:
+        '201':
+          description: File uploaded and an index job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadResponse'
+        '400':
+          description: Invalid request (missing file, missing/invalid collectionId, invalid metadata JSON)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Collection not found or caller lacks write access (404 used instead of 403 to avoid revealing collection existence)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: File too large
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /files/{fileId}:
+    get:
+      summary: Get file details
+      description: Get metadata and full job history for a specific file
+      operationId: getFile
+      tags:
+        - Files
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          description: File UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: File details and job history
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileDetailResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete a file
+      description: Delete a file and remove it from all indexes. Only the collection owner or a collection admin may delete.
+      operationId: deleteFile
+      tags:
+        - Files
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          description: File UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: File deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found (also returned instead of 403 when access is denied, to avoid revealing existence)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /files/{fileId}/reindex:
+    post:
+      summary: Reindex a file
+      description: |
+        Queue a file for reprocessing. Requires write access to the file's collection.
+        For manually uploaded files (whose blob is deleted after indexing), the file must be
+        re-uploaded instead — this returns 400 in that case.
+      operationId: reindexFile
+      tags:
+        - Files
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          description: File UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '202':
+          description: Reindex job queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReindexFileResponse'
+        '400':
+          description: File has no stored blob and must be re-uploaded to reindex
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied (write permission required)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /files/bulk-delete:
+    post:
+      summary: Bulk delete files
+      description: |
+        Delete many files in one request — either an explicit list of file IDs (multiselect,
+        max 100) or all files matching a status filter plus optional collectionIds/search
+        refinements (max 500 per request; repeat the call for the remainder). Deletion
+        permission matches single file delete: write access to the collection AND being its
+        owner or having the admin role; files without a collection require a global admin.
+        Files the caller may not delete are skipped silently. Each file's embeddings,
+        structured-extraction rows and blob are torn down; individual failures do not abort
+        the operation and are reported via failedCount.
+      operationId: bulkDeleteFiles
+      tags:
+        - Files
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkFileDeleteRequest'
+      responses:
+        '200':
+          description: Deletion result (may be partial)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkFileDeleteResponse'
+        '400':
+          description: Invalid body — both or neither mode provided, malformed file ID, or too many fileIds
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied — caller has no collection with owner/admin deletion rights
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ============== Job Endpoints ==============
+
+  /jobs:
+    get:
+      summary: List indexing jobs
+      description: Get paginated list of indexing jobs with optional filtering, scoped to the caller's accessible collections
+      operationId: listJobs
+      tags:
+        - Jobs
+      parameters:
+        - name: page
+          in: query
+          description: Page number (default 1)
+          schema:
+            type: integer
+            minimum: 1
+        - name: pageSize
+          in: query
+          description: Items per page (default 20, max 100)
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+        - name: status
+          in: query
+          description: Filter by job status
+          schema:
+            type: string
+            enum: [queued, running, completed, failed, cancelled]
+        - name: collectionIds
+          in: query
+          description: Comma-separated list of collection UUIDs to filter by (intersected with the caller's accessible collections)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobListResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs/{jobId}:
+    get:
+      summary: Get job details
+      description: Get detailed information about a specific job, including its file when it can still be resolved
+      operationId: getJob
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobDetailResponse'
+        '400':
+          description: Invalid job ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      summary: Delete a job
+      description: Delete a job that is not currently running (queued, completed, failed or cancelled)
+      operationId: deleteJob
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+        '400':
+          description: Invalid job ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Cannot delete a running job
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs/{jobId}/cancel:
+    post:
+      summary: Cancel a running job
+      description: Signals the worker to stop a running job and marks it as cancelled. Only valid while the job is 'running'.
+      operationId: cancelJob
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Cancellation signalled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+        '400':
+          description: Invalid job ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Job is not running
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs/{jobId}/retry:
+    post:
+      summary: Retry a failed job
+      description: Requeue a single failed indexing job
+      operationId: retryJob
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          description: Job UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job requeued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+        '400':
+          description: Invalid job ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Job not found or not in failed status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs/retry-all-failed:
+    post:
+      summary: Retry all failed jobs
+      description: Requeue all failed jobs in collections where the caller has admin (write) access
+      operationId: retryAllFailedJobs
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: Retry queued for all failed jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkActionResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied — no collections with admin role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /jobs/failed:
+    delete:
+      summary: Delete all failed jobs
+      description: Delete all failed jobs in collections where the caller has admin (write) access
+      operationId: deleteAllFailedJobs
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: Failed jobs deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkActionResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied — no collections with admin role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /reindex-all:
+    post:
+      summary: Reindex all files
+      description: Queue every file in collections where the caller has admin (write) access for reindexing
+      operationId: reindexAll
+      tags:
+        - Jobs
+      responses:
+        '200':
+          description: No files to reindex
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReindexAllResponse'
+        '202':
+          description: Reindex jobs queued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReindexAllResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Access denied — no collections with admin role
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ============== Collection Endpoints ==============
+
+  /api/collections:
+    get:
+      summary: List collections
+      description: List collections accessible to the caller. Not paginated — returns every matching collection.
+      operationId: listCollections
+      tags:
+        - Collections
+      parameters:
+        - name: filter
+          in: query
+          description: 'Scope of collections to return (default: all)'
+          schema:
+            type: string
+            enum: [mine, shared, public, all]
+      responses:
+        '200':
+          description: List of collections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionListResponse'
+        '400':
+          description: Invalid filter value
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create collection
+      description: |
+        Create a new collection. Either "name" or "displayName" must be provided.
+        Creating a "dataset" collection with datasetMode="live", or a "rag" collection with
+        structuredExtraction.enabled=true, also provisions backing Postgres tables.
+      operationId: createCollection
+      tags:
+        - Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollectionRequest'
+      responses:
+        '201':
+          description: Collection created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionInfo'
+        '400':
+          description: Invalid request (missing name/displayName, invalid schema, invalid enum value, etc.)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '409':
+          description: A collection with this technical name already exists
+        '500':
+          description: Server error (including provisioning failures for live datasets / structured extraction)
+
+  /api/collections/{collectionId}:
+    get:
+      summary: Get collection details
+      description: Get metadata for a specific collection
+      operationId: getCollection
+      tags:
+        - Collections
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Collection details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionInfo'
+        '400':
+          description: Invalid collection ID
+        '401':
+          description: Unauthorized
+        '403':
+          description: Access denied
+        '404':
+          description: Collection not found
+
+    put:
+      summary: Update collection
+      description: Update collection metadata. Only the owner or a collection admin may update.
+      operationId: updateCollection
+      tags:
+        - Collections
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollectionRequest'
+      responses:
+        '200':
+          description: Collection updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionInfo'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Collection not found (also returned instead of 403 when access is denied)
+
+    delete:
+      summary: Delete collection
+      description: Delete a collection and all associated data. Only the owner may delete.
+      operationId: deleteCollection
+      tags:
+        - Collections
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Collection deleted
+        '400':
+          description: Invalid collection ID
+        '401':
+          description: Unauthorized
+        '404':
+          description: Collection not found (also returned instead of 403 when the caller is not the owner)
+
+  /api/collections/{id}/shares:
+    get:
+      summary: List collection shares
+      description: List shares for a collection. Only the collection owner may list shares.
+      operationId: listCollectionShares
+      tags:
+        - Collections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: List of shares
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ShareInfo'
+        '400':
+          description: Invalid collection ID
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — only the collection owner may list shares
+        '404':
+          description: Collection not found
+
+    post:
+      summary: Create a collection share
+      description: Share a collection with a user, an Entra group, or the public. Only the collection owner may create shares.
+      operationId: createCollectionShare
+      tags:
+        - Collections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShareRequest'
+      responses:
+        '201':
+          description: Share created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInfo'
+        '400':
+          description: Invalid request (bad type/role, or missing target for a non-public share)
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — only the collection owner may create shares
+        '404':
+          description: Collection not found
+        '409':
+          description: Share already exists for this target
+
+  /api/collections/{id}/shares/{shareId}:
+    put:
+      summary: Update a collection share
+      description: Change a share's role. Only the collection owner may update shares.
+      operationId: updateCollectionShare
+      tags:
+        - Collections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+        - name: shareId
+          in: path
+          required: true
+          description: Share UUID
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateShareRequest'
+      responses:
+        '200':
+          description: Share updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShareInfo'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — only the collection owner may update shares
+        '404':
+          description: Collection or share not found
+
+    delete:
+      summary: Delete a collection share
+      description: Remove a share. Only the collection owner may delete shares.
+      operationId: deleteCollectionShare
+      tags:
+        - Collections
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Collection UUID
+          schema:
+            type: string
+            format: uuid
+        - name: shareId
+          in: path
+          required: true
+          description: Share UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Share deleted
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden — only the collection owner may delete shares
+        '404':
+          description: Collection or share not found
+
+  # ============== Embedding Model Catalog ==============
+
+  /api/embedding-models:
+    get:
+      summary: List embedding models
+      description: |
+        Returns the MCP's embedding-model catalog (id, label, provider) and the server's default
+        model id, for the collection-create dropdown and client-side validation.
+      operationId: listEmbeddingModels
+      tags:
+        - Collections
+      responses:
+        '200':
+          description: Embedding model catalog
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmbeddingModelsResponse'
+        '401':
+          description: Unauthorized
+        '502':
+          description: Failed to fetch the catalog from the MCP and no cached response is available (plain-text body)
+          content:
+            text/plain:
+              schema:
+                type: string
+        '503':
+          description: Embedding model catalog is not configured on this server (plain-text body)
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  # ============== Live-Dataset Ingestion Endpoints ==============
+
+  /api/ingest/{collectionName}/{tableName}:
+    post:
+      summary: Ingest rows into a live-dataset table
+      description: |
+        Insert rows into a "live" dataset table. Requires admin (write) access to the collection.
+        Rows are validated and coerced against the table's schema; invalid rows are rejected
+        individually rather than failing the whole request. Capped at 10,000 rows and 64 MiB
+        per request.
+      operationId: ingestRows
+      tags:
+        - Ingest
+      parameters:
+        - name: collectionName
+          in: path
+          required: true
+          description: Collection's technical name
+          schema:
+            type: string
+        - name: tableName
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IngestRequest'
+      responses:
+        '200':
+          description: Empty rows array — nothing to insert
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestResponse'
+        '201':
+          description: Rows processed (individual row failures are reported in "errors", not as an HTTP error)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestResponse'
+        '400':
+          description: Invalid table name, malformed body, or more than 10,000 rows
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required to ingest data
+        '404':
+          description: Dataset (or table) not found — also returned for any collection that is not a live dataset
+
+    delete:
+      summary: Truncate a live-dataset table
+      description: Delete all rows from a "live" dataset table. Requires admin (write) access to the collection.
+      operationId: truncateIngestTable
+      tags:
+        - Ingest
+      parameters:
+        - name: collectionName
+          in: path
+          required: true
+          description: Collection's technical name
+          schema:
+            type: string
+        - name: tableName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Table truncated
+        '400':
+          description: Invalid table name
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required to ingest data
+        '404':
+          description: Dataset (or table) not found — also returned for any collection that is not a live dataset
+
+  # ============== Source Endpoints ==============
+
+  /api/sources:
+    get:
+      summary: List data sources
+      description: List data sources accessible to the caller, optionally filtered by type. Not paginated.
+      operationId: listSources
+      tags:
+        - Sources
+      parameters:
+        - name: type
+          in: query
+          description: Filter by source type
+          schema:
+            type: string
+            enum: [webcrawl, sharepoint, nextcloud, git]
+      responses:
+        '200':
+          description: List of sources
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceConfigListItem'
+        '401':
+          description: Unauthorized
+
+    post:
+      summary: Create data source
+      description: Configure a new data source (webcrawl, SharePoint, Nextcloud or Git)
+      operationId: createSource
+      tags:
+        - Sources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceCreateRequest'
+      responses:
+        '201':
+          description: Source created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceConfig'
+        '400':
+          description: Invalid request (missing/invalid name or type, or syncSchedule not supported for sharepoint)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+
+  /api/sources/{sourceId}:
+    get:
+      summary: Get source details
+      operationId: getSource
+      tags:
+        - Sources
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceConfig'
+        '400':
+          description: Invalid source ID
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+
+    put:
+      summary: Update source
+      operationId: updateSource
+      tags:
+        - Sources
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SourceUpdateRequest'
+      responses:
+        '200':
+          description: Source updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceConfig'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Source not found
+
+    delete:
+      summary: Delete source
+      operationId: deleteSource
+      tags:
+        - Sources
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Source deleted
+        '400':
+          description: Invalid source ID
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server error
+
+  /api/sources/{sourceId}/sync:
+    post:
+      summary: Trigger source sync
+      description: Manually trigger synchronization from this data source. Requires write access to its collection (or, for orphaned sources, being the creator).
+      operationId: syncSource
+      tags:
+        - Sources
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sync job queued
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - message
+                properties:
+                  message:
+                    type: string
+                    example: Sync job queued successfully
+        '400':
+          description: Invalid source ID
+        '401':
+          description: Unauthorized
+        '403':
+          description: Caller does not have permission to sync this source
+        '404':
+          description: Source not found
+        '409':
+          description: A sync is already in progress for this source
+
+  # ============== API Key Admin Endpoints ==============
+
+  /admin/api-keys:
+    get:
+      summary: List API keys (Admin)
+      description: List all API keys (admin only). Not paginated.
+      operationId: listAPIKeys
+      tags:
+        - Admin - API Keys
+      parameters:
+        - name: includeRevoked
+          in: query
+          description: 'Include revoked keys in the result (default: false)'
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of API keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/APIKeyInfo'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+    post:
+      summary: Create API key (Admin)
+      description: Create a new API key for a user or application
+      operationId: createAPIKey
+      tags:
+        - Admin - API Keys
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APIKeyCreateRequest'
+      responses:
+        '201':
+          description: API key created (key shown only once)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAPIKeyResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required
+
+  /admin/api-keys/{keyId}:
+    delete:
+      summary: Revoke API key (Admin)
+      description: Revoke an API key, preventing further use
+      operationId: revokeAPIKey
+      tags:
+        - Admin - API Keys
+      parameters:
+        - name: keyId
+          in: path
+          required: true
+          description: API Key UUID
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: API key revoked
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusMessage'
+        '400':
+          description: Invalid or missing API key ID
+        '401':
+          description: Unauthorized
+        '403':
+          description: Admin access required

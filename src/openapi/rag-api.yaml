@@ -37,11 +37,6 @@ info:
     - `500 Internal Server Error`: Server-side error
 
   version: '1.0.0'
-  contact:
-    name: CompanyRAG Support
-    url: 'https://github.com/innfactory/companyRAG'
-  license:
-    name: MIT
 
 servers:
   - url: 'https://{company}.company-gpt.com/companygpt/rag/api'
@@ -53,8 +48,6 @@ servers:
           Your CompanyGPT subdomain. Copy it from the browser address bar of the
           companyRAG UI, e.g. `innfactory` for
           `https://innfactory.company-gpt.com`.
-  - url: 'http://localhost:8080'
-    description: Local development server
 
 security:
   - BearerAuth: []

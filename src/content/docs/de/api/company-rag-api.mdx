@@ -1,0 +1,80 @@
+---
+title: companyRAG API
+description: Programmatischer Zugriff auf den companyRAG Indexer – Authentifizierung, Basis-URL und vollständige Endpunkt-Referenz aus der OpenAPI-Spezifikation.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+Der companyRAG Indexer stellt eine HTTP-API bereit, über die Dateien, Sammlungen, Indexierungs-Jobs und Datenquellen programmatisch verwaltet werden können. Damit lassen sich Inhalte automatisiert in companyRAG einpflegen, etwa aus einem bestehenden Dokumentenmanagement oder über einen nächtlichen Abgleich.
+
+Diese Seite beschreibt die Grundlagen: Authentifizierung, Basis-URL und Fehlerbehandlung. Die vollständige Referenz aller Endpunkte wird direkt aus der OpenAPI-Spezifikation erzeugt und ist damit immer auf dem Stand der Implementierung.
+
+<LinkCard
+	title="companyRAG API Reference"
+	description="Alle Endpunkte mit Parametern, Request- und Response-Schemas sowie Code-Beispielen – generiert aus der OpenAPI-Spezifikation."
+	href="/api/companyrag/"
+/>
+
+:::note
+Die generierte Referenz ist englischsprachig, da sie unmittelbar aus der OpenAPI-Spezifikation erzeugt wird.
+:::
+
+## Authentifizierung
+
+Alle Endpunkte erfordern eine Authentifizierung über einen [API-Schlüssel](/de/company-gpt/addons/companyrag/#api-schl%C3%BCssel-nur-f%C3%BCr-administratoren). Der Schlüssel wird im `Authorization`-Header als Bearer Token übermittelt:
+
+```
+Authorization: Bearer rag_a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890
+```
+
+API-Schlüssel werden im Admin-Bereich erzeugt und haben das Format `rag_` gefolgt von einem 64-stelligen Hex-String.
+
+Alternativ akzeptiert die API ein `access_token`-Cookie. Dieser Weg ist als Fallback für Browser-Clients gedacht, die bereits an companyRAG angemeldet sind; für Integrationen und Skripte ist der Bearer Token vorgesehen.
+
+## Basis-URL
+
+Die API ist unter der Domain der jeweiligen CompanyGPT-Instanz erreichbar:
+
+```
+https://[FIRMA].company-gpt.com/companygpt/rag/api
+```
+
+`[FIRMA]` ist durch die eigene Subdomain zu ersetzen. Sie lässt sich der Adressleiste des Browsers entnehmen, wenn die companyRAG-Oberfläche geöffnet ist – beispielsweise `innfactory` bei `https://innfactory.company-gpt.com`.
+
+## Fehlerbehandlung
+
+Fehler werden überwiegend als JSON-Objekt mit einem `error`-Feld zurückgegeben:
+
+```json
+{
+  "error": "Error message description"
+}
+```
+
+Einige Endpunkte antworten stattdessen mit einem Klartext-Body; diese sind in der Referenz beim jeweiligen Endpunkt vermerkt.
+
+| Status | Bedeutung |
+| :----- | :-------- |
+| `400 Bad Request` | Ungültige Anfrageparameter |
+| `401 Unauthorized` | Fehlende oder ungültige Authentifizierung |
+| `403 Forbidden` | Unzureichende Berechtigungen |
+| `404 Not Found` | Ressource nicht gefunden |
+| `409 Conflict` | Konflikt mit dem aktuellen Zustand der Ressource, etwa ein Job, der im derzeitigen Status nicht wiederholt werden kann |
+| `500 Internal Server Error` | Serverseitiger Fehler |
+
+## Funktionsbereiche
+
+Die Endpunkte sind in der Referenz nach Bereichen gruppiert:
+
+- **Files** – Dateien hochladen, auflisten, abrufen, löschen und neu indexieren.
+- **Jobs** – Indexierungs-Jobs überwachen, wiederholen, abbrechen und aufräumen.
+- **Collections** – Sammlungen anlegen, bearbeiten, löschen und ihre Freigaben verwalten.
+- **Ingest** – Strukturierte Datensätze zeilenweise einpflegen und Tabellen leeren.
+- **Sources** – Datenquellen wie SharePoint oder Firecrawl konfigurieren und synchronisieren.
+- **Admin – API Keys** – API-Schlüssel auflisten, erstellen und widerrufen (nur für Administratoren).
+
+## Weitere Ressourcen
+
+- [companyRAG Addon](/de/company-gpt/addons/companyrag/) – Funktionsumfang und Bedienung der Oberfläche
+- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Einrichtung als Wissensquelle für Agenten
+- [Agents API](/de/api/agents-api/) – programmatischer Zugriff auf CompanyGPT-Agenten

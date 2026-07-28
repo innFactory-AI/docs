@@ -1,0 +1,76 @@
+---
+title: companyRAG API
+description: Programmatic access to the companyRAG Indexer – authentication, base URL and the full endpoint reference generated from the OpenAPI specification.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+The companyRAG Indexer exposes an HTTP API for managing files, collections, indexing jobs and data sources programmatically. It allows content to be ingested into companyRAG automatically, for example from an existing document management system or through a nightly sync.
+
+This page covers the essentials: authentication, base URL and error handling. The full reference for every endpoint is generated directly from the OpenAPI specification and therefore always matches the implementation.
+
+<LinkCard
+	title="companyRAG API Reference"
+	description="Every endpoint with parameters, request and response schemas and code samples – generated from the OpenAPI specification."
+	href="/api/companyrag/"
+/>
+
+## Authentication
+
+All endpoints require authentication via an [API key](/en/company-gpt/addons/companyrag/#api-keys-administrators-only). The key is sent in the `Authorization` header as a Bearer token:
+
+```
+Authorization: Bearer rag_a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890
+```
+
+API keys are created in the admin area and have the format `rag_` followed by a 64-character hex string.
+
+The API also accepts an `access_token` cookie. That path exists as a fallback for browser clients already signed in to companyRAG; integrations and scripts should use the Bearer token.
+
+## Base URL
+
+The API is available under the domain of your CompanyGPT instance:
+
+```
+https://[COMPANY].company-gpt.com/companygpt/rag/api
+```
+
+Replace `[COMPANY]` with your own subdomain. You can read it from the browser address bar while the companyRAG UI is open — for example `innfactory` for `https://innfactory.company-gpt.com`.
+
+## Error handling
+
+Errors are mostly returned as a JSON object with an `error` field:
+
+```json
+{
+  "error": "Error message description"
+}
+```
+
+A few endpoints return a plain-text body instead; these are noted on the respective endpoint in the reference.
+
+| Status | Meaning |
+| :----- | :------ |
+| `400 Bad Request` | Invalid request parameters |
+| `401 Unauthorized` | Missing or invalid authentication |
+| `403 Forbidden` | Insufficient permissions |
+| `404 Not Found` | Resource not found |
+| `409 Conflict` | Conflict with the current state of the resource, such as a job that cannot be retried in its current status |
+| `500 Internal Server Error` | Server-side error |
+
+## Functional areas
+
+The endpoints are grouped by area in the reference:
+
+- **Files** – upload, list, retrieve, delete and reindex files.
+- **Jobs** – monitor, retry, cancel and clean up indexing jobs.
+- **Collections** – create, update and delete collections and manage their shares.
+- **Ingest** – ingest structured datasets row by row and truncate tables.
+- **Sources** – configure and synchronize data sources such as SharePoint or Firecrawl.
+- **Admin – API Keys** – list, create and revoke API keys (administrators only).
+
+## Further resources
+
+- [companyRAG add-on](/en/company-gpt/addons/companyrag/) – features and usage of the UI
+- [Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/) – setting it up as a knowledge source for agents
+- [Agents API](/en/api/agents-api/) – programmatic access to CompanyGPT agents

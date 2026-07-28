@@ -426,6 +426,7 @@ You are a knowledge retrieval agent for company ABC. Your sole purpose is to sea
 </style>
 
 <script define:vars={{ minimalTemplate, fullTemplate, PLACEHOLDER }}>
+  function init() {
   const wrapper = document.getElementById('prompt-builder-en');
   if (!wrapper) return;
 
@@ -456,4 +457,7 @@ You are a knowledge retrieval agent for company ABC. Your sole purpose is to sea
       });
     });
   });
+  }
+
+  init();
 </script>

@@ -426,6 +426,7 @@ Du bist ein Wissensabruf-Agent für die Firma ABC. Dein einziger Zweck besteht d
 </style>
 
 <script define:vars={{ minimalTemplate, fullTemplate, PLACEHOLDER }}>
+  function init() {
   const wrapper = document.getElementById('prompt-builder');
   if (!wrapper) return;
 
@@ -456,4 +457,7 @@ Du bist ein Wissensabruf-Agent für die Firma ABC. Dein einziger Zweck besteht d
       });
     });
   });
+  }
+
+  init();
 </script>

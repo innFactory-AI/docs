@@ -44,10 +44,17 @@ info:
     name: MIT
 
 servers:
+  - url: 'https://{company}.company-gpt.com/companygpt/rag/api'
+    description: CompanyGPT instance
+    variables:
+      company:
+        default: firma
+        description: >-
+          Your CompanyGPT subdomain. Copy it from the browser address bar of the
+          companyRAG UI, e.g. `innfactory` for
+          `https://innfactory.company-gpt.com`.
   - url: 'http://localhost:8080'
     description: Local development server
-  - url: 'https://api.companyrag.example.com'
-    description: Production server (replace with actual domain)
 
 security:
   - BearerAuth: []

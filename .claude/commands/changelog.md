@@ -11,11 +11,9 @@ Relevant Repositories:
 - Librechat: https://github.com/danny-avila/LibreChat
 - CompanyRAG: https://github.com/innFactory/companyRAG
 - CompanyTranslate: https://github.com/innFactory/companytranslate
-- CompanyTranslate: https://github.com/innFactory/companytranscribe
+- CompanyTranscribe: https://github.com/innFactory/companytranscribe
 - CompanyDashboard: https://github.com/innFactory/companyDashboard
-
-Services that should currently be excluded from changelog: 
-- companyADMIN 
+- CompanyADMIN: https://github.com/innFactory/companyAdmin
 - Gateway / AI Gateway
 
 Background information: We provide services for customer and deploy CompanyGPT in their Azrue Tennants, based on Librechat. The companyGPT repo has all terraform deployments and shows what customers have. there it is not important what each customer has, but what is provided for all. usually the important part will be librechat updates. 

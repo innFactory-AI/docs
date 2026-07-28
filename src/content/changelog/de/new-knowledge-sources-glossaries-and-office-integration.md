@@ -9,6 +9,7 @@ tags:
   - companyRAG
   - companyTRANSLATE
   - companyM365
+  - companyTRANSCRIBE
 ---
 
 Ihre Wissensdatenbanken erhalten zwei neue Quellen und Self-Service-Pakete, Glossare werden deutlich einfacher nutzbar, und CompanyGPT zieht in Ihre Microsoft-365-Anwendungen ein.
@@ -48,7 +49,11 @@ Ihre Wissensdatenbanken erhalten zwei neue Quellen und Self-Service-Pakete, Glos
 Die tiefere Integration in Microsoft 365 als Preview.
 
 - **CompanyGPT direkt in Office**: Ein Add-in für Word, Excel, PowerPoint und Outlook bringt einen CompanyGPT-Chat direkt neben Ihr Dokument. Der Agent sieht das Dokument – Folien und Zellbereiche auch als Bild – und bearbeitet es direkt, von Formatierung und Tabellen bis zu Kommentaren.
-- **CompanyGPT als Teams-Tab**: Chatten Sie mit Ihren Agenten direkt in Microsoft Teams, mit Single Sign-on und Agentenauswahl – ohne separate Anmeldung und ohne Kontextwechsel.
 - **Prompts und Skills direkt zur Hand**: Tippen Sie im Add-in `/` für Ihre gespeicherten Prompts und `$` für Ihre Skills, um wiederkehrende Aufgaben ohne erneutes Tippen zu starten.
 - **Mehr Möglichkeiten in Outlook und Excel**: Mail-Triage, Postfacheinstellungen und zusätzliche Arbeitsmappen-Werkzeuge erlauben dem Agenten, mehr Routinearbeit in Postfach und Tabellen zu übernehmen. E-Mails werden weiterhin ausschließlich als Entwurf vorbereitet.
 - **Bessere Präsentationen**: Präsentationen lassen sich aus Ihren Unternehmensvorlagen aufbauen, und Bilder können per URL, aus einer Datei oder aus Ihrem Drive eingefügt werden.
+
+## 🔜 Demnächst
+
+- **Voiceover in companyTRANSCRIBE**: companyTRANSCRIBE erhält das Gegenstück zur Transkription. Schreiben oder fügen Sie einen Text ein, wählen Sie eine Stimme und erzeugen Sie daraus gesprochenes Audio – etwa für Schulungsunterlagen, Produktvideos oder barrierefreie Fassungen Ihrer Dokumente. Das Ergebnis können Sie anhören, den Text bearbeiten und neu vertonen, frühere Fassungen bleiben in der Historie. Auch Ihre Agenten können Vertonungen erstellen. Zunächst bei ausgewählten Kunden, die allgemeine Verfügbarkeit folgt.
+- **Budgets und Kostenkontrolle im AI-Gateway**: Zentrale Budgets pro Organisation und pro Nutzer, mit Unterlimits je Modellanbieter und Zuordnung zu Kostenstellen – damit KI-Ausgaben transparent und planbar bleiben. Derzeit im Pilotbetrieb auf unseren eigenen Umgebungen und ausgewählten Kunden.

@@ -9,6 +9,7 @@ tags:
   - companyRAG
   - companyTRANSLATE
   - companyM365
+  - companyTRANSCRIBE
 ---
 
 Your knowledge bases gain two new sources and self-service bundles, glossaries become noticeably easier to use, and CompanyGPT moves into your Microsoft 365 apps.
@@ -48,7 +49,11 @@ Your knowledge bases gain two new sources and self-service bundles, glossaries b
 The deeper Microsoft 365 integration, as a preview.
 
 - **CompanyGPT inside Office**: An add-in for Word, Excel, PowerPoint and Outlook puts a CompanyGPT chat right next to your document. The agent can see the document — including slides and cell ranges as images — and edit it directly, from formatting and tables through to comments.
-- **CompanyGPT as a Teams tab**: Chat with your agents directly in Microsoft Teams, with single sign-on and an agent picker — no separate login, no context switch.
 - **Prompts and skills at your fingertips**: Type `/` for your saved prompts and `$` for your skills inside the add-in to start recurring tasks without retyping them.
 - **More Outlook and Excel capabilities**: Mail triage, mailbox settings and additional workbook tools let the agent take on more of the routine work in your inbox and spreadsheets. Emails are still only ever prepared as drafts.
 - **Better-looking slides**: Presentations can be built from your corporate templates, and images can be inserted from a URL, a file or your drive.
+
+## 🔜 Coming soon
+
+- **Voiceover in companyTRANSCRIBE**: companyTRANSCRIBE is getting the counterpart to transcription. Write or paste a text, pick a voice and turn it into spoken audio — for example for training material, product videos or accessible versions of your documents. You can listen to the result, edit the text and re-generate it, while earlier versions stay in the history. Your agents can create voiceovers too. Rolling out with selected customers first, general availability to follow.
+- **Budgets and cost control in the AI gateway**: Central budgets per organization and per user, with sub-limits per model provider and cost-center assignment, so AI spend stays transparent and plannable. Currently piloting on our own environments and select customers.

@@ -12,6 +12,7 @@ export const CHANGELOG_TAGS = [
 	'companyDASHBOARD',
 	'companyTRANSLATE',
 	'companyM365',
+	'companyTRANSCRIBE',
 	'MCP',
 	'Skills',
 	'Agents',

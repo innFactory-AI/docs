@@ -11,6 +11,7 @@ export const TAG_HUE: Record<ChangelogTag, number> = {
 	companyFILES: 234, // blue
 	companyDASHBOARD: 281, // purple
 	companyTRANSLATE: 41, // orange
+	companyM365: 215, // microsoft blue
 	MCP: 200,
 	Skills: 320,
 	Agents: 260,

@@ -18,6 +18,28 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## OpenAI
 
+### The GPT-5.6 family
+
+GPT-5.6 is available in three tiers. They belong to the same generation and differ in how much reasoning depth, speed, and cost you get: **Sol** (maximum capability), **Terra** (balanced), and **Luna** (fastest and most economical). Choose the tier based on the complexity of the task, not out of habit.
+
+### GPT-5.6 Sol
+
+- **For:** the flagship tier with the highest capability
+- **When:** intricate software architecture, advanced programming, cybersecurity, deep multi-step scientific analysis, heavy creative strategy, oversight of other models — whenever precision outweighs cost
+- **Why:** the strongest reasoning of the 5.6 generation
+
+### GPT-5.6 Terra
+
+- **For:** the balanced mid-range tier for everyday professional and business workflows
+- **When:** standard business applications, document drafting, general assistant workflows
+- **Why:** the middle ground between speed and intelligence
+
+### GPT-5.6 Luna
+
+- **For:** the fastest and most cost-efficient tier
+- **When:** routine high-frequency automation, fast parsing, highly parallel agent tasks, and other high-volume or speed-sensitive work of lower complexity
+- **Why:** lowest latency and cost in the 5.6 generation
+
 ### gpt-5.4
 
 - **For:** complex problems and maximum intelligence
@@ -41,18 +63,6 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 - **For:** ultra-fast answers and simple assistance
 - **When:** quick questions, simple formatting, text corrections
 - **Why:** extremely resource-efficient model of the GPT-5 family with minimal latency
-
-### gpt-4.1
-
-- **For:** reliable problem-solving and standard contexts
-- **When:** text optimization, research, logical comparisons
-- **Why:** the proven, refined workhorse for demanding everyday tasks
-
-### gpt-4.1-mini
-
-- **For:** fast processing at low cost
-- **When:** structured text creation, data pre-sorting, simple conversations
-- **Why:** compact version of GPT-4.1, optimized for efficiency and speed
 
 ### gpt-4o
 
@@ -172,12 +182,35 @@ These open-source models run in the STACKIT Cloud (EU/Germany) and are particula
 
 ---
 
+## Legacy models
+
+:::caution[Will be discontinued]
+The GPT-4.1 family will no longer be supported in the near future and will be removed from CompanyGPT. Please migrate to a current model: **GPT-5.6 Terra** or **gpt-5-mini** as a replacement for gpt-4.1, and **GPT-5.6 Luna** or **gpt-5-nano** as a replacement for gpt-4.1-mini.
+:::
+
+### gpt-4.1
+
+- **For:** reliable problem-solving and standard contexts
+- **When:** text optimization, research, logical comparisons
+- **Why:** the proven, refined workhorse for demanding everyday tasks
+- **Migrate to:** GPT-5.6 Terra / gpt-5-mini
+
+### gpt-4.1-mini
+
+- **For:** fast processing at low cost
+- **When:** structured text creation, data pre-sorting, simple conversations
+- **Why:** compact version of GPT-4.1, optimized for efficiency and speed
+- **Migrate to:** GPT-5.6 Luna / gpt-5-nano
+
+---
+
 ## Quick decision-making aid
 
-- **"I just want a very good answer"** → gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
-- **"It should be as fast and inexpensive as possible"** → gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
-- **"I want to program / write code"** → Claude Sonnet 4.6 / gpt-5.4
-- **"It's complicated or extremely important"** → gpt-5.4 / gpt-5.1
+- **"I just want a very good answer"** → GPT-5.6 Terra / gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
+- **"It should be as fast and inexpensive as possible"** → GPT-5.6 Luna / gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **"I want to program / write code"** → GPT-5.6 Sol / Claude Sonnet 4.6 / gpt-5.4
+- **"It's complicated or extremely important"** → GPT-5.6 Sol / gpt-5.4 / gpt-5.1
+- **"I'm running a lot of tasks in parallel"** → GPT-5.6 Luna / Claude Haiku 4.5
 - **"Data protection (EU/Germany) is mandatory"** → STACKIT models (e.g., Llama 3.3 70B Instruct)
 - **"I don't know which model fits"** → auto (dynamic routing)
 - **"I need images"** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

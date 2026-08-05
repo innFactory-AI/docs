@@ -18,6 +18,28 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## OpenAI
 
+### Die GPT-5.6-Familie
+
+GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Sol** (maximale Leistungsfähigkeit), **Terra** (ausgewogen) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
+
+### GPT-5.6 Sol
+
+- **Für:** die Flaggschiff-Stufe mit der höchsten Leistungsfähigkeit
+- **Wann:** komplexe Softwarearchitektur, anspruchsvolles Programmieren, Cybersecurity, tiefe mehrstufige wissenschaftliche Analysen, aufwendige kreative Strategie, Kontrolle anderer Modelle — immer dann, wenn Präzision wichtiger ist als Kosten
+- **Warum:** das stärkste Reasoning der 5.6-Generation
+
+### GPT-5.6 Terra
+
+- **Für:** die ausgewogene Mittelklasse für den professionellen Arbeitsalltag
+- **Wann:** Standard-Businessanwendungen, Erstellung von Dokumenten, allgemeine Assistenz-Workflows
+- **Warum:** der Mittelweg zwischen Geschwindigkeit und Intelligenz
+
+### GPT-5.6 Luna
+
+- **Für:** die schnellste und kosteneffizienteste Stufe
+- **Wann:** routinemäßige Automatisierung mit hoher Frequenz, schnelles Parsen, stark parallelisierte Agenten-Tasks und andere Aufgaben mit hohem Volumen oder Zeitdruck bei geringerer Komplexität
+- **Warum:** niedrigste Latenz und geringste Kosten der 5.6-Generation
+
 ### gpt-5.4
 
 - **Für:** komplexe Problemstellungen und maximale Intelligenz
@@ -41,18 +63,6 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 - **Für:** ultraschnelle Antworten und einfache Hilfestellungen
 - **Wann:** schnelle Fragen, einfache Formatierungen, Textkorrekturen
 - **Warum:** extrem ressourcensparendes Modell der GPT-5-Familie mit minimaler Latenz
-
-### gpt-4.1
-
-- **Für:** verlässliche Problemlösungen und Standard-Kontexte
-- **Wann:** Textoptimierung, Recherchen, logische Vergleiche
-- **Warum:** das bewährte, weiterentwickelte Arbeitstier für anspruchsvolle Alltagsaufgaben
-
-### gpt-4.1-mini
-
-- **Für:** schnelle Verarbeitung bei geringen Kosten
-- **Wann:** strukturierte Texterstellung, Daten-Vorsortierung, einfache Konversationen
-- **Warum:** kompakte Version von GPT-4.1, optimiert auf Effizienz und Tempo
 
 ### gpt-4o
 
@@ -172,12 +182,35 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eigne
 
 ---
 
+## Legacy-Modelle
+
+:::caution[Wird eingestellt]
+Die GPT-4.1-Familie wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt. Bitte wechseln Sie auf ein aktuelles Modell: **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini.
+:::
+
+### gpt-4.1
+
+- **Für:** verlässliche Problemlösungen und Standard-Kontexte
+- **Wann:** Textoptimierung, Recherchen, logische Vergleiche
+- **Warum:** das bewährte, weiterentwickelte Arbeitstier für anspruchsvolle Alltagsaufgaben
+- **Wechseln auf:** GPT-5.6 Terra / gpt-5-mini
+
+### gpt-4.1-mini
+
+- **Für:** schnelle Verarbeitung bei geringen Kosten
+- **Wann:** strukturierte Texterstellung, Daten-Vorsortierung, einfache Konversationen
+- **Warum:** kompakte Version von GPT-4.1, optimiert auf Effizienz und Tempo
+- **Wechseln auf:** GPT-5.6 Luna / gpt-5-nano
+
+---
+
 ## Schnelle Entscheidungshilfe
 
-- **„Ich will einfach eine sehr gute Antwort“** → gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
-- **„Es soll maximal schnell und günstig sein“** → gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
-- **„Ich will programmieren / Code schreiben“** → Claude Sonnet 4.6 / gpt-5.4
-- **„Es ist kompliziert oder extrem wichtig“** → gpt-5.4 / gpt-5.1
+- **„Ich will einfach eine sehr gute Antwort“** → GPT-5.6 Terra / gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
+- **„Es soll maximal schnell und günstig sein“** → GPT-5.6 Luna / gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **„Ich will programmieren / Code schreiben“** → GPT-5.6 Sol / Claude Sonnet 4.6 / gpt-5.4
+- **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-5.4 / gpt-5.1
+- **„Ich führe viele Aufgaben parallel aus“** → GPT-5.6 Luna / Claude Haiku 4.5
 - **„Datenschutz (EU/Deutschland) ist Pflicht“** → STACKIT-Modelle (z. B. Llama 3.3 70B Instruct)
 - **„Ich weiß nicht, welches Modell passt“** → auto (dynamisches Routing)
 - **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

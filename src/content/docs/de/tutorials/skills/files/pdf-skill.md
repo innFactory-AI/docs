@@ -10,7 +10,7 @@ Verwende diesen Skill, wenn du PDFs generieren, Text aus PDFs extrahieren oder P
 ````markdown
 ---
 name: pdf-skill
-description: Create and read PDF documents, and fill PDF forms with companyFILES MCP tools. Use when asked to generate a PDF report, export content as PDF, create a PDF from HTML or Markdown, read or extract text from a PDF, fill a PDF form, or flatten a form for final delivery.
+description: 'Create and read PDF documents, and fill PDF forms with companyFILES MCP tools. Use when asked to generate a PDF report, export content as PDF, create a PDF from HTML or Markdown, read or extract text from a PDF, fill a PDF form, or flatten a form for final delivery.'
 ---
 
 # PDF Skill
@@ -19,16 +19,16 @@ Tools for creating PDF documents, reading PDF content, and filling/flattening PD
 
 ## Tools in This Skill
 
-| Tool | Purpose |
-|------|---------|
-| `create_pdf` | Create PDF from Markdown with headers, footers, page numbers |
-| `create_pdf_from_html` | Create PDF from HTML with custom CSS |
-| `read_pdf` | Extract text and metadata from a PDF |
-| `read_pdf_form_fields` | List the fillable fields of **any** uploaded/created PDF (no template needed) |
-| `fill_pdf_form_fields` | Fill **any** uploaded/created PDF's fields, saving a new PDF (`flatten` for read-only) |
-| `list_pdf_form_templates` | List pre-registered PDF form templates and their fields |
-| `fill_pdf_form` | Fill a registered template form — fields remain editable |
-| `fill_and_flatten_pdf_form` | Fill and flatten a registered template form (read-only / final) |
+| Tool                        | Purpose                                                                                |
+| --------------------------- | -------------------------------------------------------------------------------------- |
+| `create_pdf`                | Create PDF from Markdown with headers, footers, page numbers                           |
+| `create_pdf_from_html`      | Create PDF from HTML with custom CSS                                                   |
+| `read_pdf`                  | Extract text and metadata from a PDF                                                   |
+| `read_pdf_form_fields`      | List the fillable fields of **any** uploaded/created PDF (no template needed)          |
+| `fill_pdf_form_fields`      | Fill **any** uploaded/created PDF's fields, saving a new PDF (`flatten` for read-only) |
+| `list_pdf_form_templates`   | List pre-registered PDF form templates and their fields                                |
+| `fill_pdf_form`             | Fill a registered template form — fields remain editable                               |
+| `fill_and_flatten_pdf_form` | Fill and flatten a registered template form (read-only / final)                        |
 
 ## Decision Guide
 
@@ -51,6 +51,7 @@ User wants to FILL a PDF form...
 ## Tool Usage
 
 ### create_pdf
+
 ```json
 {
   "markdown": "# Monthly Report\n\n## Executive Summary\n\nThis month we achieved...",
@@ -69,6 +70,7 @@ User wants to FILL a PDF form...
 ```
 
 ### create_pdf_from_html
+
 ```json
 {
   "html": "<h1>Invoice</h1><table>...</table>",
@@ -84,11 +86,13 @@ User wants to FILL a PDF form...
 Supports inline images via `doc:<documentId>` (stored doc) or `lc:<file_id>` (LibreChat attachment) URI: `<img src="doc:abc123..." />`. The same applies to Markdown images in `create_pdf`: `![alt](doc:<uuid>)` or `![alt](lc:<file_id>)`.
 
 ### read_pdf
+
 ```json
 {
   "file_content": "<base64-encoded pdf>"
 }
 ```
+
 Accepts any one of `file_content` (base64), `librechat_file_id`, or `document_id`. Returns extracted text and metadata.
 
 ### read_pdf_form_fields
@@ -101,7 +105,9 @@ Inspect the form fields of **any** uploaded or created PDF — no template regis
 }
 ```
 
-Returns `{ document_id, filename, fieldCount, fields }`, where each field has `name`, `type` (`text`, `checkbox`, `dropdown`, `radio`), current value, and (for dropdown/radio) `options`. Call this first to get exact field names before filling. (Date fields appear as `text`; signature fields are not listed.)
+Returns `{ document_id, filename, fieldCount, fields }`, where each field has `name`, `type` (`text`, `checkbox`, `dropdown`, `radio`), current value, and (for dropdown/radio) `options`. Call this first to get exact field names before filling. (Date fields appear as `text`; signature and push-button fields are not listed.)
+
+Works on encrypted PDFs too — see [Encrypted PDFs](#encrypted-pdfs-owner-password-only) below.
 
 ### fill_pdf_form_fields
 
@@ -123,13 +129,26 @@ Fill the fields of any uploaded/created PDF and save the result as a **new** PDF
 
 Values: strings for text/date/dropdown/radio fields, booleans for checkboxes. Set `flatten: true` to make the result read-only.
 
+### Encrypted PDFs (owner-password only)
+
+Many authority and insurance forms set an **owner password** with an **empty user password** purely to block editing. The PDF spec makes viewers try the empty user password first, so these files open normally everywhere and look unprotected — but they are fully AES-encrypted.
+
+Both tools handle them, so **treat such files as normal**: read the fields, then fill them. The filled result keeps its original encryption and renders in every viewer.
+
+One limitation: **`flatten: true` does not work** on an encrypted PDF and returns a clear error. Fill without `flatten` (the result stays editable, which is usually what the user wants anyway), or tell them to remove the protection first (open the PDF in an editor and re-save, or print it to a new PDF) if they specifically need a locked result.
+
+Use the option values from `read_pdf_form_fields` **verbatim** when filling. On encrypted PDFs, radio and checkbox options are the form's raw export values — often terse codes like `18a`, `19c` or `0`/`1` rather than readable labels. Never guess or prettify them; pass back exactly what the read tool reported, or the field is reported as skipped with the valid options listed.
+
 ### list_pdf_form_templates
+
 ```json
 {}
 ```
+
 Returns a list of available PDF form templates with field names and types (text, checkbox, radio, dropdown).
 
 ### fill_pdf_form
+
 ```json
 {
   "template_name": "application",
@@ -143,9 +162,11 @@ Returns a list of available PDF form templates with field names and types (text,
   "folder": "applications"
 }
 ```
+
 Fields remain **editable** after filling.
 
 ### fill_and_flatten_pdf_form
+
 ```json
 {
   "template_name": "application",
@@ -157,16 +178,18 @@ Fields remain **editable** after filling.
   "folder": "applications"
 }
 ```
+
 Form is **flattened** (read-only) — use for final/archival copies.
 
 ## Common Page Options (create tools)
 
-| Parameter | Values | Default |
-|-----------|--------|---------|
-| `page_size` | `A4`, `Letter`, `Legal`, `A3`, `A5` | `A4` |
-| `page_orientation` | `portrait`, `landscape` | `portrait` |
-| `page_number_position` | `header`, `footer` | `footer` |
-| `page_number_format` | string with `{page}` and `{pages}` | `{page} / {pages}` |
+| Parameter               | Values                              | Default            |
+| ----------------------- | ----------------------------------- | ------------------ |
+| `page_size`             | `A4`, `Letter`, `Legal`, `A3`, `A5` | `A4`               |
+| `page_orientation`      | `portrait`, `landscape`             | `portrait`         |
+| `page_number_position`  | `header`, `footer`                  | `footer`           |
+| `page_number_alignment` | `left`, `center`, `right`           | `center`           |
+| `page_number_format`    | string with `{page}` and `{pages}`  | `{page} / {pages}` |
 
 ## Key Notes
 

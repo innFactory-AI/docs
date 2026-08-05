@@ -19,15 +19,15 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 
 ## Tools in This Skill
 
-| Tool | Purpose |
-|------|---------|
-| `list_templates` | List all available templates (personal + global) with placeholder info |
-| `create_word_from_template` | Fill a DOCX template with `{placeholder}` syntax |
-| `create_word_from_template_with_images` | Fill a DOCX template with text and image placeholders |
-| `create_excel_from_template` | Fill an XLSX template by cell address **or** `{{placeholder}}` name (auto-routed) |
-| `fill_excel_template` | Fill an XLSX template using `{{placeholder}}` syntax |
-| `create_odt_from_template` | Fill an ODT template with `{{placeholder}}` syntax |
-| `create_powerpoint_from_template` | Fill a POTX/PPTX template with text, images, charts, speaker notes, slide repeat |
+| Tool                                    | Purpose                                                                           |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| `list_templates`                        | List all available templates (personal + global) with placeholder info            |
+| `create_word_from_template`             | Fill a DOCX template with `{placeholder}` syntax                                  |
+| `create_word_from_template_with_images` | Fill a DOCX template with text and image placeholders                             |
+| `create_excel_from_template`            | Fill an XLSX template by cell address **or** `{{placeholder}}` name (auto-routed) |
+| `fill_excel_template`                   | Fill an XLSX template using `{{placeholder}}` syntax                              |
+| `create_odt_from_template`              | Fill an ODT template with `{{placeholder}}` syntax                                |
+| `create_powerpoint_from_template`       | Fill a POTX/PPTX template with text, images, charts, speaker notes, slide repeat  |
 
 ## Workflow
 
@@ -38,14 +38,17 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 ## Tool Usage
 
 ### list_templates
+
 ```json
 {
   "type": "potx"
 }
 ```
+
 Returns per template: `name`, `displayName`, `description`, `category`, `tags`, placeholder lists, `loopSources`, `fields` (for PDF form templates), `size`, `isDefault`, upload dates, and scope (`"user"` personal or `"global"`).
 
 For **POTX/PPTX** templates the response includes a per-slide breakdown:
+
 - `slideNumber` — 1-based slide index
 - `layoutName` — PowerPoint layout name (e.g. `"Title Slide"`, `"Two Content"`)
 - `layoutType` — value from a `{{slide_type:xxx}}` marker on that slide (e.g. `"section"`, `"default"`, `"text-image"`)
@@ -76,11 +79,13 @@ Placeholder syntax: `{placeholder}` (single curly braces). Dotted paths: `{user.
 ```
 
 **Table loop syntax** (place FOR/END-FOR in their own table rows):
+
 ```
 {FOR item IN items}
 {= $item.name} | {= $item.qty} | {= $item.price}
 {END-FOR item}
 ```
+
 Pass `items` as an array in `data`. Missing loop sources are silently skipped with a warning.
 
 ---
@@ -108,6 +113,7 @@ Supports text placeholders `{name}` and image placeholders `{%logo}`.
 ```
 
 Image via stored document (no re-upload needed):
+
 ```json
 {
   "logo": {
@@ -182,6 +188,7 @@ Fills `{{placeholder}}` syntax in ODT templates.
 ### create_powerpoint_from_template
 
 Placeholder syntax:
+
 - **Text:** `{{key}}` anywhere in a text box
 - **Image:** `{%name}` in the **alt text** (`descr` attribute) of an image shape
 - **Chart:** `{{name}}` in the **alt text** of a chart container shape
@@ -189,7 +196,10 @@ Placeholder syntax:
 
 Always run `list_templates` first — for POTX/PPTX it returns a per-slide breakdown including `layoutName`, `layoutType` (from the `{{slide_type:xxx}}` marker), and which text/image/chart placeholders belong to each slide.
 
+> **If the POTX/PPTX template has NO placeholders**, this tool refuses the call and names the layout tools instead — `list_templates` flags such templates with `hasLegacyPlaceholders: false` and a `nextStep` hint. Corporate-design slide masters (Folienmaster) shipped by design teams usually contain no `{{}}` markup at all — they carry named slide layouts instead. Run `describe_pptx_template { "template_name": "..." }`: when `hasLegacyPlaceholders` is `false`, switch to `create_powerpoint_from_layouts` (see **powerpoint-skill**, "corporate master without `{{}}`"). Never ask the user to type `{{}}` markers into a corporate master.
+
 **Basic usage (single-record fill):**
+
 ```json
 {
   "template_name": "corporate_deck",
@@ -220,6 +230,7 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
 `speaker_notes` keys are **1-based** slide numbers.
 
 **Single-source repeat** (duplicate one slide per data record):
+
 ```json
 {
   "template_name": "team_deck",
@@ -232,6 +243,7 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
   }
 }
 ```
+
 `repeat.slide` is the 1-based slide number to duplicate; the slide is replaced by N copies, one per data record. By default, slides that are **not** repeated are removed from the output — set `repeat.keep_unused_slides: true` to keep them. `create_powerpoint_from_template` also accepts top-level `title` and `author`.
 
 **Multi-source repeat** (route each record to the slide matching its `slide_type`):
@@ -259,13 +271,14 @@ Every template tool returns a `document_id`. That ID can be passed directly to t
 
 ### After `create_word_from_template` / `create_word_from_template_with_images`
 
-| Goal | Tool |
-|------|------|
-| Inspect current content | `read_word_content { "document_id": "<id>" }` |
+| Goal                         | Tool                                                                                 |
+| ---------------------------- | ------------------------------------------------------------------------------------ |
+| Inspect current content      | `read_word_content { "document_id": "<id>" }`                                        |
 | Add more sections at the end | `append_to_word { "document_id": "<id>", "content": "...", "add_page_break": true }` |
-| Fully rewrite the document | `replace_word_content { "document_id": "<id>", "content": "..." }` |
+| Fully rewrite the document   | `replace_word_content { "document_id": "<id>", "content": "..." }`                   |
 
 Example — fill a template then append a custom appendix:
+
 ```json
 // Step 1: fill the template
 { "template_name": "report", "data": { "title": "Annual Report" } }
@@ -277,20 +290,28 @@ Example — fill a template then append a custom appendix:
 
 ### After `create_powerpoint_from_template`
 
-| Goal | Tool |
-|------|------|
-| Inspect existing slides | `read_powerpoint_slides { "document_id": "<id>" }` |
-| Add new slides at the end | `append_slides_to_powerpoint { "document_id": "<id>", "slides": [...] }` |
-| Replace a specific slide | `update_powerpoint_slide { "document_id": "<id>", "slide_number": 3, "slides": [...] }` |
+| Goal                                  | Tool                                                                                                                |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Inspect existing slides               | `read_powerpoint_slides { "document_id": "<id>" }`                                                                  |
+| Add new slides at the end             | `append_slides_to_powerpoint { "document_id": "<id>", "slides": [...] }`                                            |
+| Replace a specific slide              | `update_powerpoint_slide { "document_id": "<id>", "slide_number": 3, "slides": [...] }`                             |
+| **Add a slide matching the template** | `append_slides_to_powerpoint { "document_id": "<id>", "reference_slide": 2, "placeholders": {...} }`                |
+| **Replace a slide, keep the look**    | `update_powerpoint_slide { "document_id": "<id>", "slide_number": 3, "reference_slide": 2, "placeholders": {...} }` |
+
+> **Keep the template look:** appending/updating with `slides`/`markdown` renders the generic theme, which will **not** match a template deck. Use `reference_slide` + `placeholders` (clone-and-refill) instead — it copies an existing slide's design and refills its `{{placeholders}}`. See **powerpoint-skill** for full details. (Clone mode refills text placeholders only; for image placeholders re-run `create_powerpoint_from_template`.)
 
 Example — fill a template then append a custom closing slide:
+
 ```json
 // Step 1: fill the template
 { "template_name": "corporate_deck", "placeholders": { "title": "Q4 Results" } }
 // → returns document_id "def456"
 
-// Step 2: add a closing slide
+// Step 2a: add a generic (non-template-styled) closing slide
 { "document_id": "def456", "slides": [{ "type": "section", "title": "Thank You", "subtitle": "Questions?" }] }
+
+// Step 2b: OR add a slide that matches the template by cloning slide 2 and refilling it
+{ "document_id": "def456", "reference_slide": 2, "placeholders": { "title": "Next Steps", "owner": "PMO" } }
 ```
 
 ## Key Notes

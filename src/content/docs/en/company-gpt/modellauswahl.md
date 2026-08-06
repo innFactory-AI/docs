@@ -64,18 +64,6 @@ GPT-5.6 is available in three tiers. They belong to the same generation and diff
 - **When:** quick questions, simple formatting, text corrections
 - **Why:** extremely resource-efficient model of the GPT-5 family with minimal latency
 
-### gpt-4o
-
-- **For:** versatile multimodality and fluid interaction
-- **When:** image and speech processing, creative drafts, brainstorming
-- **Why:** the established flagship model for fast, multimedia tasks
-
-### gpt-4o-mini
-
-- **For:** high speed at minimal cost
-- **When:** simple chat assistants, fast filtering of large data volumes
-- **Why:** extremely inexpensive lightweight model with solid base intelligence
-
 ### auto
 
 - **For:** automated efficiency without manual selection
@@ -185,7 +173,7 @@ These open-source models run in the STACKIT Cloud (EU/Germany) and are particula
 ## Legacy models
 
 :::caution[Will be discontinued]
-The GPT-4.1 family will no longer be supported in the near future and will be removed from CompanyGPT. Please migrate to a current model: **GPT-5.6 Terra** or **gpt-5-mini** as a replacement for gpt-4.1, and **GPT-5.6 Luna** or **gpt-5-nano** as a replacement for gpt-4.1-mini.
+The entire GPT-4 family (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) will no longer be supported in the near future and will be removed from CompanyGPT. Please migrate to a current model: **GPT-5.6 Terra** or **gpt-5-mini** as a replacement for gpt-4.1 and gpt-4o, and **GPT-5.6 Luna** or **gpt-5-nano** as a replacement for gpt-4.1-mini and gpt-4o-mini.
 :::
 
 ### gpt-4.1
@@ -202,12 +190,26 @@ The GPT-4.1 family will no longer be supported in the near future and will be re
 - **Why:** compact version of GPT-4.1, optimized for efficiency and speed
 - **Migrate to:** GPT-5.6 Luna / gpt-5-nano
 
+### gpt-4o
+
+- **For:** versatile multimodality and fluid interaction
+- **When:** image and speech processing, creative drafts, brainstorming
+- **Why:** the established flagship model for fast, multimedia tasks
+- **Migrate to:** GPT-5.6 Terra / gpt-5-mini
+
+### gpt-4o-mini
+
+- **For:** high speed at minimal cost
+- **When:** simple chat assistants, fast filtering of large data volumes
+- **Why:** extremely inexpensive lightweight model with solid base intelligence
+- **Migrate to:** GPT-5.6 Luna / gpt-5-nano
+
 ---
 
 ## Quick decision-making aid
 
 - **"I just want a very good answer"** → GPT-5.6 Terra / gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
-- **"It should be as fast and inexpensive as possible"** → GPT-5.6 Luna / gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **"It should be as fast and inexpensive as possible"** → GPT-5.6 Luna / gpt-5-nano / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
 - **"I want to program / write code"** → GPT-5.6 Sol / Claude Sonnet 4.6 / gpt-5.4
 - **"It's complicated or extremely important"** → GPT-5.6 Sol / gpt-5.4 / gpt-5.1
 - **"I'm running a lot of tasks in parallel"** → GPT-5.6 Luna / Claude Haiku 4.5

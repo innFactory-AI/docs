@@ -64,18 +64,6 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 - **Wann:** schnelle Fragen, einfache Formatierungen, Textkorrekturen
 - **Warum:** extrem ressourcensparendes Modell der GPT-5-Familie mit minimaler Latenz
 
-### gpt-4o
-
-- **Für:** vielseitige Multimodalität und flüssige Interaktion
-- **Wann:** Bild- und Sprachverarbeitung, kreative Entwürfe, Brainstorming
-- **Warum:** das etablierte Flaggschiff-Modell für schnelle, multimediale Aufgaben
-
-### gpt-4o-mini
-
-- **Für:** hohe Geschwindigkeit bei minimalen Kosten
-- **Wann:** einfache Chat-Assistenten, schnelle Filterung großer Datenmengen
-- **Warum:** extrem günstiges Leichtgewicht-Modell mit solider Grundintelligenz
-
 ### auto
 
 - **Für:** automatisierte Effizienz ohne manuelles Auswählen
@@ -185,7 +173,7 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eigne
 ## Legacy-Modelle
 
 :::caution[Wird eingestellt]
-Die GPT-4.1-Familie wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt. Bitte wechseln Sie auf ein aktuelles Modell: **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini.
+Die komplette GPT-4-Familie (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt. Bitte wechseln Sie auf ein aktuelles Modell: **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und gpt-4o, **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini und gpt-4o-mini.
 :::
 
 ### gpt-4.1
@@ -202,12 +190,26 @@ Die GPT-4.1-Familie wird in absehbarer Zeit nicht mehr unterstützt und aus Comp
 - **Warum:** kompakte Version von GPT-4.1, optimiert auf Effizienz und Tempo
 - **Wechseln auf:** GPT-5.6 Luna / gpt-5-nano
 
+### gpt-4o
+
+- **Für:** vielseitige Multimodalität und flüssige Interaktion
+- **Wann:** Bild- und Sprachverarbeitung, kreative Entwürfe, Brainstorming
+- **Warum:** das etablierte Flaggschiff-Modell für schnelle, multimediale Aufgaben
+- **Wechseln auf:** GPT-5.6 Terra / gpt-5-mini
+
+### gpt-4o-mini
+
+- **Für:** hohe Geschwindigkeit bei minimalen Kosten
+- **Wann:** einfache Chat-Assistenten, schnelle Filterung großer Datenmengen
+- **Warum:** extrem günstiges Leichtgewicht-Modell mit solider Grundintelligenz
+- **Wechseln auf:** GPT-5.6 Luna / gpt-5-nano
+
 ---
 
 ## Schnelle Entscheidungshilfe
 
 - **„Ich will einfach eine sehr gute Antwort“** → GPT-5.6 Terra / gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
-- **„Es soll maximal schnell und günstig sein“** → GPT-5.6 Luna / gpt-5-nano / gpt-4o-mini / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
+- **„Es soll maximal schnell und günstig sein“** → GPT-5.6 Luna / gpt-5-nano / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
 - **„Ich will programmieren / Code schreiben“** → GPT-5.6 Sol / Claude Sonnet 4.6 / gpt-5.4
 - **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-5.4 / gpt-5.1
 - **„Ich führe viele Aufgaben parallel aus“** → GPT-5.6 Luna / Claude Haiku 4.5

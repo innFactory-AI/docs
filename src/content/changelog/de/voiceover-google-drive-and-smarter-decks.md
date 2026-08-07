@@ -32,7 +32,7 @@ Die zuletzt angekündigte Voiceover-Vorschau ist jetzt live, Ihre Wissensdatenba
 ## 📄 companyFILES
 
 - **Corporate-Vorlagen ohne Platzhalter**: Die PowerPoint-Erzeugung arbeitet jetzt layout-nativ. Decks entstehen aus den Layouts Ihres Corporate-Masters – die Vorlage braucht keine vorbereiteten `{{Platzhalter}}` mehr.
-- **Passwortgeschützte PDF-Formulare ausfüllen**: Formularfelder in verschlüsselten PDFs (Owner-Passwort) lassen sich jetzt nicht nur lesen, sondern auch ausfüllen – etwa Behörden- oder Versicherungsformulare. Alle übrigen Felder des Dokuments bleiben erhalten.
+- **PDF-Formulare ausfüllen**: Formularfelder in PDFs lassen sich jetzt nicht nur lesen, sondern auch ausfüllen – etwa Behörden- oder Versicherungsformulare. Alle übrigen Felder des Dokuments bleiben erhalten.
 - **Robustere Tool-Aufrufe**: Strukturierte Argumente, die ein Modell als JSON-String schickt, werden jetzt akzeptiert – Tool-Aufrufe scheitern dadurch seltener.
 
 ## 🧩 companyM365

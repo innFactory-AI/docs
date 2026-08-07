@@ -32,7 +32,7 @@ The voiceover preview we announced last time is now live, your knowledge bases g
 ## 📄 companyFILES
 
 - **Corporate templates without placeholders**: PowerPoint generation now works layout-natively. Decks are built from the layouts of your corporate master — the template no longer needs prepared `{{placeholder}}` fields.
-- **Fill password-protected PDF forms**: Form fields in encrypted PDFs (owner password) can now be read *and* filled — for example authority or insurance forms. All other fields in the document are preserved.
+- **Fill PDF forms**: Form fields in PDFs can now be read *and* filled — for example authority or insurance forms. All other fields in the document are preserved.
 - **More robust tool calls**: Structured arguments that a model sends as a JSON string are now accepted, so tool calls fail less often.
 
 ## 🧩 companyM365

@@ -211,6 +211,21 @@ export default defineConfig({
 								items: [
 									{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
 									{
+										label: 'Allgemein',
+										translations: { en: 'General' },
+										items: [
+											{ label: 'Tool-Suche', translations: { en: 'Tool Search' }, slug: 'tutorials/skills/generic/tool-search-skill' },
+										]
+									},
+									{
+										label: 'companyRAG',
+										translations: { en: 'companyRAG' },
+										items: [
+											{ label: 'AI Search', translations: { en: 'AI Search' }, slug: 'tutorials/skills/company-rag/ai-search-skill' },
+											{ label: 'Dataset', translations: { en: 'Dataset' }, slug: 'tutorials/skills/company-rag/dataset-skill' },
+										]
+									},
+									{
 										label: 'companyFILES',
 										translations: { en: 'companyFILES' },
 										items: [

@@ -5,6 +5,15 @@ description: Agentenskills
 
 Du kannst die vorgefertigten Skills für Agenten verwenden, um mit CompanyGPT Tools zu interagieren.
 
+## Allgemein
+
+- [Tool-Suche](/de/tutorials/skills/generic/tool-search-skill)
+
+## companyRAG
+
+- [AI Search](/de/tutorials/skills/company-rag/ai-search-skill)
+- [Dataset](/de/tutorials/skills/company-rag/dataset-skill)
+
 ## CompanyFILES
 
 - [Charts und Diagramme](/de/tutorials/skills/files/charts-diagram-skill)

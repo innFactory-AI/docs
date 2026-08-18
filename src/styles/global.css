@@ -621,8 +621,14 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 }
 
 /* --- Header --- */
-.header {
-	border-bottom: 1px solid var(--sl-color-hairline-light);
+/*
+ * `.header` on its own is too broad — Starlight uses it for the inner nav grid
+ * and Expressive Code for its code-block caption bar, so an unlayered rule on
+ * the bare class painted stray hairlines inside the mobile nav and above code
+ * frames. Scope it to the real <header> element.
+ */
+header.header {
+	border-bottom-color: var(--sl-color-hairline-light);
 	box-shadow: none;
 }
 

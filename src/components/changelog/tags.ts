@@ -6,8 +6,8 @@ export type ChangelogTag = (typeof CHANGELOG_TAGS)[number];
 // Pills are rendered as hsl(<hue> <sat> <light>) so they adapt to light/dark via the
 // `.changelog-tag` rules in global.css.
 export const TAG_HUE: Record<ChangelogTag, number> = {
-	CompanyGPT: 180, // brand cyan
-	companyRAG: 101, // green
+	CompanyGPT: 165, // CompanyGPT green (accent #10a37f)
+	companyRAG: 195, // cyan (moved off green so it stays distinct from the CompanyGPT accent)
 	companyFILES: 234, // blue
 	companyDASHBOARD: 281, // purple
 	companyTRANSLATE: 41, // orange

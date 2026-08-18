@@ -43,7 +43,31 @@ export default defineConfig({
 			social: [
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
 			],
-			customCss: ['./src/styles/global.css', '@fontsource/sora/400.css', '@fontsource/sora/700.css'],
+			customCss: [
+				'./src/styles/global.css',
+				'@fontsource/inter/400.css',
+				'@fontsource/inter/500.css',
+				'@fontsource/inter/600.css',
+				'@fontsource/inter/700.css',
+			],
+			// Code blocks pick up the same 0.5rem radius as the rest of the
+			// CompanyGPT UI; Starlight's default is square corners.
+			expressiveCode: {
+				styleOverrides: {
+					borderRadius: '0.5rem',
+					borderColor: 'var(--sl-color-hairline-light)',
+					// --cg-code-* flip with the theme in global.css so code frames sit
+					// one surface step above the page, as they do in the chat UI.
+					codeBackground: 'var(--cg-code-bg)',
+					frames: {
+						frameBoxShadowCssValue: 'none',
+						editorTabBarBackground: 'var(--cg-code-tabbar-bg)',
+						editorActiveTabBackground: 'var(--cg-code-bg)',
+						terminalBackground: 'var(--cg-code-bg)',
+						terminalTitlebarBackground: 'var(--cg-code-tabbar-bg)',
+					},
+				},
+			},
 			components: {
 				SocialIcons: './src/components/SocialIcons.astro',
 				PageTitle: './src/components/PageTitle.astro',

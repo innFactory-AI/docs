@@ -2,143 +2,152 @@
 ::backdrop {
 	/*
 		 * ============================================================================
-		 * CUSTOM THEME FOR INNFACTORY
+		 * COMPANYGPT DOCS THEME
 		 *
-		 * Main Color: #050505
-		 * Accent Color: #01fcfe
+		 * Design tokens aligned with the CompanyGPT product UI (LibreChat-based).
+		 * Mirrors companyFILES/ui/src/globals.css and companyRAG/apps/ui/src/index.css:
+		 *
+		 *   Grays   #0d0d0d (surface-primary) … #f7f7f8 (surface-secondary, light)
+		 *   Accent  #10a37f (green-500), hover #0d8c6d
+		 *   Font    Inter
+		 *   Radius  0.5rem
+		 *
+		 * Keep in sync with those two files when the product palette moves.
 		 * ============================================================================
 		 */
 
-	/* Brand colors defined for re-use */
-	--if-main: #050505;
-	--if-accent: #01fcfe;
-	--if-accent-hue: 180;
-	/* Hue of #01fcfe */
-	--if-white: hsl(0, 0%, 98%);
-	/* A slightly off-white for better readability */
+	/* Product tokens defined for re-use */
+	--cg-accent: #10a37f;
+	--cg-accent-hover: #0d8c6d;
+	--cg-accent-hue: 165;
+	--cg-radius: 0.5rem;
+	--cg-radius-lg: 0.75rem;
+	/* Code frame surfaces, consumed by the expressiveCode overrides in astro.config.mjs */
+	--cg-code-bg: #171717;
+	--cg-code-tabbar-bg: #212121;
 
-	--sl-font: 'Sora', serif;
+	--sl-font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-	/* Colors (dark mode) - Using innFactory Brand */
-	--sl-color-white: var(--if-white);
-	--sl-color-gray-1: hsl(0, 0%, 90%);
-	/* Neutral grays to match the theme */
-	--sl-color-gray-2: hsl(0, 0%, 77%);
-	--sl-color-gray-3: hsl(0, 0%, 56%);
-	--sl-color-gray-4: hsl(0, 0%, 36%);
-	--sl-color-gray-5: hsl(0, 0%, 23%);
-	--sl-color-gray-6: hsl(0, 0%, 12%);
-	/* Slightly lighter than the background */
-	--sl-color-black: var(--if-main);
-	/* Your main brand color */
+	/* Colors (dark mode) — LibreChat surface scale */
+	--sl-color-white: #ececec;
+	/* text-primary */
+	--sl-color-gray-1: #ececec;
+	--sl-color-gray-2: #cdcdcd;
+	/* text-secondary */
+	--sl-color-gray-3: #999696;
+	/* text-secondary-alt */
+	--sl-color-gray-4: #595959;
+	/* text-tertiary / border-xheavy */
+	--sl-color-gray-5: #424242;
+	/* surface-hover / border-medium */
+	--sl-color-gray-6: #212121;
+	/* surface-secondary */
+	--sl-color-gray-7: #171717;
+	/* surface-primary-alt / header-primary */
+	--sl-color-black: #0d0d0d;
+	/* surface-primary */
 
-	/* Accent colors based on the vibrant cyan */
-	--sl-color-accent-low: hsl(var(--if-accent-hue), 50%, 20%);
-	/* Darker, less saturated cyan */
-	--sl-color-accent: var(--if-accent);
-	--sl-color-accent-high: var(--if-accent);
+	/* Accent — LibreChat green, lightened for text contrast on dark surfaces */
+	--sl-color-accent-low: hsl(var(--cg-accent-hue), 55%, 14%);
+	--sl-color-accent: var(--cg-accent);
+	--sl-color-accent-high: hsl(var(--cg-accent-hue), 62%, 50%);
 
-	--sl-color-text: var(--sl-color-gray-1);
-	/* Light gray text on dark background */
-	--sl-color-text-accent: var(--sl-color-accent);
-	/* Vibrant accent for links/highlights */
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: var(--sl-color-accent-high);
 	--sl-color-text-invert: var(--sl-color-black);
-	/* Dark text on light accent bg */
 
 	--sl-color-bg: var(--sl-color-black);
-	/* Dark background */
-	--sl-color-bg-nav: var(--sl-color-gray-6);
-	--sl-color-bg-sidebar: var(--sl-color-gray-6);
-	--sl-color-bg-inline-code: var(--sl-color-gray-5);
+	--sl-color-bg-nav: var(--sl-color-gray-7);
+	--sl-color-bg-sidebar: var(--sl-color-gray-7);
+	--sl-color-bg-inline-code: var(--sl-color-gray-6);
 	--sl-color-bg-accent: var(--sl-color-accent);
 
-	--sl-color-hairline-light: var(--sl-color-gray-5);
-	--sl-color-hairline: var(--sl-color-gray-6);
-	--sl-color-hairline-shade: var(--sl-color-black);
+	--sl-color-hairline-light: #2f2f2f;
+	/* border-light */
+	--sl-color-hairline: #212121;
+	--sl-color-hairline-shade: #171717;
 
 	--sl-color-backdrop-overlay: hsla(0, 0%, 5%, 0.66);
 
-	/* Optional: Keep other hues or neutralize them if they feel out of place. */
-	/* The original hues are left below for admonitions etc. */
+	/* Admonition hues — kept for asides and changelog tags. */
 	--sl-hue-orange: 41;
-	--sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 22%);
+	--sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 18%);
 	--sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
 	--sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
-	--sl-hue-green: 101;
-	--sl-color-green-low: hsl(var(--sl-hue-green), 39%, 22%);
-	--sl-color-green: hsl(var(--sl-hue-green), 82%, 63%);
-	--sl-color-green-high: hsl(var(--sl-hue-green), 82%, 80%);
+	--sl-hue-green: var(--cg-accent-hue);
+	--sl-color-green-low: hsl(var(--sl-hue-green), 45%, 16%);
+	--sl-color-green: hsl(var(--sl-hue-green), 62%, 50%);
+	--sl-color-green-high: hsl(var(--sl-hue-green), 62%, 82%);
 	--sl-hue-blue: 234;
-	--sl-color-blue-low: hsl(var(--sl-hue-blue), 54%, 20%);
-	--sl-color-blue: hsl(var(--sl-hue-blue), 100%, 60%);
+	--sl-color-blue-low: hsl(var(--sl-hue-blue), 45%, 18%);
+	--sl-color-blue: hsl(var(--sl-hue-blue), 90%, 68%);
 	--sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
 	--sl-hue-purple: 281;
-	--sl-color-purple-low: hsl(var(--sl-hue-purple), 39%, 22%);
+	--sl-color-purple-low: hsl(var(--sl-hue-purple), 39%, 18%);
 	--sl-color-purple: hsl(var(--sl-hue-purple), 82%, 63%);
 	--sl-color-purple-high: hsl(var(--sl-hue-purple), 82%, 89%);
 	--sl-hue-red: 339;
-	--sl-color-red-low: hsl(var(--sl-hue-red), 39%, 22%);
+	--sl-color-red-low: hsl(var(--sl-hue-red), 39%, 18%);
 	--sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
 	--sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
-
-	/* Non-color variables remain unchanged */
-	/* ... (shadows, text sizes, etc.) ... */
 }
 
 :root[data-theme='light'],
 [data-theme='light'] ::backdrop {
-	/* Colours (light mode) - Using innFactory Brand */
-	--sl-color-white: var(--if-main);
-	/* In light mode, 'white' is the darkest color (text) */
-	--sl-color-gray-1: hsl(0, 0%, 12%);
-	/* Inverted neutral gray scale */
-	--sl-color-gray-2: hsl(0, 0%, 23%);
-	--sl-color-gray-3: hsl(0, 0%, 36%);
-	--sl-color-gray-4: hsl(0, 0%, 56%);
-	--sl-color-gray-5: hsl(0, 0%, 77%);
-	--sl-color-gray-6: hsl(0, 0%, 94%);
-	--sl-color-gray-7: hsl(0, 0%, 97%);
-	/* Lightest gray for nav etc. */
-	--sl-color-black: hsl(0, 0%, 100%);
-	/* 'black' is the lightest color (background) */
+	/* Colors (light mode) — LibreChat surface scale, inverted */
+	--sl-color-white: #212121;
+	/* In light mode 'white' is the darkest color (headings) */
+	--sl-color-gray-1: #212121;
+	--sl-color-gray-2: #424242;
+	--sl-color-gray-3: #595959;
+	--sl-color-gray-4: #999696;
+	--sl-color-gray-5: #cdcdcd;
+	/* border-medium */
+	--sl-color-gray-6: #e3e3e3;
+	/* border-light / surface-hover */
+	--sl-color-gray-7: #f7f7f8;
+	/* surface-secondary */
+	--sl-color-black: #ffffff;
+	/* surface-primary */
 
-	/* Accent colors adjusted for light mode readability */
-	--sl-color-accent-high: hsl(var(--if-accent-hue), 80%, 25%);
-	/* Dark, saturated cyan */
-	--sl-color-accent: hsl(var(--if-accent-hue), 70%, 40%);
-	/* Main accent, dark enough for text */
-	--sl-color-accent-low: hsl(var(--if-accent-hue), 60%, 92%);
-	/* Very light cyan for backgrounds */
+	/* Accent darkened so links stay readable on white */
+	--sl-color-accent-high: hsl(var(--cg-accent-hue), 82%, 20%);
+	--sl-color-accent: var(--cg-accent);
+	--sl-color-accent-low: hsl(var(--cg-accent-hue), 55%, 92%);
 
-	--sl-color-text-accent: var(--sl-color-accent);
-	--sl-color-text-invert: var(--sl-color-black);
-	/* White text on dark accent bg */
+	--sl-color-text: var(--sl-color-gray-2);
+	--sl-color-text-accent: hsl(var(--cg-accent-hue), 82%, 26%);
+	--sl-color-text-invert: #ffffff;
 
-	--sl-color-bg-nav: var(--sl-color-gray-7);
-	--sl-color-bg-sidebar: var(--sl-color-bg);
-	--sl-color-bg-inline-code: var(--sl-color-gray-6);
+	--sl-color-bg-nav: var(--sl-color-black);
+	--sl-color-bg-sidebar: var(--sl-color-gray-7);
+	--sl-color-bg-inline-code: #ececec;
 	--sl-color-bg-accent: var(--sl-color-accent);
 
-	--sl-color-hairline-light: var(--sl-color-gray-6);
-	--sl-color-hairline-shade: var(--sl-color-gray-6);
+	--sl-color-hairline-light: #e3e3e3;
+	--sl-color-hairline: #ececec;
+	--sl-color-hairline-shade: #e3e3e3;
 
 	--sl-color-backdrop-overlay: hsla(0, 0%, 20%, 0.66);
 
-	/* Optional: The admonition colors are also inverted */
-	/* ... (original light theme admonition colors) ... */
+	--cg-code-bg: #f7f7f8;
+	--cg-code-tabbar-bg: #ececec;
+
+	/* Admonitions on light surfaces */
 	.starlight-aside--note {
-		background-color: hsl(var(--sl-hue-blue), 54%, 92%);
+		background-color: hsl(var(--sl-hue-blue), 54%, 96%);
 	}
 
 	.starlight-aside--tip {
-		background-color: hsl(var(--sl-hue-purple), 82%, 95%);
+		background-color: hsl(var(--sl-hue-green), 55%, 95%);
 	}
+
 	.starlight-aside--danger {
-		background-color: hsl(var(--sl-hue-red), 82%, 95%);
+		background-color: hsl(var(--sl-hue-red), 82%, 97%);
 	}
 
 	.starlight-aside--caution {
-		background-color: hsl(var(--sl-hue-orange), 82%, 95%);
+		background-color: hsl(var(--sl-hue-orange), 82%, 96%);
 	}
 
 	.starlight-aside__title {
@@ -149,26 +158,26 @@
 		color: hsl(var(--sl-hue-blue), 54%, 40%);
 	}
 	.starlight-aside--tip .starlight-aside__title {
-		color: hsl(var(--sl-hue-purple), 82%, 30%);
+		color: hsl(var(--sl-hue-green), 82%, 24%);
 	}
 	.starlight-aside--danger .starlight-aside__title {
 		color: hsl(var(--sl-hue-red), 82%, 40%);
 	}
 	.starlight-aside--caution .starlight-aside__title {
-		color: hsl(var(--sl-hue-orange), 82%, 40%);
+		color: hsl(var(--sl-hue-orange), 82%, 32%);
 	}
 
 	.starlight-aside--note .starlight-aside__content a {
 		color: hsl(var(--sl-hue-blue), 54%, 40%);
 	}
 	.starlight-aside--tip .starlight-aside__content a {
-		color: hsl(var(--sl-hue-purple), 82%, 30%);
+		color: hsl(var(--sl-hue-green), 82%, 24%);
 	}
 	.starlight-aside--danger .starlight-aside__content a {
 		color: hsl(var(--sl-hue-red), 82%, 40%);
 	}
 	.starlight-aside--caution .starlight-aside__content a {
-		color: hsl(var(--sl-hue-orange), 82%, 40%);
+		color: hsl(var(--sl-hue-orange), 82%, 32%);
 	}
 }
 
@@ -249,7 +258,7 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 	max-width: 24rem;
 	padding: 0.5rem 0.9rem;
 	border: 1px solid var(--sl-color-hairline-light);
-	border-radius: 999px;
+	border-radius: var(--cg-radius);
 	background: var(--sl-color-bg-nav);
 	color: var(--sl-color-gray-3);
 	transition: border-color 150ms ease;
@@ -283,7 +292,7 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 }
 
 .changelog-filter .changelog-pill {
-	--tag-hue: 180;
+	--tag-hue: var(--cg-accent-hue);
 	/* Reset native <button> box so every pill is sized identically. */
 	-webkit-appearance: none;
 	appearance: none;
@@ -358,7 +367,7 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 
 /* --- Tag pills --- */
 .changelog-tag {
-	--tag-hue: 180;
+	--tag-hue: var(--cg-accent-hue);
 	display: inline-flex;
 	align-items: center;
 	padding: 0.2rem 0.6rem;
@@ -601,4 +610,147 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 .changelog-share__btn.is-copied {
 	border-color: var(--sl-color-accent);
 	color: var(--sl-color-text-accent);
+}
+
+/* ============================================================================
+ * COMPANYGPT UI POLISH
+ *
+ * Surface treatment borrowed from the product UI: soft 0.5rem corners, muted
+ * hairlines instead of hard borders, and a pill-shaped active sidebar entry.
+ * ========================================================================== */
+
+/* --- Typography --- */
+/* Inter runs wider than Sora did, so headings get a touch of negative tracking. */
+.sl-markdown-content :is(h1, h2, h3, h4),
+.content-panel h1,
+.hero h1 {
+	letter-spacing: -0.02em;
+}
+
+.sl-markdown-content :is(h2, h3) {
+	font-weight: 600;
+}
+
+/* --- Header --- */
+.header {
+	border-bottom: 1px solid var(--sl-color-hairline-light);
+	box-shadow: none;
+}
+
+/* --- Sidebar: LibreChat-style rounded rows --- */
+.sidebar-pane {
+	border-inline-end: 1px solid var(--sl-color-hairline-light);
+}
+
+.sidebar-content a[href] {
+	border-radius: var(--cg-radius);
+	transition: background-color 120ms ease, color 120ms ease;
+}
+
+.sidebar-content a[href]:hover,
+.sidebar-content a[href]:focus-visible {
+	background-color: var(--sl-color-gray-6);
+	color: var(--sl-color-white);
+}
+
+.sidebar-content a[aria-current='page'],
+.sidebar-content a[aria-current='page']:hover,
+.sidebar-content a[aria-current='page']:focus {
+	background-color: var(--sl-color-accent-low);
+	color: var(--sl-color-text-accent);
+	font-weight: 600;
+}
+
+.sidebar-content summary {
+	border-radius: var(--cg-radius);
+}
+
+/* --- Search box --- */
+site-search button[data-open-modal] {
+	border-radius: var(--cg-radius);
+	border-color: var(--sl-color-hairline-light);
+	background-color: var(--sl-color-bg-nav);
+	transition: border-color 120ms ease;
+}
+
+site-search button[data-open-modal]:hover {
+	border-color: var(--sl-color-gray-4);
+}
+
+site-search dialog {
+	border-radius: var(--cg-radius-lg);
+	border: 1px solid var(--sl-color-hairline-light);
+}
+
+/* --- Asides / admonitions --- */
+.starlight-aside {
+	border-radius: var(--cg-radius);
+	border-inline-start-width: 3px;
+	padding: 1rem 1.25rem;
+}
+
+/* --- Cards, tabs, and other panels --- */
+.card,
+starlight-tabs,
+.sl-markdown-content > details {
+	border-radius: var(--cg-radius);
+}
+
+.card {
+	border-color: var(--sl-color-hairline-light);
+	background-color: var(--sl-color-gray-7);
+}
+
+:root[data-theme='light'] .card {
+	background-color: var(--sl-color-gray-7);
+}
+
+/* --- Inline code --- */
+.sl-markdown-content :not(pre) > code {
+	border-radius: 0.3rem;
+	border: 1px solid var(--sl-color-hairline-light);
+	padding: 0.15em 0.4em;
+	font-size: 0.9em;
+}
+
+/* --- Images and figures --- */
+.sl-markdown-content img:not([data-no-frame]) {
+	border-radius: var(--cg-radius-lg);
+	border: 1px solid var(--sl-color-hairline-light);
+}
+
+/* --- Tables --- */
+.sl-markdown-content table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
+.sl-markdown-content :is(th, td) {
+	border-color: var(--sl-color-hairline-light);
+}
+
+.sl-markdown-content thead th {
+	background-color: var(--sl-color-gray-7);
+}
+
+/* --- Links --- */
+.sl-markdown-content a:not(:where(.not-content *)) {
+	text-underline-offset: 0.2em;
+	text-decoration-thickness: 1px;
+}
+
+/* --- Buttons (hero CTAs) --- */
+.sl-link-button {
+	border-radius: var(--cg-radius);
+}
+
+/* --- Pagination --- */
+.pagination-links a {
+	border-radius: var(--cg-radius);
+	border-color: var(--sl-color-hairline-light);
+	box-shadow: none;
+}
+
+.pagination-links a:hover {
+	border-color: var(--sl-color-gray-4);
 }

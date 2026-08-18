@@ -1,0 +1,22 @@
+---
+title: Audit log
+description: Tamper-evident record of administration actions in CompanyGPT – with filters for actor, target and action, plus verification of the record chain.
+---
+
+The audit log under **Access** records administration actions in a tamper-evident way – for example granted capabilities and configuration changes. It serves traceability and troubleshooting.
+
+!["Audit log" tab with filters and chain verification](./audit-log.png)
+
+The following are available for narrowing down entries:
+
+- **Search** by actor, target or action
+- **Filters** for the kind of entry
+- **Period** via a from and to date
+
+**Verify chain** checks the integrity of the record chain. Entries are chained so that subsequent modifications become apparent – a passing check means the log has been unchanged since the first entry.
+
+:::note
+The range of recorded actions grows as the administration area is extended. As long as no administration actions have taken place, the list stays empty.
+:::
+
+Which capabilities were granted is shown under [Direct grants](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/); the origin of administration access is shown by the **Admin sources** tab under [Users and groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/).

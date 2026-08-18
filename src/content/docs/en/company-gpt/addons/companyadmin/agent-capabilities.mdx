@@ -1,0 +1,38 @@
+---
+title: Agent capabilities
+description: Define which capabilities the agent builder offers per role in CompanyGPT – from code execution and web search to subagents.
+---
+
+Agent capabilities determine which abilities the agent builder offers – such as code execution, web search, file search or subagents. They are released per role.
+
+![Capability matrix with baseline and role columns](./capabilities.png)
+
+## How to read the matrix
+
+The **Everyone** column is the baseline that everyone gets. Each role column **replaces** that baseline wholesale for holders of that role – it does not add to it. Under **Roles with their own set** you define which roles get a set of their own at all.
+
+`USER` is a role like any other here: it covers everyone whose login matched no role mapping.
+
+## Available capabilities
+
+| Capability | Note |
+|---|---|
+| `execute_code` | Code execution; marked as costly |
+| `web_search` | Web search; costly |
+| `file_search` | File search within the agent's file context |
+| `artifacts` | Artifacts as an output format |
+| `subagents` | Subagents; costly |
+| `actions` | Actions via external interfaces |
+| `skills` | Use of skills |
+| `ask_user_question` | Follow-up questions to the user |
+| `tools` | Use of tools |
+
+:::note
+Not governed by this page and unchanged for everyone are `ocr`, `chain`, `context`, `deferred_tools` and `memory`. These follow the server configuration and are kept in every set defined above.
+:::
+
+:::tip[Note]
+Costly capabilities such as code execution, web search and subagents can be limited to individual roles this way, without blocking them for everyone.
+:::
+
+This setting concerns the agent builder. Which features a user may use in CompanyGPT in general is governed by the feature permissions under [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).

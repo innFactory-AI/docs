@@ -1,0 +1,55 @@
+---
+title: Rollen und Rechte
+description: Rollen in CompanyGPT anlegen und pro Rolle festlegen, welche Funktionen ihre Mitglieder nutzen, erstellen und teilen dürfen.
+---
+
+Rollen bündeln Rechte und Capabilities und werden Nutzern zugewiesen. Gruppen bündeln dagegen Nutzer; beides wirkt auf die jeweiligen Mitglieder. Die Verwaltung finden Sie unter **Access** im Reiter **Roles**.
+
+Eine Rolle ist ein benanntes Bündel von Rechten. **System-Rollen** werden mit CompanyGPT ausgeliefert und können nicht gelöscht werden; **eigene Rollen** verwalten Sie selbst.
+
+![Reiter „Roles" mit System- und eigenen Rollen](./access-rollen.png)
+
+Die Übersicht zeigt Name, Beschreibung und Typ (`system` oder `custom`). Je Rolle stehen zur Verfügung:
+
+- **Rechte bearbeiten** – die Funktionsrechte der Rolle (siehe unten)
+- **Mitglieder** – welche Nutzer die Rolle haben
+- **Bearbeiten** und **Löschen** – nur bei eigenen Rollen
+
+Über **Create role** legen Sie eine neue Rolle an.
+
+:::note
+Ein Nutzer hat immer genau eine Rolle. Die Rolle `USER` ist dabei eine Rolle wie jede andere: Sie greift für alle Nutzer, deren Anmeldung keinem Rollen-Mapping entsprochen hat.
+:::
+
+## Funktionsrechte je Rolle
+
+Für jede Rolle legen Sie fest, welche Funktionen ihre Mitglieder nutzen dürfen. Pro Funktion werden nur die Aktionen angeboten, die die Plattform dafür unterstützt.
+
+![Rechte-Dialog einer Rolle mit Funktionen und Aktionen](./rollenrechte.png)
+
+| Funktion | Verfügbare Aktionen |
+|---|---|
+| Agents | Use, Create, Share, Share publicly |
+| Prompts | Use, Create, Share, Share publicly |
+| Skills | Use, Create, Share, Share publicly |
+| MCP servers | Use, Create, Share, Share publicly, Configure OBO |
+| Remote agents | Use, Create, Share, Share publicly |
+| Marketplace | Use |
+| Memories | Use, Create, Update, Read, Opt out |
+| File search | Use |
+| File citations | Use |
+| Run code | Use |
+| Web search | Use |
+| Multi-conversation | Use |
+| Temporary chat | Use |
+| Bookmarks | Use |
+| Shared links | Create, Share, Share publicly |
+| People picker | View users, View groups, View roles |
+
+Die Rechte mehrerer Rollen werden pro Nutzer zusammengeführt (OR-Verknüpfung). **Share publicly** entscheidet, ob Mitglieder Inhalte für die gesamte Umgebung freigeben dürfen – und nicht nur für einzelne Gruppen.
+
+:::tip[Hinweis]
+**Configure OBO** bei MCP-Servern erlaubt die Konfiguration von On-Behalf-Of-Zugriffen, bei denen ein Tool im Namen des angemeldeten Nutzers auf ein Drittsystem zugreift. Vergeben Sie dieses Recht bewusst.
+:::
+
+Welche Fähigkeiten der Agent-Builder selbst anbietet, steuern Sie getrennt unter [Agent-Capabilities](/de/company-gpt/addons/companyadmin/agent-capabilities/). Den Modellzugriff regeln Sie unter [Modelle und Provider](/de/company-gpt/addons/companyadmin/modelle/).

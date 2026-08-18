@@ -1,0 +1,45 @@
+---
+title: Inhalte und Sichtbarkeit
+description: Steuern, welche Gruppen welche Agenten, Prompts, Skills und MCP-Tools in CompanyGPT sehen und nutzen können.
+---
+
+Unter **Content** steuern Sie die Sichtbarkeit der Inhalte: Agenten, Prompts, Skills und MCP-Tools. Die Reiter trennen die Inhaltsarten; **Categories** pflegt zusätzlich die [Kategorien des Agenten-Marktplatzes](/de/company-gpt/addons/companyadmin/kategorien/).
+
+![Reiter „Agents" mit Sichtbarkeit und Synchronisationsstatus je Agent](./content-agents.png)
+
+Die Liste zeigt je Eintrag den Namen, die Beschreibung und den aktuellen Sichtbarkeitsstatus. Zusätzliche Kennzeichnungen geben Auskunft über die Herkunft:
+
+| Kennzeichnung | Bedeutung |
+|---|---|
+| `manual` | Der Inhalt wurde in CompanyGPT selbst angelegt |
+| `synced` | Der Inhalt stammt aus einem über [Library Sync](/de/company-gpt/addons/companyadmin/library-sync/) verbundenen Repository |
+| `modified` | Der synchronisierte Inhalt wurde in CompanyGPT nachträglich geändert und weicht damit vom Repository ab |
+| `Owner only` | Aktuell sieht nur der Eigentümer den Inhalt |
+
+:::note
+Aufgelistet werden nur Inhalte, die Ihnen gehören, mit Ihnen geteilt wurden oder öffentlich sind. Eine globale Liste aller privaten Inhalte anderer Nutzer existiert plattformseitig nicht. Für die aufgeführten Inhalte verwalten Sie die Freigabe hier.
+:::
+
+## Sichtbarkeit setzen
+
+Über **Visibility** öffnen Sie die Freigabe eines Eintrags.
+
+![Sichtbarkeits-Dialog eines Agenten mit den drei Freigabestufen](./agent-sichtbarkeit.png)
+
+Drei Stufen stehen zur Wahl:
+
+- **Owner only** – nur der Eigentümer sieht den Inhalt.
+- **Public — all users of this environment** – alle Nutzer der Umgebung sehen den Inhalt, unternehmensintern.
+- **Specific groups only** – nur die ausgewählten [Gruppen](/de/company-gpt/addons/companyadmin/benutzer-und-gruppen/) und der Eigentümer sehen den Inhalt.
+
+Der Dialog nennt zusätzlich den Eigentümer und – bei synchronisierten Inhalten – das Quell-Repository sowie die dort gesetzte Standardsichtbarkeit. Bereits bestehende Einzelfreigaben an Personen werden unter **Also individually shared with** aufgeführt und können dort einzeln zurückgenommen werden.
+
+Für Skills funktioniert der Dialog identisch:
+
+![Freigabe-Dialog eines Skills](./skill-freigabe.png)
+
+:::tip[Hinweis]
+Ob eine Rolle Inhalte überhaupt teilen oder öffentlich freigeben darf, legen die Funktionsrechte unter [Rollen und Rechte](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) fest. Die Sichtbarkeit hier entscheidet nur über den einzelnen Inhalt.
+:::
+
+Wird die Standardsichtbarkeit im Repository gepflegt, überschreibt eine Änderung hier den Repo-Standard für diesen Inhalt. Siehe [Library Sync](/de/company-gpt/addons/companyadmin/library-sync/).

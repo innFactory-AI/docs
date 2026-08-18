@@ -1,0 +1,21 @@
+---
+title: Direct grants
+description: Grant individual capabilities such as access to the administration area selectively – as an exception to regular roles.
+---
+
+Direct grants assign a single capability selectively, without creating a dedicated role for it. They are meant for one-off exceptions; for permanent responsibilities, [roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) are the right way.
+
+!["Direct grants" tab with the button for granting a capability](./direct-grants.png)
+
+Use **Grant** to assign a capability. The dialog asks for two values:
+
+- **Role name** – the role the capability applies to
+- **Capability** – the capability to grant, for example `access:admin` (access the admin area) or `manage:roles` (manage roles)
+
+![Dialog for granting a direct capability](./grant-dialog.png)
+
+:::note
+Direct grants are currently supported for roles only, not for individual people. To give an individual a capability, assign them a suitable role under **Access**.
+:::
+
+Every granted and revoked capability is recorded in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/). Who currently holds administration access is shown by the **Admin sources** tab under [Users and groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/).

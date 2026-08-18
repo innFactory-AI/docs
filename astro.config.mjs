@@ -218,6 +218,23 @@ export default defineConfig({
 													{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
 												]
 											},
+										{
+											label: 'companyADMIN',
+											translations: { en: 'companyADMIN' },
+											badge: { text: 'Beta', variant: 'caution' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyadmin' },
+												{ label: 'Rollen und Rechte', translations: { en: 'Roles and permissions' }, slug: 'company-gpt/addons/companyadmin/rollen-und-rechte' },
+												{ label: 'Benutzer und Gruppen', translations: { en: 'Users and groups' }, slug: 'company-gpt/addons/companyadmin/benutzer-und-gruppen' },
+												{ label: 'Direkte Berechtigungen', translations: { en: 'Direct grants' }, slug: 'company-gpt/addons/companyadmin/direkte-berechtigungen' },
+												{ label: 'Audit-Log', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyadmin/audit-log' },
+												{ label: 'Inhalte und Sichtbarkeit', translations: { en: 'Content and visibility' }, slug: 'company-gpt/addons/companyadmin/inhalte' },
+												{ label: 'Kategorien', translations: { en: 'Categories' }, slug: 'company-gpt/addons/companyadmin/kategorien' },
+												{ label: 'Modelle und Provider', translations: { en: 'Models and providers' }, slug: 'company-gpt/addons/companyadmin/modelle' },
+												{ label: 'Agent-Capabilities', translations: { en: 'Agent capabilities' }, slug: 'company-gpt/addons/companyadmin/agent-capabilities' },
+												{ label: 'Library Sync', translations: { en: 'Library Sync' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
+											]
+										},
 										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },

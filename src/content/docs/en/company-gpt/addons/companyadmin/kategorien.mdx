@@ -1,0 +1,32 @@
+---
+title: Categories
+description: Create, rename, hide or delete categories for the agent marketplace in CompanyGPT.
+---
+
+Categories structure the **agent marketplace**. They are maintained under **Content** in the **Categories** tab and then appear as filters in the marketplace as well as a selection field in the agent builder.
+
+## Creating a category
+
+!["Add a category" dialog with value, label and description](./kategorie-anlegen.png)
+
+A new category consists of three values:
+
+| Field | Meaning |
+|---|---|
+| **Value** | Technical key in lower case – for example `tutorial` |
+| **Label** | Displayed name in the marketplace – for example `Tutorial` |
+| **Description** | Short description shown in the marketplace below the name |
+
+Categories you create yourself are **custom**: they can be renamed, hidden or deleted at any time.
+
+## Result in the marketplace
+
+After saving, the category appears as a tab in the agent marketplace – with its label and description. As long as no agent is assigned to it, the list stays empty.
+
+![Agent marketplace with the new category and the agent builder](./marktplatz.png)
+
+In the agent builder, users pick the category via the **Category** field. Only this assignment places the agent in the corresponding marketplace tab.
+
+:::tip[Note]
+Whether users see the marketplace at all is controlled by the **Marketplace → Use** permission under [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/). Which agent a user sees in the marketplace follows from its [visibility](/en/company-gpt/addons/companyadmin/inhalte/).
+:::

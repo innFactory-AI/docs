@@ -18,43 +18,60 @@ hero:
 
 import { Card, CardGrid } from "@astrojs/starlight/components";
 
-## Topics
+## Sections
 
 <CardGrid>
-  <Card title="User Interface" icon="pencil">
-    Everything about the [User Interface](/en/company-gpt/user-interface/) and
-    how to use it.
+  <Card title="Documentation" icon="open-book">
+    Every feature in detail — [Chat](/en/company-gpt/chat),
+    [Projects](/en/company-gpt/projekte), [Agents](/en/company-gpt/agenten),
+    [Skills](/en/company-gpt/skills),
+    [Integrations](/en/company-gpt/integrationen/mcp-server) and
+    [Settings](/en/company-gpt/einstellungen).
+
+    [Go to the documentation](/en/intro/company-gpt)
+
   </Card>
-  <Card title="Settings" icon="add-document">
-    [Settings](/en/company-gpt/einstellungen) for users regarding appearance,
-    text-to-speech, speech-to-text and more.
+  <Card title="Add-ons" icon="puzzle">
+    The extensions around CompanyGPT:
+    [companyRAG](/en/company-gpt/addons/companyrag),
+    [companyFILES](/en/company-gpt/addons/companyfiles),
+    [companyDASHBOARD](/en/company-gpt/addons/company-dashboard),
+    [companyTRANSLATE](/en/company-gpt/addons/company-translate),
+    [companyTRANSCRIBE](/en/company-gpt/addons/company-transcribe) and
+    [companyM365](/en/company-gpt/addons/companym365).
+
+    [Go to the add-ons](/en/company-gpt/addons/companyrag)
+
   </Card>
-  <Card title="Chat" icon="setting">
-    The [main interface for communication](/en/company-gpt/chat) with AI models
-    and AI agents.
+  <Card title="Tutorials" icon="rocket">
+    Step-by-step guides and ready-to-use templates for skills, agents and MCP
+    servers.
+
+    [Go to the tutorials](/en/tutorials)
+
   </Card>
-  <Card title="Integrations" icon="open-book">
-    [MCP server](/en/company-gpt/integrationen/mcp-server), [web
-    search](/en/company-gpt/integrationen/websuche) and more.
+  <Card title="Prompt Engineering" icon="pencil">
+    How to write better prompts:
+    [components](/en/prompt-engineering/bestandteile-von-prompts),
+    [structure](/en/prompt-engineering/prompts-strukturieren) and
+    [techniques](/en/prompt-engineering/prompt-techniken/uebersicht) such as
+    few-shot, RAG and tool use.
+
+    [Go to prompt engineering](/en/prompt-engineering/uebersicht)
+
   </Card>
-  <Card title="Agents" icon="open-book">
-    Easily create your own [agents](/en/company-gpt/agenten).
+  <Card title="API Reference" icon="laptop">
+    Endpoints, schemas and authentication for the [companyRAG
+    API](/en/api/company-rag-api) and the [Agents API](/en/api/agents-api).
+
+    [Go to the API reference](/en/api)
+
   </Card>
-  <Card title="Prompts" icon="open-book">
-    Everything about [Prompts](/en/prompt-engineering/uebersicht) and [Prompt
-    templates](/en/company-gpt/prompts).
-  </Card>
-  <Card title="Memories" icon="open-book">
-    [Memories](/en/company-gpt/erinnerungen) in CompanyGPT.
-  </Card>
-  <Card title="AI Settings" icon="open-book">
-    Everything about [AI settings](/en/company-gpt/ki-einstellungen).
-  </Card>
-  <Card title="File Processing" icon="open-book">
-    The possibilities of [file processing](/en/company-gpt/dateiverarbeitung) in
-    CompanyGPT.
-  </Card>
-  <Card title="Bookmarks" icon="open-book">
-    [Bookmarks](/en/company-gpt/lesezeichen) in CompanyGPT.
+  <Card title="Changelog" icon="list-format">
+    What's new? Every release across CompanyGPT and the add-ons, filterable by
+    product.
+
+    [Go to the changelog](/en/changelog/)
+
   </Card>
 </CardGrid>

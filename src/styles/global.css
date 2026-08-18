@@ -133,52 +133,26 @@
 	--cg-code-bg: #f7f7f8;
 	--cg-code-tabbar-bg: #ececec;
 
-	/* Admonitions on light surfaces */
-	.starlight-aside--note {
-		background-color: hsl(var(--sl-hue-blue), 54%, 96%);
-	}
-
-	.starlight-aside--tip {
-		background-color: hsl(var(--sl-hue-green), 55%, 95%);
-	}
-
-	.starlight-aside--danger {
-		background-color: hsl(var(--sl-hue-red), 82%, 97%);
-	}
-
-	.starlight-aside--caution {
-		background-color: hsl(var(--sl-hue-orange), 82%, 96%);
-	}
-
-	.starlight-aside__title {
-		color: var(--sl-color);
-	}
-
-	.starlight-aside--note .starlight-aside__title {
-		color: hsl(var(--sl-hue-blue), 54%, 40%);
-	}
-	.starlight-aside--tip .starlight-aside__title {
-		color: hsl(var(--sl-hue-green), 82%, 24%);
-	}
-	.starlight-aside--danger .starlight-aside__title {
-		color: hsl(var(--sl-hue-red), 82%, 40%);
-	}
-	.starlight-aside--caution .starlight-aside__title {
-		color: hsl(var(--sl-hue-orange), 82%, 32%);
-	}
-
-	.starlight-aside--note .starlight-aside__content a {
-		color: hsl(var(--sl-hue-blue), 54%, 40%);
-	}
-	.starlight-aside--tip .starlight-aside__content a {
-		color: hsl(var(--sl-hue-green), 82%, 24%);
-	}
-	.starlight-aside--danger .starlight-aside__content a {
-		color: hsl(var(--sl-hue-red), 82%, 40%);
-	}
-	.starlight-aside--caution .starlight-aside__content a {
-		color: hsl(var(--sl-hue-orange), 82%, 32%);
-	}
+	/*
+	 * The admonition hues are declared unlayered above, so they also win over
+	 * Starlight's own light-theme values — they have to be restated here, or
+	 * light mode keeps the dark tints (visible on card icon tiles).
+	 */
+	--sl-color-orange: hsl(var(--sl-hue-orange), 75%, 42%);
+	--sl-color-orange-low: hsl(var(--sl-hue-orange), 82%, 90%);
+	--sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 24%);
+	--sl-color-green: hsl(var(--sl-hue-green), 75%, 33%);
+	--sl-color-green-low: hsl(var(--sl-hue-green), 55%, 90%);
+	--sl-color-green-high: hsl(var(--sl-hue-green), 82%, 20%);
+	--sl-color-blue: hsl(var(--sl-hue-blue), 75%, 55%);
+	--sl-color-blue-low: hsl(var(--sl-hue-blue), 82%, 93%);
+	--sl-color-blue-high: hsl(var(--sl-hue-blue), 75%, 32%);
+	--sl-color-purple: hsl(var(--sl-hue-purple), 70%, 50%);
+	--sl-color-purple-low: hsl(var(--sl-hue-purple), 82%, 93%);
+	--sl-color-purple-high: hsl(var(--sl-hue-purple), 75%, 30%);
+	--sl-color-red: hsl(var(--sl-hue-red), 75%, 50%);
+	--sl-color-red-low: hsl(var(--sl-hue-red), 82%, 94%);
+	--sl-color-red-high: hsl(var(--sl-hue-red), 75%, 32%);
 }
 
 /* Skill Download Button */
@@ -610,6 +584,21 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
 .changelog-share__btn.is-copied {
 	border-color: var(--sl-color-accent);
 	color: var(--sl-color-text-accent);
+}
+
+/* ============================================================================
+ * ADMONITIONS
+ *
+ * Starlight ships `tip` in purple. It reads as the brand voice in these docs
+ * ("Kurzübersicht" callouts), so it gets the accent green instead. Background,
+ * border and title all move together — the light/dark `green-*` tokens above
+ * already carry the per-theme values.
+ * ========================================================================== */
+
+.starlight-aside--tip {
+	--sl-color-asides-text-accent: var(--sl-color-green-high);
+	--sl-color-asides-border: var(--sl-color-green);
+	background-color: var(--sl-color-green-low);
 }
 
 /* ============================================================================

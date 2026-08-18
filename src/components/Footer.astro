@@ -1,0 +1,11 @@
+---
+// Wraps Starlight's footer so the cookie consent card (and its "Cookie settings"
+// opener) render on every page, including the changelog pages built with
+// <StarlightPage>. The card itself is position: fixed, so it is only nested here
+// to get a mount point that exists site-wide.
+import Default from '@astrojs/starlight/components/Footer.astro';
+import CookieConsent from './CookieConsent.astro';
+---
+
+<Default />
+<CookieConsent />

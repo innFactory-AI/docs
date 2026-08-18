@@ -1,0 +1,253 @@
+---
+/**
+ * Cookie consent card (bottom right) + a "Cookie settings" opener rendered into
+ * the page footer so consent can be withdrawn at any time (Art. 7(3) DSGVO).
+ *
+ * The Google Consent Mode v2 defaults are set in the <head> (see the
+ * `head` array in astro.config.mjs) — this component only flips
+ * `analytics_storage` to granted/denied and remembers the choice in
+ * localStorage. Without a stored choice nothing is granted, so a first-time
+ * visitor is measured cookielessly until they decide.
+ */
+
+// Starlight's locales both carry a URL prefix, so the pathname is the most
+// reliable locale source here — it also works on the openapi routes, which are
+// generated without a prefix and fall back to German.
+const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'de';
+
+const strings = {
+	de: {
+		title: 'Cookies & Analyse',
+		body: 'Wir nutzen Google Analytics, um zu sehen, welche Seiten der Dokumentation wirklich weiterhelfen. Analyse-Cookies werden nur mit Ihrer Zustimmung gesetzt.',
+		accept: 'Akzeptieren',
+		reject: 'Ablehnen',
+		privacy: 'Datenschutzerklärung',
+		settings: 'Cookie-Einstellungen',
+	},
+	en: {
+		title: 'Cookies & analytics',
+		body: 'We use Google Analytics to see which documentation pages actually help. Analytics cookies are only set with your consent.',
+		accept: 'Accept',
+		reject: 'Decline',
+		privacy: 'Privacy policy',
+		settings: 'Cookie settings',
+	},
+}[lang];
+
+// innFactory publishes the Datenschutzerklärung in German only.
+const privacyUrl = 'https://innfactory.ai/de/datenschutz/';
+---
+
+<div class="consent-settings">
+	<button type="button" class="consent-settings__button" data-consent-open>
+		{strings.settings}
+	</button>
+</div>
+
+<div
+	class="consent"
+	id="cg-consent"
+	role="dialog"
+	aria-labelledby="cg-consent-title"
+	aria-describedby="cg-consent-body"
+	hidden
+>
+	<p class="consent__title" id="cg-consent-title">{strings.title}</p>
+	<p class="consent__body" id="cg-consent-body">{strings.body}</p>
+	<div class="consent__actions">
+		<button type="button" class="consent__button consent__button--primary" data-consent-accept>
+			{strings.accept}
+		</button>
+		<button type="button" class="consent__button" data-consent-reject>
+			{strings.reject}
+		</button>
+		<a class="consent__privacy" href={privacyUrl} target="_blank" rel="noopener noreferrer">
+			{strings.privacy}
+		</a>
+	</div>
+</div>
+
+<style>
+	.consent {
+		position: fixed;
+		right: 1rem;
+		bottom: 1rem;
+		z-index: 100;
+		width: min(23rem, calc(100vw - 2rem));
+		padding: 1.125rem 1.25rem 1.25rem;
+		border: 1px solid var(--sl-color-hairline-light);
+		border-radius: var(--cg-radius-lg);
+		background: var(--sl-color-bg-nav);
+		box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+		animation: consent-in 200ms ease-out;
+	}
+
+	.consent[hidden] {
+		display: none;
+	}
+
+	.consent__title {
+		margin: 0;
+		color: var(--sl-color-white);
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	.consent__body {
+		margin: 0.4rem 0 0;
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-xs);
+		line-height: 1.55;
+	}
+
+	.consent__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: 1rem;
+	}
+
+	.consent__button {
+		padding: 0.4rem 0.9rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: var(--cg-radius);
+		background: transparent;
+		color: var(--sl-color-text);
+		font: inherit;
+		font-size: var(--sl-text-xs);
+		font-weight: 600;
+		line-height: 1.4;
+		cursor: pointer;
+		transition: background-color 150ms ease, border-color 150ms ease;
+	}
+
+	.consent__button:hover {
+		background: var(--sl-color-gray-6);
+		border-color: var(--sl-color-gray-4);
+	}
+
+	.consent__button--primary {
+		border-color: var(--cg-accent);
+		background: var(--cg-accent);
+		color: #ffffff;
+	}
+
+	.consent__button--primary:hover {
+		background: var(--cg-accent-hover);
+		border-color: var(--cg-accent-hover);
+	}
+
+	.consent__privacy {
+		margin-inline-start: auto;
+		color: var(--sl-color-gray-3);
+		font-size: var(--sl-text-xs);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	.consent__privacy:hover {
+		color: var(--sl-color-text-accent);
+	}
+
+	/* Footer opener — quiet, so it reads as fine print rather than navigation. */
+	.consent-settings {
+		margin-top: 1.5rem;
+	}
+
+	.consent-settings__button {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--sl-color-gray-3);
+		font: inherit;
+		font-size: var(--sl-text-xs);
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+		cursor: pointer;
+	}
+
+	.consent-settings__button:hover {
+		color: var(--sl-color-text-accent);
+	}
+
+	@keyframes consent-in {
+		from {
+			opacity: 0;
+			transform: translateY(0.75rem);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.consent {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	const STORAGE_KEY = 'cg-docs-consent-v1';
+
+	const banner = document.getElementById('cg-consent');
+	if (banner) {
+		const read = () => {
+			try {
+				return localStorage.getItem(STORAGE_KEY);
+			} catch {
+				return null;
+			}
+		};
+
+		const write = (value: string) => {
+			try {
+				localStorage.setItem(STORAGE_KEY, value);
+			} catch {
+				/* Private mode / storage disabled: the choice just isn't remembered. */
+			}
+		};
+
+		// The gtag stub lives in the <head> and is absent when no measurement ID
+		// is configured (local dev), so every call goes through this guard.
+		const gtag = (...args: unknown[]) => {
+			const fn = (window as any).gtag;
+			if (typeof fn === 'function') fn(...args);
+		};
+
+		/** Drops the GA cookies so withdrawal takes effect without a new session. */
+		const clearAnalyticsCookies = () => {
+			const host = location.hostname;
+			const scopes = ['', `; domain=${host}`, `; domain=.${host}`];
+			const registrable = host.split('.').slice(-2).join('.');
+			if (registrable !== host) scopes.push(`; domain=.${registrable}`);
+
+			for (const cookie of document.cookie.split(';')) {
+				const name = cookie.split('=')[0].trim();
+				if (name !== '_ga' && name !== '_gid' && !name.startsWith('_ga_')) continue;
+				for (const scope of scopes) {
+					document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT${scope}`;
+				}
+			}
+		};
+
+		const decide = (granted: boolean) => {
+			write(granted ? 'granted' : 'denied');
+			gtag('consent', 'update', { analytics_storage: granted ? 'granted' : 'denied' });
+			if (!granted) clearAnalyticsCookies();
+			banner.hidden = true;
+		};
+
+		banner.querySelector('[data-consent-accept]')?.addEventListener('click', () => decide(true));
+		banner.querySelector('[data-consent-reject]')?.addEventListener('click', () => decide(false));
+
+		for (const opener of document.querySelectorAll('[data-consent-open]')) {
+			opener.addEventListener('click', () => {
+				banner.hidden = false;
+			});
+		}
+
+		// Undecided visitors get the card; everyone else keeps their choice, which
+		// the <head> script has already replayed into Consent Mode.
+		if (read() === null) banner.hidden = false;
+	}
+</script>

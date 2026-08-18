@@ -7,6 +7,56 @@ import starlightLlmsTxt from 'starlight-llms-txt'
 import starlightOpenAPI, { openAPISidebarGroups } from 'starlight-openapi'
 import { rehypeEagerFirstImage } from './src/plugins/rehype-eager-first-image.mjs';
 
+// Measurement ID of the innfactory.ai GA4 web data stream. docs.company-gpt.com
+// reports into that same stream via cross-domain measurement, so the ID is
+// shared with the main site rather than being a stream of its own. Measurement
+// IDs are public by design (they ship in the page source), hence no secret.
+const GA_MEASUREMENT_ID = 'G-C0PENKMCTH';
+
+/**
+ * Google Consent Mode v2. The tag loads on every page but starts fully denied,
+ * so an undecided visitor is measured cookielessly; src/components/CookieConsent.astro
+ * flips `analytics_storage` once they choose, and this script replays a stored
+ * choice before the first hit so returning visitors are not re-measured cookielessly.
+ */
+const analyticsHead = [
+	{
+		tag: 'script',
+		content: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+window.gtag = gtag;
+gtag('consent', 'default', {
+	ad_storage: 'denied',
+	ad_user_data: 'denied',
+	ad_personalization: 'denied',
+	analytics_storage: 'denied',
+	functionality_storage: 'granted',
+	security_storage: 'granted',
+	wait_for_update: 500,
+});
+try {
+	if (localStorage.getItem('cg-docs-consent-v1') === 'granted') {
+		gtag('consent', 'update', { analytics_storage: 'granted' });
+	}
+} catch (e) {}
+gtag('js', new Date());
+// No config call — and therefore no hits — while developing locally, so the
+// property never sees localhost traffic.
+if (!/^(localhost|127\\.0\\.0\\.1|\\[::1\\])$/.test(location.hostname)) {
+	gtag('config', '${GA_MEASUREMENT_ID}');
+}
+`.trim(),
+	},
+	{
+		tag: 'script',
+		attrs: {
+			src: `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`,
+			async: true,
+		},
+	},
+];
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,6 +73,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			head: [
+				...analyticsHead,
 				{
 					tag: 'script',
 					attrs: {
@@ -72,6 +123,8 @@ export default defineConfig({
 				SocialIcons: './src/components/SocialIcons.astro',
 				PageTitle: './src/components/PageTitle.astro',
 				LanguageSelect: './src/components/LanguageSelect.astro',
+				// Mounts the cookie consent card site-wide; see the component for why.
+				Footer: './src/components/Footer.astro',
 			},
 			logo: {
 				src: './src/assets/logo.svg',

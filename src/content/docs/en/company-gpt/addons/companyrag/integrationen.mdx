@@ -1,0 +1,26 @@
+---
+title: Integrations
+description: Overview of the third-party systems that can be connected to companyRAG – Microsoft SharePoint, Nextcloud, Google Drive, GitHub and web crawl – including authentication.
+---
+
+Integrations are the connections to the third-party systems companyRAG can obtain documents from. An integration is connected once and can then be used by any number of [sources](/en/company-gpt/addons/companyrag/quellen/).
+
+![Integration overview with SharePoint, Nextcloud, Google Drive, GitHub and web crawl](./integrationen.png)
+
+The overview shows the name, the category (storage, development, web) and the connection status for each integration. Connected integrations can be released again via **Disconnect**.
+
+## Available integrations
+
+| Integration | Purpose | Authentication |
+|---|---|---|
+| **Microsoft SharePoint** | Browse and synchronize SharePoint sites and document libraries | Sign in with a Microsoft account |
+| **Nextcloud** | Synchronize files from a self-hosted Nextcloud instance | URL, user name and app password |
+| **Google Drive** | Synchronize files from "My Drive", shared drives and files shared with you | OAuth sign-in with a Google account |
+| **GitHub** | Browse and synchronize repository content | Personal access token |
+| **Web crawl** | Scrape websites and import them as searchable documents | No sign-in required |
+
+:::note
+If an integration is disconnected, files already imported remain in the collections but are no longer updated automatically. If a sign-in expires, connect the integration again to resume synchronization.
+:::
+
+Once an integration is connected, you define the specific folder, repository or sitemap to synchronize under [Sources](/en/company-gpt/addons/companyrag/quellen/). GitHub and SharePoint additionally serve as storage locations for [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/).

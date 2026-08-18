@@ -1,0 +1,18 @@
+---
+title: Audit-Protokoll
+description: Lückenloses Protokoll aller Änderungen und Aktivitäten in companyRAG – für Sicherheit, Nachvollziehbarkeit und Fehlersuche.
+---
+
+Das Audit-Protokoll ist ein lückenloses Protokoll (Logbuch), das alle wichtigen Änderungen und Aktivitäten im RAG-Service aufzeichnet. Es dient Administratoren zur Sicherheit, Nachvollziehbarkeit und zur schnellen Fehlersuche.
+
+Die Übersicht zeigt:
+
+- **Zeitstempel**: Das genaue Datum und die Uhrzeit der Aktivität.
+- **Akteur (Nutzer)**: Wer die Aktion durchgeführt hat (z. B. ein bestimmter Administrator oder ein automatisierter [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/)).
+- **Aktion**: Was genau getan wurde (z. B. „Datei gelöscht", „Integration erstellt", „Sammlung geteilt" oder „API-Schlüssel widerrufen").
+- **Details**: Zusätzliche Informationen zum Ereignis (z. B. der Name der betroffenen Datei oder die ID der geänderten Sammlung).
+- **Suche & Filter**: Ermöglicht es, das Protokoll gezielt nach bestimmten Zeiträumen, Nutzern oder bestimmten Aktionen zu durchsuchen.
+
+:::tip[Hinweis]
+Da API-Schlüssel im Namen ihrer Erstellerin oder ihres Erstellers handeln, erscheinen automatisierte Zugriffe im Protokoll unter dieser Person. Ein eigener Schlüssel pro System hält das Protokoll dadurch aussagekräftig.
+:::

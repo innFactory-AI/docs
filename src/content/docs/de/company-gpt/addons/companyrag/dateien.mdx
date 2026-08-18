@@ -1,0 +1,26 @@
+---
+title: Dateien
+description: Übersicht aller in companyRAG indexierten Dateien mit Sammlung, Größe, Status und Aktionen zum Neuindexieren oder Löschen.
+---
+
+Eine Übersicht aller Dateien, die dem Service hinzugefügt wurden – unabhängig davon, ob sie [manuell hochgeladen](/de/company-gpt/addons/companyrag/hochladen/) oder über eine [Quelle](/de/company-gpt/addons/companyrag/quellen/) synchronisiert wurden.
+
+Die Übersicht enthält:
+
+- **Name**: Dokumentenbezeichnung des Dokuments (teilweise gekürzt – Mouseover-Funktion für Vollanzeige)
+- **Sammlung**: Die Sammlung, die der Datei zugewiesen wurde
+- **Größe**: Dateigröße
+- **Status**: Status des zugehörigen Auftrags
+  - Abgeschlossen: Dokument wurde erfolgreich indexiert
+  - Ausstehend: Auftrag der Indexierung steht noch aus
+  - Fehlgeschlagen: Indexierung nicht erfolgreich
+- **Zuletzt indexiert**: Datum und Zeit des letzten abgeschlossenen Indexierungsauftrags
+- **Aktionen**:
+  - Neu indexieren: Legt einen neuen Auftrag zur Indexierung an
+  - Löschen: Löscht die Datei aus dem Service inklusive zugehöriger Aufträge und indexierter Form
+
+:::note
+Wird eine Datei gelöscht, die über eine Quelle synchronisiert wurde, kann sie beim nächsten Synchronisationslauf erneut angelegt werden. Um Inhalte dauerhaft auszuschließen, passen Sie die [Quelle](/de/company-gpt/addons/companyrag/quellen/) an – etwa über ausgeschlossene Ordner.
+:::
+
+Den Fortschritt laufender Indexierungen sehen Sie unter [Aufträge](/de/company-gpt/addons/companyrag/auftraege/).

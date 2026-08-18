@@ -199,7 +199,25 @@ export default defineConfig({
 									label: 'Addons',
 									translations: { en: 'Add-ons' },
 									items: [
-										{ label: 'companyRAG', translations: { en: 'companyRAG' }, slug: 'company-gpt/addons/companyrag' },
+										{
+												label: 'companyRAG',
+												translations: { en: 'companyRAG' },
+												items: [
+													{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyrag' },
+													{ label: 'Sammlungen', translations: { en: 'Collections' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
+													{ label: 'Strukturierte Daten', translations: { en: 'Structured data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
+													{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
+													{ label: 'OKF-Bundles', translations: { en: 'OKF bundles' }, badge: { text: 'Experimentell', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
+													{ label: 'Dateien', translations: { en: 'Files' }, slug: 'company-gpt/addons/companyrag/dateien' },
+													{ label: 'Hochladen', translations: { en: 'Upload' }, slug: 'company-gpt/addons/companyrag/hochladen' },
+													{ label: 'Quellen', translations: { en: 'Sources' }, slug: 'company-gpt/addons/companyrag/quellen' },
+													{ label: 'Integrationen', translations: { en: 'Integrations' }, slug: 'company-gpt/addons/companyrag/integrationen' },
+													{ label: 'Aufträge', translations: { en: 'Jobs' }, slug: 'company-gpt/addons/companyrag/auftraege' },
+													{ label: 'API-Schlüssel', translations: { en: 'API keys' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
+													{ label: 'Audit-Protokoll', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
+													{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
+												]
+											},
 										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },

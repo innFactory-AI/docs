@@ -1,0 +1,26 @@
+---
+title: Files
+description: Overview of all files indexed in companyRAG with collection, size, status and actions to re-index or delete them.
+---
+
+An overview of all files that have been added to the service – whether they were [uploaded manually](/en/company-gpt/addons/companyrag/hochladen/) or synchronized through a [source](/en/company-gpt/addons/companyrag/quellen/).
+
+The overview contains:
+
+- **Name**: Document name (partially truncated - mouseover shows the full name)
+- **Collection**: The collection the file has been assigned to
+- **Size**: File size
+- **Status**: Status of the associated job
+  - Completed: The document was indexed successfully
+  - Pending: The indexing job is still pending
+  - Failed: Indexing was not successful
+- **Last indexed**: Date and time of the last completed indexing job
+- **Actions**:
+  - Re-index: Creates a new indexing job
+  - Delete: Deletes the file from the service, including associated jobs and its indexed form
+
+:::note
+If you delete a file that was synchronized through a source, it may be created again during the next synchronization run. To exclude content permanently, adjust the [source](/en/company-gpt/addons/companyrag/quellen/) – for example via excluded folders.
+:::
+
+You can follow the progress of running indexing runs under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).

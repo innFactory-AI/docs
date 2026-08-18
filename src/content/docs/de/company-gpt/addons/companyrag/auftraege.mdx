@@ -1,0 +1,27 @@
+---
+title: Aufträge
+description: Indexierungs- und Synchronisationsaufträge in companyRAG mit Status, Fehlerdetails und Aktionen.
+---
+
+Unter **Aufträge** sehen Sie alle Indexierungs- und Synchronisationsvorgänge mit ihrem aktuellen Status. Jeder Upload und jeder Synchronisationslauf einer [Quelle](/de/company-gpt/addons/companyrag/quellen/) erzeugt Aufträge – ein Auftrag pro Datei.
+
+![Auftragsübersicht mit Statusfiltern und Spalten je Auftrag](./auftraege.png)
+
+Die Liste lässt sich nach Status und nach Sammlung filtern. Je Auftrag werden Typ, Datei, Sammlung sowie die Zeitpunkte der Erstellung, des Starts und des Abschlusses angezeigt; fehlgeschlagene Aufträge führen die Ursache in der Spalte **Fehler**.
+
+Status:
+
+- **In Warteschlange**: Das Dokument wird demnächst indexiert
+- **Läuft**: Das Dokument wird gerade indexiert
+- **Abgeschlossen**: Das Dokument wurde indexiert
+- **Abgebrochen**: Der Auftrag wurde abgebrochen
+- **Fehlgeschlagen**: Das Dokument konnte nicht indexiert werden. Weitere Informationen können der Spalte „Fehler" entnommen werden.
+
+Aktionen:
+
+- **Löschen**: Löscht den Auftrag aus der Warteschlange oder dem Verlauf. Status Abgeschlossen → indexierte Datei bleibt bestehen. Status In Warteschlange → die Datei wird nicht indexiert. Laufende Prozesse können nicht gelöscht werden.
+- **Wiederholen**: Legt den Auftrag erneut an, etwa nach einem behobenen Fehler.
+
+:::tip[Hinweis]
+Große Dateien und aktivierte [Bildbeschreibung](/de/company-gpt/addons/companyrag/sammlungen/#bilder-beschreiben) verlängern die Laufzeit deutlich, da jede Seite zusätzlich an ein Vision-Modell gesendet wird. Reine Textdateien sind dagegen in Sekunden indexiert.
+:::

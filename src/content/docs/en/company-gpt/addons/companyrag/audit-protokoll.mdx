@@ -1,0 +1,18 @@
+---
+title: Audit log
+description: A complete record of all changes and activities in companyRAG – for security, traceability and troubleshooting.
+---
+
+The audit log is a complete record (logbook) of all important changes and activities in the RAG service. It provides administrators with security, traceability, and fast troubleshooting.
+
+The overview shows:
+
+- **Timestamp**: The exact date and time of the activity.
+- **Actor (user)**: Who performed the action (e.g. a specific administrator or an automated [API key](/en/company-gpt/addons/companyrag/api-schluessel/)).
+- **Action**: What exactly was done (e.g. "File deleted", "Integration created", "Collection shared", or "API key revoked").
+- **Details**: Additional information about the event (e.g. the name of the affected file or the ID of the modified collection).
+- **Search & filters**: Allows searching the log for specific time periods, users, or specific actions.
+
+:::tip[Note]
+Because API keys act on behalf of the person who created them, automated access appears in the log under that person. Using a separate key per system therefore keeps the log meaningful.
+:::

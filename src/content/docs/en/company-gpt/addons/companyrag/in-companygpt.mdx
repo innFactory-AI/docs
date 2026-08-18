@@ -1,0 +1,83 @@
+---
+title: Using it in CompanyGPT
+description: Connect companyRAG to CompanyGPT via the ai-search MCP server – with an example prompt, content search tools, SQL tools and source references in the answers.
+---
+
+Via the [MCP Server](/en/company-gpt/integrationen/mcp-server/) `ai-search`, the RAG service can be connected to CompanyGPT to search indexed documents across all collections available to the user (see [similarity search](/en/prompt-engineering/prompt-techniken/rag/#rag-workflow-for-file-processing)).
+
+For easier use, the MCP server can be added to an [agent](/en/company-gpt/agenten/).
+
+## Example prompt from the collection
+
+Every collection provides a prepared system prompt with the technical name of the collection already filled in. You can reach it via the terminal icon on the collection and copy it straight into your agent.
+
+![System prompt of a collection with a minimal and a full variant](./beispiel-prompt.png)
+
+- **Minimal prompt**: A short instruction that mainly ensures the agent always searches and uses the correct collection.
+- **Full prompt**: An extensive variant that additionally specifies the answer format and source references. It standardizes the output and noticeably improves the quality of the answers.
+
+:::tip[Note]
+Start with the full prompt. Without a format specification, answers turn out brief and contain no sources.
+:::
+
+## Selecting tools
+
+Add the `ai-search` MCP server to the agent, then enable the tools that match the type of collection.
+
+![Tool selection of the ai-search MCP server with content search tools enabled](./agent-tools-ai-search.png)
+
+### Content search tools for document collections
+
+1. **search_content**:
+   Semantic similarity search for general queries. The default choice for most user questions.
+   Required parameters: `query` (search text), `source` (technical name of the collection)
+   Optional: `topK` (number of results: default 5, max. 20)
+
+2. **find_content_by_source**:
+   Retrieve all content from a specific document. Use for questions about individual documents (e.g. "What does Dokumentation.md say?").
+   Required parameters: `source` (document name), `collection` (technical name of the collection)
+
+3. **find_content_by_metadata**:
+   Filter content by metadata attributes. Use for filtered results (e.g. "All urgent tasks from 2026").
+   Required parameters: `filter` (JSON object with operators `$and`, `$or`, `$not`), `collection` (technical name of the collection)
+
+### SQL tools for datasets and structured data
+
+For [dataset collections](/en/company-gpt/addons/companyrag/datensaetze/) and [structured data from documents](/en/company-gpt/addons/companyrag/strukturierte-daten/), the SQL-based tools are enabled instead of the content search tools:
+
+![Tool selection with SQL tools enabled for a dataset collection](./agent-sql-tools.png)
+
+- **execute_sql**: Runs a SQL query across the tables of the collection.
+  Required parameters: `collection` (technical name of the collection, used for access control), `sql` (the SELECT query)
+  Optional: `limit` (maximum number of rows: default 100, max. 10000)
+- **get_schema**: Reads the schema of the collection – which tables and columns exist.
+- **list_datasets**: Lists the available datasets.
+- **describe_table**: Describes a single table in detail.
+- **get_sample**: Returns sample rows of a table to assess values and formats.
+- **save_transform** and **reload_dataset**: Further tools for saving transformations and reloading a dataset.
+
+:::note
+Only SELECT statements are allowed. Writing statements such as `INSERT`, `UPDATE`, `DELETE`, `DROP` or `CREATE` are rejected. Rows are added exclusively through the ingestion endpoint of a dataset collection.
+:::
+
+The full description of each tool is shown by the info icon in the tool library.
+
+## Answers with sources
+
+![Agent answer with references to the documents found](./agent-antwort-quellen.png)
+
+The chunks used are visible in the conversation, so it remains traceable what an answer is based on. If the prompt requires source references, the agent additionally lists the documents used at the end of the answer.
+
+:::note
+A clickable source link to the original file is only created for documents that were synchronized through a [source](/en/company-gpt/addons/companyrag/quellen/) – for example from SharePoint. For manually uploaded files the source is named but not linked.
+:::
+
+For dataset collections the agent runs the query and presents the result as a table – including across several tables with joins.
+
+![Agent answer with an executed SQL query and a result table](./agent-sql-antwort.png)
+
+:::tip[Note]
+Make sure the correct collection is entered in the prompt. If an agent points to a different collection, the answer stays empty or unsuitable even though the data is present.
+:::
+
+A step-by-step guide to setting up a search agent with a suitable instruction can be found in the tutorial **[Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/).**

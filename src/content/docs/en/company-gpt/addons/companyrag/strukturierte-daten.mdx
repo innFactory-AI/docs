@@ -1,0 +1,42 @@
+---
+title: Structured data
+description: Extract typed fields from recurring document types into a schema you define and query them via SQL – in addition to semantic search.
+---
+
+A pure RAG search finds passages of text, but it cannot calculate sums, quantities or rankings. For recurring document types – invoices, contracts, inspection reports – companyRAG can therefore additionally extract **structured data** from your documents: a language model fills a table schema you define, which is then queryable via SQL.
+
+This gives you two access paths to the same collection, and they can be combined: semantic search across the text, and structured queries across the extracted fields.
+
+Enable the **Extract structured data** *(BETA)* option when [creating the collection](/en/company-gpt/addons/companyrag/sammlungen/#creating-a-collection).
+
+:::note
+This feature is in beta. For critical evaluations, spot-check the extracted values against the original documents.
+:::
+
+## Defining the schema
+
+![Schema definition with table, columns and data types](./extraktion-schema.png)
+
+The simplest case is one table with one row per document. For each column you define a name and a data type, and optionally mark whether the field is required or serves as a key.
+
+Available data types: `text`, `integer`, `numeric`, `boolean`, `timestamp`, `date`.
+
+Names must consist of lowercase letters, digits and underscores and start with a letter. Every row automatically receives the fields `_id` (UUID) and `_ingested_at` (timestamp).
+
+You can also describe which information should be extracted, and limit the number of pages evaluated per document – for example to the first five pages, when the relevant information is always at the beginning. This reduces cost and runtime.
+
+## Multiple tables and relationships
+
+For 1:n relationships – such as an invoice with several line items – add a second table, mark its key column there, and connect a column of the first table to it.
+
+![Connection between two tables via a key column](./extraktion-beziehung.png)
+
+The connection is used as a join hint for queries. One document then produces several rows in the line-item table, while the header data is stored once in the first table.
+
+:::note
+Deduplication across documents is based on exact matches: different spellings of the same value produce separate rows. Foreign key values are stored exactly as extracted – there is no automatic resolution.
+:::
+
+## Querying
+
+The extracted tables are queried via the SQL tools of the `ai-search` MCP server, just like [dataset collections](/en/company-gpt/addons/companyrag/datensaetze/). Which tools an agent needs for this is described in [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/).

@@ -1,0 +1,24 @@
+---
+title: Upload
+description: Manually upload and index single or multiple files into a collection – including an overview of the supported file formats.
+---
+
+Use **Upload** to add single or multiple files directly to a collection. This is the fastest way to test a set of documents or to add one-off files. For recurring content, use a [source](/en/company-gpt/addons/companyrag/quellen/) instead.
+
+!["Upload documents" page with collection selection and drop area for files](./hochladen.png)
+
+Steps:
+
+1. Select the **collection** the documents should be added to.
+2. Drag the files into the drop area or select them by clicking.
+3. The upload is created as a job and indexed; you can follow its status under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).
+
+## Supported formats
+
+`.pdf`, `.txt`, `.md`, `.docx`, `.pptx`, `.xlsx`, `.xls`, `.odt`, `.ods`, `.odp`, `.html`, `.htm`, `.csv`, `.tsv`, `.parquet`, `.json`, `.eml`
+
+:::note
+Manually uploaded documents have no source link to an original system. If your agents should link to the original file in their answers, synchronize the documents through a [source](/en/company-gpt/addons/companyrag/quellen/) such as SharePoint instead.
+:::
+
+For tabular data that should be queried via SQL, `.csv`, `.xlsx` and `.parquet` are better placed in a [dataset collection](/en/company-gpt/addons/companyrag/datensaetze/) than in a document collection.

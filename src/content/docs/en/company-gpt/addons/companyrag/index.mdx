@@ -1,0 +1,56 @@
+---
+title: companyRAG
+description: The companyRAG addon makes large volumes of documents from SharePoint, Nextcloud, Google Drive, GitHub and the web searchable – as semantic search, as structured data, and as datasets for your agents.
+---
+
+With the companyRAG addon, you can make large volumes of documents available to your agents via the MCP interface. Documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/) methodology. There is no limit on the length of individual documents or their total number.
+
+Indexing can be implemented as a one-time or recurring process, depending on your use case. In addition to classic semantic search, companyRAG can also [extract structured data](/en/company-gpt/addons/companyrag/strukturierte-daten/) from the same documents and make [tabular datasets](/en/company-gpt/addons/companyrag/datensaetze/) queryable via SQL.
+
+companyRAG is available to appropriately authorized users in the **Knowledge** area.
+
+## Types of collections
+
+All content in companyRAG lives in collections. The type of a collection determines how its content is stored and queried. It is shown as a badge on every collection in the overview.
+
+| Type | Content | Query |
+|---|---|---|
+| **Documents** | Documents from upload, SharePoint, Nextcloud, Google Drive, GitHub or web crawl | Semantic search and full-text search; optionally also [structured fields](/en/company-gpt/addons/companyrag/strukturierte-daten/) |
+| **Dataset** | Tables from CSV, Excel and Parquet files, or via an ingestion endpoint | SQL queries across one or more tables, including joins |
+| **OKF bundle** | Markdown knowledge collections in the [Open Knowledge Format](/en/company-gpt/addons/companyrag/okf-bundles/) in GitHub or SharePoint | Same as a document collection |
+
+![Collection overview with type, visibility and role badges](./sammlungen-uebersicht.png)
+
+## companyRAG user interface
+
+The user interface allows you to add single or multiple files, or entire data sources, for indexing.
+The interface is divided into the following areas:
+
+import sidebarImg from "./rag-sidebar-neu.png";
+
+<div style="display: flex; gap: 2rem; align-items: flex-start;">
+  <img src={sidebarImg.src} alt="companyRAG sidebar" style="width: 60px; flex-shrink: 0;" />
+  <div>
+
+- [Collections](/en/company-gpt/addons/companyrag/sammlungen/) – storage locations for documents and permissions
+- [Files](/en/company-gpt/addons/companyrag/dateien/) – all indexed files with their status
+- [Upload](/en/company-gpt/addons/companyrag/hochladen/) – index single or multiple files manually
+- [Sources](/en/company-gpt/addons/companyrag/quellen/) – automatic synchronization from connected systems
+- [Integrations](/en/company-gpt/addons/companyrag/integrationen/) – connections to SharePoint, Nextcloud, Google Drive, GitHub and web crawl
+- [Jobs](/en/company-gpt/addons/companyrag/auftraege/) – indexing jobs and their status
+- [API keys](/en/company-gpt/addons/companyrag/api-schluessel/) *(administrators only)*
+- [Audit log](/en/company-gpt/addons/companyrag/audit-protokoll/) *(administrators only)*
+
+</div>
+</div>
+
+## Further topics
+
+- [Structured data from documents](/en/company-gpt/addons/companyrag/strukturierte-daten/) – extract typed fields from recurring document types
+- [Dataset collections](/en/company-gpt/addons/companyrag/datensaetze/) – import tables or fill them live via an endpoint
+- [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/) – knowledge collections as Markdown in GitHub or SharePoint
+- [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/) – the `ai-search` MCP server, its tools and agents
+
+## Downloads
+
+- [companyRAG Windows Syncer 2.6.2](/downloads/companyRAG-syncer-windows-v2.6.2.zip)

@@ -1,0 +1,27 @@
+---
+title: API-Schlüssel
+description: API-Schlüssel für Desktop-Apps, Skripte und Integrationen in companyRAG erstellen, verwenden und widerrufen – inklusive Hinweisen zum nutzerbezogenen Zugriff.
+---
+
+Hier können Administratoren API-Schlüssel erstellen und verwalten, um andere Programme und eigene Tools sicher mit dem RAG-Service zu verbinden – etwa den [Windows Syncer](/de/company-gpt/addons/companyrag/#downloads), ein Skript oder den Ingestion-Endpunkt einer [Datensatzsammlung](/de/company-gpt/addons/companyrag/datensaetze/).
+
+![Übersicht der API-Schlüssel mit Dialog zum Erstellen eines neuen Schlüssels](./api-schluessel.png)
+
+Die Übersicht zeigt:
+
+- **Name**: Der frei gewählte Name des Schlüssels (z. B. „Intranet-Suche"), um ihn später zuzuordnen.
+- **Schlüssel**: Der gekürzte API-Schlüssel (z. B. `sk-...1a2b`), um ihn zu identifizieren.
+- **Erstellt am / Zuletzt verwendet**: Zeigt, wann der Schlüssel erstellt und wann er das letzte Mal für eine Abfrage genutzt wurde.
+- **Aktionen**:
+  - **Erstellen**: Generiert einen neuen Schlüssel. *(Achtung: Der Schlüssel wird nur einmalig direkt nach der Erstellung komplett angezeigt. Kopieren Sie ihn sofort an einen sicheren Ort.)*
+  - **Widerrufen**: Sperrt den Schlüssel sofort und unwiderruflich. Alle damit verknüpften Programme verlieren sofort den Zugriff.
+
+## Nutzerbezogener Zugriff
+
+Ein API-Schlüssel ist an die Person gebunden, die ihn erstellt hat, und handelt innerhalb der RAG-Verwaltung in deren Namen. Damit gelten für alle Aufrufe genau die Sammlungen und Berechtigungen dieser Person.
+
+:::danger
+Teilen Sie API-Schlüssel nicht mit Kolleginnen und Kollegen – jede Person und jedes System sollte einen eigenen Schlüssel erstellen. Andernfalls können über die Schnittstelle Inhalte zugänglich werden, die die empfangende Person selbst nicht sehen dürfte.
+:::
+
+Alle Erstellungen und Widerrufe werden im [Audit-Protokoll](/de/company-gpt/addons/companyrag/audit-protokoll/) aufgezeichnet. Die verfügbaren Endpunkte beschreibt die [companyRAG API-Referenz](/de/api/company-rag-api/).

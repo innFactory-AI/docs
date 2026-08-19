@@ -1,0 +1,53 @@
+---
+title: companyTRANSLATE
+description: Übersetzungsanwendung im Microsoft-Tenant mit Textübersetzung, Dokumentübersetzung und Glossarverwaltung für einheitliche Terminologie.
+---
+
+companyTRANSLATE ist eine Übersetzungsanwendung, die wie der CompanyGPT im Microsoft-Tenant des Unternehmens betrieben wird. Sie unterstützt Text- und Dokumentübersetzung sowie ein zweistufiges Glossarsystem.
+
+Erreichbar ist companyTRANSLATE für entsprechend berechtigte Nutzer im Bereich **Übersetzen**.
+
+## Zugang und Authentifizierung
+
+Der Zugang erfolgt ausschließlich über Microsoft Single Sign-On (SSO) mit dem bestehenden Firmenkonto. Es werden keine separaten Zugangsdaten benötigt.
+
+## Übersetzungsdienste
+
+Die eigentliche Übersetzung erfolgt über die Google Translation API und die Azure Translation API. Die zu übersetzenden Inhalte werden dafür an den jeweiligen Dienst übermittelt.
+
+## Bereiche der Anwendung
+
+import sidebarImg from "./translate-sidebar.png";
+
+<div style="display: flex; gap: 2rem; align-items: flex-start;">
+  <img src={sidebarImg.src} alt="companyTRANSLATE Seitenleiste" style="width: 60px; flex-shrink: 0;" />
+  <div>
+
+- [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – Textübersetzung in Echtzeit, bis zu 5.000 Zeichen
+- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – PDF-, DOCX- und PPTX-Dateien bis 40 MB unter Beibehaltung der Formatierung
+- [Glossare](/de/company-gpt/addons/company-translate/glossare/) – verbindliche Terminologie für Text- und Dokumentübersetzung
+
+</div>
+</div>
+
+:::note
+Die Seitenleiste enthält weitere Einträge, die hier noch nicht dokumentiert sind.
+:::
+
+## Unterstützte Formate und Grenzen
+
+| Bereich | Eingabe | Grenze |
+|---|---|---|
+| **Text übersetzen** | Direkte Eingabe in der Oberfläche | 5.000 Zeichen pro Übersetzung |
+| **Dokument übersetzen** | PDF, DOCX, PPTX | 40 MB pro Datei |
+| **Glossare** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | 10 MB je Glossar; TMX wird automatisch in XLIFF konvertiert |
+
+## Übersetzungshistorie
+
+Alle Dokumentübersetzungen werden unter **Letzte Übersetzungen** protokolliert, mit Zielsprache, Dateigröße und Zeitpunkt.
+
+## Weiterführende Themen
+
+- [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – Sprachwahl, Spracherkennung und Glossaranwendung
+- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – Upload, Statusverfolgung und Download
+- [Glossare](/de/company-gpt/addons/company-translate/glossare/) – Aufbau, Upload und Anwendung von Glossaren

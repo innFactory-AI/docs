@@ -237,7 +237,16 @@ export default defineConfig({
 										},
 										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
-										{ label: 'companyTRANSLATE', translations: { en: 'companyTRANSLATE' }, slug: 'company-gpt/addons/company-translate' },
+										{
+											label: 'companyTRANSLATE',
+											translations: { en: 'companyTRANSLATE' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/company-translate' },
+												{ label: 'Text übersetzen', translations: { en: 'Translate text' }, slug: 'company-gpt/addons/company-translate/text-uebersetzen' },
+												{ label: 'Dokument übersetzen', translations: { en: 'Translate document' }, slug: 'company-gpt/addons/company-translate/dokument-uebersetzen' },
+												{ label: 'Glossare', translations: { en: 'Glossaries' }, slug: 'company-gpt/addons/company-translate/glossare' },
+											]
+										},
 										{ label: 'companyTRANSCRIBE', translations: { en: 'companyTRANSCRIBE' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/company-transcribe' },
 										{ label: 'companyM365', translations: { en: 'companyM365' }, slug: 'company-gpt/addons/companym365' },
 									]

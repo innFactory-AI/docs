@@ -1,0 +1,53 @@
+---
+title: companyTRANSLATE
+description: Translation app within the Microsoft tenant — text translation, document translation and glossary management for consistent terminology.
+---
+
+companyTRANSLATE is a translation application that, like CompanyGPT, runs within the company's Microsoft tenant. It supports text and document translation as well as a two-level glossary system.
+
+companyTRANSLATE is available to suitably authorised users in the **Translate** area.
+
+## Access and Authentication
+
+Access is exclusively via Microsoft Single Sign-On (SSO) using the existing company account. No separate credentials are required.
+
+## Translation Services
+
+The translation itself is performed via the Google Translation API and the Azure Translation API. The content to be translated is transmitted to the respective service for this purpose.
+
+## Areas of the Application
+
+import sidebarImg from "./translate-sidebar.png";
+
+<div style="display: flex; gap: 2rem; align-items: flex-start;">
+  <img src={sidebarImg.src} alt="companyTRANSLATE sidebar" style="width: 60px; flex-shrink: 0;" />
+  <div>
+
+- [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – real-time text translation, up to 5,000 characters
+- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – PDF, DOCX and PPTX files up to 40 MB with formatting preserved
+- [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – binding terminology for text and document translation
+
+</div>
+</div>
+
+:::note
+The sidebar contains further entries that are not documented here yet.
+:::
+
+## Supported Formats and Limits
+
+| Area | Input | Limit |
+|---|---|---|
+| **Translate text** | Direct entry in the interface | 5,000 characters per translation |
+| **Translate document** | PDF, DOCX, PPTX | 40 MB per file |
+| **Glossaries** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | 10 MB per glossary; TMX is converted to XLIFF automatically |
+
+## Translation History
+
+All document translations are logged under **Letzte Übersetzungen** (recent translations) with target language, file size and timestamp.
+
+## Related Topics
+
+- [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – language selection, detection and glossary application
+- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – upload, status tracking and download
+- [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – structure, upload and application of glossaries

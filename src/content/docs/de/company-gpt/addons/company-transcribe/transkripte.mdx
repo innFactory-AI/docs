@@ -1,0 +1,62 @@
+---
+title: Transkripte bearbeiten
+description: Detailansicht eines Transkripts mit Metadaten, Audiowiedergabe, Textkorrektur, Sprecherzuweisung und Export als Markdown-Datei.
+---
+
+Ein Klick auf einen Eintrag in der Übersicht **Transkripte** öffnet die Detailansicht. Dort sehen Sie die Metadaten der Aufnahme, können das Audio abspielen, den erkannten Text korrigieren, Sprecher benennen und das Ergebnis exportieren.
+
+## Metadaten der Aufnahme
+
+Der Kopfbereich der Detailansicht führt die technischen Angaben zur Transkription auf.
+
+![Detailansicht eines Transkripts mit Metadaten, Audiospieler und geöffnetem Bearbeitungsmodus](./transcribe-transkript.png)
+
+| Feld | Inhalt |
+|---|---|
+| **Status** | `In Bearbeitung`, solange transkribiert wird, danach `Abgeschlossen` |
+| **Erstellt** | Zeitpunkt, zu dem die Aufnahme angelegt wurde |
+| **Abgeschlossen** | Zeitpunkt, zu dem das Transkript fertig war |
+| **Verarbeitungsdauer** | Dauer des Transkriptionslaufs |
+| **Audiolänge** | Länge der Aufnahme |
+| **Erstellt von** | Benutzer, dem das Transkript gehört |
+| **Sprache** | Sprache der Aufnahme |
+| **Sprechererkennung** | `Aktiv` oder `Aus`, je nach Einstellung bei der Aufnahme |
+
+Solange die Transkription läuft, steht an der Stelle des Textes der Hinweis „Wird transkribiert… Je nach Länge der Aufnahme kann dies einige Minuten dauern.“ Über **Bearbeiten** im Kopfbereich ändern Sie Titel und Beschreibung des Eintrags.
+
+:::note
+Im Beispiel oben steht im Feld **Sprache** ein Gedankenstrich, obwohl die Aufnahme auf Deutsch erfolgte. Ob und wann die Sprache gefüllt wird — und ob sie sich beim Anlegen einer Aufnahme auswählen lässt — ist in der zugrunde liegenden Aufnahme nicht zu sehen und sollte vor einer Veröffentlichung geprüft werden.
+:::
+
+## Audio abspielen
+
+Unter **Audio** steht ein Player, über den sich die Aufnahme jederzeit erneut anhören lässt — hilfreich, um eine unklare Stelle im Transkript gegen das Original zu prüfen.
+
+## Text korrigieren
+
+Der Abschnitt **Transkript** bietet zwei Aktionen:
+
+- **Bearbeiten** — schaltet den Text in ein bearbeitbares Feld. Die Aktion wechselt dabei auf **Fertig**, mit dem Sie die Änderung übernehmen.
+- **Synchronisieren** — gleicht Text und Audio wieder ab.
+
+Typischerweise korrigieren Sie hier Eigennamen und Fachbegriffe, die die Erkennung falsch verstanden hat — etwa ein „App“, das eigentlich „API“ heißen sollte. Die Korrektur wirkt sich auch auf den Export aus.
+
+## Sprecher benennen
+
+Wurde die Aufnahme mit aktiver Sprechererkennung erstellt, erscheint über dem Text der Block **Sprecher** mit einem Eingabefeld je erkannter Stimme (`Sprecher 1`, `Sprecher 2`, `Sprecher 3`, …).
+
+![Block „Sprecher“ mit einem Eingabefeld je erkannter Stimme](./transcribe-sprecher.png)
+
+Tragen Sie dort die tatsächlichen Namen ein. Die Zuweisung zieht sich anschließend durch das gesamte Transkript: Jeder Redebeitrag ist mit dem vergebenen Namen und einem Zeitstempel überschrieben. Aus der anonymen Nummerierung wird so ein lesbares Gesprächsprotokoll — und die Namen stehen auch in der exportierten Datei.
+
+:::tip[Hinweis]
+Die Sprechererkennung unterscheidet bis zu 35 Stimmen je Aufnahme. Benennen Sie die Sprecher einmal zentral in diesem Block, anstatt einzelne Abschnitte im Text zu überschreiben.
+:::
+
+## Als Markdown exportieren
+
+Die Schaltfläche **.md herunterladen** oben rechts speichert das vollständige Transkript als Markdown-Datei. Bei mehreren Sprechern enthält die Datei die vergebenen Namen als Überschriften, sodass sie sich unmittelbar weiterverarbeiten lässt — etwa als Grundlage für ein Protokoll oder zur Ablage in einer Wissenssammlung.
+
+## Wie geht es weiter?
+
+Statt das Transkript manuell weiterzuverarbeiten, können Sie es direkt im Chat auswerten lassen: [Zugriff über den CompanyGPT](/de/company-gpt/addons/company-transcribe/mcp-integration/).

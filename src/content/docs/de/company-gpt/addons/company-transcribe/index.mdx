@@ -1,0 +1,47 @@
+---
+title: companyTRANSCRIBE
+description: DSGVO-konforme Transkriptionsanwendung im Microsoft-Tenant mit Audio- und Videotranskription, Sprechererkennung, Transkriptionshistorie, Sprachausgabe und Anbindung an den CompanyGPT.
+beta: true
+---
+
+:::tip[Beta]
+companyTRANSCRIBE befindet sich derzeit in der Beta-Phase. Einzelne Funktionen können sich noch ändern oder unter Umständen nicht wie erwartet funktionieren.
+:::
+
+companyTRANSCRIBE ist eine Transkriptionsanwendung, die wie der CompanyGPT vollständig im Microsoft-Tenant des Unternehmens betrieben wird. Sie transkribiert Audio- und Videodateien sowie Aufnahmen direkt aus dem Browser und trennt dabei automatisch die einzelnen Sprecher. Umgekehrt lässt sich mit ihr aus Text auch wieder Audio erzeugen. Die Verarbeitung erfolgt über den Azure Speech-Dienst im eigenen Tenant — es werden keine Daten an Drittanbieter außerhalb der Microsoft-Cloud übermittelt, sodass die Anforderungen der DSGVO erfüllt werden.
+
+Sie finden die Anwendung in der Seitenleiste des CompanyGPT unter **Transkribieren**. Der Bereich ist für alle Benutzer mit den entsprechenden Berechtigungen sichtbar, sofern er im Tenant ausgerollt ist.
+
+## Zugang und Authentifizierung
+
+Der Zugang erfolgt ausschließlich über Microsoft Single Sign-On (SSO) mit dem bestehenden Firmenkonto. Es werden keine separaten Zugangsdaten benötigt.
+
+## Aufbau der Anwendung
+
+Die Startseite **Transkripte** listet alle Aufnahmen auf, die Sie selbst aufgenommen oder hochgeladen haben. Über die beiden Schaltflächen oben rechts erreichen Sie die zwei Wege, auf denen ein Transkript entsteht: **Hochladen** für vorhandene Dateien und **Aufnehmen** für eine Aufnahme direkt im Browser.
+
+![Übersicht der eigenen Transkripte mit den Schaltflächen „Hochladen“ und „Aufnehmen“](./transcribe-liste.png)
+
+Jeder Eintrag zeigt Titel, Erstellungszeitpunkt, Audiolänge und den Ersteller. Über die Symbole am rechten Rand öffnen Sie das Transkript oder löschen den Eintrag. Die Seitenleiste der Anwendung führt daneben zu den **Sprachausgaben**, in denen die aus Text erzeugten Audiodateien verwaltet werden.
+
+## Die Bereiche im Überblick
+
+- **[Aufnehmen und transkribieren](/de/company-gpt/addons/company-transcribe/aufnehmen/)** — Audioquelle und Sprechererkennung wählen, im Browser aufnehmen oder eine Datei hochladen.
+- **[Transkripte bearbeiten](/de/company-gpt/addons/company-transcribe/transkripte/)** — Metadaten, Textkorrektur, Sprecherzuweisung und Export als Markdown.
+- **[Sprachausgaben](/de/company-gpt/addons/company-transcribe/sprachausgaben/)** — Text mit einer KI-Stimme in Audio umwandeln.
+- **[Zugriff über den CompanyGPT](/de/company-gpt/addons/company-transcribe/mcp-integration/)** — Transkripte und Sprachausgaben per MCP-Server im Chat nutzen.
+
+## Unterstützte Formate und Grenzen
+
+| Aspekt | Wert |
+|---|---|
+| Audio- und Videoformate beim Upload | z. B. `.mp3`, `.wav`, `.m4a`, `.mp4`, `.webm` |
+| Maximale Dateigröße beim Upload | 75 MB |
+| Sprechererkennung | bis zu 35 Stimmen je Aufnahme |
+| Export | sprecherbeschriftete Markdown-Datei (`.md`) |
+
+Bei Videodateien wird die Tonspur automatisch extrahiert. Die Transkription läuft als Auftrag im Hintergrund; der Fortschritt ist in der Anwendung sichtbar.
+
+## Datenhaltung
+
+Alle Transkriptionen werden in einer benutzerbezogenen Historie gespeichert und können dort eingesehen, bearbeitet oder gelöscht werden. Sämtliche Daten verbleiben in der Microsoft-Cloud des Unternehmens.

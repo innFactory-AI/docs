@@ -247,7 +247,18 @@ export default defineConfig({
 												{ label: 'Glossare', translations: { en: 'Glossaries' }, slug: 'company-gpt/addons/company-translate/glossare' },
 											]
 										},
-										{ label: 'companyTRANSCRIBE', translations: { en: 'companyTRANSCRIBE' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/company-transcribe' },
+										{
+											label: 'companyTRANSCRIBE',
+											translations: { en: 'companyTRANSCRIBE' },
+											badge: { text: 'Beta', variant: 'caution' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/company-transcribe' },
+												{ label: 'Aufnehmen und transkribieren', translations: { en: 'Recording and transcribing' }, slug: 'company-gpt/addons/company-transcribe/aufnehmen' },
+												{ label: 'Transkripte bearbeiten', translations: { en: 'Editing transcripts' }, slug: 'company-gpt/addons/company-transcribe/transkripte' },
+												{ label: 'Sprachausgaben', translations: { en: 'Voiceovers' }, slug: 'company-gpt/addons/company-transcribe/sprachausgaben' },
+												{ label: 'Zugriff über den CompanyGPT', translations: { en: 'Access from CompanyGPT' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
+											]
+										},
 										{ label: 'companyM365', translations: { en: 'companyM365' }, slug: 'company-gpt/addons/companym365' },
 									]
 								},

@@ -1,0 +1,50 @@
+---
+title: Editing presentations
+description: Reworking and extending an existing PowerPoint presentation in CompanyGPT – adjusting the agenda, adding slides, keeping design and font intact.
+---
+
+Presentations can not only be created from scratch but also **reworked from an existing deck**. You upload the `.pptx` file into the chat, the agent reads the slides together with their layout and changes exactly what you name. Design, font and logo of the original are preserved.
+
+## The workflow
+
+1. **Upload the presentation.** The file is attached to the message; the upload runs in the background.
+2. **Ask for a review.** A good start is a question rather than an instruction, for example *"Does the agenda match the content?"*. The agent reads the deck and answers with an assessment.
+3. **Approve the change.** Only then comes the instruction – something like *"Adjust the agenda."* The agent returns the reworked file as a download.
+4. **Ask for content improvements.** Asked how the content could be improved, the agent answers with a list of suggestions that you can adopt individually or as a whole.
+
+In the example a training presentation grows this way from an agenda with four items to a deck of **22 slides**, extended by "Prompt engineering: before and after", a hands-on exercise, the key takeaways and an outlook.
+
+![Slide 22 of the reworked presentation in PowerPoint, in the design of the original file with logo and speaker notes](./files-ppt-ergebnis.png)
+
+## Before larger changes: raise the step limit
+
+Rebuilding a whole presentation consists of many individual tool calls – read slide, set fields, append slides, check result. The default value for the **maximum agent steps** is not sufficient for that.
+
+![Chat with a long sequence of set_powerpoint_slide_fields calls and the advanced agent settings](./files-ppt-werkzeugaufrufe.png)
+
+:::note
+Raise **Advanced → maximum agent steps** before the request – to **100** in the recording. If the agent hits the limit it stops mid-way and the presentation is left half-finished. See [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/#maximum-agent-steps).
+:::
+
+## What the agent corrects on its own
+
+During extensive rebuilds the agent works partly in parallel and notices itself when something gets lost. In the recording it reports two such cases and fixes them:
+
+- Some of the changes are not accepted by the tool **because of an overly strict field format** – the agent repeats them in the accepted format (multi-line text fields).
+- Some changes are lost through **concurrent write access** – the agent then corrects the affected slides one after another.
+
+Both happen without intervention, but they lengthen the run. That is another reason to set the step limit generously beforehand.
+
+## Limits
+
+:::caution
+Text fields with an **image** underneath them cannot be processed by companyFILES. Those slides have to be finished by hand after the edit.
+:::
+
+Beyond that the same applies as elsewhere: the result is a very advanced draft, not a finished presentation. Individual slides still need work on wording and arrangement afterwards. The value lies in the groundwork – structure, content and design are in place, consistently in the design of the original file.
+
+## Templates as a starting point
+
+Instead of an uploaded file, a stored PowerPoint template can serve as the starting point. It then lives permanently in companyFILES and does not have to be attached every time – see [Templates](/en/company-gpt/addons/companyfiles/vorlagen/).
+
+Next: [Templates](/en/company-gpt/addons/companyfiles/vorlagen/).

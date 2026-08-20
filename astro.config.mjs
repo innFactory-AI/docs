@@ -235,7 +235,20 @@ export default defineConfig({
 												{ label: 'Library Sync', translations: { en: 'Library Sync' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
 											]
 										},
-										{ label: 'companyFILES', translations: { en: 'companyFILES' }, slug: 'company-gpt/addons/companyfiles' },
+										{
+											label: 'companyFILES',
+											translations: { en: 'companyFILES' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyfiles' },
+												{ label: 'Die Oberfläche', translations: { en: 'The interface' }, slug: 'company-gpt/addons/companyfiles/oberflaeche' },
+												{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/addons/companyfiles/einstellungen' },
+												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyfiles/agent' },
+												{ label: 'Dokumente erstellen', translations: { en: 'Creating documents' }, slug: 'company-gpt/addons/companyfiles/dokumente-erstellen' },
+												{ label: 'Visualisierungen', translations: { en: 'Visualizations' }, slug: 'company-gpt/addons/companyfiles/visualisierungen' },
+												{ label: 'Präsentationen bearbeiten', translations: { en: 'Editing presentations' }, slug: 'company-gpt/addons/companyfiles/praesentationen' },
+												{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'company-gpt/addons/companyfiles/vorlagen' },
+											]
+										},
 										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{
 											label: 'companyTRANSLATE',

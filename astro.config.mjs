@@ -259,6 +259,16 @@ export default defineConfig({
 												{ label: 'Zugriff über den CompanyGPT', translations: { en: 'Access from CompanyGPT' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
 											]
 										},
+										{
+											label: 'companyKNOWLEDGE',
+											translations: { en: 'companyKNOWLEDGE' },
+											badge: { text: 'Experimentell', variant: 'caution' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyknowledge' },
+												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyknowledge/agent' },
+												{ label: 'Wissen erzeugen und pflegen', translations: { en: 'Creating and maintaining knowledge' }, slug: 'company-gpt/addons/companyknowledge/wissen-erzeugen' },
+											]
+										},
 										{ label: 'companyM365', translations: { en: 'companyM365' }, slug: 'company-gpt/addons/companym365' },
 									]
 								},

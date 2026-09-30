@@ -18,6 +18,10 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## OpenAI
 
+### Die GPT-6-Familie
+
+GPT-6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Astra** (maximale Leistungsfähigkeit), **Sol** (ausgewogen) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
+
 ### gpt-6-sol
 
 - **Für:** anspruchsvolle Aufgaben mit starker Intelligenz zu fairen Kosten

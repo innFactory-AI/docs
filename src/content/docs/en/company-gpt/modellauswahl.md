@@ -18,6 +18,10 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## OpenAI
 
+### The GPT-6 family
+
+GPT-6 is available in three tiers. They belong to the same generation and differ in how much reasoning depth, speed, and cost you get: **Astra** (maximum capability), **Sol** (balanced), and **Luna** (fastest and most economical). Choose the tier based on the complexity of the task, not out of habit.
+
 ### gpt-6-sol
 
 - **For:** demanding tasks with strong intelligence at fair cost

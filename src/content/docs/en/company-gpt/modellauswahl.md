@@ -18,6 +18,18 @@ Simply select "auto" in the OpenAI model selection to activate CompanyGPT's dyna
 
 ## OpenAI
 
+### gpt-6-sol
+
+- **For:** demanding tasks with strong intelligence at fair cost
+- **When:** agentic coding, multi-step development tasks, complex workflows
+- **Why:** the balanced mid-range model of the GPT-6 generation with careful validation
+
+### gpt-6-luna
+
+- **For:** fast answers at minimal cost
+- **When:** smaller tasks, high-volume applications, automated pipelines
+- **Why:** the most economical and lightweight model of the GPT-6 family for efficient work
+
 ### The GPT-5.6 family
 
 GPT-5.6 is available in three tiers. They belong to the same generation and differ in how much reasoning depth, speed, and cost you get: **Sol** (maximum capability), **Terra** (balanced), and **Luna** (fastest and most economical). Choose the tier based on the complexity of the task, not out of habit.

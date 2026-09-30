@@ -18,6 +18,18 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## OpenAI
 
+### gpt-6-sol
+
+- **Für:** anspruchsvolle Aufgaben mit starker Intelligenz zu fairen Kosten
+- **Wann:** agentisches Coding, mehrstufige Entwicklungsaufgaben, komplexe Workflows
+- **Warum:** das ausgewogene Mittelklasse-Modell der GPT-6-Generation mit sorgfältiger Validierung
+
+### gpt-6-luna
+
+- **Für:** schnelle Antworten bei minimalen Kosten
+- **Wann:** kleinere Aufgaben, Hochvolumen-Anwendungen, automatisierte Pipelines
+- **Warum:** das günstigste und schlankste Modell der GPT-6-Familie für effizientes Arbeiten
+
 ### gpt-5.4
 
 - **Für:** komplexe Problemstellungen und maximale Intelligenz

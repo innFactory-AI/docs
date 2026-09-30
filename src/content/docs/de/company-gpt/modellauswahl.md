@@ -18,6 +18,18 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ## OpenAI
 
+### gpt-6-sol
+
+- **Für:** anspruchsvolle Aufgaben mit starker Intelligenz zu fairen Kosten
+- **Wann:** agentisches Coding, mehrstufige Entwicklungsaufgaben, komplexe Workflows
+- **Warum:** das ausgewogene Mittelklasse-Modell der GPT-6-Generation mit sorgfältiger Validierung
+
+### gpt-6-luna
+
+- **Für:** schnelle Antworten bei minimalen Kosten
+- **Wann:** kleinere Aufgaben, Hochvolumen-Anwendungen, automatisierte Pipelines
+- **Warum:** das günstigste und schlankste Modell der GPT-6-Familie für effizientes Arbeiten
+
 ### Die GPT-5.6-Familie
 
 GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Sol** (maximale Leistungsfähigkeit), **Terra** (ausgewogen) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.

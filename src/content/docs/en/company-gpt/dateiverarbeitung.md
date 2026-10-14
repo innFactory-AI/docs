@@ -28,7 +28,7 @@ Images and PDF files are sent to the AI model together with your message. This a
 
 If the selected model cannot process PDF files directly, CompanyGPT extracts the text instead.
 
-**Limitation**: The AI model determines which information and file types can be processed. In addition, the limits of the respective AI provider apply per request, for example 32 MB or 100 PDF pages for Claude models and 50 MB for OpenAI models. It is therefore best to split very large PDF files.
+**Limitation**: The AI model determines which information and file types can be processed. In addition, the limits of the respective AI provider apply per request, for example 32 MB or 100 PDF pages for Claude models, 50 MB for OpenAI models, and 20 MB for the entire request including the attached files for Gemini models (Google Vertex AI). It is therefore best to split very large PDF files.
 
 ### Office documents and text files
 

@@ -50,7 +50,7 @@ Gehören Sie einer Kostenstelle an, können Sie einen Schlüssel auch direkt fü
 
 Ob Sie eigene Schlüssel anlegen dürfen und welche Bereiche des Dashboards Sie sehen, hängt von Ihrer Rolle und der Konfiguration Ihrer Umgebung ab. Können Sie keinen Schlüssel anlegen, wenden Sie sich an Ihren Administrator.
 
-Ein Schlüssel übernimmt die Modellfreigaben und das Budget seines Inhabers. Behandeln Sie ihn wie ein Passwort. Administratoren können einen Schlüssel widerrufen oder ein neues Secret für ihn erzeugen; danach funktioniert das bisherige Secret nicht mehr. Ist ein Schlüssel in falsche Hände geraten, wenden Sie sich deshalb umgehend an Ihren Administrator.
+Ein Schlüssel übernimmt die Modellfreigaben und das Budget seines Inhabers. Behandeln Sie ihn wie ein Passwort. Unter **Meine Einstellungen** → **API-Keys** können Sie einen eigenen Schlüssel selbst widerrufen (**Widerrufen**) oder ein neues Secret erzeugen (**Secret rotieren**); danach funktioniert das bisherige Secret nicht mehr. Ein neues Secret erzeugen kann, wer auch Schlüssel anlegen darf. Administratoren können beides ebenfalls tun. Ist ein Schlüssel in falsche Hände geraten, widerrufen Sie ihn umgehend; im Zweifel wenden Sie sich an Ihren Administrator.
 
 ### Schlüssel übergeben
 
@@ -132,7 +132,7 @@ Bei der Anthropic-Schnittstelle ist `max_tokens` Pflicht. Streaming funktioniert
 | Pfad | Schnittstelle | Zweck |
 | --- | --- | --- |
 | `POST /v1/chat/completions` | OpenAI | Chat |
-| `POST /v1/responses` | OpenAI | Responses API, nur zustandslos (kein Abruf früherer Antworten über ihre ID) |
+| `POST /v1/responses` | OpenAI | Responses API; kein Abruf oder Löschen früherer Antworten über ihre ID |
 | `POST /v1/messages` | Anthropic | Messages API |
 | `POST /v1beta/models/<Modell-ID>:generateContent` | Gemini | Antwort ohne Streaming |
 | `POST /v1beta/models/<Modell-ID>:streamGenerateContent` | Gemini | Antwort mit Streaming |
@@ -187,7 +187,7 @@ Ist ein Limit erreicht oder drosselt der KI-Anbieter das Modell, antwortet das G
 Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
 :::
 
-Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es künftig ebenfalls mit `429` statt mit `502`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet „Retry later (in about N s)“. Außerdem kommen Fehler, die mitten in einer gestreamten Antwort auftreten, im Format der jeweiligen Schnittstelle (OpenAI, Anthropic oder Gemini).
+Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es künftig ebenfalls mit `429` statt mit `502`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet „The provider rate-limited every deployment of model '<Modell-ID>' (429). Retry later (in about N s).“ Außerdem kommen Fehler, die mitten in einer gestreamten Antwort auftreten, im Format der jeweiligen Schnittstelle (OpenAI, Anthropic oder Gemini).
 
 ## Anfragegröße (413)
 
@@ -206,14 +206,16 @@ Das Gateway nimmt Anfragen bis 128 MiB an. Größere Anfragen lehnt es mit dem S
 }
 ```
 
-Zusätzlich gelten die Grenzen der KI-Anbieter, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten pro Anfrage, bei OpenAI-Modellen 50 MB für Dateien. Lehnt der Anbieter eine Anfrage ab, gibt das Gateway dessen Status und Meldung weiter.
+Zusätzlich gelten die Grenzen der KI-Anbieter, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten pro Anfrage, bei OpenAI-Modellen 50 MB für Dateien, bei Gemini-Modellen (Google Vertex AI) 20 MB pro Anfrage einschließlich eingebetteter Dateien. Lehnt der Anbieter eine Anfrage ab, gibt das Gateway dessen Status und Meldung in der Regel weiter.
 
 ## Timeouts
 
 - Antworten ohne Streaming dürfen standardmäßig bis zu 10 Minuten (600 Sekunden) dauern. Bei gestreamten Antworten gilt diese Zeit bis zum Beginn der Antwort.
-- Kommen während einer gestreamten Antwort 15 Minuten (900 Sekunden) lang keine Daten, bricht das Gateway den Stream ab.
+- Kommen während einer gestreamten Antwort 15 Minuten (900 Sekunden) lang keine Daten vom Anbieter, bricht das Gateway den Stream ab.
 
 Stellen Sie das Timeout Ihres Clients auf mindestens 600 Sekunden ein. Das entspricht der Voreinstellung der OpenAI- und Anthropic-SDKs.
+
+Antworten, die länger als einige Minuten dauern können (z. B. Reasoning mit hoher Denktiefe oder große PDFs), fordern Sie mit Streaming an. Ohne Streaming kann die Verbindung nach etwa 4 Minuten ohne Daten getrennt werden, auch wenn das Gateway selbst länger wartet. Bei gestreamten Antworten sendet das Gateway regelmäßig ein Lebenszeichen, sodass die Verbindung bestehen bleibt.
 
 ## Fehlermeldungen
 
@@ -224,7 +226,7 @@ Fehler kommen im Format der aufgerufenen Schnittstelle, der Statuscode ist über
 ```json
 {
   "error": {
-    "message": "Model '<Modell-ID>' not found or not available",
+    "message": "Not found: Model '<Modell-ID>' not found or not available",
     "type": "invalid_request_error",
     "param": null,
     "code": "E4040"
@@ -238,7 +240,7 @@ Fehler kommen im Format der aufgerufenen Schnittstelle, der Statuscode ist über
   "type": "error",
   "error": {
     "type": "not_found_error",
-    "message": "Model '<Modell-ID>' not found or not available"
+    "message": "Not found: Model '<Modell-ID>' not found or not available"
   }
 }
 ```
@@ -248,7 +250,7 @@ Fehler kommen im Format der aufgerufenen Schnittstelle, der Statuscode ist über
 {
   "error": {
     "code": 404,
-    "message": "Model '<Modell-ID>' not found or not available",
+    "message": "Not found: Model '<Modell-ID>' not found or not available",
     "status": "NOT_FOUND"
   }
 }
@@ -260,13 +262,13 @@ Werten Sie in Ihrer Anwendung den Statuscode und, bei der OpenAI-Schnittstelle, 
 
 | Status | Bedeutung | Wiederholen? |
 | --- | --- | --- |
-| `400` | Ungültige Anfrage, oder der Anbieter hat die Anfrage abgelehnt (z. B. Prompt zu lang) | Nein |
+| `400` | Ungültige Anfrage, vom Anbieter abgelehnt (z. B. Prompt zu lang) oder von einer Inhaltsrichtlinie (Guardrail) blockiert, Code `E4220` | Nein |
 | `401` | API-Schlüssel fehlt oder ist ungültig | Nein |
 | `402` | Budget aufgebraucht | Nein |
 | `403` | Schlüssel widerrufen oder abgelaufen, oder das Modell ist für Sie nicht freigegeben (`model_not_allowed`) | Nein |
 | `404` | Modell unbekannt oder nicht verfügbar | Nein |
 | `413` | Anfrage zu groß (`request_too_large`) | Nein |
-| `422` | Problem in der Konfiguration des Gateways, Ihr Schlüssel ist in Ordnung. Wenden Sie sich an Ihren Administrator. | Nein |
+| `422` | Antwort von einer Inhaltsrichtlinie (Guardrail) blockiert, Code `E4220`, oder Problem in der Konfiguration des Gateways (Ihr Schlüssel ist in Ordnung; wenden Sie sich an Ihren Administrator) | Nein |
 | `429` | Rate Limit erreicht oder Modell gedrosselt | Ja, nach `Retry-After` |
 | `500`, `502`, `503` | Vorübergehender Fehler im Gateway oder beim Anbieter | Ja, mit wachsendem Abstand |
 

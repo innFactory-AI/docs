@@ -13,7 +13,7 @@ Which models appear in your model selection is decided by your organization – 
 - **Hosting in Germany / open source** → STACKIT models (if available in your environment)
 
 :::note[Where do the models run?]
-In CompanyGPT, the models from OpenAI, Google and Anthropic run in EU data centers by default (Azure OpenAI in the EU data zone, Google Vertex AI in EU regions). Individual models – especially for image generation – may differ. The STACKIT models run in data centers in Germany. Your administrator can tell you the details for your environment.
+In CompanyGPT, the models from OpenAI, Google and Anthropic run in EU data centers by default (Azure OpenAI in the EU data zone, Google Vertex AI in EU regions). Individual environments or models – especially for image generation – may differ. The STACKIT models run in data centers in Germany. Your administrator can tell you the details for your environment.
 :::
 
 ---
@@ -60,9 +60,9 @@ GPT-5.6 is available in three tiers. They belong to the same generation and diff
 
 ### gpt-5.4
 
-- **For:** complex problems and maximum intelligence
-- **When:** demanding coding, scientific analyses, strategic planning
-- **Why:** strong reasoning model of the GPT-5 generation
+- **For:** demanding tasks across many topics
+- **When:** coding, analyses, text work, and planning in everyday work
+- **Why:** strong all-round model of the GPT-5 generation; for the highest capability, choose GPT-5.6 Sol or gpt-6-sol
 
 ### gpt-5.1
 
@@ -88,6 +88,8 @@ GPT-5.6 is available in three tiers. They belong to the same generation and diff
 - **When:** when images need to be generated
 - **Why:** OpenAI's image generation model
 
+Some environments additionally offer newer image models (e.g. GPT Image 2). These run outside the EU data zone.
+
 :::caution
 Microsoft is retiring GPT Image 1.5 in Azure on 16 December 2026. For image generation you can use [Nano Banana](#gemini-image-tools--nano-banana) instead, if it is available in your environment.
 :::
@@ -96,7 +98,7 @@ Microsoft is retiring GPT Image 1.5 in Azure on 16 December 2026. For image gene
 
 ## Google
 
-The Gemini models are available if Google is enabled in your environment.
+The Gemini models are available if Google is enabled in your environment. Some environments offer further Gemini variants (e.g. Gemini 3.6 Flash).
 
 ### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
@@ -141,14 +143,14 @@ The Claude models are available if Anthropic is enabled in your environment.
 - **Why:** very fast and cost-efficient (less reasoning than Sonnet/Opus)
 
 :::note
-Some environments additionally offer newer Claude models (e.g. Claude Sonnet 5 or Claude Opus 5) as well as further providers such as Mistral or Perplexity.
+Some environments offer newer Claude models instead of or in addition to the 4.x models (e.g. Claude Sonnet 5, Opus 5, Sonnet 5.5, Opus 5.5) as well as further providers such as Mistral or Perplexity.
 :::
 
 ---
 
 ## STACKIT
 
-These open-source models run in the STACKIT Cloud in data centers in Germany and are particularly suited for workloads with high requirements for data sovereignty and internal compliance. They are only available in environments where STACKIT is enabled; the exact set of models differs from environment to environment.
+These open-source models run in the STACKIT Cloud in data centers in Germany and are particularly suited for workloads with high requirements for data sovereignty and internal compliance. They are only available in environments where STACKIT is enabled; the exact set of models differs from environment to environment. In addition, the search in [companyRAG](/en/company-gpt/addons/companyrag/) uses its own embedding models depending on the environment; they cannot be selected in the chat.
 
 ### google/gemma-4-31B-it
 
@@ -185,18 +187,6 @@ These open-source models run in the STACKIT Cloud in data centers in Germany and
 - **For:** lightweight open-source text tasks
 - **When:** cost-sensitive internal workflows with controllable infrastructure
 - **Why:** compact OSS approach for solid quality with lower resource requirements
-
-### Qwen/Qwen3-VL-Embedding-8B
-
-- **For:** multimodal embeddings (text/image) for search and retrieval
-- **When:** semantic search, RAG indexing, similarity search across mixed data
-- **Why:** specialized in vector representations rather than classic chat responses
-
-### intfloat/e5-mistral-7b-instruct
-
-- **For:** high-quality text embeddings for retrieval and ranking
-- **When:** vector search, document retrieval, relevance ranking in RAG pipelines
-- **Why:** proven embedding model for precise semantic search applications
 
 ---
 

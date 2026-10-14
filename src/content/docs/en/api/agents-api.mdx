@@ -20,12 +20,12 @@ Both interfaces are authenticated via API keys and support streaming responses, 
 
 To use the Agents API, the following prerequisites must be met:
 
-1. **API access must be enabled** — Your role needs the **Remote agents** permission (**Use**). Administrators grant it in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab.
-2. **Generate an API key** — Once access is enabled, create a key in CompanyGPT under **Settings** → **Data & Privacy** → **Agent API keys** via **Create API Key**. You enter a name and, optionally, an expiration date. Copy the key right away; it will not be shown again.
+1. **API access must be enabled** — Your role needs the **Remote agents** permission (**Use**). Administrators grant it in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab. The permission alone is not enough: an agent can only be reached via the API by its owner or if it has been explicitly shared with you for API access. Otherwise, the API responds with `403` and the message `No remote access to agent: <agent-id>`.
+2. **Generate an API key** — Once access is enabled, create a key in CompanyGPT under **Settings** → **Data & Privacy** → **Agent API keys** via **Create API Key**. You enter a name and choose under **Expiration** how long the key is valid: **7 days**, **30 days** (preselected), **90 days**, **1 year**, or **Never**. Copy the key right away; it will not be shown again.
 3. **Find your agent ID** — Each agent has a unique ID (e.g. `agent_ulS_lcjGw...`) that you use as the `model` parameter.
 
 :::tip
-You can find the agent ID in the URL when you open an agent in CompanyGPT, or via the `GET /api/agents/v1/models` endpoint which lists all available agents as models.
+You can find the agent ID in the URL when you open an agent in CompanyGPT, or via the `GET /api/agents/v1/models` endpoint, which lists the agents you may access via the API as models.
 :::
 
 :::caution
@@ -174,7 +174,7 @@ curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
 
 In the Open Responses API, you can also give the agent your own functions that your application executes itself. To do this, pass entries of type `function` with name, description, and parameters in JSON Schema format in the `tools` field. The function name may only contain letters, digits, `_`, and `-`.
 
-If the model calls such a function, it is not executed in CompanyGPT. Instead, the run ends and the response contains the call as an item of type `function_call`. Your application executes the function and continues the conversation with a new request. In it, you send the previous history, the received `function_call` item, and your result as `function_call_output` with the same `call_id` in the `input` field:
+If the model calls such a function, it is not executed in CompanyGPT. Instead, the run ends and the response contains the call as an item of type `function_call`. This only applies if your function is the only tool call of its run: if the model calls it together with a tool that CompanyGPT executes itself (server tool), the call is not handed over to your application. Your application executes the function and continues the conversation with a new request. In it, you send the previous history, the received `function_call` item, and your result as `function_call_output` with the same `call_id` in the `input` field:
 
 ```json
 {
@@ -218,7 +218,7 @@ Continuing via `previous_response_id` does not work for your own functions. Alwa
 GET /api/agents/v1/models
 ```
 
-Returns all agents accessible with your API key as a list of models.
+Returns, as a list of models, only the agents you may access via the API.
 
 <Tabs>
   <TabItem label="JavaScript (OpenAI SDK)">
@@ -248,7 +248,13 @@ All Agents API requests are counted against the user's token balance (when token
 
 ### Budgets in the AI Gateway
 
-In environments where CompanyGPT accesses the AI models via the [AI Gateway](/en/api/ai-gateway/), the gateway's budgets also apply to requests via the Agents API. If a budget is used up, the gateway rejects the model request with status `402`; the request to the agent then fails until budget is available again.
+In environments where CompanyGPT accesses the AI models via the [AI Gateway](/en/api/ai-gateway/), the gateway's budgets also apply to requests via the Agents API. If a budget is used up, the gateway rejects the model request; requests to the agent then fail until budget is available again. How the error reaches your application depends on the mode:
+
+- **Without streaming**, you receive status `402` with the gateway's message.
+- **With streaming via Chat Completions**, the status is `200`; the error appears as "Error: …" in the last chunk.
+- **With streaming via the Open Responses API**, the stream only ends with `[DONE]`, without an error message.
+
+If your organization has set up a [fallback model](/en/api/ai-gateway/#budget-used-up-402) for used-up budgets, there is no `402`; the gateway then answers the request with this model.
 
 ## Related Documentation
 

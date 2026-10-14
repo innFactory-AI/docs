@@ -13,7 +13,7 @@ Welche Modelle Ihnen in der Modellauswahl angezeigt werden, legt Ihr Unternehmen
 - **Hosting in Deutschland / Open Source** → STACKIT-Modelle (sofern in Ihrer Umgebung verfügbar)
 
 :::note[Wo laufen die Modelle?]
-Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßig in EU-Rechenzentren betrieben (Azure OpenAI in der EU-Datenzone, Google Vertex AI in EU-Regionen). Einzelne Modelle – insbesondere zur Bildgenerierung – können davon abweichen. Die STACKIT-Modelle laufen in Rechenzentren in Deutschland. Details zu Ihrer Umgebung erfahren Sie bei Ihrem Administrator.
+Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßig in EU-Rechenzentren betrieben (Azure OpenAI in der EU-Datenzone, Google Vertex AI in EU-Regionen). Einzelne Umgebungen oder Modelle – insbesondere zur Bildgenerierung – können abweichen. Die STACKIT-Modelle laufen in Rechenzentren in Deutschland. Details zu Ihrer Umgebung erfahren Sie bei Ihrem Administrator.
 :::
 
 ---
@@ -60,9 +60,9 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 
 ### gpt-5.4
 
-- **Für:** komplexe Problemstellungen und maximale Intelligenz
-- **Wann:** anspruchsvolles Coding, wissenschaftliche Analysen, strategische Planung
-- **Warum:** starkes Reasoning-Modell der GPT-5-Generation
+- **Für:** anspruchsvolle Aufgaben über viele Themen hinweg
+- **Wann:** Coding, Analysen, Textarbeit und Planung im Arbeitsalltag
+- **Warum:** starkes Allround-Modell der GPT-5-Generation; für die höchste Leistungsfähigkeit wählen Sie GPT-5.6 Sol oder gpt-6-sol
 
 ### gpt-5.1
 
@@ -88,6 +88,8 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 - **Wann:** wenn Bilder generiert werden sollen
 - **Warum:** OpenAIs Bildgenerierungsmodell
 
+In einzelnen Umgebungen gibt es zusätzlich neuere Bildmodelle (z. B. GPT Image 2). Diese laufen außerhalb der EU-Datenzone.
+
 :::caution
 Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerierung können Sie alternativ [Nano Banana](#gemini-image-tools--nano-banana) nutzen, sofern es in Ihrer Umgebung verfügbar ist.
 :::
@@ -96,7 +98,7 @@ Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerie
 
 ## Google
 
-Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist.
+Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist. In einzelnen Umgebungen gibt es weitere Gemini-Varianten (z. B. Gemini 3.6 Flash).
 
 ### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
@@ -141,14 +143,14 @@ Die Claude-Modelle stehen zur Verfügung, wenn Anthropic in Ihrer Umgebung freig
 - **Warum:** sehr schnell und kosteneffizient (weniger Reasoning als Sonnet/Opus)
 
 :::note
-In einzelnen Umgebungen stehen zusätzlich neuere Claude-Modelle (z. B. Claude Sonnet 5 oder Claude Opus 5) sowie weitere Anbieter wie Mistral oder Perplexity zur Verfügung.
+In einzelnen Umgebungen stehen statt oder zusätzlich zu den 4.x-Modellen neuere Claude-Modelle zur Verfügung (z. B. Claude Sonnet 5, Opus 5, Sonnet 5.5, Opus 5.5) sowie weitere Anbieter wie Mistral oder Perplexity.
 :::
 
 ---
 
 ## STACKIT
 
-Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutschland und eignen sich besonders für Workloads mit hohen Anforderungen an Datenhoheit und interne Compliance. Sie stehen nur in Umgebungen zur Verfügung, in denen STACKIT freigeschaltet ist; welche Modelle genau angeboten werden, unterscheidet sich je nach Umgebung.
+Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutschland und eignen sich besonders für Workloads mit hohen Anforderungen an Datenhoheit und interne Compliance. Sie stehen nur in Umgebungen zur Verfügung, in denen STACKIT freigeschaltet ist; welche Modelle genau angeboten werden, unterscheidet sich je nach Umgebung. Daneben nutzt die Suche in [companyRAG](/de/company-gpt/addons/companyrag/) je nach Umgebung eigene Embedding-Modelle; sie sind im Chat nicht auswählbar.
 
 ### google/gemma-4-31B-it
 
@@ -185,18 +187,6 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutsc
 - **Für:** leichtgewichtige Open-Source-Textaufgaben
 - **Wann:** kostensensitive interne Workflows mit kontrollierbarer Infrastruktur
 - **Warum:** kompakter OSS-Ansatz für solide Qualität bei geringeren Ressourcenanforderungen
-
-### Qwen/Qwen3-VL-Embedding-8B
-
-- **Für:** multimodale Embeddings (Text/Bild) für Suche und Retrieval
-- **Wann:** semantische Suche, RAG-Indizierung, Ähnlichkeitssuche über gemischte Daten
-- **Warum:** spezialisiert auf Vektor-Repräsentationen statt auf klassische Chat-Antworten
-
-### intfloat/e5-mistral-7b-instruct
-
-- **Für:** hochwertige Text-Embeddings für Retrieval und Ranking
-- **Wann:** Vektorsuche, Dokument-Retrieval, Relevanzsortierung in RAG-Pipelines
-- **Warum:** bewährtes Embedding-Modell für präzise semantische Suchanwendungen
 
 ---
 

@@ -39,6 +39,8 @@ Das App-Paket bündelt die Add-ins für Word, Excel, PowerPoint und Outlook sowi
 4. Weisen Sie die Benutzer zu – die gesamte Organisation oder eine Testgruppe – und stellen Sie die App bereit.
 5. Innerhalb von bis zu 24 Stunden (meist deutlich schneller) erscheint das Add-in im Menüband von Word, Excel, PowerPoint und Outlook sowie der Tab in Teams. Die Anmeldung läuft automatisch per Single Sign-On über die CompanyGPT-Sitzung.
 
+Unter **Grenzen & Hinweise** fasst der Bereich zusammen, wo das Add-in läuft – Word, Excel, PowerPoint und Outlook unter Windows, auf dem Mac und im Browser (Office im Web) – und wie die [Bearbeitungsmodi](/de/company-gpt/addons/companym365/office-add-in/#bearbeitungsmodi) wirken: Änderungen erscheinen standardmäßig als Vorschlagskarte, im Modus **Direkt** sofort und in Word mit **Nachverfolgen** als nachverfolgte Änderungen.
+
 Verwenden Sie dieses Paket und laden Sie keine einzelnen XML-Manifeste per Sideloading: Einzeln geladene XML-Add-ins sind im neuen Outlook (Windows und Mac) häufig ausgegraut und nicht anklickbar.
 
 ### Zusätzlich für Outlook auf dem Mac
@@ -89,7 +91,7 @@ Ein freigegebener Agent, der inzwischen nicht mehr geteilt ist, lässt sich nur 
 
 ## Einstellungen
 
-- **Markenname:** erscheint im Teams-Bot, im Add-in und im Admin-Bereich. Der Markenname ist Teil des Teams-Pakets; nach einer Änderung weist der Admin-Bereich mit **Paket neu hochladen** darauf hin, das Paket neu herunterzuladen und erneut hochzuladen.
+- **Markenname:** erscheint in der Beschreibung der Teams-Bot-App und im Admin-Bereich. Nach einer Änderung weist **Paket neu hochladen** darauf hin, das Bot-Paket (Bereich **Teams-Bot**, Schritt 5) neu herunterzuladen und hochzuladen. Den Namen in Add-in, Teams-Tab und Bot-Antworten legt innFactory bei der Bereitstellung fest.
 - **Standard-Agent (Agent-ID):** der Agent, den der Teams-Bot ohne Alias verwendet. Leer bedeutet: kein Standard, der Bot antwortet mit dem Standardmodell.
 - **Eigene Agents in Teams erlauben** (standardmäßig an): Jede Person kann im Teams-Bot jeden gespeicherten Agenten verwenden, den sie in CompanyGPT nutzen darf – ihre eigenen und die mit ihr geteilten. Außerhalb von 1:1-Chats sieht nur die fragende Person deren Antworten. Ist der Schalter aus, sind nur die unter **Agents** freigegebenen Agenten erreichbar.
 

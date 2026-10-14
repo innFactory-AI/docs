@@ -50,7 +50,7 @@ A change in another window never lands there directly – in every [edit mode](/
 
 - **Übernehmen** (Apply) carries out the change exactly once in the other window. Afterwards, the card shows "In „Umsatz.xlsx“ übernommen" (Applied in "Umsatz.xlsx") or the error. For some errors, the card stays open so that you can try again.
 - **Verwerfen** (Discard), **Alle verwerfen** (Discard all) or a new chat discard the change.
-- **Alle übernehmen** (Apply all) does not apply changes for other windows. You apply these cards individually; a notice points this out.
+- **Alle übernehmen** (Apply all) does not apply changes for other windows. You apply these cards individually; a notice points this out. If only such cards are still open, **Alle übernehmen** is disabled.
 - **Alle Änderungen zeigen** (Show all changes) in your own chat also lists the change in the other window.
 - A card is valid for 30 minutes. If the target window shows different content in the meantime – such as another email – the change is not carried out.
 
@@ -58,4 +58,12 @@ A change in another window never lands there directly – in every [edit mode](/
 
 - **At most ten windows** per person are connected at the same time. In the eleventh window, "Zu viele Fenster verbunden — …" (Too many windows connected) appears with **Erneut verbinden** (Reconnect). Close the add-in pane in another window and then click **Erneut verbinden**. Until then, the chat in this window works like a normal chat, without access to the document.
 - **Selection and cursor** of another window remain untouched. Actions that work at the selection – such as inserting an image at the selected position – are only carried out by the assistant in its own window.
-- **Own window closed:** If you close the window or the add-in pane while an answer is running, that answer no longer writes into any window. Open the add-in pane there again and send the message again.
+
+## Closing a window while an answer is running
+
+If you close the window or the add-in pane while an answer is running, that answer at first has no window left to write into. What happens next depends on whether you open the add-in pane again:
+
+- **Reopened:** If you open the add-in pane again in the same saved document or the same email within 10 minutes, the add-in recognizes the window. If the answer is still running, this window is its home again – until 3 minutes after closing or until you send a message there yourself. During this time, the answer's writes land in this window; changes to other windows appear as a card in this add-in pane and are only carried out after **Übernehmen** (Apply).
+- **Not reopened or not saved:** Without reopening, and for unsaved documents and drafts, the answer no longer writes into any window. Open the add-in pane there again and send the message again.
+
+In the first 3 minutes after closing, the assistant may refuse a write with this notice: "Das Fenster einer früheren Antwort wurde geschlossen, während sie noch lief; bis 3 Minuten nach dem Schließen ist unklar, aus welchem Fenster ein Schreibaufruf kommt — er wird nicht ausgeführt." (The window of an earlier answer was closed while it was still running; until 3 minutes after closing, it is unclear which window a write comes from – it is not carried out.) Try again once the 3 minutes have passed.

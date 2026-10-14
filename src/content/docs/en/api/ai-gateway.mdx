@@ -50,7 +50,7 @@ If you belong to a cost center, you can also create a key directly for this cost
 
 Whether you may create your own keys and which areas of the dashboard you see depends on your role and the configuration of your environment. If you cannot create a key, contact your administrator.
 
-A key inherits the model approvals and the budget of its owner. Treat it like a password. Administrators can revoke a key or create a new secret for it; afterwards, the previous secret no longer works. If a key has fallen into the wrong hands, contact your administrator immediately.
+A key inherits the model approvals and the budget of its owner. Treat it like a password. Under **My settings** → **API keys**, you can revoke one of your own keys yourself (**Revoke**) or create a new secret for it (**Rotate secret**); afterwards, the previous secret no longer works. Anyone who may create keys can also create a new secret. Administrators can do both as well. If a key has fallen into the wrong hands, revoke it immediately; if in doubt, contact your administrator.
 
 ### Passing the key
 
@@ -132,7 +132,7 @@ With the Anthropic interface, `max_tokens` is required. Streaming works as with 
 | Path | Interface | Purpose |
 | --- | --- | --- |
 | `POST /v1/chat/completions` | OpenAI | Chat |
-| `POST /v1/responses` | OpenAI | Responses API, stateless only (earlier responses cannot be retrieved by their ID) |
+| `POST /v1/responses` | OpenAI | Responses API; earlier responses cannot be retrieved or deleted by their ID |
 | `POST /v1/messages` | Anthropic | Messages API |
 | `POST /v1beta/models/<model-id>:generateContent` | Gemini | Response without streaming |
 | `POST /v1beta/models/<model-id>:streamGenerateContent` | Gemini | Response with streaming |
@@ -187,7 +187,7 @@ If a limit is reached or the AI provider throttles the model, the gateway respon
 This feature is currently being introduced gradually and may not yet be available in your environment.
 :::
 
-If the gateway briefly pauses a model after several throttling responses from the provider, it will also respond with `429` instead of `502`. `Retry-After` then states the remaining waiting time, and the message reads "Retry later (in about N s)". In addition, errors that occur in the middle of a streamed response arrive in the format of the respective interface (OpenAI, Anthropic, or Gemini).
+If the gateway briefly pauses a model after several throttling responses from the provider, it will also respond with `429` instead of `502`. `Retry-After` then states the remaining waiting time, and the message reads "The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s)." In addition, errors that occur in the middle of a streamed response arrive in the format of the respective interface (OpenAI, Anthropic, or Gemini).
 
 ## Request size (413)
 
@@ -206,14 +206,16 @@ The gateway accepts requests up to 128 MiB. It rejects larger requests with stat
 }
 ```
 
-In addition, the limits of the AI providers apply, for example 32 MB or 100 PDF pages per request for Claude models and 50 MB for files for OpenAI models. If the provider rejects a request, the gateway passes on its status and message.
+In addition, the limits of the AI providers apply, for example 32 MB or 100 PDF pages per request for Claude models, 50 MB for files for OpenAI models, and 20 MB per request including embedded files for Gemini models (Google Vertex AI). If the provider rejects a request, the gateway usually passes on its status and message.
 
 ## Timeouts
 
 - By default, responses without streaming may take up to 10 minutes (600 seconds). For streamed responses, this time applies until the response starts.
-- If no data arrives for 15 minutes (900 seconds) during a streamed response, the gateway aborts the stream.
+- If no data arrives from the provider for 15 minutes (900 seconds) during a streamed response, the gateway aborts the stream.
 
 Set your client's timeout to at least 600 seconds. This matches the default of the OpenAI and Anthropic SDKs.
+
+Request responses that may take longer than a few minutes (e.g. reasoning with a high thinking depth or large PDFs) with streaming. Without streaming, the connection may be dropped after about 4 minutes without data, even if the gateway itself would wait longer. For streamed responses, the gateway regularly sends a keep-alive signal so that the connection stays open.
 
 ## Error messages
 
@@ -224,7 +226,7 @@ Errors arrive in the format of the called interface; the status code is the same
 ```json
 {
   "error": {
-    "message": "Model '<model-id>' not found or not available",
+    "message": "Not found: Model '<model-id>' not found or not available",
     "type": "invalid_request_error",
     "param": null,
     "code": "E4040"
@@ -238,7 +240,7 @@ Errors arrive in the format of the called interface; the status code is the same
   "type": "error",
   "error": {
     "type": "not_found_error",
-    "message": "Model '<model-id>' not found or not available"
+    "message": "Not found: Model '<model-id>' not found or not available"
   }
 }
 ```
@@ -248,7 +250,7 @@ Errors arrive in the format of the called interface; the status code is the same
 {
   "error": {
     "code": 404,
-    "message": "Model '<model-id>' not found or not available",
+    "message": "Not found: Model '<model-id>' not found or not available",
     "status": "NOT_FOUND"
   }
 }
@@ -260,13 +262,13 @@ In your application, evaluate the status code and, for the OpenAI interface, the
 
 | Status | Meaning | Retry? |
 | --- | --- | --- |
-| `400` | Invalid request, or the provider rejected the request (e.g. prompt too long) | No |
+| `400` | Invalid request, rejected by the provider (e.g. prompt too long), or blocked by a content policy (guardrail), code `E4220` | No |
 | `401` | API key missing or invalid | No |
 | `402` | Budget used up | No |
 | `403` | Key revoked or expired, or the model is not approved for you (`model_not_allowed`) | No |
 | `404` | Model unknown or not available | No |
 | `413` | Request too large (`request_too_large`) | No |
-| `422` | Problem in the gateway configuration; your key is fine. Contact your administrator. | No |
+| `422` | Response blocked by a content policy (guardrail), code `E4220`, or a problem in the gateway configuration (your key is fine; contact your administrator) | No |
 | `429` | Rate limit reached or model throttled | Yes, after `Retry-After` |
 | `500`, `502`, `503` | Temporary error in the gateway or at the provider | Yes, with increasing intervals |
 

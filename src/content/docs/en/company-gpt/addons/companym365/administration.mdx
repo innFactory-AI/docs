@@ -39,6 +39,8 @@ The app package bundles the add-ins for Word, Excel, PowerPoint and Outlook as w
 4. Assign the users – the entire organization or a test group – and deploy the app.
 5. Within up to 24 hours (usually much faster), the add-in appears in the ribbon of Word, Excel, PowerPoint and Outlook, and the tab in Teams. Sign-in runs automatically via single sign-on with the CompanyGPT session.
 
+Under **Grenzen & Hinweise** (Limits & notes), the area summarizes where the add-in runs – Word, Excel, PowerPoint and Outlook on Windows, on the Mac and in the browser (Office on the web) – and how the [edit modes](/en/company-gpt/addons/companym365/office-add-in/#edit-modes) work: changes appear as a suggestion card by default, immediately in **Direkt** (Direct) mode, and in Word as tracked changes with **Nachverfolgen** (Track).
+
 Use this package and do not sideload individual XML manifests: individually loaded XML add-ins are often greyed out and not clickable in the new Outlook (Windows and Mac).
 
 ### Additionally for Outlook on the Mac
@@ -89,7 +91,7 @@ A released agent that is no longer shared can only be revoked. If **Eigene Agent
 
 ## Settings
 
-- **Markenname** (Brand name): appears in the Teams bot, in the add-in and in the admin area. The brand name is part of the Teams package; after a change, the admin area points out with **Paket neu hochladen** (Upload package again) that the package has to be downloaded and uploaded again.
+- **Markenname** (Brand name): appears in the description of the Teams bot app and in the admin area. After a change, **Paket neu hochladen** (Upload package again) points out that the bot package (**Teams-Bot** area, step 5) has to be downloaded and uploaded again. The name in the add-in, the Teams tab and the bot's answers is set by innFactory during deployment.
 - **Standard-Agent (Agent-ID)** (Default agent, agent ID): the agent the Teams bot uses without an alias. Empty means: no default, the bot answers with the default model.
 - **Eigene Agents in Teams erlauben** (Allow personal agents in Teams, on by default): everyone can use in the Teams bot any saved agent they are allowed to use in CompanyGPT – their own and those shared with them. Outside 1:1 chats, only the person asking sees their answers. If the switch is off, only the agents released under **Agents** can be reached.
 

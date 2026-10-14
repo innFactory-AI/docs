@@ -53,7 +53,9 @@ Jede Anwendung bietet im Menü sechs Schnellaktionen:
 
 Die Suche durchsucht alle Agenten (Name, Beschreibung, Kategorie) und alle Modelle. Mit **Anpinnen** bzw. **Loslösen** an einer Zeile verwalten Sie Ihre Favoriten; es sind dieselben Favoriten wie in der Seitenleiste von CompanyGPT im Browser (höchstens 50). Agenten, die andere mit Ihnen geteilt haben, sind mit „geteilt“ gekennzeichnet, global geteilte Agenten mit einer Weltkugel.
 
-Standardmäßig startet das Add-in mit der Vorgabe Ihrer Umgebung. Einen gewählten Agenten merkt es sich für die jeweilige Anwendung. Welche Modelle und Agenten zur Auswahl stehen, legt Ihre Umgebung fest.
+Jeder Start beginnt mit dem Standardmodell – in Word, Excel, PowerPoint, Outlook und im Teams-Tab mit demselben. Legt Ihre Umgebung nichts anderes fest, ist das ein Modell der neuesten GPT-Generation. Merken kann sich das Add-in nur einen gewählten Agenten, und zwar je Anwendung. Ein gewähltes Modell gilt, solange der Bereich geöffnet ist; beim nächsten Start beginnt das Add-in wieder mit dem Standardmodell. Welche Modelle und Agenten zur Auswahl stehen, legt Ihre Umgebung fest.
+
+Sie können schreiben und senden, sobald die Modelle geladen sind; die Agenten erscheinen kurz danach in der Auswahl. Haben Sie bis dahin nichts anderes gewählt, übernimmt das Add-in dann Ihren gemerkten Agenten.
 
 Gespeicherte Agenten können das geöffnete Dokument nur bearbeiten, wenn das in Ihrer Umgebung aktiviert ist. Andernfalls zeigt das Add-in „Dokumentwerkzeuge für Agents im Tenant nicht aktiv“; der Agent antwortet dann, kann das Dokument aber nicht lesen oder ändern.
 
@@ -104,7 +106,7 @@ Im Modus **Vorschläge** erscheint jede Änderung als eigene Karte:
 
 - **Ort:** nennt die Stelle, z. B. „Absatz 3“, eine Folie oder einen Zellbereich.
 - Der Text der Änderung ist vollständig sichtbar; lange Texte sind hinter **Mehr anzeigen** eingeklappt.
-- **Übernehmen** führt die Änderung aus, **Verwerfen** verwirft sie. Mit **Alle übernehmen** und **Alle verwerfen** entscheiden Sie über alle offenen Karten auf einmal.
+- **Übernehmen** führt die Änderung aus, **Verwerfen** verwirft sie. Mit **Alle übernehmen** und **Alle verwerfen** entscheiden Sie über alle offenen Karten auf einmal – außer Karten für andere Fenster; die übernehmen Sie einzeln (siehe [Mehrere Office-Fenster](/de/company-gpt/addons/companym365/mehrere-fenster/#bestätigung-im-eigenen-chat)). Sind nur noch solche Karten offen, ist **Alle übernehmen** deaktiviert.
 - Hat sich die Stelle inzwischen verschoben, bietet die Karte **Stelle erneut markieren und Übernehmen** an.
 
 ## Alle Änderungen zeigen
@@ -118,7 +120,7 @@ Unter einer Antwort, die das Dokument geändert hat, steht **Alle Änderungen ze
 
 ## Während der Assistent arbeitet
 
-- Jeder Werkzeugschritt erscheint als eigene Karte, bei längeren Aufgaben zusammen mit einem Plan. Denkschritte erscheinen als eingeklappter Block „Hat nachgedacht“.
+- Jeder Werkzeugschritt erscheint als eigene Karte, bei längeren Aufgaben zusammen mit einem Plan. Denkschritte erscheinen als eingeklappter Block **Gedanken**, den Sie aufklappen können. Während der Assistent nachdenkt, zeigt der Block „Nachdenken...“ oder einen kurzen, automatisch erzeugten Titel. Blendet Ihre Umgebung die Denkinhalte aus, steht dort nur „Hat nachgedacht“, ohne Text.
 - **Steuern:** Während eine Antwort läuft, können Sie eine Ergänzung schreiben und mit **Enter** oder dem Knopf **Steuern** senden. Sie wird nach dem aktuellen Schritt berücksichtigt. Eine wartende Ergänzung können Sie mit **Entfernen** zurückziehen; wurde sie nicht mehr berücksichtigt, schicken Sie sie mit **Als neue Nachricht senden** ab. Ob Steuern verfügbar ist, hängt von Ihrer Umgebung ab.
 - **Abbrechen:** Der Knopf mit dem Stopp-Symbol im Eingabefeld bricht die Antwort ab, auch auf dem Server. Die Antwort ist dann als „abgebrochen“ markiert.
 - **Kontextanzeige:** Sofern in Ihrer Umgebung aktiviert, zeigt ein Ring in der Fußzeile, wie stark der Kontext des Chats belegt ist; ab 80 % warnt er. Ein neuer Chat setzt den Kontext zurück.
@@ -128,12 +130,12 @@ Unter einer Antwort, die das Dokument geändert hat, steht **Alle Änderungen ze
 - Unter jeder Antwort stehen **Kopieren**, **Neu generieren** und **Bearbeiten**.
 - **Ins Dokument einfügen** (Word) fügt die Antwort mit den Formatvorlagen Ihres Dokuments ein. In Outlook heißt der Knopf beim Verfassen **In E-Mail einfügen**, beim Lesen **Als Antwort öffnen**. Eingefügt wird nur die Antwort, nicht der Denkprozess.
 - **Quellen:** Zitatmarker in der Antwort öffnen eine Karte mit der Quelle.
-- **Dateien:** Erzeugte Dateien und Bilder erscheinen als Karten mit Download; in Word und beim Verfassen in Outlook auch mit **Ins Dokument einfügen**.
+- **Dateien:** Erzeugte Dateien und Bilder erscheinen als Karten mit Download. In Word fügt **Ins Dokument einfügen** Word-Dokumente, Bilder und Textdateien an der Cursorposition ein; beim Verfassen in Outlook hängt **In E-Mail einfügen** die Datei an Ihren Entwurf an.
 - **Artefakte** erscheinen als Textvorschau und lassen sich in CompanyGPT im Browser öffnen.
 
 ## Anmeldung und Fehlermeldungen
 
 - Ist Ihre Sitzung abgelaufen, zeigt das Add-in wieder die Anmeldung; Ihr Text bleibt im Eingabefeld erhalten.
 - Unter **Details** zeigt die Anmeldeseite technische Angaben wie Mandanten-ID und Fehlercode, die Ihrem Administrator bei der Fehlersuche helfen.
-- Ohne das Recht **Microsoft 365 nutzen** erscheint „Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen“.
+- Ohne das Recht **Microsoft 365 nutzen** erscheint „Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen“. Sie können dann weiter chatten, aber der Assistent kann das Dokument weder lesen noch bearbeiten.
 - Dauert der Start länger als üblich, erscheint „Das dauert gerade länger als üblich.“

@@ -51,12 +51,13 @@ Ist nichts markiert, nimmt der Assistent den genutzten Bereich des aktiven Blatt
 
 Startvorschläge in einem leeren Chat sind standardmäßig **Daten analysieren**, **Formel erklären**, **Diagramm vorschlagen** und **Tabelle bereinigen**.
 
+### Ergebnistabelle als neues Blatt
+
+Enthält eine fertige Antwort in Excel eine Ergebnistabelle, steht darunter **Als neues Blatt einfügen** – auch ohne Code-Ausführung. Der Knopf legt sofort ein neues Blatt „Analyse“ mit der Tabelle an, in jedem Bearbeitungsmodus und ohne Vorschlagskarte. Hat die Code-Ausführung ein Diagramm erzeugt, kommt es mit auf das Blatt. Bestehende Zellen werden dabei nicht überschrieben. Danach zeigt der Knopf, in welches Blatt eingefügt wurde.
+
 ### Datenanalyse mit Code
 
-Ist in Ihrer Umgebung die [Code-Ausführung](/de/company-gpt/code-interpreter/) freigeschaltet, rechnet der Assistent bei **Daten analysieren** mit Python-Code statt nur mit Formeln:
-
-- Der Werkzeugschritt zeigt den Code, die Ausgabe und gegebenenfalls ein Diagramm.
-- Unter der fertigen Antwort legt **Als neues Blatt einfügen** ein neues Blatt „Analyse“ mit der Ergebnistabelle und dem Diagramm an. Bestehende Zellen werden dabei nicht überschrieben. Danach zeigt der Knopf, in welches Blatt eingefügt wurde.
+Ist in Ihrer Umgebung die [Code-Ausführung](/de/company-gpt/code-interpreter/) freigeschaltet, rechnet der Assistent bei **Daten analysieren** mit Python-Code statt nur mit Formeln. Der Werkzeugschritt zeigt den Code, die Ausgabe und gegebenenfalls ein Diagramm. Ergebnistabelle und Diagramm übernehmen Sie mit **Als neues Blatt einfügen** (siehe [oben](#ergebnistabelle-als-neues-blatt)).
 
 Ist die Code-Ausführung nicht freigeschaltet, erscheint einmal der Hinweis „Code-Ausführung ist in diesem Tenant nicht freigeschaltet — die Analyse nutzt Formeln.“
 

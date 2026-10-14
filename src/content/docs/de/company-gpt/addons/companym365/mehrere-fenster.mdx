@@ -50,7 +50,7 @@ Eine Änderung in einem anderen Fenster landet nie direkt dort – in jedem [Bea
 
 - **Übernehmen** führt die Änderung genau einmal im anderen Fenster aus. Danach zeigt die Karte „In „Umsatz.xlsx“ übernommen“ oder den Fehler. Bei manchen Fehlern bleibt die Karte offen, sodass Sie es erneut versuchen können.
 - **Verwerfen**, **Alle verwerfen** oder ein neuer Chat verwerfen die Änderung.
-- **Alle übernehmen** übernimmt keine Änderungen für andere Fenster. Diese Karten übernehmen Sie einzeln; ein Hinweis weist darauf hin.
+- **Alle übernehmen** übernimmt keine Änderungen für andere Fenster. Diese Karten übernehmen Sie einzeln; ein Hinweis weist darauf hin. Sind nur noch solche Karten offen, ist **Alle übernehmen** deaktiviert.
 - **Alle Änderungen zeigen** im eigenen Chat führt die Änderung im anderen Fenster mit auf.
 - Eine Karte gilt 30 Minuten. Zeigt das Zielfenster inzwischen einen anderen Inhalt – etwa eine andere E-Mail –, wird die Änderung nicht ausgeführt.
 
@@ -58,4 +58,12 @@ Eine Änderung in einem anderen Fenster landet nie direkt dort – in jedem [Bea
 
 - **Höchstens zehn Fenster** je Person sind gleichzeitig verbunden. Im elften Fenster erscheint „Zu viele Fenster verbunden — …“ mit **Erneut verbinden**. Schließen Sie den Add-in-Bereich in einem anderen Fenster und klicken Sie dann auf **Erneut verbinden**. Bis dahin funktioniert der Chat in diesem Fenster wie ein normaler Chat, ohne Zugriff auf das Dokument.
 - **Markierung und Cursor** eines anderen Fensters bleiben unberührt. Aktionen, die an der Markierung wirken – etwa ein Bild an der markierten Stelle einfügen –, führt der Assistent nur im eigenen Fenster aus.
-- **Eigenes Fenster geschlossen:** Schließen Sie das Fenster oder den Add-in-Bereich, während eine Antwort läuft, schreibt diese Antwort in kein Fenster mehr. Öffnen Sie den Add-in-Bereich dort wieder und senden Sie die Nachricht erneut.
+
+## Fenster schließen, während eine Antwort läuft
+
+Schließen Sie das Fenster oder den Add-in-Bereich, während eine Antwort läuft, hat diese Antwort zunächst kein Fenster mehr, in das sie schreiben kann. Was dann geschieht, hängt davon ab, ob Sie den Add-in-Bereich wieder öffnen:
+
+- **Wieder geöffnet:** Öffnen Sie den Add-in-Bereich im selben gespeicherten Dokument bzw. in derselben E-Mail innerhalb von 10 Minuten wieder, erkennt das Add-in das Fenster wieder. Läuft die Antwort noch, ist dieses Fenster wieder ihr Zuhause – bis 3 Minuten nach dem Schließen oder bis Sie dort selbst eine Nachricht senden. In dieser Zeit landen die Schreibvorgänge dieser Antwort in diesem Fenster; Änderungen an anderen Fenstern erscheinen als Karte in diesem Add-in-Bereich und werden erst nach **Übernehmen** ausgeführt.
+- **Nicht wieder geöffnet oder nicht gespeichert:** Ohne erneutes Öffnen sowie bei ungespeicherten Dokumenten und Entwürfen schreibt die Antwort in kein Fenster mehr. Öffnen Sie den Add-in-Bereich dort wieder und senden Sie die Nachricht erneut.
+
+In den ersten 3 Minuten nach dem Schließen kann der Assistent einen Schreibvorgang mit diesem Hinweis ablehnen: „Das Fenster einer früheren Antwort wurde geschlossen, während sie noch lief; bis 3 Minuten nach dem Schließen ist unklar, aus welchem Fenster ein Schreibaufruf kommt — er wird nicht ausgeführt.“ Versuchen Sie es nach Ablauf der 3 Minuten erneut.

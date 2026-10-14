@@ -51,12 +51,13 @@ If nothing is selected, the assistant uses the used range of the active sheet.
 
 By default, the starter suggestions in an empty chat are **Daten analysieren** (Analyze data), **Formel erklären** (Explain formula), **Diagramm vorschlagen** (Suggest chart) and **Tabelle bereinigen** (Clean up table).
 
+### Result table as a new sheet
+
+If a finished answer in Excel contains a result table, **Als neues Blatt einfügen** (Insert as new sheet) appears below it – even without code execution. The button immediately creates a new sheet "Analyse" with the table, in every edit mode and without a suggestion card. If code execution produced a chart, it is added to the sheet as well. Existing cells are not overwritten. Afterwards, the button shows which sheet the content was inserted into.
+
 ### Data analysis with code
 
-If [code execution](/en/company-gpt/code-interpreter/) is enabled in your environment, the assistant calculates with Python code rather than only with formulas for **Daten analysieren** (Analyze data):
-
-- The tool step shows the code, the output and, where applicable, a chart.
-- Below the finished answer, **Als neues Blatt einfügen** (Insert as new sheet) creates a new sheet "Analyse" with the result table and the chart. Existing cells are not overwritten. Afterwards, the button shows which sheet the content was inserted into.
+If [code execution](/en/company-gpt/code-interpreter/) is enabled in your environment, the assistant calculates with Python code rather than only with formulas for **Daten analysieren** (Analyze data). The tool step shows the code, the output and, where applicable, a chart. You add the result table and the chart with **Als neues Blatt einfügen** (see [above](#result-table-as-a-new-sheet)).
 
 If code execution is not enabled, the notice "Code-Ausführung ist in diesem Tenant nicht freigeschaltet — die Analyse nutzt Formeln." (Code execution is not enabled in this tenant – the analysis uses formulas.) appears once.
 

@@ -53,7 +53,9 @@ The selection in the footer determines who answers. Without a search text, the l
 
 The search covers all agents (name, description, category) and all models. With **Anpinnen** (Pin) or **Loslösen** (Unpin) on a row you manage your favorites; they are the same favorites as in the CompanyGPT sidebar in the browser (at most 50). Agents that others have shared with you are marked "geteilt" (shared), globally shared agents with a globe.
 
-By default, the add-in starts with your environment's preset. It remembers a selected agent for each application. Which models and agents are available is determined by your environment.
+Every start begins with the default model – the same one in Word, Excel, PowerPoint, Outlook and the Teams tab. Unless your environment specifies otherwise, this is a model of the latest GPT generation. The add-in only remembers a selected agent, separately for each application. A selected model applies as long as the pane is open; the next start begins with the default model again. Which models and agents are available is determined by your environment.
+
+You can type and send as soon as the models have loaded; the agents appear in the selection shortly afterwards. If you have not chosen anything else by then, the add-in switches to your remembered agent.
 
 Saved agents can only edit the open document if this is enabled in your environment. Otherwise the add-in shows "Dokumentwerkzeuge für Agents im Tenant nicht aktiv" (Document tools for agents not active in this tenant); the agent then answers, but cannot read or change the document.
 
@@ -104,7 +106,7 @@ In **Vorschläge** mode, each change appears as a separate card:
 
 - **Ort:** (Location) names the place, e.g. "Absatz 3" (paragraph 3), a slide or a cell range.
 - The text of the change is fully visible; long texts are collapsed behind **Mehr anzeigen** (Show more).
-- **Übernehmen** (Apply) carries out the change, **Verwerfen** (Discard) discards it. With **Alle übernehmen** (Apply all) and **Alle verwerfen** (Discard all) you decide on all open cards at once.
+- **Übernehmen** (Apply) carries out the change, **Verwerfen** (Discard) discards it. With **Alle übernehmen** (Apply all) and **Alle verwerfen** (Discard all) you decide on all open cards at once – except cards for other windows; you apply those individually (see [Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/#confirmation-in-your-own-chat)). If only such cards are still open, **Alle übernehmen** is disabled.
 - If the place has moved in the meantime, the card offers **Stelle erneut markieren und Übernehmen** (Mark location again and apply).
 
 ## Show all changes
@@ -118,7 +120,7 @@ Below an answer that changed the document, you'll find **Alle Änderungen zeigen
 
 ## While the assistant is working
 
-- Each tool step appears as a separate card, together with a plan for longer tasks. Reasoning steps appear as a collapsed block "Hat nachgedacht" (Thought).
+- Each tool step appears as a separate card, together with a plan for longer tasks. Reasoning steps appear as a collapsed block **Gedanken** (Thoughts) that you can expand. While the assistant is thinking, the block shows "Nachdenken..." (Thinking...) or a short, automatically generated title. If your environment hides the reasoning content, only "Hat nachgedacht" (Thought about it) appears there, without any text.
 - **Steering:** While an answer is running, you can write an addition and send it with **Enter** or the **Steuern** (Steer) button. It is taken into account after the current step. You can withdraw a waiting addition with **Entfernen** (Remove); if it was no longer taken into account, send it with **Als neue Nachricht senden** (Send as new message). Whether steering is available depends on your environment.
 - **Cancel:** The button with the stop icon in the input field (**Abbrechen**, Cancel) stops the answer, also on the server. The answer is then marked "abgebrochen" (cancelled).
 - **Context indicator:** If enabled in your environment, a ring in the footer shows how much of the chat's context is used; from 80 % it warns you. A new chat resets the context.
@@ -128,12 +130,12 @@ Below an answer that changed the document, you'll find **Alle Änderungen zeigen
 - Below each answer you'll find **Kopieren** (Copy), **Neu generieren** (Regenerate) and **Bearbeiten** (Edit).
 - **Ins Dokument einfügen** (Insert into document, Word) inserts the answer using your document's styles. In Outlook, the button is called **In E-Mail einfügen** (Insert into email) when composing and **Als Antwort öffnen** (Open as reply) when reading. Only the answer is inserted, not the reasoning.
 - **Sources:** Citation markers in the answer open a card with the source.
-- **Files:** Generated files and images appear as cards with a download; in Word and when composing in Outlook also with **Ins Dokument einfügen** (Insert into document).
+- **Files:** Generated files and images appear as cards with a download. In Word, **Ins Dokument einfügen** (Insert into document) inserts Word documents, images and text files at the cursor position; when composing in Outlook, **In E-Mail einfügen** (Insert into email) attaches the file to your draft.
 - **Artifacts** appear as a text preview and can be opened in CompanyGPT in the browser.
 
 ## Sign-in and error messages
 
 - If your session has expired, the add-in shows the sign-in again; your text is kept in the input field.
 - Under **Details**, the sign-in page shows technical information such as the tenant ID and error code, which helps your administrator troubleshoot.
-- Without the **Use Microsoft 365** permission, "Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen" (No access to the document connection – please ask your administration to enable it) appears.
+- Without the **Use Microsoft 365** permission, "Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen" (No access to the document connection – please ask your administration to enable it) appears. You can keep chatting, but the assistant can neither read nor edit the document.
 - If starting takes longer than usual, "Das dauert gerade länger als üblich." (This is taking longer than usual.) appears.

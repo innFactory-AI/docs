@@ -29,7 +29,7 @@ Bilder und PDF-Dateien werden zusammen mit Ihrer Nachricht an das KI-Modell gese
 
 Kann das gewählte Modell PDF-Dateien nicht direkt verarbeiten, extrahiert CompanyGPT stattdessen den Text.
 
-**Limitierung**: Es kommt hierbei auf das KI-Modell an, welche Informationen und Dateitypen verarbeitet werden können. Zusätzlich gelten die Grenzen des jeweiligen KI-Anbieters pro Anfrage, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten, bei OpenAI-Modellen 50 MB. Sehr große PDF-Dateien teilen Sie daher am besten auf.
+**Limitierung**: Es kommt hierbei auf das KI-Modell an, welche Informationen und Dateitypen verarbeitet werden können. Zusätzlich gelten die Grenzen des jeweiligen KI-Anbieters pro Anfrage, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten, bei OpenAI-Modellen 50 MB, bei Gemini-Modellen (Google Vertex AI) 20 MB für die gesamte Anfrage einschließlich der angehängten Dateien. Sehr große PDF-Dateien teilen Sie daher am besten auf.
 
 ### Office-Dokumente und Textdateien
 

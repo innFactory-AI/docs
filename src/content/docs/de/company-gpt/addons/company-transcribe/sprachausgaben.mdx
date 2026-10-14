@@ -20,18 +20,19 @@ Die Maske **Sprachausgabe erstellen** ist mit „Wandle Text mit einer KI-Stimme
 | **Stimme** | Konkrete Stimme des gewählten Modells |
 | **Text** | Der Text, der vorgelesen werden soll |
 
-Das Textfeld trägt den Platzhalter „Text eingeben, der in Sprache umgewandelt werden soll…“ und unter dem Feld steht ein Zeichenzähler mit der Obergrenze **50 000 Zeichen**. Ein Klick auf **Generieren** startet die Erzeugung; die Schaltfläche bleibt inaktiv, solange kein Text eingegeben ist.
+Das Textfeld trägt den Platzhalter „Text eingeben, der in Sprache umgewandelt werden soll…“ und unter dem Feld steht ein Zeichenzähler mit der Obergrenze, standardmäßig **50 000 Zeichen** (Ihr Administrator kann diesen Wert anpassen). Ein Klick auf **Generieren** startet die Erzeugung; die Schaltfläche bleibt inaktiv, solange kein Text eingegeben ist.
 
 ## Anbieter, Modelle und Stimmen
 
-Zur Auswahl stehen zwei Anbieter mit jeweils eigenem Modell und eigener Stimmenliste:
+Je nach Konfiguration stehen bis zu drei Anbieter mit jeweils eigenen Modellen und Stimmenlisten zur Auswahl. Welche davon in Ihrer Umgebung sichtbar sind, legt Ihr Administrator fest.
 
 | Anbieter | Modell | Beispielstimme |
 |---|---|---|
-| **Azure Speech** | `neural` | `de-DE-KatjaNeural` |
+| **Azure Speech** | `neural`, `hd` | `de-DE-KatjaNeural` |
+| **Azure OpenAI** | `gpt-4o-mini-tts` | `alloy` |
 | **Google (Chirp 3 HD)** | `chirp-3-hd` | `Charon`, `Algieba` |
 
-Die Stimmen von Azure Speech folgen dem Schema `<Sprache>-<Region>-<Name>Neural`, sodass die Sprache der Stimme direkt am Namen erkennbar ist. Die Stimmen von Google Chirp 3 HD tragen dagegen Eigennamen ohne Sprachkennung.
+Die Stimmen von Azure Speech folgen dem Schema `<Sprache>-<Region>-<Name>…`, sodass die Sprache der Stimme direkt am Namen erkennbar ist. Die Stimmen von Google Chirp 3 HD tragen dagegen Eigennamen ohne Sprachkennung.
 
 ![Geöffnete Stimmenauswahl für Google Chirp 3 HD](./transcribe-stimmen.png)
 

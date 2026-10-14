@@ -46,19 +46,17 @@ While recording, the application shows a running timer and a **Stoppen** (Stop) 
 
 ![A running recording with a timer and the "Stoppen" button](./transcribe-aufnahme-laeuft.png)
 
-After **Stoppen**, the entry is created and transcribed in the background. You do not need to keep the page open.
+After **Stoppen**, the application finalizes the recording, uploads the remaining audio, creates the entry and starts transcription in the background. **Keep the page open until the recording has been saved and transcription has started.** After that you can close the page; transcription continues.
 
-:::note
-The interface states no figure for the maximum length of a single recording, only "Auch lange Sitzungen werden unterstützt." The underlying training recording puts the limit at "just under three hours". Please verify the exact figure before communicating it externally.
+:::note[How long can a recording be?]
+The application itself does not limit the recording length. With speaker diarization active, however, at most **240 minutes (4 hours)** per recording can be transcribed. Longer recordings are saved, but their transcription fails. Split very long sessions into several recordings.
 :::
 
 ## Uploading a file
 
-Use **Hochladen** to transcribe a recording you already have — for example a meeting captured with a room microphone, a voice recorder, or a phone. Common audio and video formats up to 75 MB are supported; for video files the audio track is extracted automatically.
+Use **Hochladen** to transcribe a recording you already have — for example a meeting captured with a room microphone, a voice recorder, or a phone. Common audio and video files up to **200 MB** and at most **240 minutes** long are accepted; longer files are rejected immediately. For video files the audio track is extracted automatically.
 
-:::note
-The upload dialog itself does not appear in the underlying recording. This section therefore describes only the entry point via the **Hochladen** button and the known format limits, not the individual fields of the dialog.
-:::
+In the upload form you can optionally set a **Titel** (title) and **Beschreibung** (description) and drag the file onto the drop area or select it. Uploaded files are always transcribed with speaker diarization; there is no toggle for it on upload.
 
 ## What next?
 

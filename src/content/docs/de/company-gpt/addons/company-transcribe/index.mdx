@@ -1,6 +1,6 @@
 ---
 title: companyTRANSCRIBE
-description: DSGVO-konforme Transkriptionsanwendung im Microsoft-Tenant mit Audio- und Videotranskription, Sprechererkennung, Transkriptionshistorie, Sprachausgabe und Anbindung an den CompanyGPT.
+description: DSGVO-konforme Transkriptionsanwendung in Ihrer CompanyGPT-Umgebung mit Audio- und Videotranskription, Sprechererkennung, Transkriptionshistorie, Sprachausgabe und Anbindung an den CompanyGPT.
 beta: true
 ---
 
@@ -8,7 +8,13 @@ beta: true
 companyTRANSCRIBE befindet sich derzeit in der Beta-Phase. Einzelne Funktionen können sich noch ändern oder unter Umständen nicht wie erwartet funktionieren.
 :::
 
-companyTRANSCRIBE ist eine Transkriptionsanwendung, die wie der CompanyGPT vollständig im Microsoft-Tenant des Unternehmens betrieben wird. Sie transkribiert Audio- und Videodateien sowie Aufnahmen direkt aus dem Browser und trennt dabei automatisch die einzelnen Sprecher. Umgekehrt lässt sich mit ihr aus Text auch wieder Audio erzeugen. Die Verarbeitung erfolgt über den Azure Speech-Dienst im eigenen Tenant — es werden keine Daten an Drittanbieter außerhalb der Microsoft-Cloud übermittelt, sodass die Anforderungen der DSGVO erfüllt werden.
+companyTRANSCRIBE ist eine Transkriptionsanwendung, die wie der CompanyGPT in der Cloud-Umgebung Ihres Unternehmens betrieben wird. Sie transkribiert Audio- und Videodateien sowie Aufnahmen direkt aus dem Browser und trennt dabei automatisch die einzelnen Sprecher. Umgekehrt lässt sich mit ihr aus Text auch wieder Audio erzeugen.
+
+Die Transkription erfolgt über den Azure-Speech-Dienst in Ihrer Azure-Umgebung. Für [Sprachausgaben](/de/company-gpt/addons/company-transcribe/sprachausgaben/) können je nach Konfiguration zusätzlich Azure OpenAI oder Google (Chirp 3 HD) als Anbieter freigeschaltet sein – welche Anbieter verfügbar sind, legt Ihr Administrator fest.
+
+:::caution[Transkription auf Deutsch]
+companyTRANSCRIBE transkribiert derzeit immer mit deutschem Sprachmodell; eine Sprachauswahl gibt es nicht. Aufnahmen in anderen Sprachen werden deshalb nur unzuverlässig erkannt.
+:::
 
 Sie finden die Anwendung in der Seitenleiste des CompanyGPT unter **Transkribieren**. Der Bereich ist für alle Benutzer mit den entsprechenden Berechtigungen sichtbar, sofern er im Tenant ausgerollt ist.
 
@@ -35,8 +41,10 @@ Jeder Eintrag zeigt Titel, Erstellungszeitpunkt, Audiolänge und den Ersteller. 
 
 | Aspekt | Wert |
 |---|---|
-| Audio- und Videoformate beim Upload | z. B. `.mp3`, `.wav`, `.m4a`, `.mp4`, `.webm` |
-| Maximale Dateigröße beim Upload | 75 MB |
+| Audio- und Videoformate beim Upload | gängige Audio- und Videodateien, z. B. `.mp3`, `.wav`, `.m4a`, `.mp4`, `.webm` |
+| Maximale Dateigröße beim Upload | 200 MB |
+| Maximale Länge | 240 Minuten (4 Stunden) beim Upload sowie bei Aufnahmen mit Sprechererkennung |
+| Sprache | Deutsch |
 | Sprechererkennung | bis zu 35 Stimmen je Aufnahme |
 | Export | sprecherbeschriftete Markdown-Datei (`.md`) |
 
@@ -44,4 +52,4 @@ Bei Videodateien wird die Tonspur automatisch extrahiert. Die Transkription läu
 
 ## Datenhaltung
 
-Alle Transkriptionen werden in einer benutzerbezogenen Historie gespeichert und können dort eingesehen, bearbeitet oder gelöscht werden. Sämtliche Daten verbleiben in der Microsoft-Cloud des Unternehmens.
+Alle Transkriptionen werden in einer benutzerbezogenen Historie gespeichert und können dort eingesehen, bearbeitet oder gelöscht werden. Sämtliche Daten verbleiben in der Cloud-Umgebung Ihres Unternehmens.

@@ -20,18 +20,19 @@ The **Sprachausgabe erstellen** (Create voiceover) form is headed "Wandle Text m
 | **Stimme** (Voice) | The specific voice of the chosen model |
 | **Text** | The text to be read out |
 
-The text field carries the placeholder "Text eingeben, der in Sprache umgewandelt werden soll…" and below it a character counter with an upper limit of **50,000 characters**. Clicking **Generieren** (Generate) starts generation; the button stays inactive until text has been entered.
+The text field carries the placeholder "Text eingeben, der in Sprache umgewandelt werden soll…" and below it a character counter with the upper limit, by default **50,000 characters** (your administrator can change this value). Clicking **Generieren** (Generate) starts generation; the button stays inactive until text has been entered.
 
 ## Providers, models, and voices
 
-Two providers are available, each with its own model and voice list:
+Depending on the configuration, up to three providers are available, each with its own models and voice list. Your administrator decides which of them are visible in your environment.
 
 | Provider | Model | Example voice |
 |---|---|---|
-| **Azure Speech** | `neural` | `de-DE-KatjaNeural` |
+| **Azure Speech** | `neural`, `hd` | `de-DE-KatjaNeural` |
+| **Azure OpenAI** | `gpt-4o-mini-tts` | `alloy` |
 | **Google (Chirp 3 HD)** | `chirp-3-hd` | `Charon`, `Algieba` |
 
-Azure Speech voices follow the pattern `<language>-<region>-<name>Neural`, so the voice's language is readable from its name. Google Chirp 3 HD voices, by contrast, carry proper names with no language marker.
+Azure Speech voices follow the pattern `<language>-<region>-<name>…`, so the voice's language is readable from its name. Google Chirp 3 HD voices, by contrast, carry proper names with no language marker.
 
 ![The open voice selector for Google Chirp 3 HD](./transcribe-stimmen.png)
 

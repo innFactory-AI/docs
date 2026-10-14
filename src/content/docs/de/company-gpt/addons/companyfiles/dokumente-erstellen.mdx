@@ -61,19 +61,30 @@ Ergebnis:
 
 ## Dateikonvertierung & Datenextraktion
 
-- **Konvertierung:** Es kann flexibel zwischen Formaten gewechselt werden (Excel ↔ CSV/JSON, Word ↔ PDF, Markdown ↔ HTML etc.). Welche Wege möglich sind, beantwortet der Agent über `get_supported_conversions`.
-- **Extraktion:** Daten und Texte können gezielt aus bestehenden Excel-, Word- und PDF-Dateien ausgelesen und extrahiert werden.
+- **Konvertierung:** Folgende Umwandlungen sind möglich. Welche Wege im Einzelfall verfügbar sind, beantwortet der Agent über `get_supported_conversions`.
+
+  | Von | Nach |
+  |---|---|
+  | Excel | CSV, JSON, Markdown, HTML |
+  | CSV | Excel, JSON, Markdown, HTML |
+  | JSON | Excel, CSV, Markdown |
+  | Markdown | Word, PDF, HTML, Text, ODT |
+  | HTML | Word, PDF, Markdown, Text, ODT |
+  | Word | Text, Markdown, HTML, PDF |
+  | PDF | Text |
+
+  Eine PDF-Datei lässt sich also nicht zurück in ein Word-Dokument umwandeln, sondern nur als Text auslesen.
+- **Extraktion:** Daten und Texte können gezielt aus bestehenden Excel-, Word- und PDF-Dateien ausgelesen werden. Ist in Ihrer Umgebung die Erweiterung zum Lesen weiterer Formate aktiv, liest der Agent zusätzlich E-Mails (`.msg`, `.eml`) samt Anhängen, ZIP-Archive, ältere Office-Formate (`.doc`, `.xls`, `.ppt`), RTF, OpenDocument, EPUB sowie Bilder und Scans per Texterkennung.
 - **PDF-Formulare:** Vorhandene Formularfelder lassen sich lesen, befüllen und fest in das Dokument einbrennen.
-- **Bildbearbeitung:** Die Größe von Bildern lässt sich ändern und in andere Grafikformate konvertieren.
 
 :::note
-Für die Bildbearbeitung führt die Werkzeugliste des Files-Servers kein eigenes Werkzeug auf; sie läuft über die allgemeine Konvertierung. Die Aufnahme zeigt diesen Fall nicht.
+Eine Bildbearbeitung (z. B. Größe ändern oder Grafikformat umwandeln) bietet companyFILES nicht.
 :::
 
 ## Dateiverwaltung & Organisation
 
 - **Datentransfer:** Dateien können hochgeladen und generierte Dokumente direkt heruntergeladen werden.
-- **Strukturierung:** Dateien lassen sich übersichtlich in Ordnern organisieren; zudem können ZIP-Archive zum gebündelten Download mehrerer Dokumente erstellt werden.
+- **Bündeln:** Mehrere Dokumente lassen sich als ZIP-Archiv zum gemeinsamen Download zusammenfassen.
 - **Verwaltung:** Der Agent kann den eigenen Dateibestand auflisten und durchsuchen und die hinterlegten [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/) auslesen, um Farben und Layout korrekt anzuwenden.
 
 :::tip[Hinweis]

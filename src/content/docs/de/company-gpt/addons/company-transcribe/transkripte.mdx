@@ -13,31 +13,31 @@ Der Kopfbereich der Detailansicht führt die technischen Angaben zur Transkripti
 
 | Feld | Inhalt |
 |---|---|
-| **Status** | `In Bearbeitung`, solange transkribiert wird, danach `Abgeschlossen` |
+| **Status** | `Ausstehend`, bis die Transkription beginnt, `In Bearbeitung`, solange transkribiert wird, danach `Abgeschlossen` – oder `Fehlgeschlagen`, wenn die Transkription nicht möglich war |
 | **Erstellt** | Zeitpunkt, zu dem die Aufnahme angelegt wurde |
 | **Abgeschlossen** | Zeitpunkt, zu dem das Transkript fertig war |
 | **Verarbeitungsdauer** | Dauer des Transkriptionslaufs |
 | **Audiolänge** | Länge der Aufnahme |
 | **Erstellt von** | Benutzer, dem das Transkript gehört |
-| **Sprache** | Sprache der Aufnahme |
+| **Sprache** | bleibt leer (`—`), da immer auf Deutsch transkribiert wird |
 | **Sprechererkennung** | `Aktiv` oder `Aus`, je nach Einstellung bei der Aufnahme |
 
 Solange die Transkription läuft, steht an der Stelle des Textes der Hinweis „Wird transkribiert… Je nach Länge der Aufnahme kann dies einige Minuten dauern.“ Über **Bearbeiten** im Kopfbereich ändern Sie Titel und Beschreibung des Eintrags.
 
 :::note
-Im Beispiel oben steht im Feld **Sprache** ein Gedankenstrich, obwohl die Aufnahme auf Deutsch erfolgte. Ob und wann die Sprache gefüllt wird — und ob sie sich beim Anlegen einer Aufnahme auswählen lässt — ist in der zugrunde liegenden Aufnahme nicht zu sehen und sollte vor einer Veröffentlichung geprüft werden.
+Das Feld **Sprache** zeigt einen Gedankenstrich. Das ist kein Fehler: companyTRANSCRIBE transkribiert immer auf Deutsch, eine Sprachauswahl gibt es weder bei der Aufnahme noch beim Upload.
 :::
 
 ## Audio abspielen
 
-Unter **Audio** steht ein Player, über den sich die Aufnahme jederzeit erneut anhören lässt — hilfreich, um eine unklare Stelle im Transkript gegen das Original zu prüfen.
+Unter **Audio** steht ein Player, über den sich die Aufnahme jederzeit erneut anhören lässt — hilfreich, um eine unklare Stelle im Transkript gegen das Original zu prüfen. Ein Klick auf einen Zeitstempel im Transkript springt im Audio direkt an diese Stelle.
 
 ## Text korrigieren
 
 Der Abschnitt **Transkript** bietet zwei Aktionen:
 
 - **Bearbeiten** — schaltet den Text in ein bearbeitbares Feld. Die Aktion wechselt dabei auf **Fertig**, mit dem Sie die Änderung übernehmen.
-- **Synchronisieren** — gleicht Text und Audio wieder ab.
+- **Synchronisieren** — Beim Abspielen läuft das Transkript automatisch mit. Scrollen Sie selbst im Text weg, erscheint **Synchronisieren** und schaltet das Mitlaufen wieder ein.
 
 Typischerweise korrigieren Sie hier Eigennamen und Fachbegriffe, die die Erkennung falsch verstanden hat — etwa ein „App“, das eigentlich „API“ heißen sollte. Die Korrektur wirkt sich auch auf den Export aus.
 

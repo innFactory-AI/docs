@@ -7,7 +7,7 @@ import { Steps } from '@astrojs/starlight/components';
 
 Before innFactory installs CompanyGPT for your organization, your Microsoft Entra tenant is prepared: security groups, consent for innFactory's maintenance app, guest access for the innFactory team, and an app registration through which your employees will later sign in. You do this preparation yourself in the **onboarding portal** at [onboarding.company-gpt.com](https://onboarding.company-gpt.com).
 
-This page is intended for your organization's IT admins. CompanyGPT users don't need to do anything. The portal is in English; button and step names are given here exactly as the portal shows them.
+This page is intended for your organization's IT admins. CompanyGPT users don't need to do anything. The portal is in English – except for the permission list in the **CompanyGPT App** step, which is shown in German; button and step names are given here exactly as the portal shows them.
 
 ## What the Portal Is For
 
@@ -86,7 +86,7 @@ The portal determines the domain under which CompanyGPT will be reachable (for e
 
 ### Phase 2: Rollout
 
-In the **Deployment (innFactory)** step, innFactory deploys CompanyGPT. You don't need to do anything. The step remains locked until innFactory marks it as complete after the deployment. Once all steps are done, the portal shows **Onboarding Complete**.
+In the **Deployment (innFactory)** step, innFactory deploys CompanyGPT. You don't need to do anything. The step stays locked until innFactory unlocks it for the deployment; at the end, innFactory marks it complete. The portal header shows the current status (**Locked**, **In Progress**, **Live** or **Change Required**). Once all steps are done, the portal shows **Onboarding Complete**.
 
 ## What Happens Next
 
@@ -102,7 +102,7 @@ In the **Deployment (innFactory)** step, innFactory deploys CompanyGPT. You don'
 - **Directly in your tenant:** The portal makes all changes directly in your tenant. They can be traced in the Microsoft Entra ID audit logs, and the role assignment on the Azure subscription in the Azure activity log.
 - **Read-only where possible:** Conditional Access policies are only read, never changed. The portal does not access emails or files in your tenant.
 - **What is stored:** innFactory only stores the setup progress and the details needed for the rollout – for example the IDs and names of the groups and the app, the invited guests, the sign-in policies found, your contact details, and the name and email address of the admins who use the portal for your tenant. The summary in **Finish & Notify** shows what is transmitted.
-- **Revocable at any time:** You revoke consents in Microsoft Entra ID under **Enterprise applications**; you can remove group memberships, guests, and the role assignment on the subscription at any time. If you remove the maintenance app from the Infrastructure Admins group, the deployment's access ends immediately.
+- **Revocable at any time:** You revoke consents in Microsoft Entra ID under **Enterprise applications**; you can remove group memberships, guests, and the role assignment on the subscription at any time. If you remove the maintenance app from the Infrastructure Admins group, its Owner rights on the subscription end; tokens that were already issued can stay valid until they expire. As owner of the CompanyGPT app, the maintenance app stays listed until you remove it in Microsoft Entra ID under **App registrations** → **Owners**.
 
 ## Troubleshooting
 

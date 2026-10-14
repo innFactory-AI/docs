@@ -7,7 +7,7 @@ import { Steps } from '@astrojs/starlight/components';
 
 Bevor innFactory CompanyGPT für Ihr Unternehmen installiert, wird Ihr Microsoft-Entra-Tenant vorbereitet: Sicherheitsgruppen, die Zustimmung für die Wartungs-App von innFactory, Gastzugänge für das innFactory-Team und eine App-Registrierung, über die sich Ihre Mitarbeitenden später anmelden. Diese Vorbereitung erledigen Sie selbst im **Onboarding-Portal** unter [onboarding.company-gpt.com](https://onboarding.company-gpt.com).
 
-Diese Seite richtet sich an die IT-Admins Ihres Unternehmens. Nutzerinnen und Nutzer von CompanyGPT müssen nichts tun. Das Portal ist auf Englisch; die Bezeichnungen der Schaltflächen und Schritte stehen hier so, wie sie im Portal angezeigt werden.
+Diese Seite richtet sich an die IT-Admins Ihres Unternehmens. Nutzerinnen und Nutzer von CompanyGPT müssen nichts tun. Das Portal ist auf Englisch – mit Ausnahme der Berechtigungsliste im Schritt **CompanyGPT App**, die auf Deutsch angezeigt wird; die Bezeichnungen der Schaltflächen und Schritte stehen hier so, wie sie im Portal angezeigt werden.
 
 ## Wofür das Portal da ist
 
@@ -86,7 +86,7 @@ Die Domain, unter der CompanyGPT erreichbar sein wird (zum Beispiel `FIRMA.compa
 
 ### Phase 2: Rollout
 
-Im Schritt **Deployment (innFactory)** stellt innFactory CompanyGPT bereit. Sie müssen dafür nichts tun. Der Schritt bleibt gesperrt, bis innFactory ihn nach Abschluss der Bereitstellung als erledigt markiert. Sind alle Schritte erledigt, zeigt das Portal **Onboarding Complete**.
+Im Schritt **Deployment (innFactory)** stellt innFactory CompanyGPT bereit. Sie müssen dafür nichts tun. Der Schritt bleibt gesperrt, bis innFactory ihn für die Bereitstellung freischaltet; am Ende markiert innFactory ihn als erledigt. Den aktuellen Stand (**Locked**, **In Progress**, **Live** oder **Change Required**) zeigt das Portal in der Kopfzeile. Sind alle Schritte erledigt, zeigt das Portal **Onboarding Complete**.
 
 ## Was danach passiert
 
@@ -102,7 +102,7 @@ Im Schritt **Deployment (innFactory)** stellt innFactory CompanyGPT bereit. Sie 
 - **Direkt in Ihrem Tenant:** Alle Änderungen führt das Portal direkt in Ihrem Tenant aus. Sie sind in den Überwachungsprotokollen (Audit-Log) von Microsoft Entra ID nachvollziehbar, die Rollenzuweisung auf der Azure-Subscription im Azure-Aktivitätsprotokoll.
 - **Nur lesend, wo möglich:** Richtlinien für bedingten Zugriff werden nur gelesen, nie geändert. Auf E-Mails oder Dateien in Ihrem Tenant greift das Portal nicht zu.
 - **Was gespeichert wird:** Bei innFactory werden nur der Fortschritt der Einrichtung und die Angaben gespeichert, die für den Rollout nötig sind – zum Beispiel die IDs und Namen der Gruppen und der App, die eingeladenen Gäste, die gefundenen Anmelderichtlinien, Ihre Kontaktdaten sowie Name und E-Mail-Adresse der Administratoren, die das Portal für Ihren Tenant verwenden. Die Zusammenfassung in **Finish & Notify** zeigt, was übermittelt wird.
-- **Jederzeit widerrufbar:** Zustimmungen widerrufen Sie in Microsoft Entra ID unter **Unternehmensanwendungen**; Gruppenmitgliedschaften, Gäste und die Rollenzuweisung auf der Subscription können Sie jederzeit entfernen. Entfernen Sie die Wartungs-App aus der Gruppe Infrastructure Admins, endet der Zugriff der Bereitstellung sofort.
+- **Jederzeit widerrufbar:** Zustimmungen widerrufen Sie in Microsoft Entra ID unter **Unternehmensanwendungen**; Gruppenmitgliedschaften, Gäste und die Rollenzuweisung auf der Subscription können Sie jederzeit entfernen. Entfernen Sie die Wartungs-App aus der Gruppe Infrastructure Admins, enden ihre Owner-Rechte auf der Subscription; bereits ausgestellte Tokens können bis zu ihrem Ablauf gültig bleiben. Als Besitzerin der CompanyGPT-App bleibt die Wartungs-App eingetragen, bis Sie sie in Microsoft Entra ID unter **App-Registrierungen** → **Besitzer** entfernen.
 
 ## Fehlerbehebung
 

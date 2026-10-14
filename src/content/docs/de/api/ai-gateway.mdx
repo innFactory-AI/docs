@@ -187,7 +187,7 @@ Ist ein Limit erreicht oder drosselt der KI-Anbieter das Modell, antwortet das G
 Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
 :::
 
-Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es künftig ebenfalls mit `429` statt mit `502`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet „The provider rate-limited every deployment of model '<Modell-ID>' (429). Retry later (in about N s).“ Außerdem kommen Fehler, die mitten in einer gestreamten Antwort auftreten, im Format der jeweiligen Schnittstelle (OpenAI, Anthropic oder Gemini).
+Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es künftig ebenfalls mit `429` statt mit `502`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet `The provider rate-limited every deployment of model '<Modell-ID>' (429). Retry later (in about N s).` Außerdem kommen Fehler, die mitten in einer gestreamten Antwort auftreten, im Format der jeweiligen Schnittstelle (OpenAI, Anthropic oder Gemini).
 
 ## Anfragegröße (413)
 

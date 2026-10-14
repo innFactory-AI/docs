@@ -187,7 +187,7 @@ If a limit is reached or the AI provider throttles the model, the gateway respon
 This feature is currently being introduced gradually and may not yet be available in your environment.
 :::
 
-If the gateway briefly pauses a model after several throttling responses from the provider, it will also respond with `429` instead of `502`. `Retry-After` then states the remaining waiting time, and the message reads "The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s)." In addition, errors that occur in the middle of a streamed response arrive in the format of the respective interface (OpenAI, Anthropic, or Gemini).
+If the gateway briefly pauses a model after several throttling responses from the provider, it will also respond with `429` instead of `502`. `Retry-After` then states the remaining waiting time, and the message reads `The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s).` In addition, errors that occur in the middle of a streamed response arrive in the format of the respective interface (OpenAI, Anthropic, or Gemini).
 
 ## Request size (413)
 

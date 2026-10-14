@@ -76,6 +76,8 @@ To use the RAG search, an [agent](/en/company-gpt/agenten/) must be created. It 
 
 ![mcp-server](mcp-server.png)
 
+If the folder contains tables (CSV, Excel, Parquet), also enable `execute_sql` and `describe_table`. New collections have the option [Tabular files as datasets](/en/company-gpt/addons/companyrag/sammlungen/#tabular-files-as-datasets) switched on: search then only returns a sample from such files, and the agent queries the actual values with the SQL tools.
+
 A smaller AI model is usually sufficient for the agent, e.g. **Claude Haiku** or **Gemini Flash**, but any other model works too.
 
 For the system instruction, you can use our template below. It includes all necessary instructions to produce consistently structured answers.

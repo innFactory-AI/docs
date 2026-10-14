@@ -27,7 +27,7 @@ For file sources, every run transfers only the difference – unchanged document
 
 ## Web crawl
 
-Individual web pages, lists (in CSV files), and entire website sitemaps can be crawled and indexed. For individual pages, the entire page is always re-indexed. For sitemap crawls, only the difference based on the last crawl and the modification date is taken into account.
+Individual web pages, lists (in CSV files), and entire website sitemaps can be crawled and indexed. Individual pages are fetched again on every run and only re-indexed if their content has changed. For sitemap crawls, only the difference based on the last crawl and the modification date is taken into account.
 
 In the **Webcrawl** tab, **Add Web Source** opens the **New Web Crawl Source** page. In the **URL List** tab you enter **Source name**, **Collection**, **Auto-sync** and the **URLs** – one URL per line or comma-separated. **Import CSV** takes over a CSV file with a `url` column.
 
@@ -98,7 +98,9 @@ Whether this feature is available in your environment is decided by your organiz
 
 ## File types and custom extensions
 
-For every source you choose which file types are indexed. In addition, you can add further extensions under **Add a custom file extension** (letters and digits only, 1 to 12 characters). Such files are read as plain text; use this only for extensions without built-in support.
+For SharePoint, Google Drive, Nextcloud, WebDAV and FTP you choose which file types are indexed. In addition, you can add further extensions under **Add a custom file extension** (letters and digits only, 1 to 12 characters). Such files are read as plain text; use this only for extensions without built-in support.
+
+GitHub sources only offer the fixed extensions `.md`, `.markdown`, `.mdx` and `.txt`, without custom extensions. Web crawls have no file type selection.
 
 ## Excluding folders
 
@@ -122,7 +124,7 @@ On the next sync, documents in newly excluded folders are removed from the index
 - **Sync Now**: start a run immediately
 - Via the source's **…** menu:
   - **Pause** / **Resume**: deactivate or reactivate the source. Not available for SharePoint, Nextcloud and Google Drive.
-  - **Edit**: adjust the name, status, **Auto-sync**, credentials (WebDAV, FTP) and excluded folders. Site, library, folder and collection cannot be changed; changes apply to the next sync.
+  - **Edit**: adjust the **Name**, **Status** (not for SharePoint, Nextcloud and Google Drive), **Auto-sync** (not for SharePoint and Google Drive), **Credentials** (WebDAV, FTP), **Repository access** (GitHub) and **Excluded folders** (SharePoint, WebDAV, FTP). Site, library, folder and collection cannot be changed; changes apply to the next sync.
   - **Delete**: removes the source
 
 :::danger

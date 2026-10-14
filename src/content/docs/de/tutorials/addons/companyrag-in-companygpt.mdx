@@ -76,6 +76,8 @@ Damit die RAG Suche genutzt werden kann, muss ein [Agent](/de/company-gpt/agente
 
 ![mcp-server](mcp-server.png)
 
+Enthält der Ordner Tabellen (CSV, Excel, Parquet), aktivieren Sie zusätzlich `execute_sql` und `describe_table`. Bei neuen Sammlungen ist die Option [Tabellen als Datensätze](/de/company-gpt/addons/companyrag/sammlungen/#tabellen-als-datensätze) eingeschaltet: Die Suche liefert aus solchen Dateien dann nur eine Stichprobe, die eigentlichen Werte fragt der Agent über die SQL-Tools ab.
+
 Bei dem KI Modell für den Agenten reicht in der Regel ein kleineres, z.B. **Claude Haiku** oder **Gemini Flash**, geht aber auch mit allen anderen.
 
 Für die Systemanweisung können Sie bequem unsere Vorlage nutzen. Diese ist mit allen möglichen Anweisungen versehen damit die Antworten vom Aufbau identisch werden.

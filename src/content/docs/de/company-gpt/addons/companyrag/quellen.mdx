@@ -27,7 +27,7 @@ Bei Dateiquellen überträgt jeder Lauf nur die Differenz – unveränderte Doku
 
 ## Web-Crawl
 
-Einzelne Webseiten, Listen (in CSV-Dateien) sowie gesamte Website-Sitemaps können gecrawlt und indexiert werden. Bei einzelnen Seiten wird immer die gesamte Seite neu indexiert. Bei Sitemap-Crawlings wird nur die Differenz anhand des letzten Crawls sowie des Änderungsdatums berücksichtigt.
+Einzelne Webseiten, Listen (in CSV-Dateien) sowie gesamte Website-Sitemaps können gecrawlt und indexiert werden. Einzelne Seiten werden bei jedem Lauf neu abgerufen und nur bei geändertem Inhalt neu indexiert. Bei Sitemap-Crawlings wird nur die Differenz anhand des letzten Crawls sowie des Änderungsdatums berücksichtigt.
 
 Im Reiter **Webcrawl** öffnen Sie mit **Web-Quelle hinzufügen** die Seite **Neue Web-Crawl-Quelle**. Im Reiter **URL-Liste** tragen Sie **Quellname**, **Sammlung**, **Auto-Sync** und die **URLs** ein – eine URL pro Zeile oder kommagetrennt. Über **CSV importieren** übernehmen Sie eine CSV-Datei mit einer Spalte `url`.
 
@@ -98,7 +98,9 @@ Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen f
 
 ## Dateitypen und eigene Endungen
 
-Bei jeder Quelle wählen Sie, welche Dateitypen indexiert werden. Zusätzlich können Sie unter **Eigene Dateiendung hinzufügen** weitere Endungen ergänzen (nur Buchstaben und Ziffern, 1 bis 12 Zeichen). Solche Dateien werden als reiner Text gelesen; nutzen Sie das nur für Endungen, für die es keine eigene Unterstützung gibt.
+Bei SharePoint, Google Drive, Nextcloud, WebDAV und FTP wählen Sie, welche Dateitypen indexiert werden. Zusätzlich können Sie unter **Eigene Dateiendung hinzufügen** weitere Endungen ergänzen (nur Buchstaben und Ziffern, 1 bis 12 Zeichen). Solche Dateien werden als reiner Text gelesen; nutzen Sie das nur für Endungen, für die es keine eigene Unterstützung gibt.
+
+GitHub-Quellen bieten nur die festen Endungen `.md`, `.markdown`, `.mdx` und `.txt`, ohne eigene Endungen. Beim Web-Crawl gibt es keine Auswahl der Dateitypen.
 
 ## Ordner ausschließen
 
@@ -122,7 +124,7 @@ Bei der nächsten Synchronisierung werden Dokumente aus neu ausgeschlossenen Ord
 - **Jetzt synchronisieren**: Lauf sofort starten
 - Über das Menü **…** der Quelle:
   - **Pausieren** / **Fortsetzen**: Quelle deaktivieren oder reaktivieren. Nicht verfügbar bei SharePoint, Nextcloud und Google Drive.
-  - **Bearbeiten**: Name, Status, **Auto-Sync**, Zugangsdaten (WebDAV, FTP) und ausgeschlossene Ordner anpassen. Website, Bibliothek, Ordner und Sammlung sind nicht änderbar; Änderungen greifen bei der nächsten Synchronisierung.
+  - **Bearbeiten**: **Name**, **Status** (nicht bei SharePoint, Nextcloud und Google Drive), **Auto-Sync** (nicht bei SharePoint und Google Drive), **Zugangsdaten** (WebDAV, FTP), **Zugang zum Repository** (GitHub) und **Ausgeschlossene Ordner** (SharePoint, WebDAV, FTP) anpassen. Website, Bibliothek, Ordner und Sammlung sind nicht änderbar; Änderungen greifen bei der nächsten Synchronisierung.
   - **Löschen**: Entfernt die Quelle
 
 :::danger

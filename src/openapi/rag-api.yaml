@@ -2266,6 +2266,7 @@ paths:
 
     delete:
       summary: Delete source
+      description: Deletes the source together with all files of this source. A delete job is queued for every file of the source (its index entries, embeddings and stored content are removed), then the source configuration is deleted. Requires write access to its collection (or, for orphaned sources, being the creator).
       operationId: deleteSource
       tags:
         - Sources
@@ -2283,6 +2284,10 @@ paths:
           description: Invalid source ID
         '401':
           description: Unauthorized
+        '403':
+          description: Caller does not have permission to delete this source
+        '404':
+          description: Source not found
         '500':
           description: Server error
 

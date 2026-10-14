@@ -38,7 +38,7 @@ The **Knowledge** tile opens companyRAG, not [companyKNOWLEDGE](/en/company-gpt/
 
 Some environments still have a **Dashboard** tile for the former companyDASHBOARD. Today you analyze usage and costs with [Insights](/en/company-gpt/addons/companyadmin/insights/).
 
-If your organization uses several knowledge areas in companyRAG, there may be several tiles for them, each with its own name.
+Your organization can add further knowledge areas as **Custom tiles**.
 
 ### Alpha and Beta
 
@@ -60,10 +60,10 @@ Besides the addons, **All apps** can show links your organization has added, for
 
 Depending on the environment, the tiles come from companyADMIN or from the configuration that innFactory maintains for your environment.
 
-- **From companyADMIN:** The tile of an addon is shown to people who have the corresponding permission. Under **Configuration → [Tools](/en/company-gpt/addons/companyadmin/tools/)** you manage the **Extension tiles** and, with **Add tile**, create **Custom tiles**: with **Name**, **Address**, optionally **Description** and **Icon**, and the **Visibility** (**Every signed-in user**, **Specific roles** or **Specific groups**). The page also shows whether All apps reads its tiles from companyADMIN in your environment.
+- **From companyADMIN:** The tile of an addon is shown to people who have the corresponding permission (exceptions: n8n and AI Gateway, see below). Under **Configuration → [Tools](/en/company-gpt/addons/companyadmin/tools/)** you manage the **Extension tiles** and, with **Add tile**, create **Custom tiles**: with **Name**, **Address**, optionally **Description** and **Icon**, and the **Visibility** (**Every signed-in user**, **Specific roles** or **Specific groups**). The page also shows whether All apps reads its tiles from companyADMIN in your environment.
 - **From the configuration:** Otherwise innFactory controls visibility through groups in your directory. Request changes from innFactory.
 
-The **Alpha** and **Beta** labels as well as additional links via the configuration are set up by innFactory on request.
+The **Alpha** and **Beta** labels are set up by innFactory on request. You add your own links via **Custom tiles** in companyADMIN.
 
 Changes to the tiles appear at the latest when All apps is reloaded.
 
@@ -73,4 +73,4 @@ Changes to the tiles appear at the latest when All apps is reloaded.
 A tile is only a link. Whether someone may use an addon is checked by the addon itself, based on their permissions. Anyone who sees a tile but lacks the permission gets the **No access** page when opening it. Conversely, hiding a tile does not by itself revoke any permission.
 :::
 
-You grant permissions for addons in companyADMIN, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/). One exception is an extension's switch under **Configuration → Tools**: for addons whose permissions companyADMIN manages, it switches tile and permissions together (**Active (tile and rights)**). For applications that manage access themselves, such as n8n and AI Gateway, it only shows or hides the tile.
+You grant permissions for addons in companyADMIN, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/). One exception is an extension's switch under **Configuration → Tools**: for addons whose permissions companyADMIN manages, it switches tile and permissions together (**Active (tile and rights)**). For applications that manage access themselves, such as n8n and AI Gateway, the switch is called **Show in companyTOOLS** and only shows or hides the tile – the same for all signed-in users, admins included.

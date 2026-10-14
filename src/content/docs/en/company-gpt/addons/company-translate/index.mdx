@@ -40,12 +40,18 @@ companyTRANSLATE does not translate by itself; it hands the content to a transla
 
 | Content | Translation service |
 |---|---|
-| Documents in the **Documents** area | Azure AI Translator |
+| Documents in the **Documents** area | Azure AI Translator; **Retry translation** keeps the original service (a translation an agent created via Google in the chat is translated via Google again) |
 | Text in the **Text** area | Azure AI Translator; if Google is enabled in your environment, text translation runs via Google Cloud Translation |
 | Glossaries | are sent to the service along with the translation; if Google is enabled, uploaded glossaries are also stored with Google so that they apply in text translation |
 | [Translating in the chat](/en/company-gpt/addons/company-translate/im-chat/) | Azure AI Translator; Google only for text with a glossary or on explicit request, and only if it is enabled |
 
-For translation, the content – text, files and glossary terms – is transmitted to the respective service. companyTRANSLATE stores uploaded documents and their translations in the storage of your CompanyGPT environment and deletes them after 30 days (see [Translation history](#translation-history-and-retention)).
+For translation, the content – text, files and glossary terms – is transmitted to the respective service. companyTRANSLATE stores uploaded documents and their translations in the storage of your CompanyGPT environment (for retention, see [Translation history](#translation-history-and-retention)).
+
+When translating in the chat, the following also applies:
+
+- companyTRANSLATE fetches the attached file from the CompanyGPT file store and puts the result back there as a chat file. From then on, CompanyGPT handles it like any uploaded file – for Word and PowerPoint results including text recognition (OCR), which can incur costs.
+- If a text translation continues in the background, companyTRANSLATE stores the text briefly (at most one day) in your environment's storage.
+- When translating via Google, terms from the chat or from an attached glossary file are stored temporarily as a glossary with Google and removed again after 7 days at the earliest.
 
 ## Supported formats and limits
 
@@ -60,7 +66,7 @@ For translation, the content – text, files and glossary terms – is transmitt
 
 In the **Documents** area, **Recent translations** lists your document translations – including those an agent created for you in the chat. Each entry shows the file name, target language, file size and time. Running translations are marked **Processing**, failed ones **Failed**; **Retry translation** in the entry's menu starts them again.
 
-Translations are kept for 30 days. After that they disappear from the history and can no longer be downloaded or retried; companyTRANSLATE then reports "This translation has expired and is no longer available". Download results you need for longer in good time.
+Translations are kept for 30 days: companyTRANSLATE then hides them, and a storage rule in your environment deletes them. Expired translations can no longer be downloaded or retried; companyTRANSLATE then reports "This translation has expired and is no longer available". Download results you need for longer in good time. The 30 days apply to translations from version 2.0 onward; older entries from before that remain until you delete them.
 
 ## Related topics
 

@@ -40,12 +40,18 @@ companyTRANSLATE übersetzt nicht selbst, sondern übergibt die Inhalte an einen
 
 | Inhalt | Übersetzungsdienst |
 |---|---|
-| Dokumente im Bereich **Dokumente** | Azure AI Translator |
+| Dokumente im Bereich **Dokumente** | Azure AI Translator; **Neu übersetzen** behält den ursprünglichen Dienst bei (eine Übersetzung, die ein Agent im Chat über Google erstellt hat, läuft auch erneut über Google) |
 | Text im Bereich **Text** | Azure AI Translator; ist Google in Ihrer Umgebung aktiviert, läuft die Textübersetzung über Google Cloud Translation |
 | Glossare | gehen mit der jeweiligen Übersetzung an den Dienst; ist Google aktiviert, werden hochgeladene Glossare zusätzlich bei Google hinterlegt, damit sie in der Textübersetzung wirken |
 | [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/) | Azure AI Translator; Google nur bei Text mit Glossar oder auf ausdrücklichen Wunsch und nur, wenn es aktiviert ist |
 
-Für die Übersetzung werden die Inhalte – Texte, Dateien und Glossarbegriffe – an den jeweiligen Dienst übermittelt. Hochgeladene Dokumente und ihre Übersetzungen legt companyTRANSLATE im Speicher Ihrer CompanyGPT-Umgebung ab und löscht sie nach 30 Tagen (siehe [Übersetzungsverlauf](#übersetzungsverlauf-und-aufbewahrung)).
+Für die Übersetzung werden die Inhalte – Texte, Dateien und Glossarbegriffe – an den jeweiligen Dienst übermittelt. Hochgeladene Dokumente und ihre Übersetzungen legt companyTRANSLATE im Speicher Ihrer CompanyGPT-Umgebung ab (zur Aufbewahrung siehe [Übersetzungsverlauf](#übersetzungsverlauf-und-aufbewahrung)).
+
+Beim Übersetzen im Chat gilt außerdem:
+
+- companyTRANSLATE holt die angehängte Datei aus dem Dateispeicher von CompanyGPT und legt das Ergebnis dort wieder als Chat-Datei ab. Ab dann behandelt CompanyGPT sie wie jede hochgeladene Datei – bei Word- und PowerPoint-Ergebnissen einschließlich der Texterkennung (OCR), für die Kosten anfallen können.
+- Läuft eine Textübersetzung im Hintergrund weiter, speichert companyTRANSLATE den Text kurzzeitig (höchstens einen Tag) im Speicher Ihrer Umgebung.
+- Wird über Google übersetzt, werden Begriffe aus dem Chat oder aus einer angehängten Glossardatei vorübergehend als Glossar bei Google hinterlegt und nach frühestens 7 Tagen wieder entfernt.
 
 ## Unterstützte Formate und Grenzen
 
@@ -60,7 +66,7 @@ Für die Übersetzung werden die Inhalte – Texte, Dateien und Glossarbegriffe 
 
 Im Bereich **Dokumente** listet **Letzte Übersetzungen** Ihre Dokumentübersetzungen – auch die, die ein Agent im Chat für Sie erstellt hat. Jeder Eintrag zeigt Dateiname, Zielsprache, Dateigröße und Zeitpunkt. Laufende Übersetzungen sind mit **In Bearbeitung** markiert, gescheiterte mit **Fehlgeschlagen**; über **Neu übersetzen** im Menü des Eintrags starten Sie sie erneut.
 
-Übersetzungen werden 30 Tage aufbewahrt. Danach verschwinden sie aus dem Verlauf und lassen sich weder herunterladen noch neu übersetzen; companyTRANSLATE meldet dann „Diese Übersetzung ist abgelaufen und nicht mehr verfügbar“. Laden Sie Ergebnisse, die Sie länger brauchen, rechtzeitig herunter.
+Übersetzungen werden 30 Tage aufbewahrt: companyTRANSLATE blendet sie danach aus, gelöscht werden sie über eine Speicherregel Ihrer Umgebung. Abgelaufene Übersetzungen lassen sich weder herunterladen noch neu übersetzen; companyTRANSLATE meldet dann „Diese Übersetzung ist abgelaufen und nicht mehr verfügbar“. Laden Sie Ergebnisse, die Sie länger brauchen, rechtzeitig herunter. Die 30 Tage gelten für Übersetzungen ab Version 2.0; ältere Einträge aus der Zeit davor bleiben erhalten, bis Sie sie löschen.
 
 ## Weiterführende Themen
 

@@ -1,0 +1,85 @@
+---
+title: Outlook
+description: Das Office-Add-in in Outlook – Schnellaktionen, Termine vorschlagen, Meetings vorbereiten, den Posteingang aufräumen, Entwürfe coachen sowie Entwürfe und Anhänge.
+---
+
+In Outlook arbeitet das [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/) mit der E-Mail, die Sie gerade lesen oder verfassen. Das Add-in ist nicht in allen Umgebungen aktiviert; die Grundlagen wie Öffnen, Modellauswahl und Paletten stehen auf der Seite [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/).
+
+E-Mails versenden immer nur Sie selbst: Der Assistent schreibt höchstens in einen Entwurf, den Sie selbst abschicken. Anders ist es bei Termineinladungen – siehe [Termin vorschlagen](#termin-vorschlagen).
+
+## Schnellaktionen
+
+Outlook hat zwei Menüs – eines beim Lesen und eines beim Verfassen einer E-Mail.
+
+| Ansicht | Schnellaktion | Was sie tut |
+|---|---|---|
+| Lesen | **Antwort entwerfen** | Entwirft eine Antwort auf die geöffnete E-Mail. |
+| Lesen | **Zusammenfassen** | Fasst die E-Mail (und den Verlauf) zusammen. |
+| Lesen | **Aufgaben extrahieren** | Zieht die To-dos und Termine aus der E-Mail. |
+| Verfassen | **Korrektur lesen** | Prüft den Entwurf auf Rechtschreibung, Grammatik und Zeichensetzung. |
+| Verfassen | **Sprache vereinfachen** | Formuliert den Entwurf in einfacher, klarer Sprache. |
+| Verfassen | **Professioneller Ton** | Formuliert den Entwurf professioneller und verbindlicher. |
+
+Die Schnellaktionen beim Verfassen zeigen ihr Ergebnis im Chat und ersetzen Ihren Entwurf nicht selbst – so bleiben Signatur und zitierter Verlauf erhalten. Den Vorschlag übernehmen Sie mit **In E-Mail einfügen**.
+
+### E-Mail als Kontext mitgeben
+
+Beim Lesen einer E-Mail hängt der Knopf **Diese E-Mail an …** (mit dem Namen Ihrer CompanyGPT-Umgebung) über dem Eingabefeld die geöffnete E-Mail an Ihre nächste Nachricht an. Sie schreiben dann nur noch Ihre Anweisung. Die angehängte E-Mail erscheint als Chip mit ihrem Betreff und lässt sich wieder entfernen.
+
+## Die vier Outlook-Workflows
+
+Zusätzlich zu den Schnellaktionen gibt es vier Workflows. Sie starten sie über die Startvorschläge in einem leeren Chat oder über die Palette `/`.
+
+| Workflow | Ansicht | Ergebnis |
+|---|---|---|
+| **Termin vorschlagen** | Lesen | drei Terminvorschläge zur Bestätigung |
+| **Meeting vorbereiten** | Lesen | eine Vorbereitung im Chat, ohne Änderungen |
+| **Posteingang aufräumen** | Lesen | Vorschläge je E-Mail zur Bestätigung |
+| **Coaching** | Verfassen | Befunde zu Ihrem Entwurf, einzeln übernehmbar |
+
+Bei allen Workflows, die etwas im Kalender oder Postfach ändern würden, liest der Assistent zuerst nur und macht Vorschläge. Ausgeführt wird erst, was Sie auf der Karte **Bestätigung erforderlich** auswählen: „Diese Vorschläge werden erst nach Ihrem Klick ausgeführt. Prüfen Sie Empfänger und Inhalt, bevor Sie bestätigen.“ Jeder Vorschlag hat ein Häkchen; **Ausgewählte ausführen** führt die angehakten aus, **Alle ausführen** alle.
+
+### Termin vorschlagen
+
+Der Assistent liest die geöffnete E-Mail samt Verlauf, ermittelt die Beteiligten und sucht drei freie Zeiten in den nächsten zehn Arbeitstagen. Steht im Verlauf keine Dauer, plant er 30 Minuten ein.
+
+Jeder Vorschlag zeigt Zeit, Titel, die **Teilnehmer (erhalten eine Einladung)** und die Beschreibung, die der Einladungstext wird. Teilnehmende mit einer anderen E-Mail-Domain als Ihrer sind mit **extern** markiert.
+
+:::caution[Einladungen werden sofort versendet]
+Bestätigen Sie einen Terminvorschlag, legt der Assistent den Termin an und Outlook verschickt die Einladung **sofort** an alle aufgeführten Teilnehmenden. Ohne Teilnehmende wird keine Einladung verschickt.
+:::
+
+### Meeting vorbereiten
+
+Der Assistent sucht den nächsten Termin, der zur geöffneten E-Mail gehört (gleiche Teilnehmende oder gleicher Betreff); gibt es keinen, nimmt er den nächsten Termin in den kommenden 24 Stunden. Er ergänzt, was zuletzt dazu per E-Mail und in Dateien geteilt wurde, und antwortet mit vier Abschnitten: „Zusammenfassung“, „Offene Punkte“, „Zuletzt geteilte Dateien“ und „Teilnehmer“. Der Workflow liest nur und ändert nichts.
+
+### Posteingang aufräumen
+
+Der Assistent liest die 15 neuesten E-Mails Ihres Posteingangs und schlägt je E-Mail höchstens eine Aktion vor:
+
+- eine **Kategorie** zuweisen,
+- in einen vorhandenen Ordner **verschieben**,
+- als **erledigt** markieren (als gelesen markieren).
+
+Die Karte nennt zu jedem Vorschlag Betreff und Absender. Verschiebungen in die Ordner für gelöschte Elemente, Junk-E-Mail oder das Archiv sind mit einer Warnung markiert. E-Mails, die der Assistent nicht eindeutig zuordnen konnte, sind nicht angehakt; sie laufen nur, wenn Sie sie selbst ankreuzen.
+
+### Coaching
+
+Beim Verfassen gibt **Coaching** Rückmeldung zu Ihrem eigenen Text – Signatur und zitierter Verlauf werden nicht beurteilt. Der Assistent liefert einen kurzen Gesamteindruck und bis zu sechs Befunde zu **Ton**, **Klarheit**, **Länge** oder **Struktur**, jeweils mit Fundstelle, Begründung und Vorschlag.
+
+In der Befundliste ersetzt **Übernehmen** genau die Fundstelle in Ihrem Entwurf, **Rückgängig** nimmt das wieder zurück. Mit **Alle übernehmen** übernehmen Sie alle offenen Befunde. Signatur und zitierter Verlauf bleiben dabei unverändert.
+
+## Entwürfe
+
+- **Beim Verfassen** fügt **In E-Mail einfügen** unter einer Antwort den Text an der Cursorposition in Ihren Entwurf ein; markierten Text ersetzt er. Schrift und Absatzformat richten sich nach Ihrem Entwurf, Signatur und zitierter Verlauf bleiben erhalten.
+- **Beim Lesen** öffnet **Als Antwort öffnen** eine Antwort auf die geöffnete E-Mail, die bereits den Text enthält.
+- Über die [Werkzeuge im Chat](/de/company-gpt/addons/companym365/werkzeuge/#e-mail-outlook) legt der Assistent Antworten, Weiterleitungen und neue E-Mails als Entwürfe in Ihrem Ordner **Entwürfe** an. Abschicken müssen Sie sie selbst.
+
+## Anhänge
+
+- **Anhänge lesen:** Der Assistent kann Anhänge der geöffneten oder einer gefundenen E-Mail lesen – Text, Word, Excel, PowerPoint, CSV, HTML und PDF, angehängte E-Mails und Termine sowie OneDrive-/SharePoint-Links. Bilder und gescannte PDFs werden als Bild übergeben; dafür muss das gewählte Modell Bilder verarbeiten können.
+- **Dateien an einen Entwurf anhängen:** Der Assistent kann eine Datei (bis 25 MB) an einen Entwurf anhängen, ohne ihn zu versenden – aus OneDrive oder SharePoint, aus dem aktuellen Chat, aus [companyFILES](/de/company-gpt/addons/companyfiles/) oder ein geöffnetes Office-Dokument.
+
+## Outlook auf dem Mac
+
+Für Outlook auf dem Mac muss Ihr Administrator das Add-in zusätzlich bereitstellen (siehe [Administration](/de/company-gpt/addons/companym365/administration/#installation)). Ohne diesen Schritt fehlt das Add-in dort. Unter Windows und im Browser ist nichts weiter nötig.

@@ -1,0 +1,77 @@
+---
+title: Agent runtime
+description: Control scheduled chats, tool approval and the subagent cap in companyADMIN, and set memories, retention, agent builder and file uploads per role or group.
+---
+
+**Configuration** → **Agent runtime** bundles settings for how agents run in CompanyGPT.
+
+You can take over each setting with **Manage via companyADMIN**. As long as it is not managed, the value from the base configuration applies; the page shows it (source **librechat.yaml**). Managed values (source **companyADMIN**) apply to everyone as soon as they reload CompanyGPT. Each section has its own save button.
+
+## Scheduled chats
+
+Scheduled chats are recurring chats with an agent that run at set times.
+
+:::note[Rolling out gradually]
+This feature is currently being introduced gradually and may not yet be available in your environment.
+:::
+
+| Setting | Meaning |
+|---|---|
+| **Allow scheduled chats** | Switches the feature on. Off as long as it is switched on neither here nor in the base configuration |
+| **Max schedules per user** | How many scheduled chats a person may have at most |
+| **Min interval (minutes)** | Shortest gap between two runs |
+| **Auto-disable after failures** | After how many failures a scheduled chat is switched off |
+| **Require a chat project** | Whether a scheduled chat must belong to a project |
+
+Who may use or create scheduled chats is set per role: role → **companyGPT** tab → feature **Scheduled chats** (**Use**, **Create**), see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+If the base configuration switches scheduled chats off, a setting here cannot switch them on. In that case contact innFactory.
+
+How people use scheduled chats is shown in the preview [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
+
+## Tool approval
+
+With tool approval, CompanyGPT asks the person before an agent runs a tool. Rules are evaluated in the order deny → ask → allow, and also cover MCP and subagent tools.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+**Ask before tool calls** has three values:
+
+- **Not set** – the base configuration's default applies (without one: no prompts).
+- **On** – ask before tool calls.
+- **Off** – no prompts: tools run without asking, and deny rules and code approvals no longer apply either.
+
+The **Mode** decides how prompting works:
+
+| Mode | Behaviour |
+|---|---|
+| **default** | Ask for anything not explicitly allowed. A good default to start with |
+| **dontAsk** | Deny anything not explicitly allowed, without asking. Only useful with explicit allow lists |
+| **bypass** | Approve automatically unless explicitly denied. Equivalent to the person's "stop asking me" toggle |
+
+CompanyGPT loads custom approval rules only from the base configuration; innFactory sets them up.
+
+## Subagent cap
+
+**Maximum subagents** limits how many subagents an agent may start. The base configuration sets the ceiling (default 10, at most 50). The value here only limits the agent builder and is capped at that ceiling.
+
+## PII and secret filters
+
+This section is display only (**librechat.yaml only**). It shows which filters for personal data and secrets are set up in the base configuration, with their action (**Block** or **Audit**) and the number of patterns. innFactory makes changes.
+
+## Per role or group
+
+Here you set four settings for a single role or group. First choose under **Pick a role or group**. Each value can also stay **As default**.
+
+| Setting | Meaning |
+|---|---|
+| **Memories** | **Off** switches memories off for this role or group, even if the base configuration enables them for everyone |
+| **Retention** | How long chats are kept: **What is deleted** (**Temporary chats only** or **All chats**), **Delete temporary chats after (hours)**, **Delete all chats after (hours)** and **Keep agent files** |
+| **Agent builder** | Whether the agent builder is **Visible** or **Hidden** in the chat, and **Providers for agents** (nothing selected means every provider is allowed). The role's right to create agents still applies |
+| **File uploads** | **Uploads**: **Allowed** or **Off**, plus **Files per message**, **Size per file (MB)** and **Size of all files (MB)**. Empty means as default |
+
+A value on the role always wins over a value on the group. All groups share one priority: if two of a person's groups set different values, it is undefined which one applies. **Providers for agents** can therefore only be set per role.
+
+You also find the same settings on the role (**companyGPT** tab) and on the group (**Configuration** tab).

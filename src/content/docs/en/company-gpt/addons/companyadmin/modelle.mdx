@@ -1,51 +1,121 @@
 ---
-title: Models and providers
-description: Release providers and individual AI models per role in CompanyGPT and show models under labels of your choosing.
+title: Providers and models
+description: Decide in companyADMIN which role sees which providers and models in CompanyGPT, edit every role in the model access matrix, and show models under names of your own with labels.
 ---
 
-In the administration area you define which providers and which individual models a role may use – and under which name a model is shown to users.
+Under **Configuration** you decide which providers and models people see in CompanyGPT and under which name. Three pages belong to this:
 
-## Model access per role
+- **Providers and models** – access per provider, one role at a time
+- **Model access** – every role and provider in one table
+- **Labels** – readable names for models and how the model picker looks
 
-By default a provider is available to all users. With **Only specific roles may use …** you restrict it to selected roles and define the allowed models per role.
+Models belong to **roles**, not to groups. An Entra group gets its models through the role the role sync gives it. Because everyone has exactly one role, the result is unambiguous.
 
-![Provider settings with roles and the models allowed per role](./provider-rollen.png)
+## Providers and models
 
-Because a user has exactly **one** role, exactly one of these rows applies to them. Allowances from several roles are not added together: a cohort that needs the models of two roles combined requires a role of its own.
+Without a restriction the base configuration applies: everyone sees every provider and model. The **Access per provider** table shows what applies:
 
-Points to note:
+| Column | Content |
+|---|---|
+| **Provider** | The provider, with a badge if applicable |
+| **Models** | Number of models |
+| **Access** | **All models**, "x of y models" or **No access** for the role chosen in the filter |
+| **Source** | **librechat.yaml** (base configuration, open to everyone) or **companyADMIN** (restricted here) |
 
-- If the **ADMIN** role is not ticked, administrators lose this provider as well.
-- **USER** is the default role for everyone whose login matched no role mapping. Without a tick, those users see nothing of the provider.
-- A role you do not tick still sees the provider, but with an empty model list. Providers are switched on by the server environment and cannot be removed here, only emptied. Therefore leave at least one model active per role.
+The **Role** filter shows what one role gets. Use **Search provider or model …** to find an entry.
 
-:::note
-Changes to model access take effect within about a minute.
+Badges on a provider:
+
+- **Custom endpoint** – a custom provider. A restriction applies to this endpoint only. For a role without access it is hidden completely in CompanyGPT.
+- **Live list** – the model list is fetched from the provider. Here only the whole provider can be blocked, not single models.
+- **Save again** – an older restriction does not work as shown. Check it and save it again.
+
+### Changing access for a role
+
+1. Expand the provider. You see which role holds which model.
+2. Pick the role under **Edit a role:**.
+3. Tick or untick "*Role* uses *Provider*" and the ticks of the individual models.
+4. Click **Save**. If you take models away, companyADMIN asks first and lists the models that will no longer be available.
+
+If a provider that was open so far is restricted for one role, every other role keeps all models. New roles, however, only see the provider once you grant it to them. **Open for everyone** lifts the restriction again.
+
+Keep in mind:
+
+- At least one role must keep the provider.
+- ADMIN is a role like any other. If you take access away from ADMIN, administrators lose the provider too.
+- For built-in providers a role without access still sees the provider in CompanyGPT, but with an empty model list. Leave every role at least one model to avoid that empty entry.
+- After a change, people reload CompanyGPT to see the new selection.
+
+### AI Gateway
+
+If the innFactory AI Gateway is set up in your environment, the page shows **The AI Gateway manages providers, models and budgets.** You then only decide here which role sees which models in the chat. **Open gateway** takes you to the gateway; administrators with configuration rights can open it.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
 :::
 
-## Custom model labels
+## Model access
 
-With **Manage model labels from companyADMIN** you show a model under a name of your choosing – for example "Claude Sonnet 4.6" instead of the technical model ID.
+**Model access** shows every role and provider in one table: providers as rows, roles as columns, ADMIN and USER first.
 
-![Model labels with label, provider, model, group and description](./modell-labels.png)
+- A tick means the role holds the provider or model. A dash means only some models. Expanding a provider shows its models; **Show all models** expands every provider.
+- Each provider shows whether it is **open to everyone (librechat.yaml)** or **restricted by companyADMIN**.
+- Clicking a column header opens that role's models.
 
-Per entry you configure:
+To change access:
 
-| Field | Meaning |
+1. Tick or untick. Changed providers are marked.
+2. Click **Save** or **Discard** in the save bar.
+3. If you take models away, **Take models away?** asks first and lists per role what is removed. Confirm with **Save and take away**.
+
+Here too, at least one role must keep every provider. If someone else has changed a provider in the meantime, companyADMIN saves nothing and shows **Changed meanwhile – reload**. Then check the stored state and save again.
+
+## Models per role and person
+
+- **Role** → **Models & providers** tab shows and changes a role's models, see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+- **User** → **Models** tab shows which models a person sees, see [Users](/en/company-gpt/addons/companyadmin/nutzer/).
+
+## Labels
+
+Labels give models readable names in the model picker, such as "Claude fast" instead of the technical model ID. A label can also point to a specific agent.
+
+### Management
+
+With **Manage model labels from companyADMIN**, companyADMIN takes over the labels. As long as the box is unticked, the labels from the base configuration apply, otherwise the technical model IDs. Creating the first label already copies the existing labels from the base configuration here for editing.
+
+**Stop managing** asks first. Afterwards the labels from the base configuration apply again, and every label created or changed here is lost.
+
+### All labels
+
+The **All labels** list shows **Label**, **Model**, **Source** and **In effect**. The labels appear in the model picker in this order. **Preselected** marks the label preselected for new chats. If **In effect** says "No", the model no longer exists; CompanyGPT hides such a label.
+
+**Add label** and a click on a label open the detail page:
+
+| Section | Fields |
 |---|---|
-| **Label** | Displayed name of the model |
-| **Provider** and **Model** | Technical mapping to the actual model |
-| **Description** | Short hint on its purpose, for example "For simple tasks" |
-| **Group** and **Group icon** | Grouping in the model picker, for example by provider |
-| **Icon URL** | Optional custom icon |
-| **Preselected for new chats** | The model is preselected in new conversations |
+| **Display** | **Label** (at most 128 characters), **Description (optional)** – shown in the picker below the label, **Group** and **Group icon** – group the picker, **Icon URL**, **Preselected for new chats** |
+| **Target** | **Provider** and **Model**, or as provider **Agent (one specific agent)** and then the **Agent** |
 
-For OpenAI models, **Use the OpenAI Responses API** is available additionally. The arrows change the order of the entries in the picker.
+For OpenAI models there is also **Use the OpenAI Responses API**. **Move up** and **Move down** change the order. **Remove label** in the danger zone removes the label from the picker for everyone; running chats keep their model.
+
+The **Models without a label (N)** card lists models that still appear with their technical ID. There you add a label for single models or take all of them at once with **Adopt all**.
+
+### Picker in the chat
+
+As long as companyADMIN manages the labels, you control here how the model picker looks. Save with **Save picker**.
+
+- **Show labels first in the picker** – labels are at the top.
+- **Providers that stay selectable** – ticked providers keep their own entry in the picker next to the labels. All others are reachable only through labels. If no provider is ticked, CompanyGPT shows all providers. This is a display setting only and blocks no model. A group must not have the same name as a ticked provider, or its labels disappear from the picker.
+- **Only labelled models may be used** – people only see labels; CompanyGPT hides the free model picker. If providers are ticked as well, they appear, but their models without a label fail when sending. Switching it on asks first (**Allow only labelled models?**).
+
+:::caution
+**Only labelled models may be used** also applies to agents: every agent without a matching label stops working the moment you save. Add a label with the provider **Agent** for each agent people actually use. companyADMIN also warns if a role would then have no usable model at all, and requires at least one label.
+:::
 
 ## Result for users
 
-In the model picker of a conversation, users then see only the providers and models released for their role – grouped and with the labels you assigned.
+In the model picker people see only the providers and models their role may use, grouped and with the labels you set.
 
-![Model picker in a conversation with the released providers](./modell-picker.png)
+![Model picker in the conversation with the released providers](./modell-picker.png)
 
-Which models are generally available in the [model selection](/en/company-gpt/modellauswahl/) additionally depends on the server configuration.
+Which models exist in your environment in general is described in [Model selection](/en/company-gpt/modellauswahl/).

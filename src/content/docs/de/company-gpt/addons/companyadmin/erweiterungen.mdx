@@ -1,0 +1,74 @@
+---
+title: Erweiterungen
+description: Die Rechte für companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN und Insights in companyADMIN – was jedes Recht erlaubt, wer es automatisch hat und wo Sie es vergeben.
+---
+
+companyADMIN ist die zentrale Stelle für die Rechte in den Erweiterungen von CompanyGPT. Jede Erweiterung fragt bei companyADMIN nach, ob eine Person sie nutzen oder verwalten darf.
+
+**Konfiguration** → **Erweiterungen** zeigt jede Erweiterung mit Status, Kachel und Rechten. Vergeben werden die Rechte an der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) oder [Gruppe](/de/company-gpt/addons/companyadmin/gruppen/) im Reiter **Erweiterungen**; hier schalten Sie ein Recht **für alle** frei.
+
+## Rechte vergeben
+
+| Weg | Wo | Wirkung |
+|---|---|---|
+| An eine Rolle | Rolle → Reiter **Erweiterungen** | Alle Personen mit dieser Rolle |
+| An eine Gruppe | Gruppe → Reiter **Erweiterungen** | Alle Mitglieder der Gruppe |
+| Für alle | Konfiguration → **Erweiterungen**, Häkchen **Für alle** | Alle Personen der Umgebung |
+
+Rechte der Klasse **Admins automatisch** hat die Rolle ADMIN immer; companyADMIN stellt das bei jedem Start sicher. Rechte der Klasse **Nur ausdrücklich** bekommt niemand automatisch, auch nicht Administratoren. Sie werden nie für alle freigegeben.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+Ein entzogenes Recht ist sofort weg; die Erweiterungen speichern die Antwort höchstens eine Minute zwischen. Wer eine Erweiterung nutzen darf, sieht in CompanyGPT auch ihre MCP-Tools; die Sichtbarkeit folgt einer Änderung innerhalb weniger Minuten.
+
+## Die Rechte
+
+| Erweiterung | Recht | Technischer Name | Erlaubt |
+|---|---|---|---|
+| [companyTRANSLATE](/de/company-gpt/addons/company-translate/) | **Übersetzen nutzen** | `ext:translate:use` | Texte und Dokumente übersetzen |
+| | **Glossare verwalten** | `ext:translate:admin` | Glossare für alle anlegen, hochladen und löschen |
+| [companyTRANSCRIBE](/de/company-gpt/addons/company-transcribe/) | **Transkribieren nutzen** | `ext:transcribe:use` | Audio- und Videodateien transkribieren |
+| [companyFILES](/de/company-gpt/addons/companyfiles/) | **Files nutzen** | `ext:files:use` | Dokumente mit Vorlagen erzeugen und bearbeiten |
+| | **Globale Vorlagen verwalten** | `ext:files:templates` | Globale Vorlagen hochladen, freigeben und löschen; kein Organisations-Branding |
+| | **Organisation & Branding verwalten** | `ext:files:admin` | Organisations-Einstellungen und Branding (Logo, Farben); globale Vorlagen sind ein eigenes Recht |
+| [companyRAG](/de/company-gpt/addons/companyrag/) | **Wissen nutzen** | `ext:rag:use` | Wissenssammlungen durchsuchen, auf die die Person Zugriff hat |
+| | **RAG-Einstellungen verwalten** | `ext:rag:admin` | Benutzer, API-Schlüssel und Anbieter-Einstellungen einschließlich der Zugangsdaten von Konnektoren. Wissensbasen pflegt man über die Eigentümerschaft der Collection, nicht über dieses Recht |
+| | **Superadmin** | `ext:rag:superadmin` | Sieht alle Collections der Umgebung, dazu Audit-Log, Mitarbeiteraktivität und Schreib-Bypass. Klasse **Nur ausdrücklich** |
+| [companyM365](/de/company-gpt/addons/companym365/) | **Microsoft 365 nutzen** | `ext:m365:use` | Office-Add-in (Word, Excel, PowerPoint, Outlook), die Microsoft-365-Werkzeuge im Chat und der Teams-Bot, sofern in Ihrer Umgebung verfügbar. Wer das Recht entzieht, nimmt alle drei weg |
+| | **Microsoft 365 verwalten** | `ext:m365:admin` | Admin-Bereich von companyM365: Teams-Bot einrichten, Agents für Teams freigeben, Einstellungen, Audit, Löschen der Bot-Daten einzelner Personen und Installationspakete des Add-ins. Nie für alle |
+| [companyLEARN](/de/company-gpt/addons/companylearn/) | **Kurse nutzen** | `ext:learn:use` | Kurse belegen |
+| | **Kurse verwalten** | `ext:learn:admin` | Kurse verwalten |
+| companyADMIN | **Insights ansehen** | `ext:admin:insights` | [Insights](/de/company-gpt/addons/companyadmin/insights/) öffnen. Nie für alle, weil Insights Kosten, Tokens und E-Mail-Adressen aller Nutzer zeigt |
+
+Alle Rechte außer **Superadmin** von companyRAG gehören zur Klasse **Admins automatisch**.
+
+Gibt es in Ihrer Umgebung mehrere companyRAG-Instanzen, hat jede weitere Instanz eine eigene Karte, zum Beispiel „companyRAG (vertrieb)“, mit eigenen Rechten.
+
+Die Administration von companyADMIN selbst ist kein vergebbares Recht. Sie hängt an der Rolle ADMIN und den [Admin-Quellen](/de/company-gpt/addons/companyadmin/status/); die Karte von companyADMIN zeigt sie nur an.
+
+## Die Karte einer Erweiterung
+
+Jede Erweiterung hat eine eigene Karte:
+
+- **Status** – **erreichbar** mit Antwortzeit und Version, **nicht erreichbar** oder **Status unbekannt**. Details stehen unter [Status](/de/company-gpt/addons/companyadmin/status/).
+- **Aktiv (Kachel und Rechte)** – schaltet die Erweiterung ein oder aus. Ausgeschaltet verschwindet die Kachel unter **Alle Apps**, und die Erweiterung bekommt keine Rechte mehr geliefert: Niemand hat dann noch Rechte in ihr, und freigegebene MCP-Tools werden für Agents eingeschränkt. Das Ausschalten fragt nach.
+- Je Recht die Bezeichnung, der technische Name, die Klasse, eine Erklärung und **Wer hat es:** mit den Rollen und Gruppen (als Link zur Rolle bzw. Gruppe), **Für alle** oder **noch niemand**.
+- Das Häkchen **Für alle**, sofern das Recht für alle freigegeben werden darf.
+
+Bei n8n und dem AI Gateway gibt es nur den Schalter **In companyTOOLS anzeigen**. Diese Anwendungen regeln den Zugriff selbst; der Schalter zeigt oder versteckt nur ihre Kachel.
+
+## Für alle freigeben
+
+Ein Recht für alle freizugeben ist nur Administratoren mit der Rolle ADMIN möglich. Nicht für alle freigeben lassen sich **Insights ansehen**, **Microsoft 365 verwalten** und Rechte der Klasse **Nur ausdrücklich**.
+
+Nehmen Sie **Für alle** zurück, fragt companyADMIN nach. Rollen, die das Recht schon vorher hatten, behalten es; alle anderen verlieren es.
+
+## Wenn Agents den Zugriff verlieren
+
+Schränken Sie ein Recht ein, das geteilte Agents brauchen, warnt companyADMIN mit **Zugriff wird eingeschränkt**: Die betroffenen Agents melden danach einen Fehler, bis Sie ihre Freigabe anpassen. Mit **Trotzdem einengen** setzen Sie die Änderung trotzdem um.
+
+## Vergabe an Gruppen
+
+Ein Recht an einer Gruppe bekommt jedes Mitglied. Bei verwaltenden Rechten und Rechten der Klasse **Nur ausdrücklich** weist companyADMIN darauf hin: Wer die Gruppe verwaltet, verwaltet damit auch das Recht. Nutzen Sie dafür nur Sicherheitsgruppen mit eingeschränkten Besitzern, keine Microsoft-365-Gruppen, denen Personen selbst beitreten können.

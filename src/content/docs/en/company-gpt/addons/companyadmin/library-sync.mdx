@@ -1,67 +1,128 @@
 ---
 title: Library Sync
-description: Synchronize agents, prompts and skills between CompanyGPT and a GitHub repository – including a change preview, export of existing content and write-back to Git.
+description: Sync agents, prompts and skills from Git repositories into CompanyGPT – with a preview, excluding single entries, exporting existing content and writing back to Git.
 ---
 
-Library Sync connects CompanyGPT with GitHub repositories and synchronizes **skills, agents and prompts** in both directions. This lets you version the content library, review it as a team and move it between environments.
+**Library Sync** connects CompanyGPT with Git repositories and pulls **skills, agents and prompts** from there into CompanyGPT. This lets you version the content library, review it as a team and move it between environments. For repositories you own, companyADMIN also writes changes back to Git.
 
-A synchronization run first shows the changes – including deletions – for confirmation.
+You find it under **Content** → **Library Sync**. GitHub and self-hosted Git servers (GitLab, Gitea or plain Git) are supported.
 
-![Library Sync with connected repositories, detected content and status](./library-sync-liste.png)
+## Repositories
 
-The overview shows per repository:
+The list shows every connected repository:
 
 | Column | Content |
 |---|---|
 | **Repository** | Repository and branch |
-| **Detected** | Detected content as a count of skills, agents and prompts; also whether a token is configured |
-| **Last synced** | Time, commit and triggering person of the last run |
-| **Status** | `OK` with the note "Up to date", or `Error` |
+| **Detected** | Number of detected skills, agents and prompts |
+| **Last synced** | When (relative), with which commit and by whom |
+| **Status** | **OK**, **Error** or **Never**; plus **Up to date**, **Update available** or **Update status unknown**, and the number of errors if any |
 
-Per repository the following are available: **Sync**, **Detect changes (DB ↔ Git)**, **Export existing content**, edit and delete. **Sync all** synchronizes all repositories one after another.
+Use **Search repository** to find a repository. **Sync all** syncs all repositories one after another. Clicking a row opens the detail page.
 
-## Connecting a repository
+## Adding a repository
 
-Use **Add repository** to connect a repository. Besides repository, branch and authentication via a GitHub token, you define where the content lives inside the repository.
+**Add repository** opens a page with four steps: **Clone** → **Select paths** → **Configure** → **Save & sync**.
 
-!["Add repository" dialog with AI analysis, structure, visibility and up-sync](./add-repository.png)
+1. **Clone**: choose the **Git server** (**GitHub** or **Self-hosted (GitLab, Gitea, plain git)**) and enter the repository. For GitHub you can also paste a full URL; it is split into repository, branch and path automatically. Under **Authentication** you choose:
+   - **PAT** – a personal access token. Leave the field empty for public repositories.
+   - **SSH deploy key** – companyADMIN generates a key pair (**Generate SSH key**). Add the **Public key** to the repository as a deploy key with write access (on GitHub: "Allow write access").
 
-- **Analyze with AI** – a language model suggests, based on the file tree, which folders contain skills, agents and prompts. The suggestion only pre-fills the structure; nothing is synced by it.
-- **Detected content** – the number of detected skills, agents and prompts.
-- **Structure (sources)** – one content type and its path per entry, for example `skills`, `agents` and `prompts`. Use **Add source** to add further paths, such as `library/agents`.
-- **Visibility** – default visibility of imported content. The default is `Owner / system`; alternatively you release it to everyone or to specific groups.
-- **We own this repo (allow write-back/up-sync)** – allows writing back from CompanyGPT into the repository. This requires a GitHub token (PAT) with `repo` scope.
+   For a self-hosted server, also enter the **HTTPS base URL** (for PAT) or **SSH host** and **SSH port** (for SSH).
+2. **Select paths**: pick the top-level folders to sync. Only these folders are downloaded, scanned and kept in sync.
+3. **Configure**:
+   - **Analyze with AI** – a language model (**Analysis model**) suggests, based on the file tree, which folders contain skills, agents and prompts. The suggestion only pre-fills the structure; nothing is synced by it.
+   - **Detected content** – the number of detected skills, agents and prompts.
+   - **Structure (sources)** – one **Kind** and one **Path** per entry, for example `agents` or `library/agents`. Use **Add source** to add further paths.
+   - **Visibility** – the default visibility of imported content: **Owner / system (default)**, **Public (all users)** or **Specific groups**.
+   - **We own this repo (allow write-back/up-sync)** – allows companyADMIN to write changes from CompanyGPT back into the repository. With a PAT the token needs write access (on GitHub the `repo` scope); with SSH the deploy key writes back.
+4. **Save & sync** saves the connection and starts the first sync with a preview.
 
-:::note
-Without marking it as your own repository, synchronization is one-way: content flows from Git into CompanyGPT, and changes made in CompanyGPT are not written back.
+## Syncing
+
+**Sync** on the detail page first shows a preview (**Review & apply changes**): what will be created, updated, deleted or stay unchanged. Nothing is written until **Confirm & apply**. Afterwards the **Sync result** shows what actually happened, and **Notes** list what was skipped, such as tools your environment blocks, unreachable MCP servers or skill names that cannot be resolved.
+
+:::caution[Deletions and changes made in CompanyGPT]
+- The preview also contains deletions: content removed from the repository also disappears from CompanyGPT on sync. If a sync detects no content at all although there was some before, companyADMIN deletes nothing and asks first, because the branch or path is usually wrong.
+- If a synced item was edited in CompanyGPT and **We own this repo** is not set, **the sync overwrites that change**. The preview shows this as **Edited in companyGPT — will be overwritten**. To keep the change, cancel and bring it into the repository first.
+- For repositories with **We own this repo**, agents and skills changed in CompanyGPT are kept on sync. The preview shows them as **Edited in companyGPT — kept, write back to git first (Detect changes)**. Write them back with **Write back (up-sync)** (see [Compare with git](#compare-with-git)).
 :::
 
-## Reviewing changes
+What was set in CompanyGPT is kept on sync as well: avatar, conversation starters, uploaded files, older prompt versions and shares that people made in CompanyGPT.
 
-**Detect changes (DB ↔ Git)** compares the state in CompanyGPT with the repository and summarizes the result: how many entries are newer in the repository, how many were changed in the app, and how many match. The status is reported per entry.
+## A repository's detail page
 
-![Change overview with counters and per-entry status](./sync-changes.png)
+The detail page has the tabs **Overview**, **Content**, **Runs**, **Exclude** and **Settings**, plus a danger zone.
 
-## Exporting content to Git
+### Overview
 
-**Export existing content** writes content that was created in CompanyGPT and never synced from any repository into the repository for the first time.
+**Status**, **Source**, **Branch**, **Selection** (the loaded folders), **Last run**, whether there is a **New version in the repository**, and the amount of **Content**. Errors of the last run are shown right on the page; versions already in CompanyGPT stay unchanged.
 
-![Dialog for exporting existing content to Git](./export-git.png)
+### Content
 
-You select the agents and skills individually or take all of them, and then get a **Preview** of the files to be written.
+Every entry of the repository with **Name**, **Type**, **Path** and **Status**:
 
-When writing back, CompanyGPT creates a commit with a descriptive message and lists the written files.
+| Status | Meaning |
+|---|---|
+| **Synced** | Same as the repository |
+| **Changed in companyGPT** | Edited in CompanyGPT since the last sync |
+| **Conflict** | Changed both in CompanyGPT and in the repository |
+| **Error** | Could not be applied |
+| **Excluded** | No longer synced |
+| **Deleted in companyGPT** | Deleted in CompanyGPT, still present in the repository |
 
-![Result of a write-back with commit and changed files](./sync-commit.png)
+Below follows **Orphaned (N)**: content marked with this repository that the sync no longer tracks. It is never deleted automatically.
 
-In the repository the content then lives as YAML files in the configured folders – an agent including its instructions, tools and artifact settings as one file per agent.
+#### Compare with git
+
+**Compare with git** checks what differs between the repository and CompanyGPT and changes nothing. **Detect changes (DB ↔ Git)** summarizes the result:
+
+- **repo newer** – changed in the repository; the next sync applies it
+- **changed in the app** – changed in CompanyGPT
+- **in sync**
+- **file(s) do not parse** – files that cannot be read; the version in CompanyGPT is kept
+
+For repositories with **We own this repo** you write entries changed in CompanyGPT to Git with **Write back (up-sync)**: companyADMIN first shows a preview of the files, and **Commit & push** writes them. companyADMIN creates a commit with a descriptive message and lists the files written. If the branch in the repository has new commits in the meantime, sync first and then try again.
+
+#### Export existing content
+
+For repositories with **We own this repo**, **Export existing content** writes agents and skills that were created in CompanyGPT and never synced with any repository into the repository for the first time. Pick single entries or **Select all**, check the files with **Preview** and write them with **Commit & push**.
+
+In the repository each agent then lives as one YAML file, including its instructions, tools and settings, in the configured folders.
 
 ![Exported agent as a YAML file in the GitHub repository](./git-datei.png)
 
+### Runs
+
+Every sync with **Started**, **Result**, **Changes**, **By** and **Commit**, including aborted ones. A run shows the result per entry.
+
+### Exclude
+
+Here you take single entries out of the sync without changing the repository:
+
+1. Select the entries.
+2. Decide what happens in CompanyGPT: **Keep in companyGPT (release as normal content)** or **Delete from companyGPT on the next sync**.
+3. Check the **Preview** and click **Save exclusions**. They take effect with the next sync.
+
+**Include again** undoes the exclusion.
+
+### Settings
+
+You change the branch, token, sources, visibility and **We own this repo** here. The repository itself cannot be changed; remove it and connect it again instead. Changes to sources and visibility only take effect with the next sync; after saving, companyADMIN offers to sync right away.
+
+### Removing a repository
+
+**Remove repository …** in the danger zone first shows what happens to each entry in CompanyGPT:
+
+- **Keep** – all entries stay in CompanyGPT as normal, freely editable content.
+- **Delete the content** – the selected entries are deleted. Entries changed in CompanyGPT, shared, or used by other agents are not preselected. Entries that are not deleted stay, marked as orphaned.
+
+To confirm, type the repository's name. If a sync is running, removal is possible once it has finished.
+
 ## Interplay with visibility
 
-Synced content carries the `synced` badge under [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/). If such an item is edited in CompanyGPT, the list additionally marks it as modified – an indication that app and repository have diverged. Another run reconciles the two.
+Synced content carries the badge **synced** under [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/), and additionally **modified in LibreChat** after a change in CompanyGPT. The visibility comes from the repo default. If you change it on a single entry, companyADMIN manages that entry individually until you reset it to the repo default.
 
-:::tip[Note]
-Review the change preview before every run. It also contains deletions: content removed in the repository disappears from CompanyGPT on synchronization.
+:::note
+Only administrators with the right **Manage skills** see the **Exclude** and **Settings** tabs.
 :::

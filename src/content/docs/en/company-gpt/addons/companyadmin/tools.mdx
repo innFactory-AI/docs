@@ -1,0 +1,47 @@
+---
+title: Tools
+description: Create custom tiles for "All apps" in companyADMIN, make them visible to everyone, roles or groups, and show or hide the extensions' tiles.
+---
+
+**Configuration** → **Tools** controls what people see as tiles under [All apps](/en/company-gpt/addons/alle-apps/): links of your own for your teams and the tiles of the extensions.
+
+A tile is only a link. The target controls access itself; a visible tile grants no rights.
+
+## Custom tiles
+
+You can create at most 50 custom tiles, for example for the intranet. The **Custom tiles** table shows **Tile**, **Address**, **Visible to** and **Status** (**Active** or **Off**). Use **Search tile or address …** to find a tile.
+
+### Adding a tile
+
+1. Click **Add tile**.
+2. Fill in the **Tile** section:
+
+   | Field | Meaning |
+   |---|---|
+   | **Name** | Name of the tile, at most 60 characters |
+   | **Description** | Optional, at most 160 characters |
+   | **Address** | An `https://` address or a path on your domain such as `/wiki/` |
+   | **Icon** | One of the offered icons, such as **Link**, **Globe**, **Book** or **Document** |
+   | **Active** | Whether the tile is shown |
+
+   The **Preview** shows how the tile looks.
+3. Under **Visibility**, decide who sees the tile: **Every signed-in user**, **Specific roles** or **Specific groups**. Without a selected role or group nobody sees it.
+4. Click **Create**.
+
+Under **In companyTOOLS** the page summarizes who sees the tile. Keep in mind:
+
+- With **Specific roles**, the role in CompanyGPT counts. Administrators (role ADMIN) only see the tile when ADMIN is selected.
+- With **Specific groups**, the membership CompanyGPT knows counts: from the group sync or the last sign-in.
+- Custom tiles appear after the extensions' tiles. **Move forward** and **Move back** change their order.
+
+Open an existing tile by clicking its row. **Save tile** and **Save visibility** save the sections separately. **Delete tile** removes it for everyone at once.
+
+## Extension tiles
+
+**Extension tiles** lists every extension with a tile. For n8n and the AI Gateway the switch here is the only setting in companyADMIN: these applications manage access themselves, and the switch only shows or hides the tile, the same for every signed-in person. The rights and switches of the other extensions are described in [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
+
+## When changes become visible
+
+"All apps" asks for the tiles each time it opens. A view that is already open shows a change only after a reload.
+
+If the page shows a notice that custom tiles and switches do not take effect in your environment yet, contact innFactory.

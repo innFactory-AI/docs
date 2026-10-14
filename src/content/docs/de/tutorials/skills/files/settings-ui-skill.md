@@ -31,6 +31,7 @@ Tools for opening the companyFILES web app as an embedded UI, retrieving setting
 User says "show my files" / "open file manager"    → open_companyfiles_ui page="documents"
 User says "manage / browse templates"               → open_companyfiles_ui page="templates"
 User says "upload a file" (via UI)                  → open_companyfiles_ui page="documents"
+User says "upload a template" (via UI)              → open_companyfiles_ui page="upload"
 User says "open settings" / "change preferences"   → open_companyfiles_ui page="settings"
 
 User asks about settings / colors / logo            → get_settings
@@ -54,10 +55,12 @@ Renders the companyFILES SPA as an embedded interactive iframe in the chat.
 Available pages (enum — only these four values are accepted):
 | Page | Shows |
 |------|-------|
-| `documents` | File list, upload, download, folder navigation |
-| `templates` | Template browser, upload personal templates |
-| `upload` | File upload view |
-| `settings` | Org/user branding, colors, logo, language |
+| `documents` | Document list (including chat uploads), file upload, preview, download |
+| `templates` | Template browser (search, filters), upload personal templates |
+| `upload` | Template upload form (upload a new template) |
+| `settings` | Tabs **My Settings** (Meine Einstellungen: personal colors, typography, document defaults, logo) and **Organization** (Organisation: company info, org colors and logo; admins also edit org typography and document defaults) |
+
+The settings page has no language setting — the language is chosen in the account menu of the companyGPT interface. The web app also has a **Visualizations** page (Visualisierungen: charts, diagrams and maps created in the chat); it cannot be opened with `open_companyfiles_ui`.
 
 > Note: UI widgets require a chat client that supports MCP UI rendering (e.g. LibreChat). Google Gemini falls back to text.
 
@@ -98,7 +101,7 @@ Get detailed usage examples for a specific tool category.
 }
 ```
 
-Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `zip`, `assets`, `upload`, `templates`, `admin`, `settings`, `convert`, `read`, `ui`, `all`
+Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `map`, `zip`, `upload`, `templates`, `admin`, `convert`, `read`, `settings`, `provenance` (AI marking in file metadata), `all` — plus `cad` and `docs` where those extensions are available.
 
 Omitting `topic` (or using `"all"`) returns the full help document and also opens the embedded UI.
 
@@ -106,5 +109,5 @@ Omitting `topic` (or using `"all"`) returns the full help document and also open
 
 - `open_companyfiles_ui` is the default tool for any request to browse, view, or manage files/templates/settings interactively.
 - Settings colors (`primaryColor`, `secondaryColor`, `accentColor`) are automatically used as the theme in all document and chart creation tools. `get_settings` only returns this core subset; the full settings model holds many more org/user-overridable fields that also feed generated documents — extended colors (`headingColor`, `bodyTextColor`, `linkColor`, `tableHeaderBg`, `tableHeaderText`, `codeBg`), typography (`fontHeading`, `fontBody`, `fontCode`, `fontSize*`), and document defaults (`defaultPageSize`, `defaultPageOrientation`, `defaultHeaderText`, `defaultFooterText`, `defaultShowPageNumbers`, `defaultPageNumberPosition`, `defaultPageNumberFormat`, `logoInHeader`, `logoHeaderHeight`).
-- To edit settings, use the UI (`open_companyfiles_ui page="settings"`) or, for admins, `PUT /api/ui/admin/settings` (gated by an admin UI session/bearer token — the legacy `X-API-Key` admin routes were removed).
+- To edit settings, use the UI (`open_companyfiles_ui page="settings"`): personal values on **My Settings**, organization values on **Organization**. Changing organization settings and branding requires the companyFILES admin permission (`ext:files:admin` when permissions are managed in companyADMIN); uploading or promoting global templates requires the template permission (`ext:files:templates`). Users without these permissions only manage their personal settings and templates.
 ````

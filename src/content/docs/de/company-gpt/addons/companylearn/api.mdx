@@ -1,0 +1,231 @@
+---
+title: Externe API
+description: API-Schlüssel mit Scopes in companyLEARN erstellen und die REST-API unter /api/v1 für Integrationen nutzen – Kurse anlegen, Inhalte pflegen und Lernfortschritte auswerten.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+companyLEARN hat eine versionierte REST-API für Integrationen, etwa um Kurse aus einem anderen System anzulegen oder Lernfortschritte auszuwerten. Sie ist für Aufrufe von Server zu Server gedacht und authentifiziert sich mit API-Schlüsseln statt mit einer Anmeldung. Aufrufe aus einem Browser, der von einer anderen Adresse geladen wurde, sind nicht vorgesehen.
+
+Die Basis-URL lautet:
+
+```
+https://FIRMA.company-gpt.com/companygpt/learn/api/v1
+```
+
+## Schlüssel handeln im Namen ihres Besitzers
+
+Jeder API-Schlüssel gehört der Person, die ihn erstellt hat, und handelt in deren Namen:
+
+- Was ein Schlüssel anlegt – Kurse, Kapitel, Videos –, wird dieser Person zugeordnet.
+- Die Endpunkte unter `/me` liefern die eigenen Einschreibungen und Fortschritte dieser Person.
+- Was ein Schlüssel darf, ergibt sich aus seinen Scopes und den Rechten dieser Person in companyLEARN, bei jeder Anfrage neu geprüft. Hat sie das Recht **Kurse nutzen** nicht mehr, funktioniert keiner ihrer Schlüssel.
+
+Vergeben Sie deshalb nur die Scopes, die eine Integration wirklich braucht, und widerrufen Sie Schlüssel, die nicht mehr gebraucht werden.
+
+## API-Schlüssel erstellen
+
+API-Schlüssel erstellen Personen mit dem Recht **Kurse verwalten** in companyLEARN unter **API-Schlüssel**. Jede Person sieht dort nur ihre eigenen Schlüssel.
+
+<Steps>
+
+1. Klicken Sie oben rechts auf **Neuer Schlüssel**. Der Dialog **API-Schlüssel erstellen** öffnet sich.
+
+2. Geben Sie unter **Name** eine Bezeichnung ein, an der Sie die Integration wiedererkennen, zum Beispiel `course-seeder`.
+
+3. Wählen Sie unter **Scopes** mindestens einen Scope aus. `courses:read` ist vorausgewählt.
+
+4. Legen Sie unter **Läuft ab** ein Ablaufdatum fest, setzen Sie das Häkchen bei **Läuft nie ab** oder lassen Sie das Feld leer. Ohne Angabe läuft ein Schlüssel standardmäßig nach 90 Tagen ab.
+
+5. Klicken Sie auf **Neuer Schlüssel**.
+
+6. Der Dialog **Schlüssel erstellt** zeigt den Schlüssel. Kopieren Sie ihn mit **Schlüssel kopieren** und bewahren Sie ihn sicher auf. Schließen Sie den Dialog mit **Fertig**.
+
+</Steps>
+
+:::caution[Der Schlüssel wird nur einmal angezeigt]
+companyLEARN speichert den Schlüssel nicht im Klartext und kann ihn später nicht erneut anzeigen. Geht er verloren, widerrufen Sie ihn und erstellen Sie einen neuen.
+:::
+
+Ein Schlüssel hat die Form `learn_<Präfix>_<Geheimnis>`. Der vordere Teil `learn_<Präfix>` ist nicht geheim; er erscheint in der Liste unter **Schlüssel** und identifiziert den Schlüssel. Pro Person sind standardmäßig bis zu 10 aktive Schlüssel möglich.
+
+## Schlüssel verwalten und widerrufen
+
+Die Liste unter **API-Schlüssel** zeigt für jeden Ihrer Schlüssel **Name**, **Schlüssel** (den öffentlichen Teil), **Scopes**, **Status** (**Aktiv**, **Widerrufen** oder **Abgelaufen**), **Zuletzt verwendet** und **Läuft ab**.
+
+Über **Widerrufen** und die Bestätigung **API-Schlüssel widerrufen?** sperren Sie einen Schlüssel. Er funktioniert sofort nicht mehr; jede Integration, die ihn verwendet, erhält ab dann die Antwort 401. Ein Widerruf lässt sich nicht rückgängig machen.
+
+:::caution[Admin-Rechte entzogen?]
+Verliert eine Person ihre Admin-Rechte in companyLEARN, widerrufen Sie vorsorglich ihre API-Schlüssel. Je nach Konfiguration Ihrer Umgebung behalten bereits erstellte Schlüssel sonst die Admin-Scopes, die beim Erstellen galten, bis sie ablaufen.
+:::
+
+## Scopes
+
+| Scope | Erfordert **Kurse verwalten** | Erlaubt |
+|---|---|---|
+| `courses:read` | nein | Kurse, Kapitel und Lektionen lesen, auch unveröffentlichte, sowie alle Endpunkte unter `/me` |
+| `courses:write` | ja | Kurse, Kapitel und Lektionen anlegen, ändern, sortieren und löschen |
+| `quizzes:read` | ja | Quizze **mit** Lösungen lesen |
+| `quizzes:write` | ja | Quizze anlegen, ersetzen und löschen |
+| `videos:read` | ja | Videos auflisten und herunterladen |
+| `videos:write` | ja | Videos hochladen und löschen |
+| `progress:read` | ja | Einschreibungen, Fortschritte und Quizversuche anderer Personen lesen |
+| `enrollments:write` | ja | Andere Personen in Kurse ein- und austragen |
+| `keys:read` | ja | Die eigenen API-Schlüssel auflisten |
+| `keys:write` | ja | Schlüssel erstellen und widerrufen – nie mit mehr Scopes als der aufrufende Schlüssel |
+
+Über die API erstellte Schlüssel können höchstens die Scopes des aufrufenden Schlüssels erhalten. Damit lassen sich Schlüssel automatisch erneuern, aber keine weitreichenderen Schlüssel erzeugen.
+
+## Anfragen senden
+
+Senden Sie den Schlüssel in einem der beiden Header:
+
+```bash
+curl -H "Authorization: Bearer learn_..." https://FIRMA.company-gpt.com/companygpt/learn/api/v1/courses
+curl -H "X-API-Key: learn_..."            https://FIRMA.company-gpt.com/companygpt/learn/api/v1/courses
+```
+
+`GET /api/v1/me` liefert die Besitzerin oder den Besitzer des Schlüssels und die Scopes, die der Schlüssel gerade tatsächlich hat. `GET /api/v1/openapi.json` liefert die vollständige Beschreibung der API im Format OpenAPI 3.1, mit dem nötigen Scope für jeden Endpunkt. Beide Endpunkte funktionieren mit jedem gültigen Schlüssel, unabhängig von seinen Scopes.
+
+### Beispiel: einen Kurs anlegen und veröffentlichen
+
+Der Schlüssel in diesem Beispiel hat die Scopes `courses:read` und `courses:write`.
+
+```bash
+BASE=https://FIRMA.company-gpt.com/companygpt/learn/api/v1
+KEY=learn_...   # unter API-Schlüssel erstellt
+
+# 1. Prüfen, was der Schlüssel darf
+curl -s $BASE/me -H "Authorization: Bearer $KEY" | jq .apiKey.effectiveScopes
+
+# 2. Kurs anlegen (startet als Entwurf)
+CID=$(curl -s -X POST $BASE/courses -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Onboarding"}' | jq -r .id)
+
+# 3. Kapitel anlegen
+CHID=$(curl -s -X POST $BASE/courses/$CID/chapters -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Woche 1"}' | jq -r .id)
+
+# 4. Textlektion anlegen
+curl -s -X POST $BASE/chapters/$CHID/lessons -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Willkommen","type":"text","contentMarkdown":"# Willkommen\n\nSchön, dass Sie da sind."}'
+
+# 5. Veröffentlichen
+curl -s -X PATCH $BASE/courses/$CID -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"isPublished":true}'
+```
+
+Ein Quiz legen Sie mit dem Scope `quizzes:write` an. `PUT` ersetzt ein vorhandenes Quiz vollständig und setzt dabei – wie in der Oberfläche – alle bisherigen Versuche zurück:
+
+```bash
+curl -s -X PUT $BASE/chapters/$CHID/quiz -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{
+    "title": "Quiz Woche 1",
+    "passThresholdPercent": 70,
+    "questions": [
+      { "text": "Wo finden Sie companyLEARN?",
+        "options": [
+          { "text": "Unter Alle Apps", "isCorrect": true },
+          { "text": "Nur per E-Mail", "isCorrect": false }
+        ] }
+    ]
+  }'
+```
+
+## Endpunkte
+
+Alle Pfade beziehen sich auf die Basis-URL `…/companygpt/learn/api/v1`.
+
+### Identität
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/me` | jeder | Besitzer des Schlüssels und seine wirksamen Scopes |
+| GET | `/openapi.json` | jeder | Beschreibung der API (OpenAPI 3.1) |
+
+### Kurse, Kapitel und Lektionen verwalten
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/courses` | `courses:read` | Alle Kurse, auch unveröffentlichte, mit Kennzahlen |
+| POST | `/courses` | `courses:write` | Kurs anlegen |
+| GET | `/courses/:id` | `courses:read` | Kurs mit vollständiger Gliederung |
+| PATCH | `/courses/:id` | `courses:write` | Kurs ändern, z. B. `isPublished` oder `gatingEnabled` (Kapitel-Sperre) |
+| DELETE | `/courses/:id` | `courses:write` | Kurs mit allen Inhalten löschen |
+| GET | `/courses/:id/chapters` | `courses:read` | Kapitel eines Kurses |
+| POST | `/courses/:id/chapters` | `courses:write` | Kapitel anlegen |
+| PUT | `/courses/:id/chapters/order` | `courses:write` | Kapitel neu sortieren |
+| PATCH | `/chapters/:id` | `courses:write` | Kapitel ändern |
+| DELETE | `/chapters/:id` | `courses:write` | Kapitel löschen |
+| POST | `/chapters/:id/lessons` | `courses:write` | Lektion anlegen |
+| PUT | `/chapters/:id/lessons/order` | `courses:write` | Lektionen neu sortieren |
+| GET | `/lessons/:id` | `courses:read` | Lektion abrufen |
+| PATCH | `/lessons/:id` | `courses:write` | Lektion ändern |
+| DELETE | `/lessons/:id` | `courses:write` | Lektion löschen |
+
+### Quizze
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/chapters/:id/quiz` | `quizzes:read` | Quiz **mit** Lösungen |
+| PUT | `/chapters/:id/quiz` | `quizzes:write` | Quiz anlegen oder ersetzen |
+| DELETE | `/chapters/:id/quiz` | `quizzes:write` | Quiz löschen |
+
+### Videos
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/videos` | `videos:read` | Videos auflisten |
+| POST | `/videos` | `videos:write` | Video hochladen (Multipart-Feld `file`) |
+| GET | `/videos/:assetId/content` | `videos:read` | Videodatei herunterladen (ohne Teilabruf per Range) |
+| DELETE | `/videos/:id` | `videos:write` | Video löschen |
+
+### Einschreibungen und Fortschritt
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/courses/:id/enrollments` | `progress:read` | Alle Eingeschriebenen eines Kurses |
+| POST | `/courses/:id/enrollments` | `enrollments:write` | Eine Person einschreiben, auch in unveröffentlichte Kurse |
+| DELETE | `/courses/:id/enrollments/:userId` | `enrollments:write` | Eine Person austragen; ihr Fortschritt bleibt gespeichert |
+| GET | `/courses/:id/progress` | `progress:read` | Fortschritt je Person in einem Kurs |
+| GET | `/quizzes/:id/attempts` | `progress:read` | Versuche aller Personen, mit `?userId=` gefiltert auf eine Person |
+| GET | `/learners` | `progress:read` | Alle bekannten Benutzer-IDs mit Aktivitätszahlen |
+| GET | `/learners/:userId/progress` | `progress:read` | Fortschritt einer Person in all ihren Kursen |
+
+Personen werden über die Benutzer-ID angesprochen, unter der companyLEARN sie führt; `GET /learners` listet alle bekannten IDs.
+
+### Als Besitzer lernen (`/me`)
+
+Diese Endpunkte entsprechen der Ansicht von Lernenden und wirken für die Besitzerin oder den Besitzer des Schlüssels.
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/me/courses` | `courses:read` | Veröffentlichte Kurse |
+| GET | `/me/courses/:id` | `courses:read` | Gliederung eines Kurses mit Sperrstatus |
+| POST | `/me/courses/:id/enroll` | `courses:read` | Einschreiben |
+| GET | `/me/lessons/:id` | `courses:read` | Lektion abrufen |
+| POST | `/me/lessons/:id/complete` | `courses:read` | Lektion als erledigt markieren |
+| GET | `/me/progress` | `courses:read` | Eigener Fortschritt |
+| GET | `/me/quizzes/:id` | `courses:read` | Quiz **ohne** Lösungen |
+| POST | `/me/quizzes/:id/attempts` | `courses:read` | Versuch abschicken |
+| GET | `/me/quizzes/:id/attempts` | `courses:read` | Eigene bisherige Versuche |
+
+### Schlüssel
+
+| Methode | Pfad | Scope | Beschreibung |
+|---|---|---|---|
+| GET | `/keys` | `keys:read` | Eigene Schlüssel auflisten |
+| POST | `/keys` | `keys:write` | Schlüssel erstellen; Scopes höchstens die des aufrufenden Schlüssels |
+| DELETE | `/keys/:id` | `keys:write` | Schlüssel widerrufen |
+
+## Fehlerantworten
+
+| Status | Bedeutung |
+|---|---|
+| 401 | Der Schlüssel fehlt, ist ungültig, abgelaufen oder widerrufen. |
+| 403 mit `INSUFFICIENT_SCOPE` | Dem Schlüssel fehlt der nötige Scope. Die Antwort nennt ihn in `requiredScope` und listet die wirksamen Scopes in `grantedScopes`. |
+| 403 mit `EXT_ACCESS_DENIED` | Die Besitzerin oder der Besitzer des Schlüssels hat das Recht **Kurse nutzen** nicht. |
+| 429 | Zu viele Anfragen mit diesem Schlüssel. Jeder Schlüssel hat ein eigenes Kontingent, standardmäßig 600 Anfragen pro Minute; die Antwort nennt in `retryAfter` die Wartezeit in Sekunden. |
+
+Zurück zur [Übersicht](/de/company-gpt/addons/companylearn/).

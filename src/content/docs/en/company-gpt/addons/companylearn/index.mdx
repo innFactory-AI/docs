@@ -1,0 +1,68 @@
+---
+title: companyLEARN
+description: Learning platform in CompanyGPT with video and text lessons, quizzes with a pass threshold and chapters that unlock one after another – in its own interface and directly in the chat.
+---
+
+companyLEARN is the learning platform in CompanyGPT. Course admins put together courses from video and text lessons, add quizzes and publish the courses. Learners enroll, work through the lessons and take the quizzes – in companyLEARN's own interface or directly in the chat.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+## How a course is structured
+
+| Building block | Description |
+|---|---|
+| **Course** | Title, optional description and a sequence of chapters. A new course starts as a draft; learners only see it once it is published. |
+| **Chapter** | Structures the course. Each chapter contains lessons and, optionally, a quiz. |
+| **Lesson** | Either a **video** or a **text** written in Markdown. |
+| **Quiz** | At most one per chapter, with questions, answer options and a **pass threshold** in percent. |
+
+A chapter is complete once all of its lessons are done and – if it has one – its quiz is passed. With **chapter gating** switched on (the default for new courses), a chapter only opens once the previous one is complete. The progress in a course is the share of completed chapters.
+
+## Two ways in, one learning record
+
+- **companyLEARN's interface** – dashboard, course catalog, lessons and quizzes, plus course management for course admins.
+- **The chat** – through the **Learn** MCP server, the assistant finds courses, shows your progress and opens lessons and quizzes right in the conversation.
+
+Both work on the same data: whatever you complete in the chat is also marked as done in the interface – and vice versa.
+
+## Who is it for?
+
+| Who | Tasks | Relevant pages |
+|---|---|---|
+| **Learners** | Find courses, enroll, watch lessons, take quizzes | [Learning](/en/company-gpt/addons/companylearn/lernen/), [In the chat](/en/company-gpt/addons/companylearn/im-chat/) |
+| **Course admins and trainers** | Create courses, chapters, lessons and quizzes, upload videos, publish courses | [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/en/company-gpt/addons/companylearn/videos/) |
+| **Technical admins** | Grant permissions, connect other systems through the REST API | [Permissions](#permissions), [External API](/en/company-gpt/addons/companylearn/api/) |
+
+## Opening companyLEARN
+
+You open companyLEARN in CompanyGPT via [**All apps**](/en/company-gpt/addons/alle-apps/) and the **Learn** tile. You can also reach it directly at:
+
+```
+https://COMPANY.company-gpt.com/companygpt/learn/
+```
+
+companyLEARN uses your sign-in from the CompanyGPT chat; there is no separate sign-in. The sidebar, the account menu and the other elements shared by all addons are described on [Shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Permissions
+
+companyLEARN has two permissions:
+
+| Permission | Allows |
+|---|---|
+| **Use courses** | Open companyLEARN, enroll in courses, learn and use the Learn tools in the chat |
+| **Manage courses** | In addition, the **Course management**, **Videos** and **API keys** sections |
+
+Anyone without **Use courses** sees the **No access** page when opening companyLEARN; the Learn tools in the chat are not available to them either. Managing courses requires both permissions.
+
+Usually your administrator grants these permissions in companyADMIN under **Extensions** (see [Extension permissions](/en/company-gpt/addons/companyadmin/erweiterungen/)). In some environments, innFactory sets them up during installation; in that case, contact your administrator.
+
+## What's next?
+
+- [The interface](/en/company-gpt/addons/companylearn/oberflaeche/) – menu, management section and the embedded view in the chat.
+- [Learning](/en/company-gpt/addons/companylearn/lernen/) – finding courses, enrolling, lessons, quizzes and the dashboard.
+- [In the chat](/en/company-gpt/addons/companylearn/im-chat/) – using the Learn MCP server and assigning it to an agent.
+- [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/) – creating and publishing courses, chapters, lessons and quizzes.
+- [Videos](/en/company-gpt/addons/companylearn/videos/) – uploading videos, using them in lessons and deleting them.
+- [External API](/en/company-gpt/addons/companylearn/api/) – API keys, scopes and the REST API for integrations.

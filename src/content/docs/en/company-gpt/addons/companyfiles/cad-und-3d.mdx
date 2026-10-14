@@ -1,0 +1,81 @@
+---
+title: CAD, BIM and 3D
+description: Analyzing CAD drawings, BIM models and 3D files with companyFILES in the CompanyGPT chat, viewing them in the interactive viewer, converting and editing them.
+---
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+With the CAD extension, companyFILES reads technical drawings, building models and 3D files. You attach the file in the chat and ask your question – the agent provides an overview of the model, lists and counts elements, calculates quantities and areas, shows views, creates reports and opens the model in an interactive viewer right in the chat.
+
+## Supported formats
+
+| Format | Typical content |
+|---|---|
+| DXF | 2D and 3D drawings with layers, blocks, texts and layouts |
+| STEP (`.step`, `.stp`), IGES (`.iges`, `.igs`) | CAD solid models from mechanical and plant engineering |
+| IFC | BIM models with storeys, rooms, building elements and their properties |
+| STL, OBJ, PLY, 3MF, glTF/GLB | 3D meshes, for 3D printing or visualization, for instance |
+
+**DWG** and **DGN** are not supported. Save such drawings as DXF; DGN files can also be exported as IFC. For further native formats:
+
+| Origin | Export that works |
+|---|---|
+| Revit (`.rvt`, `.rfa`) | IFC |
+| SolidWorks, Inventor, CATIA, Creo, NX | STEP |
+| SketchUp | IFC, OBJ or glTF |
+| FBX | glTF/GLB or OBJ |
+
+On first access companyFILES analyzes the file. For large models this takes a while; the agent then reports that the model is still being processed and asks again shortly afterwards.
+
+## What the agent does with a model
+
+| Tool | Effect |
+|---|---|
+| `describe_model` | overview: source, units, dimensions, volume, element types and their counts, storeys or layouts, structure and available properties |
+| `query_model` | lists elements filtered by type, storey, layer, material, name or properties |
+| `get_model_element` | all properties, quantities and the material of a single element |
+| `aggregate_model` | counts elements and sums quantities, grouped by type, storey, material or layer |
+| `model_areas` | areas: for IFC the rooms per storey (net, otherwise gross floor area) with a room list, for DXF the closed shapes per layer |
+| `render_model_view` | creates an image of the model – 3D views (iso, top, front, side, optionally with elements highlighted in red) or a 2D plan (DXF layout, IFC storey floor plan); the image is saved as a PNG |
+| `create_model_report` | model report as Word or PDF with key figures, views, a plan per storey, element counts, areas and notes – in the design of your [settings](/en/company-gpt/addons/companyfiles/einstellungen/) |
+| `show_model_viewer` | opens the [interactive viewer](#the-model-viewer) in the chat |
+| `convert_model` | converts to another format, for example STEP → STL or GLB, IFC → GLB or OBJ, STL ↔ OBJ, PLY or GLB |
+| `edit_model` | changes properties, attributes or texts: for IFC properties and attributes such as name or description, for DXF block attributes, texts and layer names |
+
+Counts, volumes and areas are calculated by companyFILES from the model – not by the language model. Conversions and changes always result in a **new document**; the original file stays unchanged. Before a change, the agent shows what will be changed.
+
+Example prompts:
+
+- *"How many walls are there per storey, and what is their net volume?"*
+- *"Which rooms does the ground floor have, and how large are they?"*
+- *"Create a model report as a PDF."*
+- *"Convert the STEP model into an STL file for 3D printing."*
+- *"Show me the model in the viewer."*
+
+## The model viewer
+
+The viewer opens right in the chat; **Open in new tab** shows it in a browser tab of its own.
+
+**View**
+
+- **3D** rotates and zooms the model; **View** jumps to **Iso**, **Top**, **Front** or **Side**.
+- **Plan** shows the 2D plan – for IFC you pick the **Storey**, for DXF the **Layout**.
+- **Section** places a section plane through the model: with **Section direction**, **Section position** and **Other side**.
+- **Measure** determines the distance between two points you click on the model.
+
+**Elements**
+
+- The element list shows the building elements as **List** or **Structure**, with the search **Search elements…** and the filters **All types** and **All storeys**.
+- Clicking an element – in the list or in the model – shows its **Properties** and **Quantities**. From there you can **Zoom to element**, **Isolate** or **Hide**.
+- **Matches only** shows only the elements in the 3D model that match the search and the filters of the list. After **Isolate** or **Hide**, **Show all** brings back the other elements.
+
+**Export and ask**
+
+- **Image** and **Element list (CSV)** save the current view or the elements to your files.
+- **Ask the AI** asks a question about the **Current view** or about a selected element. The question then appears in the chat; for a view, companyFILES saves it as an image that the agent looks at with `view_image`.
+
+**Editing**
+
+The same fields that `edit_model` can change can also be edited in the viewer: select an element and change the values in the **Edit** area of its properties. Via **Review … change(s)** you see all changes with old and new value and save them with **Save as new version** – the original file stays unchanged. Afterwards **Open new version** opens the changed model.

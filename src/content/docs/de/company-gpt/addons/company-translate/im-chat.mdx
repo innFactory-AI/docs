@@ -1,0 +1,87 @@
+---
+title: Übersetzen im Chat
+description: Mit dem MCP-Server companyTRANSLATE übersetzt ein Agent im CompanyGPT-Chat ganze Dateien und Texte, wendet Glossare an und liefert frühere Übersetzungen erneut.
+---
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+Über den MCP-Server **companyTRANSLATE** übersetzt ein Agent im CompanyGPT-Chat Dateien und Texte, ohne dass Sie die Weboberfläche öffnen müssen. Sie hängen zum Beispiel einen Vertrag an und schreiben „Übersetze die Datei ins Englische und nutze unser Glossar recht-de-en“. Der Agent übersetzt das ganze Dokument und legt die übersetzte Datei im Chat ab.
+
+Im Chat gelten dieselben Rechte, Glossare und derselbe Verlauf wie in der Weboberfläche: Übersetzungen aus dem Chat erscheinen unter **Letzte Übersetzungen** im Bereich [Dokumente](/de/company-gpt/addons/company-translate/dokument-uebersetzen/#letzte-übersetzungen), und Glossare, die der Agent speichert, finden Sie im Bereich [Glossare](/de/company-gpt/addons/company-translate/glossare/).
+
+## Voraussetzungen
+
+- Sie haben das Nutzungsrecht für companyTRANSLATE (siehe [Zugriff und Rechte](/de/company-gpt/addons/company-translate/#zugriff-und-rechte)). Ohne dieses Recht kann der Agent companyTRANSLATE nicht verwenden.
+- Der Agent hat den MCP-Server **companyTRANSLATE** als Tool eingebunden. Die Einrichtung funktioniert wie beim [MCP-Server von companyTRANSCRIBE](/de/company-gpt/addons/company-transcribe/mcp-integration/#agenten-einrichten); allgemeine Hinweise finden Sie unter [Agenten](/de/company-gpt/agenten/) und [MCP Server](/de/company-gpt/integrationen/mcp-server/).
+
+Der Agent greift nur auf Ihre eigenen Dateien und Übersetzungen sowie auf Ihre eigenen und die globalen Glossare zu.
+
+## Datei übersetzen
+
+Hängen Sie die Datei im Chat an – oder beziehen Sie sich auf eine Datei, die bereits im Chat liegt – und nennen Sie die Zielsprache. Übersetzt werden dieselben Formate wie im Bereich **Dokumente**: PDF, Word, PowerPoint, Excel, TXT, Markdown und HTML bis 40 MB. Aufbau und Formatierung bleiben erhalten.
+
+Die Ausgangssprache können Sie angeben. Fehlt sie, erkennt companyTRANSLATE sie aus dem Text der Datei. Sollen Glossare angewendet werden, braucht es eine Ausgangssprache; nennen Sie sie in diesem Fall am besten gleich mit.
+
+Das Ergebnis legt der Agent als neue Datei im Chat ab; dort wird sie wie eine von Ihnen hochgeladene Datei behandelt. Klappt das Ablegen nicht, erhalten Sie stattdessen einen Download-Link. Er gilt bis zum Ende der Aufbewahrung, also bis 30 Tage nach der Übersetzung.
+
+## Längere Übersetzungen
+
+Kleinere Dateien sind meist nach kurzer Zeit fertig. Braucht eine Übersetzung länger, als der Chat auf ein Werkzeug wartet – das kommt vor allem bei großen Dateien und PDFs vor –, läuft sie im Hintergrund weiter, und der Agent meldet, dass sie noch in Arbeit ist. Fragen Sie nach einer Weile nach dem Ergebnis, zum Beispiel „Ist die Übersetzung fertig?“. Der Agent prüft dann den Stand und legt die Datei im Chat ab, sobald sie bereitsteht. Die Übersetzung finden Sie außerdem unter **Letzte Übersetzungen** in der Weboberfläche.
+
+Brechen Sie die Antwort des Agenten im Chat ab, solange er noch auf das Ergebnis wartet, bricht companyTRANSLATE auch die Übersetzung ab; im Verlauf bleibt dann kein Eintrag zurück. Eine Übersetzung, die bereits im Hintergrund weiterläuft, wird dadurch nicht abgebrochen.
+
+Pro Person laufen höchstens zwei Dateiübersetzungen im Chat gleichzeitig; eine dritte lehnt companyTRANSLATE vorübergehend ab.
+
+## Text übersetzen
+
+Auch Text, den Sie in den Chat schreiben oder einfügen, kann der Agent mit companyTRANSLATE übersetzen. Die Übersetzung erscheint als Antwort im Chat. Möglich sind bis zu 50.000 Zeichen pro Übersetzung, über Google Cloud Translation bis zu 30.000 Zeichen.
+
+## Glossare im Chat
+
+Im Chat stehen drei Arten von Glossaren zur Verfügung:
+
+| Art | So nutzen Sie sie |
+|---|---|
+| **Gespeicherte Glossare** | Nennen Sie den Namen des Glossars oder bitten Sie darum, alle passenden Glossare anzuwenden. Der Agent kann Ihnen auch auflisten, welche Glossare es für ein Sprachpaar gibt. |
+| **Begriffe im Chat** | Schreiben Sie die Begriffspaare in Ihre Nachricht, etwa „Vorstand = Board of Management“. Sie gelten nur für diese eine Übersetzung. |
+| **Glossardatei im Chat** | Hängen Sie eine CSV- oder TSV-Datei mit Begriffspaaren an (bis 10 MB). Auch sie gilt nur für diese eine Übersetzung. |
+
+Begriffe aus dem Chat oder aus einer angehängten Datei kann der Agent auf Wunsch dauerhaft speichern, etwa mit „Speichere diese Begriffe als Glossar recht-de-en“. Das Glossar erscheint danach unter **Meine Glossare**. Globale Glossare kann der Agent nur speichern, wenn Sie das Recht **Glossare verwalten** haben. Ein Glossar mit demselben Namen und derselben Sprachrichtung wird ersetzt.
+
+Für Glossare im Chat gelten zwei Einschränkungen:
+
+- Bei reinem Text wirken Glossare nur, wenn in Ihrer Umgebung Google Cloud Translation aktiviert ist. Bei Dateien wirken sie auch ohne Google.
+- Als Datei im Chat akzeptiert companyTRANSLATE nur CSV- und TSV-Glossare. TMX- und XLIFF-Glossare laden Sie in der Weboberfläche im Bereich [Glossare](/de/company-gpt/addons/company-translate/glossare/#glossar-hochladen) hoch.
+
+## Übersetzungsdienst
+
+Standardmäßig übersetzt companyTRANSLATE auch im Chat über Azure AI Translator. Google Cloud Translation kommt nur zum Einsatz, wenn Sie Text mit Glossar übersetzen lassen oder Google ausdrücklich verlangen – und nur, wenn es in Ihrer Umgebung aktiviert ist. Einen stillen Wechsel des Dienstes gibt es nicht.
+
+Für Dateien gelten bei Google engere Grenzen: höchstens 20 MB, PDFs höchstens 20 Seiten, keine Markdown-Dateien, höchstens ein gespeichertes Glossar und keine XLIFF-Glossare. Was Google nicht übernehmen kann, lehnt companyTRANSLATE ab und nennt Azure als Alternative. Wohin Ihre Inhalte dabei übermittelt werden, beschreibt [Übersetzungsdienste und Datenfluss](/de/company-gpt/addons/company-translate/#übersetzungsdienste-und-datenfluss).
+
+## Frühere Übersetzungen
+
+Der Agent kann Ihre letzten Übersetzungen auflisten – aus dem Chat und aus der Weboberfläche – und eine frühere Übersetzung erneut als Datei im Chat ablegen, etwa mit „Schick mir die deutsche Fassung des Vertrags von gestern noch einmal“. Das geht, solange die Übersetzung aufbewahrt wird, also 30 Tage. Ältere Übersetzungen sind abgelaufen.
+
+## Werkzeuge des MCP-Servers
+
+Für alle, die eigene Übersetzungsagenten bauen: Der MCP-Server stellt acht Werkzeuge bereit.
+
+| Werkzeug | Zweck |
+|---|---|
+| `translate_document` | Eine Datei aus dem Chat vollständig übersetzen und als neue Datei im Chat ablegen |
+| `get_translation_status` | Stand einer länger laufenden Übersetzung abfragen und das Ergebnis abholen |
+| `translate_text` | Text übersetzen |
+| `list_languages` | Verfügbare Sprachen mit ihren Sprachcodes auflisten |
+| `list_glossaries` | Eigene und globale Glossare auflisten, optional nach Sprachpaar |
+| `save_glossary` | Begriffspaare oder eine CSV-/TSV-Datei aus dem Chat als Glossar speichern |
+| `list_translations` | Die eigenen Übersetzungen aus Chat und Weboberfläche auflisten, die neuesten zuerst |
+| `get_translation` | Eine frühere Übersetzung erneut als Datei im Chat ablegen |
+
+## Weiterführende Themen
+
+- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – Formate, Verlauf und Aufbewahrung
+- [Glossare](/de/company-gpt/addons/company-translate/glossare/) – Glossare anlegen und verwalten
+- [Agenten](/de/company-gpt/agenten/) – Agenten anlegen und Tools einbinden

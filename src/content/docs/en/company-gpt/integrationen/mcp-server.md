@@ -9,13 +9,19 @@ The MCP is based on a client-server architecture in which CompanyGPT, as the cli
 
 More information about MCP can be found here: [Prompt Engineering / MCP](/en/prompt-engineering/prompt-techniken/tool-use#the-mcp-model-context-protocol-as-a-tool)
 
+## Using MCP servers
+
+The MCP servers available to you are listed in the left sidebar under **MCP Settings**. There you see the status of each server. If a server requires a sign-in or your own key, you can sign in there with **Connect** or configure the server.
+
+In the [chat](/en/company-gpt/chat/#integrations), you select MCP servers via the chat input; in [agents](/en/company-gpt/agenten/#mcp-server), via the Tool Library.
+
 ## Add MCP Server
 
-MCP servers can be added in the right sidebar via the MCP settings. Admin users can configure how MCP servers can be used. Permissions can be assigned for use, creation, and sharing. 
+Only people whose role allows it can create new MCP servers. By default, regular users cannot create MCP servers. Administrators assign the permissions for using, creating, and sharing MCP servers in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab, feature **MCP servers**. Which domains are allowed for MCP servers is set by administrators in companyADMIN under **Configuration** → **MCP domains**.
+
+With the corresponding permission, the **+** at the top of **MCP Settings** (tooltip **Add MCP**) opens the **Add MCP Server** dialog.
 
 ![add-mcp](add-mcp-en.png)
-
-Clicking on **+ Add MCP** opens the dialog for adding MCP servers. 
 
 ### MCP server properties
 
@@ -25,18 +31,18 @@ The following properties can be assigned:
 - **Name**: The name of the MCP server, visible in the overview and in each selection
 - **Description** `optional`: A description that is displayed in the overview
 - **MCP Server URL**: The URL for the MCP server. These URLs can be for internal services (within the cluster) or MCP server URLs accessible via the Internet.
-- **Server Type**: Streamable HTTP or SSE (specified by the server)
+- **Transport**: Streamable HTTPS or SSE (specified by the server)
 - **Authentication**:
-- **Auto Detect**: Automatic detection with OAuth `Dynamic Client Registration` or without authentication
-    - **API Key**: Authentication with API key, selectable whether an API key is for all users or on a per-user basis.
-- **Manual OAuth**: OAuth 2.1 compliant client registration with client ID, secret, redirect URI, authorization and token URL.
+  - **None (Auto-detect)**: Automatic detection with OAuth `Dynamic Client Registration` or without authentication
+  - **API Key**: Authentication with an API key, selectable whether one API key applies to all users or each user provides their own key.
+  - **OAuth**: OAuth 2.1 compliant client registration with client ID, secret, redirect URI, authorization and token URL.
 - **I trust this application**: Checkbox for confirmation.
 
-Once initialization is successful, the MCP server is now displayed in the overview in the right sidebar and can be used via [Chat](/en/company-gpt/chat/#integrations) or in [Agents](/en/company-gpt/agenten/).
+Once initialization is successful, the MCP server is displayed under **MCP Settings** in the left sidebar and can be used via [Chat](/en/company-gpt/chat/#integrations) or in [Agents](/en/company-gpt/agenten/).
 
 ## Share MCP Server
 
-Once an MCP Server has been added, it can be shared. To do this, click on the settings icon in the overview in the right sidebar. The familiar share menu can then be accessed: 
+Once an MCP server has been added, it can be shared if your role allows sharing. To do this, open the server under **MCP Settings** in the left sidebar via **Edit**. In the **Edit MCP Server** dialog, the familiar share menu can then be accessed:
 
 ![share-mcp](share-mcp.png)
 

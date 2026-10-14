@@ -1,44 +1,70 @@
 ---
 title: The interface
-description: How the companyFILES interface is laid out – managing documents, templates, uploads and visualizations in one place.
+description: How the companyFILES interface is laid out – managing documents, templates and visualizations in one place and uploading files.
 ---
 
-import sidebarImg from "./companyfiles-sidebar.png";
+You reach the companyFILES interface in CompanyGPT via **Apps → Files** or via the [All apps](/en/company-gpt/addons/alle-apps/) page. It uses the [shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/) of all CompanyGPT addons: sign-in runs through your chat session, and layout and design match the chat.
 
-The companyFILES interface is clearly split into navigation items and working areas. The sidebar on the left switches between all core functions. You reach it in CompanyGPT via **Apps → Files**.
+## Sidebar and account menu
 
-<div style="display: flex; gap: 2rem; align-items: flex-start;">
-  <img src={sidebarImg.src} alt="companyFILES sidebar" style="width: 60px; flex-shrink: 0;" />
-  <div>
+The sidebar can be expanded and collapsed. From top to bottom it contains:
 
-From top to bottom the sidebar contains these areas:
+| Item | Effect |
+|---|---|
+| **New chat** | opens a new chat in CompanyGPT |
+| **All apps** | leads to the overview of all apps in your environment |
+| **[Documents](#documents)** | all generated and uploaded files; also the start page of companyFILES |
+| **[Templates](#templates)** | all available templates |
+| **[Visualizations](#visualizations)** | all charts, diagrams and maps created in the chat |
+| **Settings** | defaults for generated documents – see [Settings](/en/company-gpt/addons/companyfiles/einstellungen/) |
 
-1. **Back to Chat** – Returns to the CompanyGPT Chat
-2. **Back to Tools** – Returns to the overview of available tools
-3. **[Documents](#documents)** – Shows all generated and uploaded documents
-4. **[Templates](#templates)** – Shows all available templates
-5. **[Upload Template](#upload-template)** – Upload a new template
-6. **[Upload](#upload)** – Upload files
-7. **[Visualizations](#visualizations)** – Shows all created diagrams and charts
-8. **Settings** – Document settings that are automatically applied
-9. **Language** – Change interface language
-10. **Toggle Design** – Toggle Dark/Light mode
-11. **Account** – Account management
+Your account sits at the very bottom. The **account menu** shows your e-mail address and contains:
 
-  </div>
-</div>
+- **Theme** – **System**, **Dark**, **Light**, **High contrast light** or **High contrast dark**,
+- **Language** – Deutsch or English,
+- **Log out**.
 
-The settings are covered separately under [Settings](/en/company-gpt/addons/companyfiles/einstellungen/).
+On a phone, navigation sits in a header with a fold-out menu. If your account is not enabled for companyFILES, the interface shows the **No access** page instead of its content. More on navigation, the account menu and the state pages is under [Shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/).
+
+Uploading no longer happens through separate menu items but through **page actions** at the top right of the respective page: **Upload Files** on the Documents page and **Template Upload** on the Templates page.
 
 ## Documents
 
-This is where all generated and uploaded files live in one place.
+This is where all generated and uploaded files live in one place – including the files you attached in the chat.
 
-![Documents view](companyfiles-dokumente-en.png)
+Use the search **Search documents...**, the **All Types** filter (Word, Excel, PowerPoint, PDF, Text, Image, Archive) and **Sort by** (Date, Name, Size, Type) to find files quickly. The table shows **Name**, **Type**, **Size**, **Date** and **Expires**. Small images (up to 1 MB) appear as a thumbnail next to the name; all other files show the icon of their type.
 
-Use the **search bar** and the filters **All Types** and **All Folders** to find files quickly. The table shows name, type, size, date and expiration. The type appears as a colored badge in the row – for example Excel, Word, Pdf, Powerpoint or Image. Files with a **CompanyGPT** badge were generated directly from the chat. The **three-dot menu** (⋯) lets you download, preview, edit the expiration date, or delete documents.
+The **CompanyGPT** badge next to the file name means: the file exists as a file in the CompanyGPT chat – either because you uploaded it in the chat or because companyFILES stored a generated document there.
 
-Documents can be organized into folders; the folder is shown underneath the file name. The **expiration** column either shows the remaining time or **Permanent** – the latter for files that are kept indefinitely.
+Clicking a row opens the **Preview**. The **three-dot menu** (⋯) lets you download a file, open the preview, edit the expiry date or delete the file. In the view embedded in the chat, the menu shows **Copy link** instead of **Download**.
+
+### Preview
+
+The preview shows Word, Excel and PowerPoint files, PDFs, images and text files directly in the browser; for other file types it offers **Download instead**. If the extension for reading further formats is active in your environment, it shows e-mails, ZIP archives and older Office formats as readable text – see [Reading e-mails, archives and older formats](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#reading-e-mails-archives-and-older-formats).
+
+Clicking an image opens it full screen. There you zoom with the mouse wheel, a pinch gesture or `+`/`−`, pan by dragging or with the arrow keys, fit it to the screen with `0` and close it with `Esc`. **Open in new tab** shows the image in a browser tab of its own.
+
+### Expiry and retention
+
+Generated documents and documents uploaded in companyFILES have a retention period whose length is set by your environment. The **Expires** column shows the remaining time; clicking it, or **Edit Expiry** in the menu, changes the date. When the period ends, companyFILES deletes the document automatically – if it also exists as a file in the CompanyGPT chat, that file is deleted as well.
+
+**Permanent** appears only for files you uploaded directly in the chat. No companyFILES retention period applies to them.
+
+### Uploading files
+
+The **Upload Files** page action opens the **Upload** dialog. Drag one or more files into the upload area or click to browse, then start the upload with **Upload Files**. After the upload the dialog shows the result for each file; **Upload More** continues with the next files.
+
+Accepted are:
+
+- Office documents (`.docx`, `.xlsx`, `.pptx`, `.potx`),
+- PDF,
+- images (PNG, JPG, GIF, WebP, BMP, SVG, HEIC),
+- ZIP archives,
+- text formats such as TXT, Markdown, CSV, JSON, XML, HTML, YAML, CSS, JS and TS.
+
+If the extension for reading further formats is active, e-mails (`.msg`, `.eml`), older Office formats (`.doc`, `.xls`, `.ppt`), Excel binary workbooks (`.xlsb`), RTF, OpenDocument, EPUB and TIFF, among others, are added.
+
+During the upload companyFILES checks whether a file's content matches its extension. Renamed files – a ZIP archive with the extension `.docx`, for example – and files whose content cannot be identified are rejected.
 
 ## Templates
 
@@ -46,38 +72,40 @@ Here you can see all available templates for document generation.
 
 ![Template list with the columns name, type, scope, tags, size and uploaded, plus the User and Global badges](./files-vorlagen-liste.png)
 
-Templates can be filtered by **All Types** and **All Scopes**. The table shows name, type, scope, tags, size and upload date. The **scope** determines visibility:
+Use the search **Search templates...** and the filters **All Types**, **All Scopes** and **All Tags** to narrow down the list. The table shows name, type, scope, tags, size and upload date. The **scope** determines visibility:
 
 | Scope | Meaning |
 |---|---|
 | **User** | usable only by yourself |
 | **Global** | usable by every user in the organization |
 
-Available templates can be used directly in the chat for document generation – see [Templates](/en/company-gpt/addons/companyfiles/vorlagen/).
+Clicking a template opens its detail view with description, tags and the detected **Placeholders** – in the notation the template type expects. This lets you check whether a template is prepared correctly. Below that are the actions:
 
-## Upload Template
+| Action | Available |
+|---|---|
+| **Download** | for every template |
+| **Edit** (display name, description, tags) and **Delete** | for your own templates; for global templates only for administrators |
+| **Promote to Global** | for administrators on their own Word, Excel and PowerPoint templates |
+| **Demote to Local** | for administrators on global Word, Excel and PowerPoint templates |
+| **Use Template** | only in the view embedded in the chat: writes a request to fill the template, including its placeholders, into the chat |
 
-This is where new document templates are uploaded.
+How templates are prepared and used in the chat is described under [Templates](/en/company-gpt/addons/companyfiles/vorlagen/).
+
+### Upload Template
+
+The **Template Upload** page action on the Templates page opens the upload form.
 
 ![Upload Template view](companyfiles-vorlage-hochladen-en.png)
 
-Drag and drop a template file (`.docx`, `.xlsx`, `.potx`, `.pptx`) into the upload area. Fill in the **Template Name** (required) and optionally **Display Name**, **Description**, and **Tags**. Admins can upload global templates visible to all users. Click **"Upload Template"** to complete the upload.
-
-## Upload
-
-This is where you upload arbitrary files into your workspace.
-
-![Upload view](companyfiles-hochladen-en.png)
-
-Drag and drop files into the upload area or click to browse. All file types are supported. Optionally select a **Folder** or create a new one via **"+ New folder"**. Click **"Upload Files"** to start the upload.
+Drag a template file (`.docx`, `.xlsx`, `.potx`, `.pptx`) into the upload area. Fill in the **Template Name** – it is required and may only contain letters, numbers, dashes and underscores – and optionally **Display Name**, **Description** and **Tags** (comma-separated). Administrators also see the **Scope** field: **Global** (available to all users, preselected) or **User** (only visible to themselves). Click **Upload Template** to complete the upload.
 
 ## Visualizations
 
-Here you see all diagrams and charts produced by CompanyGPT.
+Here you see all charts, diagrams and maps produced by CompanyGPT.
 
 ![Visualizations view](companyfiles-visualisierungen-en.png)
 
-All visualizations created in the chat are collected here. Use the **"All Items"** filter to filter by chart type (e.g. diagrams or charts). Each card shows the title, a preview, the type, and the creation date. Clicking a card brings the visualization back up.
+The **All Items** filter narrows the view to **Charts**, **Diagrams** or **Maps**. Each card shows the title, a preview, the type and the creation date. Clicking a chart or diagram opens its detail view; maps open in a new browser tab.
 
 How visualizations are produced is described under [Visualizations](/en/company-gpt/addons/companyfiles/visualisierungen/).
 

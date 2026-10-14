@@ -1,38 +1,46 @@
 ---
 title: Agent capabilities
-description: Define which capabilities the agent builder offers per role in CompanyGPT – from code execution and web search to subagents.
+description: Decide in companyADMIN which capabilities the CompanyGPT agent builder offers – for everyone and with an own selection per role, for example to limit code execution, web search or subagents.
 ---
 
-Agent capabilities determine which abilities the agent builder offers – such as code execution, web search, file search or subagents. They are released per role.
+**Configuration** → **Agent capabilities** decides which capabilities the agent builder offers, such as code execution, web search, file search or subagents. This lets you limit costly or risky capabilities to individual roles without blocking them for everyone.
 
-![Capability matrix with baseline and role columns](./capabilities.png)
+This setting only concerns the agent builder. What people may do in CompanyGPT in general is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
 
-## How to read the matrix
+## Switching management on
 
-The **Everyone** column is the baseline that everyone gets. Each role column **replaces** that baseline wholesale for holders of that role – it does not add to it. Under **Roles with their own set** you define which roles get a set of their own at all.
+In the **Management** section, tick **Govern agent capabilities from companyADMIN**. As long as the box is unticked, everyone gets the capabilities from the base configuration.
 
-`USER` is a role like any other here: it covers everyone whose login matched no role mapping.
+**Stop managing** asks first and removes every selection; afterwards the base configuration applies to everyone again.
 
-## Available capabilities
+## For everyone
 
-| Capability | Note |
+The **For everyone** section is the selection every role without an own selection gets. Set the ticks and click **Save**.
+
+## Own selection per role
+
+1. Under **Own selection per role**, pick a role (**Pick a role**).
+2. Click **Create own selection**. The selection starts as a copy of **For everyone**.
+3. Adjust the ticks and save the role's section.
+
+An own selection replaces the selection **For everyone** for everyone with this role; it does not add to it. **Remove own selection** gives the role **For everyone** again. The last own selection cannot be removed; to lift management completely, stop it above.
+
+USER is a role like any other. If ADMIN has no own selection, administrators get **For everyone** too. This only affects the agent builder, not companyADMIN.
+
+## The capabilities
+
+| Capability | Meaning |
 |---|---|
-| `execute_code` | Code execution; marked as costly |
-| `web_search` | Web search; costly |
-| `file_search` | File search within the agent's file context |
+| `execute_code` | Run code – badge **costly** |
+| `web_search` | Web search – badge **costly** |
+| `file_search` | File search in the agent's file context |
 | `artifacts` | Artifacts as an output format |
-| `subagents` | Subagents; costly |
-| `actions` | Actions via external interfaces |
-| `skills` | Use of skills |
-| `ask_user_question` | Follow-up questions to the user |
-| `tools` | Use of tools |
+| `subagents` | Subagents – badge **costly** |
+| `actions` | Actions through external interfaces |
+| `skills` | Use skills |
+| `ask_user_question` | Ask the person follow-up questions |
+| `tools` | Use tools |
 
-:::note
-Not governed by this page and unchanged for everyone are `ocr`, `chain`, `context`, `deferred_tools` and `memory`. These follow the server configuration and are kept in every set defined above.
-:::
+The **costly** badge marks capabilities that are expensive or risky – the main reason to use this page at all. **not in librechat.yaml** means that the base configuration does not provide the capability.
 
-:::tip[Note]
-Costly capabilities such as code execution, web search and subagents can be limited to individual roles this way, without blocking them for everyone.
-:::
-
-This setting concerns the agent builder. Which features a user may use in CompanyGPT in general is governed by the feature permissions under [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+All other capabilities your environment provides are not controlled on this page. They follow the base configuration and stay in every selection. The page lists them under **For everyone**.

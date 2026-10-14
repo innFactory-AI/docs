@@ -1,0 +1,81 @@
+---
+title: Neue Chat-Oberfläche
+description: Vorschau auf die überarbeitete Chat-Oberfläche von CompanyGPT mit neuer Eingabeleiste, Projekten mit Anweisungen, Benachrichtigungen und geplanten Chats.
+---
+
+:::note[Wird schrittweise ausgerollt]
+Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
+:::
+
+CompanyGPT erhält eine überarbeitete Chat-Oberfläche, die zunächst in einzelnen Umgebungen eingeführt wird. Diese Seite fasst die wichtigsten Neuerungen zusammen. Die übrigen Seiten dieser Dokumentation beschreiben bis auf Weiteres die bisherige Oberfläche. Im [Demo-Zugang](/de/demo-zugang/) können Sie die neue Oberfläche bereits ausprobieren.
+
+Einzelne Beschriftungen der neuen Oberfläche erscheinen in der deutschen Oberfläche derzeit noch auf Englisch.
+
+## Neue Eingabeleiste
+
+Das Plus-Symbol im Eingabefeld öffnet ein gemeinsames Menü für Anhänge und Werkzeuge. Es ersetzt die bisherige Büroklammer, das Menü **Werkzeuge** und das Anpinnen von Integrationen.
+
+- **Alles an einem Ort**: Im Menü finden Sie die Upload-Möglichkeiten, zuletzt verwendete Dateien, die integrierten Werkzeuge wie [Websuche](/de/company-gpt/integrationen/websuche/), [Dateisuche](/de/company-gpt/integrationen/dateisuche/) oder [Code ausführen](/de/company-gpt/code-interpreter/), Ihre [Skills](/de/company-gpt/skills/) und die [MCP-Server](/de/company-gpt/integrationen/mcp-server/). Über das Suchfeld oben im Menü finden Sie Werkzeuge, Skills und Server direkt.
+- **Favoriten**: Häufig genutzte Einträge markieren Sie mit dem Stern oder mit `Strg` + `D` (macOS: `⌘` + `D`). Sie erscheinen dann gesammelt unter **Favoriten** im Menü.
+- **Chips**: Aktive Werkzeuge und Skills erscheinen als Chips in der Eingabeleiste. Dort entfernen Sie sie mit einem Klick wieder.
+- **Denkaufwand**: Bei Modellen mit Denkprozess öffnen Sie über eine Schaltfläche in der Eingabeleiste einen Regler, mit dem Sie zwischen schnelleren und gründlicheren Antworten wählen. Bisher war diese Einstellung nur in den [KI-Einstellungen](/de/company-gpt/ki-einstellungen/#denkaufwand) erreichbar.
+
+### Enter fügt eine neue Zeile ein
+
+In der neuen Oberfläche fügt `Enter` standardmäßig eine neue Zeile ein. Gesendet wird mit `Strg` + `Enter` (macOS: `⌘` + `Enter`). Ebenfalls standardmäßig aktiviert sind das Einklappen langer eigener Nachrichten und das Verkleinern von Bildern vor dem Hochladen. Haben Sie diese [Einstellungen](/de/company-gpt/einstellungen/#senden) bereits einmal selbst festgelegt, bleibt Ihre Wahl erhalten.
+
+## Chat-Optionen im Kopfbereich
+
+Die bisherigen Menüs zum Exportieren und Teilen sind im Kopfbereich des Chats zu einem Menü mit Chat-Optionen zusammengefasst. Es bietet Teilen und Exportieren, **Umbenennen**, **Anpinnen**, die Zuordnung zu einem Projekt, **Duplizieren**, **Archivieren** und **Löschen**.
+
+## Projekte mit Anweisungen und Dateien
+
+[Projekte](/de/company-gpt/projekte/) erhalten eigene Anweisungen und Referenzdateien:
+
+- **Anweisungen**: Legen Sie Ton, Ziele oder Hintergrund für alle Chats im Projekt fest. Die Anweisungen gelten für neue Nachrichten im Projekt; frühere Nachrichten werden nicht verändert. Die Regeln Ihrer Umgebung gelten weiterhin.
+- **Dateien**: Hinterlegen Sie Referenzdateien im Projekt. Ist die Dateisuche aktiv, nutzen die Chats im Projekt passende Auszüge statt ganzer Dateien. Wie viele Dateien ein Projekt enthalten kann, zeigt der Projekt-Arbeitsbereich an. Entfernen Sie eine Datei, wirkt sich das nur auf künftige Nachrichten aus.
+
+Chats eines Projekts erscheinen standardmäßig nur noch im jeweiligen Projekt und nicht mehr zusätzlich in der Liste **Chats**. Über eine Option im Filtermenü der Chatliste blenden Sie sie dort wieder ein. Die Suche und die archivierten Chats umfassen weiterhin alle Chats.
+
+## Ungelesene Antworten und Benachrichtigungen
+
+Chats mit neuen, noch nicht gelesenen Antworten sind in der Chatliste markiert. Über das Menü eines Chats markieren Sie einen Chat wieder als ungelesen.
+
+In den [Einstellungen](/de/company-gpt/einstellungen/) unter **Allgemein** kommen folgende Optionen hinzu:
+
+- die Anzahl der Chats mit ungelesenen Antworten im Titel und Symbol des Browser-Tabs anzeigen
+- eine Desktop-Benachrichtigung, wenn eine Antwort eintrifft, während Sie nicht in CompanyGPT sind. Ihr Browser fragt beim ersten Einschalten nach Ihrer Erlaubnis. Solange Sie CompanyGPT im Blick haben, erscheinen keine Benachrichtigungen.
+- ein kurzer Ton bei neuen Antworten. Browser spielen Töne erst ab, nachdem Sie mit der Seite interagiert haben.
+- die Skalierung der gesamten Oberfläche
+
+## Agenten-Marktplatz
+
+Der [Agenten-Marktplatz](/de/company-gpt/agenten/#agenten-marktplatz) erhält neue Möglichkeiten:
+
+- Agenten nach Beliebtheit, nach Erstellungsdatum oder nach dem Namen der erstellenden Person sortieren
+- nur die selbst erstellten Agenten anzeigen
+- Gesprächsstarter in der Detailansicht eines Agenten: Ein Klick öffnet einen neuen Chat mit dem Agenten, den Text passen Sie vor dem Senden bei Bedarf an.
+
+Außerdem lassen sich die Anweisungen eines Agenten mit einem gespeicherten [Prompt](/de/company-gpt/prompts/) verknüpfen, statt sie direkt im Agenten einzutragen.
+
+## Kontextanzeige mit Kosten und Guthaben
+
+Die Aufschlüsselung der [Kontextanzeige](/de/company-gpt/chat/#kontextanzeige) zeigt zusätzlich die Werte der letzten bzw. der gerade laufenden Runde. Sofern in Ihrer Umgebung verfügbar, sehen Sie dort auch deren Kosten und den bereits verbrauchten Anteil Ihres Guthabens.
+
+## Artefakte im eigenen Fenster
+
+[Artefakte](/de/company-gpt/integrationen/artefakte/) lassen sich in einem eigenen Browserfenster öffnen. Blockiert Ihr Browser das neue Fenster, erlauben Sie Pop-ups für CompanyGPT und versuchen es erneut.
+
+## Geplante Chats
+
+Mit geplanten Chats lassen Sie einen [Agenten](/de/company-gpt/agenten/) regelmäßig automatisch arbeiten, etwa für eine tägliche Zusammenfassung. Sie erreichen sie über einen eigenen Eintrag in der Seitenleiste.
+
+Beim Anlegen eines geplanten Chats legen Sie fest:
+
+- einen Namen
+- den Agenten
+- den Prompt, den der Agent bei jedem Lauf erhält
+- optional ein Projekt, dem die entstehenden Chats zugeordnet werden
+- die Häufigkeit: stündlich, täglich, an Werktagen, wöchentlich oder benutzerdefiniert über einen Cron-Ausdruck, jeweils mit Uhrzeit und Zeitzone
+
+Der Dialog zeigt dabei die nächsten Ausführungszeitpunkte an. Jeder Lauf startet einen neuen Chat mit dem gewählten Agenten. In der Übersicht führen Sie einen geplanten Chat bei Bedarf sofort aus, bearbeiten ihn oder schalten ihn ab. Schlägt ein geplanter Chat wiederholt fehl, wird er automatisch deaktiviert. Wie viele geplante Chats Sie anlegen können und in welchem Mindestabstand sie laufen dürfen, legt Ihre Umgebung fest.

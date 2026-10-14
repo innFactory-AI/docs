@@ -1,0 +1,81 @@
+---
+title: New chat interface
+description: Preview of the redesigned CompanyGPT chat interface with a new input bar, projects with instructions, notifications, and scheduled chats.
+---
+
+:::note[Rolling out gradually]
+This feature is currently being introduced gradually and may not yet be available in your environment.
+:::
+
+CompanyGPT is getting a redesigned chat interface, which is first being introduced in some environments. This page summarizes the most important changes. Until further notice, the other pages of this documentation describe the previous interface. You can already try the new interface in the [demo access](/en/demo-zugang/).
+
+In the German interface, some labels of the new interface are currently still shown in English.
+
+## New input bar
+
+The plus icon in the input field opens a combined menu for attachments and tools (**Attach and tools**). It replaces the previous paperclip, the **Tools** menu, and pinning integrations.
+
+- **Everything in one place**: The menu contains the upload options, recently used files, the built-in tools such as [Web Search](/en/company-gpt/integrationen/websuche/), [File Search](/en/company-gpt/integrationen/dateisuche/), or [Run Code](/en/company-gpt/code-interpreter/), your [skills](/en/company-gpt/skills/), and the [MCP servers](/en/company-gpt/integrationen/mcp-server/). Use the search field at the top of the menu (**Search tools, skills and servers**) to find tools, skills, and servers directly.
+- **Favorites**: Mark frequently used entries with the star or with `Ctrl` + `D` (macOS: `⌘` + `D`). They are then collected under **Favorites** in the menu.
+- **Chips**: Active tools and skills appear as chips in the input bar. Remove them there with a single click.
+- **Reasoning effort**: For models with a thinking process, a button in the input bar opens a slider for choosing between **Faster** and **Smarter** responses. Previously, this setting was only available in the [Parameters](/en/company-gpt/ki-einstellungen/#reasoning-effort) panel.
+
+### Enter adds a new line
+
+In the new interface, `Enter` adds a new line by default. To send, press `Ctrl` + `Enter` (macOS: `⌘` + `Enter`). Collapsing long user messages and resizing images before upload are also enabled by default. If you have already set these [settings](/en/company-gpt/einstellungen/#sending) yourself, your choice is kept.
+
+## Chat options in the header
+
+The previous export and share menus are combined into one **Chat options** menu in the chat header. It offers sharing and exporting, **Rename**, **Pin**, assigning the chat to a project, **Duplicate**, **Archive**, and **Delete**.
+
+## Projects with instructions and files
+
+[Projects](/en/company-gpt/projekte/) get their own instructions and reference files:
+
+- **Instructions**: Set the tone, goals, or background for all chats in the project. The instructions are used for new messages in the project; earlier messages are not changed. The rules of your environment still apply.
+- **Files**: Store reference files in the project. When File Search is enabled, chats in the project use relevant excerpts rather than whole files. The project workspace shows how many files a project can contain. Removing a file only affects future messages.
+
+By default, project chats only appear in their project and no longer also in the **Chats** list. An option in the filter menu of the chat list (**Show project chats**) shows them there again. Search and archived chats still include all chats.
+
+## Unread replies and notifications
+
+Chats with new, unread replies are marked in the chat list. Use **Mark as unread** in a chat's menu to mark a chat as unread again.
+
+The following options are added to the [Settings](/en/company-gpt/einstellungen/) under **General**:
+
+- **Show unread count in the tab title**: shows the number of chats with unread replies in the browser tab title and icon.
+- **Notify me when a reply arrives**: shows a desktop notification when a reply arrives while you are away from CompanyGPT. Your browser asks for permission the first time you enable this. No notifications are shown while you are looking at CompanyGPT.
+- **Play a sound for new replies**: plays a short chime. Browsers only play sounds after you have interacted with the page.
+- **UI scale**: scales the entire interface.
+
+## Agent Marketplace
+
+The [Agent Marketplace](/en/company-gpt/agenten/#agent-marketplace) gets new options:
+
+- sort agents by popularity, by creation date, or by creator name
+- show only the agents you created
+- conversation starters in an agent's detail view: clicking one opens a new chat with the agent; you can adjust the text before sending.
+
+In addition, an agent's instructions can be linked to a saved [prompt](/en/company-gpt/prompts/) instead of being entered directly in the agent.
+
+## Context indicator with cost and balance
+
+The breakdown of the [context indicator](/en/company-gpt/chat/#context-indicator) additionally shows the values of the last or currently running turn. If available in your environment, it also shows their cost and the share of your balance already used.
+
+## Artifacts in a separate window
+
+[Artifacts](/en/company-gpt/integrationen/artefakte/) can be opened in a separate browser window (**Open in new window**). If your browser blocks the new window, allow pop-ups for CompanyGPT and try again.
+
+## Scheduled chats
+
+With **Scheduled chats**, you let an [agent](/en/company-gpt/agenten/) work automatically on a regular basis, for example for a daily summary. You can access them via a separate entry in the sidebar.
+
+When creating a scheduled chat, you specify:
+
+- a name
+- the agent
+- the prompt the agent receives on each run
+- optionally a project to which the resulting chats are assigned
+- the **Frequency**: **Hourly**, **Daily**, **Weekdays**, **Weekly**, or **Custom** via a cron expression, each with a time and **Time zone**
+
+The dialog shows the next run times. Each run starts a new chat with the selected agent. In the overview, you can run a scheduled chat immediately with **Run now**, edit it, or turn it off. If a scheduled chat fails repeatedly, it is disabled automatically. How many scheduled chats you can create and the minimum interval between runs are determined by your environment.

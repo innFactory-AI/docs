@@ -1,44 +1,70 @@
 ---
 title: Die Oberfläche
-description: Aufbau der companyFILES Oberfläche – Dokumente, Vorlagen, Uploads und Visualisierungen an einem Ort verwalten.
+description: Aufbau der companyFILES Oberfläche – Dokumente, Vorlagen und Visualisierungen an einem Ort verwalten und Dateien hochladen.
 ---
 
-import sidebarImg from "./companyfiles-sidebar.png";
+Die companyFILES Oberfläche erreichen Sie im CompanyGPT über **Apps → Files** oder über die Seite [Alle Apps](/de/company-gpt/addons/alle-apps/). Sie nutzt die [gemeinsame Oberfläche](/de/company-gpt/addons/gemeinsame-oberflaeche/) aller CompanyGPT-Addons: Die Anmeldung läuft über Ihre Chat-Sitzung, Aufbau und Design entsprechen dem Chat.
 
-Die companyFILES Oberfläche ist klar in Navigationspunkte und Arbeitsbereiche gegliedert. Über die linke Seitenleiste wechseln Sie zwischen allen zentralen Funktionen. Sie erreichen sie im CompanyGPT über **Apps → Files**.
+## Seitenleiste und Kontomenü
 
-<div style="display: flex; gap: 2rem; align-items: flex-start;">
-  <img src={sidebarImg.src} alt="companyFILES Seitenleiste" style="width: 60px; flex-shrink: 0;" />
-  <div>
+Die Seitenleiste lässt sich ein- und ausklappen. Von oben nach unten enthält sie:
 
-Von oben nach unten finden Sie in der Seitenleiste folgende Bereiche:
+| Eintrag | Wirkung |
+|---|---|
+| **Neuer Chat** | öffnet einen neuen Chat im CompanyGPT |
+| **Alle Apps** | führt zur Übersicht aller Apps Ihrer Umgebung |
+| **[Dokumente](#dokumente)** | alle erzeugten und hochgeladenen Dateien; zugleich die Startseite von companyFILES |
+| **[Vorlagen](#vorlagen)** | alle verfügbaren Vorlagen |
+| **[Visualisierungen](#visualisierungen)** | alle im Chat erzeugten Charts, Diagramme und Karten |
+| **Einstellungen** | Standards für generierte Dokumente – siehe [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/) |
 
-1. **Zurück zum Chat** – Leitet zurück zum CompanyGPT Chat
-2. **Zurück zu den Tools** – Leitet zurück zur Übersicht der verfügbaren Tools
-3. **[Dokumente](#dokumente)** – Zeigt alle generierten und hochgeladenen Dokumente an
-4. **[Vorlagen](#vorlagen)** – Zeigt alle verfügbaren Vorlagen an
-5. **[Vorlage Hochladen](#vorlage-hochladen)** – Ermöglicht das Hochladen einer neuen Vorlage
-6. **[Hochladen](#hochladen)** – Ermöglicht das Hochladen von Dateien
-7. **[Visualisierungen](#visualisierungen)** – Zeigt alle erstellten Diagramme und Charts an
-8. **Einstellungen** – Dokumenteneinstellungen, die automatisch angewendet werden
-9. **Sprache** – Sprachänderung der Oberfläche
-10. **Design Umschalten** – Toggle für Dark/Light Mode
-11. **Account** – Kontoverwaltung
+Ganz unten steht Ihr Konto. Das **Kontomenü** zeigt Ihre E-Mail-Adresse und enthält:
 
-  </div>
-</div>
+- **Design** – **System**, **Dunkel**, **Hell**, **High contrast light** oder **High contrast dark**,
+- **Sprache** – Deutsch oder English,
+- **Abmelden**.
 
-Die Einstellungen sind eigenständig beschrieben unter [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/).
+Auf dem Smartphone steht die Navigation in einer Kopfzeile mit ausklappbarem Menü. Ist Ihr Konto für companyFILES nicht freigeschaltet, zeigt die Oberfläche statt der Inhalte die Seite **Kein Zugriff**. Mehr zu Navigation, Kontomenü und Zustandsseiten steht unter [Gemeinsame Oberfläche](/de/company-gpt/addons/gemeinsame-oberflaeche/).
+
+Hochgeladen wird nicht mehr über eigene Menüpunkte, sondern über **Seitenaktionen** oben rechts auf der jeweiligen Seite: **Dateien hochladen** auf der Seite Dokumente und **Vorlage hochladen** auf der Seite Vorlagen.
 
 ## Dokumente
 
-Hier finden Sie alle generierten und hochgeladenen Dateien an einem Ort.
+Hier finden Sie alle erzeugten und hochgeladenen Dateien an einem Ort – auch die Dateien, die Sie im Chat angehängt haben.
 
-![Dokumente Übersicht](companyfiles-dokumente-de.png)
+Über die Suche **Dokumente suchen...**, den Filter **Alle Typen** (Word, Excel, PowerPoint, PDF, Text, Bild, Archiv) und **Sortieren nach** (Datum, Name, Größe, Typ) finden Sie Dateien schnell. Die Tabelle zeigt **Name**, **Typ**, **Größe**, **Datum** und **Ablauf**. Kleine Bilder (bis 1 MB) erscheinen als Vorschaubild neben dem Namen, alle anderen Dateien mit dem Symbol ihres Typs.
 
-Über die **Suchleiste** und die Filter **Alle Typen** und **Alle Ordner** finden Sie Dateien schnell. Die Tabelle zeigt Name, Typ, Größe, Datum und Ablauf. Der Typ steht als farbige Marke in der Zeile – zum Beispiel Excel, Word, Pdf, Powerpoint oder Image. Dateien mit einem **CompanyGPT**-Badge wurden direkt aus dem Chat heraus generiert. Über das **Drei-Punkte-Menü** (⋯) können Sie Dokumente herunterladen, eine Vorschau anzeigen, das Ablaufdatum bearbeiten oder löschen.
+Die Marke **CompanyGPT** neben dem Dateinamen bedeutet: Die Datei liegt als Datei im CompanyGPT-Chat vor – entweder weil Sie sie im Chat hochgeladen haben oder weil companyFILES ein erzeugtes Dokument dort abgelegt hat.
 
-Dokumente lassen sich in Ordnern organisieren; der Ordner wird unter dem Dateinamen angezeigt. In der Spalte **Ablauf** steht entweder eine Restlaufzeit oder **Dauerhaft** – Letzteres bei Dateien, die dauerhaft aufbewahrt werden.
+Ein Klick auf eine Zeile öffnet die **Vorschau**. Über das **Drei-Punkte-Menü** (⋯) können Sie eine Datei herunterladen, die Vorschau öffnen, das Ablaufdatum bearbeiten oder die Datei löschen. In der im Chat eingebetteten Ansicht steht statt **Herunterladen** der Eintrag **Link kopieren**.
+
+### Vorschau
+
+Die Vorschau zeigt Word-, Excel- und PowerPoint-Dateien, PDFs, Bilder und Textdateien direkt im Browser; für andere Dateitypen bietet sie **Stattdessen herunterladen** an. Ist in Ihrer Umgebung die Erweiterung zum Lesen weiterer Formate aktiv, zeigt sie E-Mails, ZIP-Archive und ältere Office-Formate als lesbaren Text – siehe [E-Mails, Archive und ältere Formate lesen](/de/company-gpt/addons/companyfiles/dokumente-erstellen/#e-mails-archive-und-ältere-formate-lesen).
+
+Ein Klick auf ein Bild öffnet es im Vollbild. Dort zoomen Sie per Mausrad, Fingergeste oder `+`/`−`, verschieben das Bild durch Ziehen oder mit den Pfeiltasten, passen es mit `0` an den Bildschirm an und schließen es mit `Esc`. **In neuem Tab öffnen** zeigt das Bild in einem eigenen Browser-Tab.
+
+### Ablauf und Aufbewahrung
+
+Erzeugte und in companyFILES hochgeladene Dokumente haben eine Aufbewahrungsfrist, deren Länge Ihre Umgebung festlegt. Die Spalte **Ablauf** zeigt die Restlaufzeit; ein Klick darauf oder **Ablauf bearbeiten** im Menü ändert das Datum. Nach Ablauf löscht companyFILES das Dokument automatisch – liegt es zusätzlich als Datei im CompanyGPT-Chat vor, wird diese mit gelöscht.
+
+**Dauerhaft** steht nur bei Dateien, die Sie direkt im Chat hochgeladen haben. Für sie gilt keine Frist von companyFILES.
+
+### Dateien hochladen
+
+Die Seitenaktion **Dateien hochladen** öffnet den Dialog **Hochladen**. Ziehen Sie eine oder mehrere Dateien in den Upload-Bereich oder klicken Sie zum Durchsuchen, und starten Sie den Upload mit **Dateien hochladen**. Nach dem Upload zeigt der Dialog für jede Datei das Ergebnis; über **Weitere hochladen** geht es mit den nächsten Dateien weiter.
+
+Angenommen werden:
+
+- Office-Dokumente (`.docx`, `.xlsx`, `.pptx`, `.potx`),
+- PDF,
+- Bilder (PNG, JPG, GIF, WebP, BMP, SVG, HEIC),
+- ZIP-Archive,
+- Textformate wie TXT, Markdown, CSV, JSON, XML, HTML, YAML, CSS, JS und TS.
+
+Ist die Erweiterung zum Lesen weiterer Formate aktiv, kommen unter anderem E-Mails (`.msg`, `.eml`), ältere Office-Formate (`.doc`, `.xls`, `.ppt`), Excel-Binärmappen (`.xlsb`), RTF, OpenDocument, EPUB und TIFF hinzu.
+
+Beim Hochladen prüft companyFILES, ob der Inhalt einer Datei zu ihrer Endung passt. Umbenannte Dateien – etwa ein ZIP-Archiv mit der Endung `.docx` – und Dateien, deren Inhalt sich nicht erkennen lässt, werden abgelehnt.
 
 ## Vorlagen
 
@@ -46,38 +72,40 @@ Hier sehen Sie alle verfügbaren Vorlagen für die Dokumentenerstellung.
 
 ![Vorlagen mit den Spalten Name, Typ, Bereich, Schlagwörter, Größe und Hochgeladen sowie den Markierungen Benutzer und Global](./files-vorlagen-liste.png)
 
-Vorlagen können nach **Alle Typen** und **Alle Bereiche** gefiltert werden. Die Tabelle zeigt Name, Typ, Bereich, Schlagwörter, Größe und Upload-Datum. Der **Bereich** entscheidet über die Sichtbarkeit:
+Über die Suche **Vorlagen suchen...** und die Filter **Alle Typen**, **Alle Bereiche** und **Alle Schlagwörter** grenzen Sie die Liste ein. Die Tabelle zeigt Name, Typ, Bereich, Schlagwörter, Größe und Upload-Datum. Der **Bereich** entscheidet über die Sichtbarkeit:
 
 | Bereich | Bedeutung |
 |---|---|
 | **Benutzer** | nur für Sie selbst nutzbar |
 | **Global** | für alle Benutzer der Organisation nutzbar |
 
-Verfügbare Vorlagen lassen sich direkt im Chat für die Dokumentengenerierung verwenden – siehe [Vorlagen](/de/company-gpt/addons/companyfiles/vorlagen/).
+Ein Klick auf eine Vorlage öffnet ihre Detailansicht mit Beschreibung, Schlagwörtern und den erkannten **Platzhaltern** – in der Schreibweise, die der Vorlagentyp erwartet. So prüfen Sie, ob eine Vorlage richtig vorbereitet ist. Darunter stehen die Aktionen:
 
-## Vorlage Hochladen
+| Aktion | Verfügbar |
+|---|---|
+| **Herunterladen** | für jede Vorlage |
+| **Bearbeiten** (Anzeigename, Beschreibung, Schlagwörter) und **Löschen** | für eigene Vorlagen; bei globalen Vorlagen nur für Administratoren |
+| **Zu Global heraufstufen** | für Administratoren bei eigenen Word-, Excel- und PowerPoint-Vorlagen |
+| **Zu Lokal herabstufen** | für Administratoren bei globalen Word-, Excel- und PowerPoint-Vorlagen |
+| **Vorlage verwenden** | nur in der im Chat eingebetteten Ansicht: schreibt eine Anfrage zum Ausfüllen der Vorlage samt ihrer Platzhalter in den Chat |
 
-Hier laden Sie neue Dokumentvorlagen hoch.
+Wie Vorlagen vorbereitet und im Chat genutzt werden, steht unter [Vorlagen](/de/company-gpt/addons/companyfiles/vorlagen/).
+
+### Vorlage hochladen
+
+Die Seitenaktion **Vorlage hochladen** auf der Seite Vorlagen öffnet das Upload-Formular.
 
 ![Vorlage hochladen](companyfiles-vorlage-hochladen-de.png)
 
-Ziehen Sie eine Vorlagendatei (`.docx`, `.xlsx`, `.potx`, `.pptx`) per Drag & Drop in den Upload-Bereich. Füllen Sie den **Vorlagennamen** (Pflichtfeld) aus und optional **Anzeigename**, **Beschreibung** und **Schlagwörter**. Admins können globale Vorlagen hochladen, die für alle Benutzer sichtbar sind. Klicken Sie auf **„Vorlage hochladen"**, um den Upload abzuschließen.
-
-## Hochladen
-
-Hier laden Sie beliebige Dateien in Ihren Arbeitsbereich hoch.
-
-![Dateien hochladen](companyfiles-hochladen-de.png)
-
-Ziehen Sie Dateien per Drag & Drop in den Upload-Bereich oder klicken Sie zum Durchsuchen. Es werden alle Dateitypen unterstützt. Optional können Sie einen **Ordner** auswählen oder über **„+ Neuer Ordner"** einen neuen anlegen. Klicken Sie auf **„Dateien hochladen"**, um den Upload zu starten.
+Ziehen Sie eine Vorlagendatei (`.docx`, `.xlsx`, `.potx`, `.pptx`) in den Upload-Bereich. Füllen Sie den **Vorlagennamen** aus – er ist Pflicht und darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten – und optional **Anzeigename**, **Beschreibung** und **Schlagwörter** (kommagetrennt). Administratoren sehen zusätzlich das Feld **Bereich**: **Global** (für alle Benutzer verfügbar, voreingestellt) oder **User** (nur für sie selbst sichtbar). Klicken Sie auf **Vorlage hochladen**, um den Upload abzuschließen.
 
 ## Visualisierungen
 
-Hier sehen Sie alle durch CompanyGPT erzeugten Diagramme und Charts.
+Hier sehen Sie alle durch CompanyGPT erzeugten Charts, Diagramme und Karten.
 
 ![Visualisierungen Übersicht](companyfiles-visualisierungen-de.png)
 
-Alle im Chat erstellten Visualisierungen werden hier gesammelt angezeigt. Über den Filter **„Alle Elemente"** können Sie nach Diagrammtyp filtern (z. B. Diagramme oder Charts). Jede Karte zeigt den Titel, eine Vorschau, den Typ und das Erstellungsdatum. Ein Klick auf eine Karte holt die Visualisierung wieder hervor.
+Über den Filter **Alle Elemente** zeigen Sie nur **Charts**, **Diagramme** oder **Karten** an. Jede Karte zeigt den Titel, eine Vorschau, den Typ und das Erstellungsdatum. Ein Klick auf einen Chart oder ein Diagramm öffnet die Detailansicht; Karten öffnen sich in einem neuen Browser-Tab.
 
 Wie Visualisierungen entstehen, steht unter [Visualisierungen](/de/company-gpt/addons/companyfiles/visualisierungen/).
 

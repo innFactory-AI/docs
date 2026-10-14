@@ -1,25 +1,25 @@
 ---
-title: Using CompanyRAG in CompanyGPT
-description: Set up a search agent with CompanyRAG and the ai-search MCP Server
+title: Using companyRAG in CompanyGPT
+description: Set up a search agent with companyRAG and the ai-search MCP Server
 ---
 
 import CollectionPromptBuilderEN from '../../../../../components/CollectionPromptBuilderEN.astro'
 
-To use CompanyRAG in CompanyGPT, we first need to create a document collection. Navigate to `https://COMPANY.company-gpt.com/companygpt/rag` (if you use a custom domain, just append `/companygpt/rag`).
+To use companyRAG in CompanyGPT, we first need to create a document collection. Open companyRAG via [All apps](/en/company-gpt/addons/alle-apps/) using the **Knowledge** tile, or navigate directly to `https://COMPANY.company-gpt.com/companygpt/rag` (if you use a custom domain, just append `/companygpt/rag`).
 
 ## Create a Collection
 
-Navigate to `Collections` and create a new collection. Select **Documents** as the type, enter a name, a description, and choose the visibility.
+In the sidebar, navigate to **Collections** and select **Create Collection**. Select **Documents** as the **Collection Type**, enter a name, a description, and choose the visibility.
 
 The **technical name** will be relevant for the prompt later.
 
-![sammlung-erstellen](sammlung-erstellen.png).
+![sammlung-erstellen](sammlung-erstellen.png)
 
-For visibility, you can choose between **Private** and **Public**. **Public** collections are available to all users; **private** collections are only accessible to the owner, but can be shared with others at any time. Visibility can be changed at any point.
+For visibility, you can choose between **Private** and **Public**. **Public** collections are available to all users; **private** collections are only accessible to the owner, but can be shared with others at any time. Later, a collection can be shared with people and groups via **Share Collection**, or with everyone using the **Share with everyone** switch.
 
 ### Advanced Settings
 
-In the advanced settings you can adjust the search language, chunking strategy, chunk size, and overlap. The default values can be left as-is for most use cases.
+In the advanced settings you can adjust – depending on the environment – the embedding model, search language, chunking strategy, chunk size, and overlap. The default values can be left as-is for most use cases.
 
 :::tip
 The search language should ideally match the language of the documents in the collection. Both semantic and full-text search are performed, and full-text search works better with the correct language setting.
@@ -35,21 +35,21 @@ Once the collection is created, you can add documents.
 
 ![manualler-upload](manualler-upload.png)
 
-Simply select the collection and the documents and upload them. Manual uploads have no file-level permissions and no additional metadata beyond the file name.
+Under **Upload**, simply select the collection and the documents and upload them. Manual uploads have no file-level permissions and no additional metadata beyond the file name.
 
-### SharePoint / NextCloud Sync
+### SharePoint, Nextcloud and other sources
 
 ![quellen](quellen.png)
 
-Under Sources, a new connection can be created.
+Under **Sources**, a new connection can be created – besides SharePoint also to Nextcloud, Google Drive, GitHub, WebDAV, FTP or via web crawl. Below we show the path for SharePoint.
 
 :::tip
-If no source has been connected yet, the SharePoint connection must be activated under **Integrations**.
+If no integration has been connected yet, first sign in to **Microsoft SharePoint** under **Integrations** via **Connect**.
 
 ![integrationen](integrationen.png)
 :::
 
-A new SharePoint connection can then be created under Sources. Select the SharePoint folder you want to use — all subfolders of the selected folder are always included.
+Under **Sources**, the **Connect SharePoint** button in the **SharePoint** tab then starts the selection. Under **Content to Sync** we choose whether files, Pages & News, or both are synchronized. Then we choose the site or team, the library, and the SharePoint folder to use — all subfolders of the selected folder are always included.
 
 ![sharepoint-browser](sharepoint-browser.png)
 
@@ -57,7 +57,7 @@ Once the desired folder is selected, choose the collection and click **Select Th
 
 ![sharepoint-folder](sharepoint-folder.png)
 
-Then select the file types to index and click **Connect SharePoint**.
+Then select the file types to index and click **Connect SharePoint**. The first synchronization then starts automatically, and future changes in the folder are picked up on their own.
 
 ![sharepoint-filetypes](sharepoint-filetypes.png)
 

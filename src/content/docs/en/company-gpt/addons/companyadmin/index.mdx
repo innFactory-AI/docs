@@ -1,61 +1,94 @@
 ---
 title: companyADMIN
-description: The CompanyGPT administration area – roles and permissions, visibility of agents, prompts and skills, model access per role, and syncing the content library with GitHub.
+description: The CompanyGPT administration area – usage and costs in Insights, operational status, roles and groups, content visibility, models and the rights for every extension.
 ---
 
-companyADMIN is the administration area of CompanyGPT. Here you define who may use which features, which models and agents are visible to which roles and groups, and how the content library – agents, prompts and skills – is synchronized with a Git repository.
+companyADMIN is the administration area of CompanyGPT. Here you see how CompanyGPT is used and what it costs, check the operational status, decide who may do what, control the visibility of agents, prompts, skills and MCP tools, and configure models, agents and extensions.
 
-You reach the area from the application menu under **Admin**. It requires the `access:admin` capability, granted through a [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or a [direct grant](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/).
+## Opening companyADMIN
 
-![CompanyGPT application menu with the Admin entry](./admin-menu.png)
+You open companyADMIN from **All apps** in the CompanyGPT sidebar. There are two tiles:
 
-:::note
-companyADMIN is in beta. Labels and the structure of individual pages may still change.
-:::
+- **Admin** opens the administration. Only administrators see this tile.
+- **Insights** opens the usage and cost overview. Everyone who may view Insights sees this tile.
 
-## Dashboard
+You can also reach companyADMIN directly at `https://COMPANY.company-gpt.com/companygpt/admin/`. The start page is **Insights** if you may view Insights, otherwise **Status**.
 
-The start page groups the most common tasks as tiles, each leading straight to the matching page.
+## The interface
 
-![Administration dashboard with tiles for users, access and releases](./dashboard.png)
+companyADMIN uses the same interface as the other extensions: a sidebar with **New chat** and **All apps**, the menu below, and the account menu at the bottom. How this interface works is described in [Shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/).
 
-**Users & access**
+The companyADMIN menu has five sections. The sub-pages of the section that is open are indented below it.
 
-| Tile | Purpose |
-|---|---|
-| Manage users | See all users, open one, and assign them a role |
-| Create & manage groups | Create local groups or register Entra groups — the basis for sharing agents, prompts and skills |
-| Roles & permissions | Create roles and define what their members may do in CompanyGPT |
-| Manage admins | See who has admin access and why — and appoint further admins |
+| Section | Sub-pages | Purpose |
+|---|---|---|
+| **Insights** | – | Usage, costs and activity of the environment |
+| **Status** | – | What is in force right now and whether everything is running, plus the logs |
+| **Access** | **Users**, **Roles**, **Groups**, **Direct grants** | Who may do what and who belongs to which group |
+| **Content** | **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories**, **Library Sync** | Visibility and origin of the content in CompanyGPT |
+| **Configuration** | **Providers and models**, **Model access**, **Labels**, **Agent capabilities**, **Agent runtime**, **MCP domains**, **Baseline & adjustments**, **Tools**, **Extensions** | How CompanyGPT and the extensions are set up |
 
-**Release AI features to roles**
+Clicking a row in a list usually opens a detail page with tabs. Deleting lives there in the **Danger zone** and always asks first.
 
-| Tile | Purpose |
-|---|---|
-| Release AI models per role | Make providers and individual models visible only to specific roles |
-| Release agents per group | Decide which groups can see and use which agents |
-| Release MCP tools per role | Control which roles may use which tools and MCP servers |
+In the account menu you set **Theme** and **Language** (Deutsch or English). It also shows your email address and, below it, whether you are a **Superadmin** or an **Admin (no superadmin)**.
 
-## Areas at a glance
+## Administration and Insights
 
-- [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) – create roles and set feature permissions per role
-- [Users and groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/) – assign roles, manage groups and Entra groups
-- [Direct grants](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/) – grant individual capabilities selectively
-- [Audit log](/en/company-gpt/addons/companyadmin/audit-log/) – tamper-evident record of administration actions
-- [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/) – release agents, prompts, skills and MCP tools
-- [Categories](/en/company-gpt/addons/companyadmin/kategorien/) – maintain categories for the agent marketplace
-- [Models and providers](/en/company-gpt/addons/companyadmin/modelle/) – model access per role and custom model labels
-- [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/) – capabilities of the agent builder per role
-- [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) – synchronize the content library with GitHub
+companyADMIN has two kinds of access:
+
+- **Administration** opens every section. Who is an administrator follows from the admin sources of your environment. Depending on the environment these include the ADMIN role, an admin group from Microsoft Entra ID, fixed people, or the right **Access the admin area** on a role. Which sources apply is shown under [Status → Admin sources](/en/company-gpt/addons/companyadmin/status/).
+- **Insights** opens the Insights section only. The right **View Insights** is enough, which you grant to roles or groups. Administrators hold it automatically. Details are in [Insights](/en/company-gpt/addons/companyadmin/insights/).
+
+## Superadmin and admin
+
+The account menu shows which view you have. The difference mainly concerns other people's private content:
+
+| | Superadmin | Admin (no superadmin) |
+|---|---|---|
+| **Access → Users** | List of all people, change the role directly on the person | Not visible. You assign roles under the role → **Members** |
+| Lists under **Content** | Every agent, prompt and skill, including private ones | Public, shared-with-you and library-managed items |
+| Visibility of self-created content | Can be changed | Display only |
+| Visibility of synced content | Can be changed | Can be changed |
+| MCP servers created by users | Sharing can be changed, details visible even for private servers | Sharing display only, details of private servers hidden |
+| **Insights → Agents** | Every agent individually | Other people's private agents only as a sum |
+
+Whether the superadmin features are switched on for your organization's administrators is something you agree with innFactory. innFactory switches them on at your request.
 
 ## Roles, groups and visibility
 
-Three concepts work together in the administration area:
+Three concepts carry the whole area:
 
-- **Roles** bundle permissions and capabilities. A user has exactly **one** role; allowances from different roles are not added together.
-- **Groups** bundle users. They are the basis for sharing content.
-- **Visibility** decides per item who sees it – only the owner, all users of the environment, or selected groups.
+- **Role = what someone may do.** A role sets features (such as creating agents or web search), models, agent capabilities and rights in the extensions. Everyone has exactly **one** role. Rights from several roles are not added up; if a group of people needs the rights of two roles, create a role of its own for them.
+- **Group = with whom something is shared.** Groups decide who sees agents, prompts, skills and MCP servers. Groups can also carry rights in the extensions and settings of their own. A person can be in many groups.
+- **Visibility** decides per item who sees it: only the owner, all users of the environment, or specific groups.
 
-:::tip[Note]
-Because a user has exactly one role, a cohort that needs the allowances of two roles combined requires a role of its own.
-:::
+## Areas at a glance
+
+**Insights and status**
+
+- [Insights](/en/company-gpt/addons/companyadmin/insights/) – usage, tokens, estimated costs and activity
+- [Status](/en/company-gpt/addons/companyadmin/status/) – reachability, active configuration, roles and admin sources
+- [Logs](/en/company-gpt/addons/companyadmin/audit-log/) – who changed what in companyADMIN and in CompanyGPT
+
+**Access**
+
+- [Users](/en/company-gpt/addons/companyadmin/nutzer/) – people, their role and their effective rights
+- [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) – create roles, set rights, assign members
+- [Groups](/en/company-gpt/addons/companyadmin/gruppen/) – local and Entra groups, group sync
+- [Direct grants](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/) – every right and who holds it
+
+**Content**
+
+- [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/) – agents, prompts, skills and MCP tools
+- [Categories](/en/company-gpt/addons/companyadmin/kategorien/) – categories of the agent marketplace
+- [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) – sync content from Git repositories
+
+**Configuration**
+
+- [Providers and models](/en/company-gpt/addons/companyadmin/modelle/) – model access per role and labels
+- [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/) – what the agent builder offers
+- [Agent runtime](/en/company-gpt/addons/companyadmin/agent-laufzeit/) – scheduled chats, tool approval, subagents and settings per role or group
+- [MCP domains](/en/company-gpt/addons/companyadmin/mcp-domains/) – allowed domains for MCP servers
+- [Baseline & adjustments](/en/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) – what the deployment ships and what was adjusted
+- [Tools](/en/company-gpt/addons/companyadmin/tools/) – custom tiles under All apps
+- [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/) – rights for companyFILES, companyRAG, companyTRANSLATE and all other extensions

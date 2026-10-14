@@ -1,0 +1,136 @@
+---
+title: Administration
+description: Der Admin-Bereich von companyM365 – Add-in bereitstellen, Teams-Bot einrichten, Agenten für Teams freigeben, Einstellungen, Offboarding, Audit sowie Admin-Zustimmungen und Fehlercodes.
+---
+
+Diese Seite richtet sich an Administratoren. Sie beschreibt den Admin-Bereich von companyM365 und die Zustimmungen, die in Microsoft 365 nötig sind.
+
+## Admin-Bereich öffnen
+
+Der Admin-Bereich ist unter folgender Adresse erreichbar:
+
+```
+https://FIRMA.company-gpt.com/companygpt/m365/admin/
+```
+
+Die Adresse `https://FIRMA.company-gpt.com/companygpt/m365/` leitet ebenfalls dorthin weiter.
+
+Für den Zugang ist das Recht **Microsoft 365 verwalten** nötig. Es wird in companyADMIN vergeben (siehe [Erweiterungsrechte](/de/company-gpt/addons/companyadmin/erweiterungen/)); Administratoren haben es automatisch. Wer das Recht nicht hat, sieht die Seite **Kein Zugriff** mit dem Hinweis, wo das Recht vergeben wird. Wer nicht angemeldet ist, wird zur Anmeldung geleitet.
+
+Der Admin-Bereich nutzt die [gemeinsame Oberfläche](/de/company-gpt/addons/gemeinsame-oberflaeche/) der CompanyGPT-Addons: eine Seitenleiste mit **Neuer Chat**, **Alle Apps** und den Bereichen sowie das Kontomenü mit **Design** und **Abmelden**.
+
+| Bereich | Inhalt |
+|---|---|
+| **Installation** | Das App-Paket für Word, Excel, PowerPoint, Outlook und Teams – einmal im Microsoft 365 Admin Center bereitstellen. |
+| **Teams-Bot** | Den Teams-Bot mit seiner App-Registrierung verbinden, in Azure provisionieren und als Teams-App bereitstellen. |
+| **Agents** | Welche im Tenant geteilten Agents der Teams-Bot anbietet, unter welchem Alias und ob sie immer privat antworten. |
+| **Einstellungen** | Markenname und Standard-Agent dieses Mandanten, dazu das Offboarding. |
+| **Audit** | Jede Änderung im Admin-Bereich, neueste zuerst. |
+
+Die Seitenleiste zeigt nur die Bereiche, die in Ihrer Umgebung eingerichtet sind. Ist zum Beispiel kein Teams-Bot vorgesehen, fehlt der Bereich **Teams-Bot**.
+
+## Installation
+
+Das App-Paket bündelt die Add-ins für Word, Excel, PowerPoint und Outlook sowie den Teams-Tab in **einer** Installation. Die Bereitstellung erfolgt zentral über das Microsoft 365 Admin Center; Endbenutzer müssen nichts installieren.
+
+1. Laden Sie im Bereich **Installation** mit **App-Paket herunterladen** die Datei `teams-app.zip` herunter.
+2. Öffnen Sie admin.microsoft.com und dort **Einstellungen → Integrierte Apps**.
+3. Wählen Sie **Benutzerdefinierte Apps hochladen**, als App-Typ **Teams-App**, und wählen Sie die heruntergeladene `.zip`-Datei aus. (Der App-Typ heißt „Teams-App“, weil das Paket das einheitliche Microsoft-365-Manifest nutzt. Unter „Office-Add-In“ akzeptiert das Admin Center nur einzelne XML-Manifeste.)
+4. Weisen Sie die Benutzer zu – die gesamte Organisation oder eine Testgruppe – und stellen Sie die App bereit.
+5. Innerhalb von bis zu 24 Stunden (meist deutlich schneller) erscheint das Add-in im Menüband von Word, Excel, PowerPoint und Outlook sowie der Tab in Teams. Die Anmeldung läuft automatisch per Single Sign-On über die CompanyGPT-Sitzung.
+
+Verwenden Sie dieses Paket und laden Sie keine einzelnen XML-Manifeste per Sideloading: Einzeln geladene XML-Add-ins sind im neuen Outlook (Windows und Mac) häufig ausgegraut und nicht anklickbar.
+
+### Zusätzlich für Outlook auf dem Mac
+
+Microsoft unterstützt das App-Paket in Outlook auf dem Mac nicht; Word, Excel und PowerPoint auf dem Mac sind abgedeckt. Ohne den folgenden Schritt haben Mac-Nutzer in Outlook kein Add-in.
+
+1. Wählen Sie im Admin Center erneut **Einstellungen → Integrierte Apps → Benutzerdefinierte Apps hochladen**.
+2. Wählen Sie diesmal den App-Typ **Office-Add-In** und **Link zur Manifestdatei angeben**. Fügen Sie die Adresse ein, die der Bereich **Installation** unter **Outlook-Manifest (URL)** anzeigt.
+3. Weisen Sie die App der gesamten Organisation zu und stellen Sie sie bereit.
+
+Die App erscheint danach zweimal unter demselben Namen im Admin Center – das ist beabsichtigt. Unter Windows und im Browser blendet Office die zweite Variante automatisch aus; bis zu 24 Stunden lang können dort zwei Schaltflächen nebeneinander stehen.
+
+Der Teams-Bot ist eine eigene App und wird im Bereich **Teams-Bot** bereitgestellt.
+
+## Teams-Bot einrichten
+
+:::note[Wird schrittweise ausgerollt]
+Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
+:::
+
+Der Bereich **Teams-Bot** führt Schritt für Schritt durch die Einrichtung. Jeder Schritt nennt die Microsoft-Entra-Rolle, die ihn ausführen darf; ein globaler Administrator ist nie nötig. Begriffe aus den Microsoft-Portalen stehen auf Deutsch und Englisch, Werte lassen sich kopieren.
+
+1. **Schritt 1 – App-Registrierung für den Bot anlegen:** in Microsoft Entra, z. B. als Application Administrator, Cloud Application Administrator oder Application Developer. Danach tragen Sie die App-ID der Bot-App ein; daraus ergeben sich die Werte für die folgenden Schritte.
+2. **Schritt 2 – API verfügbar machen.**
+3. **Schritt 3 – Berechtigung auf die Tenant-App + Administratorzustimmung:** Die Administratorzustimmung ist Pflicht (Cloud Application Administrator oder Application Administrator). Eine **Prüfliste vor dem Speichern** fasst die Entra-Schritte zusammen.
+4. **Schritt 4 – Client-Secret eintragen:** Die Zugangsdaten der Bot-App werden verschlüsselt gespeichert.
+5. **Schritt 4b – Azure-Bot:** Je nach Umgebung legt companyM365 die Azure-Bot-Ressource automatisch an, oder Sie legen sie mit der Klick-für-Klick-Anleitung im Azure-Portal an und bestätigen anschließend **Azure-Bot im Portal angelegt und Verbindung getestet**.
+6. **Schritt 5 – Teams-Paket hochladen:** Laden Sie das Bot-Paket herunter und stellen Sie es im Microsoft 365 Admin Center bereit (**Einstellungen → Integrierte Apps → Benutzerdefinierte Apps hochladen**, App-Typ **Teams-App**) und weisen Sie Nutzer oder Gruppen zu. Als Teams-Administrator geht das auch im Teams Admin Center unter **Teams-Apps → Apps verwalten → Hochladen**.
+
+Weitere Hinweise:
+
+- **Datenresidenz:** Der Bereich zeigt, welchen Token-Dienst Ihre Umgebung nutzt. Wählen Sie beim Anlegen des Azure-Bots die dazu passende Datenresidenz („Europa“ oder „Global“).
+- **Name des Bots:** Der Bereich zeigt den Namen, unter dem Personen den Bot in Teams erwähnen. Einen eigenen Namen richtet innFactory für Ihre Umgebung ein.
+- **Personen aus anderen Mandanten:** Gehören zu Ihrer Organisation Personen aus anderen Microsoft-Mandanten (Multi-Tenant-Organisation oder mandantenübergreifende Synchronisierung), sprechen Sie innFactory an. Ohne zusätzliche Konfiguration weist der Bot diese Personen wie Gäste ab.
+
+## Agents für Teams freigeben
+
+Der Bereich **Agents** listet die Agenten, die in CompanyGPT im Tenant geteilt sind (öffentlich, mit einer Gruppe oder aus der companyADMIN-Bibliothek). Je Agent legen Sie fest:
+
+| Spalte | Bedeutung |
+|---|---|
+| **In Teams** | ob der Agent im Teams-Bot erreichbar ist |
+| **Alias** | das Kürzel für `/alias` im Bot: 1–32 Zeichen aus a–z, 0–9, „_“ und „-“. Beim ersten Freigeben wird es aus dem Namen gebildet. Die Befehlswörter `agent`, `agents`, `neu`, `hilfe`, `öffentlich`, `oeffentlich`, `public` und `standard` sind nicht erlaubt. |
+| **Immer privat** | Der Agent antwortet nur der fragenden Person; auch **Im Thread teilen** und `/öffentlich` machen seine Antworten nicht öffentlich. Vorbelegt, wenn der Agent auf Microsoft 365, companyFILES oder companyTRANSCRIBE zugreift. |
+| **Standard** | Mit **Als Tenant-Standard** wird der Agent zum Standard des Bots für alle, die in einem Chat keinen eigenen Standard gesetzt haben. |
+
+Ein freigegebener Agent, der inzwischen nicht mehr geteilt ist, lässt sich nur noch entziehen. Ist **Eigene Agents in Teams erlauben** eingeschaltet, brauchen die eigenen und die mit einer Person geteilten Agenten keine Freigabe; Personen nutzen sie mit `/agent Name`, außerhalb von 1:1-Chats nur privat.
+
+## Einstellungen
+
+- **Markenname:** erscheint im Teams-Bot, im Add-in und im Admin-Bereich. Der Markenname ist Teil des Teams-Pakets; nach einer Änderung weist der Admin-Bereich mit **Paket neu hochladen** darauf hin, das Paket neu herunterzuladen und erneut hochzuladen.
+- **Standard-Agent (Agent-ID):** der Agent, den der Teams-Bot ohne Alias verwendet. Leer bedeutet: kein Standard, der Bot antwortet mit dem Standardmodell.
+- **Eigene Agents in Teams erlauben** (standardmäßig an): Jede Person kann im Teams-Bot jeden gespeicherten Agenten verwenden, den sie in CompanyGPT nutzen darf – ihre eigenen und die mit ihr geteilten. Außerhalb von 1:1-Chats sieht nur die fragende Person deren Antworten. Ist der Schalter aus, sind nur die unter **Agents** freigegebenen Agenten erreichbar.
+
+### Offboarding
+
+Unter **Offboarding: Bot-Daten einer Person löschen** entfernen Sie alle Zuordnungsdaten einer Person im Teams-Bot (Art. 17 DSGVO): Konversations-Zuordnungen, Chat-Standardagenten, gemerkte Erwähnungen, offene Rückfragen, geteilte Antworten und Verknüpfungen zu Feedback.
+
+1. Tragen Sie die **Objekt-ID (Entra oid) der Person** ein. Sie finden sie im Entra Admin Center unter **Benutzer**.
+2. Klicken Sie auf **Daten löschen** und bestätigen Sie die Löschung. Sie ist unwiderruflich.
+
+Die Löschung wird im Audit festgehalten, aber nur mit einem Hash der Objekt-ID. Rund 12 Minuten lang danach speichert der Bot für die Person nichts. Um eine Person dauerhaft auszuschließen, entziehen Sie ihr in companyADMIN das Recht **Microsoft 365 nutzen**.
+
+## Audit
+
+Der Bereich **Audit** zeigt jede Änderung im Admin-Bereich, neueste zuerst – mit Zeitpunkt, Aktion, Akteur (als Hash), Ergebnis und Details. Erfasst werden unter anderem gesetzte oder rotierte Secrets, Provisionierungen, freigegebene und gesperrte Agenten, geänderte Aliase, „Immer privat“, Standard-Agent und Markenname sowie gelöschte Nutzerdaten.
+
+Je Administrator sind bis zu 60 Änderungen pro Minute möglich. Darüber erscheint „Zu viele Änderungen in kurzer Zeit — bitte kurz warten und erneut versuchen.“
+
+## Admin-Zustimmungen in Microsoft 365
+
+companyM365 greift mit delegierten Berechtigungen auf Microsoft Graph zu. Ein Administrator Ihres Microsoft-Entra-Mandanten muss dafür einmal die Administratorzustimmung (Admin Consent) erteilen. Die Zustimmung gilt für die Berechtigungen, die zum Zeitpunkt der Zustimmung angefragt waren. Kommen mit neuen Funktionen Berechtigungen hinzu, ist eine erneute Zustimmung nötig.
+
+Fehlt eine Zustimmung, bleiben die Werkzeuge sichtbar. Nur das betroffene Werkzeug meldet beim Aufruf `graph_consent_missing`; alles andere funktioniert weiter.
+
+| Berechtigung | Wofür | Hinweis |
+|---|---|---|
+| `Mail.Read.Shared` | freigegebene Postfächer lesen | neue Zustimmung nötig, wenn Ihr Mandant vor Einführung dieser Funktion zugestimmt hat |
+| `Notes.Create`, `Notes.ReadWrite` | OneNote-Seiten anlegen und ergänzen | neue Zustimmung nötig, wenn Ihr Mandant vor Einführung dieser Funktion zugestimmt hat; Lesen funktioniert auch ohne |
+| `Group.Read.All` | Microsoft-365-Gruppen und Gruppenmitglieder (z. B. für Planner-Zuweisungen) | weitreichende Berechtigung; ohne Zustimmung melden nur diese Werkzeuge einen Fehler |
+| `Calendars.ReadWrite` | Termine anlegen, ändern und absagen | versendet Einladungen, Aktualisierungen und Absagen |
+| `MailboxSettings.ReadWrite` | Outlook-Kategorien und Posteingangsregeln | |
+| `ChannelMessage.Read.All`, `Chat.Read`, `Files.Read.All` | Teams-Bot: Verlauf von Threads und Chats sowie Dateianhänge lesen | ohne Zustimmung antwortet der Bot ohne Kontext bzw. ohne die Datei |
+
+### Transkripte besuchter Besprechungen
+
+Das Werkzeug `list_attended_meeting_transcripts` liest Transkripte aller Besprechungen, an denen eine Person teilgenommen hat – nicht nur der selbst organisierten. Dafür braucht die Anwendung zusätzlich die **Anwendungsberechtigungen** `OnlineMeetings.Read.All` und `OnlineMeetingTranscript.Read.All` sowie eine Application Access Policy, die per PowerShell in Microsoft Teams eingerichtet wird. Fehlt eines davon, meldet das Werkzeug `app_access_missing`. Die Einrichtung stimmen Sie mit innFactory ab.
+
+## Fehlercodes
+
+| Code | Bedeutung | Abhilfe |
+|---|---|---|
+| `graph_consent_missing` | Für die benötigte Berechtigung fehlt die Administratorzustimmung. Nur das betroffene Werkzeug schlägt fehl. | Administratorzustimmung erteilen bzw. erneuern (siehe [oben](#admin-zustimmungen-in-microsoft-365)). |
+| `app_access_missing` | Für Transkripte besuchter Besprechungen fehlen die Anwendungsberechtigungen oder die Application Access Policy. | Beides einrichten (siehe [Transkripte besuchter Besprechungen](#transkripte-besuchter-besprechungen)). |
+| `reauth_required` | Die Sitzung der Person ist abgelaufen oder wurde widerrufen. | Die Person meldet sich ab und wieder an; ein Eingriff des Administrators ist nicht nötig. |

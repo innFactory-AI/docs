@@ -1,52 +1,54 @@
 ---
 title: OKF bundles
-description: Maintain knowledge collections in the Open Knowledge Format as Markdown files in a GitHub repository or SharePoint folder, and make them searchable in companyRAG automatically.
+description: Maintain knowledge collections in the Open Knowledge Format as Markdown files in a GitHub repository or SharePoint folder and make them automatically searchable in companyRAG.
 ---
 
-OKF bundles are knowledge collections in the **Open Knowledge Format** – a published, open-source format that describes knowledge as Markdown files with a defined folder structure. The knowledge stays where it can be versioned and reviewed: in a GitHub repository or a SharePoint folder.
+OKF bundles are knowledge collections in the **Open Knowledge Format** – an open, publicly documented format that describes knowledge as Markdown files with a defined folder structure. The knowledge thus stays where it can be versioned and reviewed: in a GitHub repository or a SharePoint folder.
 
-Because the bundle is connected as a collection, its content is searchable in companyRAG automatically.
+Because the bundle is connected as a collection, its content is automatically searchable in companyRAG.
 
 :::note
-OKF bundles are currently experimental. Their structure and handling may still change.
+OKF bundles are currently experimental. Structure and operation may still change.
 :::
+
+## Reading and writing
+
+companyRAG generally only reads sources such as SharePoint. OKF bundles are the only case in which content is written to the storage location: on creation, companyRAG can create a skeleton, and an agent can create and update Markdown files in the bundle via [companyKNOWLEDGE](/en/company-gpt/addons/companyknowledge/). Regular SharePoint sources, by contrast, are never written to.
 
 ## Creating a bundle
 
-Creation takes four steps.
+You start under [Collections](/en/company-gpt/addons/companyrag/sammlungen/#creating-a-collection) with **Create Collection** and choose the collection type **OKF Bundle**. The **Create OKF Bundle** wizard opens with four steps.
 
-**Step 1 – Details:** bundle name, optional description and visibility.
+**Step 1 – Details:** **Bundle Name**, optional **Description** and **Visibility**.
 
 ![First step of the wizard with bundle name, description and visibility](./okf-bundle-start.png)
 
-**Step 2 – Source:** select where the knowledge is stored.
+**Step 2 – Source:** Choose where the knowledge lives.
 
-![Choice between GitHub and SharePoint as the storage location](./okf-bundle-ziel.png)
+![Choice between GitHub and SharePoint as storage location](./okf-bundle-ziel.png)
 
-- **GitHub**: Markdown files in a GitHub repository, synchronized from a branch.
+- **GitHub**: Markdown files in a GitHub repository, synced from a branch.
 - **SharePoint**: Markdown files in a SharePoint document library folder.
 
-**Step 3 – Storage location:** For GitHub, enter the repository in `owner/name` format, the branch and optionally a path. The OKF structure, including an index and a log file, is created inside an empty repository or the specified subpath.
+**Step 3 – Location:** For GitHub, specify the **Repository** in the format `owner/name`, the **Branch** and optionally a **Path**.
 
-![Storage location with repository, branch, path and commit mode](./okf-bundle.png)
+![Location with repository, branch, path and commit mode](./okf-bundle.png)
 
-The **commit mode** determines how changes are written back:
+The **Commit mode** determines how changes are written back:
 
 - **Pull request**: Changes are proposed via a pull request for review.
-- **Direct commit**: Changes are committed directly to the branch.
+- **Direct commit**: Changes are committed straight to the branch.
 
-For SharePoint you select the target folder instead; the OKF bundle including its subfolders is stored there.
+For SharePoint, you select the site, library and target folder instead.
 
-**Step 4 – Confirmation:** In the final step you confirm your entries; the bundle is then created and connected as a collection.
+**Step 4 – Review & Create:** You review the summary. If **Seed OKF skeleton if empty** is enabled (default), companyRAG creates a skeleton with `README.md`, `index.md` and `log.md` at a location without OKF files, so that the bundle isn't empty. With **Create Bundle**, a collection is created right away and an initial sync starts.
+
+OKF bundles are automatically created with the **Markdown-aware** chunking strategy, since their content is structured by headings. See [Chunking strategies](/en/company-gpt/addons/companyrag/sammlungen/#chunking-strategies).
 
 ## Maintaining bundles
 
-CompanyGPT provides an agent that can create and extend OKF bundles and the Markdown files they contain. Combined with the *pull request* commit mode, this creates a reviewable workflow: the agent proposes changes to the knowledge base, and a human approves them.
+In CompanyGPT, an agent can create and update OKF bundles and the Markdown files they contain. Combined with the *Pull request* commit mode, this results in a reviewable workflow: the agent proposes changes to the knowledge base, and a human approves them.
 
-How such an agent is set up, which tools it needs and what the workflow looks like from the structure of the format through to indexing is described under [companyKNOWLEDGE](/en/company-gpt/addons/companyknowledge/).
-
-:::tip[Note]
-For OKF bundles the **Markdown-based** chunking strategy is recommended, since the content is structured by headings. See [Chunking strategies](/en/company-gpt/addons/companyrag/sammlungen/#chunking-strategies).
-:::
+How such an agent is set up, which tools it needs, and what the workflow looks like from building the format to indexing is described in [companyKNOWLEDGE](/en/company-gpt/addons/companyknowledge/).
 
 A connected [GitHub or SharePoint integration](/en/company-gpt/addons/companyrag/integrationen/) is required.

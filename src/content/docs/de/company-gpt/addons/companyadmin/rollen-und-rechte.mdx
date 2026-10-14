@@ -1,55 +1,134 @@
 ---
-title: Rollen und Rechte
-description: Rollen in CompanyGPT anlegen und pro Rolle festlegen, welche Funktionen ihre Mitglieder nutzen, erstellen und teilen dürfen.
+title: Rollen
+description: Rollen in companyADMIN anlegen, ihre Rechte in CompanyGPT und den Erweiterungen festlegen, Modelle freigeben und Personen über die Mitglieder zuweisen.
 ---
 
-Rollen bündeln Rechte und Capabilities und werden Nutzern zugewiesen. Gruppen bündeln dagegen Nutzer; beides wirkt auf die jeweiligen Mitglieder. Die Verwaltung finden Sie unter **Access** im Reiter **Roles**.
+Eine Rolle legt fest, was jemand darf: Funktionen in CompanyGPT, Modelle, Agent-Fähigkeiten und Rechte in den Erweiterungen. Jede Person hat genau **eine** Rolle. Es gelten die Häkchen dieser einen Rolle; aus anderen Rollen wird nichts dazugerechnet. Wer keiner anderen Rolle zugeordnet ist, hat in der Regel die Rolle USER (in der Oberfläche auch „Nutzer“). Ist die automatische Rollenvergabe aktiv, kann Ihre Umgebung dafür eine andere **Fallback-Rolle** festlegen.
 
-Eine Rolle ist ein benanntes Bündel von Rechten. **System-Rollen** werden mit CompanyGPT ausgeliefert und können nicht gelöscht werden; **eigene Rollen** verwalten Sie selbst.
+Sie finden die Rollen unter **Zugriff** → **Rollen**.
 
-![Reiter „Roles" mit System- und eigenen Rollen](./access-rollen.png)
+## Rollenliste
 
-Die Übersicht zeigt Name, Beschreibung und Typ (`system` oder `custom`). Je Rolle stehen zur Verfügung:
+Über der Liste erklärt die Seite, wie Entra-Gruppen zu Rollen werden. Der Kasten **Role-Sync in diesem Tenant** zeigt, ob die automatische Rollenvergabe aus Microsoft Entra ID aktiv ist, und wenn ja, mit **Claim**, **Reihenfolge**, **Fallback-Rolle** und **Admin-Gruppe**. Ist sie aus, steht dort **Role-Sync ist aus. Rollen werden nur hier vergeben.**
 
-- **Rechte bearbeiten** – die Funktionsrechte der Rolle (siehe unten)
-- **Mitglieder** – welche Nutzer die Rolle haben
-- **Bearbeiten** und **Löschen** – nur bei eigenen Rollen
-
-Über **Create role** legen Sie eine neue Rolle an.
-
-:::note
-Ein Nutzer hat immer genau eine Rolle. Die Rolle `USER` ist dabei eine Rolle wie jede andere: Sie greift für alle Nutzer, deren Anmeldung keinem Rollen-Mapping entsprochen hat.
-:::
-
-## Funktionsrechte je Rolle
-
-Für jede Rolle legen Sie fest, welche Funktionen ihre Mitglieder nutzen dürfen. Pro Funktion werden nur die Aktionen angeboten, die die Plattform dafür unterstützt.
-
-![Rechte-Dialog einer Rolle mit Funktionen und Aktionen](./rollenrechte.png)
-
-| Funktion | Verfügbare Aktionen |
+| Spalte | Inhalt |
 |---|---|
-| Agents | Use, Create, Share, Share publicly |
-| Prompts | Use, Create, Share, Share publicly |
-| Skills | Use, Create, Share, Share publicly |
-| MCP servers | Use, Create, Share, Share publicly, Configure OBO |
-| Remote agents | Use, Create, Share, Share publicly |
-| Marketplace | Use |
-| Memories | Use, Create, Update, Read, Opt out |
-| File search | Use |
-| File citations | Use |
-| Run code | Use |
-| Web search | Use |
-| Multi-conversation | Use |
-| Temporary chat | Use |
-| Bookmarks | Use |
-| Shared links | Create, Share, Share publicly |
-| People picker | View users, View groups, View roles |
+| **ID** | Name der Rolle |
+| **Beschreibung** | Ihre Beschreibung, nur für Administratoren sichtbar |
+| **Nutzer** | Anzahl der Personen mit dieser Rolle |
+| **Herkunft** | **System**, **Role-Sync**, **Manuell** oder die Admin-Rolle |
 
-Die Rechte mehrerer Rollen werden pro Nutzer zusammengeführt (OR-Verknüpfung). **Share publicly** entscheidet, ob Mitglieder Inhalte für die gesamte Umgebung freigeben dürfen – und nicht nur für einzelne Gruppen.
+Mit **ID oder Beschreibung suchen** und dem Filter **Herkunft** grenzen Sie die Liste ein. Ein Klick auf eine Zeile öffnet die Rolle.
 
-:::tip[Hinweis]
-**Configure OBO** bei MCP-Servern erlaubt die Konfiguration von On-Behalf-Of-Zugriffen, bei denen ein Tool im Namen des angemeldeten Nutzers auf ein Drittsystem zugreift. Vergeben Sie dieses Recht bewusst.
+**System-Rollen** (ADMIN und USER) werden mit CompanyGPT ausgeliefert und lassen sich weder löschen noch umbenennen.
+
+## Rolle anlegen
+
+1. Geben Sie im Abschnitt **Rolle anlegen** eine **ID** und optional eine **Beschreibung** ein.
+2. Soll die Rolle zu einer Entra-Gruppe gehören, wählen Sie die Gruppe unter **Aus Entra-Gruppe übernehmen**. Die ID wird dann automatisch die Object-ID der Gruppe.
+3. Klicken Sie auf **Anlegen**.
+
+Die neue Rolle startet mit denselben Rechten wie USER. Passen Sie sie danach auf der Detailseite an.
+
+### Rollen automatisch aus Entra ID vergeben
+
+Eine Entra-Gruppe gibt nicht von selbst eine Rolle. Damit alle Mitglieder einer Entra-Gruppe eine Rolle bei der Anmeldung automatisch erhalten:
+
+1. Legen Sie die Rolle an. Die ID muss exakt die Object-ID der Entra-Gruppe sein (Entra-Portal → Gruppen → Gruppe → Übersicht → Objekt-ID). Arbeitet Ihre Umgebung mit App-Rollen statt Gruppen, ist die ID der Wert der App-Rolle, zum Beispiel `KEYUSER`.
+2. Lassen Sie die Rolle von innFactory für Ihre Umgebung registrieren. Ohne diese Registrierung bekommt niemand die Rolle automatisch.
+3. Legen Sie Rechte, Modelle und Agent-Fähigkeiten der Rolle fest.
+4. Die Personen melden sich neu an. Erst dann haben sie die Rolle, und sie bekommen sie bei jeder Anmeldung wieder.
+
+Administratoren behalten ADMIN. Wer in mehreren registrierten Gruppen ist, bekommt die Rolle, die in der Registrierung zuerst steht.
+
+:::caution
+Eine registrierte Rolle lässt sich weder löschen noch umbenennen, denn ohne sie scheitert jede Anmeldung von Personen ohne Admin-Rechte. Fehlt eine registrierte Rolle, legt companyADMIN sie selbst an. Wird sie nicht mehr gebraucht, trägt innFactory sie zuerst aus; danach lässt sie sich löschen.
 :::
 
-Welche Fähigkeiten der Agent-Builder selbst anbietet, steuern Sie getrennt unter [Agent-Capabilities](/de/company-gpt/addons/companyadmin/agent-capabilities/). Den Modellzugriff regeln Sie unter [Modelle und Provider](/de/company-gpt/addons/companyadmin/modelle/).
+## Detailseite einer Rolle
+
+Die Detailseite hat die Reiter **Überblick**, **companyGPT**, **Modelle & Provider**, **Erweiterungen** und **Mitglieder** sowie die Gefahrenzone **Rolle löschen**.
+
+### Überblick
+
+- Den Namen ändern Sie mit **Umbenennen**. Das geht nur, solange für die Rolle noch nichts eingestellt ist (Modelle, Fähigkeiten, Rechte, Freigaben), denn diese Einstellungen blieben sonst beim alten Namen zurück. Legen Sie in diesem Fall eine neue Rolle an.
+- **Beschreibung** erklärt, wofür es die Rolle gibt. Sie ist nur für Administratoren sichtbar.
+- Dazu kommen die **Herkunft**, die **Entra-Zuordnung** mit **Entra-Gruppe** und **Mitglieder in Entra** sowie **Hinweise**, etwa dass Role-Sync manuelle Zuweisungen bei der Anmeldung überschreibt.
+
+### companyGPT
+
+Hier legen Sie fest, was Personen mit dieser Rolle in CompanyGPT dürfen. Jede Änderung gilt sofort, ein Speichern-Knopf ist nicht nötig. Pro Funktion bietet die Seite nur die Aktionen an, die CompanyGPT dafür unterstützt.
+
+| Funktion | Aktionen |
+|---|---|
+| **Agenten** | **Nutzen**, **Erstellen**, **Teilen**, **Öffentlich teilen** |
+| **Prompts** | **Nutzen**, **Erstellen**, **Teilen**, **Öffentlich teilen** |
+| **Skills** | **Nutzen**, **Erstellen**, **Teilen**, **Öffentlich teilen** |
+| **MCP-Server** | **Nutzen**, **Erstellen**, **Teilen**, **Öffentlich teilen**, **OBO konfigurieren** |
+| **Remote-Agenten** | **Nutzen**, **Erstellen**, **Teilen**, **Öffentlich teilen** |
+| **Marktplatz** | **Nutzen** |
+| **Erinnerungen** | **Nutzen**, **Erstellen**, **Bearbeiten**, **Lesen**, **Abmelden** (sich von der Funktion abmelden) |
+| **Dateisuche** | **Nutzen** |
+| **Dateizitate** | **Nutzen** |
+| **Code ausführen** | **Nutzen** |
+| **Websuche** | **Nutzen** |
+| **Mehrfach-Unterhaltungen** | **Nutzen** |
+| **Temporärer Chat** | **Nutzen** |
+| **Geplante Chats** | **Nutzen**, **Erstellen** |
+| **Lesezeichen** | **Nutzen** |
+| **Geteilte Links** | **Erstellen**, **Teilen**, **Öffentlich teilen** |
+| **Personenauswahl** | **Nutzer sehen**, **Gruppen sehen**, **Rollen sehen** |
+
+- **Öffentlich teilen** entscheidet, ob Mitglieder Inhalte für die ganze Umgebung freigeben dürfen und nicht nur für einzelne Gruppen.
+- **Remote-Agenten** erlaubt, Agents von außen über die API anzusprechen.
+- **OBO konfigurieren** erlaubt, bei MCP-Servern den On-Behalf-Of-Zugriff einzurichten, bei dem ein Tool im Namen der angemeldeten Person auf ein Drittsystem zugreift. Vergeben Sie dieses Recht bewusst.
+- **Geplante Chats** sind Chats mit einem Agent, die zu festen Zeiten laufen. Ob die Funktion überhaupt eingeschaltet ist, steuern Sie unter [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/).
+
+Einige Häkchen sind gesperrt und mit einem Hinweis versehen. Diese Werte kommen aus der Grundkonfiguration oder werden von CompanyGPT bei jedem Neustart zurückgesetzt. Meist betrifft das die Rollen USER und ADMIN. Der Hinweis nennt den Ausweg, etwa eine eigene Rolle oder Memories pro Rolle oder Gruppe auszuschalten. Änderungen an der Grundkonfiguration nimmt innFactory vor.
+
+#### Admin-Rechte in LibreChat
+
+Dieser Abschnitt vergibt die Rechte für den Administrationsbereich, etwa **Zugang zum Admin-Bereich**, **Rollen verwalten** oder **Audit-Protokoll ansehen**. Die vollständige Liste mit Erklärungen steht unter [Direkt-Grants](/de/company-gpt/addons/companyadmin/direkte-berechtigungen/). Entziehen fragt nach; Personen mit der Rolle verlieren das Recht sofort.
+
+:::caution
+Wer **Rollen verwalten** oder **Gruppen verwalten** hat, kann praktisch jeder Person Admin-Rechte verschaffen. Vergeben Sie diese Rechte an eine andere Rolle als ADMIN, fragt companyADMIN deshalb ausdrücklich nach.
+:::
+
+Darunter folgen die Einstellungen der Rolle für Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Sie entsprechen den Einstellungen unter [Agent-Laufzeit → Pro Rolle oder Gruppe](/de/company-gpt/addons/companyadmin/agent-laufzeit/). Welche Fähigkeiten Agents für diese Rolle haben, steht unter [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/).
+
+### Modelle & Provider
+
+Welche Anbieter und Modelle Personen mit dieser Rolle sehen, einschließlich der aus der Grundkonfiguration geerbten. Aufklappen zeigt die einzelnen Modelle; wer etwas wegnimmt, wird vorher gefragt. Alle Rollen auf einmal bearbeiten Sie unter [Provider und Modelle → Modellzugriff](/de/company-gpt/addons/companyadmin/modelle/).
+
+### Erweiterungen
+
+Die Rechte dieser Rolle in den Erweiterungen, zum Beispiel **Übersetzen nutzen** oder **Microsoft 365 nutzen**. Ein Häkchen vergibt das Recht, Entfernen fragt nach. Ein entzogenes Recht ist sofort weg; Erweiterungen speichern die Antwort höchstens eine Minute zwischen.
+
+- Rechte der Klasse **Admins automatisch** hat ADMIN immer.
+- Rechte der Klasse **Nur ausdrücklich** bekommt niemand automatisch. Vergeben können sie nur Administratoren mit der Rolle ADMIN; für alle anderen sind solche Rechte ausgeblendet, solange die Rolle sie nicht hat.
+- Ist ein Recht **für alle** freigegeben, steht das dabei. Das ändern Sie unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+
+Alle Rechte mit Bedeutung beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+
+### Mitglieder
+
+Hier weisen Sie die Rolle Personen zu:
+
+1. Klicken Sie auf **Person hinzufügen**.
+2. Suchen Sie die Person nach Name oder E-Mail (ab zwei Zeichen) und wählen Sie sie aus.
+
+Wer hier zugewiesen wird, verliert seine bisherige Rolle. Entfernen Sie Personen aus der Rolle, bekommen sie die Rolle USER.
+
+:::caution
+Ist die automatische Rollenvergabe aus Entra ID aktiv, setzt CompanyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Zuweisungen hier gehen dann verloren.
+:::
+
+### Rolle löschen
+
+**Rolle löschen** in der Gefahrenzone zeigt vorher, wie viele Personen die Rolle haben. Alle Mitglieder bekommen danach die Rolle USER. Mit der Rolle gelöscht werden ihre Einstellungen (auch Modell-Einschränkungen), ihre Freigaben und ihre Rechte in CompanyGPT und den Erweiterungen. Das lässt sich nicht rückgängig machen.
+
+## Verwandte Seiten
+
+- [Gruppen](/de/company-gpt/addons/companyadmin/gruppen/) bestimmen, mit wem Inhalte geteilt werden.
+- [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/) steuern, was der Agent-Builder je Rolle anbietet.
+- [Provider und Modelle](/de/company-gpt/addons/companyadmin/modelle/) regeln die Modelle je Rolle.

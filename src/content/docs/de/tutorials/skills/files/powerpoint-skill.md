@@ -10,7 +10,7 @@ Verwende diesen Skill, wenn du eine Präsentation erstellen, Folien generieren, 
 ````markdown
 ---
 name: powerpoint-skill
-description: 'Build and refine PowerPoint (.pptx) presentations with companyFILES MCP tools. Use when asked to create a presentation, build a deck, add or fix slides, or use a corporate slide master / Folienmaster. Covers all three build paths: from scratch (create_powerpoint), from a {{placeholder}} template (create_powerpoint_from_template), and from a corporate master WITHOUT any placeholders via its native slide layouts (describe_pptx_template, create_powerpoint_from_layouts, set_powerpoint_slide_fields). Also covers iterative editing (append_slides_to_powerpoint, update_powerpoint_slide, read_powerpoint_slides), clone-and-refill of template slides, styled tables, speaker notes, images and charts.'
+description: 'Build and refine PowerPoint (.pptx) presentations with companyFILES MCP tools. Use when asked to create a presentation, build a deck, add or fix slides, use a corporate slide master / Folienmaster, or work with a .pptx the user attached in the chat ("make a deck in this design", "add slides to this presentation"). Covers all three build paths: from scratch (create_powerpoint), from a {{placeholder}} template (create_powerpoint_from_template), and from a corporate master WITHOUT any placeholders via its native slide layouts (describe_pptx_template, create_powerpoint_from_layouts, add_slides_from_layouts, set_powerpoint_slide_fields). Also covers iterative editing (append_slides_to_powerpoint, update_powerpoint_slide, read_powerpoint_slides), clone-and-refill of template slides, styled tables, speaker notes, images and charts.'
 ---
 
 # PowerPoint Skill
@@ -25,11 +25,13 @@ Everything needed to build, extend and repair `.pptx` decks.
 | `create_powerpoint_from_template` | New deck from a POTX/PPTX template that contains `{{placeholders}}` |
 | `describe_pptx_template`          | Read a deck's **native slide layouts** — no `{{}}` needed           |
 | `create_powerpoint_from_layouts`  | New deck by instantiating those native layouts (corporate design)   |
-| `set_powerpoint_slide_fields`     | Patch one slide's native placeholder text, in place                 |
+| `add_slides_from_layouts`         | Append layout-native slides to an existing deck, **in place**       |
+| `set_powerpoint_slide_fields`     | Patch one slide's native placeholders (text + images), in place     |
 | `append_slides_to_powerpoint`     | Append slides to an existing deck, in place                         |
 | `update_powerpoint_slide`         | Replace one slide of an existing deck, in place                     |
-| `read_powerpoint_slides`          | Read back slide numbers, titles and text lines                      |
+| `read_powerpoint_slides`          | Read slide numbers, titles, text **and each slide's layout/slots**  |
 | `list_templates`                  | Find available templates (`type: "potx"`) before building           |
+| `list_my_files`                   | Find a deck the user attached in the chat (`file_id`)               |
 | `embed_chart_in_document`         | Render a Chart.js chart into a one-slide deck                       |
 
 ---
@@ -45,8 +47,9 @@ The loop:
 ```
 PLAN   → write the outline in your reply first (slide number, role/layout, headline, content sketch)
 PROBE  → describe_pptx_template / list_templates / read_powerpoint_slides — learn what exists
-SEED   → create_powerpoint* with the FIRST 3–5 slides only → keep the returned document_id
-EXTEND → append_slides_to_powerpoint in chunks of 3–5 slides, repeatedly
+SEED   → create_powerpoint* with the FIRST 3–5 slides only → keep the returned id (document_id)
+EXTEND → append_slides_to_powerpoint (path A/B) or add_slides_from_layouts (path C)
+         in chunks of 3–5 slides, repeatedly
 REFINE → set_powerpoint_slide_fields or update_powerpoint_slide for individual fixes
 VERIFY → read_powerpoint_slides to confirm slide count, order and titles
 ```
@@ -74,15 +77,16 @@ I'll build 1–5 first, then append 6–12 in two chunks. Say if the structure s
 ### Rules of thumb
 
 - **Chunk size 3–5 slides** per call. Long bullet text or `htmlTable` content → 2–3.
-- **Keep the `document_id`.** Every create/append/update/patch call returns the _same_
-  `document_id` for that deck. Reuse it; never build a second deck to fix the first.
+- **Keep the `document_id`.** The first create call returns the deck's `id`; every
+  append/update/patch call on that deck keeps the _same_ id. Reuse it; never build a second deck
+  to fix the first.
 - **One bad slide → patch that slide.** `set_powerpoint_slide_fields` (layout-native) or
   `update_powerpoint_slide` (built-in / clone mode). Both preserve slide count and position.
 - **`read_powerpoint_slides` between chunks** when you have appended several times, to confirm
   you are numbering slides from the right base.
 - **Report progress**, e.g. "slides 1–5 done, appending 6–9 next", and render the returned
   `markdownLink` so the user can open the intermediate state.
-- **Never re-create to append.** `drop_template_slides: false` / `append_slides_to_powerpoint`
+- **Never re-create to append.** `add_slides_from_layouts` / `append_slides_to_powerpoint`
   exist precisely so a deck can grow across turns.
 
 Every slide in a `slides` array **requires a `title`** (it is a mandatory field, including for `section` slides) — a slide without a `title` fails validation.
@@ -108,6 +112,41 @@ Decide once, at the start. Mixing paths in one deck produces inconsistent design
 `list_templates` (`type: "potx"`) lists candidates and, for `{{}}` decks, a per-slide placeholder
 breakdown. It does **not** return the layout catalog — use `describe_pptx_template` for that.
 
+A deck the user attached to the chat needs no template upload at all — see the next section.
+
+---
+
+## 2a. The user attached a `.pptx` in the chat
+
+Someone drops their Folienmaster or an existing deck into the conversation and asks for a
+presentation "in this design", or asks to extend the deck they just sent. **Do not ask them to
+upload it as a template** — every PPTX tool takes the attachment directly.
+
+```
+FIND    list_my_files → pick the .pptx by filename → keep its file_id
+PROBE   describe_pptx_template { "librechat_file_id": "<file_id>" }
+        → hasLegacyPlaceholders decides the path (B vs C)
+        read_powerpoint_slides { "librechat_file_id": "<file_id>" } if you need to see or extend
+        the existing slides — it reports each slide's layout and slot keys
+BUILD   new deck   → create_powerpoint_from_layouts { "librechat_file_id": ..., "slides": [...] }
+        extend it  → add_slides_from_layouts     { "librechat_file_id": ..., "slides": [...] }
+        fix one    → set_powerpoint_slide_fields { "librechat_file_id": ..., "slide_number": n, ... }
+```
+
+`librechat_file_id` and `document_id` are interchangeable inputs — the server resolves either id.
+Pass whichever id the listing gave you.
+
+| The user wants                                | Tool                             | Result                                          |
+| --------------------------------------------- | -------------------------------- | ----------------------------------------------- |
+| A presentation **in the design of** this deck | `create_powerpoint_from_layouts` | A **new** document; the attachment is untouched |
+| More slides **in** this deck                  | `add_slides_from_layouts`        | The **same** deck, extended in place            |
+| A slide of this deck changed                  | `set_powerpoint_slide_fields`    | The **same** deck, one slide patched            |
+
+For an attachment, "in place" means: the attached file is rewritten when possible (same
+`file_id`); otherwise the modified copy is saved as a new companyFILES document. The response
+`message` says which happened — pass that on rather than promising the user their original file
+changed.
+
 ---
 
 ## 3. Path A — from scratch (`create_powerpoint`)
@@ -127,8 +166,7 @@ starts speaker notes, which run until the next `#`/`##` heading.
   "markdown": "# Quarterly Results\n\n- Revenue: €1.2M\n- Growth: 15%\n\n???\nOpen with the revenue number.\n\n## Key Highlights\n\n- Launched new product\n- Expanded to 3 markets",
   "filename": "q4_results",
   "title": "Q4 2025 Results",
-  "author": "Strategy Team",
-  "folder": "presentations"
+  "author": "Strategy Team"
 }
 ```
 
@@ -171,8 +209,7 @@ Omitting `image` on a `text-image` slide draws a skeleton placeholder box — us
     }
   ],
   "title": "Q4 2025 Results",
-  "filename": "q4_results",
-  "folder": "presentations"
+  "filename": "q4_results"
 }
 ```
 
@@ -207,13 +244,14 @@ For a plain grid, `table: string[][]` (first row = header) is enough.
 
 ## 4. Path C — corporate master without `{{}}` (layout-native)
 
-This is the path for a deck the design team shipped: `Folienmaster_LMU.pptx` and friends. Such
+This is the path for a deck the design team shipped (a corporate Folienmaster). Such
 decks carry **no `{{}}` markup**, only named slide layouts with OOXML's own placeholders.
 Content is bound to those placeholders and **no formatting is written**, so fonts, colours,
 logos and geometry come from the master. ("Reset layout" in PowerPoint changes nothing — that is
 the proof.)
 
-Upload such a master as a template with `type: potx` (also correct for a `.pptx` file).
+Upload such a master as a template (a `.pptx` is stored as type `potx`) — or, if the user attached
+it in the chat, use its `librechat_file_id` directly (section 2a).
 
 ### Step 1 — `describe_pptx_template`
 
@@ -237,7 +275,8 @@ Returns:
       "exampleSlides": [4],
       "slots": [
         { "key": "title", "type": "title" },
-        { "key": "body:10", "type": "body", "hint": "Mastertextformat bearbeiten" }
+        { "key": "body:10", "type": "body", "hint": "Mastertextformat bearbeiten" },
+        { "key": "pic:14", "type": "pic", "isImage": true, "aspectRatio": 1.78 }
       ]
     },
     {
@@ -262,8 +301,10 @@ Reading it:
   `title-only`, `closing`, `reference`. `roleMap` picks one layout per role.
 - **`hint`** is the layout's own prompt text and is only a hint — real masters often say
   "Mastertextformat bearbeiten" or lorem ipsum. Judge by name + slot shape, not by hint.
-- **`isImage` slots (`pic:*`) cannot be filled yet.** They stay empty and are reported back as
-  `imageSlotsNotFilled`. Do not promise the user an image in such a slot.
+- **`isImage` slots (`pic:*`) take an image through the separate `images` argument**, not through
+  `fields`. `aspectRatio` (width ÷ height of the slot frame) tells you what will crop well — the
+  image is cropped to that ratio. A picture slot you pass no image for stays empty and comes back
+  in `imageSlotsNotFilled`; do not promise the user a picture then.
 
 ### Step 2 — `create_powerpoint_from_layouts`
 
@@ -273,7 +314,6 @@ Each slide picks its layout by `layoutId`, layout name, or role — mix freely.
 {
   "template_name": "folienmaster",
   "filename": "strategie-2027",
-  "folder": "presentations",
   "slides": [
     {
       "layout": "title",
@@ -315,35 +355,77 @@ Each slide picks its layout by `layoutId`, layout name, or role — mix freely.
 
 Omitted slots stay empty and show the layout prompt in PowerPoint.
 
+**Images** go in a per-slide `images` object, keyed like `fields` (exact slot key, the bare type
+`pic`, or the synonyms `image`/`picture`/`photo`). Each value is `{ "librechat_file_id": "…" }`,
+`{ "document_id": "…" }` or `{ "base64": "…" }`:
+
+```json
+{
+  "layout": "title-image",
+  "fields": { "title": "Standort München" },
+  "images": { "pic:14": { "librechat_file_id": "abc-attachment-id" } }
+}
+```
+
+The picture inherits its position and size from the layout and is cropped to the slot's aspect
+ratio.
+
 **Base deck options:**
 
 - `drop_template_slides` (default `true`) removes the source deck's own slides. Slide masters,
   layouts, themes and media are **always** kept.
-- `drop_template_slides: false` **appends** the new slides after the existing ones.
+- `drop_template_slides: false` keeps them and appends the new slides after them — but the result
+  is saved as a **new** document. To grow a deck in place, use `add_slides_from_layouts` (step 3).
 - Instead of `template_name`, pass `document_id` (a stored `.pptx`) or `librechat_file_id` (an
   attachment) to use that deck as the base. Because layouts survive, a deck built this way can be
-  appended to again — that is the iterative path for path C.
+  extended later — that is the iterative path for path C.
 - `role_map` overrides inference: `{ "content": "slideLayout4.xml" }`.
 
-**Response** reports per slide: `layoutId`, `layoutName`, `filledSlots`, `unknownFields`,
-`emptySlots`. Always check `unknownFields` — a typo'd slot key is reported, not silently dropped.
+**Response** reports per slide: `layoutId`, `layoutName`, `filledSlots`, `filledImageSlots`,
+`unknownFields`, `emptySlots`. Always check `unknownFields` — a typo'd slot key is reported, not
+silently dropped. Picture slots that got no image are listed in `imageSlotsNotFilled` (with a
+`note`).
 
-### Step 3 — `set_powerpoint_slide_fields` (iterative editing)
+### Step 3 — `add_slides_from_layouts` (grow the deck in place)
+
+The in-place sibling of step 2: same `slides` array, but it targets an existing deck by
+`document_id` / `librechat_file_id` and **keeps the same document**. This is how a path-C deck
+grows across turns — never re-create the deck to add slides to it.
+
+```json
+{
+  "document_id": "<id>",
+  "slides": [
+    { "layout": "Kapiteltrenner", "fields": { "title": "2. Zielbild" } },
+    { "layout": "slideLayout11.xml", "fields": { "title": "Roadmap", "body:10": ["Q1", "Q2"] } }
+  ]
+}
+```
+
+- `insert_after: n` places the new slides after slide `n` (`0` = before slide 1). Omit to append.
+- Returns `slides_before` / `slides_after` / `slides_added` plus the same per-slide report.
+- Refuses a deck whose layouts carry no native placeholders (a deck built from Markdown) and names
+  `append_slides_to_powerpoint` instead — nothing is changed in that case. It also refuses when
+  none of the passed field keys matches a slot.
+
+### Step 4 — `set_powerpoint_slide_fields` (patch one slide)
 
 Patches **one** slide in place. Only the slots you pass change; every other slot, shape, image
 and the slide's position stay untouched. Slots the layout offers but the slide does not yet carry
-are added.
+are added — including picture slots.
 
 ```json
 {
   "document_id": "<id>",
   "slide_number": 3,
-  "fields": { "title": "Kernbefunde (überarbeitet)", "body:10": ["Neuer Punkt 1", "Neuer Punkt 2"] }
+  "fields": { "title": "Kernbefunde (überarbeitet)", "body:10": ["Neuer Punkt 1", "Neuer Punkt 2"] },
+  "images": { "pic:14": { "librechat_file_id": "abc-attachment-id" } }
 }
 ```
 
-This is the tool to call repeatedly across turns while the user reviews the deck. Accepts
-`librechat_file_id` too (the attachment is updated on the shared volume when available).
+Either `fields` or `images` is enough — pass both only when you mean to change both. This is the
+tool to call repeatedly across turns while the user reviews the deck. Accepts `librechat_file_id`
+too (the attachment is updated in place when possible).
 
 ### `slide_type` routing still works
 
@@ -426,8 +508,15 @@ slide that still shows raw `{{placeholders}}`.
 { "document_id": "<id>" }
 ```
 
-Returns `{ slide_count, slides: [{ slideNumber, title, textLines }] }`. Use it before editing a
-deck you did not just build, and after several appends to confirm numbering.
+Returns `{ slide_count, hasLegacyPlaceholders, layoutsAvailable, slides: [...] }`, each slide with
+`{ slideNumber, title, textLines, layoutId, layoutName, role, slots, emptySlots }`. Use it before
+editing a deck you did not just build, and after several appends to confirm numbering.
+
+`slideNumber` is the position **PowerPoint shows**, so it is the number to pass to
+`set_powerpoint_slide_fields` / `update_powerpoint_slide`. The layout fields are what make an
+unfamiliar deck editable: `layoutId` feeds `add_slides_from_layouts`, `slots` shows what each slide
+currently says, and `emptySlots` lists the keys still free. Pass `include_layouts: false` for a
+text-only read (`slideNumber`, `title`, `textLines`).
 
 ---
 
@@ -438,8 +527,12 @@ deck you did not just build, and after several appends to confirm numbering.
   resulting `document_id` as an image source, or keep appending to it.
 - **Chart on a content slide:** create the chart image, then reference it via `image` on a
   `text-image` slide (`doc:<id>`), or via a `{%name}` image placeholder in a `{{}}` template.
-- **Image sources everywhere:** an https URL, a base64 data URI, `doc:<documentId>` (PVC upload)
-  or `lc:<file_id>` (LibreChat attachment — see `list_my_files`).
+- **Image sources** for `image` fields and Markdown images (`create_powerpoint`,
+  `append_slides_to_powerpoint`, `update_powerpoint_slide`): a base64 data URI (`data:image/…`),
+  `doc:<documentId>` (PVC upload), `lc:<file_id>` (LibreChat attachment — see `list_my_files`), or
+  an http(s) URL of a **publicly reachable** host — internal or private addresses are refused.
+  `{%name}` template images and layout picture slots (`images`) take
+  `{ base64 | document_id | librechat_file_id }` instead.
 - See **charts-diagrams-skill** for chart/diagram creation, **templates-skill** for `{%image}`
   placeholders, chart data replacement and `repeat`.
 
@@ -469,21 +562,30 @@ deck you did not just build, and after several appends to confirm numbering.
   (`body:12`, `body:13`) a single `bullets` fills the **first free** one and reports the other in
   `emptySlots` — it is not duplicated into both. To fill both columns, address them by exact key.
   Exact keys win over synonyms, so `{ "body:13": "right", "content": "left" }` fills both correctly.
-- **`subtitle` on a master with no `subTitle` placeholder** (Folienmaster_LMU and similar: the
+- **`subtitle` on a master with no `subTitle` placeholder** (common on corporate masters: the
   subtitle line of a title layout is a plain `body` placeholder) falls back to the first free
   `body` slot instead of landing in `unknownFields`.
 - **`create_powerpoint_from_template` refuses a template with no `{{}}` placeholders** and names
   the layout tools in the error. That is path C's cue, not a broken template — do not retry the
   legacy tool and do not add `{{}}` markers to a corporate master.
-- **`pic:*` slots are not fillable** in path C yet.
+- **`pic:*` slots take images via `images`, not `fields`.**
+- **Only `add_slides_from_layouts` keeps the document** when extending a path-C deck.
+  `create_powerpoint_from_layouts` with `drop_template_slides: false` produces a _new_ document —
+  useful when the user wants a copy, wrong when they asked to extend what they have.
+- **`append_slides_to_powerpoint` on a corporate deck gives you companyFILES-styled slides.** Its
+  generated slides carry their own design and are mapped onto the deck's first layout, so on a
+  design deck they look off. The response says so in `designNote`; use `add_slides_from_layouts`.
 - **Layout names are not unique.** Ambiguous name references resolve to the first match and log a
   warning; use `layoutId`.
 - **`list_templates` does not include the layout catalog.** `describe_pptx_template` does.
 - **Do not write formatting in path C.** Passing colours/fonts is neither possible nor wanted —
   the master owns the design.
-- **Downloads:** every create/append/update/patch call returns
-  `{ id, filename, downloadUrl, markdownLink }`. Always render `markdownLink` in the reply. In
-  embedded (iframe) mode downloads are sandboxed — offer "copy link" instead.
+- **Downloads:** every create call, and every append/update/patch call on a companyFILES
+  document, returns `{ id, filename, downloadUrl, markdownLink }` (plus `librechat_file_id` when the
+  deck is also stored as a chat file). Always render `markdownLink` in the reply. On a chat
+  attachment updated in place, the response carries `librechat_file_id`, `filename` and `message`
+  but **no** download link — tell the user the attached deck was updated. If the attachment could
+  not be updated in place, a new document with its own `id` and `markdownLink` is returned.
 - **Theming (path A/B):** the org/user colour theme and logo are applied automatically from
   settings; no theme arguments needed.
 
@@ -520,15 +622,26 @@ A single run that exercises every slide feature. Useful for verifying a deployme
    layout" changes nothing**.
 9. `set_powerpoint_slide_fields` — patch only the `title` of slide 2 → same `document_id`, same
    slide count, other slots untouched.
-10. `create_powerpoint_from_layouts` with `document_id` (not `template_name`) and
-    `drop_template_slides: false` → 6 slides, appended slide in the same corporate design.
+10. `add_slides_from_layouts` with that `document_id` → **same** `document_id`, 6 slides, the new
+    one in the same corporate design. Repeat with `insert_after: 1` → the slide lands at
+    position 2.
+11. `set_powerpoint_slide_fields` with `images: { "pic:14": { "librechat_file_id": "<png>" } }` on
+    a title-image slide → the picture fills the placeholder frame, cropped not stretched.
+
+**Path D — a deck attached in the chat**
+
+12. Attach a `.pptx` to a chat message → `list_my_files` shows it with a `file_id`.
+13. `describe_pptx_template { "librechat_file_id": "<file_id>" }` → the same catalog as step 7,
+    without any template upload.
+14. `read_powerpoint_slides { "librechat_file_id": "<file_id>" }` → slides in the order
+    PowerPoint shows them, each with `layoutId` and `slots`.
 
 **Error paths**
 
-11. `"layout": "GibtsNicht"` → error listing all layouts **and** roles.
-12. `fields: { "untertitel": "x" }` on a layout without that slot → `unknownFields: ["untertitel"]`.
-13. `slide_number: 99` on `set_powerpoint_slide_fields` → error naming the real slide count.
-14. `reference_slide` together with `slides` → error.
-15. A deck **with** `{{}}` markup through `describe_pptx_template` →
+15. `"layout": "GibtsNicht"` → error listing all layouts **and** roles.
+16. `fields: { "untertitel": "x" }` on a layout without that slot → `unknownFields: ["untertitel"]`.
+17. `slide_number: 99` on `set_powerpoint_slide_fields` → error naming the real slide count.
+18. `reference_slide` together with `slides` → error.
+19. A deck **with** `{{}}` markup through `describe_pptx_template` →
     `hasLegacyPlaceholders: true` → switch to `create_powerpoint_from_template`.
 ````

@@ -3,13 +3,13 @@ title: In CompanyGPT nutzen
 description: companyRAG über den MCP-Server ai-search mit CompanyGPT verbinden – mit Beispiel-Prompt, Content-Such-Tools, SQL-Tools und Quellenangaben in den Antworten.
 ---
 
-Über den [MCP Server](/de/company-gpt/integrationen/mcp-server/) `ai-search` lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle dem Nutzer zur Verfügung stehenden Sammlungen zu durchsuchen (s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)).
+Über den [MCP Server](/de/company-gpt/integrationen/mcp-server/) `ai-search` lässt sich der RAG-Service mit CompanyGPT verbinden, um indexierte Dokumente über alle dem Nutzer zur Verfügung stehenden Sammlungen zu durchsuchen (s. [Ähnlichkeitssuche](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)). Die Ergebnisse berücksichtigen dabei immer die Berechtigungen des fragenden Nutzers – bei SharePoint-Quellen auch die Berechtigungen auf Dokumentebene.
 
 Der MCP Server kann für einen erleichterten Umgang einem [Agenten](/de/company-gpt/agenten/) hinzugefügt werden.
 
 ## Beispiel-Prompt aus der Sammlung
 
-Jede Sammlung stellt einen vorbereiteten System-Prompt bereit, in dem der technische Name der Sammlung bereits eingetragen ist. Sie erreichen ihn über das Terminal-Symbol an der Sammlung und kopieren ihn direkt in Ihren Agenten.
+Jede Sammlung stellt einen vorbereiteten **System-Prompt** bereit, in dem der technische Name der Sammlung bereits eingetragen ist. Sie erreichen ihn über das Terminal-Symbol an der Sammlung und übernehmen ihn mit **Kopieren** direkt in Ihren Agenten. Bei Datensatzsammlungen ist der Prompt auf einen Datenanalyse-Agenten mit den SQL-Tools zugeschnitten.
 
 ![System-Prompt einer Sammlung mit minimaler und vollständiger Variante](./beispiel-prompt.png)
 
@@ -26,38 +26,47 @@ Beim Agenten wird der MCP-Server `ai-search` hinzugefügt; anschließend aktivie
 
 ![Tool-Auswahl des MCP-Servers ai-search mit aktivierten Content-Such-Tools](./agent-tools-ai-search.png)
 
+In allen Tools steht `collection` für den technischen Namen der Sammlung. Tragen Sie ihn im Prompt fest ein, damit der Agent immer die richtige Sammlung abfragt.
+
 ### Content-Such-Tools für Dokumentensammlungen
 
 1. **search_content**:
-   Semantische Ähnlichkeitssuche für allgemeine Anfragen. Standardwahl für die meisten Nutzerfragen.
-   Erforderliche Parameter: `query` (Suchtext), `source` (Technischer Name der Sammlung)
-   Optional: `topK` (Anzahl Ergebnisse: Standard 5, max. 20)
+   Suche für allgemeine Anfragen. Standardwahl für die meisten Nutzerfragen.
+   Erforderliche Parameter: `query` (Suchtext), `collection` (technischer Name der Sammlung)
+   Optional: `topK` (Anzahl Ergebnisse: Standard 5, max. 20), `searchMode` (`similarity` = semantische Suche, Standard; `keyword` = Volltextsuche; `hybrid` = beides kombiniert), `filter` (Metadaten-Filter, Aufbau wie bei `find_content_by_metadata`)
 
 2. **find_content_by_source**:
    Abrufen aller Inhalte aus einem spezifischen Dokument. Nutzen bei Anfragen zu einzelnen Dokumenten (z. B. „Was steht in Dokumentation.md?").
-   Erforderliche Parameter: `source` (Dokumentname), `collection` (Technischer Name der Sammlung)
+   Erforderliche Parameter: `source` (Dokumentname)
+   Optional: `collection` (technischer Name der Sammlung)
 
 3. **find_content_by_metadata**:
    Filterung von Inhalten nach Metadaten-Attributen. Nutzen bei gefilterten Ergebnissen (z. B. „Alle dringenden Aufgaben von 2026").
-   Erforderliche Parameter: `filter` (JSON-Objekt mit Operatoren `$and`, `$or`, `$not`), `collection` (Technischer Name der Sammlung)
+   Erforderliche Parameter: `filter` (JSON-Objekt mit den logischen Operatoren `$and`, `$or`, `$not`, den Vergleichsoperatoren `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte` oder direkten Schlüssel-Wert-Paaren)
+   Optional: `collection` (technischer Name der Sammlung)
 
 ### SQL-Tools für Datensätze und strukturierte Daten
 
-Für [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/) und [strukturierte Daten aus Dokumenten](/de/company-gpt/addons/companyrag/strukturierte-daten/) werden statt der Content-Such-Tools die SQL-basierten Tools aktiviert:
+Für [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/) und [strukturierte Daten aus Dokumenten](/de/company-gpt/addons/companyrag/strukturierte-daten/) werden statt der Content-Such-Tools die SQL-basierten Tools aktiviert. Außer bei `list_datasets` ist `collection` bei allen SQL-Tools erforderlich; darüber prüft companyRAG den Zugriff.
 
 ![Tool-Auswahl mit aktivierten SQL-Tools für eine Datensatzsammlung](./agent-sql-tools.png)
 
-- **execute_sql**: Führt eine SQL-Abfrage über die Tabellen der Sammlung aus.
-  Erforderliche Parameter: `collection` (Technischer Name der Sammlung, dient der Zugriffskontrolle), `sql` (die SELECT-Abfrage)
-  Optional: `limit` (maximale Zeilenanzahl: Standard 100, max. 10000)
-- **get_schema**: Liest das Schema der Sammlung – welche Tabellen und Spalten vorhanden sind.
-- **list_datasets**: Listet die verfügbaren Datensätze auf.
-- **describe_table**: Beschreibt eine einzelne Tabelle im Detail.
-- **get_sample**: Liefert Beispielzeilen einer Tabelle, um Werte und Formate einzuschätzen.
-- **save_transform** und **reload_dataset**: Weiterführende Tools zum Speichern von Transformationen und zum erneuten Laden eines Datensatzes.
+| Tool | Erforderlich | Optional | Zweck |
+|---|---|---|---|
+| **list_datasets** | – | – | Listet alle für Sie verfügbaren Datensatzsammlungen mit ihren Tabellennamen auf. Bei Excel-Arbeitsmappen mit mehreren Blättern sind Blatt und Datei angegeben. |
+| **get_schema** | `collection` | `dataset` (Tabellenname; weglassen = alle Tabellen der Sammlung) | Liest das Schema einer Tabelle oder listet die Tabellen einer Sammlung. |
+| **describe_table** | `collection`, `table` | `sample_rows` (Standard 5, max. 50) | Schema und Beispielzeilen einer Tabelle. |
+| **get_sample** | `collection`, `table` | `rows` (Standard 10, max. 1000), `random` | Beispielzeilen einer Tabelle, optional zufällig ausgewählt. |
+| **execute_sql** | `collection`, `sql` | `limit` (Standard 100, max. 10000) | Führt eine lesende SQL-Abfrage über die Tabellen der Sammlung aus. |
+| **save_transform** | `collection`, `table`, `query` | – | Speichert eine SELECT-Abfrage als Bereinigung einer Tabelle. companyRAG legt daraus eine Sicht `<tabelle>_clean` an, die bei jedem weiteren Laden automatisch angewendet wird. |
+| **reload_dataset** | `collection`, `table` | – | Lädt eine Tabelle neu, etwa nachdem eine Datei erneut hochgeladen wurde. |
 
-:::note
-Es sind ausschließlich SELECT-Statements erlaubt. Schreibende Anweisungen wie `INSERT`, `UPDATE`, `DELETE`, `DROP` oder `CREATE` werden abgelehnt. Zeilen werden ausschließlich über den Ingestion-Endpunkt einer Datensatzsammlung eingespielt.
+`execute_sql` und `save_transform` erlauben ausschließlich eine einzelne SELECT-Abfrage, optional mit vorangestellten `WITH`-Klauseln. Schreibende Anweisungen wie `INSERT`, `UPDATE`, `DELETE`, `DROP` oder `CREATE` werden abgelehnt. Zeilen werden ausschließlich über den Ingestion-Endpunkt einer Datensatzsammlung eingespielt.
+
+Die SQL-Tools stehen nur zur Verfügung, wenn Ihre Umgebung die Datensatz-Abfrage bereitstellt; sonst zeigt `ai-search` nur die drei Content-Such-Tools.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
 :::
 
 Die vollständige Beschreibung jedes Tools zeigt das Info-Symbol in der Tool-Bibliothek.
@@ -80,4 +89,4 @@ Bei Datensatzsammlungen führt der Agent die Abfrage aus und stellt das Ergebnis
 Achten Sie darauf, dass im Prompt die richtige Sammlung eingetragen ist. Zeigt ein Agent auf eine andere Sammlung, bleibt die Antwort leer oder unpassend, obwohl die Daten vorhanden sind.
 :::
 
-Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passender Anweisung finden Sie im Tutorial **[CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/).**
+Eine Schritt-für-Schritt-Anleitung zum Einrichten eines Such-Agenten mit passender Anweisung finden Sie im Tutorial **[companyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/).**

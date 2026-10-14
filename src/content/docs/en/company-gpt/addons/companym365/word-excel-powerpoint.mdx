@@ -1,0 +1,90 @@
+---
+title: Word, Excel and PowerPoint
+description: What the Office add-in can additionally do in Word, Excel and PowerPoint – quick actions, Word coaching, data analysis in Excel and presentations from an outline.
+---
+
+This page describes the features the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) brings specifically for Word, Excel and PowerPoint. The add-in is not enabled in all environments; the basics such as opening it, choosing a model and edit modes are on the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) page. The add-in's interface is in German; labels are given in German with an English translation in parentheses.
+
+You start quick actions via the menu on the **Home** tab, via the `/` palette in the input field or – for some of them – via the starter suggestions in an empty chat. If a quick action changes the document, the selected [edit mode](/en/company-gpt/addons/companym365/office-add-in/#edit-modes) applies: in **Vorschläge** (Suggestions) mode, the changes first appear as a card.
+
+## Word
+
+| Quick action | What it does |
+|---|---|
+| **Zusammenfassen** (Summarize) | Summarizes the document (or the selection) in bullet points. The document remains unchanged. |
+| **Korrektur lesen** (Proofread) | Checks spelling, grammar and punctuation and corrects them. |
+| **Umformulieren** (Rephrase) | Rephrases the selection more clearly and concisely. |
+| **Sprache vereinfachen** (Simplify language) | Rewrites the text in simple, easy-to-understand language. |
+| **Entwurf schreiben** (Write draft) | Writes a new draft in the style of the document. The assistant first asks about topic, audience, length and tone. |
+| **Übersetzen** (Translate) | Translates the text and keeps its structure. The assistant first asks for the target language. |
+
+If text is selected, most actions only apply to the selection.
+
+By default, the starter suggestions in an empty chat are **Dokument zusammenfassen** (Summarize document), **Rechtschreibung und Grammatik prüfen** (Check spelling and grammar), **Coaching** and **Gliederung vorschlagen** (Suggest outline).
+
+### Coaching
+
+**Coaching** gives you feedback on your text without rewriting it itself. You start it via the **Coaching** starter suggestion or via `/`.
+
+1. A dialog shows the **Markierter Text** (selected text) and the **Dokumenttitel** (document title). If text is selected, the assistant only assesses that; if the field is empty, the whole document.
+2. The assistant returns a short overall impression and up to eight findings on **Klarheit** (clarity), **Ton** (tone), **Länge** (length) or **Struktur** (structure) – each with the passage, a reason and a suggestion.
+3. In **Vorschläge** (Suggestions) mode, each finding appears as a suggestion card with its location (e.g. "Absatz 3", paragraph 3). In **Direkt** (Direct) and **Nachverfolgen** (Track) modes, a list of findings appears: **Übernehmen** (Apply) replaces exactly that passage, **Rückgängig** (Undo) reverts it. **Alle übernehmen** (Apply all) and **Alle rückgängig** (Undo all) act on all findings.
+
+During coaching, the assistant does not change the document itself; you apply every change individually.
+
+### Inserting answers into the document
+
+With **Ins Dokument einfügen** (Insert into document) below an answer, you take the text over into your document. The add-in uses your document's styles. Only the answer itself is inserted, not the reasoning.
+
+## Excel
+
+| Quick action | What it does |
+|---|---|
+| **Formel erklären** (Explain formula) | Explains the formula in the selected cell step by step. |
+| **Formel erstellen** (Create formula) | Builds the right Excel formula for your calculation. The assistant asks what is to be calculated and where the formula belongs. |
+| **Daten analysieren** (Analyze data) | Describes anomalies and trends in the selected range. The workbook remains unchanged. |
+| **Diagramm vorschlagen** (Suggest chart) | Suggests a suitable visualization and creates it. |
+| **Rechtschreibung prüfen** (Check spelling) | Finds typos and spelling mistakes in the texts of the sheet. |
+| **Sprache vereinfachen** (Simplify language) | Rephrases labels and notes clearly and understandably. |
+
+If nothing is selected, the assistant uses the used range of the active sheet.
+
+By default, the starter suggestions in an empty chat are **Daten analysieren** (Analyze data), **Formel erklären** (Explain formula), **Diagramm vorschlagen** (Suggest chart) and **Tabelle bereinigen** (Clean up table).
+
+### Data analysis with code
+
+If [code execution](/en/company-gpt/code-interpreter/) is enabled in your environment, the assistant calculates with Python code rather than only with formulas for **Daten analysieren** (Analyze data):
+
+- The tool step shows the code, the output and, where applicable, a chart.
+- Below the finished answer, **Als neues Blatt einfügen** (Insert as new sheet) creates a new sheet "Analyse" with the result table and the chart. Existing cells are not overwritten. Afterwards, the button shows which sheet the content was inserted into.
+
+If code execution is not enabled, the notice "Code-Ausführung ist in diesem Tenant nicht freigeschaltet — die Analyse nutzt Formeln." (Code execution is not enabled in this tenant – the analysis uses formulas.) appears once.
+
+## PowerPoint
+
+| Quick action | What it does |
+|---|---|
+| **Deck erstellen** (Create deck) | Builds a slide deck in the template from a text or document. |
+| **Folien prüfen** (Check slides) | Checks the presentation for overlaps, text overflow and margins and fixes the findings. |
+| **An Vorlage angleichen** (Match template) | Aligns layouts, colors and fonts with the corporate template. The assistant first shows what it intends to change. |
+| **Texte straffen** (Tighten text) | Shortens and simplifies the slide texts without changing the statements. |
+| **Rechtschreibung prüfen** (Check spelling) | Finds typos and spelling mistakes on all slides. |
+| **Deck zusammenfassen** (Summarize deck) | Summarizes the presentation and its storyline. The presentation remains unchanged. |
+
+By default, the starter suggestions in an empty chat are **Folien prüfen** (Check slides), **Präsentation zusammenfassen** (Summarize presentation), **Sprechernotizen erstellen** (Create speaker notes) and **Folientexte kürzen** (Shorten slide texts).
+
+### From outline to deck
+
+**Deck erstellen** (Create deck) works in two steps:
+
+1. The assistant first returns an **outline** (**Gliederung**) as a card: slide titles, bullet points, a layout hint and sources for each slide.
+2. With **Bearbeiten** (Edit) you change titles and bullet points, add slides with **Folie hinzufügen** (Add slide), remove slides or move them up or down. **Fertig** (Done) closes editing.
+3. **Deck bauen (n Folien)** (Build deck, n slides) creates the slides – with the layouts and placeholders of your template. An outline has at most 20 slides.
+
+The card is then marked "Gebaut" (Built); with **Erneut bauen** (Build again) you can have the deck created once more. Creating the slides also follows the selected edit mode.
+
+If you want to skip the outline, switch on **Deck direkt bauen** (Build deck directly) in the edit mode menu.
+
+### Limits in PowerPoint
+
+The assistant can edit slides, text boxes and tables, but not charts and animations. This is a limit of Microsoft's interface.

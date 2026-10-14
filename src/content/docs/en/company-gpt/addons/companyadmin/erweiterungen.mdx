@@ -1,0 +1,74 @@
+---
+title: Extensions
+description: The rights for companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN and Insights in companyADMIN – what each right allows, who holds it automatically and where you grant it.
+---
+
+companyADMIN is the central place for rights in the CompanyGPT extensions. Every extension asks companyADMIN whether a person may use or manage it.
+
+**Configuration** → **Extensions** shows each extension with its status, tile and rights. Rights are granted on the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or [group](/en/company-gpt/addons/companyadmin/gruppen/) on the **Extensions** tab; here you open a right **to everyone**.
+
+## Granting rights
+
+| Way | Where | Effect |
+|---|---|---|
+| To a role | Role → **Extensions** tab | Everyone with this role |
+| To a group | Group → **Extensions** tab | Every member of the group |
+| To everyone | Configuration → **Extensions**, tick **For everyone** | Everyone in the environment |
+
+The ADMIN role always holds rights of the class **Admins automatically**; companyADMIN ensures this at every start. Nobody gets rights of the class **Explicit only** automatically, not even administrators. They are never opened to everyone.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+A revoked right is gone at once; the extensions cache the answer for at most a minute. Whoever may use an extension also sees its MCP tools in CompanyGPT; visibility follows a change within a few minutes.
+
+## The rights
+
+| Extension | Right | Technical name | Allows |
+|---|---|---|---|
+| [companyTRANSLATE](/en/company-gpt/addons/company-translate/) | **Use translation** | `ext:translate:use` | Translate texts and documents |
+| | **Manage glossaries** | `ext:translate:admin` | Create, upload and delete glossaries for everyone |
+| [companyTRANSCRIBE](/en/company-gpt/addons/company-transcribe/) | **Use transcription** | `ext:transcribe:use` | Transcribe audio and video files |
+| [companyFILES](/en/company-gpt/addons/companyfiles/) | **Use Files** | `ext:files:use` | Create and edit documents from templates |
+| | **Manage global templates** | `ext:files:templates` | Upload, publish and delete global templates; no organisation branding |
+| | **Manage organisation & branding** | `ext:files:admin` | Organisation settings and branding (logo, colours); global templates are a separate right |
+| [companyRAG](/en/company-gpt/addons/companyrag/) | **Use knowledge** | `ext:rag:use` | Search the knowledge collections the person has access to |
+| | **Manage RAG settings** | `ext:rag:admin` | Users, API keys and provider settings including connector credentials. Knowledge bases are maintained through collection ownership, not through this right |
+| | **Superadmin** | `ext:rag:superadmin` | Sees every collection of the environment, plus audit log, employee activity and write bypass. Class **Explicit only** |
+| [companyM365](/en/company-gpt/addons/companym365/) | **Use Microsoft 365** | `ext:m365:use` | Office add-in (Word, Excel, PowerPoint, Outlook), the Microsoft 365 tools in the chat and the Teams bot, where available in your environment. Revoking the right takes away all three |
+| | **Manage Microsoft 365** | `ext:m365:admin` | companyM365 admin area: set up the Teams bot, release agents for Teams, settings, audit, deletion of individual people's bot data and add-in installation packages. Never for everyone |
+| [companyLEARN](/en/company-gpt/addons/companylearn/) | **Use courses** | `ext:learn:use` | Take courses |
+| | **Manage courses** | `ext:learn:admin` | Manage courses |
+| companyADMIN | **View Insights** | `ext:admin:insights` | Open [Insights](/en/company-gpt/addons/companyadmin/insights/). Never for everyone, because Insights shows every user's costs, tokens and email addresses |
+
+All rights except **Superadmin** of companyRAG belong to the class **Admins automatically**.
+
+If your environment has several companyRAG instances, each further instance has its own card, for example "companyRAG (sales)", with rights of its own.
+
+Administration of companyADMIN itself is not a grantable right. It is bound to the ADMIN role and the [admin sources](/en/company-gpt/addons/companyadmin/status/); the companyADMIN card only displays it.
+
+## An extension's card
+
+Each extension has a card of its own:
+
+- **Status** – **reachable** with response time and version, **not reachable** or **Status unknown**. Details are under [Status](/en/company-gpt/addons/companyadmin/status/).
+- **Active (tile and rights)** – switches the extension on or off. When it is off, the tile disappears from **All apps** and the extension no longer receives any rights: nobody has rights in it any more, and shared MCP tools are narrowed for agents. Switching off asks first.
+- For each right its label, technical name, class, an explanation and **Who has it:** with the roles and groups (linked to the role or group), **For everyone** or **nobody yet**.
+- The **For everyone** tick, if the right may be opened to everyone.
+
+For n8n and the AI Gateway there is only the switch **Show in companyTOOLS**. These applications manage access themselves; the switch only shows or hides their tile.
+
+## Opening a right to everyone
+
+Only administrators with the ADMIN role can open a right to everyone. **View Insights**, **Manage Microsoft 365** and rights of the class **Explicit only** cannot be opened to everyone.
+
+If you take **For everyone** back, companyADMIN asks first. Roles that held the right before keep it; everyone else loses it.
+
+## When agents lose access
+
+If you narrow a right that shared agents need, companyADMIN warns with **Access will be narrowed**: the affected agents report an error afterwards until you adjust their sharing. **Narrow anyway** applies the change regardless.
+
+## Granting to groups
+
+Every member gets a right granted to a group. For managing rights and rights of the class **Explicit only**, companyADMIN points this out: whoever manages the group thereby manages the right. Use only security groups with restricted owners for this, no Microsoft 365 groups that people can join themselves.

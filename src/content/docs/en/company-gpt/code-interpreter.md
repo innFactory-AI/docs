@@ -7,7 +7,13 @@ Language models predict text and do not calculate — they reach their limits wi
 
 ## Activation
 
-The integration can be enabled or disabled for individual messages directly in the [chat input](/en/company-gpt/chat/). It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability, allowing an agent to execute code on its own.
+The integration can be enabled or disabled for individual messages directly in the [chat input](/en/company-gpt/chat/): in the **Tools** menu via **Run Code**. It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability via the Tool Library, allowing an agent to execute code on its own.
+
+## Files
+
+Files you attach to a message do not have to be uploaded separately for the Code Interpreter. If **Run Code** is active, CompanyGPT automatically makes the attached files available to the Code Interpreter as soon as it needs them. For an agent, you can additionally add fixed files for code execution. For more information, see [File processing](/en/company-gpt/dateiverarbeitung/).
+
+Files created by the Code Interpreter, for example an analyzed Excel file or a chart, appear in the answer as a card from which you can download the file. For many formats, a preview is available there as well.
 
 ## Use cases
 

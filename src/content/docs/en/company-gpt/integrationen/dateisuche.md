@@ -3,7 +3,9 @@ title: File Search
 description: Learn how File Search in CompanyGPT uses RAG (Retrieval Augmented Generation) to enrich AI responses with specific knowledge from internal documents.
 ---
 
-File Search allows you to search the contents of files similar to the query and enrich the responses with internal, specific knowledge. File search is only available per user. 
+File Search allows you to search the contents of files similar to the query and enrich the responses with internal, specific knowledge. File search is only available per user.
+
+In the chat, you activate file search in the **Tools** menu via **File Search**. Attached files are then available to it when needed; you do not have to choose a separate upload destination. In an [agent](/en/company-gpt/agenten/#file-search), you add files permanently under **File Search**; this allows the agent to search larger document collections as well.
 
 :::note[What is file search suitable for?]
 It is best suited for longer text content that does not need to be processed in its entirety, but rather where individual sections relevant to the question should be searched for and included in the answers.

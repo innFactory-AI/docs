@@ -1,6 +1,6 @@
 ---
 title: User Interface
-description: Übersicht der CompanyGPT Benutzeroberfläche – Modellauswahl, Chat-Funktionen, Integrationen und Seitenleiste.
+description: Übersicht der CompanyGPT-Benutzeroberfläche mit Modellauswahl, Chat-Eingabe, Integrationen, Chatverlauf, Seitenleiste und Tastenkürzeln.
 ---
 
 import sidebarImg from "./ui-sidebar.png";
@@ -10,38 +10,67 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 
 ![companygpt ui](ui.png)
 
+Eine überarbeitete Chat-Oberfläche wird derzeit schrittweise eingeführt. Einen Überblick finden Sie unter [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+
 ## Modellauswahl
 
 ![model-selection](model-selection.png)
 
-Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl).
+Eine Liste der aktuell verfügbaren Modelle finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl/).
 
 ## Chat-Eingabe
 
 ![chat-input](chat-input.gif)
 Prompts lassen sich über Tastatur oder Mikrofon eingeben.
-<br />
-<br />
-**[Dateien](/de/company-gpt/dateiverarbeitung/) hinzufügen:**
-![ui-doc-select](ui-doc-select.png)
-<br />
-**Einstellungen der Integrationen:**
+
+### Dateien anhängen
+
+Über die Büroklammer im Eingabefeld laden Sie Dateien direkt hoch. Alternativ ziehen Sie Dateien per Drag & Drop in den Chat. Ein Upload-Ziel wählen Sie dabei nicht aus: CompanyGPT entscheidet anhand des Dateityps, wie eine Datei verarbeitet wird.
+
+Ist in Ihrer Umgebung SharePoint angebunden, wählen Sie nach dem Klick auf die Büroklammer zwischen **Vom lokalen Computer** und **Von SharePoint**.
+
+Welche Dateitypen wie verarbeitet werden, beschreibt die Seite [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
+
+### Integrationen
+
+Über das Symbol **Werkzeuge** neben der Büroklammer schalten Sie Integrationen für den aktuellen Chat zu:
+
 ![ui-extensions](ui-extend.png)
 
 - [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
 - [Websuche](/de/company-gpt/integrationen/websuche/)
-- [Skills](/de/company-gpt/skills)
+- [Skills](/de/company-gpt/skills/)
 - [Code ausführen](/de/company-gpt/code-interpreter/)
 - [Artefakte](/de/company-gpt/integrationen/artefakte/)
 - [MCP Server](/de/company-gpt/integrationen/mcp-server/)
+- [Erinnerung](/de/company-gpt/erinnerungen/#im-chat), sofern in Ihrer Umgebung verfügbar
 
 Durch Auswahl des Stecknadel-Symbols lassen sich die Integrationen dauerhaft an die Chat-Leiste anpinnen.
 
-## Chat-Verlauf
+## Chatverlauf
 
-Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. Chats können geteilt, umbenannt, dupliziert, archiviert und gelöscht werden. Zudem kann mit der Suche der gesamte Chat-Verlauf durchsucht werden. Konversationen können über die drei Punkte angepinned werden: 
+Der Bereich **Chatverlauf** zeigt alle Chats, die Sie bisher geführt haben. Von oben nach unten finden Sie dort:
 
-<img src={chatVerlaufImg.src} alt="Chat-Verlauf" style="width: 50%;" />
+- **Suchfeld**: **Nachrichten durchsuchen** durchsucht die Titel und die Nachrichteninhalte Ihrer Chats. Während einer Suche zeigt die Liste nur die Treffer.
+- **Projekte**: Ihre [Projekte](/de/company-gpt/projekte/) mit den jeweils zugeordneten Chats.
+- **Angepinnt**: angepinnte Chats sowie angepinnte Modelle und Agenten. Die Reihenfolge ändern Sie per Drag & Drop oder mit `Alt` + Pfeiltaste nach oben bzw. unten. Ziehen Sie einen Chat in diesen Bereich, wird er angepinnt.
+- **Chats**: alle übrigen Chats, nach Datum gruppiert. Chats, in denen gerade eine Antwort entsteht, erscheinen in einer eigenen Gruppe am Anfang der Liste. Chats, für die ein geteilter Link aktiv ist, sind mit einem Symbol gekennzeichnet.
+
+<img src={chatVerlaufImg.src} alt="Chatverlauf" style="width: 50%;" />
+
+### Chat-Menü
+
+Über die drei Punkte an einem Chat stehen folgende Aktionen zur Verfügung: **Teilen**, **Anpinnen**, **Umbenennen**, **Duplizieren**, **Projekt wechseln**, **Aus Projekt entfernen** (nur bei Chats in einem Projekt), **Archivieren** und **Löschen**. Wie das Teilen funktioniert, beschreibt [Chat](/de/company-gpt/chat/#teilen).
+
+### Filtern und sortieren
+
+Das Filtersymbol neben der Überschrift **Chats** öffnet ein Menü, mit dem Sie die Chatliste eingrenzen und ordnen:
+
+- **Anzeigen**: aktive Chats oder **Archivierte Chats**. In der Ansicht der archivierten Chats holen Sie einen Chat über **Aus Archiv holen** zurück.
+- **Chats sortieren nach**: **Aktualisiert**, **Erstellt** oder Titel, bei archivierten Chats zusätzlich **Archivierungsdatum**. Darunter wählen Sie die Reihenfolge (neueste oder älteste zuerst bzw. alphabetisch auf- oder absteigend).
+- **Lesezeichen**: zeigt nur Chats mit den ausgewählten [Lesezeichen](/de/company-gpt/lesezeichen/). Wählen Sie mehrere aus, erscheinen alle Chats, die mindestens eines davon tragen.
+
+Sind Filter aktiv, ist das Filtersymbol hervorgehoben. Über den letzten Eintrag im Menü setzen Sie alle Filter zurück. Die gewählte Sortierung merkt sich CompanyGPT, die Filter gelten bis zum nächsten Neuladen der Seite.
 
 ## Seitenleiste
 
@@ -49,23 +78,36 @@ Der Chat-Verlauf zeigt alle Chats an, die in der Vergangenheit erstellt wurden. 
   <img src={sidebarImg.src} alt="CompanyGPT Seitenleiste" style="width: 60px; flex-shrink: 0;" />
   <div>
 
-1. **Seitenleiste öffnen/verbergen**
+1. **Seitenleiste öffnen/schließen**
 2. **Neuer Chat**
-3. **[Chat-Verlauf](/de/company-gpt/user-interface/#chat-verlauf)**
-4. **Apps**
+3. **[Chatverlauf](/de/company-gpt/user-interface/#chatverlauf)**
+4. **[Apps](/de/company-gpt/addons/alle-apps/)**
 5. **[Agenten erstellen](/de/company-gpt/agenten/)**
-6. **[Skills](/de/company-gpt/skills)**
+6. **[Skills](/de/company-gpt/skills/)**
 7. **[Prompts](/de/company-gpt/prompts/)**
 8. **[Erinnerungen](/de/company-gpt/erinnerungen/)**
-9. **[Lesezeichen](/de/company-gpt/lesezeichen)**
+9. **[Lesezeichen](/de/company-gpt/lesezeichen/)**
 10. **[Dateien anhängen](/de/company-gpt/dateiverarbeitung/)**
 11. **[KI-Einstellungen](/de/company-gpt/ki-einstellungen/)**
-12. **[MCP-Einstellungen](/de/company-gpt/integrationen/mcp-server/)**
+12. **[MCP Einstellungen](/de/company-gpt/integrationen/mcp-server/)**
 
   </div>
 </div>
 
+Welche Einträge Sie sehen, hängt von Ihren Berechtigungen und der Konfiguration Ihrer Umgebung ab:
+
+- **Apps** erscheint nur, wenn in Ihrer Umgebung [Alle Apps](/de/company-gpt/addons/alle-apps/) eingerichtet ist.
+- Mit entsprechender Berechtigung erscheint unter **Neuer Chat** zusätzlich der [Agenten-Marktplatz](/de/company-gpt/agenten/#agenten-marktplatz).
+- **KI-Einstellungen** wird nur angezeigt, wenn ein Modell und kein Agent ausgewählt ist.
+
+### Kontomenü
+
+Unten links öffnen Sie über Ihr Profilbild das Kontomenü. Es enthält **Hilfe** (mit den **Tastenkürzeln**), **Archivierte Chats**, die [Einstellungen](/de/company-gpt/einstellungen/) und **Abmelden**. Ist in Ihrer Umgebung ein Guthaben eingerichtet, zeigt das Menü zusätzlich Ihr **Guthaben**.
+
 ## Tastenkürzel
 
-Die Liste aller verfügbaren Tastenkürzel kann entweder durch Drücken der Taste ? (wenn sich der Cursor nicht in einem Textfeld befindet) oder über das Benutzermenü unten links unter dem Punkt „Tastenkürzel“ aufgerufen werden.
+Die Übersicht aller Tastenkürzel öffnen Sie über das Kontomenü unten links unter **Hilfe** > **Tastenkürzel** oder mit `Strg` + `Umschalt` + `/` (macOS: `⌘` + `⇧` + `/`).
+
 ![shortcuts](shortcuts.png)
+
+Ein Klick auf eine Zeile weist einem Befehl ein eigenes Tastenkürzel zu. Über **Alles auf Standard zurücksetzen** stellen Sie die ursprüngliche Belegung wieder her. Mit dem Schalter **Tastenkürzel** oben im Dialog schalten Sie alle Tastenkürzel aus; Ihre eigenen Belegungen bleiben dabei erhalten.

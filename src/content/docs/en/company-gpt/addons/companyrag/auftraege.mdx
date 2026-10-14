@@ -1,27 +1,32 @@
 ---
 title: Jobs
-description: Indexing and synchronization jobs in companyRAG with status, error details and actions.
+description: Indexing and synchronization jobs in companyRAG with status, queue, error details and actions.
 ---
 
-Under **Jobs** you can see all indexing and synchronization runs with their current status. Every upload and every synchronization run of a [source](/en/company-gpt/addons/companyrag/quellen/) creates jobs – one job per file.
+Under **Jobs** you see all indexing and synchronization operations with their current status. Every upload and every synchronization run of a [source](/en/company-gpt/addons/companyrag/quellen/) creates jobs – one job per file.
 
 ![Job overview with status filters and columns per job](./auftraege.png)
 
-The list can be filtered by status and by collection. For each job it shows the type, file, collection and the times of creation, start and completion; failed jobs state the cause in the **Error** column.
+At the top, companyRAG shows how many jobs are in the queue and how many are running. The figure covers all collections – jobs ahead of yours count too. Queued jobs show their position in the queue (e.g. `#3`).
+
+The list can be filtered by status and by collection. For each job, **Type** (e.g. `index`), **File**, **Collection** and the times **Created**, **Started** and **Completed** are shown; failed jobs list the cause in the **Error** column.
 
 Status:
 
 - **Queued**: The document will be indexed shortly
 - **Running**: The document is currently being indexed
 - **Completed**: The document has been indexed
+- **Failed**: The document could not be indexed. More information can be found in the **Error** column.
 - **Cancelled**: The job was cancelled
-- **Failed**: The document could not be indexed. Further information can be found in the "Error" column.
 
-Actions:
+Actions per job:
 
-- **Delete**: Removes the job from the queue or the history. Status Completed → the indexed file remains. Status Queued → the file will not be indexed. Running processes cannot be deleted.
-- **Retry**: Creates the job again, for example after a resolved error.
+- **Retry job**: for failed jobs, for example after an error has been fixed.
+- **Cancel job**: for running jobs. Partially uploaded data is cleaned up. Running jobs cannot be deleted, only cancelled.
+- **Delete job**: Deletes the job from the queue or the history. Status **Completed** → the indexed file remains. Status **Queued** → the file will not be indexed.
+
+If there are failed jobs, **Retry All Failed** and **Delete All Failed** also appear.
 
 :::tip[Note]
-Large files and enabled [image description](/en/company-gpt/addons/companyrag/sammlungen/#describing-images) increase the runtime considerably, because every page is additionally sent to a vision model. Plain text files, in contrast, are indexed within seconds.
+Large files and enabled [image description](/en/company-gpt/addons/companyrag/sammlungen/#describing-images) extend the runtime considerably, as every page is additionally sent to a vision model. Plain text files, in contrast, are indexed within seconds.
 :::

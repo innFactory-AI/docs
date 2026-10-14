@@ -1,21 +1,54 @@
 ---
-title: Direkte Berechtigungen
-description: Einzelne Capabilities wie den Zugang zum Administrationsbereich gezielt erteilen – als Ausnahme zu den regulären Rollen.
+title: Direkt-Grants
+description: Die Übersicht aller bekannten Rechte in companyADMIN – Systemrechte und Erweiterungsrechte, mit Erklärung und wer sie hat. Vergeben wird an der Rolle oder Gruppe.
 ---
 
-Direkte Berechtigungen (**Direct grants**) erteilen eine einzelne Capability gezielt, ohne dafür eine eigene Rolle anzulegen. Sie sind für einmalige Ausnahmen gedacht; für dauerhafte Zuständigkeiten sind [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) der richtige Weg.
+**Zugriff** → **Direkt-Grants** zeigt alle bekannten Rechte und wer sie hat. Die Seite ist **nur eine Ansicht**: Vergeben und entziehen Sie Rechte auf der Seite der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) oder [Gruppe](/de/company-gpt/addons/companyadmin/gruppen/).
 
-![Reiter „Direct grants" mit der Schaltfläche zum Erteilen einer Berechtigung](./direct-grants.png)
+## Die Übersicht
 
-Über **Grant** erteilen Sie eine Berechtigung. Der Dialog fragt zwei Angaben ab:
+| Spalte | Inhalt |
+|---|---|
+| **Recht** | Bezeichnung und technischer Name, zum Beispiel **Zugang zum Admin-Bereich** (`access:admin`) |
+| **Art** | **System** oder **Erweiterung: …** mit dem Namen der Erweiterung |
+| **Erklärung** | Was das Recht erlaubt |
+| **Wer hat es** | Rollen, Gruppen oder **Für alle**; **niemand**, wenn es noch niemand hat |
 
-- **Role name** – die Rolle, für die die Capability gilt
-- **Capability** – die zu erteilende Berechtigung, zum Beispiel `access:admin` (Zugang zum Administrationsbereich) oder `manage:roles` (Rollen verwalten)
+Mit **Recht suchen** grenzen Sie die Liste ein. Eine aufgeklappte Zeile zeigt die **Klasse** des Rechts, ob **ADMIN hat es automatisch** gilt und ob es **beim Start gesetzt** wird.
 
-![Dialog zum Erteilen einer direkten Berechtigung](./grant-dialog.png)
+## Wo Rechte vergeben werden
 
-:::note
-Direkte Berechtigungen werden derzeit nur für Rollen unterstützt, nicht für einzelne Personen. Um einer einzelnen Person eine Berechtigung zu geben, weisen Sie ihr unter **Access** eine passende Rolle zu.
+| Art | Vergeben an | Wo |
+|---|---|---|
+| **System** (Admin-Rechte) | Nur Rollen | Rolle → Reiter **companyGPT** → Abschnitt **Admin-Rechte in LibreChat** |
+| **Erweiterung** | Rollen, Gruppen oder für alle | Rolle oder Gruppe → Reiter **Erweiterungen**; für alle unter [Konfiguration → Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/) |
+
+An einzelne Personen werden keine Rechte vergeben. Soll eine Person ein Recht bekommen, geben Sie ihr eine Rolle mit diesem Recht (Rolle → **Mitglieder**) oder nehmen sie in eine Gruppe mit diesem Recht auf.
+
+## Systemrechte
+
+Die Systemrechte steuern den Administrationsbereich. Die Rolle ADMIN bekommt sie bei jedem Start von CompanyGPT automatisch. Ein Recht „verwalten“ schließt das passende Recht „ansehen“ ein.
+
+| Recht | Technischer Name | Erlaubt |
+|---|---|---|
+| **Zugang zum Admin-Bereich** | `access:admin` | Öffnet den Administrationsbereich |
+| **Nutzer ansehen** / **Nutzer verwalten** | `read:users` / `manage:users` | Nutzerliste und Nutzerdetails ansehen bzw. Nutzer bearbeiten |
+| **Rollen ansehen** / **Rollen verwalten** | `read:roles` / `manage:roles` | Rollen und ihre Rechte ansehen bzw. Rollen anlegen und ihre Rechte ändern |
+| **Gruppen ansehen** / **Gruppen verwalten** | `read:groups` / `manage:groups` | Gruppen und Mitglieder ansehen bzw. Gruppen anlegen, ändern und Mitglieder pflegen |
+| **Konfiguration ansehen** / **Konfiguration bearbeiten** | `read:configs` / `manage:configs` | Konfiguration und Anpassungen ansehen bzw. ändern |
+| **Konfigurations-Profile zuweisen** | `assign:configs` | Anpassungen Rollen, Gruppen oder Personen zuordnen |
+| **Agenten ansehen** / **Agenten verwalten** | `read:agents` / `manage:agents` | Alle Agents ansehen bzw. bearbeiten und freigeben |
+| **Prompts ansehen** / **Prompts verwalten** | `read:prompts` / `manage:prompts` | Alle Prompts ansehen bzw. bearbeiten und freigeben |
+| **Skills ansehen** / **Skills verwalten** | `read:skills` / `manage:skills` | Alle Skills ansehen bzw. bearbeiten und freigeben |
+| **Geteilte Links ansehen** / **Geteilte Links verwalten** | `read:sharedlinks` / `manage:sharedlinks` | Geteilte Links ansehen bzw. verwalten |
+| **MCP-Server verwalten** | `manage:mcpservers` | MCP-Server verwalten |
+| **Nutzung ansehen** | `read:usage` | Nutzungsdaten ansehen |
+| **Audit-Protokoll ansehen** | `read:audit_log` | Die [Protokolle](/de/company-gpt/addons/companyadmin/audit-log/) ansehen und exportieren |
+| **Insights ansehen** | `read:insights` | Älterer Weg zu Insights; neu vergeben Sie dafür das Erweiterungsrecht **Insights ansehen** |
+| **Code-Umgebungen verwalten** | `manage:code_environments` | Code-Umgebungen des Deployments verwalten |
+
+:::caution
+**Rollen verwalten** und **Gruppen verwalten** wirken wie Admin-Rechte: Eine Rolle kann jedes Recht tragen, und Gruppenmitgliedschaften geben Rechte weiter. Vergeben Sie sie nur an Rollen, die ohnehin Administratoren sein sollen.
 :::
 
-Jede erteilte und entzogene Berechtigung wird im [Audit-Log](/de/company-gpt/addons/companyadmin/audit-log/) protokolliert. Wer aktuell Administrationszugriff hat, zeigt der Reiter **Admin sources** unter [Benutzer und Gruppen](/de/company-gpt/addons/companyadmin/benutzer-und-gruppen/).
+Die Rechte für die Erweiterungen, etwa **Übersetzen nutzen** oder **Insights ansehen**, beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).

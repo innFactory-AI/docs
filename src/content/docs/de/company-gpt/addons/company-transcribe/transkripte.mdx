@@ -3,7 +3,7 @@ title: Transkripte bearbeiten
 description: Detailansicht eines Transkripts mit Metadaten, Audiowiedergabe, Textkorrektur, Sprecherzuweisung und Export als Markdown-Datei.
 ---
 
-Ein Klick auf einen Eintrag in der Übersicht **Transkripte** öffnet die Detailansicht. Dort sehen Sie die Metadaten der Aufnahme, können das Audio abspielen, den erkannten Text korrigieren, Sprecher benennen und das Ergebnis exportieren.
+Ein Klick auf eine Zeile in der Übersicht **Transkripte** öffnet die Detailansicht; nach einer Aufnahme oder einem Upload öffnet companyTRANSCRIBE sie automatisch. Dort sehen Sie die Metadaten der Aufnahme, können das Audio abspielen, den erkannten Text korrigieren, Sprecher benennen und das Ergebnis exportieren. **Zurück** führt zur Übersicht.
 
 ## Metadaten der Aufnahme
 
@@ -22,7 +22,9 @@ Der Kopfbereich der Detailansicht führt die technischen Angaben zur Transkripti
 | **Sprache** | bleibt leer (`—`), da immer auf Deutsch transkribiert wird |
 | **Sprechererkennung** | `Aktiv` oder `Aus`, je nach Einstellung bei der Aufnahme |
 
-Solange die Transkription läuft, steht an der Stelle des Textes der Hinweis „Wird transkribiert… Je nach Länge der Aufnahme kann dies einige Minuten dauern.“ Über **Bearbeiten** im Kopfbereich ändern Sie Titel und Beschreibung des Eintrags.
+Solange die Transkription läuft, steht an der Stelle des Textes der Hinweis „Wird transkribiert... Je nach Länge der Aufnahme kann dies einige Minuten dauern.“ Ist sie fehlgeschlagen, erscheint „Transkription fehlgeschlagen“, wenn möglich mit dem Grund. Enthält die Aufnahme keine erkennbare Sprache, meldet die Detailansicht „In dieser Aufnahme wurde keine Sprache erkannt.“
+
+Über **Bearbeiten** neben dem Titel ändern Sie Titel und Beschreibung des Eintrags; **Speichern** übernimmt die Änderung.
 
 :::note
 Das Feld **Sprache** zeigt einen Gedankenstrich. Das ist kein Fehler: companyTRANSCRIBE transkribiert immer auf Deutsch, eine Sprachauswahl gibt es weder bei der Aufnahme noch beim Upload.
@@ -36,7 +38,7 @@ Unter **Audio** steht ein Player, über den sich die Aufnahme jederzeit erneut a
 
 Der Abschnitt **Transkript** bietet zwei Aktionen:
 
-- **Bearbeiten** — schaltet den Text in ein bearbeitbares Feld. Die Aktion wechselt dabei auf **Fertig**, mit dem Sie die Änderung übernehmen.
+- **Bearbeiten** — schaltet den Text in bearbeitbare Felder, eines je Redebeitrag. Änderungen speichert companyTRANSCRIBE während der Eingabe; die Aktion wechselt auf **Fertig**, mit dem Sie die Bearbeitung beenden.
 - **Synchronisieren** — Beim Abspielen läuft das Transkript automatisch mit. Scrollen Sie selbst im Text weg, erscheint **Synchronisieren** und schaltet das Mitlaufen wieder ein.
 
 Typischerweise korrigieren Sie hier Eigennamen und Fachbegriffe, die die Erkennung falsch verstanden hat — etwa ein „App“, das eigentlich „API“ heißen sollte. Die Korrektur wirkt sich auch auf den Export aus.
@@ -55,7 +57,7 @@ Die Sprechererkennung unterscheidet bis zu 35 Stimmen je Aufnahme. Benennen Sie 
 
 ## Als Markdown exportieren
 
-Die Schaltfläche **.md herunterladen** oben rechts speichert das vollständige Transkript als Markdown-Datei. Bei mehreren Sprechern enthält die Datei die vergebenen Namen als Überschriften, sodass sie sich unmittelbar weiterverarbeiten lässt — etwa als Grundlage für ein Protokoll oder zur Ablage in einer Wissenssammlung.
+Die Schaltfläche **.md herunterladen** oben rechts speichert das vollständige Transkript als Markdown-Datei; sie erscheint, sobald die Transkription abgeschlossen ist. Bei mehreren Sprechern enthält die Datei die vergebenen Namen als Überschriften, sodass sie sich unmittelbar weiterverarbeiten lässt — etwa als Grundlage für ein Protokoll oder zur Ablage in einer Wissenssammlung.
 
 ## Wie geht es weiter?
 

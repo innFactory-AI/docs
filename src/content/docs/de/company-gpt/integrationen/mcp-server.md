@@ -9,13 +9,19 @@ Das MCP basiert auf einer Client-Server-Architektur, bei der CompanyGPT als Clie
 
 Mehr Informationen zu MCP finden Sie hier: [Prompt Engineering / MCP](/de/prompt-engineering/prompt-techniken/tool-use#das-mcp-model-context-protocol-als-tool)
 
+## MCP Server nutzen
+
+Die MCP Server, die Ihnen zur Verfügung stehen, finden Sie in der linken Seitenleiste unter **MCP Einstellungen**. Dort sehen Sie den Status jedes Servers. Verlangt ein Server eine Anmeldung oder einen eigenen Schlüssel, können Sie sich dort mit **Verbinden** anmelden bzw. den Server konfigurieren.
+
+Im [Chat](/de/company-gpt/chat/#integrationen) wählen Sie MCP Server über die Chateingabe aus, in [Agenten](/de/company-gpt/agenten/#mcp-server) über die Tool-Bibliothek.
+
 ## MCP Server hinzufügen
 
-MCP Server können in der rechten Seitenleiste über die MCP Einstellungen hinzugefügt werden. Admin-Benutzer können einstellen, wie die MCP Server genutzt werden können. Die Berechtigungen können für Benutzen, Erstellen und Teilen vergeben werden.
+Neue MCP Server können nur Personen anlegen, deren Rolle das erlaubt. Normale Nutzer können in der Standardeinstellung keine MCP Server anlegen. Die Berechtigungen für Benutzen, Erstellen und Teilen von MCP Servern vergeben Administratoren in [companyADMIN](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) unter **Zugriff** → **Rollen** → Rolle öffnen → Reiter **companyGPT**, Funktion **MCP-Server**. Welche Domains für MCP Server erlaubt sind, legen Administratoren in companyADMIN unter **Konfiguration** → **MCP-Domains** fest.
+
+Mit der entsprechenden Berechtigung öffnet sich über das **+** oben in den **MCP Einstellungen** (Tooltip **MCP hinzufügen**) der Dialog **MCP Server hinzufügen**.
 
 ![add-mcp](add-mcp.png)
-
-Durch Klick auf **+ MCP hinzufügen** öffnet sich der Dialog, um MCP Server hinzuzufügen.
 
 ### MCP Server Eigenschaften
 
@@ -25,18 +31,18 @@ Folgende Eigenschaften können vergeben werden:
 - **Name**: Der Name des MCP Servers, sichtbar in der Übersicht und in jeder Auswahl
 - **Beschreibung** `optional`: Eine Beschreibung, welche in der Übersicht angezeigt wird
 - **MCP-Server-URL**: Die URL für den MCP Server. Diese URLs können sowohl für interne Service (innerhalb des Clusters) oder über das Internet erreichbare MCP-Server URLs sein.
-- **Server Typ**: Streamable HTTP oder SSE (vom Server vorgegeben)
+- **Transport**: Streamable HTTPS oder SSE (vom Server vorgegeben)
 - **Authentifizierung**:
-  - **Auto Detect**: Automatische Erkennung mit OAuth `Dynamic Client Registration` oder gänzlich ohne Authentifizierung
-  - **API-Schlüssel**: Authentifizierung mit API Schlüssel, auswählbar ob ein API Schlüssel für alle User oder auf per-User Basis.
-  - **Manual OAuth**: OAuth 2.1 konforme Client registrierung mit Client ID, Secret, Redirect Uri, Authorisierungs- und Token-URL.
+  - **Keine (Automatische Erkennung)**: Automatische Erkennung mit OAuth `Dynamic Client Registration` oder gänzlich ohne Authentifizierung
+  - **API-Schlüssel**: Authentifizierung mit API Schlüssel, auswählbar ob ein API Schlüssel für alle User gilt oder jeder Benutzer einen eigenen Schlüssel angibt.
+  - **OAuth**: OAuth 2.1 konforme Client-Registrierung mit Client ID, Secret, Redirect Uri, Autorisierungs- und Token-URL.
 - **Ich vertraue dieser Anwendung**: Kontrollkästchen zum Bestätigen.
 
-Bei erfolgreicher Initialisierung wird der MCP Server in der rechten Seitenleiste nun in der Übersicht angezeigt und kann über den [Chat](/de/company-gpt/chat/#integrationen) oder in [Agenten](/de/company-gpt/agenten/) genutzt werden.
+Bei erfolgreicher Initialisierung wird der MCP Server in den **MCP Einstellungen** in der linken Seitenleiste angezeigt und kann über den [Chat](/de/company-gpt/chat/#integrationen) oder in [Agenten](/de/company-gpt/agenten/) genutzt werden.
 
 ## MCP Server teilen
 
-Sobald ein MCP Server hinzugefügt wurde, kann dieser geteilt werden. Dazu muss in der übersicht in der rechten Seitenleiste auf den Einstellungen Icon geklickt werden. Danach kann das bekannte Teilen-Menü aufgerufen werden:
+Sobald ein MCP Server hinzugefügt wurde, kann dieser geteilt werden, sofern Ihre Rolle das Teilen erlaubt. Dazu öffnen Sie den Server in den **MCP Einstellungen** in der linken Seitenleiste über **Bearbeiten**. Im Dialog **MCP-Server bearbeiten** kann dann das bekannte Teilen-Menü aufgerufen werden:
 
 ![share-mcp](share-mcp.png)
 

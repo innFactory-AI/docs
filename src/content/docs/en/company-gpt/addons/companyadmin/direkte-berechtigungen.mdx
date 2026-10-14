@@ -1,21 +1,54 @@
 ---
 title: Direct grants
-description: Grant individual capabilities such as access to the administration area selectively – as an exception to regular roles.
+description: The overview of every known right in companyADMIN – system rights and extension rights, with an explanation and who holds them. Rights are granted on the role or group.
 ---
 
-Direct grants assign a single capability selectively, without creating a dedicated role for it. They are meant for one-off exceptions; for permanent responsibilities, [roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) are the right way.
+**Access** → **Direct grants** shows every known right and who holds it. The page is **view only**: you grant and revoke rights on the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or [group](/en/company-gpt/addons/companyadmin/gruppen/) page.
 
-!["Direct grants" tab with the button for granting a capability](./direct-grants.png)
+## The overview
 
-Use **Grant** to assign a capability. The dialog asks for two values:
+| Column | Content |
+|---|---|
+| **Right** | Label and technical name, for example **Access the admin area** (`access:admin`) |
+| **Kind** | **System** or **Extension: …** with the extension's name |
+| **Explanation** | What the right allows |
+| **Who has it** | Roles, groups or **Everyone**; **nobody** if nobody holds it yet |
 
-- **Role name** – the role the capability applies to
-- **Capability** – the capability to grant, for example `access:admin` (access the admin area) or `manage:roles` (manage roles)
+Use **Search right** to narrow the list. An expanded row shows the right's **Class**, whether **ADMIN has it automatically** applies, and whether it is **Set at start**.
 
-![Dialog for granting a direct capability](./grant-dialog.png)
+## Where rights are granted
 
-:::note
-Direct grants are currently supported for roles only, not for individual people. To give an individual a capability, assign them a suitable role under **Access**.
+| Kind | Granted to | Where |
+|---|---|---|
+| **System** (admin rights) | Roles only | Role → **companyGPT** tab → section **Admin rights in LibreChat** |
+| **Extension** | Roles, groups or everyone | Role or group → **Extensions** tab; for everyone under [Configuration → Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/) |
+
+No rights are granted to individual people. If a person should get a right, give them a role with that right (role → **Members**) or add them to a group with that right.
+
+## System rights
+
+The system rights control the administration area. The ADMIN role receives them automatically at every CompanyGPT start. A "manage" right includes the matching "view" right.
+
+| Right | Technical name | Allows |
+|---|---|---|
+| **Access the admin area** | `access:admin` | Opens the administration area |
+| **View users** / **Manage users** | `read:users` / `manage:users` | View the user list and user details, or edit users |
+| **View roles** / **Manage roles** | `read:roles` / `manage:roles` | View roles and their rights, or create roles and change their rights |
+| **View groups** / **Manage groups** | `read:groups` / `manage:groups` | View groups and members, or create and change groups and maintain members |
+| **View configuration** / **Manage configuration** | `read:configs` / `manage:configs` | View or change configuration and adjustments |
+| **Assign configuration profiles** | `assign:configs` | Assign adjustments to roles, groups or people |
+| **View agents** / **Manage agents** | `read:agents` / `manage:agents` | View every agent, or edit and share every agent |
+| **View prompts** / **Manage prompts** | `read:prompts` / `manage:prompts` | View every prompt, or edit and share every prompt |
+| **View skills** / **Manage skills** | `read:skills` / `manage:skills` | View every skill, or edit and share every skill |
+| **View shared links** / **Manage shared links** | `read:sharedlinks` / `manage:sharedlinks` | View or manage shared links |
+| **Manage MCP servers** | `manage:mcpservers` | Manage MCP servers |
+| **View usage** | `read:usage` | View usage data |
+| **View audit log** | `read:audit_log` | View and export the [logs](/en/company-gpt/addons/companyadmin/audit-log/) |
+| **View insights** | `read:insights` | An older way into Insights; for new access grant the extension right **View Insights** |
+| **Manage code environments** | `manage:code_environments` | Manage the deployment's code environments |
+
+:::caution
+**Manage roles** and **Manage groups** act like admin rights: a role can carry any right, and group memberships pass rights on. Grant them only to roles that should be administrators anyway.
 :::
 
-Every granted and revoked capability is recorded in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/). Who currently holds administration access is shown by the **Admin sources** tab under [Users and groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/).
+The rights for the extensions, such as **Use translation** or **View Insights**, are described in [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).

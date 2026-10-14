@@ -13,17 +13,26 @@ companyFILES has two entry points that work on the same set of files: the **chat
 |---|---|
 | Excel (`.xlsx`) | tables from CSV, JSON and arrays; advanced spreadsheets with formulas, conditional formatting and autofilters; filling templates |
 | Word (`.docx`) | documents from Markdown, HTML or JSON; templates with placeholders; appending to or replacing content in existing documents |
-| PowerPoint (`.pptx`) | presentations from text or templates; reading, extending and reworking individual slides of existing decks |
+| PowerPoint (`.pptx`) | presentations from text, templates or the layouts of a slide master; reading, extending and reworking individual slides of existing decks |
 | PDF | PDFs from Markdown or HTML; reading and filling PDF forms |
 | OpenDocument (`.odt`) | documents from text, HTML or templates |
 | Text and code | any text-based file, for example SQL, JSON, YAML, XML, HTML, Python or JS |
-| Visualizations | interactive charts, Mermaid diagrams and maps; exportable as PNG or embeddable in a document |
+| Visualizations | interactive charts, Mermaid diagrams and maps; exportable as images or embeddable in a document |
 
-On top of that come reading and extracting data from existing files (Excel, Word, PDF and – depending on the configuration – further formats such as emails or ZIP archives), conversion between formats (e.g. Excel → CSV/JSON, Markdown/HTML/Word → PDF; see [File conversion](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#file-conversion--data-extraction)) and ZIP archives for downloading several documents at once.
+On top of that come reading and extracting data from existing files (Excel, Word, PDF), conversion between formats (e.g. Excel → CSV/JSON, Markdown/HTML/Word → PDF; see [File conversion](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#file-conversion--data-extraction)) and ZIP archives for downloading several documents at once.
+
+Depending on your environment, companyFILES can also:
+
+- **read e-mails, archives and older formats** – Outlook messages including attachments, ZIP archives, `.doc`/`.xls`/`.ppt`, OpenDocument, EPUB and scans via text recognition; see [Reading e-mails, archives and older formats](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#reading-e-mails-archives-and-older-formats).
+- **analyze CAD, BIM and 3D models** – DXF, STEP, IFC, STL and further formats, with an interactive viewer in the chat; see [CAD, BIM and 3D](/en/company-gpt/addons/companyfiles/cad-und-3d/).
+
+Newly created documents carry a machine-readable [AI label](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#ai-labeling) in their metadata.
 
 ## Access
 
-You reach the interface in CompanyGPT via **Apps → Files**. In the chat, companyFILES is available as the **Files** tool; an agent with that tool and the matching skills is the usual starting point – see [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/).
+You reach the interface in CompanyGPT via **Apps → Files** or via the [All apps](/en/company-gpt/addons/alle-apps/) page. It uses the [shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/) of the CompanyGPT addons and signs you in with your chat session – no separate sign-in is needed.
+
+In the chat, companyFILES is available as the **Files** tool; an agent with that tool and the matching skills is the usual starting point – see [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/).
 
 :::tip[Note]
 A video tutorial for using companyFILES with CompanyGPT can be found here:
@@ -34,10 +43,11 @@ A video tutorial for using companyFILES with CompanyGPT can be found here:
 
 ## What next?
 
-- [The interface](/en/company-gpt/addons/companyfiles/oberflaeche/) – managing documents, templates, uploads and visualizations.
-- [Settings](/en/company-gpt/addons/companyfiles/einstellungen/) – colors, typography, document standards and logo for every generated document.
+- [The interface](/en/company-gpt/addons/companyfiles/oberflaeche/) – managing documents, templates and visualizations, uploading files.
+- [Settings](/en/company-gpt/addons/companyfiles/einstellungen/) – colors, typography, document defaults and logo for every generated document.
 - [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/) – tools, skills and limits of a companyFILES agent.
-- [Creating documents](/en/company-gpt/addons/companyfiles/dokumente-erstellen/) – from CSV to a formatted Excel spreadsheet, from Markdown to PDF.
+- [Creating documents](/en/company-gpt/addons/companyfiles/dokumente-erstellen/) – from CSV to a formatted Excel spreadsheet, from Markdown to PDF, reading e-mails and archives.
 - [Visualizations](/en/company-gpt/addons/companyfiles/visualisierungen/) – charts, diagrams and maps in the chat.
 - [Editing presentations](/en/company-gpt/addons/companyfiles/praesentationen/) – reworking and extending existing decks.
 - [Templates](/en/company-gpt/addons/companyfiles/vorlagen/) – preparing placeholders, uploading templates and using them in the chat.
+- [CAD, BIM and 3D](/en/company-gpt/addons/companyfiles/cad-und-3d/) – analyzing, viewing and converting models (not available in all environments).

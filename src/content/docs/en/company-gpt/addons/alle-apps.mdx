@@ -1,0 +1,76 @@
+---
+title: All apps
+description: The “All apps” overview shows, as tiles, all applications and links enabled for your account – as a page of its own and as a list in the chat.
+---
+
+**All apps** is the entry point to all applications around CompanyGPT. The overview shows, as tiles, the addons and links that are enabled for your account. Which tiles you see is decided by your organization.
+
+## Opening All apps
+
+You can reach the overview in two ways.
+
+**As a page.** In every addon, **All apps** in the sidebar takes you to the overview (see [Shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/)). The address is `https://COMPANY.company-gpt.com/companygpt`. The page is called **All apps** and shows the hint **Select an app to get started.** The first tile is always **CompanyGPT**, which takes you back to the chat. Clicking a tile opens the app in the same tab.
+
+**In the chat.** In the chat sidebar, **Apps** opens a compact list of the same apps, without the CompanyGPT tile. Clicking an entry opens the app in a new tab, so the chat stays open.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+## Tiles
+
+Each tile shows the name of the app and a short description. These tiles may appear:
+
+| Tile | Text on the tile | Learn more |
+|---|---|---|
+| **CompanyGPT** | AI chat assistant for your company | [User interface](/en/company-gpt/user-interface/) |
+| **Files** | Upload, manage and search files in chat. | [companyFILES](/en/company-gpt/addons/companyfiles/) |
+| **Knowledge** | Turn your documents into a searchable knowledge base. | [companyRAG](/en/company-gpt/addons/companyrag/) |
+| **Translate** | Quickly translate texts and documents. | [companyTRANSLATE](/en/company-gpt/addons/company-translate/) |
+| **Transcribe** | Convert audio and meetings to text. | [companyTRANSCRIBE](/en/company-gpt/addons/company-transcribe/) |
+| **Learn** | Courses, videos and quizzes for your team. | [companyLEARN](/en/company-gpt/addons/companylearn/) |
+| **Admin** | Manage users, groups and settings. | [companyADMIN](/en/company-gpt/addons/companyadmin/) |
+| **Insights** | Usage and costs of companyGPT. | [Insights](/en/company-gpt/addons/companyadmin/insights/) |
+| **AI Gateway** | Control LLM providers, budgets and routing. | – |
+| **n8n** | Workflows and automation (infra admins only). | – |
+
+The **Knowledge** tile opens companyRAG, not [companyKNOWLEDGE](/en/company-gpt/addons/companyknowledge/).
+
+Some environments still have a **Dashboard** tile for the former companyDASHBOARD. Today you analyze usage and costs with [Insights](/en/company-gpt/addons/companyadmin/insights/).
+
+If your organization uses several knowledge areas in companyRAG, there may be several tiles for them, each with its own name.
+
+### Alpha and Beta
+
+Some tiles carry the label **Alpha** or **Beta**. It marks apps that are not yet in their final form: **Alpha** for an early stage, **Beta** for a more advanced one. Features of these apps may still change.
+
+### Your organization's own links
+
+Besides the addons, **All apps** can show links your organization has added, for example to the intranet. They appear after the addon tiles. Such a tile is only a link: whether you can use the target is decided by the target itself.
+
+## If no apps appear
+
+- While the tiles are loading, grey placeholders stand in their place.
+- If no app is enabled for your account, the list in the chat shows: **No apps are currently available for your account. Contact your administrator.** In this case the **All apps** page shows only the **CompanyGPT** tile.
+- If you are no longer signed in, **Sign-in required** appears with the **Sign in** button. From the **Apps** area in the chat, the sign-in opens in the main window.
+
+## For administrators
+
+### Who sees which tiles
+
+Depending on the environment, the tiles come from companyADMIN or from the configuration that innFactory maintains for your environment.
+
+- **From companyADMIN:** The tile of an addon is shown to people who have the corresponding permission. Under **Configuration → [Tools](/en/company-gpt/addons/companyadmin/tools/)** you manage the **Extension tiles** and, with **Add tile**, create **Custom tiles**: with **Name**, **Address**, optionally **Description** and **Icon**, and the **Visibility** (**Every signed-in user**, **Specific roles** or **Specific groups**). The page also shows whether All apps reads its tiles from companyADMIN in your environment.
+- **From the configuration:** Otherwise innFactory controls visibility through groups in your directory. Request changes from innFactory.
+
+The **Alpha** and **Beta** labels as well as additional links via the configuration are set up by innFactory on request.
+
+Changes to the tiles appear at the latest when All apps is reloaded.
+
+### A tile is not a permission
+
+:::caution
+A tile is only a link. Whether someone may use an addon is checked by the addon itself, based on their permissions. Anyone who sees a tile but lacks the permission gets the **No access** page when opening it. Conversely, hiding a tile does not by itself revoke any permission.
+:::
+
+You grant permissions for addons in companyADMIN, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/). One exception is an extension's switch under **Configuration → Tools**: for addons whose permissions companyADMIN manages, it switches tile and permissions together (**Active (tile and rights)**). For applications that manage access themselves, such as n8n and AI Gateway, it only shows or hides the tile.

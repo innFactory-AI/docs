@@ -180,18 +180,6 @@ These open-source models run in the STACKIT Cloud in data centers in Germany and
 - **When:** more complex enterprise questions, longer responses, better level of detail
 - **Why:** the 70B class provides significantly more quality than small models while retaining OSS flexibility
 
-### google/gemma-3-27b-it
-
-- **For:** versatile instruct tasks with good efficiency
-- **When:** internal assistants, knowledge work, structured text production
-- **Why:** strong mid-range between small fast and large expensive OSS models
-
-### Qwen/Qwen3.6-27B
-
-- **For:** versatile text tasks and strong multilingual understanding
-- **When:** creative writing, logical problem-solving, precise translations
-- **Why:** the latest Qwen generation with an optimal balance of compact size and high intelligence
-
 ### openai/gpt-oss-20b
 
 - **For:** lightweight open-source text tasks

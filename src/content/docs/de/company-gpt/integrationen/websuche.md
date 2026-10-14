@@ -5,7 +5,11 @@ description: Erfahren Sie, wie CompanyGPT mit der Websuche aktuelle Informatione
 
 ## Websuche
 
-Die Websuche ermöglicht es CompanyGPT, das Internet zu durchsuchen und aktuelle Inhalte in die Antwort einzubeziehen. Die Suche muss vom Benutzer für die aktuelle Nachricht aktiviert werden.
+Die Websuche ermöglicht es CompanyGPT, das Internet zu durchsuchen und aktuelle Inhalte in die Antwort einzubeziehen. Die Suche muss vom Benutzer für die aktuelle Nachricht aktiviert werden. Das geschieht in der Chateingabe im Menü **Werkzeuge** über **Web-Suche**.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
 
 Auf Wunsch können die Quellen direkt in der Antwort mit angegeben werden.
 
@@ -20,5 +24,7 @@ Die Websuche basiert auf dem Prinzip des „Grounding" – das KI-Modell stützt
 WebFetch eignet sich, wenn gezielt der Inhalt einer bestimmten Webseite abgerufen und verarbeitet werden soll. Im Gegensatz zur Websuche, die eigenständig im Internet recherchiert, ruft WebFetch eine vom Benutzer angegebene URL auf und extrahiert deren Inhalt.
 
 Das ist besonders nützlich, wenn Sie den Inhalt einer bekannten Seite zusammenfassen, analysieren oder als Grundlage für eine Antwort verwenden möchten.
+
+WebFetch wird als [MCP Server](/de/company-gpt/integrationen/mcp-server/) bereitgestellt. Im Chat wählen Sie ihn über die Chateingabe aus, in [Agenten](/de/company-gpt/agenten/#mcp-server) fügen Sie ihn über die Tool-Bibliothek hinzu.
 
 ![WebFetch Beispiel](web-fetch-de.png)

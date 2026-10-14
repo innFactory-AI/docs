@@ -1,0 +1,68 @@
+---
+title: companyLEARN
+description: Lernplattform in CompanyGPT mit Video- und Textlektionen, Quizzen mit Bestehensgrenze und Kapiteln, die nacheinander freigeschaltet werden – in der eigenen Oberfläche und direkt im Chat.
+---
+
+companyLEARN ist die Lernplattform in CompanyGPT. Kurs-Admins stellen darin Kurse aus Video- und Textlektionen zusammen, ergänzen Quizze und veröffentlichen die Kurse. Lernende schreiben sich ein, arbeiten die Lektionen durch und legen die Quizze ab – in der eigenen Oberfläche von companyLEARN oder direkt im Chat.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+## So ist ein Kurs aufgebaut
+
+| Baustein | Beschreibung |
+|---|---|
+| **Kurs** | Titel, optionale Beschreibung und eine Folge von Kapiteln. Ein neuer Kurs ist zunächst ein Entwurf; Lernende sehen ihn erst, wenn er veröffentlicht ist. |
+| **Kapitel** | Gliedert den Kurs. Jedes Kapitel enthält Lektionen und optional ein Quiz. |
+| **Lektion** | Entweder ein **Video** oder ein **Text**, der in Markdown geschrieben wird. |
+| **Quiz** | Höchstens eines pro Kapitel, mit Fragen, Antwortoptionen und einer **Bestehensgrenze** in Prozent. |
+
+Ein Kapitel ist abgeschlossen, wenn alle seine Lektionen erledigt sind und – falls vorhanden – sein Quiz bestanden ist. Bei eingeschalteter **Kapitel-Sperre** (Standard für neue Kurse) öffnet sich ein Kapitel erst, wenn das vorherige abgeschlossen ist. Der Fortschritt in einem Kurs ist der Anteil der abgeschlossenen Kapitel.
+
+## Zwei Wege, ein Lernstand
+
+- **Die Oberfläche von companyLEARN** – Dashboard, Kurskatalog, Lektionen und Quizze, für Kurs-Admins zusätzlich die Verwaltung.
+- **Der Chat** – über den MCP-Server **Learn** findet der Assistent Kurse, zeigt den Fortschritt und öffnet Lektionen und Quizze direkt in der Unterhaltung.
+
+Beide Wege arbeiten auf denselben Daten: Was Sie im Chat erledigen, ist auch in der Oberfläche als erledigt markiert – und umgekehrt.
+
+## Für wen?
+
+| Wer | Aufgaben | Passende Seiten |
+|---|---|---|
+| **Lernende** | Kurse finden, sich einschreiben, Lektionen ansehen, Quizze ablegen | [Lernen](/de/company-gpt/addons/companylearn/lernen/), [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) |
+| **Kurs-Admins und Trainer** | Kurse, Kapitel, Lektionen und Quizze anlegen, Videos hochladen, Kurse veröffentlichen | [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/de/company-gpt/addons/companylearn/videos/) |
+| **Technische Admins** | Rechte vergeben, andere Systeme über die REST-API anbinden | [Rechte](#rechte), [Externe API](/de/company-gpt/addons/companylearn/api/) |
+
+## Aufruf
+
+Sie öffnen companyLEARN in CompanyGPT über [**Alle Apps**](/de/company-gpt/addons/alle-apps/) und die Kachel **Lernen**. Direkt erreichen Sie companyLEARN unter:
+
+```
+https://FIRMA.company-gpt.com/companygpt/learn/
+```
+
+companyLEARN verwendet Ihre Anmeldung aus dem CompanyGPT-Chat; eine eigene Anmeldung gibt es nicht. Seitenleiste, Kontomenü und die übrigen Elemente, die alle Addons gemeinsam haben, beschreibt die Seite [Gemeinsame Oberfläche](/de/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Rechte
+
+companyLEARN kennt zwei Rechte:
+
+| Recht | Erlaubt |
+|---|---|
+| **Kurse nutzen** | companyLEARN öffnen, sich in Kurse einschreiben, lernen und die Learn-Tools im Chat verwenden |
+| **Kurse verwalten** | zusätzlich die Bereiche **Kursverwaltung**, **Videos** und **API-Schlüssel** |
+
+Wer das Recht **Kurse nutzen** nicht hat, sieht beim Aufruf die Seite **Kein Zugriff**; auch die Learn-Tools im Chat stehen dann nicht zur Verfügung. Für die Verwaltung braucht eine Person beide Rechte.
+
+In der Regel vergibt Ihr Administrator die Rechte in companyADMIN unter **Erweiterungen** (siehe [Erweiterungsrechte](/de/company-gpt/addons/companyadmin/erweiterungen/)). In einzelnen Umgebungen legt innFactory sie bei der Einrichtung fest; wenden Sie sich in diesem Fall an Ihren Administrator.
+
+## Wie geht es weiter?
+
+- [Die Oberfläche](/de/company-gpt/addons/companylearn/oberflaeche/) – Menü, Verwaltungsbereich und eingebettete Ansicht im Chat.
+- [Lernen](/de/company-gpt/addons/companylearn/lernen/) – Kurse finden, einschreiben, Lektionen, Quizze und Dashboard.
+- [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) – den MCP-Server Learn nutzen und einem Agenten zuweisen.
+- [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/) – Kurse, Kapitel, Lektionen und Quizze anlegen und veröffentlichen.
+- [Videos](/de/company-gpt/addons/companylearn/videos/) – Videos hochladen, in Lektionen verwenden und löschen.
+- [Externe API](/de/company-gpt/addons/companylearn/api/) – API-Schlüssel, Scopes und die REST-API für Integrationen.

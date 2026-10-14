@@ -1,32 +1,54 @@
 ---
 title: Kategorien
-description: Kategorien für den Agenten-Marktplatz in CompanyGPT anlegen, umbenennen, ausblenden oder löschen.
+description: Kategorien für den Agent-Marktplatz in companyADMIN anlegen, umbenennen, ausblenden oder löschen.
 ---
 
-Kategorien strukturieren den **Agenten-Marktplatz**. Sie werden unter **Content** im Reiter **Categories** gepflegt und erscheinen anschließend als Filter im Marktplatz sowie als Auswahlfeld im Agent-Builder.
+Kategorien strukturieren den **Agent-Marktplatz** von CompanyGPT. Sie erscheinen als Reiter im Marktplatz und als Auswahlfeld im Agent-Builder. Sie pflegen sie unter **Inhalte** → **Kategorien**.
+
+## Die Tabelle
+
+| Spalte | Inhalt |
+|---|---|
+| **Bezeichnung** | Angezeigter Name im Marktplatz |
+| **Wert** | Technischer Schlüssel |
+| **Status** | **Eigene** für selbst angelegte Kategorien, **Ausgeblendet** für ausgeblendete |
+| **Agents** | Wie viele Agents die Kategorie nutzen |
+
+Mit **Kategorie suchen** und den Filtern **Sichtbarkeit** (**Sichtbar** oder **Ausgeblendet**) und **Art** (**Eigene** oder **Von companyGPT**) grenzen Sie die Tabelle ein.
 
 ## Kategorie anlegen
 
-![Dialog „Add a category" mit Value, Label und Beschreibung](./kategorie-anlegen.png)
+1. Klicken Sie auf **Kategorie hinzufügen**. Über der Tabelle öffnet sich ein Formular.
+2. Füllen Sie die Felder aus:
 
-Eine neue Kategorie besteht aus drei Angaben:
+   | Feld | Bedeutung |
+   |---|---|
+   | **Wert** | Technischer Schlüssel, zum Beispiel `tutorial`. 1–64 Zeichen: Kleinbuchstaben, Ziffern, Bindestriche oder Unterstriche, beginnend mit einem Buchstaben oder einer Ziffer. Großbuchstaben werden automatisch klein geschrieben |
+   | **Bezeichnung** | Angezeigter Name im Marktplatz, zum Beispiel `Tutorial` |
+   | **Beschreibung** | Kurze Beschreibung, die im Marktplatz unter dem Namen erscheint |
 
-| Feld | Bedeutung |
-|---|---|
-| **Value** | Technischer Schlüssel, klein geschrieben – zum Beispiel `tutorial` |
-| **Label** | Angezeigter Name im Marktplatz – zum Beispiel `Tutorial` |
-| **Description** | Kurze Beschreibung, die im Marktplatz unter dem Namen erscheint |
+3. Klicken Sie auf **Anlegen** oder brechen Sie mit **Abbrechen** ab.
 
-Selbst angelegte Kategorien sind **custom**: Sie können jederzeit umbenannt, ausgeblendet oder gelöscht werden.
+Neue Kategorien sind eigene Kategorien. Sie lassen sich jederzeit umbenennen, ausblenden oder löschen.
+
+## Kategorie bearbeiten
+
+Klappen Sie eine Zeile auf, um **Bezeichnung** und **Beschreibung** zu ändern. Außerdem stehen dort bereit:
+
+- **Ausblenden** bzw. **Einblenden** – blendet den Reiter im Marktplatz aus oder wieder ein.
+- **Löschen** – nur bei eigenen Kategorien. Agents, die die Kategorie nutzen, behalten ihren Kategoriewert, sie erscheint aber nicht mehr als Reiter im Marktplatz.
+- **Standard wiederherstellen** – bei umbenannten eingebauten Kategorien. Stellt den ursprünglichen Namen wieder her.
+
+Eingebaute Kategorien lassen sich umbenennen und ausblenden, aber nicht löschen. Eine Umbenennung ersetzt den eingebauten, übersetzten Namen für alle Sprachen.
 
 ## Ergebnis im Marktplatz
 
-Nach dem Speichern erscheint die Kategorie als Reiter im Agenten-Marktplatz – mit Label und Beschreibung. Solange ihr kein Agent zugeordnet ist, bleibt die Liste leer.
+Nach dem Anlegen erscheint die Kategorie als Reiter im Agent-Marktplatz, mit Bezeichnung und Beschreibung. Solange ihr kein Agent zugeordnet ist, bleibt die Liste leer.
 
-![Agenten-Marktplatz mit der neuen Kategorie und dem Agent-Builder](./marktplatz.png)
+![Agent-Marktplatz mit der neuen Kategorie und dem Agent-Builder](./marktplatz.png)
 
-Im Agent-Builder wählen Nutzer die Kategorie über das Feld **Kategorie** aus. Erst diese Zuordnung stellt den Agenten im entsprechenden Reiter des Marktplatzes dar.
+Im Agent-Builder wählen Nutzer die Kategorie über das Feld **Kategorie** aus. Erst diese Zuordnung zeigt den Agent im entsprechenden Reiter des Marktplatzes.
 
 :::tip[Hinweis]
-Ob Nutzer den Marktplatz überhaupt sehen, steuert das Recht **Marketplace → Use** unter [Rollen und Rechte](/de/company-gpt/addons/companyadmin/rollen-und-rechte/). Wer welchen Agenten im Marktplatz sieht, ergibt sich aus der [Sichtbarkeit](/de/company-gpt/addons/companyadmin/inhalte/).
+Ob Nutzer den Marktplatz überhaupt sehen, steuert in der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) der Reiter **companyGPT** mit der Funktion **Marktplatz** → **Nutzen**. Wer welchen Agent im Marktplatz sieht, ergibt sich aus der [Sichtbarkeit](/de/company-gpt/addons/companyadmin/inhalte/).
 :::

@@ -1,38 +1,46 @@
 ---
-title: Agent-Capabilities
-description: Festlegen, welche Fähigkeiten der Agent-Builder in CompanyGPT pro Rolle anbietet – von Code-Ausführung über Websuche bis zu Subagenten.
+title: Agent-Fähigkeiten
+description: In companyADMIN festlegen, welche Fähigkeiten der Agent-Builder von CompanyGPT anbietet – für alle und mit eigener Auswahl pro Rolle, etwa um Code-Ausführung, Websuche oder Subagents zu begrenzen.
 ---
 
-Agent-Capabilities bestimmen, welche Fähigkeiten der Agent-Builder anbietet – etwa Code-Ausführung, Websuche, Dateisuche oder Subagenten. Die Freigabe erfolgt pro Rolle.
+**Konfiguration** → **Agent-Fähigkeiten** bestimmt, welche Fähigkeiten der Agent-Builder anbietet, etwa Code-Ausführung, Websuche, Dateisuche oder Subagents. Damit begrenzen Sie teure oder riskante Fähigkeiten auf einzelne Rollen, ohne sie für alle zu sperren.
 
-![Capability-Matrix mit Basiswerten und Rollenspalten](./capabilities.png)
+Diese Einstellung betrifft nur den Baukasten für Agents. Was Personen in CompanyGPT allgemein dürfen, regeln die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
 
-## So liest sich die Matrix
+## Steuerung einschalten
 
-Die Spalte **Everyone** ist der Basissatz, den alle erhalten. Jede Rollenspalte **ersetzt** diesen Basissatz für die Mitglieder dieser Rolle vollständig – sie addiert sich nicht dazu. Über **Roles with their own set** legen Sie fest, welche Rollen überhaupt einen eigenen Satz erhalten.
+Im Abschnitt **Steuerung** schalten Sie **Agent-Fähigkeiten über companyADMIN steuern** ein. Solange das Häkchen fehlt, bekommen alle die Fähigkeiten aus der Grundkonfiguration.
 
-`USER` ist dabei eine Rolle wie jede andere: Sie umfasst alle Nutzer, deren Anmeldung keinem Rollen-Mapping entsprochen hat.
+**Steuerung beenden** fragt nach und entfernt alle Auswahlen; danach gilt wieder die Grundkonfiguration für alle.
 
-## Verfügbare Capabilities
+## Für alle
 
-| Capability | Hinweis |
+Der Abschnitt **Für alle** ist die Auswahl, die jede Rolle ohne eigene Auswahl bekommt. Setzen Sie die Häkchen und klicken Sie auf **Speichern**.
+
+## Eigene Auswahl pro Rolle
+
+1. Wählen Sie unter **Eigene Auswahl pro Rolle** eine Rolle (**Rolle wählen**).
+2. Klicken Sie auf **Eigene Auswahl anlegen**. Die Auswahl startet als Kopie von **Für alle**.
+3. Passen Sie die Häkchen an und speichern Sie den Abschnitt der Rolle.
+
+Eine eigene Auswahl ersetzt die Auswahl **Für alle** für alle mit dieser Rolle; sie kommt nicht dazu. **Eigene Auswahl entfernen** gibt der Rolle wieder **Für alle**. Die letzte eigene Auswahl lässt sich nicht entfernen; um die Steuerung ganz aufzuheben, beenden Sie sie oben.
+
+USER ist dabei eine Rolle wie jede andere. Hat ADMIN keine eigene Auswahl, bekommen auch Administratoren **Für alle**. Das betrifft nur den Agent-Builder, nicht companyADMIN.
+
+## Die Fähigkeiten
+
+| Fähigkeit | Bedeutung |
 |---|---|
-| `execute_code` | Code-Ausführung; als kostenintensiv gekennzeichnet |
-| `web_search` | Websuche; kostenintensiv |
-| `file_search` | Dateisuche im Dateikontext des Agenten |
+| `execute_code` | Code ausführen – Badge **teuer** |
+| `web_search` | Websuche – Badge **teuer** |
+| `file_search` | Dateisuche im Dateikontext des Agents |
 | `artifacts` | Artefakte als Ausgabeformat |
-| `subagents` | Subagenten; kostenintensiv |
+| `subagents` | Subagents – Badge **teuer** |
 | `actions` | Aktionen über externe Schnittstellen |
-| `skills` | Verwendung von Skills |
-| `ask_user_question` | Rückfragen an den Nutzer |
-| `tools` | Verwendung von Tools |
+| `skills` | Skills verwenden |
+| `ask_user_question` | Rückfragen an die Person |
+| `tools` | Tools verwenden |
 
-:::note
-Nicht über diese Seite gesteuert und für alle unverändert sind `ocr`, `chain`, `context`, `deferred_tools` und `memory`. Diese folgen der Serverkonfiguration und bleiben in jedem der oben definierten Sätze enthalten.
-:::
+Das Badge **teuer** markiert Fähigkeiten, die teuer oder riskant sind – der Hauptgrund, diese Seite überhaupt zu nutzen. **nicht in der librechat.yaml** bedeutet, dass die Grundkonfiguration die Fähigkeit nicht vorsieht.
 
-:::tip[Hinweis]
-Kostenintensive Capabilities wie Code-Ausführung, Websuche und Subagenten lassen sich auf diesem Weg gezielt auf einzelne Rollen begrenzen, ohne sie für alle zu sperren.
-:::
-
-Diese Einstellung betrifft den Baukasten für Agenten. Welche Funktionen ein Nutzer in CompanyGPT allgemein verwenden darf, regeln die Funktionsrechte unter [Rollen und Rechte](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+Alle übrigen Fähigkeiten, die Ihre Umgebung bereitstellt, steuert diese Seite nicht. Sie folgen der Grundkonfiguration und bleiben in jeder Auswahl erhalten. Welche das sind, nennt die Seite unter **Für alle**.

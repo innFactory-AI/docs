@@ -1,21 +1,21 @@
 ---
 title: Charts & Diagramme Skill
-description: Erstelle interaktive Diagramme und Grafiken mit companyFILES MCP-Tools.
+description: Erstelle interaktive Diagramme, Grafiken und Karten mit companyFILES MCP-Tools.
 ---
 
-Verwende diesen Skill, wenn du Daten visualisieren, Diagramme erstellen, Grafiken zeichnen oder Visualisierungen in Dokumente einbetten möchtest.
+Verwende diesen Skill, wenn du Daten visualisieren, Diagramme erstellen, Grafiken zeichnen, Standorte auf einer Karte zeigen oder Visualisierungen in Dokumente einbetten möchtest.
 
 ## Skill
 
 ````markdown
 ---
 name: charts-diagrams-skill
-description: Create interactive charts and diagrams with companyFILES MCP tools. Use when asked to visualize data, create a bar/line/pie/scatter/bubble chart, draw a flowchart, sequence diagram, ER diagram, Gantt chart, or any Mermaid diagram. Also covers embedding charts or diagrams into Word, PDF, or PowerPoint documents.
+description: Create interactive charts, diagrams and maps with companyFILES MCP tools. Use when asked to visualize data, create a bar/line/pie/scatter/bubble chart, draw a flowchart, sequence diagram, ER diagram, Gantt chart, or any Mermaid diagram, or show locations as pins on a map. Also covers embedding charts or diagrams into Word, PDF, or PowerPoint documents.
 ---
 
 # Charts & Diagrams Skill
 
-Tools for creating interactive charts (Chart.js) and diagrams (Mermaid), plus embedding them in documents.
+Tools for creating interactive charts (Chart.js), diagrams (Mermaid) and maps, plus embedding charts in documents.
 
 ## Tools in This Skill
 
@@ -23,6 +23,7 @@ Tools for creating interactive charts (Chart.js) and diagrams (Mermaid), plus em
 |------|---------|
 | `show_interactive_chart` | **PREFERRED** — Interactive Chart.js widget (zoom, pan, type switch, export) |
 | `show_interactive_diagram` | **PREFERRED** — Interactive Mermaid diagram widget (pan, zoom, export) |
+| `show_interactive_map` | Interactive map widget with pins, clustering and legend (export PNG/JPG) |
 | `create_chart_document` | Embed a chart image in a Word, PDF, or PowerPoint document |
 | `embed_chart_in_document` | Render a Chart.js chart and embed it in a document |
 
@@ -31,6 +32,7 @@ Tools for creating interactive charts (Chart.js) and diagrams (Mermaid), plus em
 ```
 User wants to SEE a chart in chat            → show_interactive_chart   (ALWAYS preferred)
 User wants to SEE a diagram in chat          → show_interactive_diagram  (ALWAYS preferred)
+User wants to SEE locations on a map         → show_interactive_map
 
 User wants to SAVE a chart as a document...
   Chart + optional description text          → create_chart_document
@@ -98,7 +100,7 @@ Optional: `x_axis_label`, `y_axis_label`, and `options` (a raw Chart.js options 
 }
 ```
 
-The widget includes: zoom/pan, chart type switcher, export (PNG at 1x/2x/4x, JPG, SVG, CSV), and clipboard copy.
+The widget includes: zoom/pan, chart type switcher, and an export menu with PNG (1x/2x/4x), Copy CSV and Copy Image.
 
 ---
 
@@ -118,7 +120,34 @@ The Mermaid source goes in the **`code`** parameter (not `mermaid_code`).
 
 **Themes:** `default`, `dark`, `forest`, `neutral`
 
-The widget includes: pan/zoom, SVG export, PNG export (1x/2x/4x), and "Copy Mermaid Code".
+The widget includes: pan/zoom, a theme switcher, and export as SVG, PNG (2x) or JPG. After an export, "Copy link" copies the download link of the exported file.
+
+---
+
+### show_interactive_map
+
+Interactive map (OpenStreetMap tiles) with pins. `map_type`: `world` (free pan/zoom) or `germany` (with an overlay of the German state borders).
+
+```json
+{
+  "map_type": "germany",
+  "title": "Sites",
+  "pins": [
+    { "lat": 48.137, "lng": 11.575, "label": "Munich", "category": "own" },
+    { "lat": 52.52, "lng": 13.405, "label": "Berlin", "category": "partner", "details": { "Employees": 42 } }
+  ],
+  "legend": [
+    { "category": "own", "color": "#2563EB", "label": "Own sites" },
+    { "category": "partner", "color": "#F59E0B", "label": "Partners" }
+  ]
+}
+```
+
+Each pin needs `lat` + `lng` and a `label`; optional `tooltip` (hover text), `category` (pin color via `legend`), `color` (explicit hex color) and `details` (key-value pairs shown in the click popup). Up to 5,000 pins. Nearby pins are clustered by default (`cluster: false` turns this off). Optional: `center` (`{ "lat": …, "lng": … }`), `zoom` (1–20), `show_state_borders`.
+
+Only when Azure Maps is configured for the environment: `address` instead of `lat`/`lng` (geocoded), `route` (`waypoints`, `travel_mode`: `car`, `pedestrian`, `bicycle`), `distance_matrix_from` (distance/duration from one point to every pin), `isochrone` (area reachable within `minutes`) and `reverse_geocode`. Without Azure Maps these options make the call fail — do not use them unless you know they are available.
+
+The response is the map widget plus a text line `Interactive map: [title](url) — open the link for PNG/JPG export.` The widget exports the map as PNG or JPG.
 
 ---
 
@@ -136,8 +165,7 @@ Supports extended chart types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatt
   "title": "Monthly Sales Trend",
   "description": "Sales grew steadily throughout Q1 and Q2.",
   "output_format": "word",
-  "filename": "sales_trend",
-  "folder": "reports"
+  "filename": "sales_trend"
 }
 ```
 
@@ -160,8 +188,7 @@ Supported types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatter`, `bubble`,
   "title": "Quarterly Revenue",
   "width": 1400,
   "height": 900,
-  "filename": "revenue_chart",
-  "folder": "finance"
+  "filename": "revenue_chart"
 }
 ```
 
@@ -169,8 +196,8 @@ Supported types: `bar`, `line`, `pie`, `doughnut`, `radar`, `scatter`, `bubble`,
 
 ## Key Notes
 
-- `show_interactive_chart` and `show_interactive_diagram` return a **widget** (rendered in LibreChat) plus a static image fallback — include the markdown image in your reply.
-- Document-embedding tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink`.
+- `show_interactive_chart` and `show_interactive_diagram` return a **widget** (rendered in LibreChat) plus a text line such as `Interactive chart: [Title](viewer-url) · [Download PNG](url)` (`Interactive diagram: …` for diagrams). Pass these on as plain Markdown links — **never** embed the download URL as an image (`![](…)`): it is an authenticated download endpoint, not an image the browser can load. If the PNG fallback could not be rendered, the line only contains the viewer link.
+- Document-embedding tools return `{id, filename, downloadUrl, markdownLink}` (plus `librechat_file_id` when the document is also stored as a chat file) — always render `markdownLink`.
 - The org/user color palette is automatically applied to chart colors when configured in settings.
 - Google Gemini models cannot render interactive widgets — responses fall back to text/JSON data.
 - `show_interactive_chart` and `create_chart_document` accept all 13 chart types; `area`, `stackedBar`, `horizontalBar` are mapped to their static equivalents when rendering as images. `embed_chart_in_document` only accepts the 8 base types and rejects the extended ones — use `create_chart_document` for those.

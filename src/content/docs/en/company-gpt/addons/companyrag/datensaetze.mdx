@@ -3,45 +3,51 @@ title: Dataset collections
 description: Import tabular data from CSV, Excel and Parquet files or fill it live via an ingestion endpoint, and query it via SQL.
 ---
 
-Dataset collections contain tables rather than documents. They are suited to everything that is already tabular – sales figures, orders, master data – and answer questions about sums, quantities and rankings that a semantic search cannot answer.
+Dataset collections do not contain documents but tables. They are suited to anything that is already tabular – sales figures, orders, master data – and answer questions about sums, quantities and rankings that a semantic search cannot answer.
 
-When creating one, you choose the data source:
+When [creating the collection](/en/company-gpt/addons/companyrag/sammlungen/#creating-a-collection) you choose the collection type **Dataset** and then the **Dataset source**:
 
 ![Choice of data source: imported files or a live defined schema](./datensatz-typ.png)
 
-- **Imported files**: Upload CSV, Excel or Parquet files for querying.
-- **Live (defined schema)**: Define tables yourself and feed rows in via an ingestion endpoint.
+- **Imported files**: Upload CSV, Excel or Parquet files to query.
+- **Live (defined schema)**: Define tables and push rows via an ingestion endpoint.
 
 ## Imported files
 
-The data should always be in tabular form. Single tables are possible as well as several related tables – an Excel workbook can, for example, contain multiple sheets that are imported together and queried using joins.
+The data should always be in tabular form. [Upload](/en/company-gpt/addons/companyrag/hochladen/) supports CSV and TSV files, Excel workbooks (`.xlsx`), OpenDocument spreadsheets (`.ods`) and Parquet files; via a source, Excel workbooks with macros (`.xlsm`) are supported as well. Both single tables and several related tables are possible; related tables can be queried together via joins.
 
-![Importing several CSV files with target collection selection](./datensatz-import.png)
+For Excel workbooks, every sheet that can be loaded becomes its own table. The legacy Excel format `.xls` is not supported; save such files in Excel as a workbook (`.xlsx`) and upload them again.
 
-The import can also be set up as a [source](/en/company-gpt/addons/companyrag/quellen/), for example from a SharePoint folder. Updated files are then pulled in automatically. During synchronization the files are only checked for validity, which makes them available very quickly.
+![Importing several CSV files with selection of the target collection](./datensatz-import.png)
+
+Importing is also possible as a [source](/en/company-gpt/addons/companyrag/quellen/), for example from a SharePoint folder. Updated files are then pulled in automatically. For dataset collections, a source only synchronizes tabular files.
+
+You can see the schema of an imported file under [Files](/en/company-gpt/addons/companyrag/dateien/) via the file's info icon.
 
 ## Live defined schema
 
 ![Schema definition of a live dataset collection with tables and columns](./datensatz-live-schema.png)
 
-You define tables and columns with data types (`text`, `integer`, `numeric`, `boolean`, `timestamp`, `date`). Names must consist of lowercase letters, digits and underscores and start with a letter. Every row automatically receives `_id` (UUID) and `_ingested_at` (timestamp).
+You define tables and columns with data types (`text`, `integer`, `numeric`, `boolean`, `timestamp`, `date`). Names must consist of lowercase letters, digits and underscores and must start with a letter. Every row automatically receives `_id` (UUID) and `_ingested_at` (timestamp).
 
-Optionally, mark a column as a **key** to enforce uniqueness on ingest, and connect a column to the key of another table to record a relationship. That relationship is used as a join hint for queries.
+Optionally, mark a column as the **key** to enforce uniqueness on ingest, and connect a column to another table's key to record a relationship. This relationship is used as a JOIN hint in queries. Foreign key values are stored exactly as you send them.
 
-### Feeding in rows
+### Pushing rows
 
-Once created, an endpoint is available per table. The call expects an object with a `rows` array; each object inside it corresponds to one row. Any number of rows can be passed per call, so a third-party system can fill the table continuously.
+After creation, one endpoint per table is available. The **Ingestion instructions** icon on the collection shows the exact URLs.
 
-The exact endpoint URL is shown in the collection. Details on paths, parameters and responses can be found in the [companyRAG API reference](/en/api/company-rag-api/).
+The call expects an object with a `rows` array; each object in it corresponds to one row. Up to 10,000 rows are possible per call, so a third-party system can fill the table continuously. The response reports with status `201` how many rows were inserted (`inserted`) and rejected (`rejected`), together with any errors (`errors`). A `DELETE` on the same URL empties the table.
 
-An [API key](/en/company-gpt/addons/companyrag/api-schluessel/) is required for access.
+Details on paths, parameters and responses can be found in the [companyRAG API reference](/en/api/company-rag-api/).
+
+Access requires an [API key](/en/company-gpt/addons/companyrag/api-schluessel/) of a person who is an admin or owner of the collection.
 
 :::danger
-An API key always acts on behalf of the person who created it. If it is passed on, the recipient can access content through the interface that they would not be allowed to see themselves. Every person and every system should have its own key.
+An API key always acts on behalf of the person who created it. If it is passed on, the recipient can access content via the interface that they would not be allowed to see themselves. Every person and every system should receive their own key.
 :::
 
 ## Querying
 
-Dataset collections are not queried via content search but via the SQL tools of the `ai-search` MCP server. An agent can read the schema, describe tables and run queries across several tables using joins.
+Dataset collections are not queried via content search, but with the SQL tools of the `ai-search` MCP server. With these, an agent can list the available datasets, read the schema, describe tables and run queries across several tables with joins.
 
 Which tools to enable and which prompt has proven effective is described in [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/).

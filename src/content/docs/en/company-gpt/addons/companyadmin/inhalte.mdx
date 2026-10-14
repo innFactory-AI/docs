@@ -1,45 +1,130 @@
 ---
 title: Content and visibility
-description: Control which groups can see and use which agents, prompts, skills and MCP tools in CompanyGPT.
+description: See agents, prompts, skills and MCP tools in companyADMIN, check their origin and decide who sees them in CompanyGPT – one at a time or for several items at once.
 ---
 
-Under **Content** you control the visibility of content: agents, prompts, skills and MCP tools. The tabs separate the content types; **Categories** additionally maintains the [categories of the agent marketplace](/en/company-gpt/addons/companyadmin/kategorien/).
+Under **Content** you see which agents, prompts, skills and MCP servers exist in CompanyGPT, where they come from and who sees them. The sub-pages are **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories** and **Library Sync**. This page describes the first four; [Categories](/en/company-gpt/addons/companyadmin/kategorien/) and [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) have pages of their own.
 
-!["Agents" tab with visibility and sync status per agent](./content-agents.png)
+## What you see
 
-The list shows the name, description and current visibility status per entry. Additional badges indicate the origin:
+What appears in the lists depends on whether you are a superadmin:
+
+- **Superadmins** see every agent, prompt and skill, including other people's private content.
+- **Admins without the superadmin features** see public, shared-with-them and library-managed items. A notice above the list explains this restricted view.
+
+The account menu shows whether you are a superadmin.
+
+## Agents, prompts and skills
+
+### Lists
+
+| List | Columns | Search |
+|---|---|---|
+| **Agents** | Name, **Owner**, **Model**, **Visibility**, **Origin**, **Requests (30d)**, **Last used** | **Search name, description or repo** |
+| **Prompts** | Name, **Description**, **Visibility**, **Origin** | **Search name, command or repo** |
+| **Skills** | Name, **Description**, **Visibility**, **Origin** | **Search name, description or repo** |
+
+Promoted agents carry the badge **Promoted**.
+
+The **Visibility** column shows **Owner only**, **Public** or **Groups (n)**. The **Origin** column shows:
 
 | Badge | Meaning |
 |---|---|
-| `manual` | The item was created in CompanyGPT itself |
-| `synced` | The item comes from a repository connected via [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
-| `modified` | The synced item was changed in CompanyGPT afterwards and now differs from the repository |
-| `Owner only` | Currently only the owner sees the item |
+| **manual** | Created in CompanyGPT |
+| **synced** | Comes from a Git repository through [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
+| **modified in LibreChat** | Synced, but changed in CompanyGPT since. What the next sync does with it is described in [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
 
-:::note
-Only items you own, that were shared with you, or that are public are listed. A global list of all other users' private items does not exist at platform level. For the items shown here, you manage sharing in this place.
-:::
+Filters:
+
+- **Origin**: **From the library** or **Created in companyGPT**
+- **Visible to**
+- **Changes**: **Changed in companyGPT** or **Same as the repository**
+
+The lists load more entries as you scroll. At most 1,000 entries are shown; search and filters then work on those only.
+
+### Detail pages
+
+Clicking a row opens the detail page. You change an item's configuration in CompanyGPT; in companyADMIN you review it and control its visibility.
+
+**Agent**
+
+- **Overview**: owner, model, category, usage over the last 30 days and the chart **Requests per day (30d)**
+- **Configuration**: **Instructions**, **Tools** with the **Loading** column, **MCP servers**, **Skills**, **Subagents & handoff edges** and **Code & memory**
+- **Visibility**
+- **Origin**
+
+**Prompt**
+
+- **Overview**: **Text (production version)**, **Settings** such as **Command** and category, and the **Versions**. The sync replaces only the production version; older versions are kept.
+- **Visibility**
+- **Origin**
+
+**Skill**
+
+- **Overview**: **Behaviour** with **Invoked by users**, **Invoked by the model**, **Always applied**, **Allowed tools** and **Version**
+- **Content**: **Instructions (SKILL.md)**, **Files** and **Frontmatter**
+- **Visibility**
+- **Origin**
+
+### Origin
+
+For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents and skills stay until they are written back.
+
+For content created in CompanyGPT it says **Created in companyGPT, not from the library.**
 
 ## Setting visibility
 
-Use **Visibility** to open the sharing settings of an entry.
-
-![Visibility dialog of an agent with the three sharing levels](./agent-sichtbarkeit.png)
-
-Three levels are available:
+You set the visibility on the detail page on the **Visibility** tab. It names the owner (**Owned by …**) and offers three levels:
 
 - **Owner only** – only the owner sees the item.
-- **Public — all users of this environment** – all users of the environment see the item, within the company.
-- **Specific groups only** – only the selected [groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/) and the owner see the item.
+- **Public — all users of this environment** – everyone in your environment sees the item.
+- **Specific groups only** – only the selected groups and the owner see the item. With **Search groups…** you find groups by name or Entra object ID. You cannot save without selecting a group.
 
-The dialog also names the owner and – for synced items – the source repository and the default visibility set there. Existing individual shares with people are listed under **Also individually shared with** and can be revoked there one by one.
+Confirm with **Save**.
 
-For skills the dialog works identically:
+An Entra group can only be selected once CompanyGPT knows it, that is once a member has signed in or the group was created or synced. Shares made in companyADMIN give read access (**Viewer**). The levels **Editor** and **Owner** come from shares that people made in CompanyGPT themselves.
 
-![Sharing dialog of a skill](./skill-freigabe.png)
+### Who may change visibility
 
-:::tip[Note]
-Whether a role may share content at all, or release it publicly, is defined by the feature permissions under [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/). The visibility here only decides about the individual item.
-:::
+| Content | May be changed by |
+|---|---|
+| Synced (from the library) | Any administrator with the matching manage right (**Manage agents**, **Manage prompts** or **Manage skills**) |
+| Created in CompanyGPT (**manual**) | Superadmins only. Other administrators see the visibility and a notice |
 
-If the default visibility is maintained in the repository, a change here overrides the repo default for that item. See [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/).
+The owner of an item can still change its sharing in CompanyGPT, as far as their role allows sharing. Whether a role may share or share publicly at all is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+For content created in CompanyGPT, **Also individually shared with:** lists shares with individual people or roles. Superadmins take them back with **Revoke**.
+
+### Synced content and the repo default
+
+Synced content gets its visibility from the repository (**Managed by the repo default (Library Sync)**). If you change the visibility here, **Individually managed (overrides the repo default)** applies: Library Sync then leaves this item's visibility alone. **Reset to repo default** hands it back to the repository; this applies from the next sync.
+
+### Visibility for several items
+
+In the **Agents**, **Prompts** and **Skills** lists you set the visibility for several items at once:
+
+1. Select the rows with the checkboxes.
+2. Choose the visibility in the bar above the table.
+3. Click **Apply to selection**. **Public** asks first.
+
+Only synced items are changed. All others are skipped; you set their visibility on their detail pages.
+
+## MCP tools
+
+**MCP tools** lists every MCP server of your environment. companyADMIN never shows credentials such as tokens or passwords.
+
+| Badge | Meaning |
+|---|---|
+| **From the deployment** | Set up by innFactory in the base configuration; applies as set |
+| **From the admin configuration** | Set up through the configuration; applies to the scope shown (everyone, a role or a group) |
+| **From a plugin** | Provided by a plugin |
+| **Created by a user** | Created by a person in CompanyGPT |
+| **agent-only** | Usable only through agents, not directly in the chat |
+
+The **Owner** and **Who sees it** columns show who owns a server and whom it applies to. For servers from the deployment, configuration or a plugin it says **as configured (not per group)**. Use **Search servers** and the **Origin** filter to narrow the list.
+
+An expanded row shows the **Connection**, the address or **Command**, whether **Sign-in via OAuth** is used, and which **User-provided values** the server expects.
+
+- Only servers **Created by a user** have sharing of their own. Only superadmins may change it; the owner can change it in CompanyGPT. Only superadmins see the details of private servers.
+- Who sees the MCP servers of the extensions (such as companyFILES or companyRAG) is controlled by the rights of the respective extension, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
+- Which domains MCP servers may use is set under [MCP domains](/en/company-gpt/addons/companyadmin/mcp-domains/).

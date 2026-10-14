@@ -3,14 +3,14 @@ title: Templates Skill
 description: Create documents from templates using companyFILES MCP tools — Word, Excel, ODT, and PowerPoint, including image placeholders, charts, and loop/repeat syntax.
 ---
 
-Use this skill when asked to fill a template, use a company letterhead or invoice layout, fill placeholders, or create documents from DOCX, XLSX, POTX, or ODT templates — including image placeholders, charts, and slide repeat, plus iterative edits to the filled document.
+Use this skill when asked to fill a template, use a company letterhead or invoice layout, fill placeholders, or create documents from DOCX, XLSX, POTX, or ODT templates — including image placeholders, charts, and slide repeat, plus iterative edits to the filled document. It also covers attaching a template to the chat for the code interpreter.
 
 ## Skill
 
 ````markdown
 ---
 name: templates-skill
-description: 'Create documents from templates using companyFILES MCP tools. Use when asked to fill a template, use a company template, create a document from a predefined layout, fill placeholders, use a letterhead, fill an invoice template, or create from a DOCX/XLSX/POTX/ODT template. Covers Word, Excel, ODT, and PowerPoint template filling, including image placeholders and loop/repeat syntax.'
+description: 'Create documents from templates using companyFILES MCP tools. Use when asked to fill a template, use a company template, create a document from a predefined layout, fill placeholders, use a letterhead, fill an invoice template, or create from a DOCX/XLSX/POTX/ODT template. Covers Word, Excel, ODT, and PowerPoint template filling, including image placeholders and loop/repeat syntax, and handing a template to the code interpreter.'
 ---
 
 # Templates Skill
@@ -28,12 +28,25 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 | `fill_excel_template`                   | Fill an XLSX template using `{{placeholder}}` syntax                              |
 | `create_odt_from_template`              | Fill an ODT template with `{{placeholder}}` syntax                                |
 | `create_powerpoint_from_template`       | Fill a POTX/PPTX template with text, images, charts, speaker notes, slide repeat  |
+| `attach_template_to_chat`               | Attach a copy of a template to the chat for the code interpreter                  |
 
 ## Workflow
 
 1. **Discover templates:** Call `list_templates` (optionally filter by `type`: `docx`, `xlsx`, `potx`, `odt`, `pdf`)
 2. **Note placeholder names** from the response
 3. **Fill the template** with the matching `create_*_from_template` tool
+
+### Placeholder syntax by format
+
+| Template type       | Placeholder syntax                                                                                                       |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Word (`docx`)       | `{name}` (single braces), images `{%name}`, loops `{FOR …}`                                                              |
+| Excel (`xlsx`)      | `{{name}}` — or fill by cell address (`A1`, `Sheet2!B3`) with `create_excel_from_template`                               |
+| ODT (`odt`)         | `{{name}}`                                                                                                               |
+| PowerPoint (`potx`) | `{{name}}` in text boxes, `{%name}` in an image's alt text; masters without `{{}}` → layout tools (**powerpoint-skill**) |
+| PDF form (`pdf`)    | Form field names, no braces — fill with `fill_pdf_form` (**pdf-skill**)                                                  |
+
+Pass placeholder names **without** braces in the `data` / `placeholders` / `cell_values` objects.
 
 ## Tool Usage
 
@@ -73,8 +86,7 @@ Placeholder syntax: `{placeholder}` (single curly braces). Dotted paths: `{user.
     "date": "2025-05-08",
     "total": "€4,200.00"
   },
-  "filename": "invoice_acme",
-  "folder": "invoices"
+  "filename": "invoice_acme"
 }
 ```
 
@@ -87,6 +99,8 @@ Placeholder syntax: `{placeholder}` (single curly braces). Dotted paths: `{user.
 ```
 
 Pass `items` as an array in `data`. Missing loop sources are silently skipped with a warning.
+
+**Template expressions are not JavaScript.** Inside `{…}` commands only data paths (`$item.price`, `rows[0]`), literals, operators (`+ - * / %`, comparisons, `&& || ??`, `cond ? a : b`), the commands `FOR`, `IF` and `EXEC`, and a short list of safe helpers are allowed — e.g. `toFixed`, `toUpperCase`, `join`, `toLocaleDateString`, `Math.round`, `new Date(…)`. Arrow functions, `.map`/`.filter`, loops and template literals make the fill fail — compute such values beforehand and pass them in `data`.
 
 ---
 
@@ -107,8 +121,7 @@ Supports text placeholders `{name}` and image placeholders `{%logo}`.
       "extension": "png"
     }
   },
-  "filename": "letter_acme",
-  "folder": "letters"
+  "filename": "letter_acme"
 }
 ```
 
@@ -140,8 +153,7 @@ Accepts **either** cell addresses (e.g. `"A1"`, `"Sheet2!B3"`) **or** `{{placeho
     "B5": 125000,
     "Sheet2!C3": "Approved"
   },
-  "filename": "budget_2025",
-  "folder": "finance"
+  "filename": "budget_2025"
 }
 ```
 
@@ -222,8 +234,7 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
       "datasets": [{ "label": "Revenue", "values": [100, 150, 120, 180] }]
     }
   },
-  "filename": "q4_deck",
-  "folder": "presentations"
+  "filename": "q4_deck"
 }
 ```
 
@@ -265,9 +276,22 @@ Use this when the template has multiple layout slides marked with `{{slide_type:
 
 Omit `repeat.slide` when using `slide_type` routing — the matching template slide is found automatically from its `{{slide_type:xxx}}` marker. The `slide_type` values (`default`, `section`, `text-image`) correspond to the same layout names used in `create_powerpoint`.
 
+### attach_template_to_chat
+
+Attaches a copy of a template (personal or global; `type`: `docx`, `xlsx`, `potx`, `odt`) to the current chat as a file, so the code interpreter can open and edit it with Python — for changes the `create_*_from_template` tools cannot make.
+
+```json
+{ "name": "invoice", "type": "docx" }
+```
+
+- The file is available to the code interpreter only from the user's **next** message on, and only when code execution is enabled for the chat or agent. Tell the user that.
+- A `potx` template is attached as `.pptx`, so python-pptx opens it directly.
+- Calling it again is cheap: an unchanged template re-attaches the same file, a changed one replaces the old copy. The template itself stays unchanged.
+- Not available in every environment — the tool then returns an error.
+
 ## Post-Template Editing (Iterative Updates)
 
-Every template tool returns a `document_id`. That ID can be passed directly to the iterative editing tools from **word-odt-skill** and **powerpoint-skill** to further modify the filled document without regenerating from scratch.
+Every template tool returns the new document's `id`. Pass it as `document_id` to the iterative editing tools from **word-odt-skill** and **powerpoint-skill** to further modify the filled document without regenerating from scratch.
 
 ### After `create_word_from_template` / `create_word_from_template_with_images`
 
@@ -317,7 +341,7 @@ Example — fill a template then append a custom closing slide:
 ## Key Notes
 
 - All create tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
-- When `folder` is omitted, the filled document is filed under a folder named after `template_name`.
+- When `filename` is omitted, the filled document is named after `template_name` (`create_word_from_template_with_images`: `document`).
 - `create_word_from_template_with_images` falls back to a global `default.docx` if the named template is missing, whereas `create_word_from_template` does not — verify the template exists with `list_templates` first.
 - Template names are **case-sensitive** — always verify with `list_templates` first.
 - User templates take priority over global templates with the same name.

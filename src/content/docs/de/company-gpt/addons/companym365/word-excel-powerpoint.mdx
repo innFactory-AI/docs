@@ -1,0 +1,90 @@
+---
+title: Word, Excel und PowerPoint
+description: Was das Office-Add-in in Word, Excel und PowerPoint zusätzlich kann – Schnellaktionen, Word-Coaching, Datenanalyse in Excel und Präsentationen aus einer Gliederung.
+---
+
+Diese Seite beschreibt die Funktionen, die das [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/) speziell für Word, Excel und PowerPoint mitbringt. Das Add-in ist nicht in allen Umgebungen aktiviert; die Grundlagen wie Öffnen, Modellauswahl und Bearbeitungsmodi stehen auf der Seite [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/).
+
+Schnellaktionen starten Sie über das Menü auf der Registerkarte **Start**, über die Palette `/` im Eingabefeld oder – bei einigen – über die Startvorschläge in einem leeren Chat. Ändert eine Schnellaktion das Dokument, gilt der gewählte [Bearbeitungsmodus](/de/company-gpt/addons/companym365/office-add-in/#bearbeitungsmodi): Im Modus **Vorschläge** erscheinen die Änderungen zuerst als Karte.
+
+## Word
+
+| Schnellaktion | Was sie tut |
+|---|---|
+| **Zusammenfassen** | Fasst das Dokument (oder die Markierung) in Stichpunkten zusammen. Das Dokument bleibt unverändert. |
+| **Korrektur lesen** | Prüft Rechtschreibung, Grammatik und Zeichensetzung und korrigiert sie. |
+| **Umformulieren** | Formuliert die Markierung klarer und knapper. |
+| **Sprache vereinfachen** | Schreibt den Text in einfacher, verständlicher Sprache. |
+| **Entwurf schreiben** | Schreibt einen neuen Textentwurf im Stil des Dokuments. Der Assistent fragt vorher nach Thema, Zielgruppe, Länge und Tonfall. |
+| **Übersetzen** | Übersetzt den Text und behält die Gliederung bei. Der Assistent fragt vorher nach der Zielsprache. |
+
+Ist Text markiert, beziehen sich die meisten Aktionen nur auf die Markierung.
+
+Startvorschläge in einem leeren Chat sind standardmäßig **Dokument zusammenfassen**, **Rechtschreibung und Grammatik prüfen**, **Coaching** und **Gliederung vorschlagen**.
+
+### Coaching
+
+**Coaching** gibt Ihnen Rückmeldung zu Ihrem Text, ohne ihn selbst umzuschreiben. Sie starten es über den Startvorschlag **Coaching** oder über `/`.
+
+1. Ein Dialog zeigt den **Markierten Text** und den **Dokumenttitel**. Ist Text markiert, beurteilt der Assistent nur diesen; ist das Feld leer, das ganze Dokument.
+2. Der Assistent liefert einen kurzen Gesamteindruck und bis zu acht Befunde zu **Klarheit**, **Ton**, **Länge** oder **Struktur** – jeweils mit Fundstelle, Begründung und Vorschlag.
+3. Im Modus **Vorschläge** erscheint jeder Befund als Vorschlagskarte mit Ort (z. B. „Absatz 3“). In den Modi **Direkt** und **Nachverfolgen** erscheint eine Befundliste: **Übernehmen** ersetzt genau die Fundstelle, **Rückgängig** nimmt das wieder zurück. **Alle übernehmen** und **Alle rückgängig** wirken auf alle Befunde.
+
+Während des Coachings ändert der Assistent das Dokument nicht selbst; jede Änderung übernehmen Sie einzeln.
+
+### Antworten ins Dokument übernehmen
+
+Mit **Ins Dokument einfügen** unter einer Antwort übernehmen Sie den Text in Ihr Dokument. Das Add-in verwendet dabei die Formatvorlagen Ihres Dokuments. Eingefügt wird nur die Antwort selbst, nicht der Denkprozess.
+
+## Excel
+
+| Schnellaktion | Was sie tut |
+|---|---|
+| **Formel erklären** | Erklärt die Formel der markierten Zelle Schritt für Schritt. |
+| **Formel erstellen** | Baut die passende Excel-Formel für Ihr Rechenziel. Der Assistent fragt nach, was berechnet werden soll und wohin die Formel gehört. |
+| **Daten analysieren** | Beschreibt Auffälligkeiten und Trends im markierten Bereich. Die Mappe bleibt unverändert. |
+| **Diagramm vorschlagen** | Schlägt eine passende Visualisierung vor und legt sie an. |
+| **Rechtschreibung prüfen** | Findet Tipp- und Rechtschreibfehler in den Texten der Tabelle. |
+| **Sprache vereinfachen** | Formuliert Beschriftungen und Notizen klar und verständlich. |
+
+Ist nichts markiert, nimmt der Assistent den genutzten Bereich des aktiven Blatts.
+
+Startvorschläge in einem leeren Chat sind standardmäßig **Daten analysieren**, **Formel erklären**, **Diagramm vorschlagen** und **Tabelle bereinigen**.
+
+### Datenanalyse mit Code
+
+Ist in Ihrer Umgebung die [Code-Ausführung](/de/company-gpt/code-interpreter/) freigeschaltet, rechnet der Assistent bei **Daten analysieren** mit Python-Code statt nur mit Formeln:
+
+- Der Werkzeugschritt zeigt den Code, die Ausgabe und gegebenenfalls ein Diagramm.
+- Unter der fertigen Antwort legt **Als neues Blatt einfügen** ein neues Blatt „Analyse“ mit der Ergebnistabelle und dem Diagramm an. Bestehende Zellen werden dabei nicht überschrieben. Danach zeigt der Knopf, in welches Blatt eingefügt wurde.
+
+Ist die Code-Ausführung nicht freigeschaltet, erscheint einmal der Hinweis „Code-Ausführung ist in diesem Tenant nicht freigeschaltet — die Analyse nutzt Formeln.“
+
+## PowerPoint
+
+| Schnellaktion | Was sie tut |
+|---|---|
+| **Deck erstellen** | Baut aus einem Text oder Dokument ein Foliendeck in der Vorlage. |
+| **Folien prüfen** | Prüft die Präsentation auf Überlappungen, Textüberlauf und Ränder und behebt die Befunde. |
+| **An Vorlage angleichen** | Gleicht Layouts, Farben und Schriften an die Firmenvorlage an. Der Assistent zeigt vorher, was er ändern will. |
+| **Texte straffen** | Kürzt und vereinfacht die Folientexte, ohne Aussagen zu verändern. |
+| **Rechtschreibung prüfen** | Findet Tipp- und Rechtschreibfehler auf allen Folien. |
+| **Deck zusammenfassen** | Fasst die Präsentation und ihren roten Faden zusammen. Die Präsentation bleibt unverändert. |
+
+Startvorschläge in einem leeren Chat sind standardmäßig **Folien prüfen**, **Präsentation zusammenfassen**, **Sprechernotizen erstellen** und **Folientexte kürzen**.
+
+### Von der Gliederung zum Deck
+
+**Deck erstellen** arbeitet in zwei Schritten:
+
+1. Der Assistent liefert zuerst eine **Gliederung** als Karte: Folientitel, Stichpunkte, Layout-Hinweis und Quellen je Folie.
+2. Mit **Bearbeiten** ändern Sie Titel und Stichpunkte, fügen mit **Folie hinzufügen** weitere Folien hinzu, entfernen Folien oder verschieben sie nach oben oder unten. **Fertig** schließt die Bearbeitung.
+3. **Deck bauen (n Folien)** legt die Folien an – mit den Layouts und Platzhaltern Ihrer Vorlage. Eine Gliederung umfasst höchstens 20 Folien.
+
+Danach ist die Karte als „Gebaut“ markiert; mit **Erneut bauen** können Sie das Deck noch einmal anlegen lassen. Auch das Anlegen der Folien folgt dem gewählten Bearbeitungsmodus.
+
+Möchten Sie die Gliederung überspringen, schalten Sie im Menü des Bearbeitungsmodus **Deck direkt bauen** ein.
+
+### Grenzen in PowerPoint
+
+Der Assistent kann Folien, Textfelder und Tabellen bearbeiten, aber keine Diagramme und Animationen. Das ist eine Grenze der Schnittstelle von Microsoft.

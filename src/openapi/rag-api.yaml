@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: CompanyRAG Indexer API - API Key Authentication
+  title: companyRAG Indexer API - API Key Authentication
   description: |
-    OpenAPI specification for all endpoints in the CompanyRAG Indexer that support API Key authentication.
+    OpenAPI specification for all endpoints in the companyRAG Indexer that support API Key authentication.
 
     ## Authentication
 
@@ -45,9 +45,9 @@ servers:
       company:
         default: firma
         description: >-
-          Your CompanyGPT subdomain. Copy it from the browser address bar of the
-          companyRAG UI, e.g. `innfactory` for
-          `https://innfactory.company-gpt.com`.
+          Placeholder for your CompanyGPT subdomain. Copy it from the browser
+          address bar of the companyRAG UI. With a custom domain, append
+          `/companygpt/rag/api` to that domain instead.
 
 security:
   - BearerAuth: []
@@ -686,7 +686,7 @@ components:
           type: string
         type:
           type: string
-          enum: [text, integer, numeric, boolean, timestamp]
+          enum: [text, integer, numeric, boolean, timestamp, date]
         primary:
           type: boolean
           description: Marks this column as the table's natural key (dedup / upsert target). At most one per table.
@@ -832,16 +832,25 @@ components:
           format: uuid
         type:
           type: string
-          enum: [user, entra_group, public]
+          enum: [user, entra_user, entra_group, public]
         target:
           type: string
-          description: Email for "user" shares, Entra group ID for "entra_group" shares, empty for "public"
+          description: Email for "user" shares, Entra object ID for "entra_user"/"entra_group" shares, empty for "public"
         targetDisplay:
           type: string
           description: Human-readable label (e.g. resolved Entra group name); falls back to "target"
+        name:
+          type: string
+          description: Display name of the principal, when known
+        email:
+          type: string
+          description: Address of the principal, when known (groups usually have none)
         role:
           type: string
-          enum: [viewer, admin]
+          enum: [viewer, admin, owner]
+          description: >
+            "owner" shares express collection ownership; a collection always has at
+            least one and they are only valid for "user"/"entra_user" shares.
         created_at:
           type: string
           format: date-time
@@ -855,14 +864,15 @@ components:
       properties:
         type:
           type: string
-          enum: [user, entra_group, public]
+          enum: [user, entra_user, entra_group, public]
         target:
           type: string
         targetDisplay:
           type: string
         role:
           type: string
-          enum: [viewer, admin]
+          enum: [viewer, admin, owner]
+          description: '"owner" is only accepted for "user"/"entra_user" shares'
 
     UpdateShareRequest:
       type: object
@@ -871,7 +881,10 @@ components:
       properties:
         role:
           type: string
-          enum: [viewer, admin]
+          enum: [viewer, admin, owner]
+          description: >
+            Set "owner" to hand over (or add) ownership. Moving the last owner off
+            "owner" is rejected with 409 — a collection must keep an owner.
 
     # ============== Source Schemas ==============
 
@@ -894,7 +907,7 @@ components:
           type: string
         sourceType:
           type: string
-          enum: [webcrawl, sharepoint, nextcloud, git]
+          enum: [webcrawl, sharepoint, nextcloud, git, googledrive, webdav, ftp]
         config:
           type: object
           description: Source-specific configuration
@@ -949,7 +962,7 @@ components:
           type: string
         type:
           type: string
-          enum: [webcrawl, sharepoint, nextcloud, git]
+          enum: [webcrawl, sharepoint, nextcloud, git, googledrive, webdav, ftp]
           description: JSON key is "type"; not supported combined with syncSchedule for "sharepoint" sources
         config:
           type: object
@@ -1871,7 +1884,7 @@ paths:
   /api/collections/{id}/shares:
     get:
       summary: List collection shares
-      description: List shares for a collection. Only the collection owner may list shares.
+      description: List shares for a collection. Only collection owners may list shares.
       operationId: listCollectionShares
       tags:
         - Collections
@@ -1897,13 +1910,13 @@ paths:
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden — only the collection owner may list shares
+          description: Forbidden — only collection owners may list shares
         '404':
           description: Collection not found
 
     post:
       summary: Create a collection share
-      description: Share a collection with a user, an Entra group, or the public. Only the collection owner may create shares.
+      description: Share a collection with a user, an Entra group, or the public. Only collection owners may create shares.
       operationId: createCollectionShare
       tags:
         - Collections
@@ -1933,7 +1946,7 @@ paths:
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden — only the collection owner may create shares
+          description: Forbidden — only collection owners may create shares
         '404':
           description: Collection not found
         '409':
@@ -1942,7 +1955,7 @@ paths:
   /api/collections/{id}/shares/{shareId}:
     put:
       summary: Update a collection share
-      description: Change a share's role. Only the collection owner may update shares.
+      description: Change a share's role, including handing over ownership. Only collection owners may update shares.
       operationId: updateCollectionShare
       tags:
         - Collections
@@ -1979,13 +1992,15 @@ paths:
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden — only the collection owner may update shares
+          description: Forbidden — only collection owners may update shares
         '404':
           description: Collection or share not found
+        '409':
+          description: Conflict — the collection would be left without an owner
 
     delete:
       summary: Delete a collection share
-      description: Remove a share. Only the collection owner may delete shares.
+      description: Remove a share. Only collection owners may delete shares.
       operationId: deleteCollectionShare
       tags:
         - Collections
@@ -2012,9 +2027,11 @@ paths:
         '401':
           description: Unauthorized
         '403':
-          description: Forbidden — only the collection owner may delete shares
+          description: Forbidden — only collection owners may delete shares
         '404':
           description: Collection or share not found
+        '409':
+          description: Conflict — the collection would be left without an owner
 
   # ============== Embedding Model Catalog ==============
 
@@ -2147,7 +2164,7 @@ paths:
           description: Filter by source type
           schema:
             type: string
-            enum: [webcrawl, sharepoint, nextcloud, git]
+            enum: [webcrawl, sharepoint, nextcloud, git, googledrive, webdav, ftp]
       responses:
         '200':
           description: List of sources

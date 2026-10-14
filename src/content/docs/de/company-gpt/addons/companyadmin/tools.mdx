@@ -1,0 +1,47 @@
+---
+title: Tools
+description: In companyADMIN eigene Kacheln für „Alle Apps“ anlegen, für alle, Rollen oder Gruppen sichtbar machen und die Kacheln der Erweiterungen ein- und ausblenden.
+---
+
+**Konfiguration** → **Tools** steuert, was Personen unter [Alle Apps](/de/company-gpt/addons/alle-apps/) als Kacheln sehen: eigene Links für Ihre Teams und die Kacheln der Erweiterungen.
+
+Eine Kachel ist nur ein Link. Den Zugriff auf das Ziel regelt das Ziel selbst; eine sichtbare Kachel gibt keine Rechte.
+
+## Eigene Kacheln
+
+Sie können höchstens 50 eigene Kacheln anlegen, etwa für das Intranet. Die Tabelle **Eigene Kacheln** zeigt **Kachel**, **Adresse**, **Sichtbar für** und **Status** (**Aktiv** oder **Aus**). Mit **Kachel oder Adresse suchen …** finden Sie eine Kachel.
+
+### Kachel anlegen
+
+1. Klicken Sie auf **Kachel anlegen**.
+2. Füllen Sie im Abschnitt **Kachel** aus:
+
+   | Feld | Bedeutung |
+   |---|---|
+   | **Name** | Name der Kachel, höchstens 60 Zeichen |
+   | **Beschreibung** | Optional, höchstens 160 Zeichen |
+   | **Adresse** | Eine `https://`-Adresse oder ein Pfad auf Ihrer Domain wie `/wiki/` |
+   | **Symbol** | Eines der angebotenen Symbole, etwa **Link**, **Globus**, **Buch** oder **Dokument** |
+   | **Aktiv** | Ob die Kachel angezeigt wird |
+
+   Die **Vorschau** zeigt, wie die Kachel aussieht.
+3. Legen Sie unter **Sichtbarkeit** fest, wer die Kachel sieht: **Alle angemeldeten Nutzer**, **Bestimmte Rollen** oder **Bestimmte Gruppen**. Ohne gewählte Rolle oder Gruppe sieht sie niemand.
+4. Klicken Sie auf **Anlegen**.
+
+Unter **In companyTOOLS** fasst die Seite zusammen, wer die Kachel sieht. Dabei gilt:
+
+- Bei **Bestimmte Rollen** zählt die Rolle in CompanyGPT. Administratoren (Rolle ADMIN) sehen die Kachel nur, wenn ADMIN ausgewählt ist.
+- Bei **Bestimmte Gruppen** zählt die Mitgliedschaft, die CompanyGPT kennt: aus dem Gruppen-Sync oder der letzten Anmeldung.
+- Eigene Kacheln erscheinen hinter den Kacheln der Erweiterungen. Mit **Nach vorn** und **Nach hinten** ändern Sie ihre Reihenfolge.
+
+Eine bestehende Kachel öffnen Sie mit einem Klick auf die Zeile. **Kachel speichern** und **Sichtbarkeit speichern** sichern die Abschnitte getrennt. **Kachel löschen** entfernt sie sofort für alle.
+
+## Kacheln der Erweiterungen
+
+**Kacheln der Erweiterungen** listet jede Erweiterung mit Kachel. Für n8n und das AI Gateway ist der Schalter hier die einzige Einstellung in companyADMIN: Diese Anwendungen regeln den Zugriff selbst, der Schalter zeigt oder versteckt nur die Kachel, für alle angemeldeten Personen gleich. Rechte und Schalter der übrigen Erweiterungen beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+
+## Wann Änderungen sichtbar werden
+
+„Alle Apps“ fragt die Kacheln bei jedem Öffnen neu ab. Eine schon geöffnete Ansicht zeigt eine Änderung erst nach dem Neuladen.
+
+Zeigt die Seite einen Hinweis, dass eigene Kacheln und Schalter in Ihrer Umgebung noch nicht wirken, wenden Sie sich an innFactory.

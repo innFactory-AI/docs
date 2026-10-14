@@ -38,6 +38,8 @@ Tools for converting documents between formats.
 
 > When in doubt, call `get_supported_conversions` to get the full current list.
 
+PDF can only be converted to plain text. `excel` means `.xlsx`. Other formats — e.g. `.doc`, `.xls`, `.xlsb`, `.ppt`, OpenDocument, Outlook `.msg`/`.eml` or ZIP — are not inputs for `convert_document`: read them with `read_file`, or save them as one Markdown document with `convert_to_markdown` (both in the **file-management-skill**, only where available).
+
 ## Tool Usage
 
 ### convert_document
@@ -51,8 +53,7 @@ Input can be base64 `file_content`, a `librechat_file_id`, or a `document_id` (s
   "to_format": "pdf",
   "filename": "converted_document",
   "title": "My Document",
-  "author": "Alice",
-  "folder": "converted"
+  "author": "Alice"
 }
 ```
 
@@ -79,11 +80,11 @@ Returns `{id, filename, downloadUrl, markdownLink}` — always render `markdownL
 {}
 ```
 
-Returns a list of all supported `{from, to}` format pairs.
+Returns `{ conversions: [{ from, to: [...] }] }` — one entry per source format with its possible targets.
 
 ## Key Notes
 
-- `title` and `author` are only used when the output is `word` or `pdf`.
+- `title` and `author` are only used when the output is `word`, `pdf` or `odt`.
 - To get a file ID to convert, use `list_my_files` (from **file-management-skill**) to discover `librechat_file_id` or `document_id` values.
 - For reading document content without conversion, use `read_excel` / `read_word` / `read_pdf` from their respective skills.
 ````

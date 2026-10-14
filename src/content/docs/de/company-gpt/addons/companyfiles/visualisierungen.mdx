@@ -1,13 +1,19 @@
 ---
 title: Visualisierungen
-description: Interaktive Charts, Mermaid-Diagramme und Karten im CompanyGPT Chat – anpassen, als PNG exportieren und in Dokumente einbetten.
+description: Interaktive Charts, Mermaid-Diagramme und Karten im CompanyGPT Chat – anpassen, als Bild exportieren und in Dokumente einbetten.
 ---
 
 Rohe Zahlen können direkt als aussagekräftige Grafiken visualisiert werden. companyFILES kennt dafür drei Darstellungen, die im Chat interaktiv sind: **Charts** für Zahlenreihen, **Diagramme** für Abläufe und Strukturen und **Karten** für Standorte. Alles, was so entsteht, sammelt sich in der Oberfläche unter [Visualisierungen](/de/company-gpt/addons/companyfiles/oberflaeche/#visualisierungen).
 
 ## Interaktive Charts
 
-Balken-, Linien-, Torten-, Scatter-, Bubble- oder Radar-Diagramme lassen sich aus Daten im Chat erzeugen – zum Beispiel direkt aus einer Tabelle, die zuvor erstellt wurde: *„Zeige mir den Umsatz als Diagramm."*
+Charts lassen sich aus Daten im Chat erzeugen – zum Beispiel direkt aus einer Tabelle, die zuvor erstellt wurde: *„Zeige mir den Umsatz als Diagramm."* Zur Auswahl stehen:
+
+- Balkendiagramme, auch gestapelt oder horizontal,
+- Linien- und Flächendiagramme,
+- Torten- und Ringdiagramme (Doughnut) sowie Polar-Area-Diagramme,
+- Radar-, Streu- (Scatter) und Blasendiagramme (Bubble),
+- Wasserfall- und Trichterdiagramme (Funnel).
 
 ![Interaktives Balkendiagramm im Chat mit geöffnetem Exportmenü und den Optionen PNG (1x), PNG (2x), PNG (4x), Copy CSV und Copy Image](./files-chart-export.png)
 
@@ -19,22 +25,22 @@ Balken-, Linien-, Torten-, Scatter-, Bubble- oder Radar-Diagramme lassen sich au
 | **Zurücksetzen** | stellt die Ausgangsansicht wieder her |
 | **+/- Zoom, Esc zurück** | Zoom in den Datenbereich; `Esc` führt zurück |
 | **Tabelle** | schaltet zwischen Diagramm und zugrunde liegender Tabelle um |
-| **Optionen** | Feineinstellungen der Darstellung, zum Beispiel Gitterlinien oder gestapelte Balken |
+| **Optionen** | Feineinstellungen wie Titel, Achsenbeschriftungen, Legendenposition, **Farbschema**, **Gitterlinien**, **Gestapelt** oder **Fläche füllen**; **Übernehmen** wendet sie an |
 | **Exportieren** | **PNG (1x)**, **PNG (2x)**, **PNG (4x)**, **Copy CSV**, **Copy Image** |
 
-Unterhalb des Charts liegt zusätzlich der Link **Diagramm als PNG herunterladen**.
+Exportierte Bilddateien legt companyFILES zusätzlich unter **Dokumente** ab. Unter dem Chart nennt der Agent außerdem einen Link auf die Vollansicht und einen Link zum Herunterladen als PNG.
 
 :::tip[Hinweis]
-Die Farben des Charts kommen aus den [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/). Sind Primär- und Sekundärfarbe der Organisation gesetzt, erscheinen neue Charts automatisch in den Unternehmensfarben.
+Die Farben des Charts kommen aus den [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/). Sobald eine Primärfarbe gesetzt ist, erscheinen neue Charts automatisch in den Unternehmensfarben.
 :::
 
 ## Mermaid-Diagramme
 
-Per Prompt können Flowcharts, Sequenzdiagramme, Klassendiagramme und State-Machines generiert werden. Als Vorlage genügt ein beschriebener Ablauf – auch aus einem vorher erzeugten Dokument: Sie hängen das PDF an und bitten um ein Flussdiagramm.
+Per Prompt können Flowcharts, Sequenzdiagramme, Klassendiagramme, State-Machines, ER-Diagramme und weitere Mermaid-Diagrammtypen generiert werden. Als Vorlage genügt ein beschriebener Ablauf – auch aus einem vorher erzeugten Dokument: Sie hängen das PDF an und bitten um ein Flussdiagramm.
 
 ![Mermaid-Flowchart](fileforge-flowchart.png)
 
-Die Diagrammansicht im Chat lässt sich zoomen und über **Reset View** zurücksetzen; die aktuelle Vergrößerung steht als Prozentwert daneben. Über **Download PNG** wird das Diagramm als Bild gespeichert.
+Die Diagrammansicht im Chat lässt sich zoomen und über **Reset View** zurücksetzen; die aktuelle Vergrößerung steht als Prozentwert daneben. Oben rechts wählen Sie das Farbthema des Diagramms (**Default**, **Dark**, **Forest** oder **Neutral**) und exportieren es über **SVG**, **PNG** oder **JPG**. Die exportierte Datei liegt danach auch unter **Dokumente**.
 
 **Beispiel: Tortendiagramm**
 
@@ -42,7 +48,7 @@ Die Diagrammansicht im Chat lässt sich zoomen und über **Reset View** zurücks
 
 ## Karten
 
-Standorte lassen sich auf einer interaktiven Karte darstellen. Der Prompt nennt nur die Orte oder die Organisationen – im Beispiel: *„Zeige die Hauptstandorte von BMW, Audi, Mercedes-Benz und Porsche auf einer Karte."*
+Standorte lassen sich auf einer interaktiven Karte darstellen – als Weltkarte oder als Deutschlandkarte mit den Grenzen der Bundesländer. Der Prompt nennt nur die Orte oder die Organisationen – im Beispiel: *„Zeige die Hauptstandorte von BMW, Audi, Mercedes-Benz und Porsche auf einer Karte."*
 
 ![Interaktive Karte mit Markierungen der Hauptstandorte, Legende und dem Tooltip „Audi – Ingolstadt, Audi AG Hauptsitz"](./files-karte.png)
 
@@ -52,9 +58,9 @@ Jede Markierung trägt eine Beschriftung, die Legende ordnet die Farben den Eint
 |---|---|
 | **Clustern** | fasst nahe beieinanderliegende Markierungen zusammen |
 | **Extern öffnen** | öffnet die Karte als eigene Seite |
-| **Exportieren** | speichert die Karte als Bild |
+| **Exportieren** | speichert die Karte als Bild (PNG oder JPG) |
 
-Unterhalb der Karte listet der Agent die gefundenen Standorte noch einmal als Text auf.
+Unterhalb der Karte listet der Agent die gefundenen Standorte noch einmal als Text auf. In einzelnen Umgebungen kann die Karte zusätzlich Adressen in Kartenpunkte umsetzen und Routen zwischen Orten, Entfernungen und Fahrzeiten oder den von einem Punkt aus erreichbaren Bereich darstellen.
 
 :::note
 Für Standorte, die nicht im Prompt stehen, braucht der Agent zusätzlich eine **Websuche** – siehe [Agent einrichten](/de/company-gpt/addons/companyfiles/agent/#weitere-werkzeuge-kombinieren). Erst damit findet er nicht nur den Ort, sondern den tatsächlich als Hauptsitz oder Konzernzentrale ausgewiesenen Standort.

@@ -7,7 +7,7 @@ Skills sind wiederverwendbare Anweisungen, die den KI-Assistenten für bestimmte
 
 ## Skills-Übersicht
 
-Skills werden in der linken Seitenleiste unter **Skills** verwaltet. Unter **My Skills** sehen Sie alle Ihre Skills auf einen Blick.
+Skills werden in der linken Seitenleiste unter **Skills** verwaltet. Unter **Meine Skills** sehen Sie alle Ihre Skills auf einen Blick.
 
 ![Skills-Übersicht in der linken Sidebar mit einer Liste eigener Skills](./skills-main-de.png)
 
@@ -19,11 +19,11 @@ Klicken Sie auf den **+**-Button oben in der Skills-Sidebar, um einen neuen Skil
 
 ### Skill-Anweisungen schreiben
 
-Wählen Sie **Write skill instructions**, um ein Skill selber zu erstellen. Dafür müssen folgende Felder ausgefüllt werden:
+Wählen Sie **Skill-Anweisungen schreiben**, um einen Skill selbst zu erstellen. Dafür werden folgende Angaben benötigt:
 
 - **Name** – Ein eindeutiger Name für den Skill
 - **Beschreibung** – Kurze Erklärung, wann und wofür der Skill eingesetzt wird
-- **Instructions** – Die eigentlichen Anweisungen im Markdown-Format
+- **Anweisungen** – Die eigentlichen Anweisungen im Markdown-Format
 
 ![Formular zum Schreiben eines neuen Skills mit Name, Beschreibung und Instructions](./skills-write-de.png)
 
@@ -52,7 +52,7 @@ Die Detailansicht eines Skills zeigt den gerenderten Inhalt mit Beschreibung und
 
 Von hier aus können Sie den Skill:
 
-- **Aktivieren oder deaktivieren** – über den Toggle oben rechts
+- **Für Agenten freigeben oder sperren** – über den Schalter **Available to agent** oben rechts. Ist er eingeschaltet, kann ein Agent den Skill in neuen Nachrichten verwenden. Die Einstellung gilt nur für Sie.
 - **Bearbeiten** – Anweisungen, Name oder Kategorie anpassen
 - **Löschen** – den Skill dauerhaft entfernen
 
@@ -68,10 +68,12 @@ Die **Beschreibung** legt fest, wann der Skill automatisch aktiviert wird. Formu
 
 ## Skills zu Agenten hinzufügen
 
-Skills können auch direkt einem [Agenten](/de/company-gpt/agenten/) zugewiesen werden. Öffnen Sie dazu die Agenten-Einstellungen und aktivieren Sie den **Skills**-Toggle. Standardmäßig hat der Agent Zugriff auf den gesamten Skill-Katalog.
+Skills können auch direkt einem [Agenten](/de/company-gpt/agenten/) zugewiesen werden. Öffnen Sie dazu den Agenten und wählen Sie im Abschnitt **Skills** einen der drei Modi:
 
-![Skills-Toggle in den Agenten-Einstellungen aktivieren](./skills-agent-enable-de.png)
+| Modus | Wirkung |
+| ----- | ------- |
+| **Off** | Der Agent verwendet keine Skills. |
+| **All** | Der Agent hat Zugriff auf alle Skills, die Ihnen zur Verfügung stehen und für Agenten freigegeben sind. Die Liste der verfügbaren Skills lässt sich aufklappen. |
+| **Selected** | Der Agent verwendet nur die Skills, die Sie ausgewählt haben. |
 
-Über **Add Skills** können Sie gezielt einzelne Skills auswählen, die der Agent verwenden darf. So lässt sich der Funktionsumfang eines Agenten präzise steuern.
-
-![Skill-Katalog zum Hinzufügen von Skills zu einem Agenten](./skills-agent-add-de.png)
+Im Modus **Selected** fügen Sie Skills über **Add skill** hinzu. Es öffnet sich ein Dialog, in dem Sie die verfügbaren Skills durchsuchen und dem Agenten hinzufügen. Über das Kreuz neben einem Skill entfernen Sie ihn wieder aus der Auswahl. So lässt sich der Funktionsumfang eines Agenten präzise steuern.

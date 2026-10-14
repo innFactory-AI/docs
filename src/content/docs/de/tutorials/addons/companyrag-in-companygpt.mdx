@@ -1,28 +1,28 @@
 ---
-title: CompanyRAG in CompanyGPT nutzen
-description: Such-Agent mit CompanyRAG und dem MCP Server ai-search einrichten
+title: companyRAG in CompanyGPT nutzen
+description: Such-Agent mit companyRAG und dem MCP Server ai-search einrichten
 ---
 
 import CollectionPromptBuilder from '../../../../../components/CollectionPromptBuilder.astro'
 
-Damit wir CompanyRAG in CompanyGPT nutzen können, müssen wir zuerst eine Dokumentensammlung anlegen. Dazu gehen wir auf `https://FIRMA.company-gpt.com/companygpt/rag` (Falls sie eine iegene Domain nutzen, einfach `/companygpt/rag`anhängen).
+Damit wir companyRAG in CompanyGPT nutzen können, müssen wir zuerst eine Dokumentensammlung anlegen. Dazu öffnen wir companyRAG über [Alle Apps](/de/company-gpt/addons/alle-apps/) mit der Kachel **Wissen** oder direkt unter `https://FIRMA.company-gpt.com/companygpt/rag` (falls Sie eine eigene Domain nutzen, einfach `/companygpt/rag` anhängen).
 
 ## Sammlung erstellen
 
-Dann navigieren wir zu `Sammlungen` und erstellen eine neue Sammlung. Als Typ wählen wir **Dokumente**, vergeben einen Namen, eine Beschreibung und wählen die Sichtbarkeit.
+Dann navigieren wir in der Seitenleiste zu **Sammlungen** und wählen **Sammlung erstellen**. Als **Sammlungstyp** wählen wir **Dokumente**, vergeben einen Namen, eine Beschreibung und wählen die Sichtbarkeit.
 
 Der **technische Name** ist später für den Prompt relevant.
 
-![sammlung-erstellen](sammlung-erstellen.png).
+![sammlung-erstellen](sammlung-erstellen.png)
 
-Bei der Sichtbarkeit können wir zwischen **Privat** und **Öffentlich** unterscheiden. **Öffentliche** Sammlungen sind für alle User nutzbar, **private** Sammlungen nur für den Owner, diese können aber beliebig freigegeben werden. Die Sichtbarkeit kann nachträglich jederzeit verändert werden.
+Bei der Sichtbarkeit können wir zwischen **Privat** und **Öffentlich** unterscheiden. **Öffentliche** Sammlungen sind für alle User nutzbar, **private** Sammlungen nur für den Besitzer, diese können aber beliebig freigegeben werden. Nachträglich lässt sich eine Sammlung über **Sammlung teilen** für Personen und Gruppen oder mit dem Schalter **Mit allen teilen** für alle freigeben.
 
 ### Erweiterte Einstellungen
 
-In den erweiterten Einstellungen können wir die Suchsprache, die Chunking Strategie sowie die Chunk-Größe und -Überlappung anpassen. Hier können wir aber die Standardwerte belassen.
+In den erweiterten Einstellungen können wir – je nach Umgebung – das Embedding-Modell, die Suchsprache, die Chunking-Strategie sowie die Chunk-Größe und -Überlappung anpassen. Hier können wir aber die Standardwerte belassen.
 
 :::tip
-Die Suchsprache sollte im Optimalfall immer der Sprache der Dokumente in der Sammlung entsprechend. Es wird neben semantischer auch Volltextsuche durchgeführt und diese ist besser bei korrekter Spracheinstellung.
+Die Suchsprache sollte im Optimalfall immer der Sprache der Dokumente in der Sammlung entsprechen. Es wird neben semantischer auch Volltextsuche durchgeführt und diese ist besser bei korrekter Spracheinstellung.
 :::
 
 ![erweiterte-einstellungen](erweiterte-einstellungen.png)
@@ -35,34 +35,34 @@ Sobald die Sammlung erstellt ist, können wir Dokumente hinzufügen.
 
 ![manualler-upload](manualler-upload.png)
 
-Dafür einfach die Sammlung sowie die Dokumente auswählen und hochladen. Beim manuellen Upload gibt es keine Berechtigungen auf Dateiebene und keine weiteren Metadaten als den Dateinamen.
+Dafür unter **Hochladen** einfach die Sammlung sowie die Dokumente auswählen und hochladen. Beim manuellen Upload gibt es keine Berechtigungen auf Dateiebene und keine weiteren Metadaten als den Dateinamen.
 
-### Sharepoint / NextCloud Sync
+### SharePoint, Nextcloud und weitere Quellen
 
 ![quellen](quellen.png)
 
-Unter Quellen kann eine neue Verbindung angelegt werden.
+Unter **Quellen** kann eine neue Verbindung angelegt werden – neben SharePoint auch zu Nextcloud, Google Drive, GitHub, WebDAV, FTP oder per Web-Crawl. Im Folgenden zeigen wir den Weg für SharePoint.
 
 :::tip
-Falls noch keine Quelle Verbunden ist, dann muss unter **Integrationen** die SharePoint Verbindung aktiviert werden.
+Falls noch keine Integration verbunden ist, muss unter **Integrationen** zuerst **Microsoft SharePoint** über **Verbinden** angemeldet werden.
 
 ![integrationen](integrationen.png)
 :::
 
-Unter Quellen kann dann eine neue Sharepoint Verbindung angelegt werden. Dafür muss der Sharepoint Ordner ausgewählt werden, der dafür genutzt werden soll. Es werden immer alle unterordner des ausgewählten Ordners mit einbezogen.
+Unter **Quellen** startet dann im Reiter **SharePoint** der Button **SharePoint verbinden** die Auswahl. Unter **Zu synchronisierende Inhalte** wählen wir, ob Dateien, Seiten & News oder beides synchronisiert werden. Anschließend wählen wir Website oder Team, Bibliothek und den SharePoint-Ordner, der genutzt werden soll. Es werden immer alle Unterordner des ausgewählten Ordners mit einbezogen.
 
 ![sharepoint-browser](sharepoint-browser.png)
 
-Sobald der gewünschte Ordner ausgewählt ist, muss die Sammlung ausgewählt werden und auf **Diesen Ordner Auswählen** geklickt werden.
+Sobald der gewünschte Ordner ausgewählt ist, muss die Sammlung ausgewählt und auf **Diesen Ordner auswählen** geklickt werden.
 
 ![sharepoint-folder](sharepoint-folder.png)
 
-Dann noch die zu indexierenden Dateitypen auswählen, und auf **Sharepoint verbinden** klicken.
+Dann noch die zu indexierenden Dateitypen auswählen und auf **SharePoint verbinden** klicken. Die erste Synchronisation startet danach automatisch, und Änderungen im Ordner werden künftig selbstständig übernommen.
 
 ![sharepoint-filetypes](sharepoint-filetypes.png)
 
 :::note
-Über Sharepoint indexierte Dokumente sind mit Berechtigungen auf Dokumentenebene versehen. Bei der Abfrage über das CompanyGPT werden die Berechtigungen immer geprüft, egal wie die Freigabe der Sammlungen gestaltet ist.
+Über SharePoint indexierte Dokumente sind mit Berechtigungen auf Dokumentenebene versehen. Bei der Abfrage über das CompanyGPT werden die Berechtigungen immer geprüft, egal wie die Freigabe der Sammlungen gestaltet ist.
 :::
 
 ## CompanyGPT Agent 

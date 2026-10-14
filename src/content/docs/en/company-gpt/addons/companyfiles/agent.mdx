@@ -30,15 +30,11 @@ A companyFILES agent does not need long system instructions. What works well are
 
 ![Dialog of the Files MCP server with the tool list and the agent sidebar](./files-agent-tools.png)
 
-The **Files** tool is added under **Tools → Add**. It is an MCP server and brings **56 tools** with it; the counter in the sidebar shows them as `Files · 56`. The dialog shows the connection state (**Connected**) and below it the list of tools on this server, in which individual tools can be deselected – or all of them at once.
+The **Files** tool is added under **Tools → Add**. It is an MCP server and brings a whole set of tools with it. Exactly how many depends on which extensions are active in your environment; the counter in the sidebar shows the number next to the name, in the screenshot as `Files · 56`. The dialog shows the connection state (**Connected**) and below it the list of tools on this server, in which individual tools can be deselected – or all of them at once.
 
 Every row has a clock icon next to the name. It marks lazy loading: the tool is only pulled into the context when it is needed. That saves context and makes sense for nearly every tool. The exception is `help` – it stays permanently active so the agent can look up the remaining tools in the first place.
 
-:::note
-The clock icon is shown without a label or tooltip in the recording. What is described here is the effect explained in the recording, not the wording of the interface.
-:::
-
-### The 56 tools at a glance
+### The tools at a glance
 
 **Excel:** `create_excel`, `create_excel_from_csv`, `create_excel_from_json`, `create_excel_advanced`, `modify_excel`, `read_excel`, `read_excel_detailed`, `create_excel_from_template`, `fill_excel_template`
 
@@ -50,15 +46,30 @@ The clock icon is shown without a label or tooltip in the recording. What is des
 
 **Text, conversion, archives:** `create_text_file`, `convert_document`, `get_supported_conversions`, `create_zip_from_stored_files`
 
-**File management:** `upload_file`, `download_stored_file`, `list_documents`, `search_documents`, `list_templates`, `list_my_files`, `get_settings`, `open_companyfiles_ui`
+**File management:** `upload_file`, `download_stored_file`, `list_documents`, `search_documents`, `list_my_files`, `get_settings`, `open_companyfiles_ui`
+
+**Templates:** `list_templates`, `attach_template_to_chat` – the latter attaches a copy of a template to the chat so the code interpreter can edit it; see [Handing a template to the code interpreter](/en/company-gpt/addons/companyfiles/vorlagen/#handing-a-template-to-the-code-interpreter)
+
+**Images:** `view_image` – the agent looks at a stored image (PNG, JPEG, WebP, GIF) itself, such as an uploaded photo or an exported chart, and can describe or analyze it
 
 **Visualization:** `create_chart_document`, `embed_chart_in_document`, `show_interactive_chart`, `show_interactive_diagram`, `show_interactive_map`
 
 **Help:** `help`
 
+In addition, some tools are only available with an extra extension:
+
+| Extension | Tools | Description |
+|---|---|---|
+| Reading further formats | `read_file`, `save_file_part`, `convert_to_markdown` | reading e-mails, archives and older formats, saving attachments as documents of their own, storing whole files as Markdown – see [Reading e-mails, archives and older formats](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#reading-e-mails-archives-and-older-formats) |
+| CAD, BIM and 3D | `describe_model`, `query_model`, `get_model_element`, `aggregate_model`, `model_areas`, `create_model_report`, `render_model_view`, `show_model_viewer`, `convert_model`, `edit_model` | analyzing, viewing, converting and editing models – see [CAD, BIM and 3D](/en/company-gpt/addons/companyfiles/cad-und-3d/) |
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
 ## Skills
 
-companyFILES comes with a set of bundled skills. They contain no content, only the rules for working with the tools – which tool is responsible for which format, in what order to work, and how to check a result. They are selected under **Skills → Add**.
+companyFILES comes with a set of bundled skills. They contain no content, only the rules for working with the tools – which tool is responsible for which format, in what order to work, and how to check a result. They are selected in the agent's **Skills** section.
 
 | Skill | Responsible for |
 |---|---|
@@ -72,7 +83,7 @@ companyFILES comes with a set of bundled skills. They contain no content, only t
 | [`file-management-skill`](/en/tutorials/skills/files/file-management-skill/) | storing, searching and downloading files |
 | [`settings-ui-skill`](/en/tutorials/skills/files/settings-ui-skill/) | reading the settings and applying them to documents |
 
-The **Use all skills** switch above the list gives the agent access to every skill in the organization. For a document agent, picking the companyFILES skills explicitly is enough.
+The agent can use all skills of the organization, none, or only selected ones. For a document agent, picking the companyFILES skills explicitly is enough.
 
 :::tip[Note]
 Every skill is documented individually in this documentation – the table links straight there. Anyone building their own agent can read up on which skill prescribes which way of working.
@@ -89,7 +100,7 @@ Both are visible in the chat: above the answer it says how many tools were used 
 Under **Advanced → Basics** you find the field for the **maximum agent steps**. It limits how many tool calls an agent may make in one pass. For single documents the default is sufficient; for larger rebuilds – reworking a whole presentation, for instance – it is not, because dozens of calls add up quickly.
 
 :::note
-Before starting an extensive change, raise the value – to **100** in the recording. If the agent hits the limit mid-way, the document is left half-finished.
+Before starting an extensive change, raise the value – to **100**, for example, as in the screenshot. If the agent hits the limit mid-way, the document is left half-finished.
 :::
 
 Below it sits the **multi-agent orchestration** section with **sub-agents** (Beta), **handoffs** (Beta) and the **agent chain**. None of them is required for companyFILES.
@@ -97,5 +108,7 @@ Below it sits the **multi-agent orchestration** section with **sub-agents** (Bet
 ## Combining other tools
 
 companyFILES can be combined with other tools on the same agent. In the map example a **web search** is added: first the agent researches the locations, then it plots them via `show_interactive_map`. Without web search it only knows the places named in the prompt.
+
+To work with [`attach_template_to_chat`](/en/company-gpt/addons/companyfiles/vorlagen/#handing-a-template-to-the-code-interpreter), the agent also needs **Run Code**, because the attached template is edited by the code interpreter.
 
 Next: [Creating documents](/en/company-gpt/addons/companyfiles/dokumente-erstellen/).

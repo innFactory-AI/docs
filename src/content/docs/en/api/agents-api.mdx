@@ -20,8 +20,8 @@ Both interfaces are authenticated via API keys and support streaming responses, 
 
 To use the Agents API, the following prerequisites must be met:
 
-1. **API access must be enabled** — An administrator must enable the `remoteAgents` configuration.
-2. **Generate an API key** — Once access is enabled, you can create an API key in the CompanyGPT interface under Settings.
+1. **API access must be enabled** — Your role needs the **Remote agents** permission (**Use**). Administrators grant it in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab.
+2. **Generate an API key** — Once access is enabled, create a key in CompanyGPT under **Settings** → **Data & Privacy** → **Agent API keys** via **Create API Key**. You enter a name and, optionally, an expiration date. Copy the key right away; it will not be shown again.
 3. **Find your agent ID** — Each agent has a unique ID (e.g. `agent_ulS_lcjGw...`) that you use as the `model` parameter.
 
 :::tip
@@ -170,6 +170,48 @@ curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
   </TabItem>
 </Tabs>
 
+#### Your own functions (client function tools)
+
+In the Open Responses API, you can also give the agent your own functions that your application executes itself. To do this, pass entries of type `function` with name, description, and parameters in JSON Schema format in the `tools` field. The function name may only contain letters, digits, `_`, and `-`.
+
+If the model calls such a function, it is not executed in CompanyGPT. Instead, the run ends and the response contains the call as an item of type `function_call`. Your application executes the function and continues the conversation with a new request. In it, you send the previous history, the received `function_call` item, and your result as `function_call_output` with the same `call_id` in the `input` field:
+
+```json
+{
+  "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+  "tools": [
+    {
+      "type": "function",
+      "name": "open_service_page",
+      "description": "Opens the service page for an order number",
+      "parameters": {
+        "type": "object",
+        "properties": { "order_id": { "type": "string" } },
+        "required": ["order_id"]
+      }
+    }
+  ],
+  "input": [
+    { "role": "user", "content": "Open the service page for order 4711." },
+    {
+      "type": "function_call",
+      "call_id": "call_1",
+      "name": "open_service_page",
+      "arguments": "{\"order_id\": \"4711\"}"
+    },
+    {
+      "type": "function_call_output",
+      "call_id": "call_1",
+      "output": "Service page opened."
+    }
+  ]
+}
+```
+
+:::note
+Continuing via `previous_response_id` does not work for your own functions. Always send the `function_call` and the `function_call_output` item together in the `input` field of the next request.
+:::
+
 ### List Available Agents
 
 ```
@@ -204,7 +246,12 @@ curl https://<COMPANYGPT URL>/api/agents/v1/models \
 
 All Agents API requests are counted against the user's token balance (when token spending is configured). Both input and output tokens are tracked, including cache tokens for providers that support them (OpenAI, Anthropic).
 
+### Budgets in the AI Gateway
+
+In environments where CompanyGPT accesses the AI models via the [AI Gateway](/en/api/ai-gateway/), the gateway's budgets also apply to requests via the Agents API. If a budget is used up, the gateway rejects the model request with status `402`; the request to the agent then fails until budget is available again.
+
 ## Related Documentation
 
 - [Agents](/en/company-gpt/agenten) — Creating and configuring agents in CompanyGPT
 - [MCP Servers](/en/company-gpt/integrationen/mcp-server) — MCP server integrations
+- [AI Gateway API](/en/api/ai-gateway/) — Direct access to the AI models via the AI Gateway

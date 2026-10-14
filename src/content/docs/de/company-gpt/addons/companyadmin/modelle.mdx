@@ -1,51 +1,121 @@
 ---
-title: Modelle und Provider
-description: Provider und einzelne KI-Modelle in CompanyGPT pro Rolle freigeben und Modelle unter eigenen Bezeichnungen anzeigen.
+title: Provider und Modelle
+description: In companyADMIN festlegen, welche Rolle welche Anbieter und Modelle in CompanyGPT sieht, alle Rollen in der Modellzugriff-Matrix bearbeiten und Modelle mit Labels unter eigenen Namen anzeigen.
 ---
 
-Im Administrationsbereich legen Sie fest, welche Provider und welche einzelnen Modelle eine Rolle verwenden darf – und unter welchem Namen ein Modell den Nutzern angezeigt wird.
+Unter **Konfiguration** legen Sie fest, welche Anbieter und Modelle Personen in CompanyGPT sehen und unter welchem Namen. Drei Seiten gehören dazu:
 
-## Modellzugriff pro Rolle
+- **Provider und Modelle** – Zugriff je Anbieter, eine Rolle nach der anderen
+- **Modellzugriff** – alle Rollen und Anbieter in einer Tabelle
+- **Labels** – lesbare Namen für Modelle und die Darstellung in der Modellauswahl
 
-Standardmäßig ist ein Provider für alle Nutzer verfügbar. Mit **Only specific roles may use …** schränken Sie ihn auf ausgewählte Rollen ein und bestimmen je Rolle die erlaubten Modelle.
+Modelle hängen an **Rollen**, nicht an Gruppen. Eine Entra-Gruppe bekommt ihre Modelle über die Rolle, die ihr der Rollen-Sync gibt. Weil jede Person genau eine Rolle hat, ist das Ergebnis eindeutig.
 
-![Provider-Einstellung mit Rollen und je Rolle erlaubten Modellen](./provider-rollen.png)
+## Provider und Modelle
 
-Weil ein Nutzer genau **eine** Rolle hat, greift auch genau eine dieser Zeilen für ihn. Die Freigaben mehrerer Rollen addieren sich nicht: Eine Personengruppe, die die Modelle zweier Rollen zusammen benötigt, braucht eine eigene Rolle.
+Ohne Einschränkung gilt die Grundkonfiguration: Alle sehen alle Anbieter und Modelle. Die Tabelle **Zugriff je Anbieter** zeigt, was gilt:
+
+| Spalte | Inhalt |
+|---|---|
+| **Anbieter** | Der Anbieter, gegebenenfalls mit Badge |
+| **Modelle** | Anzahl der Modelle |
+| **Zugriff** | **Alle Modelle**, „x von y Modellen“ oder **Kein Zugriff** für die im Filter gewählte Rolle |
+| **Quelle** | **librechat.yaml** (Grundkonfiguration, offen für alle) oder **companyADMIN** (hier eingeschränkt) |
+
+Der Filter **Rolle** zeigt, was eine bestimmte Rolle bekommt. Mit **Anbieter oder Modell suchen …** finden Sie einen Eintrag.
+
+Badges an einem Anbieter:
+
+- **Eigener Endpoint** – ein eigener (custom) Anbieter. Eine Einschränkung gilt nur für diesen Endpoint. Für eine Rolle ohne Zugriff ist er in CompanyGPT ganz ausgeblendet.
+- **Liste live** – die Modellliste wird beim Anbieter abgefragt. Hier lässt sich nur der ganze Anbieter sperren, nicht einzelne Modelle.
+- **Neu speichern** – eine ältere Einschränkung wirkt nicht wie angezeigt. Prüfen Sie sie und speichern Sie sie erneut.
+
+### Zugriff für eine Rolle ändern
+
+1. Klappen Sie den Anbieter auf. Sie sehen, welche Rolle welches Modell hat.
+2. Wählen Sie unter **Rolle bearbeiten:** die Rolle.
+3. Setzen oder entfernen Sie das Häkchen „*Rolle* nutzt *Anbieter*“ und die Häkchen der einzelnen Modelle.
+4. Klicken Sie auf **Speichern**. Nehmen Sie Modelle weg, fragt companyADMIN vorher nach und nennt die Modelle, die danach nicht mehr verfügbar sind.
+
+Wird ein bisher offener Anbieter für eine Rolle eingeschränkt, behalten alle anderen Rollen alle Modelle. Neue Rollen sehen den Anbieter aber erst, nachdem Sie ihn ihnen freigegeben haben. **Für alle öffnen** hebt die Einschränkung wieder auf.
 
 Zu beachten:
 
-- Wird die Rolle **ADMIN** nicht angehakt, verlieren auch Administratoren diesen Provider.
-- **USER** ist die Standardrolle für alle, deren Anmeldung keinem Rollen-Mapping entsprochen hat. Ohne Häkchen sehen diese Nutzer nichts von dem Provider.
-- Eine nicht angehakte Rolle sieht den Provider weiterhin, jedoch mit leerer Modellliste. Provider werden über die Serverumgebung aktiviert und können hier nicht entfernt, sondern nur geleert werden. Lassen Sie deshalb je Rolle mindestens ein Modell aktiv.
+- Mindestens eine Rolle muss den Anbieter behalten.
+- ADMIN ist eine Rolle wie jede andere. Nehmen Sie ADMIN den Zugriff, verlieren auch Administratoren den Anbieter.
+- Bei eingebauten Anbietern sieht eine Rolle ohne Zugriff den Anbieter in CompanyGPT weiterhin, aber mit leerer Modellliste. Lassen Sie jeder Rolle mindestens ein Modell, dann tritt der leere Eintrag nicht auf.
+- Nach einer Änderung laden Personen CompanyGPT neu, um die neue Auswahl zu sehen.
 
-:::note
-Änderungen an den Modellfreigaben werden innerhalb etwa einer Minute wirksam.
+### AI Gateway
+
+Ist in Ihrer Umgebung das innFactory AI Gateway eingerichtet, zeigt die Seite **Provider, Modelle und Budgets verwaltet das AI Gateway.** Hier legen Sie dann nur noch fest, welche Rolle welche Modelle im Chat sieht. **Gateway öffnen** führt zum Gateway; öffnen können es Administratoren mit Konfigurationsrechten.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
 :::
 
-## Eigene Modellbezeichnungen
+## Modellzugriff
 
-Mit **Manage model labels from companyADMIN** zeigen Sie ein Modell unter einem Namen Ihrer Wahl an – etwa „Claude Sonnet 4.6" statt der technischen Modell-ID.
+**Modellzugriff** zeigt alle Rollen und Anbieter in einer Tabelle: Anbieter als Zeilen, Rollen als Spalten, ADMIN und USER zuerst.
 
-![Modellbezeichnungen mit Label, Provider, Modell, Gruppe und Beschreibung](./modell-labels.png)
+- Ein Haken heißt: Die Rolle hat den Anbieter bzw. das Modell. Ein Strich heißt: nur einige Modelle. Aufklappen zeigt die einzelnen Modelle; **Alle Modelle zeigen** klappt alle Anbieter auf.
+- Je Anbieter steht, ob er **offen für alle (librechat.yaml)** oder **eingeschränkt durch companyADMIN** ist.
+- Ein Klick auf den Spaltenkopf öffnet die Modelle dieser Rolle.
 
-Je Eintrag konfigurieren Sie:
+So ändern Sie den Zugriff:
 
-| Feld | Bedeutung |
+1. Setzen oder entfernen Sie Haken. Geänderte Anbieter sind markiert.
+2. Klicken Sie in der Speicherleiste auf **Speichern** oder auf **Verwerfen**.
+3. Nehmen Sie Modelle weg, fragt **Modelle wegnehmen?** nach und listet je Rolle, was wegfällt. Bestätigen Sie mit **Speichern und wegnehmen**.
+
+Auch hier muss mindestens eine Rolle jeden Anbieter behalten. Hat jemand anderes einen Anbieter inzwischen geändert, speichert companyADMIN nichts und zeigt **Inzwischen geändert – neu laden**. Prüfen Sie dann den gespeicherten Stand und speichern Sie erneut.
+
+## Modelle je Rolle und Person
+
+- **Rolle** → Reiter **Modelle & Provider** zeigt und ändert die Modelle einer Rolle, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+- **Nutzer** → Reiter **Modelle** zeigt, welche Modelle eine Person sieht, siehe [Nutzer](/de/company-gpt/addons/companyadmin/nutzer/).
+
+## Labels
+
+Labels geben Modellen lesbare Namen in der Modellauswahl, etwa „Claude schnell“ statt der technischen Modell-ID. Ein Label kann auch auf einen bestimmten Agent zeigen.
+
+### Verwaltung
+
+Mit **Modell-Labels in companyADMIN verwalten** übernimmt companyADMIN die Labels. Solange das Häkchen fehlt, gelten die Labels aus der Grundkonfiguration, sonst die technischen Modell-IDs. Schon das Anlegen des ersten Labels übernimmt die vorhandenen Labels aus der Grundkonfiguration zur Bearbeitung.
+
+**Verwaltung beenden** fragt nach. Danach gelten wieder die Labels der Grundkonfiguration, und alle hier angelegten oder geänderten Labels gehen verloren.
+
+### Alle Labels
+
+Die Liste **Alle Labels** zeigt **Label**, **Modell**, **Quelle** und **Wirksam**. In dieser Reihenfolge erscheinen die Labels auch in der Modellauswahl. **Vorausgewählt** markiert das Label, das in neuen Chats vorausgewählt ist. Steht bei **Wirksam** „Nein“, gibt es das Modell nicht mehr; CompanyGPT blendet ein solches Label aus.
+
+**Label hinzufügen** und ein Klick auf ein Label öffnen die Detailseite:
+
+| Abschnitt | Felder |
 |---|---|
-| **Label** | Angezeigter Name des Modells |
-| **Provider** und **Model** | Technische Zuordnung zum tatsächlichen Modell |
-| **Description** | Kurzer Hinweis zum Einsatzzweck, zum Beispiel „Für einfache Aufgaben" |
-| **Group** und **Group icon** | Gruppierung in der Modellauswahl, zum Beispiel nach Provider |
-| **Icon URL** | Optionales eigenes Symbol |
-| **Preselected for new chats** | Modell ist in neuen Unterhaltungen vorausgewählt |
+| **Anzeige** | **Label** (höchstens 128 Zeichen), **Beschreibung (optional)** – erscheint in der Auswahl unter dem Label, **Gruppe** und **Gruppen-Symbol** – gruppieren die Auswahl, **Symbol-URL**, **Für neue Chats vorausgewählt** |
+| **Ziel** | **Anbieter** und **Modell**, oder als Anbieter **Agent (ein bestimmter Agent)** und dann der **Agent** |
 
-Bei OpenAI-Modellen steht zusätzlich **Use the OpenAI Responses API** zur Verfügung. Über die Pfeile ändern Sie die Reihenfolge der Einträge in der Auswahl.
+Bei OpenAI-Modellen gibt es zusätzlich **OpenAI Responses API verwenden**. Mit **Nach oben** und **Nach unten** ändern Sie die Reihenfolge. **Label entfernen** in der Gefahrenzone nimmt das Label für alle aus der Auswahl; laufende Chats behalten ihr Modell.
+
+Die Karte **Modelle ohne Label (N)** listet Modelle, die noch mit ihrer technischen ID erscheinen. Dort legen Sie für einzelne Modelle ein Label an oder übernehmen mit **Alle übernehmen** alle auf einmal.
+
+### Auswahl im Chat
+
+Solange companyADMIN die Labels verwaltet, steuern Sie hier, wie die Modellauswahl aussieht. Speichern Sie mit **Auswahl speichern**.
+
+- **Labels in der Auswahl zuerst anzeigen** – Labels stehen oben.
+- **Anbieter, die auswählbar bleiben** – angehakte Anbieter behalten neben den Labels ihren eigenen Eintrag in der Auswahl. Alle anderen sind nur noch über Labels erreichbar. Ist kein Anbieter angehakt, zeigt CompanyGPT alle Anbieter. Das ist nur eine Anzeige-Einstellung und sperrt kein Modell. Eine Gruppe darf nicht so heißen wie ein angehakter Anbieter, sonst verschwinden ihre Labels aus der Auswahl.
+- **Nur Modelle mit Label dürfen verwendet werden** – Personen sehen nur noch Labels, die freie Modellauswahl blendet CompanyGPT aus. Sind zusätzlich Anbieter angehakt, erscheinen diese, aber ihre Modelle ohne Label scheitern beim Senden. Das Einschalten fragt nach (**Nur noch Modelle mit Label erlauben?**).
+
+:::caution
+**Nur Modelle mit Label dürfen verwendet werden** gilt auch für Agents: Jeder Agent ohne passendes Label funktioniert ab dem Speichern nicht mehr. Legen Sie für jeden Agent, den Personen wirklich nutzen, ein Label mit dem Anbieter **Agent** an. companyADMIN warnt außerdem, wenn eine Rolle danach kein einziges nutzbares Modell mehr hätte, und verlangt mindestens ein Label.
+:::
 
 ## Ergebnis für Nutzer
 
-In der Modellauswahl der Unterhaltung sehen Nutzer anschließend nur die für ihre Rolle freigegebenen Provider und Modelle – gruppiert und mit den vergebenen Bezeichnungen.
+In der Modellauswahl sehen Personen nur die Anbieter und Modelle, die ihre Rolle nutzen darf, gruppiert und mit den vergebenen Labels.
 
 ![Modellauswahl in der Unterhaltung mit den freigegebenen Providern](./modell-picker.png)
 
-Welche Modelle in der [Modellauswahl](/de/company-gpt/modellauswahl/) generell zur Verfügung stehen, hängt zusätzlich von der Serverkonfiguration ab.
+Welche Modelle es in Ihrer Umgebung grundsätzlich gibt, beschreibt die [Modellauswahl](/de/company-gpt/modellauswahl/).

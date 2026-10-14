@@ -1,29 +1,29 @@
 ---
 title: CompanyGPT Hilfe Agent
-description: Eine Website-Sitemap regelmäßig crawlen, in einer CompanyRAG-Sammlung indexieren und als Hilfe-Agent in CompanyGPT bereitstellen.
+description: Eine Website-Sitemap regelmäßig crawlen, in einer companyRAG-Sammlung indexieren und als Hilfe-Agent in CompanyGPT bereitstellen.
 ---
 
 import CollectionPromptBuilder from '../../../../../components/CollectionPromptBuilder.astro'
 
-In dieser Anleitung richten wir einen **Hilfe-Agenten** ein, der Fragen zu einer Dokumentationswebsite beantwortet. Dazu lassen wir die [Webcrawl-Quelle](/de/company-gpt/addons/companyrag/quellen/#web-crawl) von [CompanyRAG](/de/company-gpt/addons/companyrag/) die Sitemap der Website regelmäßig crawlen, alle Seiten in einer Sammlung indexieren und stellen diese anschließend über den MCP Server `ai-search` einem [Agenten](/de/company-gpt/agenten/) zur Verfügung.
+In dieser Anleitung richten wir einen **Hilfe-Agenten** ein, der Fragen zu einer Dokumentationswebsite beantwortet. Dazu lassen wir die [Webcrawl-Quelle](/de/company-gpt/addons/companyrag/quellen/#web-crawl) von [companyRAG](/de/company-gpt/addons/companyrag/) die Sitemap der Website regelmäßig crawlen, alle Seiten in einer Sammlung indexieren und stellen diese anschließend über den MCP Server `ai-search` einem [Agenten](/de/company-gpt/agenten/) zur Verfügung.
 
 Als Beispiel verwenden wir die öffentliche CompanyGPT-Dokumentation mit der Sitemap `https://docs.company-gpt.com/sitemap-0.xml`. Ersetzen Sie diese durch die Sitemap Ihrer eigenen Website.
 
-Voraussetzung: Sie haben Zugriff auf CompanyRAG unter `https://FIRMA.company-gpt.com/companygpt/rag` (bei eigener Domain einfach `/companygpt/rag` anhängen) sowie das Recht, Agenten anzulegen.
+Voraussetzung: Sie haben Zugriff auf companyRAG – über [Alle Apps](/de/company-gpt/addons/alle-apps/) mit der Kachel **Wissen** oder unter `https://FIRMA.company-gpt.com/companygpt/rag` (bei eigener Domain einfach `/companygpt/rag` anhängen) – sowie das Recht, Agenten anzulegen.
 
 ## 1. Sammlung erstellen
 
-Zuerst legen wir die Sammlung an, in der die gecrawlten Seiten indexiert werden. Navigieren Sie in CompanyRAG zu `Sammlungen` und erstellen Sie eine neue Sammlung. Als Typ wählen wir **Dokumente**, vergeben einen Namen, eine Beschreibung und wählen die Sichtbarkeit.
+Zuerst legen wir die Sammlung an, in der die gecrawlten Seiten indexiert werden. Navigieren Sie in companyRAG zu **Sammlungen** und wählen Sie **Sammlung erstellen**. Als **Sammlungstyp** wählen wir **Dokumente**, vergeben einen Namen, eine Beschreibung und wählen die Sichtbarkeit.
 
 ![sammlung-erstellen](sammlung-erstellen.png)
 
 Notieren Sie sich den **technischen Namen** (im Beispiel `dokumentation`) – er wird später im Agenten-Prompt benötigt.
 
-Bei der Sichtbarkeit können Sie zwischen **Privat** und **Öffentlich** unterscheiden. Ein Hilfe-Agent, der allen Mitarbeitenden zur Verfügung stehen soll, profitiert in der Regel von einer **öffentlichen** Sammlung. Die Sichtbarkeit kann jederzeit nachträglich angepasst werden.
+Bei der Sichtbarkeit können Sie zwischen **Privat** und **Öffentlich** unterscheiden. Ein Hilfe-Agent, der allen Mitarbeitenden zur Verfügung stehen soll, profitiert in der Regel von einer **öffentlichen** Sammlung. Nachträglich lässt sich eine Sammlung jederzeit über **Sammlung teilen** freigeben – mit dem Schalter **Mit allen teilen** auch für alle.
 
 ### Erweiterte Einstellungen
 
-In den erweiterten Einstellungen können Sie Suchsprache, Chunking-Strategie sowie Chunk-Größe und -Überlappung anpassen. Für den Einstieg können die Standardwerte belassen werden.
+In den erweiterten Einstellungen können Sie – je nach Umgebung – Embedding-Modell, Suchsprache, Chunking-Strategie sowie Chunk-Größe und -Überlappung anpassen. Für den Einstieg können die Standardwerte belassen werden.
 
 :::tip
 Die Suchsprache sollte im Optimalfall der Sprache der Website entsprechen. Neben der semantischen wird auch eine Volltextsuche durchgeführt, die bei korrekter Spracheinstellung bessere Ergebnisse liefert.
@@ -37,11 +37,11 @@ Damit die Seiten automatisch und wiederkehrend indexiert werden, legen wir eine 
 
 ![quellen](quellen.png)
 
-Klicken Sie dort auf **„+ Web-Crawl"**, um eine neue Quelle zu erstellen. Wählen Sie im Dialog den Reiter **Sitemap** und füllen Sie die Felder aus:
+Klicken Sie dort im Reiter **Webcrawl** auf **Web-Quelle hinzufügen**, um eine neue Quelle zu erstellen. Wählen Sie auf der Seite **Neue Web-Crawl-Quelle** den Reiter **Sitemap** und füllen Sie die Felder aus:
 
 - **Quellname**: Ein frei wählbarer Name zur Wiedererkennung, z. B. `CGPT Doku`.
 - **Sammlung**: Die in Schritt 1 erstellte Sammlung (`dokumentation`).
-- **Auto-Sync**: Das Intervall, in dem die Sitemap erneut gecrawlt wird, z. B. **Stündlich**, **Täglich** oder **Wöchentlich**. Die Quelle wird anschließend automatisch im gewählten Intervall synchronisiert.
+- **Auto-Sync**: Das Intervall, in dem die Sitemap erneut gecrawlt wird: **Stündlich**, **Täglich** oder **Wöchentlich**. Die Quelle wird anschließend automatisch im gewählten Intervall synchronisiert. Bei **Nur manuell** crawlt companyRAG nur, wenn Sie es anstoßen.
 - **Sitemap-URL**: `https://docs.company-gpt.com/sitemap-0.xml`
 - **Pfadpräfix-Filter (optional)**: Schränkt ein, welche Seiten indexiert werden. `/docs/` würde beispielsweise nur URLs importieren, deren Pfad mit `/docs/` beginnt. Leer lassen, um die gesamte Sitemap zu crawlen.
 
@@ -61,13 +61,13 @@ Statt einer Sitemap können Sie über den Reiter **URL-Liste** auch einzelne Sei
 
 ## 3. Crawl starten und Status prüfen
 
-Nach dem Anlegen erscheint die Quelle unter **Alle Quellen** als aktiv. Stoßen Sie den ersten Crawl bei Bedarf manuell über **Jetzt synchronisieren** an. Die gefundenen Seiten werden anschließend als Indexierungsaufträge angelegt.
+Nach dem Anlegen können Sie den ersten Crawl direkt über **Jetzt synchronisieren** starten. Haben Sie ein Auto-Sync-Intervall gewählt, startet companyRAG den ersten Lauf auch selbst kurz nach dem Anlegen. Die Quelle erscheint unter **Alle Quellen** als **Aktiv**; die gefundenen Seiten werden als Indexierungsaufträge angelegt.
 
-Den Fortschritt verfolgen Sie im Bereich **Aufträge**. Dort sehen Sie pro Seite den Status (Ausstehend, Läuft, Abgeschlossen oder Fehlgeschlagen). Sobald alle Aufträge auf **Abgeschlossen** stehen, ist die Sammlung durchsuchbar.
+Den Fortschritt verfolgen Sie im Bereich **Aufträge**. Dort sehen Sie pro Seite den Status (**In Warteschlange**, **Läuft**, **Abgeschlossen**, **Fehlgeschlagen** oder **Abgebrochen**). Sobald alle Aufträge auf **Abgeschlossen** stehen, ist die Sammlung durchsuchbar.
 
 ![auftraege doku](./auftraege-doku.png)
 
-Über die **Quellen-Aktionen** können Sie die Quelle jederzeit **Pausieren/Fortsetzen** oder **Löschen**. Beim Löschen bleiben bereits indexierte Seiten in der Sammlung erhalten.
+Über das Menü **…** der Quelle können Sie sie jederzeit **Pausieren**, **Fortsetzen**, **Bearbeiten** oder **Löschen**. Beim Löschen werden alle Seiten dieser Quelle unwiderruflich aus der Sammlung entfernt.
 
 ## 4. Hilfe-Agent anlegen
 

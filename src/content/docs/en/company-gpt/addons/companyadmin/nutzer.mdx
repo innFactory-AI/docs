@@ -1,0 +1,60 @@
+---
+title: Users
+description: See people in companyADMIN, change their role and trace which rights, models and groups they have and where each right comes from.
+---
+
+**Access** → **Users** lists everyone who has signed in to CompanyGPT at least once. People who have never signed in do not appear here.
+
+:::note[Superadmins only]
+Only superadmins see the user list. Without the superadmin features the menu entry is missing, and opening the page directly leads to **Roles**. You then assign roles through the role on its **Members** tab, see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/). The account menu shows whether you are a superadmin.
+:::
+
+## The list
+
+| Column | Content |
+|---|---|
+| **Name** | Display name |
+| **Email** | Email address |
+| **Role** | The person's one role |
+| **Last sign-in** | Approximate time of the last sign-in |
+| **Origin of the role** | **System**, **Role sync** (automatically from Entra ID), **Manual**, or the admin group through which someone becomes ADMIN |
+
+Use **Search name or email** and the **Role** filter to narrow the list. Clicking a row opens the detail page.
+
+## Detail page
+
+### Overview
+
+The **Person** section shows email, name, **Entra object ID**, **Signs in via**, **Account created** and **Last sign-in (approximate)**. CompanyGPT stores no sign-in time; what is shown is the last change to the account, which happens at every sign-in.
+
+In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if CompanyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one.
+
+:::caution
+If automatic role assignment from Entra ID (role sync) is active in your environment, CompanyGPT sets the role again from the Entra groups at the next sign-in. A role set here is lost then. The page points this out.
+:::
+
+If the person's groups or roles have changed since their last sign-in, **Takes effect at the next sign-in** appears with the new groups or roles. Where the displayed group memberships come from (sign-in or group sync) is shown below.
+
+### Effective rights
+
+**Effective rights** lists every right of the person with its source:
+
+| Column | Content |
+|---|---|
+| **Right** | The right, for example **Access the admin area** or **Use translation** |
+| **Kind** | **System**, **Extension** or **companyADMIN** |
+| **Source** | Where the right comes from: **Role …**, **Group …**, **Everyone**, **Default for admins** or **Setting …** |
+
+Below, **companyGPT features** shows what the person may do in CompanyGPT (**Allowed** or **Not allowed**). These feature rights are set by the role; you change them there on the **companyGPT** tab.
+
+### Models
+
+Which models the person sees, per provider. Models blocked by their role are listed under **Hidden:**.
+
+### Groups
+
+All of the person's groups with their **Source** (**Local**, **Entra** or **OIDC**) and member count.
+
+### Activity
+
+**First use**, **Last use**, **Messages in total** and **Conversations in total**. **Open in Insights** opens the usage in [Insights](/en/company-gpt/addons/companyadmin/insights/).

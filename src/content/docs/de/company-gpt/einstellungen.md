@@ -1,9 +1,11 @@
 ---
 title: Einstellungen
-description: Übersicht und Konfiguration der CompanyGPT Einstellungen, gegliedert in Allgemein, Chat, Sprache, Daten & Datenschutz, Konto und Über.
+description: Übersicht und Konfiguration der CompanyGPT-Einstellungen, gegliedert in Allgemein, Chat, Sprache, Datenschutz & Sicherheit, Konto und Über.
 ---
 
-Die Einstellungen können über das Benutzermenü in der linken unteren Ecke aufgerufen werden. Der Einstellungsdialog ist über die linke Navigation in die Bereiche **Allgemein**, **Chat**, **Sprache**, **Daten & Datenschutz**, **Konto** und **Über** gegliedert.
+Die Einstellungen öffnen Sie über das Kontomenü unten links unter **Einstellungen** oder mit `Strg` + `Umschalt` + `,` (macOS: `⌘` + `⇧` + `,`). Der Einstellungsdialog ist über die linke Navigation in die Bereiche **Allgemein**, **Chat**, **Sprache**, **Datenschutz & Sicherheit**, **Konto** und **Über** gegliedert. Über das Feld **Einstellungen suchen** finden Sie eine Einstellung direkt.
+
+Welche Einstellungen angezeigt werden, hängt von der Konfiguration Ihrer Umgebung und Ihren Berechtigungen ab. Einzelne neuere Optionen erscheinen in der deutschen Oberfläche derzeit noch mit englischer Beschriftung.
 
 ## Allgemein
 
@@ -15,11 +17,13 @@ Unter **Allgemein** werden Darstellung, Layout und Barrierefreiheit konfiguriert
 
 #### Design
 
-- Hell
-- Dunkel
-- System
+- **Hell**
+- **Dunkel**
+- **System**
 
-#### Anzeigesprache
+Zusätzlich gibt es je eine kontrastreiche Variante für hell und dunkel.
+
+#### Sprache
 
 Sprache, in der die Benutzeroberfläche angezeigt wird.
 
@@ -31,6 +35,14 @@ Auswahl der Schriftgröße, in der die Chatnachrichten dargestellt werden sollen
 
 - `ltr`: Links nach rechts
 - `rtl`: Rechts nach links
+
+#### Uhrzeitformat
+
+Legt fest, ob Uhrzeiten im 12- oder 24-Stunden-Format angezeigt werden oder der Einstellung Ihres Systems folgen.
+
+#### Wochenbeginn
+
+Legt fest, ob die Woche am Montag oder am Sonntag beginnt oder der Einstellung Ihres Systems folgt.
 
 ### Layout
 
@@ -46,6 +58,14 @@ Chat-Eingabe im Willkommensbildschirm zentriert oder mittig unten.
 
 Zeigt einen Button am unteren Ende des Chat-Bereichs an, der es ermöglicht, schnell zum Ende des Chats zu scrollen.
 
+#### Chat neben der Seitenleiste auf Mobilgeräten
+
+Auf Mobilgeräten reicht die geöffnete Seitenleiste nicht bis zum Rand, sodass ein Streifen des Chats sichtbar bleibt. Ein Tippen auf diesen Streifen schließt die Seitenleiste.
+
+#### Chat-Titel im Browser-Tab
+
+Zeigt den Titel des geöffneten Chats im Titel des Browser-Tabs an.
+
 ### Barrierefreiheit
 
 #### Bildschirm während der Antwortgenerierung aktiv lassen
@@ -54,19 +74,36 @@ Verhindert, dass der Bildschirm während der Antwortgenerierung in den Ruhemodus
 
 ## Chat
 
-### Allgemeine Chat-Einstellungen
+### Senden
 
 #### Enter drücken, um Nachrichten zu senden
 
-Wenn aktiviert, reicht `Enter` zum Senden von Nachrichten. Neue Zeilen können mit `Shift + Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg / Cmd + Enter` zum Senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu.
+Wenn aktiviert, reicht `Enter` zum Senden von Nachrichten. Neue Zeilen können mit `Umschalt` + `Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg` + `Enter` (macOS: `⌘` + `Enter`) zum Senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu.
 
-#### Code immer anzeigen, wenn der Code-Interpreter verwendet wird
+#### Während der Generierung bewirkt die Eingabetaste
 
-Code wird standardmäßig angezeigt.
+Legt fest, was `Enter` bewirkt, während noch eine Antwort entsteht:
+
+- **Antwort steuern**: Ihre Nachricht wird in die laufende Antwort einbezogen.
+- **Für danach einreihen**: Ihre Nachricht wird nach Abschluss der aktuellen Antwort als neue Nachricht gesendet.
+
+Über die Senden-Schaltfläche können Sie das auch für einzelne Nachrichten wählen, siehe [Chat](/de/company-gpt/chat/#nachrichten-während-einer-laufenden-antwort).
+
+#### Steuerungsnachrichten unterbrechen die Generierung
+
+Wenn aktiviert und **Antwort steuern** eingestellt ist, hält `Enter` die Antwort am nächsten sicheren Punkt an, statt auf den nächsten Werkzeugschritt zu warten. Bereits laufende Werkzeuge werden zuerst abgeschlossen. Der bisherige Teil der Antwort bleibt erhalten, und die Antwort wird anschließend fortgesetzt.
 
 #### Entwürfe lokal speichern
 
 Wenn aktiviert, werden der Text und die Anhänge, die in das Chat-Formular eingegeben werden, automatisch lokal als Entwürfe gespeichert. Diese Entwürfe sind auch verfügbar, wenn die Seite neu geladen oder zu einer anderen Konversation gewechselt wird. Entwürfe werden lokal auf dem Gerät gespeichert und werden gelöscht, sobald die Nachricht gesendet wird.
+
+#### Bilder vor dem Hochladen verkleinern
+
+Wenn aktiviert, werden große Bilder im Browser verkleinert, bevor sie hochgeladen werden. Das beschleunigt den Upload. Bilder, die bereits innerhalb der Größengrenzen liegen, bleiben unverändert.
+
+#### Langen Text als Datei einfügen
+
+Wenn aktiviert, wird sehr langer eingefügter Text als Textdatei angehängt, statt das Eingabefeld zu füllen. Dabei gelten die Grenzen der [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
 
 #### Badgestatus speichern
 
@@ -78,21 +115,25 @@ Befehle sind Kurzbefehle, die in der Nachrichteneingabe ausgeführt werden könn
 
 #### Befehl @ zum Wechseln von Modellen
 
-Schaltet den Befehl "@" zum Wechseln von Endpunkten, Modellen, Voreinstellungen usw. um.
+Schaltet den Befehl `@` zum Wechseln von Endpunkten, Modellen, Voreinstellungen usw. um.
 
 #### Befehl + für Mehrfachantwort
 
-Schaltet den Befehl "+" zum Hinzufügen einer Mehrfachantwort-Einstellung um.
+Schaltet den Befehl `+` zum Hinzufügen einer Mehrfachantwort-Einstellung um.
 
 #### Befehl / für Promptvorlage
 
-Schaltet den Befehl "/" zur Auswahl einer Promptvorlage über die Tastatur um.
+Schaltet den Befehl `/` zur Auswahl einer [Promptvorlage](/de/company-gpt/prompts/) über die Tastatur um.
 
 ### Nachrichten
 
 #### Benutzernachrichten als Markdown darstellen
 
 Regelt die Darstellung der Benutzernachrichten als Markdown. Markdown ist eine leichte Syntax zur Auszeichnung von Texten. KIs antworten ebenfalls in Markdown, und die Inhalte werden entsprechend dargestellt (z.B. fett). Diese Einstellung regelt, ob die Benutzernachrichten ebenfalls formatiert dargestellt werden sollen.
+
+#### Lange eigene Nachrichten einklappen
+
+Wenn aktiviert, werden lange Nachrichten von Ihnen eingeklappt als Vorschau angezeigt und lassen sich bei Bedarf vollständig aufklappen. So nehmen eingefügte Texte oder Code nicht den ganzen Chat ein. Der vollständige Text bleibt kopier- und durchsuchbar.
 
 #### Benutzernamen in Nachrichten anzeigen
 
@@ -106,13 +147,21 @@ Wenn aktiviert, wird LaTeX-Code in Nachrichten als mathematische Gleichungen ger
 
 Wenn KI-Modelle nachdenken, kann der Denkprozess standardmäßig angezeigt oder hinter einem Dropdown verborgen und bei Bedarf geöffnet werden.
 
-#### Werkzeugdetails automatisch ausklappen
+#### Text beim Streaming sanft einblenden
+
+Wenn aktiviert, werden neu gestreamte Wörter in der aktuellen Antwort sanft eingeblendet. Das ist rein visuell und verzögert die Ausgabe nicht. Die Funktion wird automatisch deaktiviert, wenn auf Ihrem Gerät reduzierte Bewegungen eingestellt sind.
+
+#### Nachrichten als formatierten Text kopieren
+
+Wenn aktiviert, legt das Kopieren einer Nachricht zusätzlich eine formatierte Fassung in die Zwischenablage. Überschriften, Listen, Tabellen und Code behalten so ihre Formatierung, wenn Sie sie in Anwendungen ohne Markdown-Unterstützung einfügen, etwa in Teams, Outlook oder Word.
+
+#### Tool-Details automatisch aufklappen
 
 Klappt die Detailansicht von Werkzeugaufrufen automatisch auf, sodass die ausgeführten Schritte direkt sichtbar sind.
 
-### Konversationen
+### Chats
 
-#### Beim Erstellen eines neuen Chats zum Chatverlauf wechseln
+#### Bei neuem Chat zum Chatverlauf wechseln
 
 Wechselt beim Erstellen eines neuen Chats automatisch zur Ansicht des Chatverlaufs.
 
@@ -126,11 +175,11 @@ Ermöglicht dem Nutzer, mitten im Gespräch den Endpunkt zu wechseln. Das kann n
 
 #### Standardmäßig temporärer Chat
 
-Wenn aktiviert, beginnen neue Chats standardmäßig im temporären Modus. Temporäre Chats werden nicht im Verlauf gespeichert.
+Wenn aktiviert, beginnen neue Chats standardmäßig im [temporären Modus](/de/company-gpt/chat/#temporärer-chat). Temporäre Chats werden nicht im Verlauf gespeichert.
 
 #### Standard-Abzweigungsoption verwenden
 
-Verwendet die Standard-Abzweigungsoption, wenn ein neuer Chat erstellt wird. Diese Option kann in den KI-Einstellungen konfiguriert werden.
+Wenn aktiviert, wird beim [Abzweigen](/de/company-gpt/chat/#nachrichtenoptionen) eines Chats immer dieselbe Option verwendet. Welche das ist, wählen Sie darunter unter **Standard-Abzweigungsoption**: **Nur sichtbare Nachrichten**, **Zugehörige Verzweigungen einbeziehen** oder **Alle bis/von hier einbeziehen**.
 
 #### Abzweigung standardmäßig von der Zielnachricht beginnen
 
@@ -140,7 +189,7 @@ Wenn aktiviert, beginnt das Abzweigen von der Zielnachricht bis zur letzten Nach
 
 #### Erweiterter Prompt-Editor
 
-Aktiviert einen erweiterten Editor zum Erstellen und Bearbeiten von Prompts mit zusätzlichen Funktionen.
+Aktiviert Versionierung und Produktionskontrolle für [Prompts](/de/company-gpt/prompts/).
 
 #### Übernehme neue Prompt Versionen immer auf Produktiv
 
@@ -152,75 +201,75 @@ Wenn aktiviert, wird ein Prompt beim Auswählen direkt gesendet, anstatt zunäch
 
 ## Sprache
 
-Im CompanyGPT stehen sowohl Sprache zu Text (STT) als auch Text zu Sprache (TTS) zur Verfügung. Beides kann sowohl über die integrierte Browser-Engine als auch über LLMs genutzt werden (die LLMs müssen entsprechend konfiguriert sein).
-
-### Konversationsmodus
-
-Der Konversationsmodus aktiviert die automatische Transkription von Audio und ermöglicht das Einstellen der Dezibel-Empfindlichkeit
+Im CompanyGPT stehen sowohl Sprache zu Text (STT) als auch Text zu Sprache (TTS) zur Verfügung. Beides kann sowohl über die integrierte Browser-Engine als auch über einen externen Sprachdienst genutzt werden (der Dienst muss in Ihrer Umgebung eingerichtet sein).
 
 ### Sprache zu Text
 
 Kann genutzt werden, um Prompteingaben zu diktieren, anstatt zu tippen.
 
-Engines:
-
-- `Extern`: LLM
-- `Browser`: Engine des aktuellen Browsers
-
-Sprache: Die Sprache der Eingabe
-
-Audio automatisch transkribieren
-
-Text automatisch senden
-
-Verzögerung
+- **Sprache zu Text**: schaltet die Funktion ein oder aus.
+- **Engine**: **Extern** (Sprachdienst Ihrer Umgebung) oder **Browser** (Engine des aktuellen Browsers).
+- **Sprache**: die Sprache der Eingabe.
+- **Audio automatisch transkribieren**
+- **Dezibel-Empfindlichkeit**
+- **Text automatisch senden** mit **Verzögerung (s)**
 
 ### Text zu Sprache
 
 Kann genutzt werden, um Nachrichten vorlesen zu lassen.
 
-Automatische Wiedergabe der neuesten Nachricht
+- **Text zu Sprache**: schaltet die Funktion ein oder aus.
+- **Engine**: **Extern** (Sprachdienst Ihrer Umgebung) oder **Browser** (Engine des aktuellen Browsers).
+- **Stimme**: verfügbare Stimmen der gewählten Engine.
+- **Konversationsmodus**: schaltet die automatische Transkription von Audio ein. Voraussetzung ist, dass Sprache zu Text und Text zu Sprache aktiviert sind.
+- **Automatische Wiedergabe der neuesten Nachricht**
+- **Cloud-basierte Stimmen verwenden** (nur bei der Engine **Browser**)
+- **Audio-Wiedergabegeschwindigkeit**
+- **TTS-Caching aktivieren**
 
-Engines:
+## Datenschutz & Sicherheit
 
-- `Extern`: LLM
-- `Browser`: Engine des aktuellen Browsers
+### Erinnerungen
 
-Stimme: Verfügbare Stimmen, entweder der Browser-Engine oder KI
+#### Gespeicherte Erinnerungen verwenden
 
-Cloud-basierte Stimmmen verwenden
+Erlaubt der KI, bei den Antworten auf Ihre gespeicherten [Erinnerungen](/de/company-gpt/erinnerungen/) zuzugreifen und sie zu verwenden.
 
-Audio-Wiedergabegeschwindigkeit
+### Deine Daten
 
-TTS-Caching aktivieren
+#### Konversationen importieren
 
-## Daten & Datenschutz
+Über **Importieren** lassen sich Konversationen aus einer exportierten JSON-Datei importieren, um sie beispielsweise mit den Kollegen zu teilen.
 
-### Gespeicherte Erinnerungen verwenden
+#### Geteilte Links
 
-Erlaube der KI, bei den Antworten auf deine gespeicherten Erinnerungen zuzugreifen und sie zu verwenden.
+Über **Verwalten** öffnen Sie eine Übersicht der Chats, die Sie über Links [geteilt](/de/company-gpt/chat/#teilen) haben. Von dort öffnen Sie den zugehörigen Chat oder löschen geteilte Links, auch mehrere auf einmal.
 
-### Konversationen Importieren
+#### Dateien verwalten
 
-Konversationen können aus einer exportierten JSON-Datei importiert werden, um sie beispielsweise mit den Kollegen zu teilen.
+Über **Verwalten** öffnen Sie eine Übersicht Ihrer hochgeladenen Dateien.
 
-### Geteilte Links
+#### Alle Chats archivieren
 
-Ansicht der über Links geteilten Konversationen. Die Links können wieder aufgerufen werden, die Quellchats können geöffnet werden, oder die geteilten Links können gelöscht werden.
+Verschiebt alle Chats ins Archiv. Sie verschwinden aus der Chatliste und bleiben unter **Archivierte Chats** verfügbar.
 
-### Agenten-API-Schlüssel
+### API-Schlüssel
 
-Ansicht über die API-Schlüssel, die für die Agenten vergeben wurden. Diese können hier erstellt und widerrufen werden.
+#### Agenten-API-Schlüssel
 
-### Benutzer API-Keys
+Sofern Sie die [Agents API](/de/api/agents-api/) nutzen dürfen, erstellen und widerrufen Sie hier API-Schlüssel für Agenten.
 
-Falls KI-API-Keys auf Benutzerebene vergeben wurden, können diese hier widerrufen werden.
+#### Benutzer-API-Keys widerrufen
 
-### TTS-Cache-Speicher
+Falls Sie für einen KI-Anbieter eigene API-Schlüssel hinterlegt haben, widerrufen Sie diese hier über **Widerrufen**.
 
-Der TTS-Cache-Speicher kann geleert werden, falls er verwendet wird.
+### Gefahrenbereich
 
-### Alle Chats löschen
+#### TTS-Cache-Speicher löschen
+
+Vorgelesene Nachrichten werden im Browser zwischengespeichert, damit sie beim erneuten Abspielen nicht erneut erzeugt werden müssen. Hier leeren Sie diesen Speicher.
+
+#### Alle Chats löschen
 
 Löschen aller Chats.
 
@@ -238,6 +287,10 @@ Das Löschen aller Chats kann nicht rückgängig gemacht werden.
 
 ### Abrechnung
 
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
 #### Guthaben
 
 Übersicht über das aktuelle Guthaben.
@@ -246,7 +299,7 @@ Das Löschen aller Chats kann nicht rückgängig gemacht werden.
 
 Zeigt an, wann das Guthaben zuletzt aufgefüllt wurde, die Nachfüllmenge, das Intervall und den Zeitpunkt des nächsten automatischen Auffüllens.
 
-### Gefahrenzone
+### Gefahrenbereich
 
 #### Konto löschen
 
@@ -260,4 +313,4 @@ Das Löschen des Benutzerkontos kann nicht rückgängig gemacht werden.
 
 ### Versionsinformationen
 
-Zeigt Informationen zur installierten Version: **Version**, **Commit**, **Branch** und **Built** (Build-Datum). Über **Copy diagnostics** lassen sich diese Angaben kopieren, damit Maintainer den konkreten Build identifizieren können.
+Zeigt Informationen zur installierten Version: **Version**, **Commit**, **Branch** und **Erstellt** (Build-Datum). Über **Diagnoseinformationen kopieren** lassen sich diese Angaben kopieren, damit Maintainer den konkreten Build identifizieren können.

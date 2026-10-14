@@ -1,0 +1,87 @@
+---
+title: Translating in the chat
+description: With the companyTRANSLATE MCP server, an agent in the CompanyGPT chat translates whole files and text, applies glossaries and delivers earlier translations again.
+---
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+Through the **companyTRANSLATE** MCP server, an agent in the CompanyGPT chat translates files and text without you having to open the web interface. For example, you attach a contract and write "Translate the file into German and use our glossary legal-en-de". The agent translates the whole document and places the translated file in the chat.
+
+The same permissions, glossaries and history apply in the chat as in the web interface: translations from the chat appear under **Recent translations** in the [Documents](/en/company-gpt/addons/company-translate/dokument-uebersetzen/#recent-translations) area, and glossaries the agent saves can be found in the [Glossaries](/en/company-gpt/addons/company-translate/glossare/) area.
+
+## Prerequisites
+
+- You have the usage permission for companyTRANSLATE (see [Access and permissions](/en/company-gpt/addons/company-translate/#access-and-permissions)). Without it, the agent cannot use companyTRANSLATE.
+- The agent has the **companyTRANSLATE** MCP server attached as a tool. Setting it up works as for the [companyTRANSCRIBE MCP server](/en/company-gpt/addons/company-transcribe/mcp-integration/#setting-up-the-agent); general information is available under [Agents](/en/company-gpt/agenten/) and [MCP Server](/en/company-gpt/integrationen/mcp-server/).
+
+The agent only accesses your own files and translations, plus your own and the global glossaries.
+
+## Translating a file
+
+Attach the file in the chat – or refer to a file that is already in the chat – and name the target language. The same formats as in the **Documents** area are translated: PDF, Word, PowerPoint, Excel, TXT, Markdown and HTML up to 40 MB. Structure and formatting are preserved.
+
+You can state the source language. If you don't, companyTRANSLATE detects it from the file's text. Glossaries need a source language, so if you want glossaries applied, it is best to name it right away.
+
+The agent places the result in the chat as a new file, where it is treated like a file you uploaded yourself. If placing it in the chat fails, you get a download link instead. It is valid until the end of retention, that is, up to 30 days after the translation.
+
+## Longer translations
+
+Smaller files are usually done quickly. If a translation takes longer than the chat waits for a tool – which happens mainly with large files and PDFs – it continues in the background, and the agent reports that it is still in progress. Ask for the result after a while, for example "Is the translation ready?". The agent then checks the status and places the file in the chat as soon as it is available. You will also find the translation under **Recent translations** in the web interface.
+
+If you stop the agent's response in the chat while it is still waiting for the result, companyTRANSLATE also cancels the translation; no entry is left in the history. A translation that already continues in the background is not cancelled by this.
+
+Each person can run at most two file translations in the chat at the same time; companyTRANSLATE temporarily refuses a third.
+
+## Translating text
+
+The agent can also translate text you write or paste into the chat with companyTRANSLATE. The translation appears as a reply in the chat. Up to 50,000 characters per translation are possible, up to 30,000 characters via Google Cloud Translation.
+
+## Glossaries in the chat
+
+Three kinds of glossaries are available in the chat:
+
+| Kind | How to use it |
+|---|---|
+| **Stored glossaries** | Name the glossary or ask for all matching glossaries to be applied. The agent can also list which glossaries exist for a language pair. |
+| **Terms in the chat** | Write the term pairs in your message, for example "Vorstand = Board of Management". They apply to this one translation only. |
+| **Glossary file in the chat** | Attach a CSV or TSV file with term pairs (up to 10 MB). It, too, applies to this one translation only. |
+
+On request, the agent can save terms from the chat or from an attached file permanently, for example with "Save these terms as glossary legal-en-de". The glossary then appears under **My glossaries**. The agent can only save global glossaries if you have the **Manage glossaries** permission. A glossary with the same name and language direction is replaced.
+
+Two restrictions apply to glossaries in the chat:
+
+- For plain text, glossaries only apply if Google Cloud Translation is enabled in your environment. For files, they also work without Google.
+- As a file in the chat, companyTRANSLATE only accepts CSV and TSV glossaries. Upload TMX and XLIFF glossaries in the web interface in the [Glossaries](/en/company-gpt/addons/company-translate/glossare/#uploading-a-glossary) area.
+
+## Translation service
+
+By default, companyTRANSLATE translates via Azure AI Translator in the chat as well. Google Cloud Translation is used only when you have text translated with a glossary or explicitly ask for Google – and only if it is enabled in your environment. The service is never switched silently.
+
+For files, Google has tighter limits: at most 20 MB, PDFs at most 20 pages, no Markdown files, at most one stored glossary and no XLIFF glossaries. companyTRANSLATE refuses what Google cannot handle and names Azure as the alternative. Where your content is transmitted is described in [Translation services and data flow](/en/company-gpt/addons/company-translate/#translation-services-and-data-flow).
+
+## Earlier translations
+
+The agent can list your recent translations – from the chat and from the web interface – and place an earlier translation in the chat again as a file, for example with "Send me the German version of yesterday's contract again". This works as long as the translation is kept, that is, for 30 days. Older translations have expired.
+
+## MCP server tools
+
+For anyone building their own translation agents: the MCP server provides eight tools.
+
+| Tool | Purpose |
+|---|---|
+| `translate_document` | Translate a file from the chat in full and place it in the chat as a new file |
+| `get_translation_status` | Check the status of a longer-running translation and collect the result |
+| `translate_text` | Translate text |
+| `list_languages` | List the available languages with their language codes |
+| `list_glossaries` | List personal and global glossaries, optionally by language pair |
+| `save_glossary` | Save term pairs or a CSV/TSV file from the chat as a glossary |
+| `list_translations` | List your own translations from the chat and the web interface, newest first |
+| `get_translation` | Place an earlier translation in the chat again as a file |
+
+## Related topics
+
+- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – formats, history and retention
+- [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – creating and managing glossaries
+- [Agents](/en/company-gpt/agenten/) – creating agents and attaching tools

@@ -52,7 +52,7 @@ The detail view of a skill shows the rendered content with description and Markd
 
 From here, you can:
 
-- **Enable or disable** – using the toggle in the top-right corner
+- **Make available to agents or not** – using the **Available to agent** switch in the top-right corner. When it is on, an agent can use the skill in new messages. The setting applies only to you.
 - **Edit** – adjust instructions, name, or category
 - **Delete** – remove the skill permanently
 
@@ -68,10 +68,12 @@ The **Description** determines when the skill is activated automatically. Write 
 
 ## Adding skills to agents
 
-Skills can also be assigned directly to an [agent](/en/company-gpt/agents/). Open the agent settings and enable the **Skills** toggle. By default, the agent has access to the full skill catalog.
+Skills can also be assigned directly to an [agent](/en/company-gpt/agenten/). Open the agent and choose one of three modes in the **Skills** section:
 
-![Enabling the Skills toggle in the agent settings](./skills-agent-enable-en.png)
+| Mode | Effect |
+| ---- | ------ |
+| **Off** | The agent uses no skills. |
+| **All** | The agent has access to all skills that are available to you and made available to agents. The list of available skills can be expanded. |
+| **Selected** | The agent only uses the skills you have selected. |
 
-Click **Add Skills** to select specific skills that the agent is allowed to use. This lets you precisely control an agent's capabilities.
-
-![Skill catalog for adding skills to an agent](./skills-agent-add-en.png)
+In **Selected** mode, add skills via **Add skill**. A dialog opens where you can browse the available skills and add them to the agent. Use the cross next to a skill to remove it from the selection again. This lets you precisely control an agent's capabilities.

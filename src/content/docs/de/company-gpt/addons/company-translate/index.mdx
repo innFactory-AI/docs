@@ -1,53 +1,70 @@
 ---
 title: companyTRANSLATE
-description: Übersetzungsanwendung im Microsoft-Tenant mit Textübersetzung, Dokumentübersetzung und Glossarverwaltung für einheitliche Terminologie.
+description: Übersetzungsanwendung in CompanyGPT für Texte und ganze Dokumente, mit Glossaren für einheitliche Terminologie und Übersetzung im Chat.
 ---
 
-companyTRANSLATE ist eine Übersetzungsanwendung, die wie der CompanyGPT im Microsoft-Tenant des Unternehmens betrieben wird. Sie unterstützt Text- und Dokumentübersetzung sowie ein zweistufiges Glossarsystem.
+companyTRANSLATE übersetzt Texte und ganze Dokumente. Über Glossare legen Sie fest, wie Fachbegriffe, Produktnamen oder feste Formulierungen übersetzt werden. Agenten im CompanyGPT-Chat können companyTRANSLATE ebenfalls nutzen und Dateien oder Texte direkt im Chat übersetzen.
 
-Erreichbar ist companyTRANSLATE für entsprechend berechtigte Nutzer im Bereich **Übersetzen**.
+## Aufrufen und anmelden
 
-## Zugang und Authentifizierung
+Sie öffnen companyTRANSLATE in CompanyGPT über [**Alle Apps**](/de/company-gpt/addons/alle-apps/) mit der Kachel **Übersetzen**.
 
-Der Zugang erfolgt ausschließlich über Microsoft Single Sign-On (SSO) mit dem bestehenden Firmenkonto. Es werden keine separaten Zugangsdaten benötigt.
+companyTRANSLATE verwendet Ihre CompanyGPT-Sitzung. Sind Sie in CompanyGPT angemeldet, sind Sie es auch in companyTRANSLATE; eigene Zugangsdaten gibt es nicht. Das gilt unabhängig davon, über welches Anmeldeverfahren sich Ihr Unternehmen bei CompanyGPT anmeldet.
 
-## Übersetzungsdienste
+## Oberfläche
 
-Die eigentliche Übersetzung erfolgt über die Google Translation API und die Azure Translation API. Die zu übersetzenden Inhalte werden dafür an den jeweiligen Dienst übermittelt.
+companyTRANSLATE nutzt die [gemeinsame Oberfläche der CompanyGPT-Erweiterungen](/de/company-gpt/addons/gemeinsame-oberflaeche/). In der Seitenleiste stehen **Neuer Chat** und **Alle Apps**, darunter die drei Bereiche der Anwendung. Über das Kontomenü wählen Sie unter anderem **Design** und **Sprache**; die Oberfläche gibt es auf Deutsch und Englisch.
 
-## Bereiche der Anwendung
+| Bereich | Seite | Inhalt |
+|---|---|---|
+| **Text** | [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) | Text in Echtzeit übersetzen, bis 5.000 Zeichen |
+| **Dokumente** | [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) | Ganze Dateien bis 40 MB übersetzen, Formatierung bleibt erhalten |
+| **Glossare** | [Glossare](/de/company-gpt/addons/company-translate/glossare/) | Eigene und globale Glossare verwalten |
 
-import sidebarImg from "./translate-sidebar.png";
+Die Aktionen eines Bereichs stehen rechts im Seitenkopf: **Neue Übersetzung** in **Text** und **Dokumente**, **Glossar hochladen** und – für Administratoren – **Globales Glossar hochladen** in **Glossare**. Auf schmalen Bildschirmen öffnen Sie die Bereiche über das Menü in der Kopfzeile; der Bereich **Glossare** steht auf Smartphones nicht zur Verfügung.
 
-<div style="display: flex; gap: 2rem; align-items: flex-start;">
-  <img src={sidebarImg.src} alt="companyTRANSLATE Seitenleiste" style="width: 60px; flex-shrink: 0;" />
-  <div>
+Ziehen Sie eine Datei auf die Seite **Text**, wechselt companyTRANSLATE in den Bereich **Dokumente** und übernimmt die Datei dort.
 
-- [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – Textübersetzung in Echtzeit, bis zu 5.000 Zeichen
-- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – PDF-, DOCX- und PPTX-Dateien bis 40 MB unter Beibehaltung der Formatierung
-- [Glossare](/de/company-gpt/addons/company-translate/glossare/) – verbindliche Terminologie für Text- und Dokumentübersetzung
+## Zugriff und Rechte
 
-</div>
-</div>
+Wer companyTRANSLATE nutzen darf, legt Ihr Administrator fest – in companyADMIN über die [Erweiterungsrechte](/de/company-gpt/addons/companyadmin/erweiterungen/) oder, je nach Umgebung, über Gruppen. In companyADMIN gibt es dafür zwei Rechte:
 
-:::note
-Die Seitenleiste enthält weitere Einträge, die hier noch nicht dokumentiert sind.
-:::
+- **Übersetzen nutzen** – Texte und Dokumente übersetzen, eigene Glossare verwalten
+- **Glossare verwalten** – zusätzlich globale Glossare für alle anlegen, hochladen und löschen
+
+Fehlt Ihnen das Nutzungsrecht, zeigt companyTRANSLATE die Seite **Kein Zugriff**. Dieselben Rechte gelten, wenn ein Agent im Chat für Sie übersetzt.
+
+## Übersetzungsdienste und Datenfluss
+
+companyTRANSLATE übersetzt nicht selbst, sondern übergibt die Inhalte an einen Übersetzungsdienst. Standarddienst ist **Azure AI Translator** von Microsoft. **Google Cloud Translation** ist optional; ob es in Ihrer Umgebung aktiviert ist, legt Ihr Unternehmen fest.
+
+| Inhalt | Übersetzungsdienst |
+|---|---|
+| Dokumente im Bereich **Dokumente** | Azure AI Translator |
+| Text im Bereich **Text** | Azure AI Translator; ist Google in Ihrer Umgebung aktiviert, läuft die Textübersetzung über Google Cloud Translation |
+| Glossare | gehen mit der jeweiligen Übersetzung an den Dienst; ist Google aktiviert, werden hochgeladene Glossare zusätzlich bei Google hinterlegt, damit sie in der Textübersetzung wirken |
+| [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/) | Azure AI Translator; Google nur bei Text mit Glossar oder auf ausdrücklichen Wunsch und nur, wenn es aktiviert ist |
+
+Für die Übersetzung werden die Inhalte – Texte, Dateien und Glossarbegriffe – an den jeweiligen Dienst übermittelt. Hochgeladene Dokumente und ihre Übersetzungen legt companyTRANSLATE im Speicher Ihrer CompanyGPT-Umgebung ab und löscht sie nach 30 Tagen (siehe [Übersetzungsverlauf](#übersetzungsverlauf-und-aufbewahrung)).
 
 ## Unterstützte Formate und Grenzen
 
 | Bereich | Eingabe | Grenze |
 |---|---|---|
-| **Text übersetzen** | Direkte Eingabe in der Oberfläche | 5.000 Zeichen pro Übersetzung |
-| **Dokument übersetzen** | PDF, DOCX, PPTX | 40 MB pro Datei |
-| **Glossare** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | 10 MB je Glossar; TMX wird automatisch in XLIFF konvertiert |
+| **Text** | Direkte Eingabe in der Oberfläche | 5.000 Zeichen pro Übersetzung |
+| **Dokumente** | PDF, Word (`.docx`), PowerPoint (`.pptx`), Excel (`.xlsx`), TXT, Markdown (`.md`), HTML | 40 MB pro Datei |
+| **Glossare** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | Die Übersetzungsdienste begrenzen Glossare auf 10 MB; größere TMX-Dateien werden auf ein Termglossar reduziert |
+| **Im Chat** | Dateien in den Formaten von **Dokumente**, außerdem Text | Dateien bis 40 MB, Text bis 50.000 Zeichen (über Google bis 30.000 Zeichen) |
 
-## Übersetzungshistorie
+## Übersetzungsverlauf und Aufbewahrung
 
-Alle Dokumentübersetzungen werden unter **Letzte Übersetzungen** protokolliert, mit Zielsprache, Dateigröße und Zeitpunkt.
+Im Bereich **Dokumente** listet **Letzte Übersetzungen** Ihre Dokumentübersetzungen – auch die, die ein Agent im Chat für Sie erstellt hat. Jeder Eintrag zeigt Dateiname, Zielsprache, Dateigröße und Zeitpunkt. Laufende Übersetzungen sind mit **In Bearbeitung** markiert, gescheiterte mit **Fehlgeschlagen**; über **Neu übersetzen** im Menü des Eintrags starten Sie sie erneut.
+
+Übersetzungen werden 30 Tage aufbewahrt. Danach verschwinden sie aus dem Verlauf und lassen sich weder herunterladen noch neu übersetzen; companyTRANSLATE meldet dann „Diese Übersetzung ist abgelaufen und nicht mehr verfügbar“. Laden Sie Ergebnisse, die Sie länger brauchen, rechtzeitig herunter.
 
 ## Weiterführende Themen
 
-- [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – Sprachwahl, Spracherkennung und Glossaranwendung
-- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – Upload, Statusverfolgung und Download
+- [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – Sprachwahl, Spracherkennung und Glossare
+- [Dokument übersetzen](/de/company-gpt/addons/company-translate/dokument-uebersetzen/) – Formate, Status, Download und Verlauf
 - [Glossare](/de/company-gpt/addons/company-translate/glossare/) – Aufbau, Upload und Anwendung von Glossaren
+- [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/) – Dateien und Texte per Agent übersetzen

@@ -1,0 +1,82 @@
+---
+title: CAD, BIM und 3D
+description: CAD-Zeichnungen, BIM-Modelle und 3D-Dateien mit companyFILES im CompanyGPT Chat auswerten, im interaktiven Viewer ansehen, umwandeln und bearbeiten.
+---
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+Mit der CAD-Erweiterung liest companyFILES technische Zeichnungen, Gebäudemodelle und 3D-Dateien. Sie hängen die Datei im Chat an und stellen Ihre Frage – der Agent liefert einen Überblick über das Modell, listet und zählt Elemente, berechnet Mengen und Flächen, zeigt Ansichten, erstellt Berichte und öffnet das Modell in einem interaktiven Viewer direkt im Chat.
+
+## Unterstützte Formate
+
+| Format | Typische Inhalte |
+|---|---|
+| DXF | 2D- und 3D-Zeichnungen mit Layern, Blöcken, Texten und Layouts |
+| STEP (`.step`, `.stp`), IGES (`.iges`, `.igs`) | CAD-Volumenmodelle aus dem Maschinen- und Anlagenbau |
+| IFC | BIM-Modelle mit Geschossen, Räumen, Bauteilen und ihren Eigenschaften |
+| STL, OBJ, PLY, 3MF, glTF/GLB | 3D-Netze, etwa für 3D-Druck oder Visualisierung |
+
+**DWG** und **DGN** werden nicht unterstützt. Speichern Sie solche Zeichnungen als DXF; DGN-Dateien lassen sich auch als IFC exportieren. Für weitere native Formate gilt:
+
+| Herkunft | Export, der funktioniert |
+|---|---|
+| Revit (`.rvt`, `.rfa`) | IFC |
+| SolidWorks, Inventor, CATIA, Creo, NX | STEP |
+| SketchUp | IFC, OBJ oder glTF |
+| FBX | glTF/GLB oder OBJ |
+
+Beim ersten Zugriff analysiert companyFILES die Datei. Bei großen Modellen dauert das etwas; der Agent meldet dann, dass das Modell noch verarbeitet wird, und fragt kurz darauf erneut nach.
+
+## Was der Agent mit einem Modell macht
+
+| Werkzeug | Wirkung |
+|---|---|
+| `describe_model` | Überblick: Quelle, Einheiten, Abmessungen, Volumen, Elementtypen und ihre Anzahl, Geschosse bzw. Layouts, Struktur und verfügbare Eigenschaften |
+| `query_model` | listet Elemente gefiltert nach Typ, Geschoss, Layer, Material, Name oder Eigenschaften |
+| `get_model_element` | alle Eigenschaften, Mengen und das Material eines einzelnen Elements |
+| `aggregate_model` | zählt Elemente und summiert Mengen, gruppiert nach Typ, Geschoss, Material oder Layer |
+| `model_areas` | Flächen: bei IFC die Räume je Geschoss (Netto-, sonst Bruttogrundfläche) mit Raumliste, bei DXF die geschlossenen Formen je Layer |
+| `render_model_view` | erzeugt ein Bild des Modells – 3D-Ansichten (Iso, Oben, Vorne, Seite, auf Wunsch mit rot hervorgehobenen Elementen) oder einen 2D-Plan (DXF-Layout, IFC-Geschossgrundriss); das Bild wird als PNG gespeichert |
+| `create_model_report` | Modellbericht als Word oder PDF mit Kennzahlen, Ansichten, einem Plan je Geschoss, Elementzahlen, Flächen und Hinweisen – im Design Ihrer [Einstellungen](/de/company-gpt/addons/companyfiles/einstellungen/) |
+| `show_model_viewer` | öffnet den [interaktiven Viewer](#der-modell-viewer) im Chat |
+| `convert_model` | wandelt in ein anderes Format um, zum Beispiel STEP → STL oder GLB, IFC → GLB oder OBJ, STL ↔ OBJ, PLY oder GLB |
+| `edit_model` | ändert Eigenschaften, Attribute oder Texte: bei IFC Eigenschaften und Attribute wie Name oder Beschreibung, bei DXF Blockattribute, Texte und Layernamen |
+
+Anzahl, Volumen und Flächen berechnet companyFILES aus dem Modell – nicht das Sprachmodell. Umwandlungen und Änderungen ergeben immer ein **neues Dokument**; die Originaldatei bleibt unverändert. Vor einer Änderung zeigt der Agent, was sich ändern wird.
+
+Beispiel-Prompts:
+
+- *„Wie viele Wände gibt es je Geschoss, und wie groß ist ihr Nettovolumen?"*
+- *„Welche Räume hat das Erdgeschoss, und wie groß sind sie?"*
+- *„Erstelle einen Modellbericht als PDF."*
+- *„Wandle das STEP-Modell in eine STL-Datei für den 3D-Druck um."*
+- *„Zeig mir das Modell im Viewer."*
+
+## Der Modell-Viewer
+
+Der Viewer öffnet sich direkt im Chat; über **In neuem Tab öffnen** zeigen Sie ihn in einem eigenen Browser-Tab.
+
+**Ansicht**
+
+- **3D** dreht und zoomt das Modell; **Ansicht** springt auf **Iso**, **Oben**, **Vorne** oder **Seite**.
+- **Plan** zeigt den 2D-Plan – bei IFC wählen Sie das **Geschoss**, bei DXF das **Layout**.
+- **Schnitt** legt eine Schnittebene durch das Modell: mit **Schnittrichtung**, **Lage des Schnitts** und **Andere Seite**.
+- **Messen** ermittelt den Abstand zwischen zwei Punkten, die Sie im Modell anklicken.
+
+**Elemente**
+
+- Die Elementliste zeigt die Bauteile als **Liste** oder **Struktur**, mit der Suche **Elemente suchen…** und den Filtern **Alle Typen** und **Alle Geschosse**.
+- Ein Klick auf ein Element – in der Liste oder im Modell – zeigt seine **Eigenschaften** und **Mengen**. Von dort aus können Sie **Heranzoomen**, **Isolieren** oder **Ausblenden**.
+- **Nur Treffer** zeigt im 3D-Modell nur die Elemente, die zur Suche und zu den Filtern der Liste passen. Nach **Isolieren** oder **Ausblenden** holt **Alle zeigen** die übrigen Elemente zurück.
+
+**Exportieren und fragen**
+
+- **Bild** und **Elementliste (CSV)** speichern die aktuelle Ansicht bzw. die Elemente in Ihren Dateien.
+- **KI fragen** stellt eine Frage zur **Aktuellen Ansicht** oder zu einem ausgewählten Element. Die Frage steht danach im Chat; eine Ansicht speichert companyFILES dafür als Bild, das sich der Agent mit `view_image` ansieht.
+
+**Bearbeiten**
+
+Dieselben Felder, die `edit_model` ändern kann, lassen sich auch im Viewer bearbeiten: Wählen Sie ein Element und ändern Sie die Werte im Bereich **Bearbeiten** seiner Eigenschaften. Über **… Änderung(en) prüfen** sehen Sie alle Änderungen mit altem und neuem Wert und speichern sie mit **Als neue Version speichern** – die Originaldatei bleibt unverändert. Anschließend öffnet **Neue Version öffnen** das geänderte Modell.
+

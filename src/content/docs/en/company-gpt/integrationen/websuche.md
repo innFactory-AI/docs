@@ -5,7 +5,11 @@ description: Learn how CompanyGPT uses Web Search to find current information fr
 
 ## Web Search
 
-Web Search enables CompanyGPT to search the internet and include current content in its responses. The search must be activated by the user for the current message.
+Web Search enables CompanyGPT to search the internet and include current content in its responses. The search must be activated by the user for the current message. You do this in the chat input via **Web Search** in the **Tools** menu.
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
 
 Sources can be included directly in the response on request.
 
@@ -20,5 +24,7 @@ Web Search is based on the principle of "grounding" – the AI model bases its r
 WebFetch is designed for retrieving and processing the content of a specific web page. Unlike Web Search, which independently researches the internet, WebFetch accesses a URL provided by the user and extracts its content.
 
 This is particularly useful when you want to summarize, analyze, or use the content of a known page as the basis for a response.
+
+WebFetch is provided as an [MCP server](/en/company-gpt/integrationen/mcp-server/). In the chat, you select it via the chat input; in [agents](/en/company-gpt/agenten/#mcp-server), you add it via the Tool Library.
 
 ![WebFetch example](web-fetch-en.png)

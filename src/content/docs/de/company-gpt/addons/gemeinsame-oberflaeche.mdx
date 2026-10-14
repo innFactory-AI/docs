@@ -1,0 +1,68 @@
+---
+title: Gemeinsame Oberfläche
+description: Seitenleiste, Kontomenü, Anmeldung und Statusseiten, die alle Addons von CompanyGPT gemeinsam haben.
+---
+
+Die Addons von CompanyGPT, etwa companyRAG, companyFILES, companyTRANSLATE, companyTRANSCRIBE, companyLEARN, companyADMIN und [Alle Apps](/de/company-gpt/addons/alle-apps/), nutzen eine gemeinsame Oberfläche. Sie ist am Chat ausgerichtet: Seitenleiste, Farben und Schriften entsprechen dem Chat, und Sie wechseln ohne erneute Anmeldung zwischen Chat und Addons.
+
+Diese Seite beschreibt, was in allen Addons gleich ist. Die Seiten der einzelnen Addons beschreiben nur noch deren eigene Bereiche.
+
+## Seitenleiste
+
+Auf breiten Bildschirmen steht links die Seitenleiste. Von oben nach unten enthält sie:
+
+| Element | Funktion |
+|---|---|
+| **Seitenleiste öffnen** / **Seitenleiste schließen** | Klappt die Seitenleiste aus oder ein. Eingeklappt zeigt sie nur Symbole, der Name erscheint beim Darüberfahren. Ausgeklappt stehen die Namen neben den Symbolen. |
+| **Neuer Chat** | Führt zurück in den Chat und beginnt einen neuen Chat. |
+| **Alle Apps** | Öffnet die Übersicht aller Apps, die für Sie freigeschaltet sind. Siehe [Alle Apps](/de/company-gpt/addons/alle-apps/). |
+| Menü des Addons | Die Bereiche des jeweiligen Addons. Trennlinien gliedern das Menü bei Bedarf in Gruppen. Der aktuelle Bereich ist hervorgehoben. |
+| Konto | Ganz unten: Ihr Profilbild, in der ausgeklappten Seitenleiste mit Ihrem Namen. Ein Klick öffnet das [Kontomenü](#kontomenü). |
+
+Hat ein Bereich Unterseiten, etwa in companyADMIN, zeigt die ausgeklappte Seitenleiste die Unterseiten des aktuellen Bereichs eingerückt darunter.
+
+Ob die Seitenleiste ein- oder ausgeklappt ist, merkt sich Ihr Browser für alle Addons gemeinsam.
+
+## Auf dem Smartphone
+
+In schmalen Fenstern, zum Beispiel auf dem Smartphone, ersetzt eine Kopfzeile die Seitenleiste:
+
+- links **Seitenleiste öffnen**,
+- in der Mitte der Titel der aktuellen Seite,
+- rechts die Aktionen der Seite (mehrere Aktionen sind unter **Weitere Optionen** zusammengefasst) und **Neuer Chat**.
+
+**Seitenleiste öffnen** schiebt das Menü über die ganze Breite herein. Oben stehen **Seitenleiste schließen**, der Name des Addons, **Neuer Chat** und Ihr Konto, darunter **Alle Apps** und das Menü des Addons. Ein Tipp auf einen Eintrag öffnet die Seite und schließt das Menü.
+
+## Kontomenü
+
+Ein Klick auf Ihr Profilbild öffnet das Kontomenü:
+
+- **Ihre E-Mail-Adresse.** Manche Addons zeigen darunter eine Zusatzzeile, companyADMIN zum Beispiel Ihre Rolle (**Superadmin** oder **Admin (kein Superadmin)**).
+- **Design**: **System**, **Dunkel** oder **Hell**, je nach Version auch Modi mit hohem Kontrast. **System** folgt der Einstellung Ihres Betriebssystems.
+- **Sprache**: zum Beispiel **Deutsch** oder **English**, sofern das Addon mehrere Sprachen anbietet. Die Auswahl gilt für das Addon.
+- **Abmelden**.
+
+Je nach Addon fehlen einzelne Punkte, zum Beispiel **Sprache**, wenn das Addon nur eine Sprache anbietet.
+
+### Design wie im Chat
+
+Das Design ist mit dem Chat gekoppelt. Ein Addon übernimmt das Design, das Sie im Chat gewählt haben. Wählen Sie im Addon ein anderes Design, gilt es auch im Chat. Das bloße Öffnen eines Addons ändert am Chat nichts.
+
+## Anmeldung
+
+Die Addons verwenden die Sitzung von CompanyGPT. Wenn Sie im Chat angemeldet sind, sind Sie auch in den Addons angemeldet, eine eigene Anmeldung pro Addon gibt es nicht. Die Sitzung wird im Hintergrund erneuert, solange Sie angemeldet sind.
+
+## Statusseiten
+
+Kann ein Addon seinen Inhalt nicht anzeigen, erscheint statt einer leeren Seite eine Statusseite im Inhaltsbereich. Die Seitenleiste zeigt dann nur **Neuer Chat** und **Alle Apps**.
+
+| Statusseite | Bedeutung | Was Sie tun können |
+|---|---|---|
+| **Anmeldung erforderlich** | Sie sind nicht (mehr) angemeldet. | **Anmelden** führt zur Anmeldung von CompanyGPT. Landen Sie danach im Chat, öffnen Sie das Addon erneut. |
+| **Kein Zugriff** | Sie sind angemeldet, Ihr Konto ist für dieses Addon aber nicht freigeschaltet. Der Text nennt den Grund, zum Beispiel: *Ihr Konto hat für diese Anwendung kein Nutzungsrecht. Bitte wenden Sie sich an Ihre companyGPT-Administration.* Darunter steht ein Code wie `EXT_ACCESS_DENIED`. | Wenden Sie sich an Ihren Administrator und nennen Sie den Code. |
+| **companyGPT ist nicht erreichbar** | CompanyGPT antwortet gerade nicht. Das Addon versucht es automatisch erneut und zeigt die Wartezeit an (**Neuer Versuch in … s**). | **Erneut versuchen** startet sofort einen neuen Versuch. Nach dem letzten automatischen Versuch erscheint zusätzlich **Seite neu laden**. |
+| **Abmeldung fehlgeschlagen** | Die Abmeldung hat nicht geklappt. Hinweis: **Sitzung möglicherweise noch aktiv**. | **Erneut versuchen** startet die Abmeldung noch einmal. |
+
+## Eingebettete Ansicht im Chat
+
+Manche Addons zeigen Teile ihrer Oberfläche direkt im Chat, etwa die Liste im Bereich **Apps** der Chat-Seitenleiste oder Ansichten, die Werkzeuge eines Addons in einer Antwort öffnen. Diese eingebetteten Ansichten zeigen nur den Inhalt, ohne Seitenleiste, Kopfzeile und Kontomenü. Anmeldung und Design übernehmen sie vom Chat.

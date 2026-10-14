@@ -1,0 +1,61 @@
+---
+title: companyM365
+description: Verbindet CompanyGPT mit Microsoft 365 – als Werkzeuge im Chat, als Office-Add-in in Word, Excel, PowerPoint und Outlook sowie in Microsoft Teams.
+---
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+companyM365 verbindet CompanyGPT mit der Microsoft-365-Umgebung Ihres Unternehmens. Der Assistent kann damit E-Mails, Termine, Dateien, Teams-Nachrichten, OneNote-Seiten, Aufgaben und Besprechungsprotokolle lesen und – je nach Werkzeug – auch bearbeiten. Im Office-Add-in arbeitet er direkt im geöffneten Dokument oder in der geöffneten E-Mail.
+
+companyM365 läuft als Teil Ihrer CompanyGPT-Umgebung und greift über Microsoft Graph im Namen der angemeldeten Person auf Ihren Microsoft-365-Mandanten zu (delegierte Berechtigungen). Der Assistent sieht deshalb grundsätzlich nur, was die Person auch selbst in Microsoft 365 sehen darf. Eine Ausnahme ist das optionale Werkzeug für Transkripte besuchter Besprechungen, das Ihr Administrator gesondert freischalten muss (siehe [Administration](/de/company-gpt/addons/companym365/administration/#admin-zustimmungen-in-microsoft-365)).
+
+## Die Oberflächen
+
+companyM365 bringt Microsoft 365 an vier Stellen in Ihre Arbeit:
+
+| Oberfläche | Wo | Wofür |
+|---|---|---|
+| **Werkzeuge im Chat** | CompanyGPT-Chat und Agenten | Postfach, Kalender, Dateien, Teams, OneNote, Aufgaben und Besprechungsprotokolle abfragen und bearbeiten |
+| **Office-Add-in** | Word, Excel, PowerPoint und Outlook | ein Chat-Bereich neben dem geöffneten Dokument bzw. der geöffneten E-Mail, der sie liest und bearbeitet |
+| **Teams-Tab** | persönlicher Tab in Microsoft Teams | der CompanyGPT-Chat mit Modellen und Agenten direkt in Teams |
+| **Teams-Bot** | Chats, Gruppenchats, Meeting-Chats und Kanäle in Teams | den Assistenten per @-Erwähnung im Gespräch fragen |
+
+Dazu kommt ein **Admin-Bereich**, in dem Administratoren das Add-in bereitstellen, den Teams-Bot einrichten und Agenten für Teams freigeben.
+
+Welche Oberflächen Sie nutzen können, hängt von Ihrer Umgebung ab. In manchen Umgebungen stehen nur die Werkzeuge im Chat zur Verfügung; den Teams-Bot gibt es nur dort, wo er eingerichtet wurde.
+
+## Zugang und Anmeldung
+
+Die Anmeldung erfolgt über Microsoft Single Sign-On (SSO) mit dem bestehenden Firmenkonto (Microsoft Entra). Separate Zugangsdaten sind nicht nötig. Jeder Zugriff auf Microsoft 365 läuft mit der Identität der angemeldeten Person, sodass stets deren Berechtigungen und Sichtbarkeiten gelten.
+
+- **Office-Add-in und Teams-Tab** melden sich automatisch mit derselben CompanyGPT-Sitzung an. Beim ersten Öffnen kann ein Klick auf **Anmelden** nötig sein; danach geht es automatisch zurück ins Add-in. Chats aus dem Add-in erscheinen auch in der Seitenleiste von CompanyGPT im Browser.
+- **Teams-Bot:** Beim ersten Gespräch fordert der Bot Sie auf, sich anzumelden. Ihre Unterhaltungen aus Teams finden Sie anschließend auch in CompanyGPT im Browser wieder.
+
+## Berechtigung
+
+Die Nutzung von companyM365 ist an das Recht **Microsoft 365 nutzen** gebunden. Es umfasst das Office-Add-in, die Microsoft-365-Werkzeuge im Chat und den Teams-Bot; wird es entzogen, entfallen alle drei. Administratoren vergeben das Recht in companyADMIN (siehe [Erweiterungsrechte](/de/company-gpt/addons/companyadmin/erweiterungen/)); Administratoren selbst haben es automatisch.
+
+Fehlt das Recht, verweigern Werkzeuge, Add-in und Teams-Bot den Dienst. Das Add-in zeigt dann den Hinweis „Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen“.
+
+Für den Admin-Bereich ist das Recht **Microsoft 365 verwalten** nötig (siehe [Administration](/de/company-gpt/addons/companym365/administration/)). Einzelne Bereiche benötigen außerdem eine Admin-Zustimmung in Microsoft 365; fehlt sie, meldet nur das betroffene Werkzeug einen Fehler.
+
+:::caution[Was companyM365 selbstständig ändert]
+- **E-Mails** werden ausschließlich als **Entwürfe** angelegt. companyM365 versendet niemals selbstständig E-Mails – der Versand bleibt immer eine bewusste Entscheidung des Nutzers in Outlook.
+- **Kalendertermine sind die Ausnahme:** Legt ein Agent einen Termin mit Teilnehmenden an, ändert oder sagt ihn ab, verschickt Outlook die **Einladung, Aktualisierung bzw. Absage sofort**. Ohne Teilnehmende wird nichts versendet.
+- Weitere schreibende Werkzeuge ändern Daten direkt: Excel-Bereiche, OneNote-Seiten, Aufgaben, Posteingangsregeln, Kategorien und das Verschieben von E-Mails.
+- Im **Office-Add-in** erscheinen Änderungen am geöffneten Dokument standardmäßig erst als Vorschlag, den Sie übernehmen oder verwerfen. Im Bearbeitungsmodus **Direkt** führt der Assistent sie sofort aus.
+
+Lassen Sie sich bei schreibenden Aktionen vom Agenten vorher zusammenfassen, was er tun wird.
+:::
+
+## Die Bereiche im Überblick
+
+- **[Werkzeuge im Chat](/de/company-gpt/addons/companym365/werkzeuge/)** — alle Microsoft-365-Werkzeuge für den CompanyGPT-Chat und für Agenten.
+- **[Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/)** — den Chat in Word, Excel, PowerPoint und Outlook öffnen, Modell oder Agent wählen, Bearbeitungsmodi und Vorschlagskarten.
+- **[Word, Excel und PowerPoint](/de/company-gpt/addons/companym365/word-excel-powerpoint/)** — Schnellaktionen, Word-Coaching, Excel-Analyse und Präsentationen aus einer Gliederung.
+- **[Outlook](/de/company-gpt/addons/companym365/outlook/)** — Antworten entwerfen, Termine vorschlagen, Meetings vorbereiten, den Posteingang aufräumen und Entwürfe coachen.
+- **[Mehrere Office-Fenster](/de/company-gpt/addons/companym365/mehrere-fenster/)** — andere geöffnete Dokumente lesen und Inhalte über App-Grenzen hinweg einfügen.
+- **[Teams](/de/company-gpt/addons/companym365/teams/)** — der Teams-Tab und der Teams-Bot mit Befehlen, privaten Antworten und Teilen im Thread.
+- **[Administration](/de/company-gpt/addons/companym365/administration/)** — Admin-Bereich, Installation, Teams-Bot-Einrichtung, Admin-Zustimmungen und Fehlercodes.

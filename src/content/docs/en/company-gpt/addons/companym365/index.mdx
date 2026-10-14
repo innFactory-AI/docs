@@ -1,0 +1,61 @@
+---
+title: companyM365
+description: Connects CompanyGPT to Microsoft 365 – as tools in the chat, as an Office add-in in Word, Excel, PowerPoint and Outlook, and in Microsoft Teams.
+---
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+companyM365 connects CompanyGPT to your company's Microsoft 365 environment. With it, the assistant can read – and, depending on the tool, also edit – emails, appointments, files, Teams messages, OneNote pages, tasks and meeting transcripts. In the Office add-in, it works directly in the open document or the open email.
+
+companyM365 runs as part of your CompanyGPT environment and accesses your Microsoft 365 tenant via Microsoft Graph on behalf of the signed-in person (delegated permissions). As a result, the assistant can generally only see what that person is allowed to see in Microsoft 365 themselves. One exception is the optional tool for transcripts of attended meetings, which your administrator has to enable separately (see [Administration](/en/company-gpt/addons/companym365/administration/#admin-consents-in-microsoft-365)).
+
+## The surfaces
+
+companyM365 brings Microsoft 365 into your work in four places:
+
+| Surface | Where | What for |
+|---|---|---|
+| **Tools in the chat** | CompanyGPT chat and agents | query and edit mailbox, calendar, files, Teams, OneNote, tasks and meeting transcripts |
+| **Office add-in** | Word, Excel, PowerPoint and Outlook | a chat pane next to the open document or email that reads and edits it |
+| **Teams tab** | personal tab in Microsoft Teams | the CompanyGPT chat with models and agents directly in Teams |
+| **Teams bot** | chats, group chats, meeting chats and channels in Teams | ask the assistant in the conversation via @mention |
+
+In addition, there is an **admin area** where administrators deploy the add-in, set up the Teams bot and release agents for Teams.
+
+Which surfaces you can use depends on your environment. In some environments only the tools in the chat are available; the Teams bot exists only where it has been set up.
+
+## Access and sign-in
+
+You sign in via Microsoft Single Sign-On (SSO) with your existing company account (Microsoft Entra). No separate credentials are required. Every access to Microsoft 365 runs with the identity of the signed-in person, so their permissions and visibility always apply.
+
+- **Office add-in and Teams tab** sign in automatically with the same CompanyGPT session. The first time, you may need to click **Anmelden** (Sign in); afterwards you are taken back to the add-in automatically. Chats from the add-in also appear in the CompanyGPT sidebar in the browser.
+- **Teams bot:** In your first conversation, the bot asks you to sign in. You will then also find your conversations from Teams in CompanyGPT in the browser.
+
+## Permission
+
+Using companyM365 requires the **Use Microsoft 365** permission. It covers the Office add-in, the Microsoft 365 tools in the chat and the Teams bot; revoking it removes all three. Administrators grant the permission in companyADMIN (see [extension permissions](/en/company-gpt/addons/companyadmin/erweiterungen/)); administrators themselves have it automatically.
+
+Without the permission, the tools, the add-in and the Teams bot refuse to work. The add-in then shows the notice "Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen" (No access to the document connection – please ask your administration to enable it).
+
+The admin area requires the **Manage Microsoft 365** permission (see [Administration](/en/company-gpt/addons/companym365/administration/)). Some areas additionally require admin consent in Microsoft 365; if it is missing, only the affected tool reports an error.
+
+:::caution[What companyM365 changes on its own]
+- **Emails** are only ever created as **drafts**. companyM365 never sends emails on its own – sending always remains a deliberate decision made by the user in Outlook.
+- **Calendar appointments are the exception:** when an agent creates, updates or cancels an appointment with attendees, Outlook sends the **invitation, update or cancellation immediately**. Without attendees, nothing is sent.
+- Other write tools change data directly: Excel ranges, OneNote pages, tasks, inbox rules, categories and moving emails.
+- In the **Office add-in**, changes to the open document first appear as a suggestion by default, which you apply or discard. In the **Direkt** (Direct) edit mode, the assistant carries them out immediately.
+
+For write actions, ask the agent to summarize what it is about to do first.
+:::
+
+## The areas at a glance
+
+- **[Tools in the chat](/en/company-gpt/addons/companym365/werkzeuge/)** — all Microsoft 365 tools for the CompanyGPT chat and for agents.
+- **[Office add-in](/en/company-gpt/addons/companym365/office-add-in/)** — open the chat in Word, Excel, PowerPoint and Outlook, choose a model or agent, edit modes and suggestion cards.
+- **[Word, Excel and PowerPoint](/en/company-gpt/addons/companym365/word-excel-powerpoint/)** — quick actions, Word coaching, Excel analysis and presentations from an outline.
+- **[Outlook](/en/company-gpt/addons/companym365/outlook/)** — draft replies, propose meetings, prepare meetings, tidy up the inbox and coach drafts.
+- **[Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/)** — read other open documents and insert content across applications.
+- **[Teams](/en/company-gpt/addons/companym365/teams/)** — the Teams tab and the Teams bot with commands, private answers and sharing in the thread.
+- **[Administration](/en/company-gpt/addons/companym365/administration/)** — admin area, installation, Teams bot setup, admin consents and error codes.

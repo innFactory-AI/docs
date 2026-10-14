@@ -1,0 +1,122 @@
+---
+title: Managing courses
+description: Create courses, chapters, lessons and quizzes in companyLEARN, change their order, configure chapter gating and publish courses.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Course management is available to people with the **Manage courses** permission (see [Permissions](/en/company-gpt/addons/companylearn/#permissions)). You open it via **Course management** in the menu.
+
+## Course overview
+
+The table shows all courses, including drafts. Unpublished courses carry the **Draft** label next to their title.
+
+| Column | Content |
+|---|---|
+| **Title** | Title of the course |
+| **Published** | Switch: when on, learners see the course in the catalog. |
+| **Chapter gating** | Switch: when on, chapters unlock one after another. |
+| **Chapters** | Number of chapters |
+| **Enrollments** | Number of enrolled people |
+| **Created** | Date the course was created |
+| **Actions** | **Edit** (pencil) opens the course editor, **Delete** (trash can) removes the course. |
+
+## Creating a course
+
+<Steps>
+
+1. In course management, click **New course** at the top right.
+
+2. In the **Create course** dialog, enter a **Title** and, optionally, a **Description**, then click **Save**. The course starts as an unpublished draft.
+
+3. companyLEARN opens the new course in the course editor. Add chapters, lessons and quizzes there.
+
+4. When the course is ready, switch **Published** on.
+
+</Steps>
+
+A title can be up to 500 characters long, a description up to 2,000 characters. The same applies to chapters.
+
+## The course editor
+
+At the top of the course editor, you edit the course's title and description directly in the field. The change is saved as soon as you leave the field. Below are the **Published** and **Chapter gating** switches. **Back to courses** returns you to the course overview.
+
+### Chapters
+
+Under **Chapters**, each chapter has its own card.
+
+- **Adding a chapter:** Click **Add chapter**, enter a **Title** and click **Save**. New chapters are added at the end.
+- **Editing:** You change the title and (optional) description directly in the chapter card; changes are saved when you leave the field.
+- **Order:** The **Move up** and **Move down** arrows move a chapter by one position.
+- **Deleting:** The trash can permanently removes the chapter after a confirmation, together with all its lessons and its quiz.
+
+### Lessons
+
+Each chapter card lists its lessons with a video or text icon. Next to each lesson you find **Move up**, **Move down**, **Edit** and **Delete**.
+
+To create a lesson:
+
+<Steps>
+
+1. Click **Add lesson** in the chapter card. The **New lesson** dialog opens.
+
+2. Enter a **Title**.
+
+3. Under **Type**, choose either **Text** or **Video**.
+
+4. For **Text**, write the content in Markdown in the **Content (Markdown)** field, up to 10,000 characters. Next to it, **Preview** shows how learners will see the text.
+
+   For **Video**, click **Choose a video…** and pick a video from the video library or upload a new one with **Upload a new video** (see [Videos](/en/company-gpt/addons/companylearn/videos/)).
+
+5. Click **Save**. New lessons are added at the end of the chapter.
+
+</Steps>
+
+**Edit** opens the same dialog as **Edit lesson**. When you **delete** a lesson, all learners' progress on that lesson is lost as well.
+
+### Quiz
+
+Each chapter can have one quiz. The chapter card shows either **No quiz yet** with an **Add quiz** button, or the quiz title with the number of questions and an **Edit quiz** button.
+
+In the **Quiz** dialog you define:
+
+| Field | Description |
+|---|---|
+| **Title** | Required, up to 500 characters |
+| **Pass threshold (%)** | Whole number from 0 to 100; prefilled with 70 for a new quiz. An empty field is not treated as 0% but prevents saving. |
+| **Question 1**, **Question 2** … | Text of the question, up to 2,000 characters |
+| Answer options | Text of each option, up to 500 characters. The checkbox in front of an option marks it as **Correct answer**; a question can have more than one correct answer. |
+
+**Add option** and **Add question** extend the quiz; the trash can removes a question or option. To save a quiz, it needs at least one question, and each question needs two to 20 options, at least one of them correct. A quiz can have up to 200 questions.
+
+Click **Save** and confirm **Save quiz?**. **Delete quiz** removes the quiz and all attempts after a confirmation.
+
+:::caution[Saving resets all attempts]
+Saving a quiz deletes all previous attempts of all learners for this quiz – including passed ones. With chapter gating switched on, the following chapters are then locked again for these people until they pass the quiz again. So change quizzes in running courses with care.
+:::
+
+How learners take a quiz and how it is scored is described under [Quiz](/en/company-gpt/addons/companylearn/lernen/#quiz).
+
+## Publishing
+
+The **Published** switch – in the course overview or the course editor – releases a course. Only then does it appear in the course catalog and in the chat, and only then can learners enroll.
+
+If you switch a published course off again, it disappears from the catalog, and enrolled learners can no longer open its lessons and quizzes. Their progress is kept.
+
+## Chapter gating
+
+**Chapter gating** is switched on for new courses. A chapter then only opens once the previous one is complete – that is, all its lessons are done and its quiz is passed. If you switch it off, all chapters are open after enrolling. You can change this setting at any time; it takes effect immediately.
+
+## Changes to running courses
+
+companyLEARN always calculates unlocking and progress from the course's current content. Changes therefore affect all enrolled learners immediately:
+
+- If you add a lesson to a chapter, the chapter is open again for everyone who had already completed it. With chapter gating switched on, the chapters after it are locked again until the new lesson is done.
+- If you save a quiz again, everyone has to pass it again (see above).
+- If you change the order of the chapters, unlocking follows the new order as well.
+
+## Deleting a course
+
+Click the trash can in the course overview and confirm **Delete course?**. companyLEARN permanently deletes the course with all chapters, lessons and quizzes and removes all enrollments; the confirmation states how many. The videos remain in the video library.
+
+Next: [Videos](/en/company-gpt/addons/companylearn/videos/).

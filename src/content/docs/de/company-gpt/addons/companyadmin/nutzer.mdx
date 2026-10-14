@@ -1,0 +1,60 @@
+---
+title: Nutzer
+description: Personen in companyADMIN einsehen, ihre Rolle ändern und nachvollziehen, welche Rechte, Modelle und Gruppen sie haben und woher jedes Recht stammt.
+---
+
+Unter **Zugriff** → **Nutzer** stehen alle Personen, die sich schon einmal in CompanyGPT angemeldet haben. Wer sich noch nie angemeldet hat, erscheint hier nicht.
+
+:::note[Nur für Superadmins]
+Die Nutzerliste sehen nur Superadmins. Ohne Superadmin-Funktionen fehlt der Menüeintrag, und ein direkter Aufruf führt zu **Rollen**. Rollen weisen Sie dann über die Rolle im Reiter **Mitglieder** zu, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/). Ob Sie Superadmin sind, zeigt das Kontomenü.
+:::
+
+## Die Liste
+
+| Spalte | Inhalt |
+|---|---|
+| **Name** | Anzeigename |
+| **E-Mail** | E-Mail-Adresse |
+| **Rolle** | Die eine Rolle der Person |
+| **Letzte Anmeldung** | Ungefährer Zeitpunkt der letzten Anmeldung |
+| **Herkunft der Rolle** | **System**, **Role-Sync** (automatisch aus Entra ID), **Manuell** oder die Admin-Gruppe, über die jemand ADMIN wird |
+
+Mit **Name oder E-Mail suchen** und dem Filter **Rolle** grenzen Sie die Liste ein. Ein Klick auf eine Zeile öffnet die Detailseite.
+
+## Detailseite
+
+### Überblick
+
+Der Abschnitt **Person** zeigt E-Mail, Name, **Entra-Object-ID**, **Anmeldung über**, **Konto angelegt** und **Letzte Anmeldung (ungefähr)**. CompanyGPT speichert keinen Anmeldezeitpunkt; angezeigt wird die letzte Änderung am Konto, die bei jeder Anmeldung passiert.
+
+Im Abschnitt **Rolle** ändern Sie die Rolle der Person über die Auswahl **Rolle**. Die Änderung wird sofort gespeichert und gilt sofort; in einem geöffneten CompanyGPT muss die Person die Seite gegebenenfalls neu laden. Da jede Person genau eine Rolle hat, ersetzt die neue Rolle die bisherige.
+
+:::caution
+Ist in Ihrer Umgebung die automatische Rollenvergabe aus Entra ID (Role-Sync) aktiv, setzt CompanyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Eine hier gesetzte Rolle geht dann verloren. Die Seite weist darauf hin.
+:::
+
+Haben sich Gruppen oder Rollen der Person geändert, seit sie sich zuletzt angemeldet hat, erscheint **Wirkt ab der nächsten Anmeldung** mit den neuen Gruppen bzw. Rollen. Woher die angezeigten Gruppenmitgliedschaften stammen (Anmeldung oder Gruppen-Sync), steht darunter.
+
+### Effektive Rechte
+
+**Effektive Rechte** listet jedes Recht der Person mit seiner Quelle:
+
+| Spalte | Inhalt |
+|---|---|
+| **Recht** | Das Recht, zum Beispiel **Zugang zum Admin-Bereich** oder **Übersetzen nutzen** |
+| **Art** | **System**, **Erweiterung** oder **companyADMIN** |
+| **Quelle** | Woher das Recht kommt: **Rolle …**, **Gruppe …**, **Für alle**, **Standard für Admins** oder **Einstellung …** |
+
+Darunter zeigt **companyGPT-Funktionen**, was die Person in CompanyGPT darf (**Erlaubt** oder **Nicht erlaubt**). Diese Funktionsrechte legt die Rolle fest; ändern lassen sie sich dort im Reiter **companyGPT**.
+
+### Modelle
+
+Welche Modelle die Person sieht, je Anbieter. Modelle, die ihre Rolle sperrt, stehen unter **Ausgeblendet:**.
+
+### Gruppen
+
+Alle Gruppen der Person mit **Quelle** (**Lokal**, **Entra** oder **OIDC**) und Mitgliederzahl.
+
+### Aktivität
+
+**Erste Nutzung**, **Letzte Nutzung**, **Nachrichten insgesamt** und **Unterhaltungen insgesamt**. **In Insights ansehen** öffnet die Nutzung in [Insights](/de/company-gpt/addons/companyadmin/insights/).

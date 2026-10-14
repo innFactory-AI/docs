@@ -1,0 +1,56 @@
+---
+title: CompanyGPT Sovereign
+description: CompanyGPT Sovereign betreibt CompanyGPT in der souveränen STACKIT Cloud in Deutschland – mit derselben Oberfläche, flexibler Anmeldung und Open-Weight-Modellen aus deutschen Rechenzentren.
+---
+
+CompanyGPT Sovereign ist CompanyGPT auf **STACKIT**, der souveränen Cloud aus Deutschland. Oberfläche und Bedienung sind dieselben wie in jeder anderen CompanyGPT-Umgebung: Chat, Agenten, Prompts, Skills und Addons funktionieren so, wie es in dieser Dokumentation beschrieben ist. Unterschiede gibt es beim Hosting, bei der Anmeldung, bei den angebotenen Modellen und bei einzelnen Addons. Diese Seite fasst sie zusammen.
+
+## Hosting und Datenhaltung
+
+- **Betrieb in Deutschland:** CompanyGPT läuft in Rechenzentren von STACKIT in Deutschland und wird von innFactory betrieben.
+- **Datenhaltung bei STACKIT:** Chats, hochgeladene Dateien, Agenten und Wissenssammlungen werden in Datenbanken und Speichern dieser Umgebung abgelegt. Ausnahme sind Dokumente, die companyTRANSLATE übersetzt: Sie liegen dafür beim Übersetzungsdienst in der EU.
+- **Zusätzliche Dienste nur nach Freigabe:** Ob daneben Dienste europäischer Cloud-Anbieter genutzt werden – etwa für einzelne Modelle, für die Berechnung der Embeddings von companyRAG oder für Übersetzung und Transkription –, legt Ihr Unternehmen gemeinsam mit innFactory für Ihre Umgebung fest. Diese Dienste laufen in EU-Regionen der jeweiligen Anbieter.
+
+## Anmeldung und Verwaltung
+
+Für die Anmeldung unterstützt CompanyGPT Sovereign drei Varianten:
+
+| Identitätsanbieter | Beschreibung |
+|---|---|
+| Keycloak, betrieben von innFactory | innFactory stellt die Anmeldung über einen eigenen Keycloak bereit. Die Anbindung an Ihre bestehende Benutzerverwaltung – etwa per SAML oder OpenID Connect – richten wir bei der Einrichtung mit Ihnen ein. |
+| Ihr eigener Keycloak | CompanyGPT nutzt einen Keycloak, den Ihr Unternehmen betreibt – zum Beispiel mit Anbindung an Ihr Active Directory. |
+| Microsoft Entra ID | Die Anmeldung läuft wie bei CompanyGPT auf Microsoft Azure über Ihren Entra-Tenant. Ihre IT-Admins bereiten den Tenant über das [Onboarding-Portal](/de/einrichtung/onboarding-portal/) vor und wählen dort STACKIT als Hosting; der Schritt für die Azure-Subscription entfällt. |
+
+Wer sich anmelden darf und wer Administrator ist, steuern in der Regel Gruppen bei Ihrem Identitätsanbieter. Rollen, Rechte und Freigaben innerhalb von CompanyGPT verwalten Sie unabhängig vom Identitätsanbieter wie gewohnt in [companyADMIN](/de/company-gpt/addons/companyadmin/).
+
+:::note[Sitzungsdauer]
+Je nach Identitätsanbieter und dessen Vorgaben kann eine Sitzung kürzer gültig sein als in anderen Umgebungen. Sie werden dann häufiger aufgefordert, sich erneut anzumelden.
+:::
+
+## Modelle
+
+- **Open-Weight-Modelle aus Deutschland:** In der Modellauswahl stehen Modelle aus STACKIT Model Serving zur Verfügung, zum Beispiel aus den Familien Qwen, gpt-oss, Gemma und Llama. Sie laufen in Rechenzentren in Deutschland.
+- **Optional Modelle europäischer Hyperscaler:** Sofern für Ihre Umgebung freigegeben, kommen Modelle hinzu, die über Microsoft Azure oder Google Cloud in EU-Regionen betrieben werden.
+
+Welche Modelle Ihnen konkret angeboten werden, unterscheidet sich je nach Umgebung. Hinweise, welches Modell sich wofür eignet, finden Sie unter [Modellauswahl](/de/company-gpt/modellauswahl/).
+
+## Addons
+
+Welche Addons in Ihrer Umgebung aktiv sind, legt Ihr Unternehmen fest. In CompanyGPT Sovereign gilt grundsätzlich:
+
+| Addon / Funktion | In CompanyGPT Sovereign |
+|---|---|
+| [Websuche & WebFetch](/de/company-gpt/integrationen/websuche/) | Verfügbar |
+| [companyFILES](/de/company-gpt/addons/companyfiles/) | Verfügbar |
+| [companyRAG](/de/company-gpt/addons/companyrag/) | Verfügbar |
+| [Code Interpreter](/de/company-gpt/code-interpreter/) | Verfügbar |
+| [companyADMIN](/de/company-gpt/addons/companyadmin/) | Verfügbar |
+| [Alle Apps](/de/company-gpt/addons/alle-apps/) | Verfügbar |
+| [companyTRANSCRIBE](/de/company-gpt/addons/company-transcribe/) | Je nach Umgebung |
+| [companyTRANSLATE](/de/company-gpt/addons/company-translate/) | Je nach Umgebung |
+| [companyM365](/de/company-gpt/addons/companym365/) | Nur mit Microsoft Entra ID als Identitätsanbieter |
+| n8n | Je nach Umgebung |
+| [companyLEARN](/de/company-gpt/addons/companylearn/), [companyKNOWLEDGE](/de/company-gpt/addons/companyknowledge/) | Derzeit nicht verfügbar |
+| Budgets und Kostenfunktionen des [AI Gateways](/de/api/ai-gateway/) | Derzeit nicht verfügbar |
+
+companyTRANSCRIBE und companyTRANSLATE nutzen Sprach- und Übersetzungsdienste europäischer Cloud-Anbieter; ob sie aktiv sind, wird je Umgebung entschieden. Fragen zu Addons, die hier nicht aufgeführt sind, klären Sie bitte mit innFactory.

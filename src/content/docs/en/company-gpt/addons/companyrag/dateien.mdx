@@ -1,26 +1,39 @@
 ---
 title: Files
-description: Overview of all files indexed in companyRAG with collection, size, status and actions to re-index or delete them.
+description: Overview of all files indexed in companyRAG with collection, size, status and actions for re-indexing or deleting.
 ---
 
-An overview of all files that have been added to the service – whether they were [uploaded manually](/en/company-gpt/addons/companyrag/hochladen/) or synchronized through a [source](/en/company-gpt/addons/companyrag/quellen/).
+Under **Files** you see all files that have been added to the service – regardless of whether they were [uploaded manually](/en/company-gpt/addons/companyrag/hochladen/) or synchronized via a [source](/en/company-gpt/addons/companyrag/quellen/). The page is titled **Documents**.
 
 The overview contains:
 
-- **Name**: Document name (partially truncated - mouseover shows the full name)
+- **Name**: Name of the document (partially truncated – hover to see the full name)
 - **Collection**: The collection the file has been assigned to
 - **Size**: File size
-- **Status**: Status of the associated job
-  - Completed: The document was indexed successfully
-  - Pending: The indexing job is still pending
-  - Failed: Indexing was not successful
-- **Last indexed**: Date and time of the last completed indexing job
+- **Status**:
+  - **Pending**: Indexing is still pending
+  - **Indexed**: The document has been indexed successfully
+  - **Indexed (warning)**: The document is indexed for search, but a follow-up step such as [structured data extraction](/en/company-gpt/addons/companyrag/strukturierte-daten/) failed
+  - **Failed**: Indexing was not successful; the reason appears when you hover over the status
+- **Last Indexed**: Date and time of the last completed indexing
 - **Actions**:
-  - Re-index: Creates a new indexing job
-  - Delete: Deletes the file from the service, including associated jobs and its indexed form
+  - Info icon: shows the file's metadata, and for datasets also the schema with columns, types and row count
+  - **Reindex**: Creates a new indexing job
+  - **Delete**: Deletes the file from the service, including the associated jobs and the indexed form
+
+## Searching and filtering
+
+Above the list you search the files, filter by status and select one or more collections via **Filter by Collection**.
+
+## Working with several files
+
+- **Delete selected**: Mark files using the checkboxes and delete them together.
+- **Delete all**: Appears as soon as a status filter is set, and deletes all files matching the filter that you have permission to delete. To confirm, type `delete`.
+- **Reindex All**: Re-indexes all files in the collections where you are an admin or owner. To confirm, type `index`. The process may take a long time and cannot be stopped once started.
+- **Upload File**: Switches to [Upload](/en/company-gpt/addons/companyrag/hochladen/).
 
 :::note
-If you delete a file that was synchronized through a source, it may be created again during the next synchronization run. To exclude content permanently, adjust the [source](/en/company-gpt/addons/companyrag/quellen/) – for example via excluded folders.
+If a file that was synchronized via a source is deleted, it may be created again during the next synchronization run. To exclude content permanently, adjust the [source](/en/company-gpt/addons/companyrag/quellen/) – for example via excluded folders.
 :::
 
-You can follow the progress of running indexing runs under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).
+You can see the progress of running indexing operations under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).

@@ -1,0 +1,85 @@
+---
+title: Outlook
+description: The Office add-in in Outlook – quick actions, proposing meetings, preparing meetings, tidying up the inbox, coaching drafts, as well as drafts and attachments.
+---
+
+In Outlook, the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) works with the email you are currently reading or composing. The add-in is not enabled in all environments; the basics such as opening it, choosing a model and palettes are on the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) page. The add-in's interface is in German; labels are given in German with an English translation in parentheses.
+
+Only you ever send emails: the assistant at most writes into a draft that you send yourself. Meeting invitations are different – see [Proposing a meeting](#proposing-a-meeting).
+
+## Quick actions
+
+Outlook has two menus – one when reading and one when composing an email.
+
+| View | Quick action | What it does |
+|---|---|---|
+| Reading | **Antwort entwerfen** (Draft reply) | Drafts a reply to the open email. |
+| Reading | **Zusammenfassen** (Summarize) | Summarizes the email (and the thread). |
+| Reading | **Aufgaben extrahieren** (Extract tasks) | Pulls the to-dos and dates out of the email. |
+| Composing | **Korrektur lesen** (Proofread) | Checks the draft for spelling, grammar and punctuation. |
+| Composing | **Sprache vereinfachen** (Simplify language) | Rephrases the draft in simple, clear language. |
+| Composing | **Professioneller Ton** (Professional tone) | Rephrases the draft in a more professional and binding way. |
+
+The quick actions for composing show their result in the chat and do not replace your draft themselves – this keeps the signature and the quoted thread intact. You take the suggestion over with **In E-Mail einfügen** (Insert into email).
+
+### Passing the email as context
+
+When reading an email, the button **Diese E-Mail an …** (This email to …, followed by the name of your CompanyGPT environment) above the input field attaches the open email to your next message. You then only write your instruction. The attached email appears as a chip with its subject and can be removed again.
+
+## The four Outlook workflows
+
+In addition to the quick actions, there are four workflows. You start them via the starter suggestions in an empty chat or via the `/` palette.
+
+| Workflow | View | Result |
+|---|---|---|
+| **Termin vorschlagen** (Propose meeting) | Reading | three meeting proposals for confirmation |
+| **Meeting vorbereiten** (Prepare meeting) | Reading | a briefing in the chat, without changes |
+| **Posteingang aufräumen** (Tidy up inbox) | Reading | suggestions per email for confirmation |
+| **Coaching** | Composing | findings on your draft, applicable one by one |
+
+For all workflows that would change something in the calendar or mailbox, the assistant first only reads and makes suggestions. Only what you select on the **Bestätigung erforderlich** (Confirmation required) card is carried out: "Diese Vorschläge werden erst nach Ihrem Klick ausgeführt. Prüfen Sie Empfänger und Inhalt, bevor Sie bestätigen." (These suggestions are only carried out after your click. Check recipients and content before you confirm.) Each suggestion has a checkbox; **Ausgewählte ausführen** (Run selected) runs the checked ones, **Alle ausführen** (Run all) runs all of them.
+
+### Proposing a meeting
+
+For **Termin vorschlagen** (Propose meeting), the assistant reads the open email including the thread, determines the participants and looks for three free slots within the next ten working days. If the thread doesn't mention a duration, it plans 30 minutes.
+
+Each proposal shows the time, title, the **Teilnehmer (erhalten eine Einladung)** (attendees, receive an invitation) and the description that becomes the invitation text. Attendees with an email domain other than yours are marked **extern** (external).
+
+:::caution[Invitations are sent immediately]
+If you confirm a meeting proposal, the assistant creates the appointment and Outlook sends the invitation **immediately** to all listed attendees. Without attendees, no invitation is sent.
+:::
+
+### Preparing a meeting
+
+For **Meeting vorbereiten** (Prepare meeting), the assistant looks for the next appointment that belongs to the open email (same attendees or same subject); if there is none, it takes the next appointment within the coming 24 hours. It adds what was most recently shared about it by email and in files, and answers with four sections: "Zusammenfassung" (Summary), "Offene Punkte" (Open items), "Zuletzt geteilte Dateien" (Recently shared files) and "Teilnehmer" (Attendees). The workflow only reads and changes nothing.
+
+### Tidying up the inbox
+
+For **Posteingang aufräumen** (Tidy up inbox), the assistant reads the 15 most recent emails in your inbox and suggests at most one action per email:
+
+- assign a **category**,
+- **move** it to an existing folder,
+- mark it as **done** (mark as read).
+
+For each suggestion, the card shows the subject and sender. Moves to the folders for deleted items, junk email or the archive are marked with a warning. Emails the assistant could not clearly identify are not checked; they only run if you check them yourself.
+
+### Coaching
+
+When composing, **Coaching** gives feedback on your own text – the signature and the quoted thread are not assessed. The assistant returns a short overall impression and up to six findings on **Ton** (tone), **Klarheit** (clarity), **Länge** (length) or **Struktur** (structure), each with the passage, a reason and a suggestion.
+
+In the list of findings, **Übernehmen** (Apply) replaces exactly that passage in your draft, **Rückgängig** (Undo) reverts it. With **Alle übernehmen** (Apply all) you apply all open findings. The signature and the quoted thread remain unchanged.
+
+## Drafts
+
+- **When composing**, **In E-Mail einfügen** (Insert into email) below an answer inserts the text at the cursor position in your draft; selected text is replaced. Font and paragraph format follow your draft; the signature and the quoted thread are kept.
+- **When reading**, **Als Antwort öffnen** (Open as reply) opens a reply to the open email that already contains the text.
+- Via the [tools in the chat](/en/company-gpt/addons/companym365/werkzeuge/#email-outlook), the assistant creates replies, forwards and new emails as drafts in your **Drafts** folder. You have to send them yourself.
+
+## Attachments
+
+- **Reading attachments:** The assistant can read attachments of the open email or of an email it found – text, Word, Excel, PowerPoint, CSV, HTML and PDF, attached emails and appointments, as well as OneDrive/SharePoint links. Images and scanned PDFs are passed on as images; the selected model must be able to process images.
+- **Attaching files to a draft:** The assistant can attach a file (up to 25 MB) to a draft without sending it – from OneDrive or SharePoint, from the current chat, from [companyFILES](/en/company-gpt/addons/companyfiles/) or an open Office document.
+
+## Outlook on the Mac
+
+For Outlook on the Mac, your administrator has to deploy the add-in additionally (see [Administration](/en/company-gpt/addons/companym365/administration/#installation)). Without this step, the add-in is missing there. On Windows and in the browser, nothing else is needed.

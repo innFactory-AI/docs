@@ -18,4 +18,12 @@ Durch den Agenten-Modus können Sie sehr einfach mit natürlicher Sprache eigene
 - Corporate Branding
 - Compliance & Schulung inklusive
 
+## Wegweiser durch die Dokumentation
+
+- **Erste Schritte im Chat:** Die [Benutzeroberfläche](/de/company-gpt/user-interface/), der [Chat](/de/company-gpt/chat/) und die [Modellauswahl](/de/company-gpt/modellauswahl/) erklären die Grundlagen.
+- **Eigene Assistenten:** Mit [Agenten](/de/company-gpt/agenten/), [Skills](/de/company-gpt/skills/) und [MCP-Servern](/de/company-gpt/integrationen/mcp-server/) bauen Sie Assistenten für wiederkehrende Aufgaben.
+- **Addons:** Die [Addon-Übersicht](/de/company-gpt/addons/) stellt alle Erweiterungen vor – von der Wissenssuche mit companyRAG bis zur Rechteverwaltung mit companyADMIN.
+- **Was kommt:** Die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/) gibt einen Ausblick auf Funktionen, die gerade schrittweise eingeführt werden.
+- **Für IT-Admins:** Die [Einrichtung über das Onboarding-Portal](/de/einrichtung/onboarding-portal/) beschreibt die Vorbereitung Ihres Microsoft-Tenants; [CompanyGPT Sovereign](/de/company-gpt/sovereign/) erklärt den Betrieb in der souveränen STACKIT Cloud.
+
 Mehr Informationen finden Sie auf der <a href="https://innfactory.ai/de/leistungen/companygpt/" target="_blank">CompanyGPT Webseite</a>

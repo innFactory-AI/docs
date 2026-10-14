@@ -1,0 +1,68 @@
+---
+title: Addons
+description: Überblick über die Addons von CompanyGPT – was sie leisten, wo Sie sie finden und wer sie nutzen darf.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Addons erweitern CompanyGPT um zusätzliche Anwendungen: Dokumente durchsuchbar machen, Dateien erzeugen, übersetzen, transkribieren, lernen und CompanyGPT verwalten. Viele Addons haben eine eigene Oberfläche und stellen ihre Funktionen zusätzlich als Werkzeuge für Agenten im Chat bereit (über [MCP-Server](/de/company-gpt/integrationen/mcp-server/)).
+
+## Wo Sie die Addons finden
+
+Alle Addons, die für Sie freigeschaltet sind, erreichen Sie über **[Alle Apps](/de/company-gpt/addons/alle-apps/)**: als eigene Seite und im Chat über den Bereich **Apps** in der Seitenleiste.
+
+Die Oberflächen der Addons sind einheitlich aufgebaut. Sie haben dieselbe Seitenleiste mit **Neuer Chat** und **Alle Apps**, dasselbe Kontomenü mit Design und Sprache und dieselbe Anmeldung wie der Chat. Details dazu finden Sie unter [Gemeinsame Oberfläche](/de/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Wer welche Addons nutzen darf
+
+Welche Addons Ihnen zur Verfügung stehen, legt Ihr Unternehmen fest. Administratoren vergeben die Rechte dafür in [companyADMIN](/de/company-gpt/addons/companyadmin/erweiterungen/). Fehlt Ihnen ein Addon, wenden Sie sich an Ihren Administrator.
+
+## Die Addons im Überblick
+
+<CardGrid>
+	<LinkCard
+		title="companyRAG"
+		description="Macht große Dokumentenmengen aus SharePoint, Nextcloud, Google Drive, GitHub und dem Web durchsuchbar – als semantische Suche, als strukturierte Daten und als Datensätze für Ihre Agenten."
+		href="/de/company-gpt/addons/companyrag/"
+	/>
+	<LinkCard
+		title="companyKNOWLEDGE"
+		description="Wissen als Markdown-Dateien im Open Knowledge Format pflegen: Ein Agent schreibt ein Bundle in GitHub oder SharePoint fort, companyRAG macht es durchsuchbar. Derzeit experimentell."
+		href="/de/company-gpt/addons/companyknowledge/"
+	/>
+	<LinkCard
+		title="companyFILES"
+		description="Excel, Word, PowerPoint und PDF per natürlicher Sprache erstellen, konvertieren und verwalten – im Chat und in einer eigenen Oberfläche mit Vorlagen und Visualisierungen."
+		href="/de/company-gpt/addons/companyfiles/"
+	/>
+	<LinkCard
+		title="companyTRANSLATE"
+		description="Texte und ganze Dokumente übersetzen, mit Glossaren für eine einheitliche Terminologie und mit Übersetzung im Chat."
+		href="/de/company-gpt/addons/company-translate/"
+	/>
+	<LinkCard
+		title="companyTRANSCRIBE"
+		description="Audio- und Videodateien sowie Aufnahmen aus dem Browser transkribieren, mit Sprechererkennung, Transkriptverlauf, Sprachausgabe und Anbindung an den Chat."
+		href="/de/company-gpt/addons/company-transcribe/"
+	/>
+	<LinkCard
+		title="companyLEARN"
+		description="Lernplattform mit Video- und Textlektionen, Quizzen und Kapiteln, die nacheinander freigeschaltet werden – in einer eigenen Oberfläche und direkt im Chat."
+		href="/de/company-gpt/addons/companylearn/"
+	/>
+	<LinkCard
+		title="companyM365"
+		description="Verbindet CompanyGPT mit Microsoft 365 – als Werkzeuge im Chat, als Office-Add-in in Word, Excel, PowerPoint und Outlook sowie in Microsoft Teams. Der Zugriff ist grundsätzlich auf die Daten beschränkt, die die angemeldete Person selbst sehen darf."
+		href="/de/company-gpt/addons/companym365/"
+	/>
+	<LinkCard
+		title="companyADMIN"
+		description="Der Administrationsbereich von CompanyGPT: Betriebszustand, Rollen und Gruppen, Sichtbarkeit von Inhalten, Modelle und die Rechte für alle Addons."
+		href="/de/company-gpt/addons/companyadmin/"
+	/>
+	<LinkCard
+		title="Insights (companyADMIN)"
+		description="Nutzung und Kosten von CompanyGPT auswerten. Insights ist Teil von companyADMIN und ersetzt das frühere companyDASHBOARD."
+		href="/de/company-gpt/addons/companyadmin/insights/"
+	/>
+</CardGrid>

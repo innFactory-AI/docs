@@ -7,7 +7,13 @@ Sprachmodelle sagen Text vorher und rechnen nicht — bei exakter Mathematik, Da
 
 ## Aktivierung
 
-Die Integration kann direkt in der [Chateingabe](/de/company-gpt/chat/) für einzelne Nachrichten aktiviert oder deaktiviert werden. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+Die Integration kann direkt in der [Chateingabe](/de/company-gpt/chat/) für einzelne Nachrichten aktiviert oder deaktiviert werden: im Menü **Werkzeuge** über **Code ausführen**. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+
+## Dateien
+
+Dateien, die Sie an eine Nachricht anhängen, müssen nicht gesondert für den Code Interpreter hochgeladen werden. Ist **Code ausführen** aktiv, stellt CompanyGPT die angehängten Dateien dem Code Interpreter automatisch zur Verfügung, sobald er sie benötigt. Einem Agenten können Sie zusätzlich feste Dateien für die Code-Ausführung hinterlegen. Mehr dazu unter [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
+
+Dateien, die der Code Interpreter erzeugt, zum Beispiel eine ausgewertete Excel-Datei oder ein Diagramm, erscheinen in der Antwort als Karte, über die Sie die Datei herunterladen können. Für viele Formate steht dort auch eine Vorschau zur Verfügung.
 
 ## Anwendungsfälle
 

@@ -12,9 +12,9 @@ description: The overview of every known right in companyADMIN – system rights
 | **Right** | Label and technical name, for example **Access the admin area** (`access:admin`) |
 | **Kind** | **System** or **Extension: …** with the extension's name |
 | **Explanation** | What the right allows |
-| **Who has it** | Roles, groups or **Everyone**; **nobody** if nobody holds it yet |
+| **Who has it** | Roles, groups or **Everyone**; **nobody** if nobody holds it yet. Occasionally individual people appear here too (**Person …**), see below |
 
-Use **Search right** to narrow the list. An expanded row shows the right's **Class**, whether **ADMIN has it automatically** applies, and whether it is **Set at start**.
+**Search right** searches the technical name and the extension's ID, such as `manage:roles` or `translate`, not the label. An expanded row shows the right's **Class**, whether **ADMIN has it automatically** applies, and whether it is **Set at start**.
 
 ## Where rights are granted
 
@@ -24,6 +24,8 @@ Use **Search right** to narrow the list. An expanded row shows the right's **Cla
 | **Extension** | Roles, groups or everyone | Role or group → **Extensions** tab; for everyone under [Configuration → Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/) |
 
 No rights are granted to individual people. If a person should get a right, give them a role with that right (role → **Members**) or add them to a group with that right.
+
+If **Who has it** still shows an individual person, the right comes from an older version or was set directly in CompanyGPT. companyADMIN cannot revoke such a right. In that case contact innFactory.
 
 ## System rights
 
@@ -41,6 +43,7 @@ The system rights control the administration area. The ADMIN role receives them 
 | **View prompts** / **Manage prompts** | `read:prompts` / `manage:prompts` | View every prompt, or edit and share every prompt |
 | **View skills** / **Manage skills** | `read:skills` / `manage:skills` | View every skill, or edit and share every skill |
 | **View shared links** / **Manage shared links** | `read:sharedlinks` / `manage:sharedlinks` | View or manage shared links |
+| **View assistants** / **Manage assistants** | `read:assistants` / `manage:assistants` | Reserved; CompanyGPT does not check these rights yet |
 | **Manage MCP servers** | `manage:mcpservers` | Manage MCP servers |
 | **View usage** | `read:usage` | View usage data |
 | **View audit log** | `read:audit_log` | View and export the [logs](/en/company-gpt/addons/companyadmin/audit-log/) |

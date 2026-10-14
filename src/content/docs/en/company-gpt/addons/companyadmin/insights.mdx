@@ -7,19 +7,15 @@ description: Usage, tokens, estimated costs and activity of your CompanyGPT envi
 
 The figures come from pre-computed daily values and are refreshed every 10 minutes. The running day is included live and is not final yet.
 
-:::note[Not available in all environments]
-Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
-:::
-
 ## Access
 
 You open Insights from the **Insights** tile under **All apps** or from the companyADMIN menu.
 
 Anyone who holds the right **View Insights** (`ext:admin:insights`) may view Insights:
 
-- Administrators hold the right automatically.
+- The ADMIN role holds the right automatically. Anyone who is an administrator by another path, for example as a fixed person or through the right **Access the admin area** on a custom role, also needs it on their role or group.
 - You give it to other people through a role or a group, in each case on the **Extensions** tab (see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) and [Groups](/en/company-gpt/addons/companyadmin/gruppen/)).
-- The right cannot be opened **to everyone**, because Insights shows every user's costs, tokens and email addresses.
+- The right cannot be opened to everyone (**For everyone**), because Insights shows every user's costs, tokens and email addresses.
 
 Someone who holds only this right and is not an administrator sees nothing in companyADMIN but **Insights**. Clicking an agent then shows only its usage, not its configuration.
 
@@ -35,7 +31,10 @@ At the top of the page you choose the **Period**:
 - **30 days**
 - **Custom** with **From** and **To**, at most 366 days
 
-Each figure compares the chosen period with the equally long period before it (**Previous period**).
+Each figure compares the chosen period with a **Previous period**:
+
+- For **Current month**, **Last month** and a custom period covering exactly one calendar month, the previous period is the whole previous month. In the running month Insights therefore compares a month that has just started with a full one.
+- For **7 days**, **30 days** and every other period it is the equally long period before.
 
 **Export (XLSX)** downloads the figures for the chosen period as an Excel file. It contains the sheets **Overview**, **Models**, **Agents**, **MCP Tools** and **Costs by user**, each with all rows.
 
@@ -61,9 +60,9 @@ The overview shows tiles with a trend and a comparison to the previous period:
 
 Below follow **Top users** (the 10 users with the most requests in the period) and **Churned users**.
 
-### Reselling costs
+#### Reselling costs
 
-The **Reselling costs** tile shows the amount the innFactory Hub bills for a calendar month. It is only available for whole months; for other periods it offers **Current month** and **Last month** as quick buttons.
+The first tile of the overview, **Reselling costs**, shows the amount the innFactory Hub bills for a calendar month. It is only available for whole months; for other periods it offers **Current month** and **Last month** as quick buttons.
 
 - The running month is marked **provisional** and shows a **Forecast**.
 - **As of** gives the date of the billing data. Cloud providers deliver usage with a delay of at least 2–3 days; figures are final up to 15 days after month end.

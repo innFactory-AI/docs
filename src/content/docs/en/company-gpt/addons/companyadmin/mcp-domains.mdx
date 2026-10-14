@@ -12,9 +12,9 @@ description: Decide in companyADMIN which domains MCP servers in CompanyGPT may 
 
 ## Adding a domain
 
-1. Enter one or more domains under **Add domain**, separated by spaces or commas.
+1. Enter one or more domains in the field with the placeholder `mcp.example.com`, separated by spaces or commas.
 2. Click **Add**.
-3. Click **Save**. Before saving, the page shows what is added (**Added:**) and what is dropped (**Dropped:**).
+3. Click **Save**.
 
 | Possible | Not possible |
 |---|---|
@@ -28,6 +28,10 @@ description: Decide in companyADMIN which domains MCP servers in CompanyGPT may 
 
 The schemes http, https, ws and wss are allowed. If an entry is not allowed, companyADMIN saves nothing and gives the reason per entry.
 
+:::note
+In some environments internal names and private IP addresses are allowed as well. The page then says so itself. Loopback, link-local and cloud metadata addresses always stay blocked.
+:::
+
 ## Removing a domain
 
 Remove the domain from the list and save. **Remove domains?** asks first: after saving, MCP servers on these domains are blocked for everyone. Confirm with **Save and remove**.
@@ -35,6 +39,7 @@ Remove the domain from the list and save. **Remove domains?** asks first: after 
 ## Special states
 
 - **No domain list**: if your environment has no domain list, MCP servers may use any public domain; private addresses and internal names are blocked. Own domains would restrict that to the list and are therefore not possible.
-- **List not from companyADMIN**: if the stored list was written elsewhere, saving replaces it with the base list, internal and own domains. companyADMIN asks first. You take over entries that do not come from companyADMIN with **Take over as own domains**.
+- **Defaults changed**: if the base list has changed, **The defaults have changed; saving takes the change over.** appears. Below it the page lists what saving adds (**Added:**) and what it drops (**Dropped:**).
+- **List not from companyADMIN**: if the stored list was written elsewhere, saving replaces it with the base list, internal and own domains. companyADMIN asks first with **Replace the stored list?**; this dialog also lists what is dropped (**Dropped:**) and what is added (**Added:**). Confirm with **Replace list**. You take over entries that do not come from companyADMIN with **Take over as own domains**.
 - **Own list for roles or groups**: if a role or group has a domain list of its own, it applies to its members instead of the one maintained here. The page points this out.
 - **Changed meanwhile**: if someone changed the list since you loaded it, companyADMIN saves nothing. Check the current state and save again.

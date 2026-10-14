@@ -25,7 +25,7 @@ Ein Umbau einer ganzen Präsentation besteht aus vielen einzelnen Werkzeugaufruf
 ![Chatverlauf mit einer langen Folge von Aufrufen des Werkzeugs set_powerpoint_slide_fields und den erweiterten Agenteneinstellungen](./files-ppt-werkzeugaufrufe.png)
 
 :::note
-Setzen Sie **Erweitert → Maximale Agenten-Schritte** vor dem Auftrag hoch – zum Beispiel auf **100** wie in der Abbildung. Läuft der Agent ins Limit, bricht er mitten in der Bearbeitung ab und die Präsentation bleibt halbfertig. Siehe [Agent einrichten](/de/company-gpt/addons/companyfiles/agent/#maximale-agenten-schritte).
+Der Standard von 150 Agenten-Schritten reicht in der Regel. Ein eigener Wert unter **Erweitert → Maximale Agenten-Schritte** ersetzt ihn – setzen Sie dort also nur einen Wert über 150, wenn der Agent bei sehr großen Präsentationen ins Limit läuft. Läuft der Agent ins Limit, bricht er mitten in der Bearbeitung ab und die Präsentation bleibt halbfertig. Siehe [Agent einrichten](/de/company-gpt/addons/companyfiles/agent/#maximale-agenten-schritte).
 :::
 
 ## Was der Agent selbst korrigiert
@@ -41,7 +41,6 @@ Textfelder, unter denen ein **Bild** liegt, kann companyFILES nicht verarbeiten.
 :::
 
 - Bilder für Folien lädt companyFILES nur von öffentlich erreichbaren Adressen. Bilder aus dem Intranet hängen Sie stattdessen im Chat an.
-- Liegt von der angehängten Präsentation im Chat nur ein Textauszug vor, kann companyFILES sie nicht bearbeiten und bittet darum, die Originaldatei erneut hochzuladen – siehe [Angehängte Dateien bearbeiten](/de/company-gpt/addons/companyfiles/dokumente-erstellen/#angehängte-dateien-bearbeiten).
 
 Auch sonst gilt: Das Ergebnis ist ein sehr weit gebrachter Rohentwurf, keine fertige Präsentation. Einzelne Folien brauchen danach noch Feinarbeit am Text und an der Anordnung. Der Nutzen liegt im Grundschritt – Struktur, Inhalt und Design stehen, und zwar durchgängig im Design der Ausgangsdatei.
 

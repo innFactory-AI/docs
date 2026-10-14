@@ -101,7 +101,7 @@ Get detailed usage examples for a specific tool category.
 }
 ```
 
-Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `map`, `zip`, `upload`, `templates`, `admin`, `convert`, `read`, `settings`, `provenance` (AI marking in file metadata), `all` — plus `cad` and `docs` where those extensions are available.
+Available topics: `excel`, `word`, `pdf`, `powerpoint`, `text`, `chart`, `mermaid`, `map`, `zip`, `upload`, `templates`, `admin`, `convert`, `read`, `settings`, `assets` (viewing stored images, `doc:`/`lc:` references, `document_id` in templates), `ui` (UI tools), `provenance` (AI marking in file metadata), `all` — plus `cad` and `docs` where those extensions are available.
 
 Omitting `topic` (or using `"all"`) returns the full help document and also opens the embedded UI.
 

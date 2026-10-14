@@ -36,6 +36,7 @@ The following properties can be assigned:
   - **None (Auto-detect)**: Automatic detection with OAuth `Dynamic Client Registration` or without authentication
   - **API Key**: Authentication with an API key, selectable whether one API key applies to all users or each user provides their own key.
   - **OAuth**: OAuth 2.1 compliant client registration with client ID, secret, redirect URI, authorization and token URL.
+  - **On-Behalf-Of (OBO)**: The MCP server is called on behalf of the signed-in person. Under **OBO Scopes**, enter the scopes requested for the MCP server. This requires sign-in via OpenID Connect, e.g. Entra ID. The option only appears with the **Configure OBO** permission (see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/)), which by default only the ADMIN role has.
 - **I trust this application**: Checkbox for confirmation.
 
 Once initialization is successful, the MCP server is displayed under **MCP Settings** in the left sidebar and can be used via [Chat](/en/company-gpt/chat/#integrations) or in [Agents](/en/company-gpt/agenten/).

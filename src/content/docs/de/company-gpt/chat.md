@@ -21,7 +21,7 @@ Die Eingabe von Chatnachrichten bzw. Prompts erfolgt über das Eingabefeld. Mit 
 Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht/)
 :::
 
-Eine überarbeitete Eingabeleiste wird derzeit schrittweise eingeführt, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+Eine überarbeitete Eingabeleiste ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
 
 ### Nachrichten während einer laufenden Antwort
 
@@ -31,9 +31,9 @@ Sie können bereits weiterschreiben, während eine Antwort entsteht. Beim Absend
 
 ![kontextfenster](kontextfenster.png)
 
-Das Kreissymbol im Eingabefeld zeigt, wie viel vom Kontextfenster des Modells der aktuelle Chat belegt. Wird der Platz knapp, ändert sich die Farbe der Anzeige. Wenn Sie mit der Maus darauf zeigen oder es anklicken, sehen Sie die Aufschlüsselung, zum Beispiel nach **Nachrichten**, **System-Prompt**, Werkzeugen und **Freier Kontext**. Füllt sich der Kontext schnell, zeigt die Aufschlüsselung zusätzlich, für wie viele weitere Runden der Platz bei gleichbleibendem Wachstum ungefähr noch reicht.
+Das Kreissymbol im Eingabefeld zeigt, wie viel vom Kontextfenster des Modells der aktuelle Chat belegt. Wird der Platz knapp, ändert sich die Farbe der Anzeige. Wenn Sie mit der Maus darauf zeigen oder es anklicken, sehen Sie die Aufschlüsselung, zum Beispiel nach **Nachrichten**, **System-Prompt**, Werkzeugen und **Freier Kontext**.
 
-In der Aufschlüsselung können Sie den Kontext auch selbst komprimieren: CompanyGPT ersetzt den bisherigen Verlauf dann durch eine Zusammenfassung. Die früheren Nachrichten bleiben im Chat sichtbar, werden aber nicht mehr an das Modell gesendet.
+In der Aufschlüsselung können Sie den Kontext über **Compact context** auch selbst komprimieren: CompanyGPT ersetzt den bisherigen Verlauf dann durch eine Zusammenfassung. Die früheren Nachrichten bleiben im Chat sichtbar, werden aber nicht mehr an das Modell gesendet.
 
 ## Integrationen
 
@@ -47,7 +47,7 @@ Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werd
 - [MCP Server](/de/company-gpt/integrationen/mcp-server/)
 - [Erinnerung](/de/company-gpt/erinnerungen/#im-chat), sofern in Ihrer Umgebung verfügbar
 
-Diese können im jeweiligen Chat für einzelne Nachrichten aktiviert oder deaktiviert werden.
+Diese schalten Sie im jeweiligen Chat ein oder aus.
 
 ## Nachrichten
 
@@ -61,17 +61,17 @@ Im Chat befindliche Nachrichten haben Schnellaktionen:
 
 - **Neu generieren** und **Nachrichtenvarianten**: Über **Neu generieren** können mehrere Antwortvarianten erzeugt werden, zwischen denen Sie umschalten können.
 - **Vorlesen**: Über [Text zu Sprache](/de/company-gpt/einstellungen/#text-zu-sprache) wird die Nachricht mit der eingestellten Engine vorgelesen.
-- **Kopieren**: Kopiert den gesamten Inhalt der Nachricht in die Zwischenablage.
+- **In die Zwischenablage kopieren**: Kopiert den gesamten Inhalt der Nachricht in die Zwischenablage.
 - **Bearbeiten**: Öffnet einen Editor in der Nachricht, siehe [Nachrichten bearbeiten](#nachrichten-bearbeiten).
-- **Abzweigen**: Erstellt ab einer bestimmten Nachricht einen neuen Chat mit den vorangegangenen Nachrichten. Das ist hilfreich, wenn Sie beispielsweise in unterschiedliche Richtungen weiterdenken möchten. Welche Nachrichten übernommen werden, wählen Sie zwischen **Nur sichtbare Nachrichten**, **Zugehörige Verzweigungen einbeziehen** und **Alle bis/von hier einbeziehen**.
+- Abzweigen-Symbol: Erstellt ab einer bestimmten Nachricht einen neuen Chat mit den vorangegangenen Nachrichten. Das ist hilfreich, wenn Sie beispielsweise in unterschiedliche Richtungen weiterdenken möchten. Welche Nachrichten übernommen werden, wählen Sie zwischen **Nur sichtbare Nachrichten**, **Zugehörige Verzweigungen einbeziehen** und **Alle bis/von hier einbeziehen**.
 - **Feedback**: Mit Daumen hoch oder runter bewerten Sie eine Antwort und können optional einen Kommentar ergänzen.
 
 ### Nachrichten bearbeiten
 
 Über **Bearbeiten** öffnet sich ein Editor direkt in der Nachricht:
 
-- **Eigene Nachrichten**: **Aktualisieren & erneut ausführen** sendet die geänderte Nachricht und erzeugt eine neue Antwort. **Speichern** übernimmt die Änderung, ohne eine neue Antwort zu erzeugen. Haben Sie nichts geändert, erzeugt die Schaltfläche zum erneuten Ausführen eine neue Antwort auf die unveränderte Nachricht, zum Beispiel nach einer abgebrochenen Antwort.
-- **Antworten der KI**: **Speichern** übernimmt Ihre Änderung in den Verlauf, etwa um eine Antwort zu korrigieren, bevor Sie weiterarbeiten. Erneutes Ausführen erzeugt dagegen eine neue Antwort und verwirft Ihre Änderungen.
+- **Eigene Nachrichten**: **Aktualisieren & erneut ausführen** sendet die geänderte Nachricht und erzeugt eine neue Antwort. **Speichern** übernimmt die Änderung, ohne eine neue Antwort zu erzeugen. Haben Sie nichts geändert, erzeugt **Rerun** eine neue Antwort auf die unveränderte Nachricht, zum Beispiel nach einer abgebrochenen Antwort.
+- **Antworten der KI**: **Speichern** übernimmt Ihre Änderung in den Verlauf, etwa um eine Antwort zu korrigieren, bevor Sie weiterarbeiten. **Rerun** erzeugt dagegen eine neue Antwort und verwirft Ihre Änderungen.
 
 **Abbrechen** schließt den Editor, ohne Änderungen zu übernehmen.
 
@@ -91,7 +91,7 @@ Um einen bestimmten Inhalt zu zitieren, markieren Sie ihn in einer Nachricht und
 
 Nutzt ein Modell oder Agent Werkzeuge, etwa die Websuche oder einen MCP-Server, zeigt CompanyGPT die Aufrufe in der Antwort an. Mehrere aufeinanderfolgende Aufrufe werden zu einer Zeile zusammengefasst, die sich aufklappen lässt; fehlgeschlagene Aufrufe werden darin mitgezählt. Sollen die Details immer aufgeklappt sein, aktivieren Sie in den [Einstellungen](/de/company-gpt/einstellungen/#nachrichten) **Tool-Details automatisch aufklappen**.
 
-Erreicht ein Agent die maximale Anzahl an Schritten für eine Antwort, hält er an und zeigt einen Hinweis. Alles bis dahin Erarbeitete bleibt erhalten. Im Hinweis entscheiden Sie, ob der Agent dort weitermacht, wo er aufgehört hat, oder ob er sofort mit dem bisherigen Stand antwortet.
+Erreicht ein Agent die maximale Anzahl an Schritten für eine Antwort, hält er an und zeigt den Hinweis **Reached the tool call limit for this turn**. Alles bis dahin Erarbeitete bleibt erhalten. Mit **Keep going** macht der Agent dort weiter, wo er aufgehört hat, mit **Answer now** antwortet er sofort mit dem bisherigen Stand.
 
 ## Temporärer Chat
 
@@ -114,7 +114,7 @@ Die Adresse des Links bleibt dauerhaft gleich. Änderungen an bereits geteilten 
 Über **Zugriff verwalten** sehen und ändern Sie, wer den Link öffnen darf. Mit **Link löschen** heben Sie die Freigabe auf. Chats mit aktivem Link sind im Chatverlauf und am Symbol **Exportieren/Teilen** gekennzeichnet. Eine Übersicht aller geteilten Chats finden Sie in den [Einstellungen](/de/company-gpt/einstellungen/#geteilte-links) unter **Geteilte Links**.
 
 :::caution
-Geteilte Links können nur Personen öffnen, die sich bei CompanyGPT anmelden. Ist Ihr CompanyGPT nur aus dem Firmennetzwerk erreichbar, gilt das auch für geteilte Links.
+Geteilte Links können nur Personen öffnen, die sich bei derselben CompanyGPT-Umgebung anmelden, auch wenn der Link öffentlich freigegeben ist. Ohne öffentliche Freigabe benötigen sie zusätzlich eine Leseberechtigung, die Sie über **Zugriff verwalten** vergeben. Ist Ihr CompanyGPT nur aus dem Firmennetzwerk erreichbar, gilt das auch für geteilte Links.
 :::
 
 ### Export

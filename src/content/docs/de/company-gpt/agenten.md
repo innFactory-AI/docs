@@ -57,7 +57,7 @@ Weitere Informationen zur Websuche finden Sie hier: [Websuche](/de/company-gpt/i
 
 #### Dateikontext
 
-Unter **Dateikontext** hinterlegte Dateien werden in Text umgewandelt. Der vollständige Text wird bei jeder Nachricht in den Kontext des Agenten eingefügt. Das eignet sich für einige wenige zentrale Dokumente, auf die der Agent immer zugreifen soll. Dateien für den Dateikontext können Sie erst hochladen, wenn der Agent erstellt ist.
+Der **Dateikontext** ist kein Eintrag der Tool-Bibliothek, sondern ein eigener Abschnitt unter **Tools** im Formular des Agenten. Dort hinterlegte Dateien werden in Text umgewandelt. Der vollständige Text wird bei jeder Nachricht in den Kontext des Agenten eingefügt. Das eignet sich für einige wenige zentrale Dokumente, auf die der Agent immer zugreifen soll. Dateien für den Dateikontext können Sie erst hochladen, wenn der Agent erstellt ist.
 
 :::tip
 Kontextdokumente sind immer vollständig im Kontext des Agenten / der Konversation. Hier sollten Sie sich auf das Wesentliche begrenzen, z.B. Anweisungen zur Tonalität oder vergangene Beispiele. Für sehr lange Dokumente könnte die **Dateisuche** besser geeignet sein.
@@ -138,11 +138,11 @@ Unter **Ansprechpartner-Kontakt** kann jeder Agent mit Kontaktdaten zum Erstelle
 
 ### Erweiterte Einstellungen
 
-Über **Erweitert** öffnen Sie die **Erweiterten Einstellungen** des Agenten. Dort finden Sie die maximale Anzahl der Agenten-Schritte und unter **Multi-Agenten-Orchestrierung** die Einstellungen, mit denen der Agent mit anderen Agenten zusammenarbeitet: Unteragenten, Übergaben und Agenten-Ketten.
+Über **Erweitert** öffnen Sie die **Erweiterten Einstellungen** des Agenten. Dort finden Sie die maximale Anzahl der Agenten-Schritte und unter **Multi-Agenten-Orchestrierung** die Einstellungen, mit denen der Agent mit anderen Agenten zusammenarbeitet: Unteragenten, Übergaben und die Agentenkette.
 
 #### Maximale Agenten-Schritte
 
-Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Ohne eigene Angabe gilt in CompanyGPT ein Standardwert von 150 Schritten. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
+Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Ohne eigene Angabe gilt in CompanyGPT ein Standardwert von 150 Schritten; der Hinweistext in der Oberfläche nennt noch 25. Tragen Sie einen eigenen Wert ein, gilt dieser statt der 150 Schritte, auch wenn er höher liegt. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
 
 #### Unteragenten
 
@@ -152,13 +152,13 @@ Mit **Unteragenten aktivieren** kann der Agent Teilaufgaben an Hilfsagenten abge
 
 Unter **Übergaben** legen Sie Agenten fest, an die der Agent die Unterhaltung übergeben kann, wenn spezielles Fachwissen gebraucht wird. Jede Übergabe erzeugt ein Übergabe-Tool, über das der Agent die Unterhaltung samt Kontext an den spezialisierten Agenten weiterleitet. In der **Übergabebeschreibung** halten Sie fest, wann übergeben werden soll. Über **Übergabe-Agent hinzufügen** sind bis zu 10 Übergaben möglich.
 
-#### Agenten-Ketten
+#### Agentenkette
 
-Ermöglicht das Erstellen von Agenten-Sequenzen. Jeder Agent kann auf die Ausgaben vorheriger Agenten in der Kette zugreifen. Basiert auf der "Mixture-of-Agents"-Architektur, bei der Agenten vorherige Ausgaben als zusätzliche Informationen verwenden.
+Mit der **Agentenkette** erstellen Sie Agenten-Sequenzen. Jeder Agent kann auf die Ausgaben vorheriger Agenten in der Kette zugreifen. Basiert auf der "Mixture-of-Agents"-Architektur, bei der Agenten vorherige Ausgaben als zusätzliche Informationen verwenden.
 
 ### Version
 
-Jedes Mal, wenn Änderungen an einem Agenten gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können diese Versionen angezeigt und widerrufen werden. Das ist sinnvoll, wenn man Änderungen widerrufen möchte.
+Jedes Mal, wenn Änderungen an einem Agenten gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können Sie diese Versionen ansehen und eine frühere Version mit **Wiederherstellen** zurückholen. Das ist sinnvoll, wenn Sie Änderungen rückgängig machen möchten.
 
 ## Berechtigungen
 

@@ -37,7 +37,11 @@ Badges on a provider:
 3. Tick or untick "*Role* uses *Provider*" and the ticks of the individual models.
 4. Click **Save**. If you take models away, companyADMIN asks first and lists the models that will no longer be available.
 
-If a provider that was open so far is restricted for one role, every other role keeps all models. New roles, however, only see the provider once you grant it to them. **Open for everyone** lifts the restriction again.
+If a provider that was open so far is restricted for one role, every other role keeps all models that exist at that moment. New roles, however, only see the provider once you grant it to them. **Open for everyone** lifts the restriction again.
+
+:::caution[New models on restricted providers]
+**All models** describes the state at the time of saving. As soon as a provider is restricted, companyADMIN stores a fixed model list for each role. If an update later adds a new model, no role sees it on this provider until someone ticks it. Providers with **Live list** are the exception.
+:::
 
 Keep in mind:
 
@@ -75,6 +79,10 @@ Here too, at least one role must keep every provider. If someone else has change
 - **Role** → **Models & providers** tab shows and changes a role's models, see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
 - **User** → **Models** tab shows which models a person sees, see [Users](/en/company-gpt/addons/companyadmin/nutzer/).
 
+:::note[Superadmins only]
+Only superadmins see the user list and therefore a person's **Models** tab. Without the superadmin features you see a person's models through their role on the **Models & providers** tab.
+:::
+
 ## Labels
 
 Labels give models readable names in the model picker, such as "Claude fast" instead of the technical model ID. A label can also point to a specific agent.
@@ -83,7 +91,7 @@ Labels give models readable names in the model picker, such as "Claude fast" ins
 
 With **Manage model labels from companyADMIN**, companyADMIN takes over the labels. As long as the box is unticked, the labels from the base configuration apply, otherwise the technical model IDs. Creating the first label already copies the existing labels from the base configuration here for editing.
 
-**Stop managing** asks first. Afterwards the labels from the base configuration apply again, and every label created or changed here is lost.
+To stop managing, untick **Manage model labels from companyADMIN**. The dialog **Stop managing labels?** asks first; confirm with **Stop managing**. Afterwards the labels from the base configuration apply again, and every label created or changed here is lost.
 
 ### All labels
 
@@ -96,13 +104,13 @@ The **All labels** list shows **Label**, **Model**, **Source** and **In effect**
 | **Display** | **Label** (at most 128 characters), **Description (optional)** – shown in the picker below the label, **Group** and **Group icon** – group the picker, **Icon URL**, **Preselected for new chats** |
 | **Target** | **Provider** and **Model**, or as provider **Agent (one specific agent)** and then the **Agent** |
 
-For OpenAI models there is also **Use the OpenAI Responses API**. **Move up** and **Move down** change the order. **Remove label** in the danger zone removes the label from the picker for everyone; running chats keep their model.
+For OpenAI models there is also **Use the OpenAI Responses API**. **Move up** and **Move down** change the order. **Remove label** in the danger zone removes the label from the picker for everyone. Running chats keep their model as long as **Only labelled models may be used** is off. If it is on, running chats with this label stop working afterwards; a new model has to be picked there.
 
 The **Models without a label (N)** card lists models that still appear with their technical ID. There you add a label for single models or take all of them at once with **Adopt all**.
 
 ### Picker in the chat
 
-As long as companyADMIN manages the labels, you control here how the model picker looks. Save with **Save picker**.
+As long as companyADMIN manages the labels, you control here how the model picker looks. Apply this section's settings with **Save**.
 
 - **Show labels first in the picker** – labels are at the top.
 - **Providers that stay selectable** – ticked providers keep their own entry in the picker next to the labels. All others are reachable only through labels. If no provider is ticked, CompanyGPT shows all providers. This is a display setting only and blocks no model. A group must not have the same name as a ticked provider, or its labels disappear from the picker.

@@ -7,7 +7,7 @@ Language models predict text and do not calculate — they reach their limits wi
 
 ## Activation
 
-The integration can be enabled or disabled for individual messages directly in the [chat input](/en/company-gpt/chat/): in the **Tools** menu via **Run Code**. It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability via the Tool Library, allowing an agent to execute code on its own.
+Turn on the integration directly in the [chat input](/en/company-gpt/chat/) in the **Tools** menu via **Run Code**. The switch applies to the respective chat and stays on until you turn it off again. It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability via the Tool Library, allowing an agent to execute code on its own.
 
 ## Files
 
@@ -30,7 +30,7 @@ The Code Interpreter executes **Python**, **JavaScript/TypeScript** (Node.js and
 
 - **Your own infrastructure**: Code execution runs as a dedicated service in the company's cluster — no external execution service is used.
 - **Isolated sandbox**: Each execution takes place in its own sealed-off sandbox. The code has no access to the company network or the internet.
-- **Temporary data**: Files provided for execution and files generated during execution are stored only temporarily; the sandbox is no longer available after execution.
+- **Temporary sandbox**: The sandbox is only available for the duration of the execution. Files created by the Code Interpreter are stored by CompanyGPT like other files in the chat, so you can still download them later via the card in the answer.
 
 :::note[Limitation]
 Execution time and output size per run are limited. The Code Interpreter is not suitable for long-running or very memory-intensive workloads.

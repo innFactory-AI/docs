@@ -11,8 +11,8 @@ You can take over each setting with **Manage via companyADMIN**. As long as it i
 
 Scheduled chats are recurring chats with an agent that run at set times.
 
-:::note[Rolling out gradually]
-This feature is currently being introduced gradually and may not yet be available in your environment.
+:::note[Currently only in pilot environments]
+This feature is currently only available in pilot environments; there is no date yet for customer environments.
 :::
 
 | Setting | Meaning |
@@ -55,7 +55,7 @@ CompanyGPT loads custom approval rules only from the base configuration; innFact
 
 ## Subagent cap
 
-**Maximum subagents** limits how many subagents an agent may start. The base configuration sets the ceiling (default 10, at most 50). The value here only limits the agent builder and is capped at that ceiling.
+**Maximum subagents** limits how many subagents can be assigned to an agent in the agent builder. The base configuration sets the ceiling (default 10, at most 50); the value here is capped at that ceiling. Agents that are already saved keep their subagents, even if you lower the value later.
 
 ## PII and secret filters
 
@@ -70,7 +70,7 @@ Here you set four settings for a single role or group. First choose under **Pick
 | **Memories** | **Off** switches memories off for this role or group, even if the base configuration enables them for everyone |
 | **Retention** | How long chats are kept: **What is deleted** (**Temporary chats only** or **All chats**), **Delete temporary chats after (hours)**, **Delete all chats after (hours)** and **Keep agent files** |
 | **Agent builder** | Whether the agent builder is **Visible** or **Hidden** in the chat, and **Providers for agents** (nothing selected means every provider is allowed). The role's right to create agents still applies |
-| **File uploads** | **Uploads**: **Allowed** or **Off**, plus **Files per message**, **Size per file (MB)** and **Size of all files (MB)**. Empty means as default |
+| **File uploads** | **Uploads**: **Allowed** or **Off**, plus **Files per message**, **Size per file (MB)** and **Size of all files (MB)**. Empty means as default. The values apply to agents and to models without their own file settings; **Off** therefore does not block uploads for providers that have their own upload values in the base configuration |
 
 A value on the role always wins over a value on the group. All groups share one priority: if two of a person's groups set different values, it is undefined which one applies. **Providers for agents** can therefore only be set per role.
 

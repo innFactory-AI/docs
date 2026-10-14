@@ -17,7 +17,7 @@ https://COMPANY.company-gpt.com/companygpt/learn/api/v1
 
 Every API key belongs to the person who created it and acts on that person's behalf:
 
-- Whatever a key creates – courses, chapters, videos – is attributed to that person.
+- Courses and videos that a key creates are attributed to that person.
 - The endpoints under `/me` return that person's own enrollments and progress.
 - What a key may do follows from its scopes and that person's permissions in companyLEARN, checked again on every request. If the person no longer has the **Use courses** permission, none of their keys work.
 
@@ -226,6 +226,6 @@ These endpoints correspond to the learner view and act for the key's owner.
 | 401 | The key is missing, invalid, expired or revoked. |
 | 403 with `INSUFFICIENT_SCOPE` | The key lacks the required scope. The response names it in `requiredScope` and lists the effective scopes in `grantedScopes`. |
 | 403 with `EXT_ACCESS_DENIED` | The key's owner does not have the **Use courses** permission. |
-| 429 | Too many requests with this key. Each key has its own quota, by default 600 requests per minute; the response gives the waiting time in seconds in `retryAfter`. |
+| 429 | Too many requests with this key. Each key has its own quota, by default 600 requests per minute; the response gives the length of the time window in seconds in `retryAfter` (60 by default). |
 
 Back to the [overview](/en/company-gpt/addons/companylearn/).

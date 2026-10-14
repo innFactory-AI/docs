@@ -5,7 +5,7 @@ description: Learn how CompanyGPT uses Web Search to find current information fr
 
 ## Web Search
 
-Web Search enables CompanyGPT to search the internet and include current content in its responses. The search must be activated by the user for the current message. You do this in the chat input via **Web Search** in the **Tools** menu.
+Web Search enables CompanyGPT to search the internet and include current content in its responses. Turn on the search in the chat input via **Web Search** in the **Tools** menu. The switch applies to the respective chat and stays on until you turn it off again.
 
 :::note[Not available in all environments]
 Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.

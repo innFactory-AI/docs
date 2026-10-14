@@ -7,7 +7,7 @@ Projects let you organize related conversations into named workspaces. They are 
 
 ![projects](projekte-en.png)
 
-Projects with their own instructions and reference files are currently being introduced gradually, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/#projects-with-instructions-and-files).
+Projects with their own instructions and reference files are currently only available in the demo access and in pilot environments, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/#projects-with-instructions-and-files).
 
 ## What Projects Do
 

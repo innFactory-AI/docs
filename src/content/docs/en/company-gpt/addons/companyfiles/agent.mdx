@@ -95,12 +95,12 @@ Both are visible in the chat: above the answer it says how many tools were used 
 
 ## Maximum agent steps
 
-![Advanced agent settings with the "Maximale Agenten-Schritte" field set to 100 and the multi-agent orchestration section](./files-agent-erweitert.png)
+![Advanced agent settings with the "Maximale Agenten-Schritte" field and the multi-agent orchestration section](./files-agent-erweitert.png)
 
-Under **Advanced → Basics** you find the field for the **maximum agent steps**. It limits how many tool calls an agent may make in one pass. For single documents the default is sufficient; for larger rebuilds – reworking a whole presentation, for instance – it is not, because dozens of calls add up quickly.
+Under **Advanced → Basics** you find the field for the **maximum agent steps**. It limits how many tool calls an agent may make in one pass. Without a value of its own, your environment's default applies – 150 steps in CompanyGPT. That is usually enough even for larger rebuilds such as reworking a whole presentation.
 
 :::note
-Before starting an extensive change, raise the value – to **100**, for example, as in the screenshot. If the agent hits the limit mid-way, the document is left half-finished.
+A value of its own replaces the default – downwards too. So only enter a value if the agent hits the limit during very extensive changes, and then choose a value above 150. If the agent hits the limit mid-way, the document is left half-finished.
 :::
 
 Below it sits the **multi-agent orchestration** section with **sub-agents** (Beta), **handoffs** (Beta) and the **agent chain**. None of them is required for companyFILES.

@@ -68,7 +68,7 @@ Ein Klick auf eine Zeile öffnet die Detailseite. Die Konfiguration eines Inhalt
 
 ### Herkunft
 
-Der Reiter **Herkunft** zeigt bei synchronisierten Inhalten **Repository** (mit Link zum Bibliotheks-Sync), **Pfad**, **Commit**, **Zuletzt geschrieben** und **Stand**. Steht dort, dass der Inhalt seit dem letzten Sync in CompanyGPT geändert wurde, überschreibt der nächste Sync diese Änderung. Nur bei einem Repository mit **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)** bleiben geänderte Agents und Skills bis zum Zurückschreiben erhalten.
+Der Reiter **Herkunft** zeigt bei synchronisierten Inhalten **Repository** (mit Link zum Bibliotheks-Sync), **Pfad**, **Commit**, **Zuletzt geschrieben** und **Stand**. Steht dort, dass der Inhalt seit dem letzten Sync in CompanyGPT geändert wurde, überschreibt der nächste Sync diese Änderung. Nur bei einem Repository mit **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)** bleiben geänderte Agents und Skills bis zum Zurückschreiben erhalten, solange ihre Datei im Repository liegt.
 
 Bei Inhalten, die in CompanyGPT angelegt wurden, steht **In companyGPT erstellt, nicht aus der Bibliothek.**
 
@@ -76,11 +76,18 @@ Bei Inhalten, die in CompanyGPT angelegt wurden, steht **In companyGPT erstellt,
 
 Die Sichtbarkeit setzen Sie auf der Detailseite im Reiter **Sichtbarkeit**. Er nennt den Besitzer (**Besitzer: …**) und bietet drei Stufen:
 
-- **Nur Besitzer** – nur der Besitzer sieht den Inhalt.
-- **Öffentlich — alle Nutzer dieser Umgebung** – alle in Ihrer Umgebung sehen den Inhalt.
-- **Nur bestimmte Gruppen** – nur die gewählten Gruppen und der Besitzer sehen den Inhalt. Mit **Gruppen suchen…** finden Sie Gruppen über den Namen oder die Entra-Object-ID. Ohne gewählte Gruppe lässt sich nicht speichern.
+- **Nur Besitzer** – keine Freigabe für alle und keine Gruppenfreigaben. Freigaben an einzelne Personen oder Rollen bleiben bestehen.
+- **Öffentlich — alle Nutzer dieser Umgebung** – alle in Ihrer Umgebung sehen den Inhalt, mit Leserechten.
+- **Nur bestimmte Gruppen** – die gewählten Gruppen und der Besitzer sehen den Inhalt. Mit **Gruppen suchen…** finden Sie Gruppen über den Namen oder die Entra-Object-ID. Ohne gewählte Gruppe lässt sich nicht speichern.
 
 Bestätigen Sie mit **Speichern**.
+
+:::caution[Speichern ersetzt bestehende Freigaben]
+Gespeichert wird immer die gewählte Stufe als Ganzes. Sie ersetzt die bisherige Freigabe für alle und die bisherigen Gruppenfreigaben.
+
+- Ein Wechsel auf **Öffentlich** oder **Nur Besitzer** entfernt alle Gruppenfreigaben, auch Bearbeiter-Freigaben, die Personen in CompanyGPT vergeben haben. **Öffentlich** gibt allen nur Leserechte.
+- Bei synchronisierten Inhalten ist der Besitzer das Systemkonto. **Nur Besitzer** heißt dort: Kein Nutzer sieht den Inhalt.
+:::
 
 Eine Entra-Gruppe ist erst auswählbar, wenn CompanyGPT sie kennt, also wenn sich ein Mitglied angemeldet hat oder die Gruppe angelegt bzw. synchronisiert wurde. Freigaben aus companyADMIN geben Leserechte (**Betrachter**). Die Stufen **Bearbeiter** und **Besitzer** stammen aus Freigaben, die Personen in CompanyGPT selbst vergeben haben.
 
@@ -101,13 +108,15 @@ Synchronisierte Inhalte bekommen ihre Sichtbarkeit aus dem Repository (**Verwalt
 
 ### Sichtbarkeit für mehrere Einträge
 
-In den Listen **Agents**, **Prompts** und **Skills** setzen Sie die Sichtbarkeit für mehrere Einträge auf einmal:
+In den Listen **Agents**, **Prompts** und **Skills** setzen Sie die Sichtbarkeit für mehrere Einträge auf einmal. Die Leiste dafür erscheint nur mit dem passenden Verwalten-Recht (**Agenten verwalten**, **Prompts verwalten** oder **Skills verwalten**).
 
 1. Wählen Sie die Zeilen über die Kästchen aus.
 2. Wählen Sie in der Leiste über der Tabelle die Sichtbarkeit.
 3. Klicken Sie auf **Für Auswahl setzen**. **Öffentlich** fragt vorher nach.
 
 Geändert werden dabei nur synchronisierte Einträge. Alle anderen werden übersprungen; ihre Sichtbarkeit setzen Sie auf der jeweiligen Detailseite.
+
+Jeder geänderte Eintrag gilt danach als **Individuell verwaltet (überschreibt den Repo-Standard)**. Spätere Änderungen an der Standardsichtbarkeit des Repositorys erreichen diese Einträge nicht mehr. Zurück an den Repo-Standard geben Sie sie nur einzeln, auf der Detailseite mit **Auf Repo-Standard zurücksetzen**.
 
 ## MCP-Tools
 
@@ -126,5 +135,5 @@ Die Spalten **Besitzer** und **Wer ihn sieht** zeigen, wem ein Server gehört un
 Eine aufgeklappte Zeile zeigt **Verbindung**, die Adresse bzw. den **Befehl**, ob die **Anmeldung per OAuth** läuft und welche **Eigene Angaben der Nutzer** der Server erwartet.
 
 - Eine eigene Freigabe haben nur Server mit **Von Nutzer angelegt**. Ändern dürfen sie nur Superadmins; der Besitzer kann sie in CompanyGPT selbst ändern. Die Details privater Server sehen nur Superadmins.
-- Wer die MCP-Server der Erweiterungen (etwa companyFILES oder companyRAG) sieht, steuern die Rechte der jeweiligen Erweiterung, siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+- Die MCP-Server der Erweiterungen (etwa companyFILES oder companyRAG) sind derzeit in der Regel noch zentral für alle eingebunden. Die Rechte der Erweiterung steuern dann nicht, wer ihre Tools im Chat sieht, siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 - Welche Domains MCP-Server nutzen dürfen, legen Sie unter [MCP-Domains](/de/company-gpt/addons/companyadmin/mcp-domains/) fest.

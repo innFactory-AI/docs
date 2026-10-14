@@ -7,7 +7,7 @@ topic: documentation
 Welcome to your CompanyGPT demo account! This page walks you through the key concepts in a few minutes and shows you, using pre-built example agents, what you can try right away. For everything beyond that, the full documentation is always available.
 
 :::note[Your demo account shows the new chat interface]
-Your demo account already shows the new chat interface, which is currently being introduced gradually. Some controls therefore look different from those on some pages of this documentation – for example, the Enter key inserts a line break by default, and you send with Ctrl+Enter (macOS: ⌘+Enter). The [New Chat Interface](/en/company-gpt/neue-chat-oberflaeche/) page describes what changes.
+Your demo account already shows the new chat interface. It is currently only available in the demo access and in pilot environments; no date has been set yet for customer environments. Some controls therefore look different from those on some pages of this documentation – for example, the Enter key inserts a line break by default, and you send with Ctrl+Enter (macOS: ⌘+Enter). The [New Chat Interface](/en/company-gpt/neue-chat-oberflaeche/) page describes what changes.
 :::
 
 ## What is CompanyGPT?

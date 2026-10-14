@@ -10,7 +10,7 @@ Welche Modelle Ihnen in der Modellauswahl angezeigt werden, legt Ihr Unternehmen
 - **Schnell & günstig** → Luna / Mini / Nano / Flash / Haiku
 - **Standard & zuverlässig** → große Allround-Modelle
 - **Komplex & kritisch** → stärkste Modelle
-- **Hosting in Deutschland / Open Source** → STACKIT-Modelle (sofern in Ihrer Umgebung verfügbar)
+- **Hosting in Deutschland / Open Source** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern in Ihrer Umgebung verfügbar
 
 :::note[Wo laufen die Modelle?]
 Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßig in EU-Rechenzentren betrieben (Azure OpenAI in der EU-Datenzone, Google Vertex AI in EU-Regionen). Einzelne Umgebungen oder Modelle – insbesondere zur Bildgenerierung – können abweichen. Die STACKIT-Modelle laufen in Rechenzentren in Deutschland. Details zu Ihrer Umgebung erfahren Sie bei Ihrem Administrator.
@@ -150,7 +150,7 @@ In einzelnen Umgebungen stehen statt oder zusätzlich zu den 4.x-Modellen neuere
 
 ## STACKIT
 
-Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutschland und eignen sich besonders für Workloads mit hohen Anforderungen an Datenhoheit und interne Compliance. Sie stehen nur in Umgebungen zur Verfügung, in denen STACKIT freigeschaltet ist; welche Modelle genau angeboten werden, unterscheidet sich je nach Umgebung. Daneben nutzt die Suche in [companyRAG](/de/company-gpt/addons/companyrag/) je nach Umgebung eigene Embedding-Modelle; sie sind im Chat nicht auswählbar.
+Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutschland und eignen sich besonders für Workloads mit hohen Anforderungen an Datenhoheit und interne Compliance. Sie stehen in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) zur Verfügung, sonst nur in Umgebungen, in denen STACKIT freigeschaltet ist; welche Modelle genau angeboten werden, unterscheidet sich je nach Umgebung. Daneben nutzt die Suche in [companyRAG](/de/company-gpt/addons/companyrag/) je nach Umgebung eigene Embedding-Modelle; sie sind im Chat nicht auswählbar.
 
 ### google/gemma-4-31B-it
 
@@ -236,5 +236,5 @@ Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
 - **„Ich will programmieren / Code schreiben“** → gpt-6-sol / GPT-5.6 Sol / Claude Sonnet 4.6
 - **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-6-sol / Claude Opus 4.6
 - **„Ich führe viele Aufgaben parallel aus“** → gpt-6-luna / GPT-5.6 Luna / Claude Haiku 4.5
-- **„Hosting in Deutschland ist Pflicht“** → STACKIT-Modelle, sofern verfügbar (z. B. Llama 3.3 70B Instruct)
+- **„Hosting in Deutschland ist Pflicht“** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern verfügbar (z. B. Llama 3.3 70B Instruct)
 - **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

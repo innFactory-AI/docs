@@ -7,7 +7,7 @@ Sprachmodelle sagen Text vorher und rechnen nicht — bei exakter Mathematik, Da
 
 ## Aktivierung
 
-Die Integration kann direkt in der [Chateingabe](/de/company-gpt/chat/) für einzelne Nachrichten aktiviert oder deaktiviert werden: im Menü **Werkzeuge** über **Code ausführen**. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+Die Integration schalten Sie direkt in der [Chateingabe](/de/company-gpt/chat/) im Menü **Werkzeuge** über **Code ausführen** ein. Der Schalter gilt für den jeweiligen Chat und bleibt aktiv, bis Sie ihn wieder ausschalten. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
 
 ## Dateien
 
@@ -30,7 +30,7 @@ Der Code Interpreter führt **Python**, **JavaScript/TypeScript** (Node.js und B
 
 - **Eigene Infrastruktur**: Die Code-Ausführung läuft als eigener Dienst im Cluster des Unternehmens — es wird kein externer Ausführungsdienst genutzt.
 - **Isolierte Sandbox**: Jede Ausführung findet in einer eigenen, abgeschotteten Sandbox statt. Der Code hat keinen Zugriff auf das Firmennetzwerk oder das Internet.
-- **Temporäre Daten**: Für die Ausführung bereitgestellte und erzeugte Dateien werden nur temporär gespeichert; die Sandbox ist nach der Ausführung nicht mehr verfügbar.
+- **Temporäre Sandbox**: Die Sandbox ist nur für die Dauer der Ausführung verfügbar. Dateien, die der Code Interpreter erzeugt, speichert CompanyGPT wie andere Dateien im Chat, sodass Sie sie auch später noch über die Karte in der Antwort herunterladen können.
 
 :::note[Limitierung]
 Ausführungszeit und Ausgabegröße pro Ausführung sind begrenzt. Für langlaufende oder sehr speicherintensive Auswertungen ist der Code Interpreter nicht geeignet.

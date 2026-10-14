@@ -9,7 +9,7 @@ Artefakte ermöglichen dem KI-Modell im CompanyGPT, Code zu erstellen und diesen
 
 Im Chat aktivieren Sie Artefakte in der Chateingabe im Menü **Werkzeuge** über **Artefakte**. Für [Agenten](/de/company-gpt/agenten/#artefakte) fügen Sie **Artefakte** über die Tool-Bibliothek hinzu und wählen dort einen **Modus**.
 
-Standardmäßig werden zusätzliche, spezielle Anweisungen für die Nutzung von Artefakten hinzugefügt, es sei denn, der „Benutzerdefinierte Prompt-Modus“ ist aktiviert.
+Standardmäßig werden zusätzliche, spezielle Anweisungen für die Nutzung von Artefakten hinzugefügt, es sei denn, der **Benutzerdefinierte Promptmodus für Artefakte** ist aktiviert.
 
 ![artefakte](artefakte-beispiel.png)
 

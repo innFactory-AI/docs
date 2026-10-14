@@ -5,7 +5,7 @@ description: Erfahren Sie, wie CompanyGPT mit der Websuche aktuelle Informatione
 
 ## Websuche
 
-Die Websuche ermöglicht es CompanyGPT, das Internet zu durchsuchen und aktuelle Inhalte in die Antwort einzubeziehen. Die Suche muss vom Benutzer für die aktuelle Nachricht aktiviert werden. Das geschieht in der Chateingabe im Menü **Werkzeuge** über **Web-Suche**.
+Die Websuche ermöglicht es CompanyGPT, das Internet zu durchsuchen und aktuelle Inhalte in die Antwort einzubeziehen. Die Suche schalten Sie in der Chateingabe im Menü **Werkzeuge** über **Web-Suche** ein. Der Schalter gilt für den jeweiligen Chat und bleibt aktiv, bis Sie ihn wieder ausschalten.
 
 :::note[Nicht in allen Umgebungen verfügbar]
 Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.

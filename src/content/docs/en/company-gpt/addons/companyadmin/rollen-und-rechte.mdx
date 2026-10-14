@@ -25,10 +25,10 @@ Use **Search ID or description** and the **Origin** filter to narrow the list. C
 ## Creating a role
 
 1. In the **Create role** section, enter an **ID** and optionally a **Description**.
-2. If the role should belong to an Entra group, pick the group under **From Entra group**. The ID then automatically becomes the group's object ID.
+2. If the role should belong to an Entra group, pick the group under **From Entra group**. The ID then automatically becomes the group's object ID. This picker only exists when automatic role assignment runs through Entra groups; otherwise enter the object ID by hand as the **ID**.
 3. Click **Create**.
 
-The new role starts with the same rights as USER. Adjust them afterwards on the detail page.
+The new role starts with USER's feature rights (**companyGPT** tab). It does not take over USER's model releases or the extension rights USER holds on its own; rights opened with **For everyone** apply to the new role as well. If a provider is restricted under **Providers and models**, the new role only sees its models once you release them on its **Models & providers** tab. Adjust the role afterwards on the detail page.
 
 ### Assigning roles automatically from Entra ID
 
@@ -57,7 +57,7 @@ The detail page has the tabs **Overview**, **companyGPT**, **Models & providers*
 
 ### companyGPT
 
-Here you decide what people with this role may do in CompanyGPT. Every change applies at once; there is no save button. For each feature the page offers only the actions CompanyGPT supports.
+Here you decide what people with this role may do in CompanyGPT. The ticks for features and admin rights apply at once; they need no save button. For each feature the page offers only the actions CompanyGPT supports.
 
 | Feature | Actions |
 |---|---|
@@ -94,7 +94,7 @@ This section grants the rights for the administration area, such as **Access the
 Whoever holds **Manage roles** or **Manage groups** can effectively give anyone admin rights. If you grant these rights to a role other than ADMIN, companyADMIN therefore asks for explicit confirmation.
 :::
 
-Below follow the role's settings for memories, retention, agent builder and file uploads. They correspond to the settings under [Agent runtime → Per role or group](/en/company-gpt/addons/companyadmin/agent-laufzeit/). Which capabilities agents have for this role is under [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/).
+Below follow the role's settings for memories, retention, agent builder and file uploads. Each of these sections has its own **Save** button; only that applies the change, otherwise it is lost. The settings correspond to the settings under [Agent runtime → Per role or group](/en/company-gpt/addons/companyadmin/agent-laufzeit/). Which capabilities agents have for this role is under [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/).
 
 ### Models & providers
 
@@ -106,7 +106,7 @@ This role's rights in the extensions, for example **Use translation** or **Use M
 
 - ADMIN always holds rights of the class **Admins automatically**.
 - Nobody gets rights of the class **Explicit only** automatically. Only administrators with the ADMIN role can grant them; for everyone else such rights are hidden as long as the role does not hold them.
-- If a right is open **to everyone**, this is shown. You change that under [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
+- If a right is opened with **For everyone**, this is shown. You change that under [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
 
 All rights and what they mean are described in [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
 
@@ -114,10 +114,12 @@ All rights and what they mean are described in [Extensions](/en/company-gpt/addo
 
 Here you assign the role to people:
 
-1. Click **Add person**.
-2. Search for the person by name or email (from two characters) and pick them.
+1. In the **Add person** section, type at least two characters into the **Search person (name or email)** field.
+2. In the results, click the entry "Add *name* (*email*)".
 
 Whoever is assigned here loses their previous role. People you remove from the role get the USER role.
+
+On the USER role itself adding does not work, and removing is not offered. To give someone USER, remove them from their current role.
 
 :::caution
 If automatic role assignment from Entra ID is active, CompanyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
@@ -130,5 +132,5 @@ If automatic role assignment from Entra ID is active, CompanyGPT sets the role a
 ## Related pages
 
 - [Groups](/en/company-gpt/addons/companyadmin/gruppen/) decide with whom content is shared.
-- [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/) control what the agent builder offers per role.
+- [Agent capabilities](/en/company-gpt/addons/companyadmin/agent-capabilities/) control which capabilities agents can use for people with a role.
 - [Providers and models](/en/company-gpt/addons/companyadmin/modelle/) control the models per role.

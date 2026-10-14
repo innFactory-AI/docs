@@ -5,7 +5,7 @@ description: The rights for companyFILES, companyRAG, companyTRANSLATE, companyT
 
 companyADMIN is the central place for rights in the CompanyGPT extensions. Every extension asks companyADMIN whether a person may use or manage it.
 
-**Configuration** → **Extensions** shows each extension with its status, tile and rights. Rights are granted on the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or [group](/en/company-gpt/addons/companyadmin/gruppen/) on the **Extensions** tab; here you open a right **to everyone**.
+**Configuration** → **Extensions** shows each extension with its status, tile and rights. Rights are granted on the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or [group](/en/company-gpt/addons/companyadmin/gruppen/) on the **Extensions** tab; here you open a right to everyone with the **For everyone** tick.
 
 ## Granting rights
 
@@ -15,13 +15,15 @@ companyADMIN is the central place for rights in the CompanyGPT extensions. Every
 | To a group | Group → **Extensions** tab | Every member of the group |
 | To everyone | Configuration → **Extensions**, tick **For everyone** | Everyone in the environment |
 
-The ADMIN role always holds rights of the class **Admins automatically**; companyADMIN ensures this at every start. Nobody gets rights of the class **Explicit only** automatically, not even administrators. They are never opened to everyone.
+The ADMIN role always holds rights of the class **Admins automatically**; companyADMIN ensures this at every start. Nobody gets rights of the class **Explicit only** automatically, not even administrators. They are never opened to everyone. Only an administrator with the ADMIN role can grant them; for every other administrator they are hidden on the **Extensions** tab. This concerns **Superadmin** of companyRAG, for every further companyRAG instance too.
 
-:::note[Not available in all environments]
-Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+Granting to groups is not possible in every environment. As long as CompanyGPT does not know any members of the Entra groups yet, or your CompanyGPT lacks an update needed for it, a group's **Extensions** tab shows **Group rights locked** with the reason.
+
+A revoked right is gone at once; the extensions cache the answer for at most a minute.
+
+:::caution[Rights do not hide MCP tools yet]
+Currently the extensions' MCP servers are, as a rule, still connected centrally for everyone. The right to use an extension then does not control whether its tools appear in the chat: people who may not use an extension still see its MCP tools, and revoking the right does not hide them. Talk to innFactory if you want to separate this.
 :::
-
-A revoked right is gone at once; the extensions cache the answer for at most a minute. Whoever may use an extension also sees its MCP tools in CompanyGPT; visibility follows a change within a few minutes.
 
 ## The rights
 
@@ -63,7 +65,7 @@ For n8n and the AI Gateway there is only the switch **Show in companyTOOLS**. Th
 
 Only administrators with the ADMIN role can open a right to everyone. **View Insights**, **Manage Microsoft 365** and rights of the class **Explicit only** cannot be opened to everyone.
 
-If you take **For everyone** back, companyADMIN asks first. Roles that held the right before keep it; everyone else loses it.
+If you take **For everyone** back, companyADMIN asks first. Roles and groups that held the right before keep it, and so does ADMIN; everyone else loses it.
 
 ## When agents lose access
 
@@ -71,4 +73,4 @@ If you narrow a right that shared agents need, companyADMIN warns with **Access 
 
 ## Granting to groups
 
-Every member gets a right granted to a group. For managing rights and rights of the class **Explicit only**, companyADMIN points this out: whoever manages the group thereby manages the right. Use only security groups with restricted owners for this, no Microsoft 365 groups that people can join themselves.
+Every member gets a right granted to a group. For rights whose technical name ends in `:admin` or `:superadmin` and for rights of the class **Explicit only**, companyADMIN points this out: whoever manages the group thereby manages the right. For **Manage global templates** and **View Insights** this notice is missing, but the risk is the same. Use only security groups with restricted owners for such rights, no Microsoft 365 groups that people can join themselves.

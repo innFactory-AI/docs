@@ -68,7 +68,7 @@ Clicking a row opens the detail page. You change an item's configuration in Comp
 
 ### Origin
 
-For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents and skills stay until they are written back.
+For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents and skills stay until they are written back, as long as their file is in the repository.
 
 For content created in CompanyGPT it says **Created in companyGPT, not from the library.**
 
@@ -76,11 +76,18 @@ For content created in CompanyGPT it says **Created in companyGPT, not from the 
 
 You set the visibility on the detail page on the **Visibility** tab. It names the owner (**Owned by …**) and offers three levels:
 
-- **Owner only** – only the owner sees the item.
-- **Public — all users of this environment** – everyone in your environment sees the item.
-- **Specific groups only** – only the selected groups and the owner see the item. With **Search groups…** you find groups by name or Entra object ID. You cannot save without selecting a group.
+- **Owner only** – no share with everyone and no group shares. Shares with individual people or roles stay.
+- **Public — all users of this environment** – everyone in your environment sees the item, with read access.
+- **Specific groups only** – the selected groups and the owner see the item. With **Search groups…** you find groups by name or Entra object ID. You cannot save without selecting a group.
 
 Confirm with **Save**.
+
+:::caution[Saving replaces existing shares]
+Saving always stores the chosen level as a whole. It replaces the previous share with everyone and the previous group shares.
+
+- Switching to **Public** or **Owner only** removes every group share, including editor shares that people made in CompanyGPT. **Public** gives everyone read access only.
+- For synced content the owner is the system account. **Owner only** there means: no user sees the item.
+:::
 
 An Entra group can only be selected once CompanyGPT knows it, that is once a member has signed in or the group was created or synced. Shares made in companyADMIN give read access (**Viewer**). The levels **Editor** and **Owner** come from shares that people made in CompanyGPT themselves.
 
@@ -101,13 +108,15 @@ Synced content gets its visibility from the repository (**Managed by the repo de
 
 ### Visibility for several items
 
-In the **Agents**, **Prompts** and **Skills** lists you set the visibility for several items at once:
+In the **Agents**, **Prompts** and **Skills** lists you set the visibility for several items at once. The bar for this only appears with the matching manage right (**Manage agents**, **Manage prompts** or **Manage skills**).
 
 1. Select the rows with the checkboxes.
 2. Choose the visibility in the bar above the table.
 3. Click **Apply to selection**. **Public** asks first.
 
 Only synced items are changed. All others are skipped; you set their visibility on their detail pages.
+
+Every changed item is then **Individually managed (overrides the repo default)**. Later changes to the repository's default visibility no longer reach these items. You hand them back to the repo default only one at a time, on the detail page with **Reset to repo default**.
 
 ## MCP tools
 
@@ -126,5 +135,5 @@ The **Owner** and **Who sees it** columns show who owns a server and whom it app
 An expanded row shows the **Connection**, the address or **Command**, whether **Sign-in via OAuth** is used, and which **User-provided values** the server expects.
 
 - Only servers **Created by a user** have sharing of their own. Only superadmins may change it; the owner can change it in CompanyGPT. Only superadmins see the details of private servers.
-- Who sees the MCP servers of the extensions (such as companyFILES or companyRAG) is controlled by the rights of the respective extension, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
+- The MCP servers of the extensions (such as companyFILES or companyRAG) are currently, as a rule, still connected centrally for everyone. The extension's rights then do not control who sees their tools in the chat, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
 - Which domains MCP servers may use is set under [MCP domains](/en/company-gpt/addons/companyadmin/mcp-domains/).

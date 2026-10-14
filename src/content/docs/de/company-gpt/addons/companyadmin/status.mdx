@@ -7,7 +7,11 @@ Die Seite **Status** beantwortet zwei Fragen: Was gilt gerade, und läuft alles?
 
 Oben stehen der Zeitpunkt der Abfrage (**Stand …**) und die Version von companyADMIN. Die Seite aktualisiert sich alle fünf Minuten; **Neu prüfen** fragt sofort neu ab.
 
-Die Seite hat fünf Abschnitte. Für die ersten vier brauchen Sie das Recht **Konfiguration ansehen**, für die Protokolle das Recht **Audit-Protokoll ansehen**. Fehlt ein Recht, bleibt der betreffende Abschnitt leer.
+Die Seite hat fünf Abschnitte. Welche Sie sehen, hängt an Ihren Rechten:
+
+- Für die ersten vier Abschnitte brauchen Sie das Recht **Konfiguration ansehen**. Ohne dieses Recht erscheinen sie gar nicht; an ihrer Stelle steht ein Hinweis.
+- **Rollen im Überblick** braucht zusätzlich **Rollen ansehen**, **Admin-Quellen** zusätzlich **Zugang zum Admin-Bereich**. Fehlt eines davon, bleibt der Abschnitt leer.
+- Die **Protokolle** erscheinen nur mit dem Recht **Audit-Protokoll ansehen**.
 
 ## Erweiterungen erreichbar
 
@@ -50,8 +54,8 @@ Die Tabelle zeigt jede Rolle mit **Herkunft**, Anzahl der **Personen** und **Hin
 | Herkunft | Bedeutung |
 |---|---|
 | **Rollen-Sync** | Die Rolle wird bei der Anmeldung automatisch aus Entra ID vergeben |
-| **Admin-Rolle** | Die Rolle ADMIN, die über die Admin-Gruppe vergeben wird |
-| **System** | Mit CompanyGPT ausgeliefert (ADMIN, USER) |
+| **Admin-Rolle** | Die Rolle, die genau wie der Eintrag der Admin-Gruppe heißt (Groß- und Kleinschreibung zählt nicht) |
+| **System** | Mit CompanyGPT ausgeliefert (ADMIN, USER). ADMIN selbst erscheint in der Regel hier |
 | **Von Hand** | In companyADMIN angelegt und von Hand zugewiesen |
 
 Mögliche Hinweise sind **Ohne Rechte**, **Entra-Gruppe unbekannt**, **Niemand hat sie**, **Nicht im Rollen-Sync** und **Fehlt, obwohl eingetragen**.

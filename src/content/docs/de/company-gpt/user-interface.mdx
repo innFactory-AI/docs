@@ -10,7 +10,7 @@ Das User Interface im CompanyGPT ermöglicht es, mit den unterschiedlichen KI-Mo
 
 ![companygpt ui](ui.png)
 
-Eine überarbeitete Chat-Oberfläche wird derzeit schrittweise eingeführt. Einen Überblick finden Sie unter [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+Eine überarbeitete Chat-Oberfläche ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar. Einen Überblick finden Sie unter [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
 
 ## Modellauswahl
 
@@ -38,7 +38,7 @@ Welche Dateitypen wie verarbeitet werden, beschreibt die Seite [Dateiverarbeitun
 ![ui-extensions](ui-extend.png)
 
 - [Dateisuche](/de/company-gpt/integrationen/dateisuche/)
-- [Websuche](/de/company-gpt/integrationen/websuche/)
+- [Web-Suche](/de/company-gpt/integrationen/websuche/)
 - [Skills](/de/company-gpt/skills/)
 - [Code ausführen](/de/company-gpt/code-interpreter/)
 - [Artefakte](/de/company-gpt/integrationen/artefakte/)
@@ -54,7 +54,7 @@ Der Bereich **Chatverlauf** zeigt alle Chats, die Sie bisher geführt haben. Von
 - **Suchfeld**: **Nachrichten durchsuchen** durchsucht die Titel und die Nachrichteninhalte Ihrer Chats. Während einer Suche zeigt die Liste nur die Treffer.
 - **Projekte**: Ihre [Projekte](/de/company-gpt/projekte/) mit den jeweils zugeordneten Chats.
 - **Angepinnt**: angepinnte Chats sowie angepinnte Modelle und Agenten. Die Reihenfolge ändern Sie per Drag & Drop oder mit `Alt` + Pfeiltaste nach oben bzw. unten. Ziehen Sie einen Chat in diesen Bereich, wird er angepinnt.
-- **Chats**: alle übrigen Chats, nach Datum gruppiert. Chats, in denen gerade eine Antwort entsteht, erscheinen in einer eigenen Gruppe am Anfang der Liste. Chats, für die ein geteilter Link aktiv ist, sind mit einem Symbol gekennzeichnet.
+- **Chats**: alle übrigen Chats, nach Datum gruppiert. Chats, in denen gerade eine Antwort entsteht, erscheinen bei der Standardsortierung (**Aktualisiert**, **Newest first**) in einer eigenen Gruppe **Running** am Anfang der Liste. Chats, für die ein geteilter Link aktiv ist, sind mit einem Symbol gekennzeichnet.
 
 <img src={chatVerlaufImg.src} alt="Chatverlauf" style="width: 50%;" />
 
@@ -66,11 +66,11 @@ Der Bereich **Chatverlauf** zeigt alle Chats, die Sie bisher geführt haben. Von
 
 Das Filtersymbol neben der Überschrift **Chats** öffnet ein Menü, mit dem Sie die Chatliste eingrenzen und ordnen:
 
-- **Anzeigen**: aktive Chats oder **Archivierte Chats**. In der Ansicht der archivierten Chats holen Sie einen Chat über **Aus Archiv holen** zurück.
-- **Chats sortieren nach**: **Aktualisiert**, **Erstellt** oder Titel, bei archivierten Chats zusätzlich **Archivierungsdatum**. Darunter wählen Sie die Reihenfolge (neueste oder älteste zuerst bzw. alphabetisch auf- oder absteigend).
+- **Anzeigen**: **Active chats** oder **Archivierte Chats**. In der Ansicht der archivierten Chats holen Sie einen Chat über **Aus Archiv holen** zurück.
+- **Chats sortieren nach**: **Aktualisiert**, **Erstellt** oder **Title**, bei archivierten Chats zusätzlich **Archivierungsdatum**. Darunter wählen Sie unter **Order** die Reihenfolge (**Newest first** oder **Oldest first** bzw. **A to Z** oder **Z to A**).
 - **Lesezeichen**: zeigt nur Chats mit den ausgewählten [Lesezeichen](/de/company-gpt/lesezeichen/). Wählen Sie mehrere aus, erscheinen alle Chats, die mindestens eines davon tragen.
 
-Sind Filter aktiv, ist das Filtersymbol hervorgehoben. Über den letzten Eintrag im Menü setzen Sie alle Filter zurück. Die gewählte Sortierung merkt sich CompanyGPT, die Filter gelten bis zum nächsten Neuladen der Seite.
+Sind Filter aktiv, ist das Filtersymbol hervorgehoben. Eine geänderte Sortierung zählt dabei ebenfalls als aktiver Filter. Über **Clear filters** setzen Sie alle Filter und die Sortierung zurück. Die gewählte Sortierung merkt sich CompanyGPT, die Filter gelten bis zum nächsten Neuladen der Seite.
 
 ## Seitenleiste
 
@@ -98,7 +98,7 @@ Welche Einträge Sie sehen, hängt von Ihren Berechtigungen und der Konfiguratio
 
 - **Apps** erscheint nur, wenn in Ihrer Umgebung [Alle Apps](/de/company-gpt/addons/alle-apps/) eingerichtet ist.
 - Mit entsprechender Berechtigung erscheint unter **Neuer Chat** zusätzlich der [Agenten-Marktplatz](/de/company-gpt/agenten/#agenten-marktplatz).
-- **KI-Einstellungen** wird nur angezeigt, wenn ein Modell und kein Agent ausgewählt ist.
+- **KI-Einstellungen** wird nur angezeigt, wenn ein Modell und kein Agent ausgewählt ist und Ihre Umgebung die Parameter freigibt.
 
 ### Kontomenü
 
@@ -110,4 +110,4 @@ Die Übersicht aller Tastenkürzel öffnen Sie über das Kontomenü unten links 
 
 ![shortcuts](shortcuts.png)
 
-Ein Klick auf eine Zeile weist einem Befehl ein eigenes Tastenkürzel zu. Über **Alles auf Standard zurücksetzen** stellen Sie die ursprüngliche Belegung wieder her. Mit dem Schalter **Tastenkürzel** oben im Dialog schalten Sie alle Tastenkürzel aus; Ihre eigenen Belegungen bleiben dabei erhalten.
+Um einem Befehl ein eigenes Tastenkürzel zuzuweisen, klicken Sie rechts in seiner Zeile auf das Tastenkürzel bzw. bei Befehlen ohne Belegung auf **Tastenkürzel festlegen**. Sobald Sie mindestens ein eigenes Tastenkürzel festgelegt haben, erscheint **Alles auf Standard zurücksetzen**; damit stellen Sie die ursprüngliche Belegung wieder her. Mit dem Schalter **Tastenkürzel** oben im Dialog schalten Sie alle Tastenkürzel aus; Ihre eigenen Belegungen bleiben dabei erhalten.

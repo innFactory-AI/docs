@@ -22,7 +22,7 @@ Each memory is stored as a key-value pair: the key is the keyword, the value is 
 | `decisions` | Decisions that have been made, with their rationale |
 | `corrections` | Your explicit corrections until they have been applied to the matching key |
 
-In the standard configuration, up to 12,000 tokens are available for all memories combined; the limit may differ in some environments. The percentage in the **Memories** area of the sidebar shows how much of it is used. Hover over it to see the exact number of tokens. Once the limit is reached, no further memories can be created.
+In the standard configuration, up to 12,000 tokens are available for your personal memories; the limit may differ in some environments. [Agents](#agent-memories) with their own memories each have a separate quota. The percentage in the **Memories** area of the sidebar shows how much of your personal quota is used. Hover over it to see the exact number of tokens. Once a limit is reached, no further memories can be created in that area.
 
 ## Automatic saving
 

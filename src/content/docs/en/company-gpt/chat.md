@@ -21,7 +21,7 @@ Chat messages or prompts are entered via the input field. Press `Enter` to send 
 Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht/)
 :::
 
-A redesigned input bar is currently being introduced gradually, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
+A redesigned input bar is currently only available in the demo access and in pilot environments, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
 
 ### Messages during a running response
 
@@ -29,7 +29,7 @@ You can keep typing while a response is being generated. When you send, the new 
 
 ### Context indicator
 
-The circle icon in the input field shows how much of the model's context window the current chat uses. When space is running low, the indicator changes color. Hover over it or click it to see the breakdown, for example by **Messages**, **System prompt**, tools, and **Free space**. If the context is filling up quickly, the breakdown also shows roughly how many more turns it will last at the current growth rate.
+The circle icon in the input field shows how much of the model's context window the current chat uses. When space is running low, the indicator changes color. Hover over it or click it to see the breakdown, for example by **Messages**, **System prompt**, tools, and **Free space**.
 
 In the breakdown, you can also compact the context yourself with **Compact context**: CompanyGPT replaces the conversation so far with a summary. Earlier messages stay visible in the chat but are no longer sent to the model.
 
@@ -45,7 +45,7 @@ In addition to the actual prompt input, the context can be further expanded by:
 - [MCP Server](/en/company-gpt/integrationen/mcp-server/)
 - [Memory](/en/company-gpt/erinnerungen/#in-chat), if available in your environment
 
-These can be enabled or disabled for individual messages in the respective chat.
+You turn these on or off in the respective chat.
 
 ## Messages
 
@@ -61,7 +61,7 @@ Messages in the chat have quick actions:
 - **Read aloud**: Using [Text to speech](/en/company-gpt/einstellungen/#text-to-speech), the message is read aloud with the selected engine.
 - **Copy to clipboard**: Copies the entire content of the message to the clipboard.
 - **Edit**: Opens an editor in the message, see [Editing messages](#editing-messages).
-- **Fork**: Creates a new chat from a specific message with all previous messages. This is helpful if, for example, you want to think in different directions. Choose which messages are included: **Visible messages only**, **Include related branches**, or **Include all to/from here**.
+- Fork icon: Creates a new chat from a specific message with all previous messages. This is helpful if, for example, you want to think in different directions. Choose which messages are included: **Visible messages only**, **Include related branches**, or **Include all to/from here**.
 - **Feedback**: Rate a response with thumbs up or down and optionally add a comment.
 
 ### Editing messages
@@ -110,7 +110,7 @@ The address of the link stays the same. Edits to messages that are already share
 **Manage Access** lets you see and change who can open the link. **Delete Link** removes the share. Chats with an active link are marked in the chat history and on the **Export/Share** icon. An overview of all your shared chats is available in the [Settings](/en/company-gpt/einstellungen/#shared-chats) under **Shared chats**.
 
 :::caution
-Shared links can only be opened by people who sign in to CompanyGPT. If your CompanyGPT is only accessible from the company network, this also applies to shared links.
+Shared links can only be opened by people who sign in to the same CompanyGPT environment, even if the link is shared publicly. Without public sharing, they also need read permission, which you grant via **Manage Access**. If your CompanyGPT is only accessible from the company network, this also applies to shared links.
 :::
 
 ### Export

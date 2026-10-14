@@ -25,10 +25,10 @@ Mit **ID oder Beschreibung suchen** und dem Filter **Herkunft** grenzen Sie die 
 ## Rolle anlegen
 
 1. Geben Sie im Abschnitt **Rolle anlegen** eine **ID** und optional eine **Beschreibung** ein.
-2. Soll die Rolle zu einer Entra-Gruppe gehören, wählen Sie die Gruppe unter **Aus Entra-Gruppe übernehmen**. Die ID wird dann automatisch die Object-ID der Gruppe.
+2. Soll die Rolle zu einer Entra-Gruppe gehören, wählen Sie die Gruppe unter **Aus Entra-Gruppe übernehmen**. Die ID wird dann automatisch die Object-ID der Gruppe. Diese Auswahl gibt es nur, wenn die automatische Rollenvergabe über Entra-Gruppen läuft; sonst tragen Sie die Object-ID von Hand als **ID** ein.
 3. Klicken Sie auf **Anlegen**.
 
-Die neue Rolle startet mit denselben Rechten wie USER. Passen Sie sie danach auf der Detailseite an.
+Die neue Rolle startet mit den Funktionsrechten von USER (Reiter **companyGPT**). Nicht übernommen werden die Modellfreigaben von USER und die Erweiterungsrechte, die USER eigens hat; Rechte, die über **Für alle** freigegeben sind, gelten auch für die neue Rolle. Ist ein Anbieter unter **Provider und Modelle** eingeschränkt, sieht die neue Rolle dessen Modelle erst, wenn Sie sie ihr im Reiter **Modelle & Provider** freigeben. Passen Sie die Rolle danach auf der Detailseite an.
 
 ### Rollen automatisch aus Entra ID vergeben
 
@@ -57,7 +57,7 @@ Die Detailseite hat die Reiter **Überblick**, **companyGPT**, **Modelle & Provi
 
 ### companyGPT
 
-Hier legen Sie fest, was Personen mit dieser Rolle in CompanyGPT dürfen. Jede Änderung gilt sofort, ein Speichern-Knopf ist nicht nötig. Pro Funktion bietet die Seite nur die Aktionen an, die CompanyGPT dafür unterstützt.
+Hier legen Sie fest, was Personen mit dieser Rolle in CompanyGPT dürfen. Die Häkchen der Funktionen und der Admin-Rechte gelten sofort; dafür ist kein Speichern-Knopf nötig. Pro Funktion bietet die Seite nur die Aktionen an, die CompanyGPT dafür unterstützt.
 
 | Funktion | Aktionen |
 |---|---|
@@ -94,7 +94,7 @@ Dieser Abschnitt vergibt die Rechte für den Administrationsbereich, etwa **Zuga
 Wer **Rollen verwalten** oder **Gruppen verwalten** hat, kann praktisch jeder Person Admin-Rechte verschaffen. Vergeben Sie diese Rechte an eine andere Rolle als ADMIN, fragt companyADMIN deshalb ausdrücklich nach.
 :::
 
-Darunter folgen die Einstellungen der Rolle für Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Sie entsprechen den Einstellungen unter [Agent-Laufzeit → Pro Rolle oder Gruppe](/de/company-gpt/addons/companyadmin/agent-laufzeit/). Welche Fähigkeiten Agents für diese Rolle haben, steht unter [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/).
+Darunter folgen die Einstellungen der Rolle für Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Jeder dieser Abschnitte hat einen eigenen Knopf **Speichern**; erst damit übernehmen Sie die Änderung, sonst geht sie verloren. Die Einstellungen entsprechen den Einstellungen unter [Agent-Laufzeit → Pro Rolle oder Gruppe](/de/company-gpt/addons/companyadmin/agent-laufzeit/). Welche Fähigkeiten Agents für diese Rolle haben, steht unter [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/).
 
 ### Modelle & Provider
 
@@ -106,7 +106,7 @@ Die Rechte dieser Rolle in den Erweiterungen, zum Beispiel **Übersetzen nutzen*
 
 - Rechte der Klasse **Admins automatisch** hat ADMIN immer.
 - Rechte der Klasse **Nur ausdrücklich** bekommt niemand automatisch. Vergeben können sie nur Administratoren mit der Rolle ADMIN; für alle anderen sind solche Rechte ausgeblendet, solange die Rolle sie nicht hat.
-- Ist ein Recht **für alle** freigegeben, steht das dabei. Das ändern Sie unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+- Ist ein Recht über **Für alle** freigegeben, steht das dabei. Das ändern Sie unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 
 Alle Rechte mit Bedeutung beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 
@@ -114,10 +114,12 @@ Alle Rechte mit Bedeutung beschreibt [Erweiterungen](/de/company-gpt/addons/comp
 
 Hier weisen Sie die Rolle Personen zu:
 
-1. Klicken Sie auf **Person hinzufügen**.
-2. Suchen Sie die Person nach Name oder E-Mail (ab zwei Zeichen) und wählen Sie sie aus.
+1. Geben Sie im Abschnitt **Person hinzufügen** in das Feld **Person suchen (Name oder E-Mail)** mindestens zwei Zeichen ein.
+2. Klicken Sie in der Trefferliste auf den Eintrag „*Name* (*E-Mail*) hinzufügen“.
 
 Wer hier zugewiesen wird, verliert seine bisherige Rolle. Entfernen Sie Personen aus der Rolle, bekommen sie die Rolle USER.
+
+Bei der Rolle USER selbst funktioniert das Hinzufügen nicht, und Entfernen wird nicht angeboten. Wer USER bekommen soll, den entfernen Sie aus seiner bisherigen Rolle.
 
 :::caution
 Ist die automatische Rollenvergabe aus Entra ID aktiv, setzt CompanyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Zuweisungen hier gehen dann verloren.
@@ -130,5 +132,5 @@ Ist die automatische Rollenvergabe aus Entra ID aktiv, setzt CompanyGPT die Roll
 ## Verwandte Seiten
 
 - [Gruppen](/de/company-gpt/addons/companyadmin/gruppen/) bestimmen, mit wem Inhalte geteilt werden.
-- [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/) steuern, was der Agent-Builder je Rolle anbietet.
+- [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/) steuern, welche Fähigkeiten Agents für Personen mit einer Rolle nutzen können.
 - [Provider und Modelle](/de/company-gpt/addons/companyadmin/modelle/) regeln die Modelle je Rolle.

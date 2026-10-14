@@ -8,7 +8,7 @@ Im CompanyGPT können Sie Dateien an Ihre Nachrichten anhängen. Wie eine Datei 
 :::tip[Kurzübersicht]
 
 - Bilder und PDFs: gehen direkt an das KI-Modell, sofern es diese Dateien verarbeiten kann. So werden auch Grafiken, Layout und handschriftliche Inhalte berücksichtigt.
-- Office-Dokumente und Textdateien: werden in Text umgewandelt und der Nachricht vollständig angehängt.
+- Office-Dokumente und Textdateien: werden in Text umgewandelt und der Nachricht angehängt, pro Datei bis zu 100.000 Token. Längere Texte werden gekürzt.
 - Dateisuche und Code ausführen: Ist eines dieser Werkzeuge aktiv, stehen die Dateien bei Bedarf auch diesem Werkzeug zur Verfügung.
 :::
 
@@ -29,17 +29,20 @@ Bilder und PDF-Dateien werden zusammen mit Ihrer Nachricht an das KI-Modell gese
 
 Kann das gewählte Modell PDF-Dateien nicht direkt verarbeiten, extrahiert CompanyGPT stattdessen den Text.
 
-**Limitierung**: Es kommt hierbei auf das KI-Modell an, welche Informationen und Dateitypen verarbeitet werden können. Zusätzlich gelten die Grenzen des jeweiligen KI-Anbieters pro Anfrage, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten, bei OpenAI-Modellen 50 MB, bei Gemini-Modellen (Google Vertex AI) 20 MB für die gesamte Anfrage einschließlich der angehängten Dateien. Sehr große PDF-Dateien teilen Sie daher am besten auf.
+**Limitierung**: Es kommt hierbei auf das KI-Modell an, welche Informationen und Dateitypen verarbeitet werden können. Zusätzlich gelten die Grenzen des jeweiligen KI-Anbieters pro Anfrage, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten, bei Gemini-Modellen (Google Vertex AI) 20 MB für die gesamte Anfrage einschließlich der angehängten Dateien. Sehr große PDF-Dateien teilen Sie daher am besten auf.
 
 ### Office-Dokumente und Textdateien
 
-Aus Office-Dokumenten wird der Text ausgelesen und der Nachricht vollständig angehängt. Das ist nützlich, wenn Sie beispielsweise Texte zusammenfassen oder wichtige Punkte extrahieren möchten.
+Aus Office-Dokumenten wird der Text ausgelesen und der Nachricht angehängt. Pro Datei werden bis zu 100.000 Token übernommen, längere Texte werden gekürzt. Das ist nützlich, wenn Sie beispielsweise Texte zusammenfassen oder wichtige Punkte extrahieren möchten.
 
 | Dateityp | Verarbeitung |
 | --- | --- |
-| Word (`.docx`), Excel (`.xlsx`, `.xls`), OpenDocument (`.odt`, `.ods`) | Eingebauter Parser, bis 15 MB pro Datei. Excel-Dateien werden Blatt für Blatt als Tabelle (CSV) übernommen. |
-| PowerPoint (`.pptx`, `.potx`, `.ppt`), ältere Word-Dateien (`.doc`), E-Books (`.epub`) | Texterkennung (OCR) durch ein KI-Modell, bis 30 Seiten pro Dokument |
+| Word (`.docx`), PowerPoint (`.pptx`, `.potx`, `.ppt`), E-Books (`.epub`) | Texterkennung (OCR) durch ein KI-Modell, bis 30 Seiten pro Dokument. Bei Word-Dateien übernimmt der eingebaute Parser (bis 15 MB pro Datei), wenn die Texterkennung fehlschlägt oder das Dokument mehr als 30 Seiten hat. |
+| Excel (`.xlsx`, `.xls`), OpenDocument (`.odt`, `.ods`) | Eingebauter Parser, bis 15 MB pro Datei. Excel-Dateien werden Blatt für Blatt als Tabelle (CSV) übernommen. |
+| Ältere Word-Dateien (`.doc`, Word 97–2003) | werden nicht ausgelesen. Laden Sie solche Dateien bitte als `.docx` oder PDF hoch. |
 | Textdateien (z. B. `.txt`, `.md`, `.csv`, `.json`) | werden direkt als Text gelesen |
+
+In einzelnen Umgebungen ohne Texterkennung werden Word-Dateien (`.docx`) direkt mit dem eingebauten Parser ausgelesen.
 
 **Limitierung**: Bei der Umwandlung in Text werden Bilder in den Dokumenten nicht berücksichtigt.
 

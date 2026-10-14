@@ -20,8 +20,8 @@ Both interfaces are authenticated via API keys and support streaming responses, 
 
 To use the Agents API, the following prerequisites must be met:
 
-1. **API access must be enabled** — Your role needs the **Remote agents** permission (**Use**). Administrators grant it in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab. The permission alone is not enough: an agent can only be reached via the API by its owner or if it has been explicitly shared with you for API access. Otherwise, the API responds with `403` and the message `No remote access to agent: <agent-id>`.
-2. **Generate an API key** — Once access is enabled, create a key in CompanyGPT under **Settings** → **Data & Privacy** → **Agent API keys** via **Create API Key**. You enter a name and choose under **Expiration** how long the key is valid: **7 days**, **30 days** (preselected), **90 days**, **1 year**, or **Never**. Copy the key right away; it will not be shown again.
+1. **API access** — Your role needs the **Remote agents** permission (**Use**). It is enabled for all users by default; administrators can revoke it in [companyADMIN](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) under **Access** → **Roles** → open a role → **companyGPT** tab. The permission alone is not enough: an agent can only be reached via the API by its owner or if it has been explicitly shared with you for API access. Otherwise, the API responds with `403` and the message `No remote access to agent: <agent-id>`.
+2. **Generate an API key** — With this permission, create a key in CompanyGPT under **Settings** → **Data & Privacy** → **Agent API keys** → **Manage** via **Create API Key**. You enter a name and choose under **Expiration** how long the key is valid: **7 days**, **30 days** (preselected), **90 days**, **1 year**, or **Never**. Copy the key right away; it will not be shown again.
 3. **Find your agent ID** — Each agent has a unique ID (e.g. `agent_ulS_lcjGw...`) that you use as the `model` parameter.
 
 :::tip

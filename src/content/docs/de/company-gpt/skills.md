@@ -23,7 +23,7 @@ Wählen Sie **Skill-Anweisungen schreiben**, um einen Skill selbst zu erstellen.
 
 - **Name** – Ein eindeutiger Name für den Skill
 - **Beschreibung** – Kurze Erklärung, wann und wofür der Skill eingesetzt wird
-- **Anweisungen** – Die eigentlichen Anweisungen im Markdown-Format
+- **Anleitung** – Die eigentlichen Anweisungen im Markdown-Format
 
 ![Formular zum Schreiben eines neuen Skills mit Name, Beschreibung und Instructions](./skills-write-de.png)
 

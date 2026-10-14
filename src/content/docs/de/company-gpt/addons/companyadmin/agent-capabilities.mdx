@@ -1,17 +1,26 @@
 ---
 title: Agent-Fähigkeiten
-description: In companyADMIN festlegen, welche Fähigkeiten der Agent-Builder von CompanyGPT anbietet – für alle und mit eigener Auswahl pro Rolle, etwa um Code-Ausführung, Websuche oder Subagents zu begrenzen.
+description: In companyADMIN festlegen, welche Agent-Fähigkeiten Personen in CompanyGPT nutzen können – für alle und mit eigener Auswahl pro Rolle, etwa um Code-Ausführung, Websuche oder Subagents zu begrenzen.
 ---
 
-**Konfiguration** → **Agent-Fähigkeiten** bestimmt, welche Fähigkeiten der Agent-Builder anbietet, etwa Code-Ausführung, Websuche, Dateisuche oder Subagents. Damit begrenzen Sie teure oder riskante Fähigkeiten auf einzelne Rollen, ohne sie für alle zu sperren.
+**Konfiguration** → **Agent-Fähigkeiten** bestimmt, welche Fähigkeiten Personen mit einer Rolle nutzen können, etwa Code-Ausführung, Websuche, Dateisuche oder Subagents. Damit begrenzen Sie teure oder riskante Fähigkeiten auf einzelne Rollen, ohne sie für alle zu sperren.
 
-Diese Einstellung betrifft nur den Baukasten für Agents. Was Personen in CompanyGPT allgemein dürfen, regeln die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+Die Auswahl gilt für Personen mit der jeweiligen Rolle: im Agent-Builder, bei den Tools im Chat und bei den Tools jedes Agents, den sie verwenden. Was Personen in CompanyGPT darüber hinaus dürfen, regeln die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+:::caution[Wirkt auch auf bestehende Agents]
+CompanyGPT prüft die Fähigkeiten beim Chatten für die Person, die gerade schreibt. Fehlt ihrer Rolle eine Fähigkeit, fehlt das passende Tool in jedem Agent, den sie verwendet, auch in geteilten Agents und in Agents aus dem Marktplatz.
+
+- Ohne `tools` laufen keine MCP-Tools und keine anderen Tools mehr.
+- Im normalen Chat verschwinden fehlende Fähigkeiten wie Websuche, Code ausführen, Dateisuche, Artefakte oder Skills aus dem Tool-Menü.
+:::
 
 ## Steuerung einschalten
 
 Im Abschnitt **Steuerung** schalten Sie **Agent-Fähigkeiten über companyADMIN steuern** ein. Solange das Häkchen fehlt, bekommen alle die Fähigkeiten aus der Grundkonfiguration.
 
-**Steuerung beenden** fragt nach und entfernt alle Auswahlen; danach gilt wieder die Grundkonfiguration für alle.
+Hat beim Einschalten noch keine Rolle eine eigene Auswahl, legt companyADMIN sofort eine eigene Auswahl für ADMIN an, als Kopie der Grundkonfiguration. Wenn Sie danach **Für alle** verkleinern, betrifft das ADMIN deshalb nicht.
+
+Um die Steuerung zu beenden, entfernen Sie das Häkchen **Agent-Fähigkeiten über companyADMIN steuern**. Der Dialog **Steuerung beenden?** fragt nach; **Steuerung beenden** entfernt alle Auswahlen. Danach gilt wieder die Grundkonfiguration für alle.
 
 ## Für alle
 
@@ -25,7 +34,7 @@ Der Abschnitt **Für alle** ist die Auswahl, die jede Rolle ohne eigene Auswahl 
 
 Eine eigene Auswahl ersetzt die Auswahl **Für alle** für alle mit dieser Rolle; sie kommt nicht dazu. **Eigene Auswahl entfernen** gibt der Rolle wieder **Für alle**. Die letzte eigene Auswahl lässt sich nicht entfernen; um die Steuerung ganz aufzuheben, beenden Sie sie oben.
 
-USER ist dabei eine Rolle wie jede andere. Hat ADMIN keine eigene Auswahl, bekommen auch Administratoren **Für alle**. Das betrifft nur den Agent-Builder, nicht companyADMIN.
+USER ist dabei eine Rolle wie jede andere. Hat ADMIN keine eigene Auswahl, bekommen auch Administratoren **Für alle**. companyADMIN selbst ist davon nicht betroffen.
 
 ## Die Fähigkeiten
 

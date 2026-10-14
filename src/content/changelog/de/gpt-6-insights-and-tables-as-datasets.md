@@ -1,6 +1,6 @@
 ---
 title: "GPT-6, Insights in companyADMIN und Tabellen als Datensätze"
-excerpt: "GPT-6 Luna wird Standardmodell, Dateien landen ohne Umweg im Chat, und „Code ausführen“ ist nahezu überall aktiv. companyADMIN zeigt Nutzung und Kosten in Insights, companyRAG macht Tabellen per SQL abfragbar und bindet WebDAV und FTP an, und companyM365 liest freigegebene Postfächer."
+excerpt: "GPT-6 Luna wird Standardmodell, Dateien landen ohne Umweg im Chat, und „Code ausführen“ ist in allen Umgebungen aktiv. companyADMIN zeigt Nutzung und Kosten in Insights, companyRAG macht Tabellen per SQL abfragbar und bindet WebDAV und FTP an, und companyM365 liest freigegebene Postfächer."
 date: 2026-09-30
 author:
   name: innFactory Team
@@ -25,10 +25,10 @@ Der September bringt eine neue Modellgeneration, einen aufgeräumten Chat und ne
 - **GPT-6 Luna ist Standard**: Neue Chats starten in den meisten Umgebungen mit GPT-6 Luna, GPT-6 Sol steht als zweites GPT-6-Modell bereit. In Umgebungen mit Google-Modellen kommt Gemini 3.8 Flash hinzu. Der Eintrag „auto“ in der Modellauswahl entfällt. Details in der [Modellauswahl](/de/company-gpt/modellauswahl/).
 - **Dateien direkt hochladen**: Die Büroklammer lädt Dateien ohne Zielauswahl hoch. Bilder und PDFs gehen direkt an das Modell, Office-Dokumente als Text. Excel-Dateien werden direkt eingelesen statt über die Texterkennung. Siehe [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
 - **Mehr Spielraum für Agenten**: Bis zu 25 Anhänge pro Nachricht, bis zu 50 Subagenten und 150 Schritte pro Durchlauf.
-- **„Code ausführen“ nahezu überall**: Der [Code Interpreter](/de/company-gpt/code-interpreter/) ist jetzt in nahezu allen Umgebungen aktiv. Damit funktionieren auch Agenten mit Code-Ausführung und die Analyse von Excel-Dateien zuverlässig.
-- **Einstellungen neu gegliedert**: Die [Einstellungen](/de/company-gpt/einstellungen/) sind neu sortiert. Neu sind unter anderem Uhrzeitformat und Wochenbeginn, Hochkontrast-Designs, das Verhalten der Eingabetaste während einer laufenden Antwort (nachsteuern oder in die Warteschlange stellen) und das Archivieren aller Chats auf einmal.
-- **Chats schneller finden**: Die Chatliste lässt sich filtern und sortieren, etwa nach aktiven, archivierten oder mit Lesezeichen versehenen Chats. Angeheftete Chats und Favoriten haben einen eigenen Bereich, den Sie per Drag & Drop ordnen. Einen Chat ziehen Sie direkt auf ein Projekt, geteilte Chats sind markiert.
-- **Kontext im Blick**: Die Kontextanzeige zeigt farbig, wie voll der Kontext ist, schlüsselt die Belegung auf und gibt eine Prognose. Wird es eng, lässt sich der Kontext komprimieren.
+- **„Code ausführen“ überall**: Der [Code Interpreter](/de/company-gpt/code-interpreter/) ist jetzt in allen Umgebungen aktiv. Damit funktionieren auch Agenten mit Code-Ausführung und die Analyse von Excel-Dateien zuverlässig.
+- **Einstellungen neu gegliedert**: Die [Einstellungen](/de/company-gpt/einstellungen/) sind neu sortiert. Neu sind unter anderem Uhrzeitformat und Wochenbeginn sowie Hochkontrast-Designs.
+- **Chats schneller finden**: Die Chatliste lässt sich filtern und sortieren, etwa nach aktiven, archivierten oder mit Lesezeichen versehenen Chats. Angeheftete Chats und Favoriten ordnen Sie per Drag & Drop, und einen Chat ziehen Sie direkt auf ein Projekt.
+- **Kontext komprimieren**: Wird der Platz knapp, komprimieren Sie den Kontext über die [Kontextanzeige](/de/company-gpt/chat/#kontextanzeige). CompanyGPT ersetzt den bisherigen Verlauf dann durch eine Zusammenfassung.
 - **Übersichtlichere Werkzeugaufrufe**: Mehrere Werkzeugaufrufe eines Agenten werden gruppiert angezeigt, fehlgeschlagene Aufrufe sind gezählt. Ein temporärer Chat ist deutlich gekennzeichnet.
 - **Skills gezielt zuweisen**: Im Agent Builder legen Sie fest, ob ein Agent alle, keine oder nur ausgewählte [Skills](/de/company-gpt/skills/) nutzt.
 
@@ -49,7 +49,7 @@ Der September bringt eine neue Modellgeneration, einen aufgeräumten Chat und ne
 - **Eigene Dateiendungen**: Für eine Quelle lassen sich zusätzliche Dateiendungen freigeben, die als reiner Text gelesen werden. MDX-Dateien werden wie Markdown indexiert.
 - **Synchronisierung nachvollziehbar**: Die Quellenkarte zeigt Ausgang (erfolgreich, teilweise, fehlgeschlagen), Grund und Kennzahlen des letzten Laufs. SharePoint-Quellen übertragen nach dem ersten vollständigen Lauf nur noch Änderungen.
 - **Robustere Synchronisierung**: Lange Läufe aus SharePoint und Google Drive überstehen den Ablauf der Anmeldung, und ein unvollständiges Ordnerlisting führt nicht mehr zum Löschen von Dokumenten. Dateien gelöschter Quellen werden aus dem Index entfernt, damit keine veralteten Inhalte in Antworten auftauchen.
-- **Superadmins verwalten jede Sammlung**: Superadmins können jede Sammlung verwalten, ohne dadurch Lesezugriff auf deren Dokumente zu erhalten.
+- **Superadmins verwalten jede Sammlung**: Superadmins können jede Sammlung verwalten.
 - **Verständliche Fehler**: Scheitert das Indexieren eines Datensatzes, steht der Grund direkt an der Datei.
 
 ## 📄 companyFILES

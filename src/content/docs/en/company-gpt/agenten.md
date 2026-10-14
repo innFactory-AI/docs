@@ -57,7 +57,7 @@ For more information about web search, see: [Web Search](/en/company-gpt/integra
 
 #### File Context
 
-Files added under **File Context** are converted to text. The full text is included in the agent's context with every message. This is suitable for a few key documents the agent should always reference. You can only upload files for File Context once the agent has been created.
+**File Context** is not an entry in the Tool Library but a separate section under **Tools** in the agent form. Files added there are converted to text. The full text is included in the agent's context with every message. This is suitable for a few key documents the agent should always reference. You can only upload files for File Context once the agent has been created.
 
 :::tip
 Context documents are always complete in the context of the agent/conversation. Here, you should limit yourself to the essentials, e.g., instructions on tone or past examples. For very long documents, **file search** might be more suitable.
@@ -138,11 +138,11 @@ Under **Support Contact**, each agent can be assigned contact information for th
 
 ### Advanced Settings
 
-**Advanced** opens the agent's **Advanced Settings**. There you find the maximum number of agent steps and, under **Multi-agent orchestration**, the settings for how the agent works with other agents: subagents, handoffs, and agent chains.
+**Advanced** opens the agent's **Advanced Settings**. There you find the maximum number of agent steps and, under **Multi-agent orchestration**, the settings for how the agent works with other agents: subagents, handoffs, and the agent chain.
 
 #### Maximum Agent Steps
 
-Limits how many steps the agent can take in a run before giving a final answer. Without your own value, CompanyGPT uses a default of 150 steps. A step is either an AI API request or a tool usage round. For example, a simple tool interaction involves 3 steps: the initial request, the tool usage, and the follow-up request.
+Limits how many steps the agent can take in a run before giving a final answer. Without your own value, CompanyGPT uses a default of 150 steps; the hint text in the interface still says 25. If you enter your own value, it applies instead of the 150 steps, even if it is higher. A step is either an AI API request or a tool usage round. For example, a simple tool interaction involves 3 steps: the initial request, the tool usage, and the follow-up request.
 
 #### Subagents
 
@@ -152,13 +152,13 @@ With **Enable subagents**, the agent can delegate subtasks to helper agents. Sub
 
 Under **Handoffs**, you define agents to which the agent can transfer the conversation when specific expertise is needed. Each handoff creates a transfer tool that the agent uses to route the conversation, including its context, to the specialist agent. In the **Handoff description**, you specify when to hand off. **Add handoff agent** allows up to 10 handoffs.
 
-#### Agent chains
+#### Chain
 
-Allows you to create agent sequences. Each agent can access the outputs of previous agents in the chain. Based on the “mixture-of-agents” architecture, where agents use previous outputs as additional information.
+With **Chain**, you create agent sequences. Each agent can access the outputs of previous agents in the chain. Based on the “mixture-of-agents” architecture, where agents use previous outputs as additional information.
 
 ### Version
 
-Each time changes to an agent are saved, a version is created. These versions can be viewed and revoked via the version display. This is useful if you want to undo changes.
+Each time changes to an agent are saved, a version is created. In the version display, you can view these versions and bring back an earlier version with **Restore**. This is useful if you want to undo changes.
 
 ## Permissions
 

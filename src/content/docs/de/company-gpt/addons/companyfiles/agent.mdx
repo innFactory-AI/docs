@@ -91,12 +91,12 @@ Im Chat ist beides sichtbar: Über der Antwort steht, wie viele Werkzeuge benutz
 
 ## Maximale Agenten-Schritte
 
-![Erweiterte Agenteneinstellungen mit dem Feld „Maximale Agenten-Schritte" auf 100 und dem Bereich Multi-Agenten-Orchestrierung](./files-agent-erweitert.png)
+![Erweiterte Agenteneinstellungen mit dem Feld „Maximale Agenten-Schritte" und dem Bereich Multi-Agenten-Orchestrierung](./files-agent-erweitert.png)
 
-Unter **Erweitert → Grundlagen** steht das Feld **Maximale Agenten-Schritte**. Es begrenzt, wie viele Werkzeugaufrufe ein Agent in einem Durchgang machen darf. Für einzelne Dokumente ist der Standardwert ausreichend; für größere Umbauten – etwa das Überarbeiten einer ganzen Präsentation – reicht er nicht, weil dabei schnell dutzende Aufrufe zusammenkommen.
+Unter **Erweitert → Grundlagen** steht das Feld **Maximale Agenten-Schritte**. Es begrenzt, wie viele Werkzeugaufrufe ein Agent in einem Durchgang machen darf. Ohne eigenen Wert gilt der Standard Ihrer Umgebung – in CompanyGPT 150 Schritte. Das reicht in der Regel auch für größere Umbauten wie das Überarbeiten einer ganzen Präsentation.
 
 :::note
-Bevor Sie eine umfangreiche Änderung starten, setzen Sie den Wert hoch – zum Beispiel auf **100** wie in der Abbildung. Läuft der Agent mitten in der Bearbeitung ins Limit, bleibt das Dokument in einem halbfertigen Zustand zurück.
+Ein eigener Wert ersetzt den Standard – auch nach unten. Tragen Sie deshalb nur dann etwas ein, wenn der Agent bei sehr umfangreichen Änderungen ins Limit läuft, und wählen Sie dann einen Wert über 150. Läuft der Agent mitten in der Bearbeitung ins Limit, bleibt das Dokument in einem halbfertigen Zustand zurück.
 :::
 
 Darunter liegt der Bereich **Multi-Agenten-Orchestrierung** mit **Unteragenten** (Beta), **Übergaben** (Beta) und der **Agentenkette**. Für companyFILES sind sie nicht erforderlich.

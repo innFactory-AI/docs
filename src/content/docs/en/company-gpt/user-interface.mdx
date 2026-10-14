@@ -10,7 +10,7 @@ The User Interface in CompanyGPT allows you to communicate with different AI mod
 
 ![companygpt ui](ui.png)
 
-A redesigned chat interface is currently being introduced gradually. For an overview, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
+A redesigned chat interface is currently only available in the demo access and in pilot environments. For an overview, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
 
 ## Model Selection
 
@@ -42,7 +42,7 @@ Use the **Tools** icon next to the paperclip to enable integrations for the curr
 - [Skills](/en/company-gpt/skills/)
 - [Run Code](/en/company-gpt/code-interpreter/)
 - [Artifacts](/en/company-gpt/integrationen/artefakte/)
-- [MCP Server](/en/company-gpt/integrationen/mcp-server/)
+- [MCP Servers](/en/company-gpt/integrationen/mcp-server/)
 - [Memory](/en/company-gpt/erinnerungen/#in-chat), if available in your environment
 
 By selecting the pin icon, you can pin the integrations permanently to the chat bar.
@@ -54,7 +54,7 @@ The **Chat History** area shows all chats you have had so far. From top to botto
 - **Search field**: **Search messages** searches the titles and message contents of your chats. While you search, the list shows only the results.
 - **Projects**: your [projects](/en/company-gpt/projekte/) with the chats assigned to them.
 - **Pinned**: pinned chats as well as pinned models and agents. Change the order by drag and drop or with `Alt` + arrow up or down. Dragging a chat into this area pins it.
-- **Chats**: all other chats, grouped by date. Chats in which a response is currently being generated appear in a separate **Running** group at the top of the list. Chats with an active shared link are marked with an icon.
+- **Chats**: all other chats, grouped by date. With the default sort order (**Updated**, **Newest first**), chats in which a response is currently being generated appear in a separate **Running** group at the top of the list. Chats with an active shared link are marked with an icon.
 
 <img src={chatVerlaufImg.src} alt="Chat History" style="width: 50%;" />
 
@@ -70,7 +70,7 @@ The **Filter and sort chats** icon next to the **Chats** heading opens a menu fo
 - **Sort chats by**: **Updated**, **Created**, or **Title**, and for archived chats also **Date Archived**. Below that, choose the **Order** (**Newest first** or **Oldest first**, or **A to Z** or **Z to A**).
 - **Bookmarks**: shows only chats with the selected [bookmarks](/en/company-gpt/lesezeichen/). If you select several, all chats that carry at least one of them are shown.
 
-When filters are active, the filter icon is highlighted. Use **Clear filters** to reset them. CompanyGPT remembers the selected sort order; filters apply until the page is reloaded.
+When filters are active, the filter icon is highlighted. A changed sort order also counts as an active filter. Use **Clear filters** to reset all filters and the sort order. CompanyGPT remembers the selected sort order; filters apply until the page is reloaded.
 
 ## Sidebar
 
@@ -98,7 +98,7 @@ Which entries you see depends on your permissions and the configuration of your 
 
 - **Apps** only appears if [All Apps](/en/company-gpt/addons/alle-apps/) is set up in your environment.
 - With the appropriate permission, the [Agent Marketplace](/en/company-gpt/agenten/#agent-marketplace) also appears below **New chat**.
-- **Parameters** is only shown when a model, not an agent, is selected.
+- **Parameters** is only shown when a model, not an agent, is selected and your environment allows the parameters.
 
 ### Account menu
 
@@ -110,4 +110,4 @@ Open the list of all keyboard shortcuts via the account menu at the bottom left 
 
 ![shortcuts](shortcuts.png)
 
-Click any row to assign your own shortcut to a command. **Reset all to defaults** restores the original key bindings. The **Keyboard Shortcuts** switch at the top of the dialog turns off all shortcuts; your custom key bindings are kept.
+To assign your own shortcut to a command, click the shortcut on the right of its row or, for commands without a binding, **Set shortcut**. As soon as you have set at least one custom shortcut, **Reset all to defaults** appears; it restores the original key bindings. The **Keyboard Shortcuts** switch at the top of the dialog turns off all shortcuts; your custom key bindings are kept.

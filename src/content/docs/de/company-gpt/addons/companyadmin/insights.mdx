@@ -7,17 +7,13 @@ description: Nutzung, Tokens, geschätzte Kosten und Aktivität Ihrer CompanyGPT
 
 Die Zahlen stammen aus vorberechneten Tageswerten und werden alle 10 Minuten aktualisiert. Der laufende Tag ist live enthalten und noch nicht abgeschlossen.
 
-:::note[Nicht in allen Umgebungen verfügbar]
-Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
-:::
-
 ## Zugang
 
 Sie öffnen Insights über die Kachel **Insights** unter **Alle Apps** oder im Menü von companyADMIN.
 
 Insights ansehen darf, wer das Recht **Insights ansehen** (`ext:admin:insights`) hat:
 
-- Administratoren haben das Recht automatisch.
+- Die Rolle ADMIN hat das Recht automatisch. Wer auf anderem Weg Administrator ist, etwa als fest hinterlegte Person oder über das Recht **Zugang zum Admin-Bereich** an einer eigenen Rolle, braucht es zusätzlich an seiner Rolle oder Gruppe.
 - Weiteren Personen geben Sie es über eine Rolle oder eine Gruppe, jeweils im Reiter **Erweiterungen** (siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) und [Gruppen](/de/company-gpt/addons/companyadmin/gruppen/)).
 - **Für alle** lässt sich das Recht nicht freigeben, weil Insights Kosten, Tokens und E-Mail-Adressen aller Nutzer zeigt.
 
@@ -35,7 +31,10 @@ Oben auf der Seite wählen Sie den **Zeitraum**:
 - **30 Tage**
 - **Benutzerdefiniert** mit **Von** und **Bis**, höchstens 366 Tage
 
-Jede Kennzahl vergleicht den gewählten Zeitraum mit dem gleich langen Zeitraum davor (**Vorzeitraum**).
+Jede Kennzahl vergleicht den gewählten Zeitraum mit einem **Vorzeitraum**:
+
+- Bei **Aktueller Monat**, **Letzter Monat** und einem benutzerdefinierten Zeitraum über genau einen Kalendermonat ist der Vorzeitraum der ganze Vormonat. Im laufenden Monat vergleicht Insights also einen angefangenen Monat mit einem vollen.
+- Bei **7 Tagen**, **30 Tagen** und allen anderen Zeiträumen ist es der gleich lange Zeitraum davor.
 
 **Export (XLSX)** lädt die Zahlen des gewählten Zeitraums als Excel-Datei herunter. Sie enthält die Blätter **Übersicht**, **Modelle**, **Agents**, **MCP-Tools** und **Kosten je Nutzer**, jeweils mit allen Zeilen.
 
@@ -61,9 +60,9 @@ Die Übersicht zeigt Kacheln mit Verlauf und Vergleich zum Vorzeitraum:
 
 Darunter folgen **Top-Nutzer** (die 10 Nutzer mit den meisten Anfragen im Zeitraum) und **Abgewanderte Nutzer**.
 
-### Reselling-Kosten
+#### Reselling-Kosten
 
-Die Kachel **Reselling-Kosten** zeigt den Betrag, den der innFactory Hub für einen Kalendermonat abrechnet. Sie ist nur für ganze Monate verfügbar; bei anderen Zeiträumen bietet sie **Aktueller Monat** und **Letzter Monat** zum schnellen Umschalten an.
+Die erste Kachel der Übersicht, **Reselling-Kosten**, zeigt den Betrag, den der innFactory Hub für einen Kalendermonat abrechnet. Sie ist nur für ganze Monate verfügbar; bei anderen Zeiträumen bietet sie **Aktueller Monat** und **Letzter Monat** zum schnellen Umschalten an.
 
 - Der laufende Monat ist als **vorläufig** gekennzeichnet und zeigt eine **Prognose**.
 - **Stand** nennt das Datum der Abrechnungsdaten. Cloud-Anbieter liefern Verbrauchsdaten mit mindestens 2–3 Tagen Verzug; endgültig sind die Zahlen erst bis zu 15 Tage nach Monatsende.

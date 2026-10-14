@@ -26,6 +26,9 @@ In August, agents work more closely with you, generated documents move straight 
 - **Take code and diagrams with you**: Code blocks can be downloaded directly. Mermaid diagrams open as an artifact and can be exported as SVG or PNG, and [artifacts](/en/company-gpt/integrationen/artefakte/) can be viewed full screen.
 - **Edit without regenerating**: When you edit one of your own messages, you choose whether the answer is regenerated or the change is simply saved.
 - **Long text as a file**: In the settings you can have very long pasted texts attached as a file instead of filling the input field.
+- **Enter while an answer is running**: In the [settings](/en/company-gpt/einstellungen/#sending) you decide whether `Enter` steers a running answer or queues your message for afterwards.
+- **Archive all chats**: In the settings you move all chats to the archive at once.
+- **Shared chats and context at a glance**: Chats with an active shared link are marked in the chat list. The [context indicator](/en/company-gpt/chat/#context-indicator) shows in color how full the context is.
 - **Lean context with many tools**: Tools from connected MCP servers are only loaded once an agent needs them, so there is room left in the context even with many connected tools.
 
 ## 📄 companyFILES

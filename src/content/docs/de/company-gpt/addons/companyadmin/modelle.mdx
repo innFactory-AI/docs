@@ -37,7 +37,11 @@ Badges an einem Anbieter:
 3. Setzen oder entfernen Sie das Häkchen „*Rolle* nutzt *Anbieter*“ und die Häkchen der einzelnen Modelle.
 4. Klicken Sie auf **Speichern**. Nehmen Sie Modelle weg, fragt companyADMIN vorher nach und nennt die Modelle, die danach nicht mehr verfügbar sind.
 
-Wird ein bisher offener Anbieter für eine Rolle eingeschränkt, behalten alle anderen Rollen alle Modelle. Neue Rollen sehen den Anbieter aber erst, nachdem Sie ihn ihnen freigegeben haben. **Für alle öffnen** hebt die Einschränkung wieder auf.
+Wird ein bisher offener Anbieter für eine Rolle eingeschränkt, behalten alle anderen Rollen alle Modelle, die es in diesem Moment gibt. Neue Rollen sehen den Anbieter aber erst, nachdem Sie ihn ihnen freigegeben haben. **Für alle öffnen** hebt die Einschränkung wieder auf.
+
+:::caution[Neue Modelle bei eingeschränkten Anbietern]
+**Alle Modelle** beschreibt den Stand beim Speichern. Sobald ein Anbieter eingeschränkt ist, speichert companyADMIN für jede Rolle eine feste Modellliste. Kommt später mit einem Update ein neues Modell dazu, sieht es bei diesem Anbieter keine Rolle, bis jemand es anhakt. Ausgenommen sind Anbieter mit **Liste live**.
+:::
 
 Zu beachten:
 
@@ -75,6 +79,10 @@ Auch hier muss mindestens eine Rolle jeden Anbieter behalten. Hat jemand anderes
 - **Rolle** → Reiter **Modelle & Provider** zeigt und ändert die Modelle einer Rolle, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
 - **Nutzer** → Reiter **Modelle** zeigt, welche Modelle eine Person sieht, siehe [Nutzer](/de/company-gpt/addons/companyadmin/nutzer/).
 
+:::note[Nur für Superadmins]
+Die Nutzerliste und damit den Reiter **Modelle** einer Person sehen nur Superadmins. Ohne Superadmin-Funktionen sehen Sie die Modelle einer Person über ihre Rolle im Reiter **Modelle & Provider**.
+:::
+
 ## Labels
 
 Labels geben Modellen lesbare Namen in der Modellauswahl, etwa „Claude schnell“ statt der technischen Modell-ID. Ein Label kann auch auf einen bestimmten Agent zeigen.
@@ -83,7 +91,7 @@ Labels geben Modellen lesbare Namen in der Modellauswahl, etwa „Claude schnell
 
 Mit **Modell-Labels in companyADMIN verwalten** übernimmt companyADMIN die Labels. Solange das Häkchen fehlt, gelten die Labels aus der Grundkonfiguration, sonst die technischen Modell-IDs. Schon das Anlegen des ersten Labels übernimmt die vorhandenen Labels aus der Grundkonfiguration zur Bearbeitung.
 
-**Verwaltung beenden** fragt nach. Danach gelten wieder die Labels der Grundkonfiguration, und alle hier angelegten oder geänderten Labels gehen verloren.
+Um die Verwaltung zu beenden, entfernen Sie das Häkchen **Modell-Labels in companyADMIN verwalten**. Der Dialog **Verwaltung beenden?** fragt nach; bestätigen Sie mit **Verwaltung beenden**. Danach gelten wieder die Labels der Grundkonfiguration, und alle hier angelegten oder geänderten Labels gehen verloren.
 
 ### Alle Labels
 
@@ -96,13 +104,13 @@ Die Liste **Alle Labels** zeigt **Label**, **Modell**, **Quelle** und **Wirksam*
 | **Anzeige** | **Label** (höchstens 128 Zeichen), **Beschreibung (optional)** – erscheint in der Auswahl unter dem Label, **Gruppe** und **Gruppen-Symbol** – gruppieren die Auswahl, **Symbol-URL**, **Für neue Chats vorausgewählt** |
 | **Ziel** | **Anbieter** und **Modell**, oder als Anbieter **Agent (ein bestimmter Agent)** und dann der **Agent** |
 
-Bei OpenAI-Modellen gibt es zusätzlich **OpenAI Responses API verwenden**. Mit **Nach oben** und **Nach unten** ändern Sie die Reihenfolge. **Label entfernen** in der Gefahrenzone nimmt das Label für alle aus der Auswahl; laufende Chats behalten ihr Modell.
+Bei OpenAI-Modellen gibt es zusätzlich **OpenAI Responses API verwenden**. Mit **Nach oben** und **Nach unten** ändern Sie die Reihenfolge. **Label entfernen** in der Gefahrenzone nimmt das Label für alle aus der Auswahl. Laufende Chats behalten ihr Modell, solange **Nur Modelle mit Label dürfen verwendet werden** aus ist. Ist der Schalter an, funktionieren laufende Chats mit diesem Label danach nicht mehr; dort muss ein neues Modell gewählt werden.
 
 Die Karte **Modelle ohne Label (N)** listet Modelle, die noch mit ihrer technischen ID erscheinen. Dort legen Sie für einzelne Modelle ein Label an oder übernehmen mit **Alle übernehmen** alle auf einmal.
 
 ### Auswahl im Chat
 
-Solange companyADMIN die Labels verwaltet, steuern Sie hier, wie die Modellauswahl aussieht. Speichern Sie mit **Auswahl speichern**.
+Solange companyADMIN die Labels verwaltet, steuern Sie hier, wie die Modellauswahl aussieht. Übernehmen Sie die Einstellungen dieses Abschnitts mit **Speichern**.
 
 - **Labels in der Auswahl zuerst anzeigen** – Labels stehen oben.
 - **Anbieter, die auswählbar bleiben** – angehakte Anbieter behalten neben den Labels ihren eigenen Eintrag in der Auswahl. Alle anderen sind nur noch über Labels erreichbar. Ist kein Anbieter angehakt, zeigt CompanyGPT alle Anbieter. Das ist nur eine Anzeige-Einstellung und sperrt kein Modell. Eine Gruppe darf nicht so heißen wie ein angehakter Anbieter, sonst verschwinden ihre Labels aus der Auswahl.

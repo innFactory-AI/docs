@@ -7,7 +7,11 @@ The **Status** page answers two questions: what is in force right now, and is ev
 
 At the top you see when the data was fetched (**As of …**) and the companyADMIN version. The page refreshes every five minutes; **Check again** queries immediately.
 
-The page has five sections. The first four need the right **View configuration**, the logs need the right **View audit log**. If a right is missing, the section in question stays empty.
+The page has five sections. Which ones you see depends on your rights:
+
+- The first four sections need the right **View configuration**. Without it they do not appear at all; a notice takes their place.
+- **Roles at a glance** also needs **View roles**, **Admin sources** also needs **Access the admin area**. If one of these is missing, the section stays empty.
+- The **Logs** only appear with the right **View audit log**.
 
 ## Extensions reachable
 
@@ -50,8 +54,8 @@ The table shows each role with its **Origin**, the number of **People** and **Hi
 | Origin | Meaning |
 |---|---|
 | **Role sync** | The role is assigned automatically from Entra ID at sign-in |
-| **Admin role** | The ADMIN role, assigned through the admin group |
-| **System** | Shipped with CompanyGPT (ADMIN, USER) |
+| **Admin role** | The role whose name matches the admin group entry exactly (upper or lower case does not matter) |
+| **System** | Shipped with CompanyGPT (ADMIN, USER). ADMIN itself usually appears here |
 | **By hand** | Created in companyADMIN and assigned by hand |
 
 Possible hints are **No rights**, **Entra group unknown**, **Nobody holds it**, **Not in the role sync** and **Missing although registered**.

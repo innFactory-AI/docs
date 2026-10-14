@@ -32,7 +32,7 @@ Everything needed to build, extend and repair `.pptx` decks.
 | `read_powerpoint_slides`          | Read slide numbers, titles, text **and each slide's layout/slots**  |
 | `list_templates`                  | Find available templates (`type: "potx"`) before building           |
 | `list_my_files`                   | Find a deck the user attached in the chat (`file_id`)               |
-| `embed_chart_in_document`         | Render a Chart.js chart into a one-slide deck                       |
+| `embed_chart_in_document`         | Render a Chart.js chart as a deck (+ title slide with `title`)      |
 
 ---
 
@@ -89,7 +89,10 @@ I'll build 1–5 first, then append 6–12 in two chunks. Say if the structure s
 - **Never re-create to append.** `add_slides_from_layouts` / `append_slides_to_powerpoint`
   exist precisely so a deck can grow across turns.
 
-Every slide in a `slides` array **requires a `title`** (it is a mandatory field, including for `section` slides) — a slide without a `title` fails validation.
+Every slide in a typed `slides` array (`create_powerpoint`, `append_slides_to_powerpoint`,
+`update_powerpoint_slide`) **requires a `title`** (it is a mandatory field, including for `section`
+slides) — a slide without a `title` fails validation. The layout tools (path C) take `layout`,
+`fields`, `images` and `notes` per slide instead; there `title` is just a slot key in `fields`.
 
 ---
 
@@ -112,15 +115,17 @@ Decide once, at the start. Mixing paths in one deck produces inconsistent design
 `list_templates` (`type: "potx"`) lists candidates and, for `{{}}` decks, a per-slide placeholder
 breakdown. It does **not** return the layout catalog — use `describe_pptx_template` for that.
 
-A deck the user attached to the chat needs no template upload at all — see the next section.
+A deck the user attached to the chat needs no template upload for path C — see the next section.
 
 ---
 
 ## 2a. The user attached a `.pptx` in the chat
 
 Someone drops their Folienmaster or an existing deck into the conversation and asks for a
-presentation "in this design", or asks to extend the deck they just sent. **Do not ask them to
-upload it as a template** — every PPTX tool takes the attachment directly.
+presentation "in this design", or asks to extend the deck they just sent. For path C **do not ask
+them to upload it as a template** — the layout tools, `read_powerpoint_slides`,
+`append_slides_to_powerpoint` and `update_powerpoint_slide` take the attachment directly.
+`create_powerpoint_from_template` does not: it only takes a `template_name`.
 
 ```
 FIND    list_my_files → pick the .pptx by filename → keep its file_id
@@ -135,6 +140,15 @@ BUILD   new deck   → create_powerpoint_from_layouts { "librechat_file_id": ...
 
 `librechat_file_id` and `document_id` are interchangeable inputs — the server resolves either id.
 Pass whichever id the listing gave you.
+
+**An attached deck with `{{}}` markup (path B)** has two routes:
+
+- To fill it as a template (`placeholders`, `{%name}` images, `repeat`), it has to be uploaded as
+  a template first (companyFILES UI, `open_companyfiles_ui` page `upload`); then call
+  `create_powerpoint_from_template` with its `template_name`.
+- To edit the attachment itself, use clone mode: `append_slides_to_powerpoint` or
+  `update_powerpoint_slide` with `librechat_file_id`, `reference_slide` and `placeholders`
+  (section 5).
 
 | The user wants                                | Tool                             | Result                                          |
 | --------------------------------------------- | -------------------------------- | ----------------------------------------------- |
@@ -170,7 +184,8 @@ starts speaker notes, which run until the next `#`/`##` heading.
 }
 ```
 
-Inline images use `doc:<documentId>` or `lc:<file_id>`:
+Inline images use `doc:<documentId>` or `lc:<file_id>` — resolved only here, in the Markdown of
+`create_powerpoint`:
 
 ```markdown
 ![Chart](doc:abc12345-...)
@@ -204,7 +219,7 @@ Omitting `image` on a `text-image` slide draws a skeleton placeholder box — us
       "type": "text-image",
       "title": "System Architecture",
       "bullets": ["Microservices", "Auto-scaling", "99.9% uptime"],
-      "image": "lc:xyz-file-id",
+      "image": "https://example.com/architecture.png",
       "imageAlt": "Architecture diagram"
     }
   ],
@@ -214,6 +229,10 @@ Omitting `image` on a `text-image` slide draws a skeleton placeholder box — us
 ```
 
 `bullets` is a flat `string[]` here — for nested bullets use path C (`level`) or a template.
+
+`image` takes only a base64 data URI (`data:image/…`) or a public http(s) URL. `doc:` and `lc:`
+references are **not** resolved there and render as a text placeholder `[Image: …]` — put
+attachments and stored images into Markdown mode instead (`![alt](lc:<file_id>)`).
 
 ### Styled tables — `htmlTable`
 
@@ -427,12 +446,13 @@ Either `fields` or `images` is enough — pass both only when you mean to change
 tool to call repeatedly across turns while the user reviews the deck. Accepts `librechat_file_id`
 too (the attachment is updated in place when possible).
 
-### `slide_type` routing still works
+### How `layout` resolves
 
-A role resolves in this order: a `{{slide_type:x}}` marker found in a deck slide (unchanged
-legacy behaviour, highest priority) → an explicit `role_map` → roles inferred from native
-layouts. **Never ask the user to type `{{}}` markers into a corporate master** — that is exactly
-what path C removes.
+The layout tools resolve a slide's `layout` in this order: an exact `layoutId` → a role (the
+inferred `roleMap`, with an explicit `role_map` overriding single roles) → a layout name.
+`{{slide_type:x}}` markers play no part here — they only route records in the `repeat` of
+`create_powerpoint_from_template` (path B). **Never ask the user to type `{{}}` markers into a
+corporate master** — that is exactly what path C removes.
 
 ---
 
@@ -522,19 +542,23 @@ text-only read (`slideNumber`, `title`, `textLines`).
 
 ## 6. Charts and images in slides
 
-- **Chart as its own slide:** `embed_chart_in_document` with `document_type: "powerpoint"` renders
-  the chart onto its own slide (plus a generated title slide when `title` is given). Use the
-  resulting `document_id` as an image source, or keep appending to it.
-- **Chart on a content slide:** create the chart image, then reference it via `image` on a
-  `text-image` slide (`doc:<id>`), or via a `{%name}` image placeholder in a `{{}}` template.
-- **Image sources** for `image` fields and Markdown images (`create_powerpoint`,
-  `append_slides_to_powerpoint`, `update_powerpoint_slide`): a base64 data URI (`data:image/…`),
-  `doc:<documentId>` (PVC upload), `lc:<file_id>` (LibreChat attachment — see `list_my_files`), or
-  an http(s) URL of a **publicly reachable** host — internal or private addresses are refused.
+- **Chart as its own slide:** `embed_chart_in_document` with `document_type: "powerpoint"` creates
+  a new deck with the chart on its own slide. With `title` a generated title slide comes first, so
+  the deck has **two** slides. You can keep appending to it.
+- **Chart on a content slide:** create the chart image, then embed it in the Markdown of
+  `create_powerpoint` (`![Chart](doc:<id>)`), via a `{%name}` image placeholder in a `{{}}`
+  template, or via a layout picture slot (`images`).
+- **Image sources:** `doc:<documentId>` (PVC upload) and `lc:<file_id>` (LibreChat attachment —
+  see `list_my_files`) are resolved **only in the Markdown of `create_powerpoint`**
+  (`![alt](lc:…)`). The `image` field of typed slides (`create_powerpoint`,
+  `append_slides_to_powerpoint`, `update_powerpoint_slide`) and the Markdown of
+  `append_slides_to_powerpoint` / `update_powerpoint_slide` accept only a base64 data URI
+  (`data:image/…`) or an http(s) URL of a **publicly reachable** host — internal or private
+  addresses are refused. Anything else renders as a text placeholder `[Image: …]`.
   `{%name}` template images and layout picture slots (`images`) take
   `{ base64 | document_id | librechat_file_id }` instead.
 - See **charts-diagrams-skill** for chart/diagram creation, **templates-skill** for `{%image}`
-  placeholders, chart data replacement and `repeat`.
+  placeholders, chart series names (categories and values are not replaced yet) and `repeat`.
 
 ---
 
@@ -565,9 +589,10 @@ text-only read (`slideNumber`, `title`, `textLines`).
 - **`subtitle` on a master with no `subTitle` placeholder** (common on corporate masters: the
   subtitle line of a title layout is a plain `body` placeholder) falls back to the first free
   `body` slot instead of landing in `unknownFields`.
-- **`create_powerpoint_from_template` refuses a template with no `{{}}` placeholders** and names
-  the layout tools in the error. That is path C's cue, not a broken template — do not retry the
-  legacy tool and do not add `{{}}` markers to a corporate master.
+- **`create_powerpoint_from_template` refuses a template with no `{{}}` placeholders** when the
+  call also passes no `images`, `charts` or `speaker_notes`, and names the layout tools in the
+  error. That is path C's cue, not a broken template — do not retry the legacy tool and do not
+  add `{{}}` markers to a corporate master.
 - **`pic:*` slots take images via `images`, not `fields`.**
 - **Only `add_slides_from_layouts` keeps the document** when extending a path-C deck.
   `create_powerpoint_from_layouts` with `drop_template_slides: false` produces a _new_ document —
@@ -586,8 +611,10 @@ text-only read (`slideNumber`, `title`, `textLines`).
   attachment updated in place, the response carries `librechat_file_id`, `filename` and `message`
   but **no** download link — tell the user the attached deck was updated. If the attachment could
   not be updated in place, a new document with its own `id` and `markdownLink` is returned.
-- **Theming (path A/B):** the org/user colour theme and logo are applied automatically from
-  settings; no theme arguments needed.
+- **Theming (path A/B):** the org/user colour theme is applied automatically from settings; no
+  theme arguments needed. No logo is inserted automatically — add one through `images` (e.g. a
+  `{%logo}` placeholder in a path-B template). In path B only `{{company_name}}` is filled from
+  the settings automatically.
 
 ---
 
@@ -602,7 +629,9 @@ A single run that exercises every slide feature. Useful for verifying a deployme
    → 3 slides, note `document_id`. (Repeat once **with** `title` to confirm the generated title
    slide appears and shifts numbering to 4.)
 2. `append_slides_to_powerpoint` — `slides`: a `default` with a `code` block and a `table`, plus
-   a `text-image` **with** `image: "lc:<file_id>"`. → same `document_id`, 5 slides.
+   a `text-image` **with** `image` set to a `data:image/png;base64,…` URI (or a public https URL).
+   → same `document_id`, 5 slides, picture on the right. (An `lc:` value here renders as the text
+   placeholder `[Image: …]`.)
 3. `append_slides_to_powerpoint` — `markdown` with two `##` headings and a `???` notes block.
    → 7 slides, notes visible in the presenter view.
 4. `update_powerpoint_slide` — `slide_number: 2`, a single-element `slides` array of type

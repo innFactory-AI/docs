@@ -26,6 +26,9 @@ Im August arbeiten Agenten enger mit Ihnen zusammen, erzeugte Dokumente rücken 
 - **Code und Diagramme mitnehmen**: Code-Blöcke lassen sich direkt herunterladen. Mermaid-Diagramme öffnen sich als Artefakt und lassen sich als SVG oder PNG exportieren, und [Artefakte](/de/company-gpt/integrationen/artefakte/) können Sie im Vollbild ansehen.
 - **Bearbeiten ohne Neugenerieren**: Beim Bearbeiten einer eigenen Nachricht entscheiden Sie, ob die Antwort neu erzeugt oder die Änderung nur gespeichert wird.
 - **Lange Texte als Datei**: In den Einstellungen können Sie festlegen, dass sehr lange eingefügte Texte als Datei angehängt werden, statt das Eingabefeld zu füllen.
+- **Eingabetaste während einer Antwort**: In den [Einstellungen](/de/company-gpt/einstellungen/#senden) legen Sie fest, ob `Enter` während einer laufenden Antwort die Antwort nachsteuert oder Ihre Nachricht für danach einreiht.
+- **Alle Chats archivieren**: In den Einstellungen verschieben Sie alle Chats auf einmal ins Archiv.
+- **Geteilte Chats und Kontext im Blick**: Chats mit aktivem geteiltem Link sind in der Chatliste markiert. Die [Kontextanzeige](/de/company-gpt/chat/#kontextanzeige) zeigt farbig, wie voll der Kontext ist.
 - **Schlanker Kontext bei vielen Werkzeugen**: Werkzeuge verbundener MCP-Server werden erst geladen, wenn ein Agent sie braucht. So bleibt auch bei vielen verbundenen Werkzeugen Platz im Kontext.
 
 ## 📄 companyFILES

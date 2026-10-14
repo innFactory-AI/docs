@@ -25,7 +25,7 @@ Rebuilding a whole presentation consists of many individual tool calls – read 
 ![Chat with a long sequence of set_powerpoint_slide_fields calls and the advanced agent settings](./files-ppt-werkzeugaufrufe.png)
 
 :::note
-Raise **Advanced → maximum agent steps** before the request – to **100**, for example, as in the screenshot. If the agent hits the limit it stops mid-way and the presentation is left half-finished. See [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/#maximum-agent-steps).
+The default of 150 agent steps is usually enough. A value under **Advanced → maximum agent steps** replaces it – so only set a value above 150 there if the agent hits the limit with very large presentations. If the agent hits the limit it stops mid-way and the presentation is left half-finished. See [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/#maximum-agent-steps).
 :::
 
 ## What the agent corrects on its own
@@ -41,7 +41,6 @@ Text fields with an **image** underneath them cannot be processed by companyFILE
 :::
 
 - companyFILES only loads images for slides from publicly reachable addresses. Attach images from your intranet in the chat instead.
-- If the chat holds only a text extract of the attached presentation, companyFILES cannot edit it and asks you to upload the original file again – see [Editing attached files](/en/company-gpt/addons/companyfiles/dokumente-erstellen/#editing-attached-files).
 
 Beyond that the same applies as elsewhere: the result is a very advanced draft, not a finished presentation. Individual slides still need work on wording and arrangement afterwards. The value lies in the groundwork – structure, content and design are in place, consistently in the design of the original file.
 

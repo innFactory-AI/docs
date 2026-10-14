@@ -22,7 +22,7 @@ Jede Erinnerung wird als Schlüssel-Wert-Paar gespeichert: Der Schlüssel ist da
 | `decisions` | Getroffene Entscheidungen mit Begründung |
 | `corrections` | Ihre ausdrücklichen Korrekturen, bis sie im passenden Schlüssel übernommen sind |
 
-Für alle Erinnerungen zusammen stehen in der Standardkonfiguration bis zu 12.000 Token zur Verfügung; in einzelnen Umgebungen kann das Limit abweichen. Wie viel davon belegt ist, zeigt die Prozentangabe im Bereich **Erinnerungen** in der Seitenleiste. Zeigen Sie mit der Maus darauf, sehen Sie die genaue Tokenzahl. Ist das Limit erreicht, lassen sich keine weiteren Erinnerungen anlegen.
+Für Ihre persönlichen Erinnerungen stehen in der Standardkonfiguration bis zu 12.000 Token zur Verfügung; in einzelnen Umgebungen kann das Limit abweichen. [Agenten](#erinnerungen-von-agenten) mit eigenen Erinnerungen haben jeweils ein eigenes Kontingent. Wie viel Ihres persönlichen Kontingents belegt ist, zeigt die Prozentangabe im Bereich **Erinnerungen** in der Seitenleiste. Zeigen Sie mit der Maus darauf, sehen Sie die genaue Tokenzahl. Ist ein Limit erreicht, lassen sich in diesem Bereich keine weiteren Erinnerungen anlegen.
 
 ## Automatisches Speichern
 

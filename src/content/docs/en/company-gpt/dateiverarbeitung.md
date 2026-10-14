@@ -7,7 +7,7 @@ In CompanyGPT, you can attach files to your messages. CompanyGPT automatically d
 
 :::tip[Quick overview]
 - Images and PDFs: are sent directly to the AI model if it can process these files. This way, graphics, layout, and handwritten content are taken into account as well.
-- Office documents and text files: are converted to text and attached to the message in full.
+- Office documents and text files: are converted to text and attached to the message, up to 100,000 tokens per file. Longer texts are truncated.
 - File search and Run Code: if one of these tools is active, the files are also available to it when needed.
 :::
 
@@ -28,17 +28,20 @@ Images and PDF files are sent to the AI model together with your message. This a
 
 If the selected model cannot process PDF files directly, CompanyGPT extracts the text instead.
 
-**Limitation**: The AI model determines which information and file types can be processed. In addition, the limits of the respective AI provider apply per request, for example 32 MB or 100 PDF pages for Claude models, 50 MB for OpenAI models, and 20 MB for the entire request including the attached files for Gemini models (Google Vertex AI). It is therefore best to split very large PDF files.
+**Limitation**: The AI model determines which information and file types can be processed. In addition, the limits of the respective AI provider apply per request, for example 32 MB or 100 PDF pages for Claude models and 20 MB for the entire request including the attached files for Gemini models (Google Vertex AI). It is therefore best to split very large PDF files.
 
 ### Office documents and text files
 
-The text is read from Office documents and attached to the message in full. This is useful if, for example, you want to summarize texts or extract important points.
+The text is read from Office documents and attached to the message. Up to 100,000 tokens per file are included; longer texts are truncated. This is useful if, for example, you want to summarize texts or extract important points.
 
 | File type | Processing |
 | --- | --- |
-| Word (`.docx`), Excel (`.xlsx`, `.xls`), OpenDocument (`.odt`, `.ods`) | Built-in parser, up to 15 MB per file. Excel files are taken over sheet by sheet as a table (CSV). |
-| PowerPoint (`.pptx`, `.potx`, `.ppt`), older Word files (`.doc`), e-books (`.epub`) | Text recognition (OCR) by an AI model, up to 30 pages per document |
+| Word (`.docx`), PowerPoint (`.pptx`, `.potx`, `.ppt`), e-books (`.epub`) | Text recognition (OCR) by an AI model, up to 30 pages per document. For Word files, the built-in parser (up to 15 MB per file) takes over if text recognition fails or the document has more than 30 pages. |
+| Excel (`.xlsx`, `.xls`), OpenDocument (`.odt`, `.ods`) | Built-in parser, up to 15 MB per file. Excel files are taken over sheet by sheet as a table (CSV). |
+| Older Word files (`.doc`, Word 97–2003) | are not read. Please upload such files as `.docx` or PDF. |
 | Text files (e.g. `.txt`, `.md`, `.csv`, `.json`) | are read directly as text |
+
+In some environments without text recognition, Word files (`.docx`) are read directly by the built-in parser.
 
 **Limitation**: When converting to text, images in the documents are not taken into account.
 

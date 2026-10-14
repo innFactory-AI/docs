@@ -7,7 +7,7 @@ Projekte ermöglichen es Ihnen, zusammengehörige Konversationen in benannten Ar
 
 ![projekte](projekte.png)
 
-Projekte mit eigenen Anweisungen und Referenzdateien werden derzeit schrittweise eingeführt, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/#projekte-mit-anweisungen-und-dateien).
+Projekte mit eigenen Anweisungen und Referenzdateien sind derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/#projekte-mit-anweisungen-und-dateien).
 
 ## Was Projekte können
 

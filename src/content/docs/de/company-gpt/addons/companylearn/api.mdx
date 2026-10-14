@@ -17,7 +17,7 @@ https://FIRMA.company-gpt.com/companygpt/learn/api/v1
 
 Jeder API-Schlüssel gehört der Person, die ihn erstellt hat, und handelt in deren Namen:
 
-- Was ein Schlüssel anlegt – Kurse, Kapitel, Videos –, wird dieser Person zugeordnet.
+- Kurse und Videos, die ein Schlüssel anlegt, werden dieser Person zugeordnet.
 - Die Endpunkte unter `/me` liefern die eigenen Einschreibungen und Fortschritte dieser Person.
 - Was ein Schlüssel darf, ergibt sich aus seinen Scopes und den Rechten dieser Person in companyLEARN, bei jeder Anfrage neu geprüft. Hat sie das Recht **Kurse nutzen** nicht mehr, funktioniert keiner ihrer Schlüssel.
 
@@ -226,6 +226,6 @@ Diese Endpunkte entsprechen der Ansicht von Lernenden und wirken für die Besitz
 | 401 | Der Schlüssel fehlt, ist ungültig, abgelaufen oder widerrufen. |
 | 403 mit `INSUFFICIENT_SCOPE` | Dem Schlüssel fehlt der nötige Scope. Die Antwort nennt ihn in `requiredScope` und listet die wirksamen Scopes in `grantedScopes`. |
 | 403 mit `EXT_ACCESS_DENIED` | Die Besitzerin oder der Besitzer des Schlüssels hat das Recht **Kurse nutzen** nicht. |
-| 429 | Zu viele Anfragen mit diesem Schlüssel. Jeder Schlüssel hat ein eigenes Kontingent, standardmäßig 600 Anfragen pro Minute; die Antwort nennt in `retryAfter` die Wartezeit in Sekunden. |
+| 429 | Zu viele Anfragen mit diesem Schlüssel. Jeder Schlüssel hat ein eigenes Kontingent, standardmäßig 600 Anfragen pro Minute; die Antwort nennt in `retryAfter` die Länge des Zeitfensters in Sekunden (standardmäßig 60). |
 
 Zurück zur [Übersicht](/de/company-gpt/addons/companylearn/).

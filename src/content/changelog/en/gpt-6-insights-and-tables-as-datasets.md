@@ -1,6 +1,6 @@
 ---
 title: "GPT-6, Insights in companyADMIN and Tables as Datasets"
-excerpt: "GPT-6 Luna becomes the default model, files go straight into the chat, and code execution is active almost everywhere. companyADMIN shows usage and costs in Insights, companyRAG makes tables queryable via SQL and connects WebDAV and FTP, and companyM365 reads shared mailboxes."
+excerpt: "GPT-6 Luna becomes the default model, files go straight into the chat, and code execution is active in all environments. companyADMIN shows usage and costs in Insights, companyRAG makes tables queryable via SQL and connects WebDAV and FTP, and companyM365 reads shared mailboxes."
 date: 2026-09-30
 author:
   name: innFactory Team
@@ -25,10 +25,10 @@ September brings a new model generation, a tidier chat and new reports for admin
 - **GPT-6 Luna is the default**: In most environments, new chats start with GPT-6 Luna, and GPT-6 Sol is available as a second GPT-6 model. Environments with Google models also gain Gemini 3.8 Flash. The "auto" entry in the model selection has been removed. Details in [Model selection](/en/company-gpt/modellauswahl/).
 - **Upload files directly**: The paperclip now uploads files without asking for a destination. Images and PDFs go straight to the model, Office documents as text. Excel files are read directly instead of going through text recognition. See [File processing](/en/company-gpt/dateiverarbeitung/).
 - **More headroom for agents**: Up to 25 attachments per message, up to 50 subagents and 150 steps per run.
-- **Code execution almost everywhere**: The [Code Interpreter](/en/company-gpt/code-interpreter/) is now active in almost all environments. This also makes agents with code execution and the analysis of Excel files work reliably.
-- **Reorganized settings**: The [settings](/en/company-gpt/einstellungen/) have been rearranged. New options include the time format and first day of the week, high-contrast themes, what the Enter key does while an answer is still running (steer or queue) and archiving all chats at once.
-- **Find chats faster**: The chat list can be filtered and sorted, for example by active, archived or bookmarked chats. Pinned chats and favorites have their own section that you arrange by drag and drop. You can drag a chat straight onto a project, and shared chats are marked.
-- **Keep an eye on the context**: The context gauge shows in color how full the context is, breaks down what uses it and gives a forecast. When space runs low, the context can be compacted.
+- **Code execution everywhere**: The [Code Interpreter](/en/company-gpt/code-interpreter/) is now active in all environments. This also makes agents with code execution and the analysis of Excel files work reliably.
+- **Reorganized settings**: The [settings](/en/company-gpt/einstellungen/) have been rearranged. New options include the time format and first day of the week as well as high-contrast themes.
+- **Find chats faster**: The chat list can be filtered and sorted, for example by active, archived or bookmarked chats. You arrange pinned chats and favorites by drag and drop, and you can drag a chat straight onto a project.
+- **Compact the context**: When space runs low, you compact the context via the [context indicator](/en/company-gpt/chat/#context-indicator). CompanyGPT then replaces the conversation so far with a summary.
 - **Clearer tool calls**: Several tool calls of an agent are shown as a group, and failed calls are counted. A temporary chat is clearly marked.
 - **Assign skills deliberately**: In the Agent Builder you decide whether an agent uses all, none or only selected [skills](/en/company-gpt/skills/).
 
@@ -49,7 +49,7 @@ September brings a new model generation, a tidier chat and new reports for admin
 - **Custom file extensions**: A source can allow additional file extensions that are read as plain text. MDX files are indexed like Markdown.
 - **Traceable syncs**: The source card shows the outcome (successful, partial, failed), the reason and the figures of the last run. After a first complete run, SharePoint sources only transfer changes.
 - **More robust syncs**: Long runs from SharePoint and Google Drive survive an expiring sign-in, and an incomplete folder listing no longer leads to documents being deleted. Files of deleted sources are removed from the index so that outdated content no longer shows up in answers.
-- **Superadmins manage every collection**: Superadmins can manage any collection without gaining read access to its documents.
+- **Superadmins manage every collection**: Superadmins can manage any collection.
 - **Understandable errors**: If indexing a dataset fails, the reason is shown directly on the file.
 
 ## 📄 companyFILES

@@ -29,14 +29,14 @@ Use **Search repository** to find a repository. **Sync all** syncs all repositor
    - **SSH deploy key** – companyADMIN generates a key pair (**Generate SSH key**). Add the **Public key** to the repository as a deploy key with write access (on GitHub: "Allow write access").
 
    For a self-hosted server, also enter the **HTTPS base URL** (for PAT) or **SSH host** and **SSH port** (for SSH).
-2. **Select paths**: pick the top-level folders to sync. Only these folders are downloaded, scanned and kept in sync.
+2. **Select paths**: pick the top-level folders to sync. Only these folders are downloaded, scanned and kept in sync. The selection cannot be changed later; to change it, remove the repository and connect it again.
 3. **Configure**:
-   - **Analyze with AI** – a language model (**Analysis model**) suggests, based on the file tree, which folders contain skills, agents and prompts. The suggestion only pre-fills the structure; nothing is synced by it.
+   - **Analyze with AI** – only appears if an analysis model is set up for your environment. A language model (**Analysis model**) suggests, based on the file tree, which folders contain skills, agents and prompts. The suggestion only pre-fills the structure; nothing is synced by it.
    - **Detected content** – the number of detected skills, agents and prompts.
    - **Structure (sources)** – one **Kind** and one **Path** per entry, for example `agents` or `library/agents`. Use **Add source** to add further paths.
-   - **Visibility** – the default visibility of imported content: **Owner / system (default)**, **Public (all users)** or **Specific groups**.
+   - **Visibility** – the default visibility of imported content: **Owner / system (default)**, **Public (all users)** or **Specific groups**. With **Owner / system (default)** no user sees the imported content until you choose **Public** or groups.
    - **We own this repo (allow write-back/up-sync)** – allows companyADMIN to write changes from CompanyGPT back into the repository. With a PAT the token needs write access (on GitHub the `repo` scope); with SSH the deploy key writes back.
-4. **Save & sync** saves the connection and starts the first sync with a preview.
+4. **Save & sync**: the **Save** button creates the connection. Nothing is synced yet; the repository shows **Never** afterwards. You start the first sync with a preview on the detail page with **Sync**.
 
 ## Syncing
 
@@ -44,11 +44,13 @@ Use **Search repository** to find a repository. **Sync all** syncs all repositor
 
 :::caution[Deletions and changes made in CompanyGPT]
 - The preview also contains deletions: content removed from the repository also disappears from CompanyGPT on sync. If a sync detects no content at all although there was some before, companyADMIN deletes nothing and asks first, because the branch or path is usually wrong.
+- If an entry's file, its source or its folder goes away, the sync deletes the entry even if it was changed in CompanyGPT, and even with **We own this repo**. The change is lost then.
 - If a synced item was edited in CompanyGPT and **We own this repo** is not set, **the sync overwrites that change**. The preview shows this as **Edited in companyGPT — will be overwritten**. To keep the change, cancel and bring it into the repository first.
-- For repositories with **We own this repo**, agents and skills changed in CompanyGPT are kept on sync. The preview shows them as **Edited in companyGPT — kept, write back to git first (Detect changes)**. Write them back with **Write back (up-sync)** (see [Compare with git](#compare-with-git)).
+- For repositories with **We own this repo**, agents and skills changed in CompanyGPT are kept on sync as long as their file is in the repository. The preview shows them as **Edited in companyGPT — kept, write back to git first (Detect changes)**. Write them back with **Write back (up-sync)** (see [Compare with git](#compare-with-git)).
+- companyADMIN never writes prompts back. The sync always overwrites a change to a synced prompt made in CompanyGPT, even with **We own this repo**. Change synced prompts in the repository instead.
 :::
 
-What was set in CompanyGPT is kept on sync as well: avatar, conversation starters, uploaded files, older prompt versions and shares that people made in CompanyGPT.
+Older prompt versions and shares that people made in CompanyGPT are kept on sync. An agent's avatar, conversation starters and uploaded files are only kept if the YAML file in the repository does not set the field itself. Exported agents (see [Export existing content](#export-existing-content)) have these fields in their YAML file.
 
 ## A repository's detail page
 
@@ -66,10 +68,10 @@ Every entry of the repository with **Name**, **Type**, **Path** and **Status**:
 |---|---|
 | **Synced** | Same as the repository |
 | **Changed in companyGPT** | Edited in CompanyGPT since the last sync |
-| **Conflict** | Changed both in CompanyGPT and in the repository |
+| **Conflict** | Changed both in CompanyGPT and in the repository. With **We own this repo**, write-back skips such entries, see [Compare with git](#compare-with-git) |
 | **Error** | Could not be applied |
 | **Excluded** | No longer synced |
-| **Deleted in companyGPT** | Deleted in CompanyGPT, still present in the repository |
+| **Deleted in companyGPT** | Deleted in CompanyGPT, still present in the repository. The next sync creates the entry again, without its earlier shares and favourites. To remove it for good, use **Exclude** or remove it in the repository |
 
 Below follows **Orphaned (N)**: content marked with this repository that the sync no longer tracks. It is never deleted automatically.
 
@@ -82,11 +84,22 @@ Below follows **Orphaned (N)**: content marked with this repository that the syn
 - **in sync**
 - **file(s) do not parse** – files that cannot be read; the version in CompanyGPT is kept
 
-For repositories with **We own this repo** you write entries changed in CompanyGPT to Git with **Write back (up-sync)**: companyADMIN first shows a preview of the files, and **Commit & push** writes them. companyADMIN creates a commit with a descriptive message and lists the files written. If the branch in the repository has new commits in the meantime, sync first and then try again.
+For repositories with **We own this repo** you write agents and skills changed in CompanyGPT to Git with **Write back (up-sync)**: companyADMIN first shows a preview of the files, and **Commit & push** writes them. companyADMIN creates a commit with a descriptive message and lists the files written. If the branch in the repository has new commits in the meantime, sync first and then try again. companyADMIN does not write prompts back.
+
+Write-back skips entries with **Conflict**; left alone, they stay in that state. To resolve such an entry, tick **Include conflicting units (overwrites the git-side change)** before **Write back (up-sync)**. The change in the repository is then replaced by the version from CompanyGPT.
 
 #### Export existing content
 
 For repositories with **We own this repo**, **Export existing content** writes agents and skills that were created in CompanyGPT and never synced with any repository into the repository for the first time. Pick single entries or **Select all**, check the files with **Preview** and write them with **Commit & push**.
+
+:::caution[Exported content belongs to the repository afterwards]
+After the export the entries are synced content of this repository. This has consequences:
+
+- If the file is deleted or renamed in the repository, the next sync deletes the entry in CompanyGPT.
+- An exported skill passes to the system account at once and is active for everyone who may see it.
+- An exported agent passes to the system account with the first update from the repository.
+- The visibility stays **Individually managed**; the repository's default visibility does not apply to these entries.
+:::
 
 In the repository each agent then lives as one YAML file, including its instructions, tools and settings, in the configured folders.
 
@@ -104,18 +117,21 @@ Here you take single entries out of the sync without changing the repository:
 2. Decide what happens in CompanyGPT: **Keep in companyGPT (release as normal content)** or **Delete from companyGPT on the next sync**.
 3. Check the **Preview** and click **Save exclusions**. They take effect with the next sync.
 
-**Include again** undoes the exclusion.
+**Include again** takes an entry back into the sync. If a sync has already run since the exclusion, this is not a simple undo:
+
+- After **Keep in companyGPT (release as normal content)**, the next sync takes the entry over again and overwrites changes from CompanyGPT without first showing them as **Edited in companyGPT**.
+- After **Delete from companyGPT on the next sync**, the next sync creates a new entry.
 
 ### Settings
 
-You change the branch, token, sources, visibility and **We own this repo** here. The repository itself cannot be changed; remove it and connect it again instead. Changes to sources and visibility only take effect with the next sync; after saving, companyADMIN offers to sync right away.
+You change the branch, token, sources, visibility and **We own this repo** here. The repository itself and the folder selection from **Select paths** cannot be changed; remove the repository and connect it again instead. Changes to sources and visibility only take effect with the next sync; after saving, companyADMIN offers to sync right away.
 
 ### Removing a repository
 
 **Remove repository …** in the danger zone first shows what happens to each entry in CompanyGPT:
 
-- **Keep** – all entries stay in CompanyGPT as normal, freely editable content.
-- **Delete the content** – the selected entries are deleted. Entries changed in CompanyGPT, shared, or used by other agents are not preselected. Entries that are not deleted stay, marked as orphaned.
+- **Keep** – all entries stay in CompanyGPT as normal, freely editable content. They then count as created manually; only superadmins may change their visibility afterwards.
+- **Delete the content** – the selected entries are deleted. Entries changed in CompanyGPT, shared, or used by other agents are not preselected; agents that people marked as a favourite are. Entries that are not deleted stay, marked as orphaned.
 
 To confirm, type the repository's name. If a sync is running, removal is possible once it has finished.
 
@@ -123,6 +139,6 @@ To confirm, type the repository's name. If a sync is running, removal is possibl
 
 Synced content carries the badge **synced** under [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/), and additionally **modified in LibreChat** after a change in CompanyGPT. The visibility comes from the repo default. If you change it on a single entry, companyADMIN manages that entry individually until you reset it to the repo default.
 
-:::note
-Only administrators with the right **Manage skills** see the **Exclude** and **Settings** tabs.
+:::note[Rights needed]
+Without the right **Manage skills**, the **Exclude** and **Settings** tabs, the **Sync**, **Sync all** and **Add repository** buttons and the danger zone are missing. Syncing, adding, excluding and removing also need the manage right for every content type in the repository (**Manage agents**, **Manage prompts** or **Manage skills**).
 :::

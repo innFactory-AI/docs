@@ -7,7 +7,7 @@ topic: documentation
 Willkommen in Ihrem CompanyGPT-Demo-Zugang! Diese Seite führt Sie in wenigen Minuten durch die wichtigsten Konzepte und zeigt Ihnen anhand vorbereiteter Beispiel-Agenten, was Sie direkt ausprobieren können. Für alle Details darüber hinaus steht Ihnen die vollständige Dokumentation offen.
 
 :::note[Ihr Demo-Zugang zeigt die neue Chat-Oberfläche]
-Im Demo-Zugang sehen Sie bereits die neue Chat-Oberfläche, die derzeit schrittweise eingeführt wird. Einzelne Bedienelemente sehen deshalb anders aus als auf manchen Seiten dieser Dokumentation – so fügt die Eingabetaste standardmäßig einen Zeilenumbruch ein, gesendet wird mit Strg+Enter (macOS: ⌘+Enter). Was sich ändert, beschreibt die Seite [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+Im Demo-Zugang sehen Sie bereits die neue Chat-Oberfläche. Sie ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar; für Kundenumgebungen steht noch kein Termin fest. Einzelne Bedienelemente sehen deshalb anders aus als auf manchen Seiten dieser Dokumentation – so fügt die Eingabetaste standardmäßig einen Zeilenumbruch ein, gesendet wird mit Strg+Enter (macOS: ⌘+Enter). Was sich ändert, beschreibt die Seite [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
 :::
 
 ## Was ist CompanyGPT?

@@ -101,7 +101,7 @@ User wants to read / parse Excel content...
 
 **Conditional formatting types:** `greaterThan`, `lessThan`, `equal`, `between`, `containsText`, `duplicateValues`
 
-**Other per-sheet options:** `column_widths` (number array), `protected` (boolean). Top-level: `named_ranges` and `properties` (`{title, subject, author, company}`). Individual cells may also be objects: `{"value": ..., "formula": ..., "comment": ..., "validation": ..., "style": ..., "numberFormat": ...}`.
+**Other per-sheet options:** `column_widths` (number array), `protected` (boolean). Top-level: `named_ranges` and `properties` (`{title, subject, author, company}`). Individual cells may also be extended objects: `{"value": ..., "comment": ..., "validation": ..., "style": ..., "numberFormat": ...}` — `value` is required, together with at least one of the other keys. A formula goes **inside** `value`, not next to it: `{"value": {"formula": "SUM(A1:A3)"}, "comment": "Total", "numberFormat": "#,##0.00"}`.
 
 ### modify_excel
 

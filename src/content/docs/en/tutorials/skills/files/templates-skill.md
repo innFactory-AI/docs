@@ -27,7 +27,7 @@ Tools for listing and filling document templates (Word, Excel, ODT, PowerPoint).
 | `create_excel_from_template`            | Fill an XLSX template by cell address **or** `{{placeholder}}` name (auto-routed) |
 | `fill_excel_template`                   | Fill an XLSX template using `{{placeholder}}` syntax                              |
 | `create_odt_from_template`              | Fill an ODT template with `{{placeholder}}` syntax                                |
-| `create_powerpoint_from_template`       | Fill a POTX/PPTX template with text, images, charts, speaker notes, slide repeat  |
+| `create_powerpoint_from_template`       | Fill a POTX/PPTX template: text, images, chart series names, notes, slide repeat  |
 | `attach_template_to_chat`               | Attach a copy of a template to the chat for the code interpreter                  |
 
 ## Workflow
@@ -208,7 +208,7 @@ Placeholder syntax:
 
 Always run `list_templates` first — for POTX/PPTX it returns a per-slide breakdown including `layoutName`, `layoutType` (from the `{{slide_type:xxx}}` marker), and which text/image/chart placeholders belong to each slide.
 
-> **If the POTX/PPTX template has NO placeholders**, this tool refuses the call and names the layout tools instead — `list_templates` flags such templates with `hasLegacyPlaceholders: false` and a `nextStep` hint. Corporate-design slide masters (Folienmaster) shipped by design teams usually contain no `{{}}` markup at all — they carry named slide layouts instead. Run `describe_pptx_template { "template_name": "..." }`: when `hasLegacyPlaceholders` is `false`, switch to `create_powerpoint_from_layouts` (see **powerpoint-skill**, "corporate master without `{{}}`"). Never ask the user to type `{{}}` markers into a corporate master.
+> **If the POTX/PPTX template has NO `{{}}` placeholders** and the call passes no `images`, `charts` or `speaker_notes`, this tool refuses the call and names the layout tools instead — `list_templates` flags such templates with `hasLegacyPlaceholders: false` and a `nextStep` hint. Corporate-design slide masters (Folienmaster) shipped by design teams usually contain no `{{}}` markup at all — they carry named slide layouts instead. Run `describe_pptx_template { "template_name": "..." }`: when `hasLegacyPlaceholders` is `false`, switch to `create_powerpoint_from_layouts` (see **powerpoint-skill**, "corporate master without `{{}}`"). Never ask the user to type `{{}}` markers into a corporate master.
 
 **Basic usage (single-record fill):**
 
@@ -239,6 +239,9 @@ Always run `list_templates` first — for POTX/PPTX it returns a per-slide break
 ```
 
 `speaker_notes` keys are **1-based** slide numbers.
+
+`charts` currently replaces only the series names (`datasets[].label`); categories (`labels`) and
+values (`values`) are not applied yet — the chart keeps the template's data.
 
 **Single-source repeat** (duplicate one slide per data record):
 

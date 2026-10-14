@@ -29,11 +29,13 @@ Der Abschnitt **Person** zeigt E-Mail, Name, **Entra-Object-ID**, **Anmeldung ü
 
 Im Abschnitt **Rolle** ändern Sie die Rolle der Person über die Auswahl **Rolle**. Die Änderung wird sofort gespeichert und gilt sofort; in einem geöffneten CompanyGPT muss die Person die Seite gegebenenfalls neu laden. Da jede Person genau eine Rolle hat, ersetzt die neue Rolle die bisherige.
 
+Die Rolle USER lässt sich hier nicht zuweisen; CompanyGPT lehnt das ab. Auf USER zurück setzen Sie jemanden, indem Sie ihn unter seiner bisherigen Rolle → **Mitglieder** entfernen.
+
 :::caution
 Ist in Ihrer Umgebung die automatische Rollenvergabe aus Entra ID (Role-Sync) aktiv, setzt CompanyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Eine hier gesetzte Rolle geht dann verloren. Die Seite weist darauf hin.
 :::
 
-Haben sich Gruppen oder Rollen der Person geändert, seit sie sich zuletzt angemeldet hat, erscheint **Wirkt ab der nächsten Anmeldung** mit den neuen Gruppen bzw. Rollen. Woher die angezeigten Gruppenmitgliedschaften stammen (Anmeldung oder Gruppen-Sync), steht darunter.
+**Wirkt ab der nächsten Anmeldung** nennt Entra- und OIDC-Gruppen, die seit der letzten Anmeldung der Person oder dem letzten Gruppen-Sync neu bekannt sind und in denen die Person noch nicht ist. Ist die automatische Rollenvergabe aktiv, nennt der Hinweis außerdem Rollen, die seitdem für den Role-Sync neu dazugekommen sind. Der Hinweis erledigt sich mit der nächsten Anmeldung, bei Gruppen auch mit dem nächsten Gruppen-Sync. Woher die angezeigten Gruppenmitgliedschaften stammen (Anmeldung oder Gruppen-Sync), steht darunter.
 
 ### Effektive Rechte
 

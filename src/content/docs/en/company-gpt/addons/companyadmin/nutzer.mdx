@@ -29,11 +29,13 @@ The **Person** section shows email, name, **Entra object ID**, **Signs in via**,
 
 In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if CompanyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one.
 
+The USER role cannot be assigned here; CompanyGPT refuses it. To set someone back to USER, remove them under their current role → **Members**.
+
 :::caution
 If automatic role assignment from Entra ID (role sync) is active in your environment, CompanyGPT sets the role again from the Entra groups at the next sign-in. A role set here is lost then. The page points this out.
 :::
 
-If the person's groups or roles have changed since their last sign-in, **Takes effect at the next sign-in** appears with the new groups or roles. Where the displayed group memberships come from (sign-in or group sync) is shown below.
+**Takes effect at the next sign-in** names Entra and OIDC groups that have become known since the person's last sign-in or the last group sync and that the person is not in yet. If automatic role assignment is active, the notice also names roles newly added to the role sync since then. The notice clears with the next sign-in, and for groups also with the next group sync. Where the displayed group memberships come from (sign-in or group sync) is shown below.
 
 ### Effective rights
 

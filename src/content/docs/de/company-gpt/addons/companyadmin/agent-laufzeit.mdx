@@ -11,8 +11,8 @@ Jede Einstellung können Sie mit **Über companyADMIN steuern** übernehmen. Sol
 
 Geplante Chats sind wiederkehrende Chats mit einem Agent, die zu festen Zeiten laufen.
 
-:::note[Wird schrittweise ausgerollt]
-Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
+:::note[Derzeit nur in Pilotumgebungen]
+Diese Funktion ist derzeit nur in Pilotumgebungen verfügbar; für Kundenumgebungen steht noch kein Termin fest.
 :::
 
 | Einstellung | Bedeutung |
@@ -55,7 +55,7 @@ Eigene Freigabe-Regeln lädt CompanyGPT nur aus der Grundkonfiguration; sie rich
 
 ## Subagent-Limit
 
-**Maximale Subagents** begrenzt, wie viele Subagents ein Agent starten darf. Die Obergrenze legt die Grundkonfiguration fest (Standard 10, höchstens 50). Der Wert hier begrenzt nur den Agent-Builder und wird auf diese Obergrenze gekappt.
+**Maximale Subagents** begrenzt, wie viele Subagents man einem Agent im Agent-Builder zuweisen kann. Die Obergrenze legt die Grundkonfiguration fest (Standard 10, höchstens 50); der Wert hier wird auf diese Obergrenze gekappt. Bereits gespeicherte Agents behalten ihre Subagents, auch wenn Sie den Wert später senken.
 
 ## PII- und Secret-Filter
 
@@ -70,7 +70,7 @@ Hier stellen Sie vier Einstellungen für eine einzelne Rolle oder Gruppe ein. W�
 | **Memories** | **Ausgeschaltet** schaltet die Memories für diese Rolle oder Gruppe aus, auch wenn die Grundkonfiguration sie für alle aktiviert |
 | **Aufbewahrung** | Wie lange Chats gespeichert bleiben: **Was gelöscht wird** (**Nur temporäre Chats** oder **Alle Chats**), **Temporäre Chats löschen nach (Stunden)**, **Alle Chats löschen nach (Stunden)** und **Dateien von Agents behalten** |
 | **Agent-Builder** | Ob der Agent-Builder im Chat **Sichtbar** oder **Ausgeblendet** ist, und **Anbieter für Agents** (nichts ausgewählt heißt: alle Anbieter erlaubt). Das Recht der Rolle, Agents zu erstellen, gilt weiter |
-| **Datei-Uploads** | **Uploads**: **Erlaubt** oder **Ausgeschaltet**, dazu **Dateien pro Nachricht**, **Größe pro Datei (MB)** und **Größe aller Dateien (MB)**. Leer heißt: wie Vorgabe |
+| **Datei-Uploads** | **Uploads**: **Erlaubt** oder **Ausgeschaltet**, dazu **Dateien pro Nachricht**, **Größe pro Datei (MB)** und **Größe aller Dateien (MB)**. Leer heißt: wie Vorgabe. Die Werte gelten für Agents und für Modelle ohne eigene Datei-Einstellung; **Ausgeschaltet** sperrt Uploads also nicht bei Anbietern, für die die Grundkonfiguration eigene Upload-Werte festlegt |
 
 Ein Wert der Rolle geht einem Wert der Gruppe immer vor. Alle Gruppen haben dieselbe Priorität: Setzen zwei Gruppen einer Person verschiedene Werte, ist offen, welcher gilt. **Anbieter für Agents** lässt sich deshalb nur pro Rolle festlegen.
 

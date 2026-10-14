@@ -1,17 +1,26 @@
 ---
 title: Agent capabilities
-description: Decide in companyADMIN which capabilities the CompanyGPT agent builder offers – for everyone and with an own selection per role, for example to limit code execution, web search or subagents.
+description: Decide in companyADMIN which agent capabilities people can use in CompanyGPT – for everyone and with an own selection per role, for example to limit code execution, web search or subagents.
 ---
 
-**Configuration** → **Agent capabilities** decides which capabilities the agent builder offers, such as code execution, web search, file search or subagents. This lets you limit costly or risky capabilities to individual roles without blocking them for everyone.
+**Configuration** → **Agent capabilities** decides which capabilities people with a role can use, such as code execution, web search, file search or subagents. This lets you limit costly or risky capabilities to individual roles without blocking them for everyone.
 
-This setting only concerns the agent builder. What people may do in CompanyGPT in general is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+The selection applies to people with the role in question: in the agent builder, for the tools in the chat and for the tools of every agent they use. What people may do in CompanyGPT beyond that is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+:::caution[Also affects existing agents]
+CompanyGPT checks the capabilities while chatting, for the person who is writing. If their role lacks a capability, the matching tool is missing from every agent they use, including shared agents and agents from the marketplace.
+
+- Without `tools`, no MCP tools and no other tools run any more.
+- In the normal chat, missing capabilities such as web search, run code, file search, artifacts or skills disappear from the tools menu.
+:::
 
 ## Switching management on
 
 In the **Management** section, tick **Govern agent capabilities from companyADMIN**. As long as the box is unticked, everyone gets the capabilities from the base configuration.
 
-**Stop managing** asks first and removes every selection; afterwards the base configuration applies to everyone again.
+If no role has an own selection yet when you switch it on, companyADMIN immediately creates an own selection for ADMIN, as a copy of the base configuration. If you then shrink **For everyone**, this therefore does not affect ADMIN.
+
+To stop managing, untick **Govern agent capabilities from companyADMIN**. The dialog **Stop managing?** asks first; **Stop managing** removes every selection. Afterwards the base configuration applies to everyone again.
 
 ## For everyone
 
@@ -25,7 +34,7 @@ The **For everyone** section is the selection every role without an own selectio
 
 An own selection replaces the selection **For everyone** for everyone with this role; it does not add to it. **Remove own selection** gives the role **For everyone** again. The last own selection cannot be removed; to lift management completely, stop it above.
 
-USER is a role like any other. If ADMIN has no own selection, administrators get **For everyone** too. This only affects the agent builder, not companyADMIN.
+USER is a role like any other. If ADMIN has no own selection, administrators get **For everyone** too. companyADMIN itself is not affected.
 
 ## The capabilities
 

@@ -18,7 +18,7 @@ tags:
   - MCP
 ---
 
-Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu kommen ein neues Addon für Schulungen, ein neu aufgebautes companyADMIN und viele Verbesserungen im Detail.
+Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu kommen companyLEARN in Version 1.0, ein neu aufgebautes companyADMIN und viele Verbesserungen im Detail.
 
 ## 🧭 Eine Oberfläche für alle Addons
 
@@ -26,23 +26,23 @@ Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu ko
 - **Eine Anmeldung für alles**: Die Addons nutzen Ihre Anmeldung im Chat, eine eigene Anmeldung entfällt. Fehlt die Anmeldung oder der Zugriff, erklärt eine einheitliche Seite, was zu tun ist.
 - **Alle Apps**: Die Übersicht [Alle Apps](/de/company-gpt/addons/alle-apps/) – als eigene Seite und als Panel in der Seitenleiste des Chats – zeigt die Anwendungen, die Sie nutzen dürfen. Welche Kacheln erscheinen, richtet sich nach Ihren Rechten in companyADMIN.
 
-## 🎓 companyLEARN – neu
+## 🎓 companyLEARN 1.0
 
-- **Schulungen in CompanyGPT**: [companyLEARN](/de/company-gpt/addons/companylearn/) ist das neue Addon für interne Schulungen. Kurse bestehen aus Kapiteln mit Lektionen als Video oder Text, ein Kapitel kann mit einem Quiz samt Bestehensgrenze abschließen. Auf Wunsch wird ein Kapitel erst freigeschaltet, wenn das vorherige abgeschlossen ist. Dashboard und Kurskatalog zeigen Lernenden ihren Fortschritt.
+- **Schulungen in CompanyGPT**: [companyLEARN](/de/company-gpt/addons/companylearn/), das Addon für interne Schulungen, gibt es jetzt in Version 1.0 mit neuer Oberfläche. Kurse bestehen aus Kapiteln mit Lektionen als Video oder Text, ein Kapitel kann mit einem Quiz samt Bestehensgrenze abschließen. Auf Wunsch wird ein Kapitel erst freigeschaltet, wenn das vorherige abgeschlossen ist. Dashboard und Kurskatalog zeigen Lernenden ihren Fortschritt.
 - **Kurse verwalten**: In der **Kursverwaltung** legen Admins Kurse an, ordnen Kapitel und Lektionen per Drag & Drop, laden Videos (MP4, WebM) hoch und veröffentlichen fertige Kurse. Für die Anbindung anderer Systeme gibt es eine REST-API mit eigenen API-Schlüsseln.
 - **Lernen im Chat**: Über den MCP-Server von companyLEARN finden Agenten passende Kurse, schreiben Sie ein, zeigen Ihren Fortschritt, öffnen Lektionen und führen Quizze durch.
-- **Zugriff**: Wer companyLEARN nutzen und Kurse verwalten darf, steuern Admins in companyADMIN mit den Rechten „Kurse nutzen“ und „Kurse verwalten“. companyLEARN wird pro Umgebung freigeschaltet – sprechen Sie uns an, wenn Sie es nutzen möchten.
+- **Zugriff**: Wer companyLEARN nutzen und Kurse verwalten darf, steuern Admins in den meisten Umgebungen in companyADMIN mit den Rechten „Kurse nutzen“ und „Kurse verwalten“. companyLEARN wird pro Umgebung freigeschaltet – sprechen Sie uns an, wenn Sie es nutzen möchten.
 
 ## 🛡️ companyADMIN
 
 - **Neu gegliedert**: Das Menü ist in **Insights**, **Status**, **Zugriff**, **Inhalte** und **Konfiguration** geordnet. Statt Dialogen öffnen Agents, Rollen, Gruppen und weitere Einträge Detailseiten mit Reitern. Die Oberfläche folgt der Sprache Ihres Browsers und lässt sich im Kontomenü zwischen Deutsch und Englisch umstellen. Mehr unter [companyADMIN](/de/company-gpt/addons/companyadmin/).
 - **Status-Seite**: [Status](/de/company-gpt/addons/companyadmin/status/) zeigt auf einen Blick, ob alle Addons erreichbar sind, welche Konfiguration gilt, wie die Rollen eingerichtet sind und woher Admin-Rechte kommen. Unter **Protokolle** finden Sie das companyADMIN-Protokoll mit jeder Änderung über companyADMIN und das companyGPT-Protokoll, das bisherige Audit-Log.
-- **Zugriff auf Addons steuern**: Rechte wie „Übersetzen nutzen“, „Transkribieren nutzen“, „Wissen nutzen“, „Microsoft 365 nutzen“ oder „Kurse nutzen“ vergeben Sie an Rollen, an Gruppen oder für alle; „Insights ansehen“ an Rollen und Gruppen. Die Kacheln unter **Alle Apps** folgen diesen Rechten. Siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+- **Zugriff auf Addons steuern**: Wo der Zugriff auf die Addons über companyADMIN gesteuert wird, vergeben Sie Rechte wie „Übersetzen nutzen“, „Transkribieren nutzen“, „Wissen nutzen“, „Microsoft 365 nutzen“ oder „Kurse nutzen“ an Rollen, an Gruppen oder für alle; „Insights ansehen“ an Rollen und Gruppen. Die Kacheln unter **Alle Apps** folgen diesen Rechten. Siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 - **Modellzugriff als Matrix**: Unter **Modellzugriff** stellen Sie die Modelle aller Rollen in einer Tabelle ein, bis hinunter zum einzelnen Modell.
 
 ## 📊 companyDASHBOARD
 
-- **Abgelöst durch Insights**: Die Auswertungen von companyDASHBOARD finden Sie jetzt in [Insights](/de/company-gpt/addons/companyadmin/insights/) in companyADMIN. companyDASHBOARD wird abgeschaltet, der bisherige Dashboard-Link führt zu companyADMIN.
+- **Abgelöst durch Insights**: Die Auswertungen von companyDASHBOARD finden Sie jetzt in [Insights](/de/company-gpt/addons/companyadmin/insights/) in companyADMIN. companyDASHBOARD ist seit 4. Oktober abgeschaltet; die bisherige Adresse leitet auf companyADMIN weiter.
 
 ## 📄 companyFILES
 
@@ -58,7 +58,7 @@ Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu ko
 - **Deutsche Zahlen- und Datumsformate**: CSV-Dateien mit Dezimalkomma und deutschen Datumsangaben werden richtig erkannt.
 - **Große Uploads**: Große Dateien lassen sich auch über langsamere Verbindungen hochladen, ohne dass der Upload vorzeitig abbricht.
 - **Berechtigungen aus Teams-Websites**: Freigaben von SharePoint-Websites, die zu einem Team gehören, werden korrekt übernommen.
-- **Zugriff über companyADMIN**: Wer Wissensdatenbanken nutzen darf, steuern Admins in companyADMIN mit dem Recht „Wissen nutzen“.
+- **Zugriff über companyADMIN**: Wer Wissensdatenbanken nutzen darf, steuern Admins in den meisten Umgebungen in companyADMIN mit dem Recht „Wissen nutzen“.
 
 ## 🎙️ companyTRANSCRIBE
 
@@ -74,12 +74,13 @@ Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu ko
 - **Workflows je App**: Excel analysiert Daten mit Code und fügt das Ergebnis als neues Blatt ein, sofern die Code-Ausführung aktiv ist. PowerPoint schlägt zuerst eine Gliederung vor und baut dann das Deck. Outlook schlägt Termine vor, bereitet Meetings vor und räumt den Posteingang auf – jeweils erst nach Ihrer Bestätigung. Word und Outlook geben Coaching-Hinweise zu Ton, Klarheit und Struktur.
 - **Mehr Werkzeuge im Chat**: Agenten lesen freigegebene Kalender und Zweitkalender, finden SharePoint-Websites mit ihren Dokumentbibliotheken und prüfen die Verfügbarkeit von bis zu 20 Personen und Räumen.
 - **Verwaltung für Admins**: Ein eigener Admin-Bereich stellt das App-Paket für Office-Add-in und Teams-Tab zum Hochladen ins Microsoft 365 Admin Center bereit. Zugang gewährt das Recht „Microsoft 365 verwalten“, die Nutzung steuert „Microsoft 365 nutzen“ in companyADMIN.
-- **Teams-Bot und mehrere Fenster** (wird schrittweise ausgerollt): Ein Teams-Bot beantwortet Fragen in Chats und Kanälen, standardmäßig privat für die fragende Person. Im Add-in arbeitet ein Chat über mehrere geöffnete Office-Fenster hinweg, Änderungen in anderen Fenstern erst nach Bestätigung. Gespeicherte Agents erhalten im Add-in Zugriff auf die Office-Werkzeuge.
+- **Teams-Bot und mehrere Fenster** (derzeit nur in Pilotumgebungen): Ein Teams-Bot beantwortet Fragen in Chats und Kanälen, standardmäßig privat für die fragende Person. Im Add-in arbeitet ein Chat über mehrere geöffnete Office-Fenster hinweg, Änderungen in anderen Fenstern erst nach Bestätigung. Gespeicherte Agents erhalten im Add-in Zugriff auf die Office-Werkzeuge.
 
 ## 🌐 companyTRANSLATE
 
-- **Zugriff über companyADMIN**: Wer übersetzen und Glossare verwalten darf, steuern Admins mit „Übersetzen nutzen“ und „Glossare verwalten“. Ohne Berechtigung erscheint ein klarer Hinweis.
-- **Übersetzen im Chat** (wird schrittweise ausgerollt): Ein Agent übersetzt angehängte Dokumente (PDF, Word, PowerPoint, Excel, TXT, Markdown, HTML bis 40 MB) und Texte direkt im Chat, wahlweise mit gespeicherten Glossaren, einer Glossar-Datei oder Begriffspaaren im Prompt. Das Ergebnis kommt als Datei in den Chat. Gleichzeitig erhält companyTRANSLATE die gemeinsame Oberfläche mit den Bereichen Text, Dokumente und Glossare. Mehr unter [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/).
+- **Zugriff über companyADMIN**: Wer übersetzen und Glossare verwalten darf, steuern Admins in den meisten Umgebungen mit „Übersetzen nutzen“ und „Glossare verwalten“. Ohne Berechtigung erscheint ein klarer Hinweis.
+- **Übersetzen im Chat** (derzeit nur in Pilotumgebungen): Ein Agent übersetzt angehängte Dokumente (PDF, Word, PowerPoint, Excel, TXT, Markdown, HTML bis 40 MB) und Texte direkt im Chat, wahlweise mit gespeicherten Glossaren, einer Glossar-Datei oder Begriffspaaren im Prompt. Das Ergebnis kommt als Datei in den Chat. Mehr unter [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/).
+- **Gemeinsame Oberfläche**: companyTRANSLATE erhält die gemeinsame Oberfläche mit den Bereichen Text, Dokumente und Glossare.
 
 ## ✨ CompanyGPT
 
@@ -88,4 +89,4 @@ Im Oktober wachsen die Addons zu einer gemeinsamen Oberfläche zusammen. Dazu ko
 
 ## 🔜 Demnächst
 
-- **Neue Chat-Oberfläche**: Ein neues Eingabefeld mit einer Palette für Anhänge und Werkzeuge, Projekte mit eigenen Anweisungen und Referenzdateien, Chat-Optionen in der Kopfzeile, Benachrichtigungen und geplante Chats, die einen Agenten zu festen Zeiten starten. Einen ersten Eindruck gibt die Vorschau [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Wird schrittweise ausgerollt.
+- **Neue Chat-Oberfläche**: Ein neues Eingabefeld mit einer Palette für Anhänge und Werkzeuge, Projekte mit eigenen Anweisungen und Referenzdateien, Chat-Optionen in der Kopfzeile, Benachrichtigungen und geplante Chats, die einen Agenten zu festen Zeiten starten. Einen ersten Eindruck gibt die Vorschau [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar; für Kundenumgebungen steht noch kein Termin fest.

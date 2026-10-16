@@ -3,9 +3,13 @@ title: KI-Einstellungen
 description: Passen Sie in CompanyGPT die Parameter des gewählten Modells an, etwa Anweisungen, Temperatur, Kontext-Token und Denkaufwand, und speichern Sie sie als Voreinstellung.
 ---
 
-Unter **KI-Einstellungen** in der Seitenleiste passen Sie die Parameter des aktuell gewählten Modells an, zum Beispiel spezifische Anweisungen für die KI oder detaillierte KI-Parameter. Über **Voreinstellung speichern** sichern Sie diese Einstellungen unter einem Namen. Gespeicherte Voreinstellungen wählen Sie im Kopfbereich des Chats über **Voreinstellungen** aus und können sie so in Konversationen flexibel einsetzen. Mit **Modell-Parameter zurücksetzen** stellen Sie die Standardwerte wieder her.
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
 
-![ai-settings](ai-settings.png)
+Unter **KI-Einstellungen** in der Seitenleiste passen Sie die Parameter des aktuell gewählten Modells an, zum Beispiel spezifische Anweisungen für die KI oder detaillierte KI-Parameter. Über **Voreinstellung speichern** sichern Sie diese Einstellungen unter einem Namen. Gespeicherte Voreinstellungen wählen Sie im Kopfbereich des Chats über **Voreinstellungen** aus und können sie so in Konversationen flexibel einsetzen. Mit **Zurücksetzen** stellen Sie die Standardwerte wieder her. Im Panel sind die Parameter in die Bereiche **Identity**, **Sampling**, **Limits**, **Reasoning**, **Kontext** und **Erweitert** gegliedert.
+
+![Panel KI-Einstellungen mit den Parametern eines GPT-Modells](ai-settings.png)
 
 **KI-Einstellungen** steht nur zur Verfügung, wenn ein Modell und kein Agent ausgewählt ist. Welche Parameter angezeigt werden, hängt vom gewählten Modell ab. Die folgende Übersicht beschreibt die Parameter, die bei GPT-Modellen angezeigt werden.
 
@@ -82,7 +86,7 @@ Gilt ausschließlich für Modelle, die einen internen Denkprozess (Reasoning) du
 *   Eine Reduzierung des Denkaufwands führt zu schnelleren Antworten und einem geringeren Token-Verbrauch.
 *   Die Einstellung **Minimal** erzeugt sehr wenige Reasoning-Token, um eine maximale Reaktionsgeschwindigkeit (Time-to-First-Token) zu erzielen. Dies ist besonders nützlich für Aufgaben wie das Codieren oder das strikte Befolgen von Anweisungen.
 
-Welche Stufen zur Auswahl stehen, hängt vom Modell ab.
+Welche Stufen zur Auswahl stehen, hängt vom Modell ab. Bei Modellen mit Denkprozess stellen Sie den Denkaufwand auch direkt in der Eingabeleiste ein, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/#neue-eingabeleiste).
 
 ### Responses-API nutzen
 

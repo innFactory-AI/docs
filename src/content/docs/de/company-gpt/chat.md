@@ -3,9 +3,13 @@ title: Chat
 description: CompanyGPT Chat-Interface – Prompteingabe, Kontextanzeige, Integrationen, Nachrichtenoptionen, temporäre Chats sowie Teilen und Exportieren von Chatverläufen.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Der Chat ist das Hauptinterface zur Kommunikation mit den unterschiedlichen Sprachmodellen und Agenten.
 
-![chat interface](./chat.png)
+![Chat mit zwei Fragen und Antworten, links die Seitenleiste mit dem Chatverlauf](./chat.png)
 
 :::caution[Immer zu beachten]
 Alle im aktuellen Chat befindlichen Nachrichten und Dateien sind immer Teil des Kontextes. Es lohnt sich daher, für jedes Thema einen eigenen Chat zu verwenden.
@@ -13,27 +17,27 @@ Alle im aktuellen Chat befindlichen Nachrichten und Dateien sind immer Teil des 
 
 ## Prompteingabe
 
-Die Eingabe von Chatnachrichten bzw. Prompts erfolgt über das Eingabefeld. Mit `Enter` senden Sie eine Nachricht ab, mit `Umschalt` + `Enter` fügen Sie eine neue Zeile ein. Dieses Verhalten können Sie in den [Einstellungen](/de/company-gpt/einstellungen/#senden) ändern. Eine Nachricht kann auch nur aus Anhängen bestehen.
+Die Eingabe von Chatnachrichten bzw. Prompts erfolgt über das Eingabefeld. Mit `Strg` + `Enter` (macOS: `⌘` + `Enter`) oder über die Senden-Schaltfläche senden Sie eine Nachricht ab, mit `Enter` fügen Sie eine neue Zeile ein. Dieses Verhalten können Sie in den [Einstellungen](/de/company-gpt/einstellungen/#senden) ändern. Eine Nachricht kann auch nur aus Anhängen bestehen.
 
-![Prompteingabe](chat-input.png)
+![Leere Eingabeleiste eines neuen Chats](chat-input.png)
 
 :::tip
 Informationen zum Prompt Engineering und Promptanleitungen finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht/)
 :::
 
-Eine überarbeitete Eingabeleiste ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar, siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+Über das Plus-Symbol links in der Eingabeleiste (**Attach and tools**) hängen Sie Dateien an und schalten Werkzeuge zu, siehe [Integrationen](#integrationen). Bei Modellen mit Denkprozess wählen Sie den Denkaufwand über die Schaltfläche rechts in der Eingabeleiste, die die aktuelle Stufe anzeigt (zum Beispiel **Auto**), siehe [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/#neue-eingabeleiste).
 
 ### Nachrichten während einer laufenden Antwort
 
-Sie können bereits weiterschreiben, während eine Antwort entsteht. Beim Absenden wird die neue Nachricht entweder in die laufende Antwort einbezogen (**Antwort steuern**) oder für die Zeit nach der Antwort eingereiht (**Einreihen**). Was `Enter` dabei standardmäßig bewirkt, legen Sie in den [Einstellungen](/de/company-gpt/einstellungen/#senden) fest. Über die Senden-Schaltfläche können Sie es auch für einzelne Nachrichten wählen. Lässt sich die laufende Antwort nicht steuern, wird die Nachricht eingereiht.
+Sie können bereits weiterschreiben, während eine Antwort entsteht. Beim Absenden wird die neue Nachricht in die laufende Antwort einbezogen (**Antwort steuern**), die laufende Antwort wird sofort angehalten und mit Ihrer Nachricht fortgesetzt (**Unterbrechen & steuern**), oder die Nachricht wird für die Zeit nach der Antwort eingereiht (**Einreihen**). Bei **Unterbrechen & steuern** bleibt der bis dahin erzeugte Teil der Antwort erhalten. Was `Enter` dabei standardmäßig bewirkt, legen Sie in den [Einstellungen](/de/company-gpt/einstellungen/#senden) fest. Über die Senden-Schaltfläche können Sie es auch für einzelne Nachrichten wählen. Lässt sich die laufende Antwort nicht steuern, wird die Nachricht eingereiht.
 
 ### Kontextanzeige
 
-![kontextfenster](kontextfenster.png)
+![Aufgeklappte Kontextanzeige mit Aufschlüsselung, Werten der letzten Runde und Compact context](kontextfenster.png)
 
-Das Kreissymbol im Eingabefeld zeigt, wie viel vom Kontextfenster des Modells der aktuelle Chat belegt. Wird der Platz knapp, ändert sich die Farbe der Anzeige. Wenn Sie mit der Maus darauf zeigen oder es anklicken, sehen Sie die Aufschlüsselung, zum Beispiel nach **Nachrichten**, **System-Prompt**, Werkzeugen und **Freier Kontext**.
+Das Kreissymbol im Eingabefeld zeigt, wie viel vom Kontextfenster des Modells der aktuelle Chat belegt. Wird der Platz knapp, ändert sich die Farbe der Anzeige. Wenn Sie mit der Maus darauf zeigen oder es anklicken, sehen Sie die Belegung. Über den Pfeil neben den Zahlen klappen Sie die Aufschlüsselung auf, zum Beispiel nach **Nachrichten**, Werkzeugaufrufen (**Tool calls**), **System-Prompt** und **Freier Kontext**. Darunter stehen die Token der letzten Runde (**Last turn**) und die Summen (**Totals**). Sofern in Ihrer Umgebung verfügbar, zeigt die Aufschlüsselung auch die Kosten und den bereits verbrauchten Anteil Ihres Guthabens.
 
-In der Aufschlüsselung können Sie den Kontext über **Compact context** auch selbst komprimieren: CompanyGPT ersetzt den bisherigen Verlauf dann durch eine Zusammenfassung. Die früheren Nachrichten bleiben im Chat sichtbar, werden aber nicht mehr an das Modell gesendet.
+Im selben Fenster können Sie den Kontext über **Compact context** auch selbst komprimieren: CompanyGPT ersetzt den bisherigen Verlauf dann durch eine Zusammenfassung. Die früheren Nachrichten bleiben im Chat sichtbar, werden aber nicht mehr an das Modell gesendet.
 
 ## Integrationen
 
@@ -47,7 +51,7 @@ Neben der eigentlichen Prompteingabe kann der Kontext zusätzlich erweitert werd
 - [MCP Server](/de/company-gpt/integrationen/mcp-server/)
 - [Erinnerung](/de/company-gpt/erinnerungen/#im-chat), sofern in Ihrer Umgebung verfügbar
 
-Diese schalten Sie im jeweiligen Chat ein oder aus.
+Diese schalten Sie im jeweiligen Chat über das Plus-Symbol in der Eingabeleiste (**Attach and tools**) ein. Aktive Werkzeuge erscheinen als Chips in der Eingabeleiste, über das x im Chip schalten Sie sie wieder aus. Mehr dazu unter [User Interface](/de/company-gpt/user-interface/#integrationen).
 
 ## Nachrichten
 
@@ -57,7 +61,7 @@ Der Nachrichtenverlauf entwickelt sich mit der Zeit innerhalb der Konversation z
 
 Im Chat befindliche Nachrichten haben Schnellaktionen:
 
-![Chatnachrichten Schnellaktionen](chat-quick-actions.png)
+![Antwort im Chat mit der Leiste der Nachrichtenoptionen darunter](chat-quick-actions.png)
 
 - **Neu generieren** und **Nachrichtenvarianten**: Über **Neu generieren** können mehrere Antwortvarianten erzeugt werden, zwischen denen Sie umschalten können.
 - **Vorlesen**: Über [Text zu Sprache](/de/company-gpt/einstellungen/#text-zu-sprache) wird die Nachricht mit der eingestellten Engine vorgelesen.
@@ -79,8 +83,6 @@ Im Chat befindliche Nachrichten haben Schnellaktionen:
 
 Um einen bestimmten Inhalt zu zitieren, markieren Sie ihn in einer Nachricht und wählen **Zum Prompt hinzufügen**. Der markierte Text wird Ihrer nächsten Nachricht als Zitat beigefügt. Sie können auch mehrere Stellen nacheinander sammeln.
 
-![citation](citation.png)
-
 ### Code, Diagramme und Artefakte
 
 - **Codeblöcke** lassen sich über **Code kopieren** in die Zwischenablage übernehmen oder über das Download-Symbol als Datei herunterladen.
@@ -101,9 +103,9 @@ Sollen neue Chats immer temporär beginnen, aktivieren Sie in den [Einstellungen
 
 ## Teilen und Exportieren
 
-Nachrichtenverläufe können geteilt oder in unterschiedliche Dateiformate exportiert werden. Beides erreichen Sie über **Exportieren/Teilen** oben rechts im Kopfbereich; das Teilen zusätzlich über **Teilen** im Menü eines Chats.
+Nachrichtenverläufe können geteilt oder in unterschiedliche Dateiformate exportiert werden. Beides erreichen Sie im geöffneten Chat über das Menü **Chat options** (drei Punkte oben rechts im Kopfbereich) mit **Teilen** und **Exportieren**.
 
-![share-and-export](share-and-export.png)
+![Geöffnetes Menü Chat options mit Teilen, Exportieren und weiteren Aktionen](share-and-export.png)
 
 ### Teilen
 
@@ -111,7 +113,7 @@ Mit **Link erstellen** erzeugen Sie einen Link auf den Chat. Ihr Name bleibt dab
 
 Die Adresse des Links bleibt dauerhaft gleich. Änderungen an bereits geteilten Nachrichten erscheinen sofort. Nachrichten, die Sie nach dem Teilen hinzufügen, werden erst sichtbar, wenn Sie **Link aktualisieren** wählen. Damit veröffentlichen Sie den aktuellen Stand des Chats und Ihre aktuelle Auswahl zur Dateifreigabe unter derselben Adresse.
 
-Über **Zugriff verwalten** sehen und ändern Sie, wer den Link öffnen darf. Mit **Link löschen** heben Sie die Freigabe auf. Chats mit aktivem Link sind im Chatverlauf und am Symbol **Exportieren/Teilen** gekennzeichnet. Eine Übersicht aller geteilten Chats finden Sie in den [Einstellungen](/de/company-gpt/einstellungen/#geteilte-links) unter **Geteilte Links**.
+Über **Zugriff verwalten** sehen und ändern Sie, wer den Link öffnen darf. Mit **Link löschen** heben Sie die Freigabe auf. Chats mit aktivem Link sind im Chatverlauf gekennzeichnet. Eine Übersicht aller geteilten Chats finden Sie in den [Einstellungen](/de/company-gpt/einstellungen/#geteilte-links) unter **Geteilte Links**.
 
 :::caution
 Geteilte Links können nur Personen öffnen, die sich bei derselben CompanyGPT-Umgebung anmelden, auch wenn der Link öffentlich freigegeben ist. Ohne öffentliche Freigabe benötigen sie zusätzlich eine Leseberechtigung, die Sie über **Zugriff verwalten** vergeben. Ist Ihr CompanyGPT nur aus dem Firmennetzwerk erreichbar, gilt das auch für geteilte Links.
@@ -121,7 +123,7 @@ Geteilte Links können nur Personen öffnen, die sich bei derselben CompanyGPT-U
 
 Nachrichtenverläufe können auch exportiert werden. Das hat den Vorteil, dass sie in unterschiedlichen Formaten als Datei gespeichert werden können. Verläufe im JSON-Format können ebenfalls wieder [importiert](/de/company-gpt/einstellungen/#konversationen-importieren) werden.
 
-![export-chat](export-chat.png)
+![Dialog Konversation exportieren mit Dateiname, Typ und Optionen](export-chat.png)
 
 Für den Export wählen Sie einen **Dateiname** und den **Typ**: Markdown, Text, JSON, CSV oder Screenshot (PNG).
 

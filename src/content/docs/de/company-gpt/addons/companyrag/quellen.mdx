@@ -20,7 +20,7 @@ Quellen ändern dürfen Besitzer und Administratoren der Zielsammlung. Alle ande
 | Quelle | Erster Lauf | Danach |
 |---|---|---|
 | **SharePoint** | startet automatisch direkt nach dem Verbinden | automatisch bei Dokumentänderungen; zusätzlich gleicht companyRAG die Quelle in regelmäßigen Abständen vollständig ab. Es gibt keinen Zeitplan. |
-| **Google Drive** | startet automatisch direkt nach dem Verbinden | Änderungen werden automatisch übernommen. |
+| **Google Drive** | startet automatisch direkt nach dem Verbinden | Änderungen werden automatisch übernommen; companyRAG prüft die Quelle dazu regelmäßig. Es gibt keinen Zeitplan. |
 | **Nextcloud, GitHub, Web-Crawl, WebDAV, FTP** | bei gewähltem Intervall automatisch kurz nach dem Anlegen; bei **Nur manuell** über **Jetzt synchronisieren** | im gewählten **Auto-Sync**-Intervall: **Stündlich**, **Täglich** oder **Wöchentlich** – oder nur manuell |
 
 Bei Dateiquellen überträgt jeder Lauf nur die Differenz – unveränderte Dokumente werden nicht erneut indexiert. Zum Web-Crawl siehe unten. Über **Jetzt synchronisieren** stoßen Sie bei jeder Quelle jederzeit einen zusätzlichen Lauf an.
@@ -47,7 +47,7 @@ Im Reiter **SharePoint** startet **SharePoint verbinden** die Seite **SharePoint
 
 1. **Website oder Team auswählen**: Auswahl der SharePoint-Website oder des Teams
 2. **Bibliothek auswählen**: Bibliotheken der/des ausgewählten Website/Teams
-3. **Ordner durchsuchen**: Auswahl des Ordners und der Sammlung unter **Zielsammlung (Optional)**, in die die Dateien synchronisiert werden; anschließend **Diesen Ordner auswählen**
+3. **Ordner durchsuchen**: Auswahl des Ordners und der Sammlung unter **Zielsammlung**, in die die Dateien synchronisiert werden; anschließend **Diesen Ordner auswählen**
 
 ![Ordnerauswahl in SharePoint mit Zielsammlung](./sharepoint-browsen.png)
 

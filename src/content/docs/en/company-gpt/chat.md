@@ -3,9 +3,13 @@ title: Chat
 description: CompanyGPT chat interface – prompt input, context indicator, integrations, message options, temporary chats, and sharing and exporting chat histories.
 ---
 
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
+
 The chat is the main interface for communicating with the various language models and agents.
 
-![chat interface](./chat-en.png)
+![Chat with two questions and answers, with the sidebar and chat history on the left](./chat-en.png)
 
 :::caution[Always keep in mind]
 All messages and files in the current chat are always part of the context. It is therefore a good idea to use a separate chat for each topic.
@@ -13,25 +17,27 @@ All messages and files in the current chat are always part of the context. It is
 
 ## Prompt input
 
-Chat messages or prompts are entered via the input field. Press `Enter` to send a message and `Shift` + `Enter` to add a new line. You can change this behavior in the [Settings](/en/company-gpt/einstellungen/#sending). A message can also consist of attachments only.
+Chat messages or prompts are entered via the input field. Press `Ctrl` + `Enter` (macOS: `⌘` + `Enter`) or use the send button to send a message, and press `Enter` to add a new line. You can change this behavior in the [Settings](/en/company-gpt/einstellungen/#sending). A message can also consist of attachments only.
 
-![Prompt input](chat-input-en.png)
+![Empty input bar of a new chat](chat-input-en.png)
 
 :::tip
 Information on prompt engineering and prompt instructions can be found here: [Prompt Engineering](/en/prompt-engineering/uebersicht/)
 :::
 
-A redesigned input bar is currently only available in the demo access and in pilot environments, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/).
+Use the plus icon on the left of the input bar (**Attach and tools**) to attach files and turn on tools, see [Integrations](#integrations). For models with reasoning, choose the reasoning effort with the button on the right of the input bar that shows the current level (for example **Auto**), see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/#new-input-bar).
 
 ### Messages during a running response
 
-You can keep typing while a response is being generated. When you send, the new message is either included in the running response (**Steer**) or queued for after the response (**Queue**). What `Enter` does by default is set in the [Settings](/en/company-gpt/einstellungen/#sending). The send button also lets you choose for individual messages. If the running response cannot be steered, the message is queued.
+You can keep typing while a response is being generated. When you send, the new message is included in the running response (**Steer**), the running response is stopped right away and continues with your message (**Interrupt**), or the message is queued for after the response (**Queue**). With **Interrupt**, the part of the response generated so far is kept. What `Enter` does by default is set in the [Settings](/en/company-gpt/einstellungen/#sending). The send button also lets you choose for individual messages. If the running response cannot be steered, the message is queued.
 
 ### Context indicator
 
-The circle icon in the input field shows how much of the model's context window the current chat uses. When space is running low, the indicator changes color. Hover over it or click it to see the breakdown, for example by **Messages**, **System prompt**, tools, and **Free space**.
+![Expanded context indicator with breakdown, last-turn values, and Compact context](kontextfenster-en.png)
 
-In the breakdown, you can also compact the context yourself with **Compact context**: CompanyGPT replaces the conversation so far with a summary. Earlier messages stay visible in the chat but are no longer sent to the model.
+The circle icon in the input field shows how much of the model's context window the current chat uses. When space is running low, the indicator changes color. Hover over it or click it to see the usage. Use the arrow next to the numbers to expand the breakdown, for example by **Messages**, **Tool calls**, **System prompt**, and **Free space**. Below that, you see the tokens of the last turn (**Last turn**) and the totals (**Totals**). If available in your environment, the breakdown also shows the cost and the share of your balance already used.
+
+In the same pop-up, you can also compact the context yourself with **Compact context**: CompanyGPT replaces the conversation so far with a summary. Earlier messages stay visible in the chat but are no longer sent to the model.
 
 ## Integrations
 
@@ -45,7 +51,7 @@ In addition to the actual prompt input, the context can be further expanded by:
 - [MCP Server](/en/company-gpt/integrationen/mcp-server/)
 - [Memory](/en/company-gpt/erinnerungen/#in-chat), if available in your environment
 
-You turn these on or off in the respective chat.
+You turn these on in the respective chat via the plus icon in the input bar (**Attach and tools**). Active tools appear as chips in the input bar; use the x in a chip to turn them off again. For more information, see [User Interface](/en/company-gpt/user-interface/#integrations).
 
 ## Messages
 
@@ -55,7 +61,7 @@ The message history develops over time within the conversation between the user 
 
 Messages in the chat have quick actions:
 
-![Chat message quick actions](chat-quick-actions.png)
+![Response in the chat with the message options bar below it](chat-quick-actions.png)
 
 - **Regenerate** and **message variants**: Using **Regenerate**, several response variants can be generated, between which you can switch.
 - **Read aloud**: Using [Text to speech](/en/company-gpt/einstellungen/#text-to-speech), the message is read aloud with the selected engine.
@@ -97,9 +103,9 @@ If new chats should always start as temporary chats, enable **Temporary Chat by 
 
 ## Sharing and exporting
 
-Message histories can be shared or exported to different file formats. Both are available via **Export/Share** at the top right of the header; sharing is also available via **Share** in a chat's menu.
+Message histories can be shared or exported to different file formats. In an open chat, both are available in the **Chat options** menu (three dots at the top right of the header) via **Share** and **Export**.
 
-![share-and-export](share-and-export-en.png)
+![Open Chat options menu with Share, Export, and further actions](share-and-export-en.png)
 
 ### Sharing
 
@@ -107,7 +113,7 @@ Message histories can be shared or exported to different file formats. Both are 
 
 The address of the link stays the same. Edits to messages that are already shared appear right away. Messages you add after sharing only become visible when you select **Update link**. This publishes the current state of the chat and your current file-sharing choice under the same address.
 
-**Manage Access** lets you see and change who can open the link. **Delete Link** removes the share. Chats with an active link are marked in the chat history and on the **Export/Share** icon. An overview of all your shared chats is available in the [Settings](/en/company-gpt/einstellungen/#shared-chats) under **Shared chats**.
+**Manage Access** lets you see and change who can open the link. **Delete Link** removes the share. Chats with an active link are marked in the chat history. An overview of all your shared chats is available in the [Settings](/en/company-gpt/einstellungen/#shared-chats) under **Shared chats**.
 
 :::caution
 Shared links can only be opened by people who sign in to the same CompanyGPT environment, even if the link is shared publicly. Without public sharing, they also need read permission, which you grant via **Manage Access**. If your CompanyGPT is only accessible from the company network, this also applies to shared links.
@@ -117,7 +123,7 @@ Shared links can only be opened by people who sign in to the same CompanyGPT env
 
 Message histories can also be exported. This has the advantage that they can be saved as files in different formats. Histories in JSON format can also be [imported](/en/company-gpt/einstellungen/#import-conversations) again.
 
-![export-chat](export-chat-en.png)
+![Export conversation dialog with filename, type, and options](export-chat-en.png)
 
 To export, choose a **Filename** and the **Type**: Markdown, text, JSON, CSV, or screenshot (PNG).
 

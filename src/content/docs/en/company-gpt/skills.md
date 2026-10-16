@@ -3,13 +3,17 @@ title: Skills
 description: Learn how to use, create, and upload skills in CompanyGPT – reusable instructions that specialize the AI assistant for specific tasks.
 ---
 
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
+
 Skills are reusable instructions that specialize the AI assistant for specific tasks. They extend the assistant’s capabilities without requiring you to rewrite complex prompts every time.
 
 ## Skills overview
 
 Skills are managed in the left sidebar under **Skills**. Under **My Skills**, you can see all your skills at a glance.
 
-![The Skills sidebar showing a list of available skills](./skills-main-en.png)
+![The Skills sidebar with the filter field and the list under My Skills](./skills-main-en.png)
 
 ## Creating a skill
 
@@ -25,7 +29,7 @@ Select **Write skill instructions** to create a skill yourself. You need to fill
 - **Description** – A short explanation of when and what the skill is used for
 - **Instructions** – The actual instructions in Markdown format
 
-![Form for writing a new skill with Name, Description, and Instructions fields](./skills-write-en.png)
+![Write skill instructions dialog with filled-in Name, Description, and Instructions fields](./skills-write-en.png)
 
 ### Upload a skill
 
@@ -40,6 +44,8 @@ The following file formats are supported:
 | `.md`             | Must contain skill name and description in YAML   |
 | `.zip` / `.skill` | Must include a `SKILL.md` file                    |
 
+The file must not exceed 50 MB.
+
 :::tip
 You can find ready-made skills to try and download in [Skills Tutorials](/en/tutorials/skills/).
 :::
@@ -48,7 +54,7 @@ You can find ready-made skills to try and download in [Skills Tutorials](/en/tut
 
 The detail view of a skill shows the rendered content with description and Markdown content, for example tool tables or decision guides.
 
-![Skill detail view showing rendered content with toggle, edit, and delete options](./skills-view-en.png)
+![Skill detail view with description, rendered Markdown content, and the Available to agent switch](./skills-view-en.png)
 
 From here, you can:
 
@@ -60,7 +66,7 @@ From here, you can:
 
 Open a skill and click **Edit** to adjust name, description, instructions, and category.
 
-![Skill edit form showing Name, Description, Instructions, and Category fields](./skills-edit-en.png)
+![Skill edit view with Name, Description, Skill Content, and the open Category menu](./skills-edit-en.png)
 
 :::note
 The **Description** determines when the skill is activated automatically. Write it so the assistant can recognize the correct use case.

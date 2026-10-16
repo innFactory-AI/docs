@@ -67,6 +67,10 @@ The companyFILES retention period applies to these documents too: when it ends, 
 
 If you ask the agent to change a file attached in the chat – adding rows to an Excel spreadsheet, replacing text in a Word document or reworking slides of a presentation, for instance – companyFILES usually writes the changes straight back into that file. Where that is not possible, a modified copy is created as a new document. The agent's answer states what happened.
 
+:::caution[Only a text extract available]
+If the chat holds only a text extract of an attached file rather than the original, companyFILES cannot process it as a Word, Excel, PowerPoint or PDF file. companyFILES then reports that only a text extract of the file exists in LibreChat and asks you to upload the original file again (*„Von dieser Datei liegt bei LibreChat nur ein Textauszug vor – bitte die Originaldatei erneut hochladen.“*). In that case, attach the file again.
+:::
+
 ## File conversion & data extraction
 
 - **Conversion:** the following conversions are possible. Which paths are available in a given case is answered by the agent via `get_supported_conversions`.

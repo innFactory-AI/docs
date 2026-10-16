@@ -20,7 +20,7 @@ Owners and admins of the target collection may change sources. Everyone else see
 | Source | First run | Afterwards |
 |---|---|---|
 | **SharePoint** | starts automatically right after connecting | automatically when documents change; in addition, companyRAG fully reconciles the source at regular intervals. There is no schedule. |
-| **Google Drive** | starts automatically right after connecting | Changes are picked up automatically. |
+| **Google Drive** | starts automatically right after connecting | Changes are picked up automatically; companyRAG checks the source regularly for this. There is no schedule. |
 | **Nextcloud, GitHub, web crawl, WebDAV, FTP** | with an interval selected, automatically shortly after creation; with **Manual only**, via **Sync Now** | at the selected **Auto-sync** interval: **Hourly**, **Daily** or **Weekly** – or manually only |
 
 For file sources, every run transfers only the difference – unchanged documents are not re-indexed. For web crawls, see below. With **Sync Now** you can trigger an additional run for any source at any time.
@@ -47,7 +47,7 @@ In the **SharePoint** tab, **Connect SharePoint** opens the **Connect SharePoint
 
 1. **Select Site or Team**: Choose the SharePoint site or team
 2. **Select Library**: Libraries of the selected site/team
-3. **Browse Folders**: Select the folder and, under **Target Collection (Optional)**, the collection into which the files are synchronized; then **Select This Folder**
+3. **Browse Folders**: Select the folder and, under **Target Collection**, the collection into which the files are synchronized; then **Select This Folder**
 
 ![Folder selection in SharePoint with target collection](./sharepoint-browsen.png)
 

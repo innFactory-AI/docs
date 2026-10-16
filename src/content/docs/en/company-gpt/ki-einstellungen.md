@@ -3,9 +3,13 @@ title: AI Settings
 description: Adjust the parameters of the selected model in CompanyGPT, such as instructions, temperature, context tokens, and reasoning effort, and save them as a preset.
 ---
 
-Under **Parameters** in the sidebar, you adjust the parameters of the currently selected model, for example specific instructions for the AI or detailed AI parameters. **Save As Preset** stores these settings under a name. Select saved presets in the chat header via **Presets** to use them flexibly in conversations. **Reset Model Parameters** restores the default values.
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
 
-![ai-settings](ai-settings-en.png)
+Under **Parameters** in the sidebar, you adjust the parameters of the currently selected model, for example specific instructions for the AI or detailed AI parameters. **Save As Preset** stores these settings under a name. Select saved presets in the chat header via **Presets** to use them flexibly in conversations. **Reset** restores the default values. In the panel, the parameters are grouped into the sections **Identity**, **Sampling**, **Limits**, **Reasoning**, **Context**, and **Advanced**.
+
+![Parameters panel with the parameters of a GPT model](ai-settings-en.png)
 
 **Parameters** is only available when a model, not an agent, is selected. Which parameters are shown depends on the selected model. The following overview describes the parameters shown for GPT models.
 
@@ -82,7 +86,7 @@ Applies only to models that perform internal reasoning. This parameter limits th
 *   Reducing the reasoning effort results in faster responses and lower token consumption.
 *   The **Minimal** setting generates very few reasoning tokens to achieve maximum response speed (time-to-first-token). This is particularly useful for tasks such as coding or strictly following instructions.
 
-Which levels are available depends on the model.
+Which levels are available depends on the model. For models with reasoning, you can also set the reasoning effort directly in the input bar, see [New chat interface](/en/company-gpt/neue-chat-oberflaeche/#new-input-bar).
 
 ### Use Responses API
 

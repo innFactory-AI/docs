@@ -183,11 +183,11 @@ If a limit is reached or the AI provider throttles the model, the gateway respon
 
 ### Waiting time for briefly paused models
 
-:::note[Rolling out gradually]
-This feature is currently being introduced gradually and may not yet be available in your environment.
-:::
+If the gateway briefly pauses a model after several throttling responses from the provider, it also responds with `429`. `Retry-After` then states the remaining waiting time, and the message reads `The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s).`
 
-If the gateway briefly pauses a model after several throttling responses from the provider, it will also respond with `429` instead of `502`. `Retry-After` then states the remaining waiting time, and the message reads `The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s).` In addition, errors that occur in the middle of a streamed response arrive in the format of the respective interface (OpenAI, Anthropic, or Gemini).
+### Provider quota exhausted
+
+If the quota or credit of the provider account behind a model is exhausted, the gateway does not treat this as throttling: it fails over to another deployment of the same model. If none is left, it responds not with `429` but with `422` and the code `upstream_quota_exhausted`. Retrying does not help then; contact your administrator.
 
 ## Request size (413)
 
@@ -258,6 +258,8 @@ Errors arrive in the format of the called interface; the status code is the same
   </TabItem>
 </Tabs>
 
+This also applies to errors that occur in the middle of a streamed response.
+
 In your application, evaluate the status code and, for the OpenAI interface, the `code` field, not the free text of the message.
 
 | Status | Meaning | Retry? |
@@ -268,7 +270,7 @@ In your application, evaluate the status code and, for the OpenAI interface, the
 | `403` | Key revoked or expired, or the model is not approved for you (`model_not_allowed`) | No |
 | `404` | Model unknown or not available | No |
 | `413` | Request too large (`request_too_large`) | No |
-| `422` | Response blocked by a content policy (guardrail), code `E4220`, or a problem in the gateway configuration (your key is fine; contact your administrator) | No |
+| `422` | Response blocked by a content policy (guardrail), code `E4220`, or a problem in the gateway configuration, such as an exhausted provider quota (`upstream_quota_exhausted`). Your key is fine; contact your administrator. | No |
 | `429` | Rate limit reached or model throttled | Yes, after `Retry-After` |
 | `500`, `502`, `503` | Temporary error in the gateway or at the provider | Yes, with increasing intervals |
 

@@ -3,13 +3,17 @@ title: Skills
 description: Erfahren Sie, wie Sie Skills in CompanyGPT verwenden, erstellen und hochladen können – wiederverwendbare Anweisungen, die den KI-Assistenten für bestimmte Aufgaben spezialisieren.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Skills sind wiederverwendbare Anweisungen, die den KI-Assistenten für bestimmte Aufgaben spezialisieren. Sie erweitern die Fähigkeiten des Assistenten, ohne dass Sie jedes Mal komplexe Prompts neu schreiben müssen.
 
 ## Skills-Übersicht
 
 Skills werden in der linken Seitenleiste unter **Skills** verwaltet. Unter **Meine Skills** sehen Sie alle Ihre Skills auf einen Blick.
 
-![Skills-Übersicht in der linken Sidebar mit einer Liste eigener Skills](./skills-main-de.png)
+![Skills-Seitenleiste mit dem Suchfeld und der Liste unter Meine Skills](./skills-main-de.png)
 
 ## Skill erstellen
 
@@ -25,7 +29,7 @@ Wählen Sie **Skill-Anweisungen schreiben**, um einen Skill selbst zu erstellen.
 - **Beschreibung** – Kurze Erklärung, wann und wofür der Skill eingesetzt wird
 - **Anleitung** – Die eigentlichen Anweisungen im Markdown-Format
 
-![Formular zum Schreiben eines neuen Skills mit Name, Beschreibung und Instructions](./skills-write-de.png)
+![Dialog Skill-Anweisungen schreiben mit ausgefüllten Feldern Name, Beschreibung und Anleitung](./skills-write-de.png)
 
 ### Skill hochladen
 
@@ -40,6 +44,8 @@ Folgende Dateiformate werden unterstützt:
 | `.md`             | Muss Skill-Name und Beschreibung im YAML-Format enthalten |
 | `.zip` / `.skill` | Muss eine `SKILL.md`-Datei enthalten                      |
 
+Die Datei darf höchstens 50 MB groß sein.
+
 :::tip
 Unter [Skills-Tutorials](/de/tutorials/skills/) finden Sie fertige Skills zum Ausprobieren und Herunterladen.
 :::
@@ -48,7 +54,7 @@ Unter [Skills-Tutorials](/de/tutorials/skills/) finden Sie fertige Skills zum Au
 
 Die Detailansicht eines Skills zeigt den gerenderten Inhalt mit Beschreibung und Markdown-Inhalt, zum Beispiel Tools-Tabellen oder Decision Guides.
 
-![Detailansicht eines Skills mit gerendertem Markdown-Inhalt](./skills-view-de.png)
+![Detailansicht eines Skills mit Beschreibung, gerendertem Markdown-Inhalt und dem Schalter Available to agent](./skills-view-de.png)
 
 Von hier aus können Sie den Skill:
 
@@ -60,7 +66,7 @@ Von hier aus können Sie den Skill:
 
 Öffnen Sie einen Skill und klicken Sie auf **Bearbeiten**, um Name, Beschreibung, Anweisungen und Kategorie anzupassen.
 
-![Bearbeitungsformular eines Skills mit Feldern für Name, Beschreibung und Kategorie](./skills-edit-de.png)
+![Bearbeitungsansicht eines Skills mit Name, Beschreibung, Skill-Inhalt und geöffnetem Menü Kategorie](./skills-edit-de.png)
 
 :::note
 Die **Beschreibung** legt fest, wann der Skill automatisch aktiviert wird. Formulieren Sie sie so, dass der Assistent den richtigen Anwendungsfall erkennt.

@@ -22,7 +22,7 @@ The server provides seven tools. You don't call them yourself: the assistant pic
 | `learn_list_courses` | List published courses, each with enrollment status and progress | optional `enrolledOnly`: only courses you are enrolled in |
 | `learn_course_overview` | Outline of a course with chapters, lessons and quiz, including lock and completion status | `courseId` |
 | `learn_enroll` | Enroll in a published course and name the first lesson; calling it again changes nothing | `courseId` |
-| `learn_my_progress` | Progress across all enrolled courses, with a suggestion for the next step in each | – |
+| `learn_my_progress` | Progress across all enrolled, published courses, with a suggestion for the next step in each | – |
 | `learn_watch_lesson` | Show a lesson (video or text) in the chat | `lessonId` |
 | `learn_take_quiz` | Show a quiz in the chat | `quizId` |
 | `learn_open_ui` | Open companyLEARN's interface in the chat: dashboard (default), course catalog or a specific course | optional `page` (`dashboard`, `courses` or `course`) and `courseId` (required for `course`) |
@@ -34,13 +34,13 @@ The tools only list published courses. Lessons and quizzes can only be opened af
 `learn_watch_lesson`, `learn_take_quiz` and `learn_open_ui` show companyLEARN right in the conversation, without sidebar and menu:
 
 - **Lesson:** The title plus course and chapter are shown at the top, below them the **Mark complete** button, then the video or the text. A video that plays to the end is marked as done automatically.
-- **Quiz:** You answer the questions, click **Submit answers** and see the result – just as in the interface (see [Quiz](/en/company-gpt/addons/companylearn/lernen/#quiz)). **Retry** starts a new attempt.
+- **Quiz:** You answer the questions, click **Submit answers** and see the result – just as in the interface (see [Quiz](/en/company-gpt/addons/companylearn/lernen/#quiz)). In addition, the quiz automatically sends your result to the conversation as a message, with score, pass threshold and number of correct answers. This lets the assistant respond to it right away, for example by suggesting the next step. **Retry** starts a new attempt; its result also arrives in the chat as a new message.
 - **Interface:** The dashboard, the course catalog or a course page appear as in companyLEARN, only without the sidebar.
 
 Below an embedded lesson or quiz, **Open full course** opens the course in companyLEARN in a new tab.
 
 :::tip
-After a lesson or a quiz, simply ask for the next step, for example "What's next?". Using `learn_my_progress`, the assistant can then retrieve your current status and suggest the right lesson or quiz.
+After a lesson, simply ask for the next step, for example "What's next?". Using `learn_my_progress`, the assistant can then retrieve your current status and suggest the right lesson or quiz. After a quiz, this is not necessary: the assistant receives the result automatically.
 :::
 
 ## Example prompts

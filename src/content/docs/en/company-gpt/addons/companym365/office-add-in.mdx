@@ -106,8 +106,10 @@ In **Vorschläge** mode, each change appears as a separate card:
 
 - **Ort:** (Location) names the place, e.g. "Absatz 3" (paragraph 3), a slide or a cell range.
 - The text of the change is fully visible; long texts are collapsed behind **Mehr anzeigen** (Show more).
-- **Übernehmen** (Apply) carries out the change, **Verwerfen** (Discard) discards it. With **Alle übernehmen** (Apply all) and **Alle verwerfen** (Discard all) you decide on all open cards at once – except cards for other windows; you apply those individually (see [Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/#confirmation-in-your-own-chat)). If only such cards are still open, **Alle übernehmen** is disabled.
+- **Übernehmen** (Apply) carries out the change, **Verwerfen** (Discard) discards it.
 - If the place has moved in the meantime, the card offers **Stelle erneut markieren und Übernehmen** (Mark location again and apply).
+
+While cards are open, a bar above the input field shows how many, e.g. "2 Vorschläge offen" (2 suggestions open). **Anzeigen** (Show) brings the first open card into view. With several cards, **Alle übernehmen** (Apply all) and **Alle verwerfen** (Discard all) in that bar decide on all open cards at once – except cards for other windows; you apply those individually (see [Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/#confirmation-in-your-own-chat)). If only such cards are still open, **Alle übernehmen** is disabled.
 
 ## Show all changes
 
@@ -139,3 +141,4 @@ Below an answer that changed the document, you'll find **Alle Änderungen zeigen
 - Under **Details**, the sign-in page shows technical information such as the tenant ID and error code, which helps your administrator troubleshoot.
 - Without the **Use Microsoft 365** permission, "Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen" (No access to the document connection – please ask your administration to enable it) appears. You can keep chatting, but the assistant can neither read nor edit the document.
 - If starting takes longer than usual, "Das dauert gerade länger als üblich." (This is taking longer than usual.) appears.
+- If Office ends the add-in pane unexpectedly and restarts it, the add-in reopens the chat of this document or email (up to 30 minutes later). Open suggestion cards are lost in the process; a notice names them, e.g. "2 Vorschläge der vorigen Sitzung sind verloren – bitte erneut anfragen" (2 suggestions from the previous session are lost – please ask again). This does not apply to new documents and drafts that have not been saved yet. If you closed the pane yourself, it starts with a new chat the next time you open it.

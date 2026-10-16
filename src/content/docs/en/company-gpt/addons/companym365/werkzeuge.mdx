@@ -73,7 +73,7 @@ Search, read, upload and share files.
 - **list_recent_files**: List recently opened or edited OneDrive files.
 - **list_recently_used_files**: List recently used documents across all Microsoft 365 apps.
 - **list_trending_files**: Show documents that are currently relevant around you ("What is my team working on right now?").
-- **read_file**: Retrieve the content of a file as text or Markdown (text, Word, Excel, PDF, and PowerPoint as a slide overview with speaker notes) – also via a sharing or SharePoint link or from companyFILES. No content is returned for files over 25 MB.
+- **read_file**: Retrieve the content of a file as text or Markdown (text, Word, Excel, PDF, and PowerPoint as a slide overview with speaker notes) – also via a sharing or SharePoint link or from companyFILES. Excel cells with formulas show their calculated value. No content is returned for files over 25 MB or for very large Word, Excel or PowerPoint files; the agent then reads a large workbook from OneDrive or SharePoint selectively with **workbook_get_overview** and **workbook_read_range**.
 - **list_folder_contents**: List the contents of a OneDrive folder or a SharePoint document library.
 - **create_file_share_link**: Create a share link to a OneDrive or SharePoint file (view or edit access). By default, the link only works within your organization; the link is not sent by email.
 - **upload_small_file**: Upload a file of up to 4 MB to OneDrive. An existing file with the same path is overwritten.

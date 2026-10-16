@@ -3,6 +3,10 @@ title: File processing
 description: Learn how CompanyGPT processes uploaded files—images and PDFs passed directly to the AI model, Office documents as text, file search and Code Interpreter depending on the active tools, and SharePoint integration.
 ---
 
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
+
 In CompanyGPT, you can attach files to your messages. CompanyGPT automatically decides how a file is processed, based on the file type, the selected AI model, and the active tools. You no longer have to choose a destination when uploading.
 
 :::tip[Quick overview]
@@ -13,7 +17,7 @@ In CompanyGPT, you can attach files to your messages. CompanyGPT automatically d
 
 ## Uploading files
 
-In the chat input, click the paperclip (**Attach Files**) and select the files. If the [SharePoint integration](#sharepoint-integration) is enabled in your environment, the paperclip opens a menu with **From Local Computer** and **From SharePoint**.
+In the chat input, click the plus icon (**Attach and tools**), choose **From Local Computer** under **Attach**, and then select the files. If the [SharePoint integration](#sharepoint-integration) is enabled in your environment, you also find **From SharePoint** there.
 
 The standard configuration has the following limits, which your organization can adjust:
 

@@ -73,7 +73,7 @@ Dateien suchen, lesen, hochladen und teilen.
 - **list_recent_files**: Zuletzt geöffnete oder bearbeitete OneDrive-Dateien auflisten.
 - **list_recently_used_files**: Zuletzt verwendete Dokumente über alle Microsoft-365-Apps hinweg auflisten.
 - **list_trending_files**: Dokumente anzeigen, die in Ihrem Umfeld gerade relevant sind („Woran arbeitet mein Team gerade?“).
-- **read_file**: Den Inhalt einer Datei als Text oder Markdown abrufen (Text, Word, Excel, PDF sowie PowerPoint als Folienübersicht mit Sprechernotizen) – auch über einen Freigabe- oder SharePoint-Link oder aus companyFILES. Bei Dateien über 25 MB wird kein Inhalt geliefert.
+- **read_file**: Den Inhalt einer Datei als Text oder Markdown abrufen (Text, Word, Excel, PDF sowie PowerPoint als Folienübersicht mit Sprechernotizen) – auch über einen Freigabe- oder SharePoint-Link oder aus companyFILES. Excel-Zellen mit Formeln erscheinen mit ihrem berechneten Wert. Bei Dateien über 25 MB und bei sehr umfangreichen Word-, Excel- oder PowerPoint-Dateien wird kein Inhalt geliefert; eine große Arbeitsmappe aus OneDrive oder SharePoint liest der Agent dann gezielt mit **workbook_get_overview** und **workbook_read_range**.
 - **list_folder_contents**: Den Inhalt eines OneDrive-Ordners oder einer SharePoint-Dokumentbibliothek auflisten.
 - **create_file_share_link**: Einen Freigabelink zu einer OneDrive- oder SharePoint-Datei erstellen (Lese- oder Bearbeitungszugriff). Standardmäßig gilt der Link nur innerhalb Ihrer Organisation; der Link wird nicht per E-Mail verschickt.
 - **upload_small_file**: Eine Datei bis 4 MB in OneDrive hochladen. Eine vorhandene Datei mit demselben Pfad wird überschrieben.

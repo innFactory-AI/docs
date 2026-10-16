@@ -3,11 +3,15 @@ title: Code Interpreter
 description: Mit der Integration „Code ausführen" schreibt und führt CompanyGPT Code in einer isolierten Sandbox innerhalb der eigenen Infrastruktur aus – für Datenanalysen, Diagramme und exakte Berechnungen.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Sprachmodelle sagen Text vorher und rechnen nicht — bei exakter Mathematik, Datenanalysen oder dem Erstellen von Diagrammen stoßen sie daher an ihre Grenzen. Mit der Integration **Code ausführen** (Code Interpreter) kann CompanyGPT stattdessen Code schreiben, in einer isolierten Sandbox ausführen und das tatsächliche Ergebnis in die Antwort übernehmen. Die Ausführung erfolgt vollständig innerhalb der eigenen Infrastruktur; es werden keine Daten an externe Dienste übermittelt.
 
 ## Aktivierung
 
-Die Integration schalten Sie direkt in der [Chateingabe](/de/company-gpt/chat/) im Menü **Werkzeuge** über **Code ausführen** ein. Der Schalter gilt für den jeweiligen Chat und bleibt aktiv, bis Sie ihn wieder ausschalten. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+Die Integration schalten Sie direkt in der [Chateingabe](/de/company-gpt/chat/) über das Plus-Symbol (**Attach and tools**) unter **Tools** mit **Code ausführen** ein. Sie erscheint dann als Chip in der Eingabeleiste, gilt für den jeweiligen Chat und bleibt aktiv, bis Sie sie über das **×** am Chip wieder ausschalten. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
 
 ## Dateien
 

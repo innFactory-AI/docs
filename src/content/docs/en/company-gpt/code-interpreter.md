@@ -3,11 +3,15 @@ title: Code Interpreter
 description: With the "Run Code" integration, CompanyGPT writes and executes code in an isolated sandbox within your own infrastructure – for data analysis, charts, and exact calculations.
 ---
 
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
+
 Language models predict text and do not calculate — they reach their limits with exact mathematics, data analysis, or creating charts. With the **Run Code** integration (Code Interpreter), CompanyGPT can instead write code, execute it in an isolated sandbox, and include the actual result in its answer. Execution takes place entirely within your own infrastructure; no data is transferred to external services.
 
 ## Activation
 
-Turn on the integration directly in the [chat input](/en/company-gpt/chat/) in the **Tools** menu via **Run Code**. The switch applies to the respective chat and stays on until you turn it off again. It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability via the Tool Library, allowing an agent to execute code on its own.
+Turn on the integration directly in the [chat input](/en/company-gpt/chat/) via the plus icon (**Attach and tools**) with **Run Code** under **Tools**. It then appears as a chip in the input bar, applies to the respective chat, and stays on until you turn it off again with the **×** on the chip. It can also be assigned to [agents](/en/company-gpt/agenten/) as a capability via the Tool Library, allowing an agent to execute code on its own.
 
 ## Files
 

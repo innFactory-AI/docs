@@ -183,11 +183,11 @@ Ist ein Limit erreicht oder drosselt der KI-Anbieter das Modell, antwortet das G
 
 ### Wartezeit bei kurz pausierten Modellen
 
-:::note[Wird schrittweise ausgerollt]
-Diese Funktion wird derzeit schrittweise eingeführt und steht in Ihrer Umgebung möglicherweise noch nicht zur Verfügung.
-:::
+Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es ebenfalls mit `429`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet `The provider rate-limited every deployment of model '<Modell-ID>' (429). Retry later (in about N s).`
 
-Pausiert das Gateway ein Modell nach mehreren Drosselungen durch den Anbieter kurzzeitig, antwortet es künftig ebenfalls mit `429` statt mit `502`. `Retry-After` nennt dann die verbleibende Wartezeit, die Meldung lautet `The provider rate-limited every deployment of model '<Modell-ID>' (429). Retry later (in about N s).` Außerdem kommen Fehler, die mitten in einer gestreamten Antwort auftreten, im Format der jeweiligen Schnittstelle (OpenAI, Anthropic oder Gemini).
+### Kontingent beim Anbieter erschöpft
+
+Ist das Kontingent oder Guthaben des Anbieterkontos hinter einem Modell erschöpft, behandelt das Gateway das nicht als Drosselung: Es weicht auf eine andere Bereitstellung desselben Modells aus. Ist keine mehr verfügbar, antwortet es nicht mit `429`, sondern mit `422` und dem Code `upstream_quota_exhausted`. Eine Wiederholung hilft dann nicht; wenden Sie sich an Ihren Administrator.
 
 ## Anfragegröße (413)
 
@@ -258,6 +258,8 @@ Fehler kommen im Format der aufgerufenen Schnittstelle, der Statuscode ist über
   </TabItem>
 </Tabs>
 
+Das gilt auch für Fehler, die mitten in einer gestreamten Antwort auftreten.
+
 Werten Sie in Ihrer Anwendung den Statuscode und, bei der OpenAI-Schnittstelle, das Feld `code` aus, nicht den Freitext der Meldung.
 
 | Status | Bedeutung | Wiederholen? |
@@ -268,7 +270,7 @@ Werten Sie in Ihrer Anwendung den Statuscode und, bei der OpenAI-Schnittstelle, 
 | `403` | Schlüssel widerrufen oder abgelaufen, oder das Modell ist für Sie nicht freigegeben (`model_not_allowed`) | Nein |
 | `404` | Modell unbekannt oder nicht verfügbar | Nein |
 | `413` | Anfrage zu groß (`request_too_large`) | Nein |
-| `422` | Antwort von einer Inhaltsrichtlinie (Guardrail) blockiert, Code `E4220`, oder Problem in der Konfiguration des Gateways (Ihr Schlüssel ist in Ordnung; wenden Sie sich an Ihren Administrator) | Nein |
+| `422` | Antwort von einer Inhaltsrichtlinie (Guardrail) blockiert, Code `E4220`, oder Problem in der Konfiguration des Gateways, etwa ein erschöpftes Kontingent beim Anbieter (`upstream_quota_exhausted`). Ihr Schlüssel ist in Ordnung; wenden Sie sich an Ihren Administrator. | Nein |
 | `429` | Rate Limit erreicht oder Modell gedrosselt | Ja, nach `Retry-After` |
 | `500`, `502`, `503` | Vorübergehender Fehler im Gateway oder beim Anbieter | Ja, mit wachsendem Abstand |
 

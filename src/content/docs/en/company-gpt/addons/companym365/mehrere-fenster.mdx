@@ -3,13 +3,9 @@ title: Multiple Office windows
 description: Working with the Office add-in in several open Office windows – reading other documents and inserting content across applications.
 ---
 
-:::note[Rolling out gradually]
-This feature is currently being introduced gradually and may not yet be available in your environment.
-:::
-
 If you have the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) open in several windows – for example in two Word documents, plus Excel, PowerPoint or Outlook – each chat works in its own window. On request, the assistant also reads the other open windows and inserts content across applications, for example a table from a Word report as a new sheet in Excel. It only carries out a change in another window once you have confirmed it in your own chat.
 
-A window counts as open if the add-in pane is open in it. Your organization can switch off working with multiple windows; each chat then only works in its own window. The add-in's interface is in German; labels are given in German with an English translation in parentheses.
+A window counts as open if the add-in pane is open in it. The assistant cannot see a document in which the add-in is not open. It then asks you to open the add-in in that window from the ribbon instead of uploading the file. Your organization can switch off working with multiple windows; each chat then only works in its own window. The add-in's interface is in German; labels are given in German with an English translation in parentheses.
 
 ## Finding open windows
 
@@ -17,6 +13,8 @@ A window counts as open if the add-in pane is open in it. Your organization can 
 - Type `#` in the input field: at the very top, the **Offene Fenster** (Open windows) section lists all other connected windows. A selected window appears as a chip; the assistant then reads exactly this window.
 
 If two windows have the same name, the add-in distinguishes them with a number, e.g. "Bericht.docx" and "Bericht.docx (2)".
+
+The assistant lists windows whose connection has just dropped separately; it cannot read or change them then. Click into such a window once or reopen the add-in there, and it connects again.
 
 ## Reading other windows
 

@@ -26,7 +26,9 @@ Add the `ai-search` MCP server to the agent, then enable the tools that match th
 
 ![Tool selection of the ai-search MCP server with the content search tools enabled](./agent-tools-ai-search.png)
 
-In all tools, `collection` stands for the technical name of the collection. Set it in the prompt so that the agent always queries the correct collection.
+In all tools, `collection` stands for the technical name of the collection. Set it in the prompt so that the agent always queries the correct collection. Except for `list_datasets`, companyRAG rejects a tool call without `collection`.
+
+If the person chatting has no access to the queried collection, the agent receives the message "Kein Zugriff auf Collection '…' – bitte an eine Person mit Berechtigung wenden." (No access to collection '…' – please contact a person with permission) and does not try again. An owner of the collection grants access via **Share collection** (see [Collections](/en/company-gpt/addons/companyrag/sammlungen/#sharing-a-collection)).
 
 ### Content search tools for document collections
 
@@ -37,13 +39,11 @@ In all tools, `collection` stands for the technical name of the collection. Set 
 
 2. **find_content_by_source**:
    Retrieve all content from a specific document. Use it for questions about individual documents (e.g. "What is in Documentation.md?").
-   Required parameters: `source` (document name)
-   Optional: `collection` (technical name of the collection)
+   Required parameters: `source` (document name), `collection` (technical name of the collection)
 
 3. **find_content_by_metadata**:
    Filter content by metadata attributes. Use it for filtered results (e.g. "All urgent tasks from 2026").
-   Required parameters: `filter` (JSON object with the logical operators `$and`, `$or`, `$not`, the comparison operators `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, or direct key-value pairs)
-   Optional: `collection` (technical name of the collection)
+   Required parameters: `filter` (JSON object with the logical operators `$and`, `$or`, `$not`, the comparison operators `$eq`, `$ne`, `$gt`, `$gte`, `$lt`, `$lte`, or direct key-value pairs), `collection` (technical name of the collection)
 
 ### SQL tools for datasets and structured data
 

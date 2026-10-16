@@ -3,15 +3,19 @@ title: Settings
 description: Overview and configuration of CompanyGPT settings, organized into General, Chat, Speech, Data & Privacy, Account, and About.
 ---
 
+:::note[New chat interface]
+Screenshots and labels on this page show the [new chat interface](/en/company-gpt/neue-chat-oberflaeche/). It is currently available in the demo access and in pilot environments; in other environments, labels and steps may still differ.
+:::
+
 Open the settings via the account menu at the bottom left under **Settings**, or press `Ctrl` + `Shift` + `,` (macOS: `⌘` + `⇧` + `,`). The settings dialog is organized via the left-hand navigation into the areas **General**, **Chat**, **Speech**, **Data & Privacy**, **Account**, and **About**. Use the **Search settings** field to find a setting directly.
 
 Which settings are shown depends on the configuration of your environment and your permissions. In the German interface, some newer options are currently still shown with English labels.
 
 ## General
 
-Appearance, layout, and accessibility are configured under **General**:
+Appearance, layout, notifications, and accessibility are configured under **General**:
 
-![general](general-en.png)
+![Settings, General section with the appearance options](general-en.png)
 
 ### Appearance
 
@@ -30,6 +34,10 @@ Language in which the user interface is displayed.
 #### Message Font Size
 
 Select the font size in which chat messages should be displayed.
+
+#### UI scale
+
+Scales the entire interface. The current size is shown as a percentage; use the minus and plus buttons to make it smaller or larger.
 
 #### Chat direction
 
@@ -66,6 +74,20 @@ On mobile devices, the open sidebar stops short of the edge so that a strip of t
 
 Shows the title of the open chat in the browser tab title.
 
+### Notifications
+
+#### Show unread count in the tab title
+
+Shows the number of chats with unread replies in the title and icon of the browser tab.
+
+#### Notify me when a reply arrives
+
+Shows a desktop notification when a reply arrives while you are away from CompanyGPT. Your browser asks for permission the first time you turn this on. No notifications are shown while you are looking at CompanyGPT.
+
+#### Play a sound for new replies
+
+Plays a short sound when a reply arrives while you are away from CompanyGPT. Browsers only play sounds after you have interacted with the page.
+
 ### Accessibility
 
 #### Keep screen awake during response generation
@@ -78,20 +100,17 @@ Prevents the screen from going into sleep mode whilst a response is being genera
 
 #### Press Enter to send messages
 
-When enabled, `Enter` is sufficient to send messages. New lines can be added with `Shift` + `Enter`. When disabled, `Ctrl` + `Enter` (macOS: `⌘` + `Enter`) must be used to send messages, `Enter` then adds a new line.
+When enabled, `Enter` is sufficient to send messages. New lines can be added with `Shift` + `Enter`. When disabled, `Ctrl` + `Enter` (macOS: `⌘` + `Enter`) must be used to send messages, `Enter` then adds a new line. The option is disabled by default. If you have already set it yourself, your choice is kept.
 
 #### While generating, Enter will
 
 Sets what `Enter` does while a response is still being generated:
 
-- **Steer the response**: your message is included in the running response.
-- **Queue for after**: your message is sent as a new message once the current response has finished.
+- **Steer**: your message is included in the running response.
+- **Interrupt**: the running response is stopped right away. The part of the response generated so far is kept, and the response continues with your message.
+- **Queue**: your message is sent as a new message once the current response has finished.
 
 The send button also lets you choose for individual messages, see [Chat](/en/company-gpt/chat/#messages-during-a-running-response).
-
-#### Steer sooner on Enter
-
-When enabled and **Steer the response** is selected, `Enter` requests an earlier safe point instead of waiting for the next tool step. Tools that are already running finish first. The part of the response already shown is kept, and the response then continues.
 
 #### Save drafts locally
 
@@ -99,7 +118,7 @@ When enabled, text and attachments entered into the chat form are automatically 
 
 #### Resize images before upload
 
-When enabled, large images are downscaled in your browser before they are uploaded. This speeds up uploads. Images that are already within the size limits are sent unchanged.
+When enabled, large images are downscaled in your browser before they are uploaded. This speeds up uploads. Images that are already within the size limits are sent unchanged. Enabled by default.
 
 #### Paste long text as a file
 
@@ -133,7 +152,7 @@ Controls the display of user messages as Markdown. Markdown is a lightweight syn
 
 #### Collapse long user messages
 
-When enabled, long messages from you are shown collapsed as a preview with an option to show more. This keeps pasted text or code from dominating the conversation. The full text remains available to copy or search.
+When enabled, long messages from you are shown collapsed as a preview with an option to show more. This keeps pasted text or code from dominating the conversation. The full text remains available to copy or search. Enabled by default.
 
 #### Display username in messages
 
@@ -293,7 +312,7 @@ Whether this feature is available in your environment is decided by your organiz
 
 #### Balance
 
-Overview of the current balance.
+Overview of the current balance. The share already used is also shown in the [context indicator](/en/company-gpt/chat/#context-indicator) in the chat.
 
 #### Auto-Refill Settings
 

@@ -3,15 +3,19 @@ title: Einstellungen
 description: Übersicht und Konfiguration der CompanyGPT-Einstellungen, gegliedert in Allgemein, Chat, Sprache, Datenschutz & Sicherheit, Konto und Über.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Die Einstellungen öffnen Sie über das Kontomenü unten links unter **Einstellungen** oder mit `Strg` + `Umschalt` + `,` (macOS: `⌘` + `⇧` + `,`). Der Einstellungsdialog ist über die linke Navigation in die Bereiche **Allgemein**, **Chat**, **Sprache**, **Datenschutz & Sicherheit**, **Konto** und **Über** gegliedert. Über das Feld **Einstellungen suchen** finden Sie eine Einstellung direkt.
 
 Welche Einstellungen angezeigt werden, hängt von der Konfiguration Ihrer Umgebung und Ihren Berechtigungen ab. Einzelne neuere Optionen erscheinen in der deutschen Oberfläche derzeit noch mit englischer Beschriftung. Diese Seite nennt in diesen Fällen die englische Beschriftung, die Sie in der Oberfläche sehen.
 
 ## Allgemein
 
-Unter **Allgemein** werden Darstellung, Layout und Barrierefreiheit konfiguriert:
+Unter **Allgemein** werden Darstellung, Layout, Benachrichtigungen und Barrierefreiheit konfiguriert:
 
-![allgemein](allgemein.png)
+![Einstellungen, Bereich Allgemein mit den Optionen zur Darstellung](allgemein.png)
 
 ### Darstellung
 
@@ -30,6 +34,10 @@ Sprache, in der die Benutzeroberfläche angezeigt wird.
 #### Schriftgröße
 
 Auswahl der Schriftgröße, in der die Chatnachrichten dargestellt werden sollen.
+
+#### UI scale
+
+Skaliert die gesamte Oberfläche. Die aktuelle Größe steht in Prozent daneben, über die Minus- und die Plus-Schaltfläche verkleinern bzw. vergrößern Sie sie.
 
 #### Chat-Richtung
 
@@ -66,6 +74,20 @@ Auf Mobilgeräten reicht die geöffnete Seitenleiste nicht bis zum Rand, sodass 
 
 Zeigt den Titel des geöffneten Chats im Titel des Browser-Tabs an.
 
+### Notifications
+
+#### Show unread count in the tab title
+
+Zeigt die Anzahl der Chats mit ungelesenen Antworten im Titel und Symbol des Browser-Tabs an.
+
+#### Notify me when a reply arrives
+
+Zeigt eine Desktop-Benachrichtigung, wenn eine Antwort eintrifft, während Sie nicht in CompanyGPT sind. Ihr Browser fragt beim ersten Einschalten nach Ihrer Erlaubnis. Solange Sie CompanyGPT im Blick haben, erscheinen keine Benachrichtigungen.
+
+#### Play a sound for new replies
+
+Spielt einen kurzen Ton ab, wenn eine Antwort eintrifft, während Sie nicht in CompanyGPT sind. Browser spielen Töne erst ab, nachdem Sie mit der Seite interagiert haben.
+
 ### Barrierefreiheit
 
 #### Bildschirm während der Antwortgenerierung aktiv lassen
@@ -78,20 +100,17 @@ Verhindert, dass der Bildschirm während der Antwortgenerierung in den Ruhemodus
 
 #### Enter drücken, um Nachrichten zu senden
 
-Wenn aktiviert, reicht `Enter` zum Senden von Nachrichten. Neue Zeilen können mit `Umschalt` + `Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg` + `Enter` (macOS: `⌘` + `Enter`) zum Senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu.
+Wenn aktiviert, reicht `Enter` zum Senden von Nachrichten. Neue Zeilen können mit `Umschalt` + `Enter` hinzugefügt werden. Wenn deaktiviert, muss `Strg` + `Enter` (macOS: `⌘` + `Enter`) zum Senden von Nachrichten genutzt werden, `Enter` fügt dann eine neue Zeile hinzu. Standardmäßig ist die Option deaktiviert. Haben Sie sie bereits einmal selbst festgelegt, bleibt Ihre Wahl erhalten.
 
 #### Während der Generierung bewirkt die Eingabetaste
 
 Legt fest, was `Enter` bewirkt, während noch eine Antwort entsteht:
 
 - **Antwort steuern**: Ihre Nachricht wird in die laufende Antwort einbezogen.
-- **Für danach einreihen**: Ihre Nachricht wird nach Abschluss der aktuellen Antwort als neue Nachricht gesendet.
+- **Unterbrechen & steuern**: Die laufende Antwort wird sofort angehalten. Der bisherige Teil der Antwort bleibt erhalten, und die Antwort wird mit Ihrer Nachricht fortgesetzt.
+- **Einreihen**: Ihre Nachricht wird nach Abschluss der aktuellen Antwort als neue Nachricht gesendet.
 
 Über die Senden-Schaltfläche können Sie das auch für einzelne Nachrichten wählen, siehe [Chat](/de/company-gpt/chat/#nachrichten-während-einer-laufenden-antwort).
-
-#### Steuerungsnachrichten unterbrechen die Generierung
-
-Wenn aktiviert und **Antwort steuern** eingestellt ist, hält `Enter` die Antwort am nächsten sicheren Punkt an, statt auf den nächsten Werkzeugschritt zu warten. Bereits laufende Werkzeuge werden zuerst abgeschlossen. Der bisherige Teil der Antwort bleibt erhalten, und die Antwort wird anschließend fortgesetzt.
 
 #### Entwürfe lokal speichern
 
@@ -99,7 +118,7 @@ Wenn aktiviert, werden der Text und die Anhänge, die in das Chat-Formular einge
 
 #### Resize images before upload
 
-Wenn aktiviert, werden große Bilder im Browser verkleinert, bevor sie hochgeladen werden. Das beschleunigt den Upload. Bilder, die bereits innerhalb der Größengrenzen liegen, bleiben unverändert.
+Wenn aktiviert, werden große Bilder im Browser verkleinert, bevor sie hochgeladen werden. Das beschleunigt den Upload. Bilder, die bereits innerhalb der Größengrenzen liegen, bleiben unverändert. Standardmäßig aktiviert.
 
 #### Paste long text as a file
 
@@ -133,7 +152,7 @@ Regelt die Darstellung der Benutzernachrichten als Markdown. Markdown ist eine l
 
 #### Collapse long user messages
 
-Wenn aktiviert, werden lange Nachrichten von Ihnen eingeklappt als Vorschau angezeigt und lassen sich bei Bedarf vollständig aufklappen. So nehmen eingefügte Texte oder Code nicht den ganzen Chat ein. Der vollständige Text bleibt kopier- und durchsuchbar.
+Wenn aktiviert, werden lange Nachrichten von Ihnen eingeklappt als Vorschau angezeigt und lassen sich bei Bedarf vollständig aufklappen. So nehmen eingefügte Texte oder Code nicht den ganzen Chat ein. Der vollständige Text bleibt kopier- und durchsuchbar. Standardmäßig aktiviert.
 
 #### Benutzernamen in Nachrichten anzeigen
 
@@ -293,7 +312,7 @@ Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen f
 
 #### Guthaben
 
-Übersicht über das aktuelle Guthaben.
+Übersicht über das aktuelle Guthaben. Den bereits verbrauchten Anteil sehen Sie außerdem in der [Kontextanzeige](/de/company-gpt/chat/#kontextanzeige) im Chat.
 
 #### Einstellungen zum automatischen Auffüllen
 

@@ -197,6 +197,9 @@ Aktionen wie „Speichern“ oder „Löschen“ in einer echten Sitzung ändern
 | `scenes-rag.json` | companyRAG | siehe `note` der Szenen |
 | `scenes-learn.json` | companyLEARN (Lernenden-Ansichten) | nichts; Kurse, Fortschritt und Quiz sind per Mock gestellt |
 | `scenes-chat-preview.json` | Vorschau der neuen Chat-Oberfläche | Chat-Projekt „Newsletter“ mit dem Chat „Spring Newsletter Subject Lines“ |
+| `scenes-chat.json` | Kernseiten Chat, Oberfläche, Lesezeichen, Einstellungen, KI-Einstellungen | die Chats „Vorteile Von Videokonferenzen“ und „Benefits of Video Conferencing“ und das Lesezeichen „Meetings“ |
+| `scenes-agenten.json` | Kernseiten Agenten und Skills | Agent „Muster-Assistent“ mit einem Gesprächseinstieg, Skills „protokoll-vorlage“ (DE) und „meeting-minutes-template“ (EN); die Skill-IDs stehen im Pfad der Szenen |
+| `scenes-inhalte.json` | Kernseiten Prompts, Projekte und Integrationen | Prompts „Besprechungsprotokoll“ und „Meeting minutes“, Projekte „Planung Sommerfest“ und „Summer party planning“ mit Dateien und Chats, Chats zu Websuche, WebFetch und Artefakt; die Szenen nutzen feste Chat- und Projekt-IDs |
 
 Die Demo-Inhalte sind neutral („Muster GmbH“, „Anna Beispiel“) und gehören zum Demo-Konto. Wer sie löscht, lässt die zugehörigen Szenen scheitern. Was eine Szene genau voraussetzt, steht in ihrem `note`.
 
@@ -244,6 +247,7 @@ Das Add-in läuft in Office und braucht `Office.js`. Zwei Wege:
 ## Bekannte Grenzen
 
 - Das Demo-Konto ist kein Admin. Admin-Ansichten (companyADMIN, Insights, RAG-Verwaltung, LEARN-Kursverwaltung, globale Glossare anlegen) sind nicht als Szene angelegt; dafür braucht es ein zweites Konto mit eigener Sitzung (`account`).
-- Die Chat-Bilder der Kernseiten zeigen noch die heutige Chat-Oberfläche. Der Demo-Tenant läuft bereits mit der neuen Chat-Oberfläche; diese Bilder werden neu aufgenommen, sobald sie in die Flotte kommt.
+- Die Kernseiten zeigen die neue Chat-Oberfläche des Demo-Tenants. Die Seitenleiste mit dem Chatverlauf zeigt, was zum Zeitpunkt der Aufnahme im Demo-Konto liegt; neue Demo-Chats verändern diese Bilder bei der nächsten Aufnahme.
+- Text markieren (z. B. für „Zum Prompt hinzufügen“) kann die Pipeline nicht; dafür fehlt eine Aktion zum Ziehen mit der Maus.
 - `storageState` speichert Cookies, `localStorage` und IndexedDB, aber kein `sessionStorage`. Apps, die ihre Anmeldung nur dort halten, melden sich beim Aufruf still neu an oder leiten auf die Anmeldung um.
 - Pixelgleich sind Bilder nur mit demselben Browser-Build und derselben Pixeldichte.

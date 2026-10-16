@@ -3,6 +3,10 @@ title: Agenten
 description: Entdecken Sie Agenten in CompanyGPT - fortschrittliche KI-Systeme mit Reasoning, Tool-Nutzung und Integrationen für effiziente Workflows, Dateiverarbeitung und personalisierte Interaktionen.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Agenten im CompanyGPT sind fortgeschrittene Systeme, die dafür ausgelegt sind, mehr als nur Text zu generieren. Sie analysieren die Anfrage des Benutzers, erstellen einen Plan zur Erledigung, benutzen Werkzeuge (Tools), um Informationen zu beschaffen und die Anfrage zu beantworten.
 
 Fähigkeiten:
@@ -27,6 +31,8 @@ Jeder Agent kann einer Kategorie zugewiesen werden. Sollten Agenten innerhalb de
 
 Die Anweisungen sind der eigentliche Prompt des Agenten. Dieser beschreibt, was der Agent zu tun hat, wie er auftreten soll, usw. Informationen zu effektivem Prompting für Agenten finden Sie hier: [Prompt Engineering](/de/prompt-engineering/uebersicht). Besonders bei Agenten bietet es sich an, strukturierte und sauber formatierte Prompts zu verwenden.
 
+Über **Instructions source** legen Sie fest, woher die Anweisungen kommen: Bei **Inline** schreiben Sie sie direkt in das Feld **Anweisungen**, bei **Prompt** wählen Sie einen gespeicherten [Prompt](/de/company-gpt/prompts/) und dessen **Version**.
+
 Es können außerdem Variablen wie das aktuelle Datum, die Uhrzeit oder der aktuelle Nutzer übergeben werden.
 
 ### KI Modell
@@ -37,7 +43,9 @@ Zusätzlich zum Modell können die KI Parameter angepasst werden. Die ausführli
 
 ### Tools
 
-Im Abschnitt **Tools** legen Sie fest, was der Agent neben dem KI-Modell nutzen darf. Über **Tools hinzufügen** öffnet sich die **Tool-Bibliothek**. Sie ist in **Nativ** (eingebaute Funktionen), **Tools**, **MCP-Server** und **Aktionen** gegliedert. Unter **Favoriten** und **Von dir erstellt** finden Sie Ihre markierten bzw. selbst erstellten Einträge.
+Im Abschnitt **Tools** legen Sie fest, was der Agent neben dem KI-Modell nutzen darf. Über **Hinzufügen** öffnet sich die **Tool-Bibliothek**. Sie ist in **Nativ** (eingebaute Funktionen), **Tools**, **MCP-Server** und **Aktionen** gegliedert. Unter **Favoriten** und **Von dir erstellt** finden Sie Ihre markierten bzw. selbst erstellten Einträge.
+
+![Tool-Bibliothek mit den eingebauten Einträgen im Bereich Nativ, darunter Unteragenten, Übergaben und Code ausführen](./agent-tool-library.png)
 
 Ein Klick auf einen hinzugefügten Eintrag öffnet dessen Einstellungen. Über **Vom Agenten entfernen** nehmen Sie ihn wieder heraus.
 
@@ -97,14 +105,19 @@ Ist **Erinnerungen für diesen Agenten getrennt speichern** aktiviert, verwendet
 
 Der Eintrag steht nur zur Verfügung, wenn Erinnerungen für Sie aktiviert sind. Mehr dazu unter [Erinnerungen](/de/company-gpt/erinnerungen/).
 
+#### Unteragenten
+
+Mit **Unteragenten** kann der Agent Teilaufgaben an Hilfsagenten abgeben. Unteragenten arbeiten in einem eigenen, isolierten Kontextfenster: Ausführliche Tool-Ausgaben bleiben beim Unteragenten, an den Agenten geht nur eine Zusammenfassung zurück. In den Einstellungen des Eintrags schalten Sie **Unteragenten aktivieren** ein und wählen über **Unteragent hinzufügen** bis zu 50 Agenten aus. Mit **Selbstaufruf erlauben** kann der Agent Teilaufgaben auch an eine Kopie von sich selbst übergeben; das funktioniert auch, wenn keine weiteren Agenten ausgewählt sind.
+
+#### Übergaben
+
+Unter **Übergaben** legen Sie Agenten fest, an die der Agent die Unterhaltung übergeben kann, wenn spezielles Fachwissen gebraucht wird. Jede Übergabe erzeugt ein Übergabe-Tool, über das der Agent die Unterhaltung samt Kontext an den spezialisierten Agenten weiterleitet. In der **Übergabebeschreibung** halten Sie fest, wann übergeben werden soll. Über **Übergabe-Agent hinzufügen** sind bis zu 10 Übergaben möglich.
+
 #### MCP Server
 
 MCP-Server fügen Sie über die Tool-Bibliothek im Bereich **MCP-Server** hinzu. In den Einstellungen des Servers wählen Sie unter **Tools auf diesem Server** aus, welche Tools der Agent nutzen darf, einzeln oder mit **Alle auswählen**.
 
-Für die einzelnen Tools gibt es zusätzliche Optionen:
-
-- **Laden aufschieben**: Das Tool wird erst geladen, wenn der Agent es benötigt, statt dauerhaft aktiv zu sein. Das ist besonders bei Servern mit vielen Tools nützlich. Mit **Alle Tools aufschieben** gilt das für alle Tools des Servers. Bei MCP-Servern mit vielen Tools lädt CompanyGPT die Tools bereits standardmäßig erst bei Bedarf.
-- **Absichtsbezeichnung**: Der Agent beschreibt vor jedem Aufruf in einem Satz, was er gleich tun wird. Dieser Text wird während des Aufrufs live als Status angezeigt. Dadurch entstehen pro Anfrage geringfügig höhere Token-Kosten. Mit **Absichtsbezeichnungen für alle aktivieren** schalten Sie die Option für alle Tools des Servers ein.
+Mit **Laden aufschieben** wird ein Tool erst geladen, wenn der Agent es benötigt, statt dauerhaft aktiv zu sein. Das ist besonders bei Servern mit vielen Tools nützlich. In der Grundeinstellung ist **Laden aufschieben** für alle Tools eingeschaltet. Mit **Aufschub für alle Tools aufheben** bzw. **Alle Tools aufschieben** ändern Sie die Einstellung für alle Tools des Servers auf einmal.
 
 Neue MCP-Server können nur Personen anlegen, deren Rolle das erlaubt. Mehr dazu unter [MCP Server](/de/company-gpt/integrationen/mcp-server/).
 
@@ -120,9 +133,9 @@ Ob die Bildwerkzeuge genutzt werden können, hängt davon ab, welche Bildmodelle
 
 #### Aktionen
 
-Aktionen sind externe API-Schnittstellen, die direkt über [OpenAPI kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. Eine neue Aktion legen Sie in der Tool-Bibliothek über **Neu erstellen …** an.
+Aktionen sind externe API-Schnittstellen, die direkt über [OpenAPI kompatible Schemas](https://spec.openapis.org/oas/latest.html) angebunden werden können. Eine neue Aktion legen Sie in der Tool-Bibliothek über **Neu erstellen …** → **Aktionen** an. Das ist erst möglich, wenn der Agent erstellt ist. Im Dialog **Neue Aktion** wählen Sie die **Authentifizierung** (**Keine**, **API-Schlüssel** oder **OAuth**) und fügen das **Schema** ein. Darunter zeigt CompanyGPT die **Verfügbaren Aktionen** aus dem Schema an.
 
-![actions-open-api](actions-open-api.png)
+![Dialog Neue Aktion mit Authentifizierung, einem Beispielschema und den daraus erkannten verfügbaren Aktionen](./actions-open-api.png)
 
 :::tip
 Diese Funktionalität ist sehr fortgeschritten, aber auch veraltet; besser ist es, API-Endpunkte über eigene MCP Server anzubinden.
@@ -132,33 +145,25 @@ Diese Funktionalität ist sehr fortgeschritten, aber auch veraltet; besser ist e
 
 Im Abschnitt **Skills** legen Sie fest, ob und welche Skills der Agent verwenden darf. Details finden Sie unter [Skills zu Agenten hinzufügen](/de/company-gpt/skills/#skills-zu-agenten-hinzufügen).
 
+#### Gesprächseinstiege
+
+Unter **Gesprächseinstiege** hinterlegen Sie Beispielanfragen, mit denen Nutzer ein Gespräch mit dem Agenten beginnen können. Im [Agenten-Marktplatz](#agenten-marktplatz) erscheinen sie in der Detailansicht des Agenten.
+
 #### Kontaktdaten
 
 Unter **Ansprechpartner-Kontakt** kann jeder Agent mit Kontaktdaten zum Ersteller versehen werden, was nützlich ist für Feedback bei geteilten Agenten.
 
 ### Erweiterte Einstellungen
 
-Über **Erweitert** öffnen Sie die **Erweiterten Einstellungen** des Agenten. Dort finden Sie die maximale Anzahl der Agenten-Schritte und unter **Multi-Agenten-Orchestrierung** die Einstellungen, mit denen der Agent mit anderen Agenten zusammenarbeitet: Unteragenten, Übergaben und die Agentenkette.
+Über **Erweitert** öffnen Sie die **Erweiterten Einstellungen** des Agenten. Dort legen Sie unter **Grundlagen** die maximale Anzahl der Agenten-Schritte fest.
 
 #### Maximale Agenten-Schritte
 
 Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Ohne eigene Angabe gilt in CompanyGPT ein Standardwert von 150 Schritten; der Hinweistext in der Oberfläche nennt noch 25. Tragen Sie einen eigenen Wert ein, gilt dieser statt der 150 Schritte, auch wenn er höher liegt. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
 
-#### Unteragenten
-
-Mit **Unteragenten aktivieren** kann der Agent Teilaufgaben an Hilfsagenten abgeben. Unteragenten arbeiten in einem eigenen, isolierten Kontextfenster: Ausführliche Tool-Ausgaben bleiben beim Unteragenten, an den Agenten geht nur eine Zusammenfassung zurück. Über **Unteragent hinzufügen** wählen Sie bis zu 50 Agenten aus. Mit **Selbstaufruf erlauben** kann der Agent Teilaufgaben auch an eine Kopie von sich selbst übergeben; das funktioniert auch, wenn keine weiteren Agenten ausgewählt sind.
-
-#### Übergaben
-
-Unter **Übergaben** legen Sie Agenten fest, an die der Agent die Unterhaltung übergeben kann, wenn spezielles Fachwissen gebraucht wird. Jede Übergabe erzeugt ein Übergabe-Tool, über das der Agent die Unterhaltung samt Kontext an den spezialisierten Agenten weiterleitet. In der **Übergabebeschreibung** halten Sie fest, wann übergeben werden soll. Über **Übergabe-Agent hinzufügen** sind bis zu 10 Übergaben möglich.
-
-#### Agentenkette
-
-Mit der **Agentenkette** erstellen Sie Agenten-Sequenzen. Jeder Agent kann auf die Ausgaben vorheriger Agenten in der Kette zugreifen. Basiert auf der "Mixture-of-Agents"-Architektur, bei der Agenten vorherige Ausgaben als zusätzliche Informationen verwenden.
-
 ### Version
 
-Jedes Mal, wenn Änderungen an einem Agenten gespeichert werden, wird eine Version erzeugt. Über die Versionsanzeige können Sie diese Versionen ansehen und eine frühere Version mit **Wiederherstellen** zurückholen. Das ist sinnvoll, wenn Sie Änderungen rückgängig machen möchten.
+Jedes Mal, wenn Änderungen an einem Agenten gespeichert werden, wird eine Version erzeugt. Über **Version** öffnen Sie die **Versionsgeschichte**. Dort können Sie diese Versionen ansehen und eine frühere Version mit **Wiederherstellen** zurückholen. Das ist sinnvoll, wenn Sie Änderungen rückgängig machen möchten.
 
 ## Berechtigungen
 
@@ -168,25 +173,25 @@ In der Standardeinstellung dürfen Nutzer Agenten nutzen und erstellen, aber nic
 
 ## Teilen von Agenten
 
-Wenn Ihre Rolle das Teilen von Agenten erlaubt, können Sie Agenten teilen. Dazu muss auf den Teilen-Button neben dem Speichern-Button geklickt werden.
+Wenn Ihre Rolle das Teilen von Agenten erlaubt, können Sie Agenten teilen. Dazu muss auf den Teilen-Button unten im Formular des Agenten geklickt werden.
 
-![share agent](share-agent.png)
+![Untere Leiste im Formular eines Agenten mit Erweitert, Version, Löschen, Teilen, Duplizieren und Speichern](./share-agent.png)
 
 Dabei kann ausgesucht werden, ob der Agent global, mit bestimmten Nutzern oder Nutzergruppen geteilt werden soll.
 
-![share-agent-details](share-agent-details.png)
+![Dialog zum Teilen eines Agenten mit der Suche nach Personen oder Gruppen und dem Besitzer des Agenten](./share-agent-details.png)
 
 Dabei kann ausgewählt werden, mit welchen Rechten die anderen Benutzer auf den Agenten zugreifen können.
 
-![agent-share-rights](agent-share-rights.png)
+![Auswahl der Rechte Betrachter, Bearbeiter und Besitzer im Teilen-Dialog](./agent-share-rights.png)
 
 ### Agents API
 
 Agenten können auch von außen über die [Agents API](/de/api/agents-api/) angesprochen werden. Voraussetzung ist, dass Ihre Rolle in companyADMIN das Recht **Remote-Agenten** hat. Ihre eigenen Agenten stehen Ihnen dann automatisch über die API zur Verfügung. Über den Button **Remote-Zugriff** können Sie den API-Zugriff auf einen Agenten mit anderen teilen, sofern Ihre Rolle das erlaubt.
 
-![api-share](api-share.png)
+![Schaltfläche für den Remote-Zugriff mit Globus-Symbol](./api-share.png)
 
-![api-share-details](api-share-details.png)
+![Dialog zum Teilen des API-Zugriffs auf einen Agenten](./api-share-details.png)
 
 ## Unsere Agenten
 
@@ -194,6 +199,10 @@ Unter [**Agenten**](/de/tutorials) finden Sie eine Auswahl an Agenten, die wir f
 
 ## Agenten-Marktplatz
 
-Geteilte aber auch eigene Agenten sind über den Agenten-Marktplatz einsehbar.
+Geteilte aber auch eigene Agenten sind über den Agenten-Marktplatz einsehbar. Sie öffnen ihn über **Agenten-Marktplatz** in der linken Seitenleiste.
 
-![agent-marketplace](agent-marketplace.png)
+![Agenten-Marktplatz mit Suche, Kategorien, den Schaltflächen My agents und Sort by sowie den ersten Agenten](./agent-marketplace.png)
+
+Über **Sort by** sortieren Sie die Agenten nach Beliebtheit (**Popular**), nach Erstellungsdatum (**Newest first**, **Oldest first**) oder nach dem Namen der erstellenden Person (**By creator name**). **My agents** zeigt nur die Agenten, die Sie selbst erstellt haben.
+
+Ein Klick auf einen Agenten öffnet seine Detailansicht. Dort starten Sie mit **Chat starten** einen Chat mit dem Agenten. Hat der Agent [Gesprächseinstiege](#gesprächseinstiege), sehen Sie diese unter **Try a conversation starter**: Ein Klick öffnet einen neuen Chat mit dem Text, den Sie vor dem Senden bei Bedarf anpassen.

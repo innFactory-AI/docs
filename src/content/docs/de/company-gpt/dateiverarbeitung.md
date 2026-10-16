@@ -3,6 +3,10 @@ title: Dateiverarbeitung
 description: Erfahren Sie, wie CompanyGPT hochgeladene Dateien verarbeitet - Bilder und PDFs direkt beim KI-Modell, Office-Dokumente als Text, Dateisuche und Code Interpreter je nach aktiven Werkzeugen sowie die SharePoint-Integration.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Im CompanyGPT können Sie Dateien an Ihre Nachrichten anhängen. Wie eine Datei verarbeitet wird, entscheidet CompanyGPT automatisch anhand des Dateityps, des gewählten KI-Modells und der aktiven Werkzeuge. Sie müssen beim Hochladen kein Ziel mehr auswählen.
 
 :::tip[Kurzübersicht]
@@ -14,7 +18,7 @@ Im CompanyGPT können Sie Dateien an Ihre Nachrichten anhängen. Wie eine Datei 
 
 ## Dateien hochladen
 
-Klicken Sie in der Chateingabe auf die Büroklammer (**Dateien anhängen**) und wählen Sie die gewünschten Dateien aus. Ist in Ihrer Umgebung die [SharePoint-Integration](#sharepoint-integration) aktiviert, öffnet die Büroklammer ein Menü mit **Vom lokalen Computer** und **Von SharePoint**.
+Klicken Sie in der Chateingabe auf das Plus-Symbol (**Attach and tools**), wählen Sie unter **Attach** den Eintrag **Vom lokalen Computer** und anschließend die gewünschten Dateien aus. Ist in Ihrer Umgebung die [SharePoint-Integration](#sharepoint-integration) aktiviert, finden Sie dort zusätzlich **Von SharePoint**.
 
 In der Standardkonfiguration gelten folgende Grenzen, die Ihr Unternehmen anpassen kann:
 

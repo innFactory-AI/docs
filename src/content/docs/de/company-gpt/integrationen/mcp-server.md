@@ -3,6 +3,10 @@ title: MCP Server
 description: MCP Server - Erfahren Sie, wie das Model Context Protocol die Kommunikation zwischen CompanyGPT und externen Diensten ermöglicht und Tools für kundenspezifische Anwendungen integriert.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Das Model Context Protocol (MCP) ist ein spezialisiertes Protokoll und eine Schnittstelle, die CompanyGPT die nahtlose Kommunikation mit externen Diensten ermöglicht. Diese Dienste laufen auf kundenspezifischen MCP-Servern, die oft komplexe Backend-Funktionalitäten hosten oder spezifische Unternehmensprozesse orchestrieren. Ursprünglich von Anthropic entwickelt, wird das MCP mittlerweile von nahezu allen KI-Anwendungen unterstützt, wodurch CompanyGPT auf eine breite Masse bestehender MCP-Server zurückgreifen kann. Bei Bedarf lassen sich eigene Server entwickeln, um nahezu jede Anwendung an CompanyGPT anzubinden.
 
 Das MCP basiert auf einer Client-Server-Architektur, bei der CompanyGPT als Client die vom Server bereitgestellten „Tools“ konsumiert. Ein MCP-Server kann beliebig viele solcher Tools beinhalten, wobei das integrierte LLM selbstständig entscheidet, welches Tool genutzt und welche Parameter übergeben werden. Nach der Ausführung wertet das LLM die Ergebnisse aus und formuliert eine entsprechende Antwort an den Benutzer.
@@ -13,7 +17,7 @@ Mehr Informationen zu MCP finden Sie hier: [Prompt Engineering / MCP](/de/prompt
 
 Die MCP Server, die Ihnen zur Verfügung stehen, finden Sie in der linken Seitenleiste unter **MCP Einstellungen**. Dort sehen Sie den Status jedes Servers. Verlangt ein Server eine Anmeldung oder einen eigenen Schlüssel, können Sie sich dort mit **Verbinden** anmelden bzw. den Server konfigurieren.
 
-Im [Chat](/de/company-gpt/chat/#integrationen) wählen Sie MCP Server über die Chateingabe aus, in [Agenten](/de/company-gpt/agenten/#mcp-server) über die Tool-Bibliothek.
+Im [Chat](/de/company-gpt/chat/#integrationen) wählen Sie MCP Server über das Plus-Symbol in der Chateingabe (**Attach and tools**) im Bereich **MCP Servers** aus; **Alle anzeigen** öffnet die vollständige Liste. In [Agenten](/de/company-gpt/agenten/#mcp-server) fügen Sie MCP Server über die Tool-Bibliothek hinzu.
 
 ## MCP Server hinzufügen
 
@@ -21,7 +25,7 @@ Neue MCP Server können nur Personen anlegen, deren Rolle das erlaubt. Normale N
 
 Mit der entsprechenden Berechtigung öffnet sich über das **+** oben in den **MCP Einstellungen** (Tooltip **MCP hinzufügen**) der Dialog **MCP Server hinzufügen**.
 
-![add-mcp](add-mcp.png)
+![Dialog MCP Server hinzufügen mit Icon, Name, Beschreibung, MCP-Server-URL, Server-Typ und Authentifizierung](./add-mcp.png)
 
 ### MCP Server Eigenschaften
 
@@ -45,8 +49,8 @@ Bei erfolgreicher Initialisierung wird der MCP Server in den **MCP Einstellungen
 
 Sobald ein MCP Server hinzugefügt wurde, kann dieser geteilt werden, sofern Ihre Rolle das Teilen erlaubt. Dazu öffnen Sie den Server in den **MCP Einstellungen** in der linken Seitenleiste über **Bearbeiten**. Im Dialog **MCP-Server bearbeiten** kann dann das bekannte Teilen-Menü aufgerufen werden:
 
-![share-mcp](share-mcp.png)
+![Schaltflächen zum Löschen und Teilen im Dialog MCP-Server bearbeiten](./share-mcp.png)
 
 Im Detailmenü kann ausgewählt werden, mit wem und mit welchen Rechten der MCP Server geteilt werden soll.
 
-![detail-share-mcp](detail-share-mcp.png)
+![Teilen-Dialog eines MCP Servers mit Berechtigungen und den Rollen MCP Server Viewer, Editor und Owner](./detail-share-mcp.png)

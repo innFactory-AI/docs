@@ -1,0 +1,918 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "transcribe-liste",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Teambesprechung"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-liste.png"
+    },
+    {
+      "id": "transcribe-liste",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Teambesprechung"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-liste.png"
+    },
+    {
+      "id": "transcribe-aufnahme",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Aufnahme starten\")"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-aufnahme.png"
+    },
+    {
+      "id": "transcribe-aufnahme",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Start recording\")"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-aufnahme.png"
+    },
+    {
+      "id": "transcribe-aufnahme-laeuft",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "json": {}
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Aufnahme starten\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stoppen\")"
+        },
+        {
+          "action": "wait",
+          "ms": 2500
+        }
+      ],
+      "settleMs": 300,
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 440
+      },
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-aufnahme-laeuft.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-aufnahme-laeuft",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "json": {}
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Start recording\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stop\")"
+        },
+        {
+          "action": "wait",
+          "ms": 2500
+        }
+      ],
+      "settleMs": 300,
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 440
+      },
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-aufnahme-laeuft.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-warte-auf-verbindung",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts. Der Upload der Audiostücke scheitert gestellt wie ohne Verbindung.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "abort": "internetdisconnected"
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Aufnahme starten\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stoppen\")"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Stoppen\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Warte auf Verbindung..."
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Jetzt erneut versuchen\")"
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 500,
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 440
+      },
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-warte-auf-verbindung.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-warte-auf-verbindung",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts. Der Upload der Audiostücke scheitert gestellt wie ohne Verbindung.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "abort": "internetdisconnected"
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Start recording\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stop\")"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Stop\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Waiting for a connection..."
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Retry now\")"
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 500,
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 440
+      },
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-warte-auf-verbindung.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-nicht-gespeichert",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts. Das Abschließen der Aufnahme scheitert gestellt; die Aufnahme bleibt im Browser.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "json": {}
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/complete?*",
+          "method": "POST",
+          "status": 400,
+          "json": {
+            "error": "Gestellter Fehler"
+          }
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Teambesprechung"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Aufnahme starten\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stoppen\")"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Stoppen\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Noch nicht gespeicherte Aufnahmen"
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 500,
+      "selector": "main div.bg-status-warning-subtle",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-nicht-gespeichert.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-nicht-gespeichert",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/record",
+      "note": "Gefälschtes Mikrofon per \"fakeMedia\". Start und Upload der Aufnahme sind gestellt, im Tenant entsteht nichts. Das Abschließen der Aufnahme scheitert gestellt; die Aufnahme bleibt im Browser.",
+      "routes": [
+        {
+          "urlPattern": "**/api/transcribe/recording/start",
+          "method": "POST",
+          "json": {
+            "id": "00000000-0000-4000-8000-000000000001",
+            "recordingToken": null
+          }
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/chunk?*",
+          "method": "POST",
+          "json": {}
+        },
+        {
+          "urlPattern": "**/api/transcribe/recording/complete?*",
+          "method": "POST",
+          "status": 400,
+          "json": {
+            "error": "Gestellter Fehler"
+          }
+        }
+      ],
+      "waitFor": "main button[role=switch]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Teambesprechung"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Start recording\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Stop\")"
+        },
+        {
+          "action": "wait",
+          "ms": 1500
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Stop\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Recordings not yet saved"
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 500,
+      "selector": "main div.bg-status-warning-subtle",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-nicht-gespeichert.png",
+      "fakeMedia": true
+    },
+    {
+      "id": "transcribe-transkript",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main >> text=Teambesprechung"
+        },
+        {
+          "action": "wait",
+          "selector": "main input[value=\"Anna Beispiel\"]"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Bearbeiten\") >> nth=1"
+        },
+        {
+          "action": "wait",
+          "selector": "main textarea"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=Planung Sommerfest"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-transkript.png"
+    },
+    {
+      "id": "transcribe-transkript",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "main >> text=Teambesprechung"
+        },
+        {
+          "action": "wait",
+          "selector": "main input[value=\"Anna Beispiel\"]"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Edit\") >> nth=1"
+        },
+        {
+          "action": "wait",
+          "selector": "main textarea"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=Planung Sommerfest"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-transkript.png"
+    },
+    {
+      "id": "transcribe-sprecher",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main >> text=Teambesprechung"
+        },
+        {
+          "action": "wait",
+          "selector": "main input[value=\"Anna Beispiel\"]"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main div.rounded-lg.border.p-4:has(input)",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-sprecher.png"
+    },
+    {
+      "id": "transcribe-sprecher",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/transcripts",
+      "waitFor": "main >> text=Teambesprechung",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "main >> text=Teambesprechung"
+        },
+        {
+          "action": "wait",
+          "selector": "main input[value=\"Anna Beispiel\"]"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main div.rounded-lg.border.p-4:has(input)",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-sprecher.png"
+    },
+    {
+      "id": "transcribe-sprachausgabe",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover/new",
+      "waitFor": "main button[role=combobox]",
+      "actions": [
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Begrüßung"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea >> nth=1",
+          "value": "Willkommen bei der Muster GmbH. Schön, dass Sie heute dabei sind. In den nächsten Minuten stellen wir Ihnen unser Team, unsere Projekte und die wichtigsten Termine des Jahres vor."
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 800,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-sprachausgabe.png"
+    },
+    {
+      "id": "transcribe-sprachausgabe",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover/new",
+      "waitFor": "main button[role=combobox]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Begrüßung"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea >> nth=1",
+          "value": "Willkommen bei der Muster GmbH. Schön, dass Sie heute dabei sind. In den nächsten Minuten stellen wir Ihnen unser Team, unsere Projekte und die wichtigsten Termine des Jahres vor."
+        },
+        {
+          "action": "hover",
+          "selector": "main p >> nth=0"
+        }
+      ],
+      "settleMs": 800,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-sprachausgabe.png"
+    },
+    {
+      "id": "transcribe-stimmen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover/new",
+      "waitFor": "main button[role=combobox]",
+      "actions": [
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Begrüßung"
+        },
+        {
+          "action": "click",
+          "selector": "main button[role=combobox] >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Google (Chirp 3 HD)\"]"
+        },
+        {
+          "action": "click",
+          "selector": "main button[role=combobox] >> nth=2"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=listbox]"
+        },
+        {
+          "action": "press",
+          "key": "End"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "settleMs": 500,
+      "clip": {
+        "x": 272,
+        "y": 254,
+        "width": 1136,
+        "height": 470
+      },
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-stimmen.png"
+    },
+    {
+      "id": "transcribe-stimmen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover/new",
+      "waitFor": "main button[role=combobox]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "fill",
+          "selector": "main input >> nth=0",
+          "value": "Begrüßung"
+        },
+        {
+          "action": "click",
+          "selector": "main button[role=combobox] >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Google (Chirp 3 HD)\"]"
+        },
+        {
+          "action": "click",
+          "selector": "main button[role=combobox] >> nth=2"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=listbox]"
+        },
+        {
+          "action": "press",
+          "key": "End"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "settleMs": 500,
+      "clip": {
+        "x": 272,
+        "y": 254,
+        "width": 1136,
+        "height": 470
+      },
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-stimmen.png"
+    },
+    {
+      "id": "transcribe-sprachausgabe-ergebnis",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover",
+      "waitFor": "main >> text=\"Begrüßung\"",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main >> text=\"Begrüßung\""
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Neu generieren\")"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=Algieba"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-transcribe/transcribe-sprachausgabe-ergebnis.png"
+    },
+    {
+      "id": "transcribe-sprachausgabe-ergebnis",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/transcribe/voiceover",
+      "waitFor": "main >> text=\"Begrüßung\"",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button[aria-label^=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Sprache\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemradio[name=\"English\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=New chat"
+        },
+        {
+          "action": "click",
+          "selector": "main p >> nth=0"
+        },
+        {
+          "action": "click",
+          "selector": "main >> text=\"Begrüßung\""
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Regenerate\")"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=Algieba"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-transcribe/transcribe-sprachausgabe-ergebnis.png"
+    }
+  ]
+}

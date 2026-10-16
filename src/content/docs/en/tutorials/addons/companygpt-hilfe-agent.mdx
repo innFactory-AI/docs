@@ -15,7 +15,7 @@ Prerequisite: You have access to companyRAG – via [All apps](/en/company-gpt/a
 
 First we create the collection in which the crawled pages will be indexed. In companyRAG, navigate to **Collections** and select **Create Collection**. Select **Documents** as the **Collection Type**, enter a name and a description, and choose the visibility.
 
-![sammlung-erstellen](sammlung-erstellen.png)
+![The "Create Collection" dialog with the collection type Documents, the name Dokumentation and the technical name dokumentation](./sammlung-erstellen.png)
 
 Note the **technical name** (`dokumentation` in the example) – it will be needed later in the agent prompt.
 
@@ -29,13 +29,13 @@ In the advanced settings you can adjust – depending on the environment – the
 The search language should ideally match the language of the website. In addition to semantic search, a full-text search is performed that yields better results with the correct language setting.
 :::
 
-![erweiterte-einstellungen](erweiterte-einstellungen.png)
+![Advanced settings in the "Create Collection" dialog with embedding model, search language, chunking strategy, chunk size and chunk overlap](./erweiterte-einstellungen.png)
 
 ## 2. Create a Web Crawl Source
 
 To index the pages automatically and recurrently, we create a web crawl source. Switch to the **Sources** section.
 
-![quellen](quellen.png)
+![The Sources entry in the companyRAG sidebar](./quellen.png)
 
 In the **Webcrawl** tab, click **Add Web Source** to create a new source. On the **New Web Crawl Source** page, select the **Sitemap** tab and fill in the fields:
 
@@ -64,6 +64,8 @@ Instead of a sitemap, you can also crawl individual pages or a CSV-imported list
 After creation, you can start the first crawl directly via **Sync now**. If you selected an auto-sync interval, companyRAG also starts the first run on its own shortly after creation. The source appears as **Active** under **All Sources**; the discovered pages are queued as indexing jobs.
 
 You can track progress in the **Jobs** section. There you see the status per page (**Queued**, **Running**, **Completed**, **Failed**, or **Cancelled**). Once all jobs are **Completed**, the collection is searchable.
+
+![Jobs of the dokumentation collection with status, type, crawled page and timestamps](./auftraege-doku.png)
 
 Via the source's **…** menu you can **Pause**, **Resume**, **Edit** or **Delete** it at any time. Deleting permanently removes all pages of this source from the collection.
 

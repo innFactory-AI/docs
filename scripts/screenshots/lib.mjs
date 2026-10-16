@@ -50,8 +50,8 @@ export function assertSafeStatePath(file) {
  * 3. der zu playwright-core passende Chromium-Build aus ~/.cache/ms-playwright,
  * 4. ein installiertes Google Chrome (Kanal "chrome"). Es wird nie etwas heruntergeladen.
  */
-export async function launchBrowser({ headless = true } = {}) {
-  const base = { headless };
+export async function launchBrowser({ headless = true, args = [] } = {}) {
+  const base = { headless, args };
   const exe = expandHome(process.env.SCREENSHOT_BROWSER_PATH);
   if (exe) return chromium.launch({ ...base, executablePath: exe });
   const channel = process.env.SCREENSHOT_BROWSER_CHANNEL;

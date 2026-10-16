@@ -19,6 +19,10 @@ On wide screens the sidebar sits on the left. From top to bottom it contains:
 | Addon menu | The areas of the respective addon. Dividers group the menu where needed. The current area is highlighted. |
 | Account | At the very bottom: your profile picture, with your name in the expanded sidebar. Clicking it opens the [account menu](#account-menu). |
 
+![Expanded sidebar in companyTRANSLATE with New chat, All apps, the addon menu and the account](./oberflaeche-seitenleiste.png)
+
+![Collapsed sidebar: hovering over an icon shows its name, here All apps](./oberflaeche-seitenleiste-eingeklappt.png)
+
 If an area has sub-pages, for example in companyADMIN, the expanded sidebar shows the sub-pages of the current area indented below it.
 
 Your browser remembers whether the sidebar is expanded or collapsed, for all addons together.
@@ -31,7 +35,11 @@ In narrow windows, for example on a smartphone, a header replaces the sidebar:
 - in the middle the title of the current page,
 - on the right the page's actions (several actions are grouped under **More options**) and **New chat**.
 
+![Header on a smartphone with Open sidebar, the page title, an action and New chat](./oberflaeche-mobil.png)
+
 **Open sidebar** slides the menu in across the full width. At the top are **Close sidebar**, the name of the addon, **New chat** and your account, below them **All apps** and the addon menu. Tapping an entry opens the page and closes the menu.
+
+![Open navigation on a smartphone with the addon name, New chat, account, All apps and the addon menu](./oberflaeche-mobil-navigation.png)
 
 ## Account menu
 
@@ -44,6 +52,8 @@ Clicking your profile picture opens the account menu:
 
 Depending on the addon, individual items may be missing, for example **Language** if the addon offers only one language.
 
+![Open account menu with the Theme submenu; the email address is masked](./oberflaeche-kontomenue.png)
+
 ### Same theme as the chat
 
 The theme is linked to the chat. An addon adopts the theme you chose in the chat. If you choose a different theme in an addon, it also applies in the chat. Merely opening an addon does not change anything in the chat.
@@ -54,7 +64,7 @@ The addons use the CompanyGPT session. If you are signed in to the chat, you are
 
 ## Status pages
 
-If an addon cannot show its content, a status page appears in the content area instead of an empty page. The sidebar then shows only **New chat** and **All apps**, and for **No access** also your account – so you can sign out and sign in with a different account.
+If an addon cannot show its content, a status page appears in the content area instead of an empty page. The sidebar then shows only **New chat** and **All apps**. For **No access**, your account may also appear; you can then sign out there and sign in with a different account.
 
 | Status page | Meaning | What you can do |
 |---|---|---|
@@ -62,6 +72,10 @@ If an addon cannot show its content, a status page appears in the content area i
 | **No access** | You are signed in, but your account is not enabled for this addon. The text gives the reason, for example: *Your account has no usage right for this application. Please contact your companyGPT administration.* Below it is a code such as `EXT_ACCESS_DENIED`. | Contact your administrator and quote the code. |
 | **companyGPT is not reachable** | CompanyGPT is not responding at the moment. The addon retries automatically and shows the waiting time (**Retrying automatically in …s**). | **Retry** starts a new attempt right away. After the last automatic attempt, **Reload the page** appears as well. |
 | **Logout failed** | Logging out did not work. Note: **Your session may still be active**. | **Retry** starts the logout again. |
+
+![No access status page with the reason and the code EXT_ACCESS_DENIED](./oberflaeche-kein-zugriff.png)
+
+![companyGPT is not reachable status page with Retry and the time until the next attempt](./oberflaeche-nicht-erreichbar.png)
 
 ## Embedded view in the chat
 

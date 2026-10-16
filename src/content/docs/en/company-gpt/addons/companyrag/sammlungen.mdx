@@ -17,7 +17,7 @@ The overview under **Collections** is divided into the tabs **All**, **Mine** (c
 
 Then you define **Collection Name**, **Description** and **Visibility**. The **Technical Name** is generated automatically from the name – it is later used in agent prompts and in the MCP tools as `collection` and cannot be changed.
 
-!["Create collection" dialog with technical name, description and visibility](./sammlung-erstellen-basis.png)
+!["Create collection" dialog with collection type, collection name, technical name, description, visibility and the options to extract structured data, describe images and store tabular files as datasets](./sammlung-erstellen-basis.png)
 
 Two visibility options are available:
 
@@ -83,7 +83,7 @@ For existing collections, switch the option on under **Edit collection** and sav
 
 Depending on your role, the following icons are available at the bottom of each collection:
 
-![Collection actions: share, edit and delete](./actions-collections.png)
+![Collection actions: system prompt, share, edit and delete](./actions-collections.png)
 
 - **System Prompt**: a prepared system prompt for an agent, see [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/#example-prompt-from-the-collection).
 - **Ingestion instructions**: for live datasets only; shows the endpoints for pushing rows, see [Dataset collections](/en/company-gpt/addons/companyrag/datensaetze/#pushing-rows).
@@ -98,6 +98,8 @@ In the **Share Collection** dialog you search for people or groups by name or em
 - **Viewer**: Can view and search this collection, but not change it.
 - **Admin**: Can view, upload files and change settings.
 - **Owner**: Full control, including sharing and deleting. A collection must keep at least one owner.
+
+![The "Share Collection" dialog with the search field for people and groups, the owner entry with its role and the Share with everyone switch](./sammlung-teilen.png)
 
 The **Share with everyone** switch gives all users read access to the collection. Apply your changes with **Save changes**.
 

@@ -1,0 +1,119 @@
+{
+  "id": "00000000-0000-4000-8000-0000d0000002",
+  "chapterId": "00000000-0000-4000-8000-0000a0000002",
+  "courseId": "00000000-0000-4000-8000-0000c0000001",
+  "title": "Quiz: Gute Prompts",
+  "passThresholdPercent": 70,
+  "questions": [
+    {
+      "id": "00000000-0000-4000-8000-0000f0000001",
+      "text": "Was gehört in einen guten Prompt?",
+      "position": 1,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e1000001",
+          "text": "Eine klare Aufgabe",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e1000002",
+          "text": "Das gewünschte Format oder der Umfang",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e1000003",
+          "text": "Möglichst wenig Kontext",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000002",
+      "text": "Wie lässt sich eine unpassende Antwort am besten verbessern?",
+      "position": 2,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e2000001",
+          "text": "Den Prompt präzisieren und ein Beispiel ergänzen",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e2000002",
+          "text": "Denselben Prompt unverändert erneut senden",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e2000003",
+          "text": "Den Chat löschen und neu beginnen",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000003",
+      "text": "Welche Angaben gehören nicht in einen Prompt?",
+      "position": 3,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e3000001",
+          "text": "Passwörter und Zugangsdaten",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e3000002",
+          "text": "Die gewünschte Sprache der Antwort",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e3000003",
+          "text": "Eine Beispielformulierung",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000004",
+      "text": "Wofür eignet sich eine Rolle im Prompt, etwa „Du bist Lektor“?",
+      "position": 4,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e4000001",
+          "text": "Sie legt Ton und Blickwinkel der Antwort fest",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e4000002",
+          "text": "Sie ersetzt die eigentliche Aufgabe",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e4000003",
+          "text": "Sie macht jede Antwort kürzer",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000005",
+      "text": "Was hilft bei langen Dokumenten?",
+      "position": 5,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e5000001",
+          "text": "Konkret sagen, welcher Teil wichtig ist",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e5000002",
+          "text": "Das Dokument ohne Frage hochladen",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e5000003",
+          "text": "Nur den Dateinamen nennen",
+          "position": 3
+        }
+      ]
+    }
+  ]
+}

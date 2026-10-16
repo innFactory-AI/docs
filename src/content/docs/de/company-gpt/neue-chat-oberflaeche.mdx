@@ -15,10 +15,14 @@ Die Beschriftungen der neuen Funktionen erscheinen in der deutschen Oberfläche 
 
 Das Plus-Symbol im Eingabefeld öffnet ein gemeinsames Menü für Anhänge und Werkzeuge (**Attach and tools**). Es ersetzt die bisherige Büroklammer, das Menü **Werkzeuge** und das Anpinnen von Integrationen.
 
+![Eingabeleiste mit geöffnetem Menü Attach and tools: Suchfeld, Upload-Möglichkeiten und Werkzeuge](./neue-oberflaeche-palette.png)
+
 - **Alles an einem Ort**: Im Menü finden Sie die Upload-Möglichkeiten, zuletzt verwendete Dateien, die integrierten Werkzeuge wie [Websuche](/de/company-gpt/integrationen/websuche/), [Dateisuche](/de/company-gpt/integrationen/dateisuche/) oder [Code ausführen](/de/company-gpt/code-interpreter/), Ihre [Skills](/de/company-gpt/skills/) und die [MCP-Server](/de/company-gpt/integrationen/mcp-server/). Über das Suchfeld oben im Menü (**Search tools, skills and servers**) finden Sie Werkzeuge, Skills und Server direkt.
 - **Favoriten**: Häufig genutzte Einträge markieren Sie mit dem Stern oder mit `Strg` + `D` (macOS: `⌘` + `D`). Sie erscheinen dann gesammelt unter **Favoriten** im Menü.
 - **Chips**: Aktive Werkzeuge und MCP-Server erscheinen als Chips in der Eingabeleiste, gewählte Skills als Chips über dem Textfeld. Mit einem Klick auf einen Chip entfernen Sie den Eintrag wieder.
 - **Denkaufwand**: Bei Modellen mit Denkprozess öffnen Sie über eine Schaltfläche in der Eingabeleiste einen Regler, mit dem Sie zwischen schnelleren (**Faster**) und gründlicheren (**Smarter**) Antworten wählen. Bisher war diese Einstellung nur in den [KI-Einstellungen](/de/company-gpt/ki-einstellungen/#denkaufwand) erreichbar.
+
+![Geöffneter Regler für den Denkaufwand (Thinking) in der Eingabeleiste](./neue-oberflaeche-denkaufwand.png)
 
 ### Enter fügt eine neue Zeile ein
 
@@ -28,12 +32,16 @@ In der neuen Oberfläche fügt `Enter` standardmäßig eine neue Zeile ein. Gese
 
 Das bisherige Menü **Exportieren/Teilen** im Kopfbereich des Chats heißt jetzt **Chat options**. Neben Teilen und Exportieren enthält es zusätzlich **Umbenennen**, **Anpinnen**, die Zuordnung zu einem Projekt, **Duplizieren**, **Archivieren** und **Löschen**. Diese Aktionen waren bisher nur über das Menü eines Chats in der Seitenleiste erreichbar.
 
+![Geöffnetes Menü Chat options im Kopfbereich eines Chats](./neue-oberflaeche-chat-optionen.png)
+
 ## Projekte mit Anweisungen und Dateien
 
 [Projekte](/de/company-gpt/projekte/) erhalten eigene Anweisungen und Referenzdateien:
 
 - **Instructions** (Anweisungen): Legen Sie Ton, Ziele oder Hintergrund für alle Chats im Projekt fest. Die Anweisungen gelten für neue Nachrichten im Projekt; frühere Nachrichten werden nicht verändert. Die Regeln Ihrer Umgebung gelten weiterhin.
 - **Files** (Dateien): Hinterlegen Sie Referenzdateien im Projekt. Ist die Dateisuche aktiv, nutzen die Chats im Projekt passende Auszüge statt ganzer Dateien. Wie viele Dateien ein Projekt enthalten kann, zeigt der Projekt-Arbeitsbereich an. Entfernen Sie eine Datei, wirkt sich das nur auf künftige Nachrichten aus.
+
+![Projekt-Arbeitsbereich mit Instructions, Files und den Chats des Projekts; links das Projekt in der Seitenleiste](./neue-oberflaeche-projekt.png)
 
 Chats eines Projekts erscheinen standardmäßig nur noch im jeweiligen Projekt und nicht mehr zusätzlich in der Liste **Chats**. Über die Option **Show project chats** im Filtermenü der Chatliste blenden Sie sie dort wieder ein. Die Suche und die archivierten Chats umfassen weiterhin alle Chats.
 
@@ -78,5 +86,7 @@ Beim Anlegen eines geplanten Chats legen Sie fest:
 - optional ein Projekt, dem die entstehenden Chats zugeordnet werden
 - die Häufigkeit (**Frequency**): **Hourly** (stündlich, mit der Minute innerhalb der Stunde), **Daily**, **Weekdays** oder **Weekly** (jeweils mit Uhrzeit, wöchentlich zusätzlich mit Wochentagen) oder **Custom** über einen Cron-Ausdruck
 - die Zeitzone (**Time zone**)
+
+![Dialog New schedule zum Anlegen eines geplanten Chats](./neue-oberflaeche-geplanter-chat.png)
 
 Der Dialog zeigt dabei die nächsten Ausführungszeitpunkte an. Jeder Lauf startet einen neuen Chat mit dem gewählten Agenten. In der Übersicht führen Sie einen geplanten Chat bei Bedarf mit **Run now** sofort aus, bearbeiten ihn oder schalten ihn ab. Schlägt ein geplanter Chat wiederholt fehl, wird er automatisch deaktiviert. Wie viele geplante Chats Sie anlegen können und in welchem Mindestabstand sie laufen dürfen, legt Ihre Umgebung fest.

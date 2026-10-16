@@ -1,0 +1,17 @@
+{
+  "id": "00000000-0000-4000-8000-0000b0000004",
+  "chapterId": "00000000-0000-4000-8000-0000a0000002",
+  "courseId": "00000000-0000-4000-8000-0000c0000001",
+  "title": "Beispiele aus dem Alltag",
+  "type": "text",
+  "contentMarkdown": "Ein guter Prompt nennt die **Aufgabe**, den **Kontext** und das gewünschte **Ergebnis**. Drei Beispiele aus dem Büroalltag:\n\n### E-Mail beantworten\n\n**Prompt:** Formuliere eine freundliche Antwort auf die folgende Anfrage. Sage den Termin am Dienstag zu und bitte um die Tagesordnung. Höchstens fünf Sätze.\n\n### Protokoll zusammenfassen\n\n**Prompt:** Fasse das Protokoll in fünf Stichpunkten zusammen. Nenne am Ende alle offenen Aufgaben mit den Verantwortlichen.\n\n### Ideen sammeln\n\n**Prompt:** Schlage zehn Titel für einen internen Workshop zum Thema Zeitmanagement vor. Die Titel sollen kurz und motivierend sein.\n\n**Tipp:** Passt ein Ergebnis nicht, hilft ein Beispiel oder die Angabe des gewünschten Umfangs mehr als derselbe Prompt ein zweites Mal.",
+  "videoAssetId": null,
+  "position": 2,
+  "completed": false,
+  "lastPositionSeconds": null,
+  "nav": {
+    "prevLessonId": "00000000-0000-4000-8000-0000b0000003",
+    "nextLessonId": "00000000-0000-4000-8000-0000b0000005",
+    "quizId": null
+  }
+}

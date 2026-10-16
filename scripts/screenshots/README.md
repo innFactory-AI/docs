@@ -1,13 +1,14 @@
 # Doku-Screenshots per Playwright
 
-Die Screenshots der Doku werden nicht von Hand gemacht, sondern per Kommando aus der echten Anwendung aufgenommen. Welche Seite in welchem Zustand und mit welchem Ausschnitt aufgenommen wird, steht in `scenes.json`. Nach einem Release genügt ein Befehl, und alle Bilder sind wieder aktuell.
+Die Screenshots der Doku werden nicht von Hand gemacht, sondern per Kommando aus der echten Anwendung aufgenommen. Welche Seite in welchem Zustand und mit welchem Ausschnitt aufgenommen wird, steht in den Szenen-Dateien (`scenes.json` und `scenes-<bereich>.json`). Nach einem Release genügt ein Befehl, und alle Bilder sind wieder aktuell.
 
 | Datei | Zweck |
 |---|---|
-| `capture.mjs` | nimmt die Szenen aus `scenes.json` auf |
+| `capture.mjs` | nimmt die Szenen auf (Standard: alle Szenen-Dateien) |
 | `login.mjs` | einmalige Anmeldung im sichtbaren Browser, speichert die Sitzung (`storageState`) |
 | `lib.mjs` | gemeinsame Helfer (Browserstart, Pfadprüfung) |
-| `scenes.json` | Szenenliste |
+| `scenes.json` | öffentliche Szenen (Onboarding-Portal) |
+| `scenes-<bereich>.json` | Szenen eines Bereichs hinter der Anmeldung, siehe [Szenen-Dateien](#szenen-dateien) |
 | `fixtures/` | erfundene JSON-Antworten (oder Skripte) für gestellte Zustände |
 
 ## Einrichtung
@@ -35,6 +36,9 @@ npm run screenshots:login -- demo
 
 # alles aufnehmen
 SCREENSHOT_STORAGE_STATE=~/.config/companygpt-docs/storage-state.json npm run screenshots
+
+# nur einen Bereich
+SCREENSHOT_STORAGE_STATE=~/.config/companygpt-docs/storage-state.json npm run screenshots -- --scenes scripts/screenshots/scenes-files.json
 ```
 
 ## Login
@@ -61,13 +65,14 @@ Die Sitzung wird mit Rechten `600` gespeichert, standardmäßig unter `~/.config
 ## Aufnahme
 
 ```bash
-npm run screenshots                                   # alle Szenen
+npm run screenshots                                   # alle Szenen aus allen Szenen-Dateien
 npm run screenshots -- --only-public                  # nur Szenen mit "public": true
 npm run screenshots -- --id onboarding-portal-start   # eine Szene (beide Sprachen), mehrfach oder kommagetrennt
 npm run screenshots -- --lang en                      # nur Englisch
 npm run screenshots -- --list                         # nur auflisten
 npm run screenshots -- --id <id> --out-dir /tmp/vorschau   # Vorschau, ohne Dateien im Repo zu ändern
 npm run screenshots -- --id <id> --headed             # sichtbarer Browser zur Fehlersuche
+npm run screenshots -- --scenes scripts/screenshots/scenes-rag.json   # nur diese Szenen-Datei (mehrfach möglich)
 npm run screenshots -- --scenes ~/privat/scenes.json  # eigene Szenendatei außerhalb des Repos
 ```
 
@@ -77,7 +82,7 @@ Szenen ohne `"public": true` werden ohne Sitzungsdatei übersprungen. Der Exit-C
 
 Öffentliche Basis-URLs stehen in `scenes.json` unter `baseUrls`. Eine andere Umgebung (z. B. ein Test-Tenant) wird **nicht** in `scenes.json` eingetragen, sondern per Umgebungsvariable gesetzt: `SCREENSHOT_BASE_URL_DEMO=https://… npm run screenshots`. Das gilt auch für `login.mjs`.
 
-## Aufbau von `scenes.json`
+## Aufbau einer Szenen-Datei
 
 ```json
 {
@@ -87,7 +92,7 @@ Szenen ohne `"public": true` werden ohne Sitzungsdatei übersprungen. Der Exit-C
 }
 ```
 
-`defaults` gilt für jede Szene, Angaben in der Szene haben Vorrang.
+`defaults` und `baseUrls` gelten für die Szenen derselben Datei, Angaben in der Szene haben Vorrang. `id` + `lang` und `output` müssen über alle Dateien eindeutig sein. Fixtures liegen in `fixtures/` neben der Szenen-Datei.
 
 | Feld | Bedeutung |
 |---|---|
@@ -103,6 +108,7 @@ Szenen ohne `"public": true` werden ohne Sitzungsdatei übersprungen. Der Exit-C
 | `waitUntil` | Ladeereignis für den Seitenaufruf: `load` (Standard), `domcontentloaded`, `networkidle` |
 | `waitFor` | Selector, der sichtbar sein muss, bevor es weitergeht |
 | `offline` | `true`: nach dem Laden wird das Netz abgeschaltet (vor den `actions`) |
+| `fakeMedia` | `true`: Chromium startet mit gefälschtem Mikrofon und Kamera und erteilt die Freigabe selbst (für Aufnahme-Ansichten). Gilt für den ganzen Lauf, sobald eine ausgewählte Szene es setzt. |
 | `actions` | Schritte vor der Aufnahme, siehe unten |
 | `routes` | gestellte Antworten, siehe [Zustände per Mock](#zustände-per-mock) |
 | `localStorage` | weitere Schlüssel, die vor jedem Seitenaufbau gesetzt werden (`null` löscht) |
@@ -127,6 +133,7 @@ Vor jedem Bild wartet das Skript, bis alle Schriften und Bilder geladen sind. An
 | `fill` | `selector`, `value` | `{ "action": "fill", "selector": "textarea", "value": "Fasse den Bericht zusammen" }` |
 | `hover` | `selector` | `{ "action": "hover", "selector": "text=Alle Apps" }` |
 | `press` | `key`, optional `selector` | `{ "action": "press", "key": "Escape" }` |
+| `upload` | `selector` (ein `input[type=file]`), `file` (Pfad in `fixtures/`) | `{ "action": "upload", "selector": "main input[type=file]", "file": "translate/muster-anschreiben.docx" }` |
 | `wait` | `ms` **oder** `selector` (+ `state`: `visible`/`hidden`) | `{ "action": "wait", "selector": "[role=dialog]" }` |
 
 Mit `"optional": true` wird ein Schritt übersprungen, wenn das Element nach 3 Sekunden nicht da ist (z. B. ein Hinweis, der nur manchmal erscheint).
@@ -178,6 +185,21 @@ Typische Zustände:
 
 Aktionen wie „Speichern“ oder „Löschen“ in einer echten Sitzung ändern den Demo-Tenant. Solche Schritte vermeiden oder die zugehörige Anfrage per `routes` (mit `method`) abfangen.
 
+## Szenen-Dateien
+
+| Datei | Bereich | Braucht im Demo-Konto |
+|---|---|---|
+| `scenes.json` | Onboarding-Portal (öffentlich) | nichts |
+| `scenes-shell.json` | Alle Apps, gemeinsame Oberfläche (Seitenleiste, Kontomenü, Smartphone, Statusseiten) | nichts; Statusseiten sind per Mock gestellt |
+| `scenes-files.json` | companyFILES | hochgeladene Muster-Dokumente und die Vorlage „Musterbrief“; die Dokumente laufen nach der Aufbewahrungsfrist ab und müssen dann neu hochgeladen werden |
+| `scenes-translate.json` | companyTRANSLATE | Glossar `muster-glossar` (DE↔EN); globales Glossar, Verlauf und Dokumentübersetzung sind per Mock gestellt |
+| `scenes-transcribe.json` | companyTRANSCRIBE | Transkript „Teambesprechung / Planung Sommerfest“ und Sprachausgabe „Begrüßung“; Aufnahmen sind per Mock gestellt (`fakeMedia`) |
+| `scenes-rag.json` | companyRAG | siehe `note` der Szenen |
+| `scenes-learn.json` | companyLEARN (Lernenden-Ansichten) | nichts; Kurse, Fortschritt und Quiz sind per Mock gestellt |
+| `scenes-chat-preview.json` | Vorschau der neuen Chat-Oberfläche | Chat-Projekt „Newsletter“ mit dem Chat „Spring Newsletter Subject Lines“ |
+
+Die Demo-Inhalte sind neutral („Muster GmbH“, „Anna Beispiel“) und gehören zum Demo-Konto. Wer sie löscht, lässt die zugehörigen Szenen scheitern. Was eine Szene genau voraussetzt, steht in ihrem `note`.
+
 ## Sprache und Design
 
 - **DE und EN getrennt aufnehmen.** Jede Szene gibt es zweimal, mit `lang` `de` und `en`, und die Bilder liegen getrennt unter `src/content/docs/de/…` und `src/content/docs/en/…`.
@@ -221,6 +243,7 @@ Das Add-in läuft in Office und braucht `Office.js`. Zwei Wege:
 
 ## Bekannte Grenzen
 
-- Szenen hinter der Anmeldung sind noch nicht angelegt; sie werden nach der Anleitung oben ergänzt, sobald ihre Selectors am Demo-Tenant geprüft sind.
+- Das Demo-Konto ist kein Admin. Admin-Ansichten (companyADMIN, Insights, RAG-Verwaltung, LEARN-Kursverwaltung, globale Glossare anlegen) sind nicht als Szene angelegt; dafür braucht es ein zweites Konto mit eigener Sitzung (`account`).
+- Die Chat-Bilder der Kernseiten zeigen noch die heutige Chat-Oberfläche. Der Demo-Tenant läuft bereits mit der neuen Chat-Oberfläche; diese Bilder werden neu aufgenommen, sobald sie in die Flotte kommt.
 - `storageState` speichert Cookies, `localStorage` und IndexedDB, aber kein `sessionStorage`. Apps, die ihre Anmeldung nur dort halten, melden sich beim Aufruf still neu an oder leiten auf die Anmeldung um.
 - Pixelgleich sind Bilder nur mit demselben Browser-Build und derselben Pixeldichte.

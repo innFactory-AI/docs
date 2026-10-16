@@ -11,7 +11,7 @@ Im Chat aktivieren Sie Artefakte in der Chateingabe im Menü **Werkzeuge** über
 
 Standardmäßig werden zusätzliche, spezielle Anweisungen für die Nutzung von Artefakten hinzugefügt, es sei denn, der **Benutzerdefinierte Promptmodus für Artefakte** ist aktiviert.
 
-![artefakte](artefakte-beispiel.png)
+![Chat mit einer Finanzübersicht als Tabelle, daneben das geöffnete Artefakt mit einem Balkendiagramm in der Vorschau](./artefakte-beispiel.png)
 
 ## Artefakte ansehen und exportieren
 

@@ -19,6 +19,10 @@ Auf breiten Bildschirmen steht links die Seitenleiste. Von oben nach unten enth�
 | Menü des Addons | Die Bereiche des jeweiligen Addons. Trennlinien gliedern das Menü bei Bedarf in Gruppen. Der aktuelle Bereich ist hervorgehoben. |
 | Konto | Ganz unten: Ihr Profilbild, in der ausgeklappten Seitenleiste mit Ihrem Namen. Ein Klick öffnet das [Kontomenü](#kontomenü). |
 
+![Ausgeklappte Seitenleiste in companyTRANSLATE mit Neuer Chat, Alle Apps, dem Menü des Addons und dem Konto](./oberflaeche-seitenleiste.png)
+
+![Eingeklappte Seitenleiste: Beim Darüberfahren erscheint der Name, hier Alle Apps](./oberflaeche-seitenleiste-eingeklappt.png)
+
 Hat ein Bereich Unterseiten, etwa in companyADMIN, zeigt die ausgeklappte Seitenleiste die Unterseiten des aktuellen Bereichs eingerückt darunter.
 
 Ob die Seitenleiste ein- oder ausgeklappt ist, merkt sich Ihr Browser für alle Addons gemeinsam.
@@ -31,7 +35,11 @@ In schmalen Fenstern, zum Beispiel auf dem Smartphone, ersetzt eine Kopfzeile di
 - in der Mitte der Titel der aktuellen Seite,
 - rechts die Aktionen der Seite (mehrere Aktionen sind unter **Weitere Optionen** zusammengefasst) und **Neuer Chat**.
 
+![Kopfzeile auf dem Smartphone mit Seitenleiste öffnen, Seitentitel, einer Aktion und Neuer Chat](./oberflaeche-mobil.png)
+
 **Seitenleiste öffnen** schiebt das Menü über die ganze Breite herein. Oben stehen **Seitenleiste schließen**, der Name des Addons, **Neuer Chat** und Ihr Konto, darunter **Alle Apps** und das Menü des Addons. Ein Tipp auf einen Eintrag öffnet die Seite und schließt das Menü.
+
+![Geöffnete Navigation auf dem Smartphone mit dem Namen des Addons, Neuer Chat, Konto, Alle Apps und dem Menü des Addons](./oberflaeche-mobil-navigation.png)
 
 ## Kontomenü
 
@@ -44,6 +52,8 @@ Ein Klick auf Ihr Profilbild öffnet das Kontomenü:
 
 Je nach Addon fehlen einzelne Punkte, zum Beispiel **Sprache**, wenn das Addon nur eine Sprache anbietet.
 
+![Geöffnetes Kontomenü mit dem Untermenü Design; die E-Mail-Adresse ist geschwärzt](./oberflaeche-kontomenue.png)
+
 ### Design wie im Chat
 
 Das Design ist mit dem Chat gekoppelt. Ein Addon übernimmt das Design, das Sie im Chat gewählt haben. Wählen Sie im Addon ein anderes Design, gilt es auch im Chat. Das bloße Öffnen eines Addons ändert am Chat nichts.
@@ -54,7 +64,7 @@ Die Addons verwenden die Sitzung von CompanyGPT. Wenn Sie im Chat angemeldet sin
 
 ## Statusseiten
 
-Kann ein Addon seinen Inhalt nicht anzeigen, erscheint statt einer leeren Seite eine Statusseite im Inhaltsbereich. Die Seitenleiste zeigt dann nur **Neuer Chat** und **Alle Apps**, bei **Kein Zugriff** zusätzlich Ihr Konto – so können Sie sich abmelden und mit einem anderen Konto anmelden.
+Kann ein Addon seinen Inhalt nicht anzeigen, erscheint statt einer leeren Seite eine Statusseite im Inhaltsbereich. Die Seitenleiste zeigt dann nur **Neuer Chat** und **Alle Apps**. Bei **Kein Zugriff** kann zusätzlich Ihr Konto erscheinen; dann können Sie sich dort abmelden und mit einem anderen Konto anmelden.
 
 | Statusseite | Bedeutung | Was Sie tun können |
 |---|---|---|
@@ -62,6 +72,10 @@ Kann ein Addon seinen Inhalt nicht anzeigen, erscheint statt einer leeren Seite 
 | **Kein Zugriff** | Sie sind angemeldet, Ihr Konto ist für dieses Addon aber nicht freigeschaltet. Der Text nennt den Grund, zum Beispiel: *Ihr Konto hat für diese Anwendung kein Nutzungsrecht. Bitte wenden Sie sich an Ihre companyGPT-Administration.* Darunter steht ein Code wie `EXT_ACCESS_DENIED`. | Wenden Sie sich an Ihren Administrator und nennen Sie den Code. |
 | **companyGPT ist nicht erreichbar** | CompanyGPT antwortet gerade nicht. Das Addon versucht es automatisch erneut und zeigt die Wartezeit an (**Neuer Versuch in … s**). | **Erneut versuchen** startet sofort einen neuen Versuch. Nach dem letzten automatischen Versuch erscheint zusätzlich **Seite neu laden**. |
 | **Abmeldung fehlgeschlagen** | Die Abmeldung hat nicht geklappt. Hinweis: **Sitzung möglicherweise noch aktiv**. | **Erneut versuchen** startet die Abmeldung noch einmal. |
+
+![Statusseite Kein Zugriff mit Begründung und dem Code EXT_ACCESS_DENIED](./oberflaeche-kein-zugriff.png)
+
+![Statusseite companyGPT ist nicht erreichbar mit Erneut versuchen und der Wartezeit bis zum nächsten Versuch](./oberflaeche-nicht-erreichbar.png)
 
 ## Eingebettete Ansicht im Chat
 

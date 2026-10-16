@@ -1,0 +1,119 @@
+{
+  "id": "00000000-0000-4000-8000-0000d0000002",
+  "chapterId": "00000000-0000-4000-8000-0000a0000002",
+  "courseId": "00000000-0000-4000-8000-0000c0000001",
+  "title": "Quiz: Good prompts",
+  "passThresholdPercent": 70,
+  "questions": [
+    {
+      "id": "00000000-0000-4000-8000-0000f0000001",
+      "text": "What belongs in a good prompt?",
+      "position": 1,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e1000001",
+          "text": "A clear task",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e1000002",
+          "text": "The format or length you want",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e1000003",
+          "text": "As little context as possible",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000002",
+      "text": "What is the best way to improve an unsuitable answer?",
+      "position": 2,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e2000001",
+          "text": "Make the prompt more precise and add an example",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e2000002",
+          "text": "Send the same prompt again unchanged",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e2000003",
+          "text": "Delete the chat and start over",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000003",
+      "text": "Which details do not belong in a prompt?",
+      "position": 3,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e3000001",
+          "text": "Passwords and credentials",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e3000002",
+          "text": "The language you want the answer in",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e3000003",
+          "text": "An example phrasing",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000004",
+      "text": "What is a role in a prompt, such as “You are an editor”, good for?",
+      "position": 4,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e4000001",
+          "text": "It sets the tone and perspective of the answer",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e4000002",
+          "text": "It replaces the actual task",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e4000003",
+          "text": "It makes every answer shorter",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000f0000005",
+      "text": "What helps with long documents?",
+      "position": 5,
+      "options": [
+        {
+          "id": "00000000-0000-4000-8000-0000e5000001",
+          "text": "Saying exactly which part matters",
+          "position": 1
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e5000002",
+          "text": "Uploading the document without a question",
+          "position": 2
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000e5000003",
+          "text": "Only mentioning the file name",
+          "position": 3
+        }
+      ]
+    }
+  ]
+}

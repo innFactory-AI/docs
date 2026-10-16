@@ -1,16 +1,18 @@
 #!/usr/bin/env node
-// Nimmt die Doku-Screenshots aus scenes.json auf. Anleitung: scripts/screenshots/README.md
+// Nimmt die Doku-Screenshots aus scenes.json und scenes-*.json auf. Anleitung: scripts/screenshots/README.md
 //
 //   npm run screenshots -- --only-public
 //   npm run screenshots -- --id onboarding-portal-start --lang en
 //   SCREENSHOT_STORAGE_STATE=~/.config/companygpt-docs/storage-state.json npm run screenshots
-import { existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 import { REPO_ROOT, SCRIPT_DIR, assertSafeStatePath, expandHome, isInside, launchBrowser } from './lib.mjs';
 
 const LOCALES = { de: 'de-DE', en: 'en-US' };
+// Gefälschtes Mikrofon und Kamera, Freigabe ohne Rückfrage – für Szenen mit "fakeMedia": true.
+const FAKE_MEDIA_ARGS = ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'];
 const OUTPUT_ROOTS = ['src/content/docs', 'src/assets', 'public'].map((p) => path.join(REPO_ROOT, p));
 const CONTENT_TYPES = {
   '.json': 'application/json; charset=utf-8',
@@ -29,7 +31,8 @@ Optionen
   --id <id>           nur diese Szene(n); mehrfach oder kommagetrennt
   --lang <de|en>      nur diese Sprache
   --only-public       nur Szenen mit "public": true (ohne Login)
-  --scenes <datei>    andere Szenendatei (Standard: scripts/screenshots/scenes.json)
+  --scenes <datei>    nur diese Szenendatei(en); mehrfach möglich
+                      (Standard: scenes.json und alle scenes-*.json in scripts/screenshots/)
   --out-dir <ordner>  Bilder dorthin statt ins Repo schreiben (Vorschau)
   --list              Szenen nur auflisten
   --headed            sichtbaren Browser öffnen (Fehlersuche)
@@ -47,7 +50,7 @@ function parseCli() {
       id: { type: 'string', multiple: true },
       lang: { type: 'string' },
       'only-public': { type: 'boolean', default: false },
-      scenes: { type: 'string' },
+      scenes: { type: 'string', multiple: true },
       'out-dir': { type: 'string' },
       list: { type: 'boolean', default: false },
       headed: { type: 'boolean', default: false },
@@ -58,7 +61,7 @@ function parseCli() {
     ids: values.id ? values.id.flatMap((v) => v.split(',')).map((v) => v.trim()).filter(Boolean) : null,
     lang: values.lang ?? null,
     onlyPublic: values['only-public'],
-    scenesFile: path.resolve(expandHome(values.scenes ?? path.join(SCRIPT_DIR, 'scenes.json'))),
+    scenesFiles: values.scenes ? values.scenes.map((f) => path.resolve(expandHome(f))) : defaultSceneFiles(),
     outDir: values['out-dir'] ? path.resolve(expandHome(values['out-dir'])) : null,
     list: values.list,
     headed: values.headed,
@@ -66,9 +69,21 @@ function parseCli() {
   };
 }
 
+/** scenes.json und alle scenes-*.json neben diesem Skript, in fester Reihenfolge. */
+function defaultSceneFiles() {
+  const extra = readdirSync(SCRIPT_DIR).filter((f) => /^scenes-.+\.json$/.test(f)).sort();
+  return ['scenes.json', ...extra].map((f) => path.join(SCRIPT_DIR, f));
+}
+
 const envKey = (name) => String(name).toUpperCase().replace(/[^A-Z0-9]+/g, '_');
 
-function loadScenes(file) {
+function loadScenes(files) {
+  const seen = new Set();
+  const outputs = new Set();
+  return files.flatMap((file) => loadSceneFile(file, seen, outputs));
+}
+
+function loadSceneFile(file, seen, outputs) {
   const config = JSON.parse(readFileSync(file, 'utf8'));
   const defaults = config.defaults ?? {};
   const baseUrls = { ...(config.baseUrls ?? {}) };
@@ -76,9 +91,8 @@ function loadScenes(file) {
     const override = process.env[`SCREENSHOT_BASE_URL_${envKey(name)}`];
     if (override) baseUrls[name] = override;
   }
-  const seen = new Set();
-  const outputs = new Set();
-  const scenes = (config.scenes ?? []).map((raw, i) => {
+  const fixturesDir = path.join(path.dirname(file), 'fixtures');
+  return (config.scenes ?? []).map((raw, i) => {
     const scene = {
       colorScheme: 'light',
       public: false,
@@ -86,7 +100,7 @@ function loadScenes(file) {
       ...raw,
       viewport: { width: 1440, height: 900, ...defaults.viewport, ...raw.viewport },
     };
-    const where = `Szene #${i + 1} (${scene.id ?? 'ohne id'})`;
+    const where = `${path.basename(file)}, Szene #${i + 1} (${scene.id ?? 'ohne id'})`;
     if (!scene.id) throw new Error(`${where}: "id" fehlt.`);
     if (!LOCALES[scene.lang]) throw new Error(`${where}: "lang" muss "de" oder "en" sein.`);
     const key = `${scene.id}/${scene.lang}`;
@@ -98,9 +112,9 @@ function loadScenes(file) {
     if (scene.selector && scene.clip) throw new Error(`${where}: entweder "selector" oder "clip", nicht beides.`);
     outputPath(scene, null);
     scene.url = resolveUrl(scene, baseUrls, where);
+    scene.fixturesDir = fixturesDir;
     return scene;
   });
-  return { scenes, fixturesDir: path.join(path.dirname(file), 'fixtures') };
 }
 
 function resolveUrl(scene, baseUrls, where) {
@@ -190,7 +204,7 @@ async function installPreferences(context, scene, locale) {
   }, entries);
 }
 
-async function runActions(page, actions = [], timeout) {
+async function runActions(page, actions = [], timeout, fixturesDir) {
   for (const step of actions) {
     const optional = step.optional === true;
     const t = optional ? Math.min(timeout, 3000) : timeout;
@@ -209,12 +223,18 @@ async function runActions(page, actions = [], timeout) {
           if (step.selector) await page.locator(step.selector).first().press(step.key, { timeout: t });
           else await page.keyboard.press(step.key);
           break;
+        case 'upload': {
+          const file = path.resolve(fixturesDir, String(step.file ?? ''));
+          if (!step.file || !isInside(fixturesDir, file)) throw new Error(`Datei für upload muss in fixtures/ liegen: ${step.file}`);
+          await page.locator(step.selector).first().setInputFiles(file, { timeout: t });
+          break;
+        }
         case 'wait':
           if (step.selector) await page.locator(step.selector).first().waitFor({ state: step.state ?? 'visible', timeout: t });
           else await page.waitForTimeout(step.ms ?? 500);
           break;
         default:
-          throw new Error(`Unbekannte Aktion "${step.action}" (erlaubt: click, fill, hover, press, wait).`);
+          throw new Error(`Unbekannte Aktion "${step.action}" (erlaubt: click, fill, hover, press, upload, wait).`);
       }
     } catch (err) {
       if (!optional) throw new Error(`Aktion ${JSON.stringify(step)} fehlgeschlagen: ${err.message.split('\n')[0]}`);
@@ -249,7 +269,7 @@ async function computeClip(page, scene) {
   return { x, y, width: box.width + box.x + scroll.x + pad - x, height: box.height + box.y + scroll.y + pad - y };
 }
 
-async function capture(browser, scene, { file, outDir, fixturesDir }) {
+async function capture(browser, scene, { file, outDir }) {
   const locale = scene.locale ?? LOCALES[scene.lang];
   const context = await browser.newContext({
     viewport: scene.viewport,
@@ -265,7 +285,7 @@ async function capture(browser, scene, { file, outDir, fixturesDir }) {
   const page = await context.newPage();
   try {
     await installPreferences(context, scene, locale);
-    await installRoutes(context, scene, fixturesDir);
+    await installRoutes(context, scene, scene.fixturesDir);
     if (scene.fixedTime) await page.clock.setFixedTime(new Date(scene.fixedTime));
     const response = await page.goto(scene.url, { waitUntil: scene.waitUntil ?? 'load', timeout });
     if (response && response.status() >= 400 && !scene.allowHttpError) {
@@ -276,7 +296,7 @@ async function capture(browser, scene, { file, outDir, fixturesDir }) {
     }
     if (scene.waitFor) await page.locator(scene.waitFor).first().waitFor({ state: 'visible', timeout });
     if (scene.offline) await context.setOffline(true);
-    await runActions(page, scene.actions, timeout);
+    await runActions(page, scene.actions, timeout, scene.fixturesDir);
     await settle(page, scene);
 
     const clip = await computeClip(page, scene);
@@ -317,7 +337,7 @@ async function main() {
     console.log(HELP);
     return 0;
   }
-  const { scenes, fixturesDir } = loadScenes(cli.scenesFile);
+  const scenes = loadScenes(cli.scenesFiles);
   const selected = scenes.filter(
     (s) => (!cli.ids || cli.ids.includes(s.id)) && (!cli.lang || s.lang === cli.lang) && (!cli.onlyPublic || s.public),
   );
@@ -334,7 +354,9 @@ async function main() {
     return 1;
   }
 
-  const browser = await launchBrowser({ headless: !cli.headed });
+  // Die Flags gelten für den ganzen Browser, also für alle Szenen dieses Laufs.
+  const args = selected.some((s) => s.fakeMedia) ? FAKE_MEDIA_ARGS : [];
+  const browser = await launchBrowser({ headless: !cli.headed, args });
   console.log(`Browser: Chromium ${browser.version()}, ${selected.length} Szene(n)\n`);
   let failed = 0;
   let skipped = 0;
@@ -348,7 +370,7 @@ async function main() {
         continue;
       }
       try {
-        const { target, size } = await capture(browser, scene, { file: state.file, outDir: cli.outDir, fixturesDir });
+        const { target, size } = await capture(browser, scene, { file: state.file, outDir: cli.outDir });
         console.log(`OK     ${label} -> ${path.relative(process.cwd(), target)} (${size})`);
       } catch (err) {
         failed++;

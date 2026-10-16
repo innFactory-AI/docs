@@ -17,7 +17,7 @@ Die Übersicht unter **Sammlungen** gliedert sich in die Reiter **Alle**, **Mein
 
 Anschließend legen Sie **Sammlungsname**, **Beschreibung** und **Sichtbarkeit** fest. Der **Technische Name** wird automatisch aus dem Namen generiert – er wird später in Agenten-Prompts und in den MCP-Tools als `collection` verwendet und kann nicht mehr geändert werden.
 
-![Dialog „Sammlung erstellen" mit technischem Namen, Beschreibung und Sichtbarkeit](./sammlung-erstellen-basis.png)
+![Dialog „Sammlung erstellen“ mit Sammlungstyp, Sammlungsname, technischem Namen, Beschreibung, Sichtbarkeit und den Optionen Strukturierte Daten extrahieren, Bilder beschreiben und Tabellen als Datensätze](./sammlung-erstellen-basis.png)
 
 Bei der Sichtbarkeit stehen zwei Optionen zur Verfügung:
 
@@ -83,7 +83,7 @@ Bei bestehenden Sammlungen schalten Sie die Option unter **Sammlung bearbeiten**
 
 Am unteren Rand jeder Sammlung stehen je nach Ihrer Rolle folgende Symbole zur Verfügung:
 
-![Aktionen einer Sammlung: Teilen, Bearbeiten und Löschen](./actions-collections.png)
+![Aktionen einer Sammlung: System-Prompt, Teilen, Bearbeiten und Löschen](./actions-collections.png)
 
 - **System-Prompt**: vorbereiteter System-Prompt für einen Agenten, siehe [companyRAG in CompanyGPT nutzen](/de/company-gpt/addons/companyrag/in-companygpt/#beispiel-prompt-aus-der-sammlung).
 - **Ingestion-Anleitung**: nur bei Live-Datensätzen; zeigt die Endpunkte zum Einspielen von Zeilen, siehe [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/#zeilen-einspielen).
@@ -98,6 +98,8 @@ Im Dialog **Sammlung teilen** suchen Sie Personen oder Gruppen per Name oder E-M
 - **Betrachter**: Kann die Sammlung ansehen und durchsuchen, aber nicht ändern.
 - **Administrator**: Kann ansehen, Dateien hochladen und Einstellungen ändern.
 - **Besitzer**: Volle Kontrolle, einschließlich Teilen und Löschen. Eine Sammlung muss mindestens einen Besitzer behalten.
+
+![Dialog „Sammlung teilen“ mit Suchfeld für Personen und Gruppen, dem Eintrag des Besitzers mit seiner Rolle und dem Schalter Mit allen teilen](./sammlung-teilen.png)
 
 Mit dem Schalter **Mit allen teilen** erhalten alle Nutzer Lesezugriff auf die Sammlung. Ihre Änderungen übernehmen Sie mit **Änderungen speichern**.
 

@@ -15,7 +15,7 @@ Voraussetzung: Sie haben Zugriff auf companyRAG – über [Alle Apps](/de/compan
 
 Zuerst legen wir die Sammlung an, in der die gecrawlten Seiten indexiert werden. Navigieren Sie in companyRAG zu **Sammlungen** und wählen Sie **Sammlung erstellen**. Als **Sammlungstyp** wählen wir **Dokumente**, vergeben einen Namen, eine Beschreibung und wählen die Sichtbarkeit.
 
-![sammlung-erstellen](sammlung-erstellen.png)
+![Dialog „Sammlung erstellen“ mit dem Sammlungstyp Dokumente, dem Namen Dokumentation und dem technischen Namen dokumentation](./sammlung-erstellen.png)
 
 Notieren Sie sich den **technischen Namen** (im Beispiel `dokumentation`) – er wird später im Agenten-Prompt benötigt.
 
@@ -29,13 +29,13 @@ In den erweiterten Einstellungen können Sie – je nach Umgebung – Embedding-
 Die Suchsprache sollte im Optimalfall der Sprache der Website entsprechen. Neben der semantischen wird auch eine Volltextsuche durchgeführt, die bei korrekter Spracheinstellung bessere Ergebnisse liefert.
 :::
 
-![erweiterte-einstellungen](erweiterte-einstellungen.png)
+![Erweiterte Einstellungen im Dialog „Sammlung erstellen“ mit Embedding-Modell, Suchsprache, Chunking-Strategie, Chunk-Größe und Chunk-Überlappung](./erweiterte-einstellungen.png)
 
 ## 2. Webcrawl-Quelle anlegen
 
 Damit die Seiten automatisch und wiederkehrend indexiert werden, legen wir eine Webcrawl-Quelle an. Wechseln Sie dazu in den Bereich **Quellen**.
 
-![quellen](quellen.png)
+![Eintrag Quellen in der Seitenleiste von companyRAG](./quellen.png)
 
 Klicken Sie dort im Reiter **Webcrawl** auf **Web-Quelle hinzufügen**, um eine neue Quelle zu erstellen. Wählen Sie auf der Seite **Neue Web-Crawl-Quelle** den Reiter **Sitemap** und füllen Sie die Felder aus:
 
@@ -65,7 +65,7 @@ Nach dem Anlegen können Sie den ersten Crawl direkt über **Jetzt synchronisier
 
 Den Fortschritt verfolgen Sie im Bereich **Aufträge**. Dort sehen Sie pro Seite den Status (**In Warteschlange**, **Läuft**, **Abgeschlossen**, **Fehlgeschlagen** oder **Abgebrochen**). Sobald alle Aufträge auf **Abgeschlossen** stehen, ist die Sammlung durchsuchbar.
 
-![auftraege doku](./auftraege-doku.png)
+![Aufträge der Sammlung dokumentation mit Status, Typ, gecrawlter Seite und Zeitpunkten](./auftraege-doku.png)
 
 Über das Menü **…** der Quelle können Sie sie jederzeit **Pausieren**, **Fortsetzen**, **Bearbeiten** oder **Löschen**. Beim Löschen werden alle Seiten dieser Quelle unwiderruflich aus der Sammlung entfernt.
 

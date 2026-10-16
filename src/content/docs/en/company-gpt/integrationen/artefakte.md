@@ -11,7 +11,7 @@ In the chat, you enable artifacts in the chat input via **Artifacts** in the **T
 
 By default, additional special instructions for using artifacts are added unless “Custom Prompt Mode” is enabled.
 
-![artefakte](artefakte-beispiel.png)
+![Chat with a financial overview as a table and, next to it, the opened artifact showing a bar chart in the preview (German interface)](./artefakte-beispiel.png)
 
 ## Viewing and exporting artifacts
 

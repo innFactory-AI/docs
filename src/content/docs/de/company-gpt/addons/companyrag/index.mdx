@@ -3,6 +3,8 @@ title: companyRAG
 description: Das Addon companyRAG macht große Dokumentenmengen aus SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP und dem Web durchsuchbar – als semantische Suche, als strukturierte Daten und als Datensätze für Ihre Agenten.
 ---
 
+import seitenleiste from './rag-seitenleiste.png';
+
 Mit dem companyRAG Addon können Sie große Mengen an Dokumenten für Ihre Agenten über die MCP-Schnittstelle verfügbar machen. Die Dokumente können aus unterschiedlichen Quellen indexiert werden und über die [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/)-Methodik integriert werden.
 
 Die Indexierung kann hierbei einmalig oder wiederkehrend, basierend auf Ihrem Anwendungsfall, implementiert werden. Neben der klassischen semantischen Suche kann companyRAG aus denselben Dokumenten auch [strukturierte Daten extrahieren](/de/company-gpt/addons/companyrag/strukturierte-daten/) und [tabellarische Datensätze](/de/company-gpt/addons/companyrag/datensaetze/) per SQL abfragbar machen.
@@ -31,6 +33,10 @@ companyRAG nutzt die [gemeinsame Oberfläche der CompanyGPT-Addons](/de/company-
 
 Die Seitenleiste von companyRAG enthält folgende Bereiche:
 
+<div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start;">
+<img src={seitenleiste.src} alt="Seitenleiste von companyRAG mit Neuer Chat, Alle Apps und den Bereichen Dateien, Sammlungen, Quellen, Integrationen, Aufträge und Hochladen" width="200" style="flex-shrink: 0;" />
+<div style="flex: 1 1 20rem;">
+
 - [Dateien](/de/company-gpt/addons/companyrag/dateien/) – alle indexierten Dateien mit Status
 - [Sammlungen](/de/company-gpt/addons/companyrag/sammlungen/) – Speicherorte für Dokumente und Berechtigungen
 - [Quellen](/de/company-gpt/addons/companyrag/quellen/) – automatische Synchronisation aus angebundenen Systemen
@@ -42,6 +48,10 @@ Unter einer Trennlinie folgen die Bereiche für die Verwaltung:
 
 - [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) *(nur für Administratoren)*
 - [Audit-Protokoll](/de/company-gpt/addons/companyrag/audit-protokoll/) *(nur für Superadmins)*
+
+</div>
+
+</div>
 
 ## Rechte und Rollen
 

@@ -1,0 +1,7 @@
+{
+  "glossaries": [
+    { "blobPath": "glossaries/muster/muster-glossar_de_to_en.csv", "name": "muster-glossar", "scope": "user", "ready": true },
+    { "blobPath": "glossaries/global/firmenbegriffe_de_to_en.csv", "name": "firmenbegriffe", "scope": "global", "ready": true }
+  ],
+  "googleEnabled": true
+}

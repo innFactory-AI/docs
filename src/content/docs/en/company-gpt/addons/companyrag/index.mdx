@@ -3,6 +3,8 @@ title: companyRAG
 description: The companyRAG addon makes large volumes of documents from SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP and the web searchable – as semantic search, as structured data, and as datasets for your agents.
 ---
 
+import seitenleiste from './rag-seitenleiste.png';
+
 With the companyRAG addon, you can make large volumes of documents available to your agents via the MCP interface. Documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/) methodology.
 
 Indexing can be implemented as a one-time or recurring process, depending on your use case. In addition to classic semantic search, companyRAG can also [extract structured data](/en/company-gpt/addons/companyrag/strukturierte-daten/) from the same documents and make [tabular datasets](/en/company-gpt/addons/companyrag/datensaetze/) queryable via SQL.
@@ -31,6 +33,10 @@ companyRAG uses the [shared interface of the CompanyGPT addons](/en/company-gpt/
 
 The companyRAG sidebar contains the following areas:
 
+<div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start;">
+<img src={seitenleiste.src} alt="companyRAG sidebar with New chat, All apps and the areas Files, Collections, Sources, Integrations, Jobs and Upload" width="200" style="flex-shrink: 0;" />
+<div style="flex: 1 1 20rem;">
+
 - [Files](/en/company-gpt/addons/companyrag/dateien/) – all indexed files with their status
 - [Collections](/en/company-gpt/addons/companyrag/sammlungen/) – storage locations for documents and permissions
 - [Sources](/en/company-gpt/addons/companyrag/quellen/) – automatic synchronization from connected systems
@@ -42,6 +48,10 @@ Below a divider follow the administration areas:
 
 - [API Keys](/en/company-gpt/addons/companyrag/api-schluessel/) *(administrators only)*
 - [Audit Logs](/en/company-gpt/addons/companyrag/audit-protokoll/) *(super admins only)*
+
+</div>
+
+</div>
 
 ## Rights and roles
 

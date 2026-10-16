@@ -1,0 +1,250 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "neue-oberflaeche-palette",
+      "lang": "de",
+      "note": "Pilot-Chat des Demo-Tenants, nur für die Vorschau-Seite neue-chat-oberflaeche.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 490
+      },
+      "output": "src/content/docs/de/company-gpt/neue-oberflaeche-palette.png"
+    },
+    {
+      "id": "neue-oberflaeche-denkaufwand",
+      "lang": "de",
+      "note": "Regler für den Denkaufwand; „Auto“ ausgeschaltet und eine mittlere Stufe gewählt (nur im Browser, nichts gespeichert).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=/^Thinking/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/^Thinking/]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Auto\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=radio[name=\"Mittel\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Nachrichteneingabe\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 218
+      },
+      "output": "src/content/docs/de/company-gpt/neue-oberflaeche-denkaufwand.png"
+    },
+    {
+      "id": "neue-oberflaeche-chat-optionen",
+      "lang": "de",
+      "note": "Eigener neutraler Demo-Chat im Demo-Projekt „Newsletter“.",
+      "baseUrl": "demo",
+      "path": "/c/b9299784-8465-5d14-89bc-1a490e10b5ee",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Chat options\"]"
+        }
+      ],
+      "clip": {
+        "x": 380,
+        "y": 0,
+        "width": 1060,
+        "height": 420
+      },
+      "output": "src/content/docs/de/company-gpt/neue-oberflaeche-chat-optionen.png"
+    },
+    {
+      "id": "neue-oberflaeche-projekt",
+      "lang": "de",
+      "note": "Eigenes neutrales Demo-Projekt „Newsletter“ mit einem Chat.",
+      "baseUrl": "demo",
+      "path": "/projects/6ad2537d21f4b1d7a8a9f3e6",
+      "waitFor": "main >> text=Spring Newsletter Subject Lines",
+      "output": "src/content/docs/de/company-gpt/neue-oberflaeche-projekt.png"
+    },
+    {
+      "id": "neue-oberflaeche-geplanter-chat",
+      "lang": "de",
+      "note": "Dialog „New schedule“ nur geöffnet, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Scheduled chats\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Scheduled chats\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"New schedule\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"New schedule\"]"
+        }
+      ],
+      "selector": "role=dialog[name=\"New schedule\"]",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/neue-oberflaeche-geplanter-chat.png"
+    },
+    {
+      "id": "neue-oberflaeche-palette",
+      "lang": "en",
+      "note": "Pilot-Chat des Demo-Tenants, nur für die Vorschau-Seite neue-chat-oberflaeche.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 490
+      },
+      "output": "src/content/docs/en/company-gpt/neue-oberflaeche-palette.png"
+    },
+    {
+      "id": "neue-oberflaeche-denkaufwand",
+      "lang": "en",
+      "note": "Regler für den Denkaufwand; „Auto“ ausgeschaltet und eine mittlere Stufe gewählt (nur im Browser, nichts gespeichert).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=/^Thinking/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/^Thinking/]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Auto\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=radio[name=\"Medium\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Message input\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 218
+      },
+      "output": "src/content/docs/en/company-gpt/neue-oberflaeche-denkaufwand.png"
+    },
+    {
+      "id": "neue-oberflaeche-chat-optionen",
+      "lang": "en",
+      "note": "Eigener neutraler Demo-Chat im Demo-Projekt „Newsletter“.",
+      "baseUrl": "demo",
+      "path": "/c/b9299784-8465-5d14-89bc-1a490e10b5ee",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Chat options\"]"
+        }
+      ],
+      "clip": {
+        "x": 380,
+        "y": 0,
+        "width": 1060,
+        "height": 420
+      },
+      "output": "src/content/docs/en/company-gpt/neue-oberflaeche-chat-optionen.png"
+    },
+    {
+      "id": "neue-oberflaeche-projekt",
+      "lang": "en",
+      "note": "Eigenes neutrales Demo-Projekt „Newsletter“ mit einem Chat.",
+      "baseUrl": "demo",
+      "path": "/projects/6ad2537d21f4b1d7a8a9f3e6",
+      "waitFor": "main >> text=Spring Newsletter Subject Lines",
+      "output": "src/content/docs/en/company-gpt/neue-oberflaeche-projekt.png"
+    },
+    {
+      "id": "neue-oberflaeche-geplanter-chat",
+      "lang": "en",
+      "note": "Dialog „New schedule“ nur geöffnet, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Scheduled chats\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Scheduled chats\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"New schedule\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"New schedule\"]"
+        }
+      ],
+      "selector": "role=dialog[name=\"New schedule\"]",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/neue-oberflaeche-geplanter-chat.png"
+    }
+  ]
+}

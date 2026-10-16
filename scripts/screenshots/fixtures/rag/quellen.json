@@ -1,0 +1,154 @@
+[
+  {
+    "canWrite": true,
+    "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+    "collectionName": "musterhandbuch",
+    "config": {
+      "site_id": "beispiel",
+      "drive_id": "beispiel",
+      "site_name": "Muster GmbH",
+      "drive_name": "Dokumente",
+      "file_types": [
+        ".pdf",
+        ".docx",
+        ".md"
+      ],
+      "folder_path": "Handbuch",
+      "source_type": "site",
+      "content_mode": "files",
+      "collection_id": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "folder_item_id": ""
+    },
+    "createdAt": "2026-10-01T08:00:00Z",
+    "createdBy": "00000000-0000-4000-a000-000000000001",
+    "createdByEmail": "Test GPT",
+    "credentials": {
+      "configured": false
+    },
+    "enabled": true,
+    "id": "00000000-0000-4000-b000-000000000001",
+    "lastSyncAt": "2026-10-16T07:40:00Z",
+    "lastSyncStats": {
+      "mode": "full",
+      "failed": 0,
+      "listed": 24,
+      "deleted": 1,
+      "processed": 3,
+      "unchanged": 20,
+      "durationSeconds": 12
+    },
+    "lastSyncStatus": "ok",
+    "name": "Muster GmbH - Handbuch",
+    "sourceType": "sharepoint",
+    "syncInProgress": false,
+    "updatedAt": "2026-10-16T07:40:00Z"
+  },
+  {
+    "canWrite": true,
+    "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+    "collectionName": "musterhandbuch",
+    "config": {
+      "baseUrl": "https://dateien.example.com/remote.php/webdav",
+      "folderPath": "/Archiv",
+      "fileTypes": [
+        ".pdf",
+        ".docx"
+      ]
+    },
+    "createdAt": "2026-10-02T09:00:00Z",
+    "createdBy": "00000000-0000-4000-a000-000000000001",
+    "createdByEmail": "Test GPT",
+    "credentials": {
+      "configured": true
+    },
+    "enabled": true,
+    "id": "00000000-0000-4000-b000-000000000003",
+    "lastSyncAt": "2026-10-15T22:00:00Z",
+    "lastSyncStats": {
+      "mode": "full",
+      "failed": 0,
+      "listed": 0,
+      "deleted": 0,
+      "processed": 0,
+      "unchanged": 0
+    },
+    "lastSyncStatus": "failed",
+    "lastSyncError": "webdav: list \"/Archiv\": 401 Unauthorized",
+    "name": "Archiv-Server",
+    "sourceType": "webdav",
+    "syncInProgress": false,
+    "syncSchedule": "weekly",
+    "updatedAt": "2026-10-15T22:00:00Z"
+  },
+  {
+    "canWrite": true,
+    "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+    "collectionName": "musterhandbuch",
+    "config": {
+      "mode": "sitemap",
+      "path_prefix": "/de/",
+      "sitemap_url": "https://docs.company-gpt.com/sitemap-0.xml"
+    },
+    "createdAt": "2026-10-01T08:10:00Z",
+    "createdBy": "00000000-0000-4000-a000-000000000001",
+    "createdByEmail": "Test GPT",
+    "credentials": {
+      "configured": false
+    },
+    "enabled": true,
+    "id": "00000000-0000-4000-b000-000000000002",
+    "lastSyncAt": "2026-10-16T05:00:00Z",
+    "lastSyncStats": {
+      "mode": "full",
+      "failed": 0,
+      "listed": 186,
+      "deleted": 0,
+      "processed": 4,
+      "unchanged": 182,
+      "durationSeconds": 95
+    },
+    "lastSyncStatus": "ok",
+    "name": "Produktdokumentation",
+    "sourceType": "webcrawl",
+    "syncInProgress": false,
+    "syncSchedule": "daily",
+    "updatedAt": "2026-10-16T05:00:00Z"
+  },
+  {
+    "canWrite": true,
+    "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+    "collectionName": "musterhandbuch",
+    "config": {
+      "repoUrl": "https://github.com/beispiel/handbuch",
+      "branch": "main",
+      "path": "docs",
+      "fileExtensions": [
+        ".md"
+      ]
+    },
+    "createdAt": "2026-10-03T09:00:00Z",
+    "createdBy": "00000000-0000-4000-a000-000000000001",
+    "createdByEmail": "Test GPT",
+    "credentials": {
+      "configured": false
+    },
+    "enabled": false,
+    "id": "00000000-0000-4000-b000-000000000004",
+    "lastSyncAt": "2026-10-10T06:00:00Z",
+    "lastSyncStats": {
+      "mode": "full",
+      "failed": 0,
+      "listed": 12,
+      "deleted": 0,
+      "processed": 0,
+      "unchanged": 12,
+      "durationSeconds": 3
+    },
+    "lastSyncStatus": "ok",
+    "name": "Handbuch-Repository",
+    "sourceType": "git",
+    "syncInProgress": false,
+    "syncSchedule": "daily",
+    "updatedAt": "2026-10-10T06:00:00Z"
+  }
+]

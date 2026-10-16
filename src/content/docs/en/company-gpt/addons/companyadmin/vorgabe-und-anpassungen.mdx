@@ -1,0 +1,66 @@
+---
+title: Baseline & adjustments
+description: Trace in companyADMIN what the CompanyGPT base configuration ships, what administrators adjusted on top, which start values innFactory sets and what CompanyGPT overwrites at startup.
+---
+
+**Configuration** → **Baseline & adjustments** shows how CompanyGPT's settings come about. The page is mainly for looking things up and tidying up; settings are changed on the respective pages.
+
+## How baseline and adjustments work
+
+- The **baseline** comes from the deployment, CompanyGPT's base configuration. innFactory maintains it and ships it again with every update.
+- **Adjustments** you make in companyADMIN sit on top as their own layer: for everyone, for one role or for one group. Updating the baseline leaves them unchanged.
+- CompanyGPT combines both. A few points always come from the baseline or are set again at every start.
+
+## Adjustments in the admin
+
+The table lists everything changed in companyADMIN relative to the baseline:
+
+| Column | Content |
+|---|---|
+| **Setting** | The changed setting |
+| **Applies to** | **Everyone**, a role, a group or a person |
+| **Managed on** | The page where you change the setting, such as **Providers and models** or **Agent runtime** |
+| **Status** | **In force** or **Not in force** with the reason |
+
+Use **Search field or role …** to find a setting. Depending on the case, an expanded row offers:
+
+- **Remove here only** – removes the adjustment at this point only; the next layer below applies afterwards.
+- **Reset to innFactory default** – removes the setting from every adjustment (for everyone, roles, groups and individual people). The baseline applies again.
+- **Activate** – switches deactivated adjustments back on, namely every adjustment of this role, group or person at once, not just the one row.
+- **Delete old profile** – deletes leftovers of a very old version that CompanyGPT no longer reads.
+
+:::caution[Do not remove model restrictions and agent capabilities here]
+**Remove here only** also appears on rows with model restrictions and agent capabilities. Change these settings on the respective page instead: under **Providers and models** with **Open for everyone**, under **Agent capabilities** by unticking **Govern agent capabilities from companyADMIN**. Here you only remove them completely, with **Reset to innFactory default**.
+:::
+
+**Not in force** means: saved, but CompanyGPT does not apply it. Common reasons are rights that CompanyGPT sets per role only, settings from an older version, or a feature the baseline switches off. The reason is shown in the row. For settings from an older version, saving again on the respective page is usually enough.
+
+## What is overwritten at startup
+
+This section lists what CompanyGPT sets itself at every start and where the baseline always takes precedence, for example:
+
+- Rights of the "User" (USER) and ADMIN roles for certain features. CompanyGPT always sets the use right; create and share only where the baseline names them explicitly. Custom roles are not affected.
+- The upper limit for subagents per agent. The value under [Agent runtime](/en/company-gpt/addons/companyadmin/agent-laufzeit/) can only lower it.
+- MCP servers from the baseline. They apply to everyone and cannot be granted per group.
+- Feature rights (agents, prompts, web search …) cannot be changed through the configuration, only per role.
+
+Each lock says whether and how you can work around it, for example with a custom role. The other points only change with an update of the baseline by innFactory.
+
+## innFactory start values
+
+innFactory sets these values as start values during setup and with updates. What you change stays yours; innFactory never overwrites it.
+
+| Column | Content |
+|---|---|
+| **Setting** | The setting |
+| **Start value** | The value innFactory provides |
+| **Current** | The value that applies now |
+| **Status** | **Start value active**, **Equals the start value**, **Changed by you**, **Not set yet**, **No longer managed**, **Could not be set** or **LibreChat resets this at every start** |
+
+**Reset to start value** discards your change; the current innFactory start value applies again.
+
+## Deployment baseline
+
+At the end the page shows the base configuration as CompanyGPT loaded it at start. It is read-only; secrets such as API keys are hidden. innFactory makes changes to the baseline.
+
+A compact summary of this page is on [Status → Active configuration](/en/company-gpt/addons/companyadmin/status/).

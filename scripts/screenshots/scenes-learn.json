@@ -1,0 +1,342 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "learn-dashboard",
+      "lang": "de",
+      "note": "Erfundene Kurse per Mock (fixtures/learn-*.json); im Demo-Tenant wird nichts geschrieben.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/me/progress",
+          "fixture": "learn-de-fortschritt.json"
+        }
+      ],
+      "waitFor": "text=KI im Arbeitsalltag",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 300
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companylearn/learn-dashboard.png"
+    },
+    {
+      "id": "learn-kurse",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/courses",
+          "fixture": "learn-de-kurse.json"
+        }
+      ],
+      "waitFor": "text=KI im Arbeitsalltag",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 570
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companylearn/learn-kurse.png"
+    },
+    {
+      "id": "learn-kursseite",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/courses/00000000-0000-4000-8000-0000c0000001",
+          "fixture": "learn-de-kurs.json"
+        }
+      ],
+      "waitFor": "text=Beispiele aus dem Alltag",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Grundlagen\")"
+        },
+        {
+          "action": "hover",
+          "selector": "text=Dein Fortschritt"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 780
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companylearn/learn-kursseite.png"
+    },
+    {
+      "id": "learn-lektion",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001/lessons/00000000-0000-4000-8000-0000b0000004",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/lessons/00000000-0000-4000-8000-0000b0000004",
+          "fixture": "learn-de-lektion.json"
+        }
+      ],
+      "waitFor": "main h3",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 660
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companylearn/learn-lektion.png"
+    },
+    {
+      "id": "learn-quiz-ergebnis",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001/quiz/00000000-0000-4000-8000-0000d0000002",
+      "note": "Das Abschicken wird per Mock beantwortet (POST), es entsteht kein Versuch im Demo-Tenant.",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002/attempts",
+          "method": "POST",
+          "fixture": "learn-de-quiz-ergebnis.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002/attempts",
+          "fixture": "learn-de-quiz-versuche.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002",
+          "fixture": "learn-de-quiz.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/courses/00000000-0000-4000-8000-0000c0000001",
+          "fixture": "learn-de-kurs.json"
+        }
+      ],
+      "waitFor": "text=Eine klare Aufgabe",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Eine klare Aufgabe\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Das gewünschte Format oder der Umfang\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Denselben Prompt unverändert erneut senden\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Passwörter und Zugangsdaten\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Sie legt Ton und Blickwinkel der Antwort fest\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Konkret sagen, welcher Teil wichtig ist\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Antworten abschicken\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Bestanden"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=Du hast 80% erreicht"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 836
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companylearn/learn-quiz-ergebnis.png"
+    },
+    {
+      "id": "learn-dashboard",
+      "lang": "en",
+      "note": "Erfundene Kurse per Mock (fixtures/learn-*.json); im Demo-Tenant wird nichts geschrieben.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/me/progress",
+          "fixture": "learn-en-fortschritt.json"
+        }
+      ],
+      "waitFor": "text=AI at work",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 300
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companylearn/learn-dashboard.png"
+    },
+    {
+      "id": "learn-kurse",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/courses",
+          "fixture": "learn-en-kurse.json"
+        }
+      ],
+      "waitFor": "text=AI at work",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 570
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companylearn/learn-kurse.png"
+    },
+    {
+      "id": "learn-kursseite",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/courses/00000000-0000-4000-8000-0000c0000001",
+          "fixture": "learn-en-kurs.json"
+        }
+      ],
+      "waitFor": "text=Everyday examples",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"The basics\")"
+        },
+        {
+          "action": "hover",
+          "selector": "text=Your progress"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 780
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companylearn/learn-kursseite.png"
+    },
+    {
+      "id": "learn-lektion",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001/lessons/00000000-0000-4000-8000-0000b0000004",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/lessons/00000000-0000-4000-8000-0000b0000004",
+          "fixture": "learn-en-lektion.json"
+        }
+      ],
+      "waitFor": "main h3",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 660
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companylearn/learn-lektion.png"
+    },
+    {
+      "id": "learn-quiz-ergebnis",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/courses/00000000-0000-4000-8000-0000c0000001/quiz/00000000-0000-4000-8000-0000d0000002",
+      "note": "Das Abschicken wird per Mock beantwortet (POST), es entsteht kein Versuch im Demo-Tenant.",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002/attempts",
+          "method": "POST",
+          "fixture": "learn-en-quiz-ergebnis.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002/attempts",
+          "fixture": "learn-en-quiz-versuche.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/quizzes/00000000-0000-4000-8000-0000d0000002",
+          "fixture": "learn-en-quiz.json"
+        },
+        {
+          "urlPattern": "**/companygpt/learn/api/courses/00000000-0000-4000-8000-0000c0000001",
+          "fixture": "learn-en-kurs.json"
+        }
+      ],
+      "waitFor": "text=A clear task",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "label:has-text(\"A clear task\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"The format or length you want\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Send the same prompt again unchanged\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Passwords and credentials\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"It sets the tone and perspective of the answer\")"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Saying exactly which part matters\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Submit answers\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Passed"
+        },
+        {
+          "action": "hover",
+          "selector": "main >> text=You scored 80%"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 836
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companylearn/learn-quiz-ergebnis.png"
+    }
+  ]
+}

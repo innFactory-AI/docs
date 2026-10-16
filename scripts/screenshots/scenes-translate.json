@@ -1,0 +1,640 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "translate-text-sprachen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "waitFor": "main button:has-text(\"Sprache erkennen\")",
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/text-sprachen.png"
+    },
+    {
+      "id": "translate-text-sprachen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "waitFor": "main button:has-text(\"Detect language\")",
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/text-sprachen.png"
+    },
+    {
+      "id": "translate-text-uebersetzung",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "waitFor": "main button:has-text(\"Sprache erkennen\")",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button[aria-haspopup=dialog]:has-text(\"Mehr\") >> nth=1"
+        },
+        {
+          "action": "fill",
+          "selector": "[role=dialog] input[role=combobox]",
+          "value": "Dänisch"
+        },
+        {
+          "action": "click",
+          "selector": "[role=dialog] [role=option]:has-text(\"Dänisch\")"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea",
+          "value": "Willkommen bei der Muster GmbH. Wir freuen uns auf die Zusammenarbeit mit Ihnen."
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Erkannt: Deutsch\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Velkommen"
+        }
+      ],
+      "settleMs": 1000,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/text-uebersetzung.png"
+    },
+    {
+      "id": "translate-text-uebersetzung",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "waitFor": "main button:has-text(\"Detect language\")",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button[aria-haspopup=dialog]:has-text(\"More\") >> nth=1"
+        },
+        {
+          "action": "fill",
+          "selector": "[role=dialog] input[role=combobox]",
+          "value": "Danish"
+        },
+        {
+          "action": "click",
+          "selector": "[role=dialog] [role=option]:has-text(\"Danish\")"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea",
+          "value": "Willkommen bei der Muster GmbH. Wir freuen uns auf die Zusammenarbeit mit Ihnen."
+        },
+        {
+          "action": "wait",
+          "selector": "main button:has-text(\"Detected: German\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Velkommen"
+        }
+      ],
+      "settleMs": 1000,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/text-uebersetzung.png"
+    },
+    {
+      "id": "translate-text-glossar",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "note": "Globales Glossar „firmenbegriffe“ gestellt (Testkonto ist kein Admin); muster-glossar existiert im Demo-Tenant und wird real angewendet.",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        }
+      ],
+      "waitFor": "main button:has-text(\"Sprache erkennen\")",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Deutsch\")"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea",
+          "value": "Die Besprechung mit dem Vorstand beginnt um 10 Uhr."
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Glossar angewendet"
+        },
+        {
+          "action": "click",
+          "selector": "main button[aria-haspopup=dialog]:has-text(\"muster-glossar\")"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] [role=option]:has-text(\"firmenbegriffe\")"
+        }
+      ],
+      "settleMs": 800,
+      "clip": {
+        "x": 272,
+        "y": 120,
+        "width": 1136,
+        "height": 585
+      },
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/text-glossar.png"
+    },
+    {
+      "id": "translate-text-glossar",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "note": "Globales Glossar „firmenbegriffe“ gestellt (Testkonto ist kein Admin); muster-glossar existiert im Demo-Tenant und wird real angewendet.",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        }
+      ],
+      "waitFor": "main button:has-text(\"Detect language\")",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"German\")"
+        },
+        {
+          "action": "fill",
+          "selector": "main textarea",
+          "value": "Die Besprechung mit dem Vorstand beginnt um 10 Uhr."
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Glossary applied"
+        },
+        {
+          "action": "click",
+          "selector": "main button[aria-haspopup=dialog]:has-text(\"muster-glossar\")"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] [role=option]:has-text(\"firmenbegriffe\")"
+        }
+      ],
+      "settleMs": 800,
+      "clip": {
+        "x": 272,
+        "y": 120,
+        "width": 1136,
+        "height": 585
+      },
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/text-glossar.png"
+    },
+    {
+      "id": "translate-dokument-upload",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/file",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        }
+      ],
+      "waitFor": "main >> text=Datei zum Übersetzen ablegen",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Letzte Übersetzungen"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/dokument-upload.png"
+    },
+    {
+      "id": "translate-dokument-upload",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/file",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        }
+      ],
+      "waitFor": "main >> text=Drop file to translate",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Recent translations"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/dokument-upload.png"
+    },
+    {
+      "id": "translate-dokument-sprachen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/).",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        }
+      ],
+      "waitFor": "main >> text=Datei zum Übersetzen ablegen",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Deutsch\")"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Französisch\") >> nth=1"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Kein Glossar für dieses Sprachpaar vorhanden"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/dokument-sprachen.png"
+    },
+    {
+      "id": "translate-dokument-sprachen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/).",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        }
+      ],
+      "waitFor": "main >> text=Drop file to translate",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"German\")"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"French\") >> nth=1"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=No glossary available for this language pair"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/dokument-sprachen.png"
+    },
+    {
+      "id": "translate-dokument-glossar",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Globales Glossar gestellt.",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        },
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        }
+      ],
+      "waitFor": "main >> text=Datei zum Übersetzen ablegen",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Deutsch\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Glossar auswählen"
+        },
+        {
+          "action": "wait",
+          "selector": "main label:has-text(\"firmenbegriffe\")"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/dokument-glossar.png"
+    },
+    {
+      "id": "translate-dokument-glossar",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Globales Glossar gestellt.",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        },
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        }
+      ],
+      "waitFor": "main >> text=Drop file to translate",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"German\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Select glossary"
+        },
+        {
+          "action": "wait",
+          "selector": "main label:has-text(\"firmenbegriffe\")"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/dokument-glossar.png"
+    },
+    {
+      "id": "translate-dokument-download",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        },
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        },
+        {
+          "urlPattern": "**/api/translate/file",
+          "method": "POST",
+          "status": 202,
+          "json": {
+            "jobId": "tr-muster-1",
+            "statusUrl": "/api/translate/status?id=tr-muster-1",
+            "targetBlobPath": "files/muster/tr-muster-1/result.docx"
+          }
+        },
+        {
+          "urlPattern": "**/api/translate/status?*",
+          "json": {
+            "status": "Succeeded",
+            "blobPath": "files/muster/tr-muster-1/result.docx"
+          }
+        },
+        {
+          "urlPattern": "**/api/translate/download?*",
+          "json": {
+            "url": "https://example.com/muster-anschreiben_en.docx",
+            "expiresAt": "2026-10-17T08:00:00.000Z"
+          }
+        }
+      ],
+      "waitFor": "main >> text=Datei zum Übersetzen ablegen",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"Deutsch\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Glossar auswählen"
+        },
+        {
+          "action": "click",
+          "selector": "main button:text-is(\"Übersetzen\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Übersetzung abgeschlossen"
+        }
+      ],
+      "settleMs": 1000,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/dokument-download.png"
+    },
+    {
+      "id": "translate-dokument-download",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/file",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
+      "routes": [
+        {
+          "urlPattern": "**/api/translate/history",
+          "fixture": "translate-verlauf.json"
+        },
+        {
+          "urlPattern": "/\\/api\\/translate\\/glossary\\?from=de&to=en/",
+          "fixture": "translate-glossare-de-en.json"
+        },
+        {
+          "urlPattern": "**/api/translate/file",
+          "method": "POST",
+          "status": 202,
+          "json": {
+            "jobId": "tr-muster-1",
+            "statusUrl": "/api/translate/status?id=tr-muster-1",
+            "targetBlobPath": "files/muster/tr-muster-1/result.docx"
+          }
+        },
+        {
+          "urlPattern": "**/api/translate/status?*",
+          "json": {
+            "status": "Succeeded",
+            "blobPath": "files/muster/tr-muster-1/result.docx"
+          }
+        },
+        {
+          "urlPattern": "**/api/translate/download?*",
+          "json": {
+            "url": "https://example.com/muster-anschreiben_en.docx",
+            "expiresAt": "2026-10-17T08:00:00.000Z"
+          }
+        }
+      ],
+      "waitFor": "main >> text=Drop file to translate",
+      "actions": [
+        {
+          "action": "upload",
+          "selector": "main input[type=file]",
+          "file": "translate/muster-anschreiben.docx"
+        },
+        {
+          "action": "click",
+          "selector": "main button:has-text(\"German\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Select glossary"
+        },
+        {
+          "action": "click",
+          "selector": "main button:text-is(\"Translate\")"
+        },
+        {
+          "action": "wait",
+          "selector": "main >> text=Translation complete"
+        }
+      ],
+      "settleMs": 1000,
+      "selector": "main .bg-surface-card",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/dokument-download.png"
+    },
+    {
+      "id": "translate-glossare-uebersicht",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/glossary",
+      "note": "Liste gestellt, um ein globales Glossar zu zeigen (Testkonto ist kein Admin).",
+      "routes": [
+        {
+          "urlPattern": "**/api/glossary",
+          "method": "GET",
+          "fixture": "translate-glossarliste.json"
+        }
+      ],
+      "waitFor": "main >> text=firmenbegriffe",
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/glossare-uebersicht.png"
+    },
+    {
+      "id": "translate-glossare-uebersicht",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/glossary",
+      "note": "Liste gestellt, um ein globales Glossar zu zeigen (Testkonto ist kein Admin).",
+      "routes": [
+        {
+          "urlPattern": "**/api/glossary",
+          "method": "GET",
+          "fixture": "translate-glossarliste.json"
+        }
+      ],
+      "waitFor": "main >> text=firmenbegriffe",
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/glossare-uebersicht.png"
+    },
+    {
+      "id": "translate-glossar-hochladen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/glossary",
+      "routes": [
+        {
+          "urlPattern": "**/api/glossary",
+          "method": "GET",
+          "fixture": "translate-glossarliste.json"
+        }
+      ],
+      "waitFor": "main >> text=firmenbegriffe",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Glossar hochladen\")"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] input[type=file]",
+          "state": "attached"
+        },
+        {
+          "action": "fill",
+          "selector": "[role=dialog] input[type=text]",
+          "value": "muster-glossar"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "[role=dialog]",
+      "padding": 0,
+      "output": "src/content/docs/de/company-gpt/addons/company-translate/glossar-hochladen.png"
+    },
+    {
+      "id": "translate-glossar-hochladen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/glossary",
+      "routes": [
+        {
+          "urlPattern": "**/api/glossary",
+          "method": "GET",
+          "fixture": "translate-glossarliste.json"
+        }
+      ],
+      "waitFor": "main >> text=firmenbegriffe",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Upload glossary\")"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] input[type=file]",
+          "state": "attached"
+        },
+        {
+          "action": "fill",
+          "selector": "[role=dialog] input[type=text]",
+          "value": "muster-glossar"
+        }
+      ],
+      "settleMs": 800,
+      "selector": "[role=dialog]",
+      "padding": 0,
+      "output": "src/content/docs/en/company-gpt/addons/company-translate/glossar-hochladen.png"
+    }
+  ]
+}

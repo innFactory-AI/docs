@@ -26,15 +26,11 @@ Große Systemanweisungen braucht ein companyFILES-Agent nicht. Bewährt haben si
 
 ![Dialog des MCP-Servers Files mit der Werkzeugliste und der Seitenleiste des Agenten](./files-agent-tools.png)
 
-Unter **Tools → Hinzufügen** kommt das Werkzeug **Files** dazu. Es ist ein MCP-Server und bringt **56 Werkzeuge** mit; der Zähler in der Seitenleiste zeigt sie als `Files · 56`. Im Dialog steht der Verbindungsstatus (**Verbunden**) und darunter die Liste **Tools auf diesem Server**, in der einzelne Werkzeuge ab- und über **Auswahl aufheben** gesammelt abgewählt werden können.
+Unter **Tools → Hinzufügen** kommt das Werkzeug **Files** dazu. Es ist ein MCP-Server und bringt eine ganze Reihe von Werkzeugen mit. Wie viele es genau sind, hängt davon ab, welche Erweiterungen in Ihrer Umgebung aktiv sind; der Zähler in der Seitenleiste zeigt die Zahl neben dem Namen, in der Abbildung als `Files · 56`. Im Dialog steht der Verbindungsstatus (**Verbunden**) und darunter die Liste **Tools auf diesem Server**, in der einzelne Werkzeuge ab- und über **Auswahl aufheben** gesammelt abgewählt werden können.
 
 Jede Zeile hat neben dem Namen ein Uhr-Symbol. Es markiert das verzögerte Laden (Lazy Loading): Das Werkzeug wird erst dann in den Kontext geholt, wenn es gebraucht wird. Das spart Kontext und ist für nahezu alle Werkzeuge sinnvoll. Ausgenommen bleibt `help` – es ist dauerhaft aktiv, damit der Agent die übrigen Werkzeuge überhaupt nachschlagen kann.
 
-:::note
-Das Uhr-Symbol ist in der Aufnahme nicht mit Beschriftung oder Tooltip zu sehen. Beschrieben ist hier die Wirkung, die in der Aufnahme erläutert wird – nicht der Text der Oberfläche.
-:::
-
-### Die 56 Werkzeuge im Überblick
+### Die Werkzeuge im Überblick
 
 **Excel:** `create_excel`, `create_excel_from_csv`, `create_excel_from_json`, `create_excel_advanced`, `modify_excel`, `read_excel`, `read_excel_detailed`, `create_excel_from_template`, `fill_excel_template`
 
@@ -46,15 +42,30 @@ Das Uhr-Symbol ist in der Aufnahme nicht mit Beschriftung oder Tooltip zu sehen.
 
 **Text, Konvertierung, Archive:** `create_text_file`, `convert_document`, `get_supported_conversions`, `create_zip_from_stored_files`
 
-**Dateiverwaltung:** `upload_file`, `download_stored_file`, `list_documents`, `search_documents`, `list_templates`, `list_my_files`, `get_settings`, `open_companyfiles_ui`
+**Dateiverwaltung:** `upload_file`, `download_stored_file`, `list_documents`, `search_documents`, `list_my_files`, `get_settings`, `open_companyfiles_ui`
+
+**Vorlagen:** `list_templates`, `attach_template_to_chat` – Letzteres hängt eine Kopie einer Vorlage an den Chat, damit der Code-Interpreter sie bearbeiten kann; siehe [Vorlage für den Code-Interpreter an den Chat hängen](/de/company-gpt/addons/companyfiles/vorlagen/#vorlage-für-den-code-interpreter-an-den-chat-hängen)
+
+**Bilder:** `view_image` – der Agent sieht sich ein gespeichertes Bild (PNG, JPEG, WebP, GIF) selbst an, etwa ein hochgeladenes Foto oder einen exportierten Chart, und kann es beschreiben oder auswerten
 
 **Visualisierung:** `create_chart_document`, `embed_chart_in_document`, `show_interactive_chart`, `show_interactive_diagram`, `show_interactive_map`
 
 **Hilfe:** `help`
 
+Dazu kommen Werkzeuge, die nur mit einer zusätzlichen Erweiterung bereitstehen:
+
+| Erweiterung | Werkzeuge | Beschreibung |
+|---|---|---|
+| Weitere Formate lesen | `read_file`, `save_file_part`, `convert_to_markdown` | E-Mails, Archive und ältere Formate lesen, Anhänge als eigenes Dokument speichern, ganze Dateien als Markdown sichern – siehe [E-Mails, Archive und ältere Formate lesen](/de/company-gpt/addons/companyfiles/dokumente-erstellen/#e-mails-archive-und-ältere-formate-lesen) |
+| CAD, BIM und 3D | `describe_model`, `query_model`, `get_model_element`, `aggregate_model`, `model_areas`, `create_model_report`, `render_model_view`, `show_model_viewer`, `convert_model`, `edit_model` | Modelle auswerten, ansehen, umwandeln und bearbeiten – siehe [CAD, BIM und 3D](/de/company-gpt/addons/companyfiles/cad-und-3d/) |
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
 ## Skills
 
-Zu companyFILES gehören mitgelieferte Skills. Sie enthalten keine Inhalte, sondern die Regeln, wie mit den Werkzeugen zu arbeiten ist – welches Werkzeug für welches Format zuständig ist, in welcher Reihenfolge gearbeitet wird und woran ein Ergebnis zu prüfen ist. Ausgewählt werden sie unter **Skills → Hinzufügen**.
+Zu companyFILES gehören mitgelieferte Skills. Sie enthalten keine Inhalte, sondern die Regeln, wie mit den Werkzeugen zu arbeiten ist – welches Werkzeug für welches Format zuständig ist, in welcher Reihenfolge gearbeitet wird und woran ein Ergebnis zu prüfen ist. Ausgewählt werden sie im Bereich **Skills** des Agenten.
 
 | Skill | Zuständig für |
 |---|---|
@@ -68,7 +79,7 @@ Zu companyFILES gehören mitgelieferte Skills. Sie enthalten keine Inhalte, sond
 | [`file-management-skill`](/de/tutorials/skills/files/file-management-skill/) | Dateien ablegen, suchen, herunterladen |
 | [`settings-ui-skill`](/de/tutorials/skills/files/settings-ui-skill/) | Einstellungen lesen und in Dokumenten anwenden |
 
-Der Schalter **Alle Skills verwenden** oberhalb der Liste gibt dem Agenten Zugriff auf sämtliche Skills der Organisation. Für einen Dokumenten-Agenten genügt die gezielte Auswahl der companyFILES-Skills.
+Der Agent kann wahlweise alle Skills der Organisation, keine oder nur ausgewählte Skills nutzen. Für einen Dokumenten-Agenten genügt die gezielte Auswahl der companyFILES-Skills.
 
 :::tip[Hinweis]
 Jeder Skill ist in dieser Dokumentation einzeln beschrieben – die Tabelle verlinkt direkt dorthin. Wer einen eigenen Agenten baut, kann dort nachlesen, welcher Skill welche Arbeitsweise vorgibt.
@@ -80,18 +91,20 @@ Im Chat ist beides sichtbar: Über der Antwort steht, wie viele Werkzeuge benutz
 
 ## Maximale Agenten-Schritte
 
-![Erweiterte Agenteneinstellungen mit dem Feld „Maximale Agenten-Schritte" auf 100 und dem Bereich Multi-Agenten-Orchestrierung](./files-agent-erweitert.png)
+![Erweiterte Agenteneinstellungen mit dem Feld „Maximale Agenten-Schritte" und dem Bereich Multi-Agenten-Orchestrierung](./files-agent-erweitert.png)
 
-Unter **Erweitert → Grundlagen** steht das Feld **Maximale Agenten-Schritte**. Es begrenzt, wie viele Werkzeugaufrufe ein Agent in einem Durchgang machen darf. Für einzelne Dokumente ist der Standardwert ausreichend; für größere Umbauten – etwa das Überarbeiten einer ganzen Präsentation – reicht er nicht, weil dabei schnell dutzende Aufrufe zusammenkommen.
+Unter **Erweitert → Grundlagen** steht das Feld **Maximale Agenten-Schritte**. Es begrenzt, wie viele Werkzeugaufrufe ein Agent in einem Durchgang machen darf. Ohne eigenen Wert gilt der Standard Ihrer Umgebung – in CompanyGPT 150 Schritte. Das reicht in der Regel auch für größere Umbauten wie das Überarbeiten einer ganzen Präsentation.
 
 :::note
-Bevor Sie eine umfangreiche Änderung starten, setzen Sie den Wert hoch – in der Aufnahme auf **100**. Läuft der Agent mitten in der Bearbeitung ins Limit, bleibt das Dokument in einem halbfertigen Zustand zurück.
+Ein eigener Wert ersetzt den Standard – auch nach unten. Tragen Sie deshalb nur dann etwas ein, wenn der Agent bei sehr umfangreichen Änderungen ins Limit läuft, und wählen Sie dann einen Wert über 150. Läuft der Agent mitten in der Bearbeitung ins Limit, bleibt das Dokument in einem halbfertigen Zustand zurück.
 :::
 
-Darunter liegt der Bereich **Multi-Agenten-Orchestrierung** mit **Unteragenten** (Beta), **Übergaben** (Beta) und der **Agentenkette**. Für companyFILES sind sie nicht erforderlich.
+**Unteragenten** und **Übergaben** an andere Agenten (beide Beta) sind für companyFILES nicht erforderlich.
 
 ## Weitere Werkzeuge kombinieren
 
 companyFILES lässt sich mit anderen Werkzeugen desselben Agenten verbinden. Im Beispiel der Karte kommt eine **Websuche** hinzu: Erst recherchiert der Agent die Standorte, dann zeichnet er sie über `show_interactive_map` ein. Ohne Websuche kennt er nur die Orte aus dem Prompt.
+
+Für das Arbeiten mit [`attach_template_to_chat`](/de/company-gpt/addons/companyfiles/vorlagen/#vorlage-für-den-code-interpreter-an-den-chat-hängen) braucht der Agent zusätzlich die Fähigkeit **Code ausführen**, denn die angehängte Vorlage bearbeitet der Code-Interpreter.
 
 Als Nächstes: [Dokumente erstellen](/de/company-gpt/addons/companyfiles/dokumente-erstellen/).

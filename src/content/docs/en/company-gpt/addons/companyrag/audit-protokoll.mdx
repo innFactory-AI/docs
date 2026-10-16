@@ -1,18 +1,25 @@
 ---
 title: Audit log
-description: A complete record of all changes and activities in companyRAG – for security, traceability and troubleshooting.
+description: Log of the administrative and management actions in companyRAG – for security, traceability and troubleshooting.
 ---
 
-The audit log is a complete record (logbook) of all important changes and activities in the RAG service. It provides administrators with security, traceability, and fast troubleshooting.
+The audit log records the administrative and management actions in the RAG service. It serves security, traceability and fast troubleshooting.
 
-The overview shows:
+The area only appears for super admins (see [Rights and roles](/en/company-gpt/addons/companyrag/#rights-and-roles)).
+
+For each entry, the overview shows:
 
 - **Timestamp**: The exact date and time of the activity.
-- **Actor (user)**: Who performed the action (e.g. a specific administrator or an automated [API key](/en/company-gpt/addons/companyrag/api-schluessel/)).
-- **Action**: What exactly was done (e.g. "File deleted", "Integration created", "Collection shared", or "API key revoked").
-- **Details**: Additional information about the event (e.g. the name of the affected file or the ID of the modified collection).
-- **Search & filters**: Allows searching the log for specific time periods, users, or specific actions.
+- **User**: Who performed the action – also when it was triggered via an [API key](/en/company-gpt/addons/companyrag/api-schluessel/).
+- **Action**: What was done, e.g. `file.upload`, `collection.create`, `share.create`, `source.sync` or `apikey.revoke`.
+- **Resource Type** and **Resource ID**: Which object is affected, such as a file, a collection, a share or a source.
+- **Details**: Additional information about the event, e.g. the name of the affected source.
+- **IP Address**: The address the action came from.
+
+The filters **User email**, **Action**, **Resource type**, **From** and **To** narrow down the log. **Clear filters** removes all filters again.
+
+Among other things, the log records uploads, deletions and re-indexing of files, actions on jobs, creating, changing and deleting collections and shares, converting existing tables to datasets, changing, deleting and manually synchronizing sources (including web crawls), pushing and emptying rows in dataset collections with a live defined schema, creating and deleting OKF bundles, and creating and revoking API keys.
 
 :::tip[Note]
-Because API keys act on behalf of the person who created them, automated access appears in the log under that person. Using a separate key per system therefore keeps the log meaningful.
+Since API keys act on behalf of the person who created them, automated access appears under that person in the log. A separate key per system therefore keeps the log meaningful.
 :::

@@ -1,0 +1,66 @@
+---
+title: Vorgabe & Anpassungen
+description: In companyADMIN nachvollziehen, was die Grundkonfiguration von CompanyGPT vorgibt, was Administratoren darüber angepasst haben, welche Startwerte innFactory setzt und was CompanyGPT beim Start überschreibt.
+---
+
+**Konfiguration** → **Vorgabe & Anpassungen** zeigt, wie die Einstellungen von CompanyGPT zustande kommen. Die Seite ist vor allem zum Nachsehen und Aufräumen gedacht; geändert werden Einstellungen auf den jeweiligen Fachseiten.
+
+## So wirken Vorgabe und Anpassungen
+
+- Die **Vorgabe** kommt aus dem Deployment, der Grundkonfiguration von CompanyGPT. innFactory pflegt sie und liefert sie mit jedem Update neu aus.
+- **Anpassungen**, die Sie in companyADMIN machen, liegen als eigene Schicht darüber: für alle, für eine Rolle oder für eine Gruppe. Ein Update der Vorgabe lässt sie unverändert.
+- CompanyGPT setzt beides zusammen. Wenige Punkte gibt CompanyGPT immer aus der Vorgabe vor oder setzt sie bei jedem Start neu.
+
+## Anpassungen im Admin
+
+Die Tabelle listet alles, was in companyADMIN gegenüber der Vorgabe geändert wurde:
+
+| Spalte | Inhalt |
+|---|---|
+| **Einstellung** | Die geänderte Einstellung |
+| **Gilt für** | **Alle**, eine Rolle, eine Gruppe oder eine Person |
+| **Verwaltet auf** | Die Seite, auf der Sie die Einstellung ändern, etwa **Provider und Modelle** oder **Agent-Laufzeit** |
+| **Status** | **Wirkt** oder **Wirkt nicht** mit Grund |
+
+Mit **Feld oder Rolle suchen …** finden Sie eine Einstellung. Eine aufgeklappte Zeile bietet je nach Fall:
+
+- **Nur hier entfernen** – entfernt die Anpassung nur an dieser Stelle; danach gilt die nächste Schicht darunter.
+- **Auf innFactory-Standard zurücksetzen** – entfernt die Einstellung aus allen Anpassungen (für alle, für Rollen, Gruppen und einzelne Personen). Danach gilt wieder die Vorgabe.
+- **Aktivieren** – schaltet deaktivierte Anpassungen wieder ein, und zwar alle Anpassungen dieser Rolle, Gruppe oder Person zugleich, nicht nur die eine Zeile.
+- **Altes Profil löschen** – löscht Überbleibsel einer sehr alten Version, die CompanyGPT nicht mehr liest.
+
+:::caution[Modell-Einschränkungen und Agent-Fähigkeiten nicht hier entfernen]
+**Nur hier entfernen** steht auch an Zeilen mit Modell-Einschränkungen und Agent-Fähigkeiten. Ändern Sie diese Einstellungen auf der Fachseite: unter **Provider und Modelle** mit **Für alle öffnen**, unter **Agent-Fähigkeiten** durch Entfernen des Häkchens **Agent-Fähigkeiten über companyADMIN steuern**. Vollständig entfernen Sie sie hier nur mit **Auf innFactory-Standard zurücksetzen**.
+:::
+
+**Wirkt nicht** bedeutet: gespeichert, aber CompanyGPT wendet es nicht an. Häufige Gründe sind Rechte, die CompanyGPT nur pro Rolle setzt, Einstellungen einer älteren Version oder eine Funktion, die die Vorgabe ausschaltet. Der Grund steht in der Zeile. Bei Einstellungen einer älteren Version genügt meist ein erneutes Speichern auf der Fachseite.
+
+## Was beim Start überschrieben wird
+
+Dieser Abschnitt nennt, was CompanyGPT bei jedem Start selbst setzt und wo die Vorgabe immer Vorrang hat, zum Beispiel:
+
+- Rechte der Rollen „Nutzer“ (USER) und ADMIN für einzelne Funktionen. Das Nutzen-Recht setzt CompanyGPT immer, Erstellen und Teilen nur, wenn die Vorgabe sie ausdrücklich nennt. Eigene Rollen sind davon nicht betroffen.
+- Die Obergrenze für Subagents pro Agent. Der Wert unter [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/) kann sie nur verkleinern.
+- MCP-Server aus der Vorgabe. Sie gelten für alle und lassen sich nicht pro Gruppe freigeben.
+- Funktionsrechte (Agents, Prompts, Websuche …) lassen sich nicht über die Konfiguration ändern, nur pro Rolle.
+
+Bei jeder Sperre steht, ob und wie Sie sie umgehen können, etwa mit einer eigenen Rolle. Die übrigen Punkte ändert nur ein Update der Vorgabe durch innFactory.
+
+## innFactory-Startwerte
+
+Diese Werte setzt innFactory beim Einrichten und bei Updates als Startwert. Was Sie ändern, bleibt Ihres; innFactory überschreibt es nicht.
+
+| Spalte | Inhalt |
+|---|---|
+| **Einstellung** | Die Einstellung |
+| **Startwert** | Der Wert, den innFactory vorsieht |
+| **Aktuell** | Der Wert, der jetzt gilt |
+| **Status** | **Startwert aktiv**, **Entspricht dem Startwert**, **Von euch angepasst**, **Noch nicht gesetzt**, **Nicht mehr verwaltet**, **Fehler beim Setzen** oder **LibreChat setzt das bei jedem Start zurück** |
+
+**Auf Startwert zurücksetzen** verwirft Ihre Änderung; danach gilt wieder der aktuelle Startwert von innFactory.
+
+## Vorgabe aus dem Deployment
+
+Am Ende zeigt die Seite die Grundkonfiguration so, wie CompanyGPT sie beim Start geladen hat. Sie ist nur lesbar; Geheimnisse wie API-Schlüssel sind ausgeblendet. Änderungen an der Vorgabe nimmt innFactory vor.
+
+Eine kompakte Zusammenfassung dieser Seite steht auf [Status → Aktive Konfiguration](/de/company-gpt/addons/companyadmin/status/).

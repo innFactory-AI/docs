@@ -1,0 +1,114 @@
+---
+title: Gruppen
+description: Lokale Gruppen anlegen, Entra-Gruppen registrieren und synchronisieren sowie Freigaben, Erweiterungsrechte und Einstellungen einer Gruppe in companyADMIN verwalten.
+---
+
+Gruppen bündeln Personen. Sie bestimmen vor allem, **mit wem etwas geteilt wird**: Wer Agents, Prompts, Skills und MCP-Server sieht, hängt an den Gruppen. Zusätzlich können Gruppen Rechte in den Erweiterungen und eigene Einstellungen tragen.
+
+Was jemand in CompanyGPT darf (Funktionen) und welche Modelle er sieht, hängt dagegen an seiner [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/), nicht an Gruppen.
+
+Sie finden die Gruppen unter **Zugriff** → **Gruppen**.
+
+## Arten von Gruppen
+
+| Quelle | Herkunft | Mitglieder |
+|---|---|---|
+| **Lokal** | In companyADMIN angelegt | Pflegen Sie selbst |
+| **Entra** | Gruppen aus Microsoft Entra ID | Kommen aus Entra, bei der Anmeldung oder über den Gruppen-Sync; in companyADMIN nur lesbar |
+| **OIDC** | Gruppen aus dem Gruppen-Claim der Anmeldung (OIDC) | Kommen bei der Anmeldung; in companyADMIN nur lesbar |
+
+CompanyGPT kennt eine Entra-Gruppe erst, wenn sich ein Mitglied angemeldet hat oder Sie sie in companyADMIN registriert haben.
+
+## Gruppenliste
+
+Standardmäßig zeigt die Liste nur Gruppen, die irgendwo verwendet werden. **Alle Gruppen anzeigen** blendet die übrigen ein. Eine Suche findet immer alle Gruppen.
+
+| Spalte | Inhalt |
+|---|---|
+| **Name** | Name der Gruppe; Badge **Doppelt**, wenn dieselbe Entra-Gruppe zweimal angelegt ist |
+| **Quelle** | **Lokal**, **Entra** oder **OIDC** |
+| **Mitglieder** | Anzahl der Mitglieder |
+| **Verbunden mit** | Bei lokalen Gruppen: verbundene Entra-Gruppen |
+| **Zuletzt synchronisiert** | Letzter Abgleich der Mitglieder |
+| **Verwendet in** | Rechte, Einstellungen und Freigaben, die an der Gruppe hängen |
+
+Mit **Name oder Entra-ID suchen** finden Sie eine Gruppe auch über ihre Object-ID.
+
+## Gruppe anlegen
+
+Den Abschnitt **Gruppe anlegen** auf der Gruppenliste sehen Administratoren mit dem Recht **Gruppen verwalten**.
+
+1. Geben Sie einen Namen (**Name**) und optional eine **Beschreibung** ein. Der Name ist immer Pflicht, auch bei Entra-Gruppen.
+2. Wählen Sie die **Quelle**: **Lokal** oder **Entra**. Bei **Entra** geben Sie zusätzlich die **Entra-Object-ID** der Gruppe ein. Groß- und Kleinschreibung spielt keine Rolle.
+3. Klicken Sie auf **Anlegen**.
+
+Ist der Entra-Gruppen-Sync eingerichtet, prüft companyADMIN die Object-ID in Entra ID, ersetzt den eingegebenen Namen durch den Namen aus Entra und trägt die Mitglieder sofort ein. Bei großen Gruppen werden die Mitglieder im Hintergrund geladen. Ohne Gruppen-Sync wird die Gruppe nur registriert; ihre Mitglieder kommen dann bei der Anmeldung.
+
+Eine Entra-Gruppe, die es schon gibt, lässt sich kein zweites Mal anlegen. companyADMIN bietet dann **Zur vorhandenen Gruppe** an.
+
+## Entra-Gruppen synchronisieren
+
+Ohne Sync kennt CompanyGPT die Mitgliedschaften einer Entra-Gruppe nur aus den Anmeldungen ihrer Mitglieder. Der Gruppen-Sync liest die Mitglieder aller Entra-Gruppen, die CompanyGPT kennt, aus Microsoft Graph und trägt sie ein. Neue Gruppen legt er nie an.
+
+Den Gruppen-Sync richtet innFactory für Ihre Umgebung ein. Zusätzlich braucht er in Microsoft Entra ID die Admin-Zustimmung für die Berechtigung `GroupMember.Read.All`.
+
+Mit dem Recht **Gruppen verwalten** finden Sie oben auf der Gruppenliste die Aktion **Entra-Gruppen synchronisieren**. Sie öffnet den Sync-Bereich. Er zeigt:
+
+- **Letzter Lauf** mit Ergebnis (**erfolgreich**, **teilweise** oder **fehlgeschlagen**)
+- **Täglich**: ob der Sync jeden Tag automatisch läuft, und wann der nächste Lauf ist
+- **Besitzer zählen als Mitglieder**: ob Besitzer einer Entra-Gruppe als Mitglieder gelten
+
+So synchronisieren Sie von Hand:
+
+1. Klicken Sie oben auf der Gruppenliste auf **Entra-Gruppen synchronisieren**.
+2. Klicken Sie auf **Vorschau anzeigen**. Die Vorschau nennt, wie viele Gruppen gelesen wurden und welche Personen hinzukommen (**kommt dazu**) oder herausfallen (**fällt heraus**).
+3. Klicken Sie auf **Jetzt synchronisieren**.
+
+companyADMIN und die Erweiterungen sehen das Ergebnis sofort, CompanyGPT spätestens nach fünf Minuten. Gruppen, die Microsoft Graph nicht lesen lässt oder für die Graph keine Mitglieder liefert, bleiben unverändert und werden als nicht übernommen gemeldet.
+
+Meldet companyADMIN, dass Microsoft Graph die App ablehnt, fehlt meist die Admin-Zustimmung für `GroupMember.Read.All`. Ist der Sync nicht eingerichtet, lässt sich die Aktion nicht anklicken, und companyADMIN nennt als Grund **Der Entra-Gruppen-Sync ist nicht eingerichtet.** Wenden Sie sich in diesem Fall an innFactory.
+
+## Detailseite einer Gruppe
+
+Die Detailseite hat die Reiter **Überblick**, **Inhalte**, **Erweiterungen**, **Konfiguration** und **Mitglieder** sowie die Gefahrenzone **Gruppe löschen**.
+
+### Überblick
+
+Name, Beschreibung, **Entra-Object-ID**, **Quelle**, **Mitglieder**, **Zuletzt synchronisiert** und **Verwendet in**. Name und Beschreibung ändern Sie nur bei lokalen Gruppen, mit dem Recht **Gruppen verwalten**; übernehmen Sie die Änderung mit **Speichern**. Bei Entra- und OIDC-Gruppen lässt sich im Überblick nichts ändern.
+
+Gibt es dieselbe Entra-Gruppe zweimal, erscheint **Doppelt angelegt**. Zusammenführen geht nur von Hand: Übertragen Sie Rechte und Freigaben auf eine Gruppe und löschen Sie dann die andere.
+
+### Inhalte
+
+Was mit der Gruppe geteilt ist: Agents, Prompts, Skills und MCP-Server, jeweils mit dem Recht **Ansehen** oder **Bearbeiten**. Ändern lässt sich das am jeweiligen Inhalt, siehe [Inhalte und Sichtbarkeit](/de/company-gpt/addons/companyadmin/inhalte/).
+
+:::note[Ohne Superadmin-Funktionen]
+Ohne Superadmin-Funktionen zeigt der Reiter nur Inhalte aus Ihrem eigenen Bereich: über die Bibliothek verwaltete, öffentliche und mit Ihnen geteilte. Alle anderen erscheinen nur als Zahl („N weitere Inhalte nicht sichtbar (dafür fehlen dir Rechte).“), MCP-Server außerhalb Ihres Bereichs nur mit ihrem Namen.
+:::
+
+### Erweiterungen
+
+Die Rechte, die alle Mitglieder der Gruppe in den Erweiterungen bekommen, zum Beispiel **Wissen nutzen** oder **Kurse nutzen**. Ein Häkchen vergibt das Recht. Alle Rechte beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+
+:::caution
+Ein Recht an einer Gruppe bekommt jedes Mitglied, und wer die Gruppe in Entra ID verwaltet, verwaltet damit auch das Recht. Vergeben Sie verwaltende Rechte nur an Sicherheitsgruppen mit eingeschränkten Besitzern, nicht an Microsoft-365-Gruppen, denen Personen selbst beitreten können.
+:::
+
+In manchen Umgebungen ist die Vergabe an Gruppen gesperrt, etwa solange CompanyGPT noch keine Mitglieder der Entra-Gruppen kennt. Der Reiter zeigt dann **Gruppen-Rechte gesperrt** mit dem Grund.
+
+### Konfiguration
+
+Einstellungen, die für die Mitglieder der Gruppe gelten: Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Ohne eigenen Wert gilt die Rolle oder die Grundkonfiguration. Ein Wert der Rolle geht immer vor. Vermeiden Sie verschiedene Werte in mehreren Gruppen derselben Person; legen Sie solche Werte an der Rolle fest.
+
+Modelle werden pro Rolle freigegeben, nicht pro Gruppe. **Zu den Rollen** führt dorthin.
+
+### Mitglieder
+
+- **Lokale Gruppen**: Im Abschnitt **Person hinzufügen** suchen Sie Personen nach Name oder E-Mail und nehmen sie auf. Entfernte Personen verlieren alles, was über diese Gruppe freigegeben ist.
+- **Entra- und OIDC-Gruppen**: Die Mitglieder kommen aus Entra ID bzw. aus der Anmeldung und lassen sich hier nur ansehen.
+
+Eine lokale Gruppe können Sie im Abschnitt **Mit Entra-Gruppe verbinden** an eine oder mehrere Entra-Gruppen koppeln. Wählen Sie die Entra-Gruppen aus und sichern Sie die Verbindung mit **Speichern**. Erst mit einer gespeicherten Verbindung übernimmt **Jetzt abgleichen** deren Mitglieder: Neue kommen hinzu, und wer in keiner der Entra-Gruppen mehr ist, wird entfernt, auch von Hand hinzugefügte Personen. Übernommen werden nur Personen, die sich schon einmal angemeldet haben.
+
+### Gruppe löschen
+
+**Gruppe löschen** entfernt die Gruppe mit allen Rechten, Freigaben und Einstellungen, die an ihr hängen. Das lässt sich nicht rückgängig machen. Eine Entra-Gruppe bleibt in Entra ID bestehen; meldet sich ein Mitglied an, legt CompanyGPT sie ohne Rechte neu an.

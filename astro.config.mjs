@@ -62,6 +62,15 @@ if (!/^(localhost|127\\.0\\.0\\.1|\\[::1\\])$/.test(location.hostname)) {
 export default defineConfig({
 	outDir: './dist',
 	site: 'https://docs.company-gpt.com',
+	// Moved or replaced pages keep their old URLs alive.
+	redirects: {
+		'/de/onboarding': '/de/demo-zugang/',
+		'/en/onboarding': '/en/demo-zugang/',
+		'/de/company-gpt/addons/company-dashboard': '/de/company-gpt/addons/companyadmin/insights/',
+		'/en/company-gpt/addons/company-dashboard': '/en/company-gpt/addons/companyadmin/insights/',
+		'/de/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/de/company-gpt/addons/companyadmin/gruppen/',
+		'/en/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/en/company-gpt/addons/companyadmin/gruppen/',
+	},
 	markdown: {
 		// Astro 7 renders Markdown with Sätteri by default. We stay on the
 		// remark/rehype pipeline so page output is unchanged by the upgrade and
@@ -157,7 +166,7 @@ export default defineConfig({
 					details: "innFactory AI Consulting GmbH - https://innfactory.ai",
 					optionalLinks: [
 						{ label: 'Website', url: 'https://innfactory.ai' },
-						{ label: 'CompanyGPT', url: 'https://company-gpt.com' },
+						{ label: 'CompanyGPT', url: 'https://innfactory.ai/de/leistungen/companygpt/' },
 					]
 				}),
 				starlightSidebarTopics([
@@ -177,6 +186,14 @@ export default defineConfig({
 							],
 						},
 						{
+							label: 'Einrichtung',
+							translations: { en: 'Setup' },
+							items: [
+								{ label: 'Onboarding-Portal', translations: { en: 'Onboarding portal' }, slug: 'einrichtung/onboarding-portal' },
+								{ label: 'CompanyGPT Sovereign', translations: { en: 'CompanyGPT Sovereign' }, slug: 'company-gpt/sovereign' },
+							]
+						},
+						{
 							label: 'CompanyGPT',
 							translations: { en: 'CompanyGPT' },
 							items: [
@@ -184,6 +201,7 @@ export default defineConfig({
 								{ label: 'User Interface', translations: { en: 'User Interface' }, slug: 'company-gpt/user-interface' },
 								{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/einstellungen' },
 								{ label: 'Chat', translations: { en: 'Chat' }, slug: 'company-gpt/chat' },
+								{ label: 'Neue Chat-Oberfläche', translations: { en: 'New chat interface' }, badge: { text: { de: 'Vorschau', en: 'Preview' }, variant: 'caution' }, slug: 'company-gpt/neue-chat-oberflaeche' },
 								{ label: 'Projekte', translations: { en: 'Projects' }, slug: 'company-gpt/projekte' },
 								{
 									label: 'Integrationen',
@@ -199,40 +217,36 @@ export default defineConfig({
 									label: 'Addons',
 									translations: { en: 'Add-ons' },
 									items: [
+										{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons' },
+										{ label: 'Gemeinsame Oberfläche', translations: { en: 'Shared interface' }, slug: 'company-gpt/addons/gemeinsame-oberflaeche' },
+										{ label: 'Alle Apps', translations: { en: 'All apps' }, slug: 'company-gpt/addons/alle-apps' },
 										{
-												label: 'companyRAG',
-												translations: { en: 'companyRAG' },
-												items: [
-													{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyrag' },
-													{ label: 'Sammlungen', translations: { en: 'Collections' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
-													{ label: 'Strukturierte Daten', translations: { en: 'Structured data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
-													{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
-													{ label: 'OKF-Bundles', translations: { en: 'OKF bundles' }, badge: { text: 'Experimentell', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
-													{ label: 'Dateien', translations: { en: 'Files' }, slug: 'company-gpt/addons/companyrag/dateien' },
-													{ label: 'Hochladen', translations: { en: 'Upload' }, slug: 'company-gpt/addons/companyrag/hochladen' },
-													{ label: 'Quellen', translations: { en: 'Sources' }, slug: 'company-gpt/addons/companyrag/quellen' },
-													{ label: 'Integrationen', translations: { en: 'Integrations' }, slug: 'company-gpt/addons/companyrag/integrationen' },
-													{ label: 'Aufträge', translations: { en: 'Jobs' }, slug: 'company-gpt/addons/companyrag/auftraege' },
-													{ label: 'API-Schlüssel', translations: { en: 'API keys' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
-													{ label: 'Audit-Protokoll', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
-													{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
-												]
-											},
-										{
-											label: 'companyADMIN',
-											translations: { en: 'companyADMIN' },
-											badge: { text: 'Beta', variant: 'caution' },
+											label: 'companyRAG',
+											translations: { en: 'companyRAG' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyadmin' },
-												{ label: 'Rollen und Rechte', translations: { en: 'Roles and permissions' }, slug: 'company-gpt/addons/companyadmin/rollen-und-rechte' },
-												{ label: 'Benutzer und Gruppen', translations: { en: 'Users and groups' }, slug: 'company-gpt/addons/companyadmin/benutzer-und-gruppen' },
-												{ label: 'Direkte Berechtigungen', translations: { en: 'Direct grants' }, slug: 'company-gpt/addons/companyadmin/direkte-berechtigungen' },
-												{ label: 'Audit-Log', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyadmin/audit-log' },
-												{ label: 'Inhalte und Sichtbarkeit', translations: { en: 'Content and visibility' }, slug: 'company-gpt/addons/companyadmin/inhalte' },
-												{ label: 'Kategorien', translations: { en: 'Categories' }, slug: 'company-gpt/addons/companyadmin/kategorien' },
-												{ label: 'Modelle und Provider', translations: { en: 'Models and providers' }, slug: 'company-gpt/addons/companyadmin/modelle' },
-												{ label: 'Agent-Capabilities', translations: { en: 'Agent capabilities' }, slug: 'company-gpt/addons/companyadmin/agent-capabilities' },
-												{ label: 'Library Sync', translations: { en: 'Library Sync' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyrag' },
+												{ label: 'Sammlungen', translations: { en: 'Collections' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
+												{ label: 'Strukturierte Daten', translations: { en: 'Structured data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
+												{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
+												{ label: 'OKF-Bundles', translations: { en: 'OKF bundles' }, badge: { text: { de: 'Experimentell', en: 'Experimental' }, variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
+												{ label: 'Dateien', translations: { en: 'Files' }, slug: 'company-gpt/addons/companyrag/dateien' },
+												{ label: 'Hochladen', translations: { en: 'Upload' }, slug: 'company-gpt/addons/companyrag/hochladen' },
+												{ label: 'Quellen', translations: { en: 'Sources' }, slug: 'company-gpt/addons/companyrag/quellen' },
+												{ label: 'Integrationen', translations: { en: 'Integrations' }, slug: 'company-gpt/addons/companyrag/integrationen' },
+												{ label: 'Aufträge', translations: { en: 'Jobs' }, slug: 'company-gpt/addons/companyrag/auftraege' },
+												{ label: 'API-Schlüssel', translations: { en: 'API keys' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
+												{ label: 'Audit-Protokoll', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
+												{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
+											]
+										},
+										{
+											label: 'companyKNOWLEDGE',
+											translations: { en: 'companyKNOWLEDGE' },
+											badge: { text: { de: 'Experimentell', en: 'Experimental' }, variant: 'caution' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyknowledge' },
+												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyknowledge/agent' },
+												{ label: 'Wissen erzeugen und pflegen', translations: { en: 'Creating and maintaining knowledge' }, slug: 'company-gpt/addons/companyknowledge/wissen-erzeugen' },
 											]
 										},
 										{
@@ -247,9 +261,9 @@ export default defineConfig({
 												{ label: 'Visualisierungen', translations: { en: 'Visualizations' }, slug: 'company-gpt/addons/companyfiles/visualisierungen' },
 												{ label: 'Präsentationen bearbeiten', translations: { en: 'Editing presentations' }, slug: 'company-gpt/addons/companyfiles/praesentationen' },
 												{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'company-gpt/addons/companyfiles/vorlagen' },
+												{ label: 'CAD, BIM und 3D', translations: { en: 'CAD, BIM and 3D' }, slug: 'company-gpt/addons/companyfiles/cad-und-3d' },
 											]
 										},
-										{ label: 'companyDASHBOARD', translations: { en: 'companyDASHBOARD' }, slug: 'company-gpt/addons/company-dashboard' },
 										{
 											label: 'companyTRANSLATE',
 											translations: { en: 'companyTRANSLATE' },
@@ -258,6 +272,7 @@ export default defineConfig({
 												{ label: 'Text übersetzen', translations: { en: 'Translate text' }, slug: 'company-gpt/addons/company-translate/text-uebersetzen' },
 												{ label: 'Dokument übersetzen', translations: { en: 'Translate document' }, slug: 'company-gpt/addons/company-translate/dokument-uebersetzen' },
 												{ label: 'Glossare', translations: { en: 'Glossaries' }, slug: 'company-gpt/addons/company-translate/glossare' },
+												{ label: 'Übersetzen im Chat', translations: { en: 'Translating in the chat' }, slug: 'company-gpt/addons/company-translate/im-chat' },
 											]
 										},
 										{
@@ -269,20 +284,80 @@ export default defineConfig({
 												{ label: 'Aufnehmen und transkribieren', translations: { en: 'Recording and transcribing' }, slug: 'company-gpt/addons/company-transcribe/aufnehmen' },
 												{ label: 'Transkripte bearbeiten', translations: { en: 'Editing transcripts' }, slug: 'company-gpt/addons/company-transcribe/transkripte' },
 												{ label: 'Sprachausgaben', translations: { en: 'Voiceovers' }, slug: 'company-gpt/addons/company-transcribe/sprachausgaben' },
-												{ label: 'Zugriff über den CompanyGPT', translations: { en: 'Access from CompanyGPT' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
+												{ label: 'Zugriff über den CompanyGPT-Chat', translations: { en: 'Access from the CompanyGPT chat' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
 											]
 										},
 										{
-											label: 'companyKNOWLEDGE',
-											translations: { en: 'companyKNOWLEDGE' },
-											badge: { text: 'Experimentell', variant: 'caution' },
+											label: 'companyLEARN',
+											translations: { en: 'companyLEARN' },
+											badge: { text: { de: 'Neu', en: 'New' }, variant: 'tip' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyknowledge' },
-												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyknowledge/agent' },
-												{ label: 'Wissen erzeugen und pflegen', translations: { en: 'Creating and maintaining knowledge' }, slug: 'company-gpt/addons/companyknowledge/wissen-erzeugen' },
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companylearn' },
+												{ label: 'Die Oberfläche', translations: { en: 'The interface' }, slug: 'company-gpt/addons/companylearn/oberflaeche' },
+												{ label: 'Lernen', translations: { en: 'Learning' }, slug: 'company-gpt/addons/companylearn/lernen' },
+												{ label: 'Im Chat', translations: { en: 'In the chat' }, slug: 'company-gpt/addons/companylearn/im-chat' },
+												{ label: 'Kurse verwalten', translations: { en: 'Managing courses' }, slug: 'company-gpt/addons/companylearn/kurse-verwalten' },
+												{ label: 'Videos', translations: { en: 'Videos' }, slug: 'company-gpt/addons/companylearn/videos' },
+												{ label: 'Externe API', translations: { en: 'External API' }, slug: 'company-gpt/addons/companylearn/api' },
 											]
 										},
-										{ label: 'companyM365', translations: { en: 'companyM365' }, slug: 'company-gpt/addons/companym365' },
+										{
+											label: 'companyM365',
+											translations: { en: 'companyM365' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companym365' },
+												{ label: 'Werkzeuge im Chat', translations: { en: 'Tools in the chat' }, slug: 'company-gpt/addons/companym365/werkzeuge' },
+												{ label: 'Office-Add-in', translations: { en: 'Office add-in' }, slug: 'company-gpt/addons/companym365/office-add-in' },
+												{ label: 'Word, Excel und PowerPoint', translations: { en: 'Word, Excel and PowerPoint' }, slug: 'company-gpt/addons/companym365/word-excel-powerpoint' },
+												{ label: 'Outlook', translations: { en: 'Outlook' }, slug: 'company-gpt/addons/companym365/outlook' },
+												{ label: 'Mehrere Office-Fenster', translations: { en: 'Multiple Office windows' }, badge: { text: { de: 'Neu', en: 'New' }, variant: 'tip' }, slug: 'company-gpt/addons/companym365/mehrere-fenster' },
+												{ label: 'Teams', translations: { en: 'Teams' }, slug: 'company-gpt/addons/companym365/teams' },
+												{ label: 'Administration', translations: { en: 'Administration' }, slug: 'company-gpt/addons/companym365/administration' },
+											]
+										},
+										{ label: 'AI Gateway', translations: { en: 'AI Gateway' }, slug: 'company-gpt/addons/ai-gateway' },
+										{
+											label: 'companyADMIN',
+											translations: { en: 'companyADMIN' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyadmin' },
+												{ label: 'Insights', translations: { en: 'Insights' }, slug: 'company-gpt/addons/companyadmin/insights' },
+												{ label: 'Status', translations: { en: 'Status' }, slug: 'company-gpt/addons/companyadmin/status' },
+												{ label: 'Protokolle', translations: { en: 'Logs' }, slug: 'company-gpt/addons/companyadmin/audit-log' },
+												{
+													label: 'Zugriff',
+													translations: { en: 'Access' },
+													items: [
+														{ label: 'Nutzer', translations: { en: 'Users' }, slug: 'company-gpt/addons/companyadmin/nutzer' },
+														{ label: 'Rollen', translations: { en: 'Roles' }, slug: 'company-gpt/addons/companyadmin/rollen-und-rechte' },
+														{ label: 'Gruppen', translations: { en: 'Groups' }, slug: 'company-gpt/addons/companyadmin/gruppen' },
+														{ label: 'Direkt-Grants', translations: { en: 'Direct grants' }, slug: 'company-gpt/addons/companyadmin/direkte-berechtigungen' },
+													]
+												},
+												{
+													label: 'Inhalte',
+													translations: { en: 'Content' },
+													items: [
+														{ label: 'Inhalte und Sichtbarkeit', translations: { en: 'Content and visibility' }, slug: 'company-gpt/addons/companyadmin/inhalte' },
+														{ label: 'Kategorien', translations: { en: 'Categories' }, slug: 'company-gpt/addons/companyadmin/kategorien' },
+														{ label: 'Bibliotheks-Sync', translations: { en: 'Library Sync' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
+													]
+												},
+												{
+													label: 'Konfiguration',
+													translations: { en: 'Configuration' },
+													items: [
+														{ label: 'Provider und Modelle', translations: { en: 'Providers and models' }, slug: 'company-gpt/addons/companyadmin/modelle' },
+														{ label: 'Agent-Fähigkeiten', translations: { en: 'Agent capabilities' }, slug: 'company-gpt/addons/companyadmin/agent-capabilities' },
+														{ label: 'Agent-Laufzeit', translations: { en: 'Agent runtime' }, slug: 'company-gpt/addons/companyadmin/agent-laufzeit' },
+														{ label: 'MCP-Domains', translations: { en: 'MCP domains' }, slug: 'company-gpt/addons/companyadmin/mcp-domains' },
+														{ label: 'Vorgabe & Anpassungen', translations: { en: 'Baseline & adjustments' }, slug: 'company-gpt/addons/companyadmin/vorgabe-und-anpassungen' },
+														{ label: 'Tools', translations: { en: 'Tools' }, slug: 'company-gpt/addons/companyadmin/tools' },
+														{ label: 'Erweiterungen', translations: { en: 'Extensions' }, slug: 'company-gpt/addons/companyadmin/erweiterungen' },
+													]
+												},
+											]
+										},
 									]
 								},
 								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
@@ -334,6 +409,7 @@ export default defineConfig({
 								items: [
 									{ label: 'companyRAG API', translations: { en: 'companyRAG API' }, slug: 'api/company-rag-api' },
 									{ label: 'Agents API', translations: { en: 'Agents API' }, slug: 'api/agents-api' },
+									{ label: 'AI Gateway API', translations: { en: 'AI Gateway API' }, slug: 'api/ai-gateway' },
 								]
 							},
 							// Endpoint and schema pages generated from src/openapi/rag-api.yaml.

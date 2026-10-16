@@ -1,24 +1,31 @@
 ---
 title: Upload
-description: Manually upload and index single or multiple files into a collection – including an overview of the supported file formats.
+description: Upload single or multiple files manually to a collection and index them – with an overview of the supported file formats.
 ---
 
-Use **Upload** to add single or multiple files directly to a collection. This is the fastest way to test a set of documents or to add one-off files. For recurring content, use a [source](/en/company-gpt/addons/companyrag/quellen/) instead.
+With **Upload** you add single or multiple files directly to a collection. This is the quickest way to test a set of documents or to add one-off documents. For recurring content, use a [source](/en/company-gpt/addons/companyrag/quellen/) instead.
 
-!["Upload documents" page with collection selection and drop area for files](./hochladen.png)
+![The "Upload Documents" page with collection selection, the list of supported formats and the drop area for files](./hochladen.png)
 
-Steps:
+Process on the **Upload Documents** page:
 
-1. Select the **collection** the documents should be added to.
-2. Drag the files into the drop area or select them by clicking.
-3. The upload is created as a job and indexed; you can follow its status under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).
+1. Select the **Collection** the documents should be added to. Only collections in which you are an owner or admin are offered. If there are none, the page shows **No writable collections**.
+2. Drag files into the drop area or click to select them.
+3. Start with **Upload Document** or **Upload … Documents**. The page shows the progress per file.
+4. Each file is created as a job and indexed; you can see the status under [Jobs](/en/company-gpt/addons/companyrag/auftraege/).
 
 ## Supported formats
 
-`.pdf`, `.txt`, `.md`, `.docx`, `.pptx`, `.xlsx`, `.xls`, `.odt`, `.ods`, `.odp`, `.html`, `.htm`, `.csv`, `.tsv`, `.parquet`, `.json`, `.eml`
+`.pdf`, `.txt`, `.md`, `.docx`, `.pptx`, `.xlsx`, `.rtf`, `.xml`, `.odt`, `.ods`, `.odp`, `.html`, `.htm`, `.csv`, `.tsv`, `.parquet`, `.json`, `.eml`
+
+The legacy Excel format `.xls` is not supported. Save such files in Excel as a workbook (`.xlsx`).
+
+The interface flags files larger than 50 MB with a notice. The maximum size of an upload is set by your environment.
 
 :::note
-Manually uploaded documents have no source link to an original system. If your agents should link to the original file in their answers, synchronize the documents through a [source](/en/company-gpt/addons/companyrag/quellen/) such as SharePoint instead.
+Manually uploaded documents have no source link to an original system and no file-level permissions. If your agents should link to the original file in their answers, synchronize the documents via a [source](/en/company-gpt/addons/companyrag/quellen/) such as SharePoint instead.
 :::
 
-For tabular data that should be queried via SQL, `.csv`, `.xlsx` and `.parquet` are better placed in a [dataset collection](/en/company-gpt/addons/companyrag/datensaetze/) than in a document collection.
+## Uploading tables
+
+For tabular data that should be queried via SQL, a [dataset collection](/en/company-gpt/addons/companyrag/datensaetze/) is the right choice. If you upload CSV, Excel or Parquet files to a document collection, companyRAG stores them as queryable datasets as long as the option [Tabular files as datasets](/en/company-gpt/addons/companyrag/sammlungen/#tabular-files-as-datasets) is enabled there.

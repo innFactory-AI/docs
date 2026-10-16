@@ -1,0 +1,962 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "agent-tool-library",
+      "lang": "de",
+      "note": "Agent-Builder (neuer Agent, nichts gespeichert), Tool-Bibliothek mit Filter Nativ.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agenten erstellen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agenten erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Tools hinzufügen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Tool-Bibliothek\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=/^Nativ \\d/]"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "clip": {
+        "x": 120,
+        "y": 54,
+        "width": 1200,
+        "height": 372
+      },
+      "settleMs": 800,
+      "output": "src/content/docs/de/company-gpt/agent-tool-library.png"
+    },
+    {
+      "id": "agent-action-new",
+      "lang": "de",
+      "note": "Demo-Agent „Muster-Assistent“ (Testkonto). Dialog für eine neue Aktion mit erfundenem Beispielschema, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agenten erstellen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agenten erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Tools hinzufügen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Neu erstellen …\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Aktionen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Neue Aktion\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog[name=\"Neue Aktion\"] >> role=textbox[name=\"Schema\"]",
+          "value": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Muster-API\",\n    \"version\": \"1.0.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://api.example.com\"\n    }\n  ],\n  \"paths\": {\n    \"/termine\": {\n      \"get\": {\n        \"operationId\": \"listeTermine\",\n        \"summary\": \"Termine der Muster GmbH abrufen\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      }\n    }\n  }\n}"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Neue Aktion\"] >> role=table"
+        },
+        {
+          "action": "press",
+          "selector": "role=dialog[name=\"Neue Aktion\"] >> role=textbox[name=\"Schema\"]",
+          "key": "Control+Home"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog[name=\"Neue Aktion\"] >> role=heading"
+        }
+      ],
+      "selector": "role=dialog[name=\"Neue Aktion\"]",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/actions-open-api.png"
+    },
+    {
+      "id": "agent-share-button",
+      "lang": "de",
+      "note": "Demo-Agent „Muster-Assistent“: Fußzeile des Agent-Builders mit der Teilen-Schaltfläche.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "waitFor": "role=button[name=\"Agenten erstellen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agenten erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Nachrichteneingabe\"]"
+        }
+      ],
+      "selector": "form div.mb-1:has(button[aria-label=\"Muster-Assistent teilen\"])",
+      "padding": 8,
+      "output": "src/content/docs/de/company-gpt/share-agent.png"
+    },
+    {
+      "id": "agent-share-dialog",
+      "lang": "de",
+      "note": "Teilen-Dialog des Demo-Agenten, nur geöffnet. E-Mail-Adresse des Testkontos geschwärzt.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agenten erstellen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agenten erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog[name=\"Muster-Assistent teilen\"] >> role=heading >> nth=0"
+        }
+      ],
+      "selector": "role=dialog[name=\"Muster-Assistent teilen\"]",
+      "padding": 16,
+      "mask": [
+        "role=dialog[name=\"Muster-Assistent teilen\"] >> text=/[^\\s@]+@[^\\s@]+/"
+      ],
+      "output": "src/content/docs/de/company-gpt/share-agent-details.png"
+    },
+    {
+      "id": "agent-share-rights",
+      "lang": "de",
+      "note": "Rechte-Menü im Teilen-Dialog des Demo-Agenten, nur geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agenten erstellen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agenten erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Muster-Assistent teilen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=/volle Kontrolle/]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu"
+        },
+        {
+          "action": "wait",
+          "ms": 1000
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=/^Betrachter/]"
+        }
+      ],
+      "selector": "role=menu",
+      "padding": 8,
+      "mask": [
+        "role=dialog[name=\"Muster-Assistent teilen\"] >> text=/[^\\s@]+@[^\\s@]+/"
+      ],
+      "output": "src/content/docs/de/company-gpt/agent-share-rights.png"
+    },
+    {
+      "id": "agent-marketplace",
+      "lang": "de",
+      "note": "Agenten-Marktplatz, erste Reihe (Demo-Agent „Muster-Assistent“ zuerst, Sortierung Newest first). Namen anderer Ersteller geschwärzt.",
+      "baseUrl": "demo",
+      "path": "/agents",
+      "waitFor": "main article h2:text-is(\"Muster-Assistent\")",
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 412
+      },
+      "mask": [
+        "xpath=//main//article//footer//span[contains(@class,'truncate') and normalize-space(.)!='Test GPT']"
+      ],
+      "output": "src/content/docs/de/company-gpt/agent-marketplace.png"
+    },
+    {
+      "id": "skills-main",
+      "lang": "de",
+      "note": "Skills-Seitenleiste; Demo-Skills „protokoll-vorlage“ (DE) und „meeting-minutes-template“ (EN) des Testkontos.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=navigation >> role=button[name=\"protokoll-vorlage\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Nachrichteneingabe\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 3000
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/skills-main-de.png"
+    },
+    {
+      "id": "skills-new",
+      "lang": "de",
+      "note": "Menü der Plus-Schaltfläche in der Skills-Seitenleiste.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Skill erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitem[name=\"Skill-Anweisungen schreiben\"]"
+        }
+      ],
+      "clip": {
+        "x": 52,
+        "y": 0,
+        "width": 320,
+        "height": 140
+      },
+      "output": "src/content/docs/de/company-gpt/skills-new-de.png"
+    },
+    {
+      "id": "skills-write",
+      "lang": "de",
+      "note": "Dialog zum Schreiben eines Skills mit dem Inhalt des Demo-Skills ausgefüllt, nicht erstellt.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Skill erstellen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Skill-Anweisungen schreiben\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog >> role=textbox[name=\"Name\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Name\"]",
+          "value": "protokoll-vorlage"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Beschreibung\"]",
+          "value": "Verwende diesen Skill, wenn du ein Besprechungsprotokoll nach der Vorlage der Muster GmbH erstellen möchtest."
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Anleitung\"]",
+          "value": "# Protokoll-Vorlage\n\nErstelle Besprechungsprotokolle der Muster GmbH immer in dieser Struktur.\n\n## Kopf\n\n- Titel der Besprechung\n- Datum und Uhrzeit\n- Teilnehmende (nur Rollen, z. B. Projektleitung, Vertrieb)"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog >> role=heading"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/skills-write-de.png"
+    },
+    {
+      "id": "skills-upload",
+      "lang": "de",
+      "note": "Dialog zum Hochladen eines Skills, nur geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Skill erstellen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Skill hochladen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog >> role=heading"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/skills-upload-de.png"
+    },
+    {
+      "id": "skills-view",
+      "lang": "de",
+      "note": "Detailansicht des eigenen Demo-Skills.",
+      "baseUrl": "demo",
+      "path": "/skills/6ad27d9521f4b1d7a8aab8f3",
+      "waitFor": "role=article[name=\"protokoll-vorlage\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=navigation >> role=button[name=\"protokoll-vorlage\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=article >> role=heading[name=\"protokoll-vorlage\"]"
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/skills-view-de.png"
+    },
+    {
+      "id": "skills-edit",
+      "lang": "de",
+      "note": "Bearbeitungsansicht des eigenen Demo-Skills mit geöffnetem Kategorie-Menü, nichts gespeichert.",
+      "baseUrl": "demo",
+      "path": "/skills/6ad27d9521f4b1d7a8aab8f3",
+      "waitFor": "role=article[name=\"protokoll-vorlage\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=article >> role=button[name=\"Bearbeiten\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=form >> role=textbox[name=\"Name\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=form >> role=button[name=\"Kategorie\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=menu]:visible, [role=listbox]:visible"
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 720
+      },
+      "output": "src/content/docs/de/company-gpt/skills-edit-de.png"
+    },
+    {
+      "id": "agent-tool-library",
+      "lang": "en",
+      "note": "Agent-Builder (neuer Agent, nichts gespeichert), Tool-Bibliothek mit Filter Nativ.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agent Builder\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agent Builder\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Add tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Tool Library\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=/^Native \\d/]"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "clip": {
+        "x": 120,
+        "y": 54,
+        "width": 1200,
+        "height": 372
+      },
+      "settleMs": 800,
+      "output": "src/content/docs/en/company-gpt/agent-tool-library-en.png"
+    },
+    {
+      "id": "agent-action-new",
+      "lang": "en",
+      "note": "Demo-Agent „Muster-Assistent“ (Testkonto). Dialog für eine neue Aktion mit erfundenem Beispielschema, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agent Builder\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agent Builder\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Add tools\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Create new…\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Actions\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"New action\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog[name=\"New action\"] >> role=textbox[name=\"Schema\"]",
+          "value": "{\n  \"openapi\": \"3.1.0\",\n  \"info\": {\n    \"title\": \"Sample API\",\n    \"version\": \"1.0.0\"\n  },\n  \"servers\": [\n    {\n      \"url\": \"https://api.example.com\"\n    }\n  ],\n  \"paths\": {\n    \"/appointments\": {\n      \"get\": {\n        \"operationId\": \"listAppointments\",\n        \"summary\": \"Get appointments of Muster GmbH\",\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      }\n    }\n  }\n}"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"New action\"] >> role=table"
+        },
+        {
+          "action": "press",
+          "selector": "role=dialog[name=\"New action\"] >> role=textbox[name=\"Schema\"]",
+          "key": "Control+Home"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog[name=\"New action\"] >> role=heading"
+        }
+      ],
+      "selector": "role=dialog[name=\"New action\"]",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/actions-open-api-en.png"
+    },
+    {
+      "id": "agent-share-button",
+      "lang": "en",
+      "note": "Demo-Agent „Muster-Assistent“: Fußzeile des Agent-Builders mit der Teilen-Schaltfläche.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "waitFor": "role=button[name=\"Agent Builder\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agent Builder\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Message input\"]"
+        }
+      ],
+      "selector": "form div.mb-1:has(button[aria-label=\"Share Muster-Assistent\"])",
+      "padding": 8,
+      "output": "src/content/docs/en/company-gpt/share-agent-en.png"
+    },
+    {
+      "id": "agent-share-dialog",
+      "lang": "en",
+      "note": "Teilen-Dialog des Demo-Agenten, nur geöffnet. E-Mail-Adresse des Testkontos geschwärzt.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agent Builder\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agent Builder\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog[name=\"Share Muster-Assistent\"] >> role=heading >> nth=0"
+        }
+      ],
+      "selector": "role=dialog[name=\"Share Muster-Assistent\"]",
+      "padding": 16,
+      "mask": [
+        "role=dialog[name=\"Share Muster-Assistent\"] >> text=/[^\\s@]+@[^\\s@]+/"
+      ],
+      "output": "src/content/docs/en/company-gpt/share-agents-details-en.png"
+    },
+    {
+      "id": "agent-share-rights",
+      "lang": "en",
+      "note": "Rechte-Menü im Teilen-Dialog des Demo-Agenten, nur geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Agent Builder\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Agent Builder\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=combobox[name=\"Agent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Share Muster-Assistent\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=/full control/i]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu"
+        },
+        {
+          "action": "wait",
+          "ms": 1000
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=/^Viewer/]"
+        }
+      ],
+      "selector": "role=menu",
+      "padding": 8,
+      "mask": [
+        "role=dialog[name=\"Share Muster-Assistent\"] >> text=/[^\\s@]+@[^\\s@]+/"
+      ],
+      "output": "src/content/docs/en/company-gpt/agent-share-rights-en.png"
+    },
+    {
+      "id": "agent-marketplace",
+      "lang": "en",
+      "note": "Agenten-Marktplatz, erste Reihe (Demo-Agent „Muster-Assistent“ zuerst, Sortierung Newest first). Namen anderer Ersteller geschwärzt.",
+      "baseUrl": "demo",
+      "path": "/agents",
+      "waitFor": "main article h2:text-is(\"Muster-Assistent\")",
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 412
+      },
+      "mask": [
+        "xpath=//main//article//footer//span[contains(@class,'truncate') and normalize-space(.)!='Test GPT']"
+      ],
+      "output": "src/content/docs/en/company-gpt/agent-marketplace-en.png"
+    },
+    {
+      "id": "skills-main",
+      "lang": "en",
+      "note": "Skills-Seitenleiste; Demo-Skills „protokoll-vorlage“ (DE) und „meeting-minutes-template“ (EN) des Testkontos.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=navigation >> role=button[name=\"meeting-minutes-template\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Message input\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 3000
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/skills-main-en.png"
+    },
+    {
+      "id": "skills-new",
+      "lang": "en",
+      "note": "Menü der Plus-Schaltfläche in der Skills-Seitenleiste.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Skill\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitem[name=\"Write skill instructions\"]"
+        }
+      ],
+      "clip": {
+        "x": 52,
+        "y": 0,
+        "width": 320,
+        "height": 140
+      },
+      "output": "src/content/docs/en/company-gpt/skills-new-en.png"
+    },
+    {
+      "id": "skills-write",
+      "lang": "en",
+      "note": "Dialog zum Schreiben eines Skills mit dem Inhalt des Demo-Skills ausgefüllt, nicht erstellt.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Skill\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Write skill instructions\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog >> role=textbox[name=\"Name\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Name\"]",
+          "value": "meeting-minutes-template"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Description\"]",
+          "value": "Use this skill when you want to write meeting minutes based on the Muster GmbH template."
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Instructions\"]",
+          "value": "# Meeting Minutes Template\n\nAlways write meeting minutes for Muster GmbH in this structure.\n\n## Header\n\n- Meeting title\n- Date and time\n- Participants (roles only, e.g. project lead, sales)"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog >> role=heading"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/skills-write-en.png"
+    },
+    {
+      "id": "skills-upload",
+      "lang": "en",
+      "note": "Dialog zum Hochladen eines Skills, nur geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Skills\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Skill\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Upload a skill\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "hover",
+          "selector": "role=dialog >> role=heading"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/skills-upload-en.png"
+    },
+    {
+      "id": "skills-view",
+      "lang": "en",
+      "note": "Detailansicht des eigenen Demo-Skills.",
+      "baseUrl": "demo",
+      "path": "/skills/6ad27e4c21f4b1d7a8aace3f",
+      "waitFor": "role=article[name=\"meeting-minutes-template\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=complementary >> role=button[name=\"Skills\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=navigation >> role=button[name=\"meeting-minutes-template\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=article >> role=heading[name=\"meeting-minutes-template\"]"
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/skills-view-en.png"
+    },
+    {
+      "id": "skills-edit",
+      "lang": "en",
+      "note": "Bearbeitungsansicht des eigenen Demo-Skills mit geöffnetem Kategorie-Menü, nichts gespeichert.",
+      "baseUrl": "demo",
+      "path": "/skills/6ad27e4c21f4b1d7a8aace3f",
+      "waitFor": "role=article[name=\"meeting-minutes-template\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=article >> role=button[name=\"Edit\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=form >> role=textbox[name=\"Name\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=form >> role=button[name=\"Category\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=menu]:visible, [role=listbox]:visible"
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 720
+      },
+      "output": "src/content/docs/en/company-gpt/skills-edit-en.png"
+    }
+  ]
+}

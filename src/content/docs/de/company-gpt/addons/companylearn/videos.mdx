@@ -1,0 +1,61 @@
+---
+title: Videos
+description: Videos für companyLEARN hochladen (MP4 und WebM), in Lektionen verwenden, abspielen und aus der Videobibliothek löschen.
+---
+
+Videolektionen greifen auf die **Videobibliothek** von companyLEARN zu. Ein Video wird einmal hochgeladen und lässt sich danach in beliebig vielen Lektionen verwenden, auch in verschiedenen Kursen. Die Videobibliothek steht Personen mit dem Recht **Kurse verwalten** zur Verfügung; Sie öffnen sie über **Videos** im Menü.
+
+## Unterstützte Formate
+
+| Format | Dateiendung |
+|---|---|
+| MP4 | `.mp4` |
+| WebM | `.webm` |
+
+Beim Hochladen prüft companyLEARN die Dateiendung, den angegebenen Dateityp und den Inhalt der Datei; andere Formate werden abgelehnt. Eine Datei darf standardmäßig bis zu 2 GB groß sein.
+
+companyLEARN speichert Videos unverändert und wandelt sie nicht um. Lernende sehen also genau die Datei, die Sie hochladen; sie muss sich deshalb in gängigen Browsern abspielen lassen.
+
+## Ein Video hochladen
+
+Sie haben zwei Möglichkeiten:
+
+- **In der Videobibliothek:** Klicken Sie oben rechts auf **Video hochladen** und wählen Sie die Datei aus. Ein Fortschrittsbalken zeigt den Upload; danach erscheint das Video in der Tabelle.
+- **Direkt in einer Lektion:** Klicken Sie im Dialog einer Videolektion auf **Video auswählen…** und im Dialog **Video auswählen** auf **Neues Video hochladen**. Nach dem Upload ist das neue Video für die Lektion ausgewählt.
+
+Schlägt der Upload fehl, erscheint „Der Upload ist fehlgeschlagen. Bitte versuche es erneut.“
+
+## Die Videobibliothek
+
+Die Tabelle der **Videobibliothek** zeigt alle hochgeladenen Videos:
+
+| Spalte | Inhalt |
+|---|---|
+| **Dateiname** | Name der hochgeladenen Datei |
+| **Typ** | `video/mp4` oder `video/webm` |
+| **Größe** | Dateigröße |
+| **Verwendet in** | Anzahl der Lektionen, die das Video verwenden |
+| **Erstellt** | Datum des Uploads |
+| **Aktionen** | **Löschen** (Papierkorb) |
+
+## Ein Video in einer Lektion verwenden
+
+Im Dialog einer Videolektion öffnet **Video auswählen…** die Liste aller Videos mit Dateiname und Größe. Klicken Sie auf ein Video, um es zu übernehmen; das ausgewählte Video ist mit einem Häkchen markiert. Speichern Sie anschließend die Lektion. Wie Sie Lektionen anlegen, steht unter [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/#lektionen).
+
+## Wiedergabe
+
+Lernende sehen das Video im Player ihres Browsers mit den üblichen Bedienelementen; Vor- und Zurückspulen ist möglich. Läuft ein Video bis zum Ende, gilt die Lektion als erledigt. Im Chat spielt das Video direkt in der Unterhaltung ab (siehe [Im Chat](/de/company-gpt/addons/companylearn/im-chat/)).
+
+Abspielen kann ein Video nur, wer in einem veröffentlichten Kurs mit dieser Lektion eingeschrieben ist und das zugehörige Kapitel freigeschaltet hat. Die Wiedergabeadressen gelten nur kurz; companyLEARN erneuert sie während der Wiedergabe automatisch.
+
+Die Videobibliothek selbst hat keine Vorschau. Um ein Video so zu sehen wie Lernende, öffnen Sie die Lektion in einem veröffentlichten Kurs, in den Sie eingeschrieben sind.
+
+Kann ein Video nicht geladen werden, erscheint „Das Video konnte nicht geladen werden. Bitte versuche es später erneut.“
+
+## Ein Video löschen
+
+Klicken Sie in der Zeile des Videos auf den Papierkorb und bestätigen Sie **Video löschen?**. Die Datei wird dauerhaft gelöscht.
+
+Ein Video, das noch in Lektionen verwendet wird, lässt sich nicht löschen. companyLEARN meldet dann zum Beispiel „Dieses Video wird von 2 Lektionen verwendet. Entferne es zuerst aus diesen Lektionen.“ Wählen Sie in diesen Lektionen ein anderes Video oder löschen Sie die Lektionen und löschen Sie das Video danach erneut.
+
+Als Nächstes: [Externe API](/de/company-gpt/addons/companylearn/api/).

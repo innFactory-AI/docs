@@ -43,6 +43,7 @@ User wants to edit an existing Excel file → modify_excel  (requires document_i
 User wants to read / parse Excel content...
   Just values         → read_excel
   Formulas & metadata → read_excel_detailed
+  .xls / .xlsb / .ods → read_file  (file-management-skill, if available)
 ```
 
 ## Tool Usage
@@ -52,8 +53,7 @@ User wants to read / parse Excel content...
 {
   "csv_content": "Name,Age\nAlice,30\nBob,25",
   "filename": "people",
-  "sheet_name": "Sheet1",
-  "folder": "reports"
+  "sheet_name": "Sheet1"
 }
 ```
 
@@ -62,8 +62,7 @@ User wants to read / parse Excel content...
 {
   "data": [["Name","Age"],["Alice","30"],["Bob","25"]],
   "has_headers": true,
-  "filename": "people",
-  "folder": "reports"
+  "filename": "people"
 }
 ```
 
@@ -102,7 +101,7 @@ User wants to read / parse Excel content...
 
 **Conditional formatting types:** `greaterThan`, `lessThan`, `equal`, `between`, `containsText`, `duplicateValues`
 
-**Other per-sheet options:** `column_widths` (number array), `protected` (boolean). Top-level: `named_ranges` and `properties` (`{title, subject, author, company}`). Individual cells may also be objects: `{"value": ..., "formula": ..., "comment": ..., "validation": ..., "style": ..., "numberFormat": ...}`.
+**Other per-sheet options:** `column_widths` (number array), `protected` (boolean). Top-level: `named_ranges` and `properties` (`{title, subject, author, company}`). Individual cells may also be extended objects: `{"value": ..., "comment": ..., "validation": ..., "style": ..., "numberFormat": ...}` — `value` is required, together with at least one of the other keys. A formula goes **inside** `value`, not next to it: `{"value": {"formula": "SUM(A1:A3)"}, "comment": "Total", "numberFormat": "#,##0.00"}`.
 
 ### modify_excel
 
@@ -136,6 +135,8 @@ Modifies an existing Excel file. Identify the target with `document_id` (updated
 ```
 Accepts any one of `file_content` (base64), `librechat_file_id`, or `document_id` (most common — reading a previously created/stored file). `sheet_name` is optional.
 
+`read_excel` and `read_excel_detailed` read `.xlsx` workbooks. For `.xls`, `.xlsb` or `.ods`, use `read_file` from the **file-management-skill** (only where available) — it returns the content as Markdown.
+
 ### read_excel_detailed
 ```json
 {
@@ -149,7 +150,7 @@ Same input options as `read_excel` (`file_content` / `librechat_file_id` / `docu
 ## Key Notes
 
 - All create tools return `{id, filename, downloadUrl, markdownLink}` — always render `markdownLink` in the reply.
-- `modify_excel` requires a `document_id` or `librechat_file_id` pointing to an `.xlsx` file; it errors if the doc type is not Excel. With `librechat_file_id` the result may be saved as a new document rather than in-place.
+- `modify_excel` requires a `document_id` or `librechat_file_id` pointing to an `.xlsx` file; it errors if the doc type is not Excel. With `librechat_file_id` the attachment is updated in place when possible — the response then contains `librechat_file_id`, `filename`, `modifications` and `message`, but no download link. Otherwise the modified copy is saved as a new document with a new `id` and `markdownLink`.
 - Cell addresses support sheet prefix: `"Sheet2!B3"`.
 - The org/user color theme is automatically applied when configured in settings.
 - To fill a template with `{{placeholder}}` syntax, use `fill_excel_template` from the **templates-skill** instead.

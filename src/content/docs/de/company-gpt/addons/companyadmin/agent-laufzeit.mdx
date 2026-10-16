@@ -1,0 +1,77 @@
+---
+title: Agent-Laufzeit
+description: In companyADMIN Geplante Chats, die Tool-Freigabe und das Subagent-Limit steuern sowie Memories, Aufbewahrung, Agent-Builder und Datei-Uploads pro Rolle oder Gruppe einstellen.
+---
+
+**Konfiguration** → **Agent-Laufzeit** bündelt Einstellungen dazu, wie Agents in CompanyGPT laufen.
+
+Jede Einstellung können Sie mit **Über companyADMIN steuern** übernehmen. Solange sie nicht gesteuert ist, gilt der Wert aus der Grundkonfiguration; die Seite zeigt ihn an (Quelle **librechat.yaml**). Gesteuerte Werte (Quelle **companyADMIN**) gelten für alle Personen, sobald sie CompanyGPT neu laden. Jeder Abschnitt hat einen eigenen Speichern-Knopf.
+
+## Geplante Chats
+
+Geplante Chats sind wiederkehrende Chats mit einem Agent, die zu festen Zeiten laufen.
+
+:::note[Derzeit nur in Pilotumgebungen]
+Diese Funktion ist derzeit nur in Pilotumgebungen verfügbar.
+:::
+
+| Einstellung | Bedeutung |
+|---|---|
+| **Geplante Chats erlauben** | Schaltet die Funktion ein. Aus, solange sie weder hier noch in der Grundkonfiguration eingeschaltet ist |
+| **Max. Schedules pro Nutzer** | Wie viele geplante Chats eine Person höchstens haben darf |
+| **Mindestintervall (Minuten)** | Kürzester Abstand zwischen zwei Läufen |
+| **Nach Fehlern automatisch deaktivieren** | Nach wie vielen Fehlern ein geplanter Chat abgeschaltet wird |
+| **Chat-Projekt erforderlich** | Ob ein geplanter Chat zu einem Projekt gehören muss |
+
+Wer geplante Chats nutzen oder anlegen darf, legen Sie pro Rolle fest: Rolle → Reiter **companyGPT** → Funktion **Geplante Chats** (**Nutzen**, **Erstellen**), siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+Hat die Grundkonfiguration geplante Chats ausgeschaltet, kann eine Einstellung hier sie nicht einschalten. Wenden Sie sich dann an innFactory.
+
+Wie Personen geplante Chats verwenden, zeigt die Vorschau [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+
+## Tool-Freigabe
+
+Mit der Tool-Freigabe fragt CompanyGPT die Person, bevor ein Agent ein Tool ausführt. Die Regeln gelten in der Reihenfolge Ablehnen → Nachfragen → Erlauben, auch für MCP- und Subagent-Tools.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+**Rückfrage vor Tool-Aufrufen** hat drei Werte:
+
+- **Nicht festlegen** – die Vorgabe der Grundkonfiguration gilt (ohne Vorgabe: keine Rückfragen).
+- **Ein** – vor Tool-Aufrufen nachfragen.
+- **Aus** – keine Rückfragen: Tools laufen ohne Nachfrage, und auch Ablehnungsregeln und Code-Freigaben greifen nicht mehr.
+
+Der **Modus** legt fest, wie nachgefragt wird:
+
+| Modus | Verhalten |
+|---|---|
+| **default** | Nachfragen bei allem, was nicht ausdrücklich erlaubt ist. Guter Standard für den Einstieg |
+| **dontAsk** | Ablehnen, was nicht ausdrücklich erlaubt ist, ohne zu fragen. Nur mit ausdrücklichen Erlaubnis-Listen sinnvoll |
+| **bypass** | Automatisch freigeben, außer es ist ausdrücklich verboten. Entspricht dem Schalter „nicht mehr fragen“ der Person |
+
+Eigene Freigabe-Regeln lädt CompanyGPT nur aus der Grundkonfiguration; sie richtet innFactory ein.
+
+## Subagent-Limit
+
+**Maximale Subagents** begrenzt, wie viele Subagents man einem Agent im Agent-Builder zuweisen kann. Die Obergrenze legt die Grundkonfiguration fest (Standard 10, höchstens 50); der Wert hier wird auf diese Obergrenze gekappt. Bereits gespeicherte Agents behalten ihre Subagents, auch wenn Sie den Wert später senken.
+
+## PII- und Secret-Filter
+
+Dieser Abschnitt ist nur eine Anzeige (**nur librechat.yaml**). Er zeigt, welche Filter für personenbezogene Daten und Geheimnisse in der Grundkonfiguration eingerichtet sind, mit ihrer Aktion (**Blockieren** oder **Audit**) und der Zahl der Muster. Änderungen nimmt innFactory vor.
+
+## Pro Rolle oder Gruppe
+
+Hier stellen Sie vier Einstellungen für eine einzelne Rolle oder Gruppe ein. Wählen Sie zuerst unter **Rolle oder Gruppe wählen** aus. Jeder Wert kann auch **Wie Vorgabe** bleiben.
+
+| Einstellung | Bedeutung |
+|---|---|
+| **Memories** | **Ausgeschaltet** schaltet die Memories für diese Rolle oder Gruppe aus, auch wenn die Grundkonfiguration sie für alle aktiviert |
+| **Aufbewahrung** | Wie lange Chats gespeichert bleiben: **Was gelöscht wird** (**Nur temporäre Chats** oder **Alle Chats**), **Temporäre Chats löschen nach (Stunden)**, **Alle Chats löschen nach (Stunden)** und **Dateien von Agents behalten** |
+| **Agent-Builder** | Ob der Agent-Builder im Chat **Sichtbar** oder **Ausgeblendet** ist, und **Anbieter für Agents** (nichts ausgewählt heißt: alle Anbieter erlaubt). Das Recht der Rolle, Agents zu erstellen, gilt weiter |
+| **Datei-Uploads** | **Uploads**: **Erlaubt** oder **Ausgeschaltet**, dazu **Dateien pro Nachricht**, **Größe pro Datei (MB)** und **Größe aller Dateien (MB)**. Leer heißt: wie Vorgabe. Die Werte gelten für Agents und für Modelle ohne eigene Datei-Einstellung; für Anbieter mit eigener Datei-Einstellung in der Grundkonfiguration gelten deren Werte |
+
+Ein Wert der Rolle geht einem Wert der Gruppe immer vor. Alle Gruppen haben dieselbe Priorität; vermeiden Sie deshalb verschiedene Werte in mehreren Gruppen derselben Person. **Anbieter für Agents** lässt sich deshalb nur pro Rolle festlegen.
+
+Dieselben Einstellungen finden Sie auch an der Rolle (Reiter **companyGPT**) und an der Gruppe (Reiter **Konfiguration**).

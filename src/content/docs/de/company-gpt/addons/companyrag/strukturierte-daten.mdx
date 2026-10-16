@@ -7,7 +7,7 @@ Eine reine RAG-Suche findet Textstellen, kann aber keine Summen, Mengen oder Ran
 
 Damit stehen für dieselbe Sammlung zwei Zugriffswege bereit, die sich kombinieren lassen: die semantische Suche über den Text und die strukturierte Abfrage über die extrahierten Felder.
 
-Aktivieren Sie die Option **Strukturierte Daten extrahieren** *(BETA)* beim [Erstellen der Sammlung](/de/company-gpt/addons/companyrag/sammlungen/#sammlung-erstellen).
+Aktivieren Sie die Option **Strukturierte Daten extrahieren** *(Beta)* beim [Erstellen der Sammlung](/de/company-gpt/addons/companyrag/sammlungen/#sammlung-erstellen) vom Typ **Dokumente**. Die Option lässt sich nur beim Erstellen einschalten.
 
 :::note
 Diese Funktion befindet sich in der Beta-Phase. Prüfen Sie die extrahierten Werte bei kritischen Auswertungen stichprobenartig gegen die Originaldokumente.
@@ -17,17 +17,19 @@ Diese Funktion befindet sich in der Beta-Phase. Prüfen Sie die extrahierten Wer
 
 ![Schemadefinition mit Tabelle, Spalten und Datentypen](./extraktion-schema.png)
 
-Der einfachste Fall ist eine Tabelle mit einer Zeile pro Dokument. Je Spalte legen Sie Namen und Datentyp fest und markieren optional, ob das Feld erforderlich ist oder als Schlüssel dient.
+Der einfachste Fall ist eine Tabelle mit einer Zeile pro Dokument. Je Spalte legen Sie Namen und Datentyp fest und markieren optional, ob das Feld erforderlich ist oder als **Schlüssel** dient.
 
 Verfügbare Datentypen: `text`, `integer`, `numeric`, `boolean`, `timestamp`, `date`.
 
 Namen müssen aus Kleinbuchstaben, Ziffern und Unterstrichen bestehen und mit einem Buchstaben beginnen. Jede Zeile erhält automatisch die Felder `_id` (UUID) und `_ingested_at` (Zeitstempel).
 
-Zusätzlich lässt sich beschreiben, welche Informationen extrahiert werden sollen, und die Anzahl der auszuwertenden Seiten pro Dokument begrenzen – etwa auf die ersten fünf Seiten, wenn die relevanten Angaben immer am Anfang stehen. Das reduziert Kosten und Laufzeit.
+Zusätzlich können Sie unter **Extraktionsanweisungen (optional)** beschreiben, welche Informationen extrahiert werden sollen, und unter **Maximale Seitenzahl pro Dokument (optional)** die Anzahl der auszuwertenden Seiten begrenzen – etwa auf die ersten fünf Seiten, wenn die relevanten Angaben immer am Anfang stehen. Das reduziert Kosten und Laufzeit.
+
+Die Extraktionsanweisungen können Sie später unter **Sammlung bearbeiten** anpassen. Die Änderung gilt für Dateien, die ab dann indexiert werden; bereits verarbeitete Dokumente behalten ihre extrahierten Daten. Das Schema selbst ist nach dem Erstellen schreibgeschützt.
 
 ## Mehrere Tabellen und Beziehungen
 
-Für 1:n-Beziehungen – etwa eine Rechnung mit mehreren Positionen – fügen Sie eine zweite Tabelle hinzu, markieren dort die Schlüsselspalte und verbinden eine Spalte der ersten Tabelle damit.
+Für 1:n-Beziehungen – etwa eine Rechnung mit mehreren Positionen – markieren Sie in der ersten Tabelle die Schlüsselspalte (etwa die Rechnungsnummer), fügen eine zweite Tabelle für die Positionen hinzu und verbinden deren passende Spalte mit diesem Schlüssel.
 
 ![Verbindung zwischen zwei Tabellen über eine Schlüsselspalte](./extraktion-beziehung.png)
 
@@ -36,6 +38,10 @@ Die Verbindung wird bei Abfragen als JOIN-Hinweis genutzt. Aus einem Dokument en
 :::note
 Die dokumentübergreifende Deduplizierung erfolgt über exakte Übereinstimmung: Abweichende Schreibweisen desselben Werts erzeugen separate Zeilen. Fremdschlüsselwerte werden so gespeichert, wie sie extrahiert wurden – es findet keine automatische Auflösung statt.
 :::
+
+## Status der Extraktion
+
+Schlägt die Extraktion für ein Dokument fehl, ist das Dokument trotzdem für die semantische Suche indexiert. Unter [Dateien](/de/company-gpt/addons/companyrag/dateien/) trägt es dann den Status **Indexiert (Warnung)**.
 
 ## Abfragen
 

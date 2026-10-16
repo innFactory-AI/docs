@@ -3,11 +3,21 @@ title: Code Interpreter
 description: Mit der Integration „Code ausführen" schreibt und führt CompanyGPT Code in einer isolierten Sandbox innerhalb der eigenen Infrastruktur aus – für Datenanalysen, Diagramme und exakte Berechnungen.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Sprachmodelle sagen Text vorher und rechnen nicht — bei exakter Mathematik, Datenanalysen oder dem Erstellen von Diagrammen stoßen sie daher an ihre Grenzen. Mit der Integration **Code ausführen** (Code Interpreter) kann CompanyGPT stattdessen Code schreiben, in einer isolierten Sandbox ausführen und das tatsächliche Ergebnis in die Antwort übernehmen. Die Ausführung erfolgt vollständig innerhalb der eigenen Infrastruktur; es werden keine Daten an externe Dienste übermittelt.
 
 ## Aktivierung
 
-Die Integration kann direkt in der [Chateingabe](/de/company-gpt/chat/) für einzelne Nachrichten aktiviert oder deaktiviert werden. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+Die Integration schalten Sie direkt in der [Chateingabe](/de/company-gpt/chat/) über das Plus-Symbol (**Attach and tools**) unter **Tools** mit **Code ausführen** ein. Sie erscheint dann als Chip in der Eingabeleiste, gilt für den jeweiligen Chat und bleibt aktiv, bis Sie sie über das **×** am Chip wieder ausschalten. Zusätzlich lässt sie sich [Agenten](/de/company-gpt/agenten/) über die Tool-Bibliothek als Fähigkeit zuweisen, sodass ein Agent Code selbstständig ausführen kann.
+
+## Dateien
+
+Dateien, die Sie an eine Nachricht anhängen, müssen nicht gesondert für den Code Interpreter hochgeladen werden. Ist **Code ausführen** aktiv, stellt CompanyGPT die angehängten Dateien dem Code Interpreter automatisch zur Verfügung, sobald er sie benötigt. Einem Agenten können Sie zusätzlich feste Dateien für die Code-Ausführung hinterlegen. Mehr dazu unter [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
+
+Dateien, die der Code Interpreter erzeugt, zum Beispiel eine ausgewertete Excel-Datei oder ein Diagramm, erscheinen in der Antwort als Karte, über die Sie die Datei herunterladen können. Für viele Formate steht dort auch eine Vorschau zur Verfügung.
 
 ## Anwendungsfälle
 
@@ -24,7 +34,7 @@ Der Code Interpreter führt **Python**, **JavaScript/TypeScript** (Node.js und B
 
 - **Eigene Infrastruktur**: Die Code-Ausführung läuft als eigener Dienst im Cluster des Unternehmens — es wird kein externer Ausführungsdienst genutzt.
 - **Isolierte Sandbox**: Jede Ausführung findet in einer eigenen, abgeschotteten Sandbox statt. Der Code hat keinen Zugriff auf das Firmennetzwerk oder das Internet.
-- **Temporäre Daten**: Für die Ausführung bereitgestellte und erzeugte Dateien werden nur temporär gespeichert; die Sandbox ist nach der Ausführung nicht mehr verfügbar.
+- **Temporäre Sandbox**: Die Sandbox ist nur für die Dauer der Ausführung verfügbar. Dateien, die der Code Interpreter erzeugt, speichert CompanyGPT wie andere Dateien im Chat, sodass Sie sie auch später noch über die Karte in der Antwort herunterladen können.
 
 :::note[Limitierung]
 Ausführungszeit und Ausgabegröße pro Ausführung sind begrenzt. Für langlaufende oder sehr speicherintensive Auswertungen ist der Code Interpreter nicht geeignet.

@@ -1,0 +1,135 @@
+---
+title: "Einrichtung für IT-Admins: das Onboarding-Portal"
+description: Mit dem Onboarding-Portal bereiten IT-Admins ihren Microsoft-Entra-Tenant vor der Installation von CompanyGPT vor – automatisch per One-Click oder Schritt für Schritt.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Bevor innFactory CompanyGPT für Ihr Unternehmen installiert, wird Ihr Microsoft-Entra-Tenant vorbereitet: Sicherheitsgruppen, die Zustimmung für die Wartungs-App von innFactory, Gastzugänge für das innFactory-Team und eine App-Registrierung, über die sich Ihre Mitarbeitenden später anmelden. Diese Vorbereitung erledigen Sie selbst im **Onboarding-Portal** unter [onboarding.company-gpt.com](https://onboarding.company-gpt.com).
+
+Diese Seite richtet sich an die IT-Admins Ihres Unternehmens. Nutzerinnen und Nutzer von CompanyGPT müssen nichts tun. Das Portal ist auf Englisch – mit Ausnahme der Berechtigungsliste im Schritt **CompanyGPT App**, die auf Deutsch angezeigt wird; die Bezeichnungen der Schaltflächen und Schritte stehen hier so, wie sie im Portal angezeigt werden.
+
+## Wofür das Portal da ist
+
+Das Portal führt Sie durch alle Vorbereitungen in Ihrem Tenant. Im Kern sind es vier Aufgaben:
+
+- **Wartungs-App freigeben:** eine einmalige Administratorzustimmung für die Wartungs-App von innFactory, über die innFactory CompanyGPT bereitstellt und aktualisiert.
+- **Drei Sicherheitsgruppen einrichten:** Sie legen fest, wer bereitstellen darf, wer sich anmelden darf und wer CompanyGPT administriert. Sie können neue Gruppen anlegen oder vorhandene verwenden.
+- **Das innFactory-Team einladen:** Mitarbeitende von innFactory erhalten Gastzugänge, um die Bereitstellung zu unterstützen.
+- **Die CompanyGPT-App registrieren:** eine App-Registrierung in Ihrem Tenant, über die sich Ihre Nutzer später bei CompanyGPT anmelden.
+
+Alle Aktionen laufen direkt in Ihrem Tenant und mit Ihrem Administratorkonto. Zu jedem Schritt erklärt das Portal, was passiert und welche Berechtigungen dafür verwendet werden.
+
+## Voraussetzungen
+
+- **Administratorrechte in Microsoft Entra ID:** Sie melden sich mit einem Administratorkonto des Tenants an, in dem CompanyGPT eingerichtet werden soll. Empfohlen ist die Rolle **Globaler Administrator**, denn mehrere Schritte erteilen Administratorzustimmungen. Fehlen Ihrem Konto Rechte, meldet der betroffene Schritt einen Fehler.
+- **Nur bei Hosting auf Microsoft Azure:** Zugriff auf die Azure-Subscription, in der CompanyGPT betrieben werden soll. Beim Hosting auf STACKIT ist keine Azure-Subscription nötig.
+- **Partnerbeziehung:** Das Portal nennt als Voraussetzung, dass innFactory in Ihrem Tenant als Partner eingetragen ist (indirekte Reseller-Beziehung). Den Start der Einrichtung blockiert das nicht. Klären Sie Fragen dazu bitte mit Ihrem Ansprechpartner bei innFactory.
+- **Pop-ups zulassen:** Für die Zustimmungsseiten von Microsoft öffnet das Portal Pop-ups bzw. neue Tabs. Lassen Sie diese für `onboarding.company-gpt.com` zu.
+
+## Ablauf
+
+### Anmelden und Hosting wählen
+
+Haben Sie von innFactory einen persönlichen Link zum Portal erhalten, verwenden Sie diesen: Er enthält bereits Angaben zu Ihrer Umgebung.
+
+![Startseite des Onboarding-Portals mit den vier Aufgaben und den zwei Wegen One-Click Setup und Step-by-Step Setup](./onboarding-portal-start.png)
+
+<Steps>
+
+1. Öffnen Sie [onboarding.company-gpt.com](https://onboarding.company-gpt.com) und klicken Sie auf **Sign in with Microsoft**. Melden Sie sich mit Ihrem Administratorkonto an.
+
+2. Wählen Sie unter **Where will CompanyGPT be hosted?** das Hosting:
+   - **Microsoft Azure:** CompanyGPT läuft in Ihrer eigenen Azure-Subscription.
+   - **STACKIT:** CompanyGPT läuft auf einer STACKIT-Infrastruktur, die innFactory betreibt. Anmeldung und Benutzerverwaltung laufen weiterhin über Ihren Entra-Tenant. Mehr dazu unter [CompanyGPT Sovereign](/de/company-gpt/sovereign/).
+
+3. Wählen Sie unter **Azure Tenant** Ihren Tenant. Angezeigt wird der Heimat-Tenant Ihres Kontos. Beim Hosting auf Azure wählen Sie zusätzlich unter **Azure Subscription** die Subscription.
+
+4. Klicken Sie auf **Start Onboarding**. Gegebenenfalls fragt Microsoft dabei nach Ihrer Zustimmung zu den Berechtigungen des Portals.
+
+</Steps>
+
+Auf der Startseite können Sie unter **Which permissions does this onboarding app use — and why?** vorab nachlesen, welche Berechtigungen das Portal verwendet und wofür.
+
+### One-Click oder Schritt für Schritt
+
+Beim ersten Start fragt das Portal **How would you like to set up CompanyGPT?**. Beide Wege richten dasselbe ein, und Sie können jederzeit wechseln.
+
+- **One-Click Setup** (als **Recommended** markiert): Alle Schritte laufen automatisch mit empfohlenen Standardwerten; jeder ausgeführte Schritt wird live angezeigt. Ihre einzige manuelle Aktion: Wenn sich die Zustimmungsseite von Microsoft für die Wartungs-App in einem neuen Tab öffnet, melden Sie sich dort als Globaler Administrator an und stimmen zu. Danach läuft die Einrichtung von selbst weiter. Starten Sie mit **Start One-Click Setup**. Schlägt ein Schritt fehl, wählen Sie **Retry** oder **Continue in Advanced Setup**.
+- **Step-by-Step Setup:** Sie gehen jeden Schritt selbst durch. Dabei können Sie Gruppen umbenennen oder vorhandene verwenden, festlegen, wer eingeladen wird, und jede Änderung vor dem Ausführen prüfen. Unter **What happens in this step?** zeigt jeder Schritt, was passiert, was Sie anpassen können und welche Berechtigungen er verwendet.
+
+Öffnen Sie das Portal später erneut, setzt es beim gespeicherten Fortschritt fort.
+
+### Phase 1: Preconditions
+
+Diese Schritte führen Sie (bzw. der One-Click-Assistent) in Ihrem Tenant aus. Die Namen entsprechen der Schrittliste im Portal.
+
+| Schritt | Was passiert | Verwendete Berechtigung |
+|---|---|---|
+| **Check Sign-in Policies** | Das Portal liest die Richtlinien für bedingten Zugriff (Conditional Access) und listet diejenigen auf, die Gastkonten oder die Bereitstellung blockieren könnten. Es wird nichts geändert. Schränken Richtlinien den externen Zugriff ein, nennt das Portal, was Sie zulassen sollten – zum Beispiel die Domain `innfactory.ai`. | `Policy.Read.All` (nur lesend) |
+| **Security Groups** | Drei Sicherheitsgruppen werden angelegt oder vorhandene verknüpft: **Infrastructure Admins** (Bereitstellung), **Users** (dürfen sich bei CompanyGPT anmelden) und **App Admins** (Administration von CompanyGPT). Standardnamen: `COMPANYGPT_INFRASTRUCTURE_ADMINS`, `COMPANYGPT_USERS`, `COMPANYGPT_APP_ADMINS`. | `Group.ReadWrite.All` |
+| **Approve Maintenance Access** | Zuerst erteilen Sie dem Portal die Graph-Berechtigungen für die folgenden Schritte. Danach öffnet Microsoft die Zustimmungsseite für die Wartungs-App von innFactory. Die Zustimmung legt deren Dienstprinzipal in Ihrem Tenant an; eigene Zugriffsrechte erhält die App erst über die Gruppenmitgliedschaft im nächsten Schritt. | Administratorzustimmung auf der Seite von Microsoft; danach prüft das Portal nur lesend, ob der Dienstprinzipal existiert |
+| **Maintenance → Admin Group** | Die Wartungs-App wird Mitglied der Gruppe Infrastructure Admins. Erst diese Mitgliedschaft erlaubt innFactory die Bereitstellung. Meist ist das bereits im vorherigen Schritt automatisch geschehen. | `GroupMember.ReadWrite.All` |
+| **Subscription Permissions** (nur Azure) | Die Gruppe Infrastructure Admins erhält die Rolle **Owner** für die gewählte Azure-Subscription – für die gesamte Subscription. Damit legt die Bereitstellung dort die Ressourcen für CompanyGPT an. | Azure Service Management (`user_impersonation`) |
+| **Invite innFactory Team** | Mitarbeitende von innFactory werden als Gäste eingeladen und den empfohlenen Gruppen hinzugefügt; Namen und Adressen zeigt das Portal an. Im Modus Schritt für Schritt wählen Sie die Gruppen je Person oder lassen einzelne Einladungen weg. | `User.Invite.All`, `GroupMember.ReadWrite.All` |
+| **CompanyGPT App** | Eine App-Registrierung mit dem Namen `companyGPT` und Ihrem Firmennamen wird angelegt – vorkonfiguriert mit Anmeldeeinstellungen, den benötigten Microsoft-Graph-Berechtigungen und einer Administratorzustimmung, damit Ihre Nutzer nicht einzeln gefragt werden. Alternativ verwenden Sie eine vorhandene App-Registrierung. | `Application.ReadWrite.All`, `DelegatedPermissionGrant.ReadWrite.All`, `Directory.ReadWrite.All`, `AppRoleAssignment.ReadWrite.All` |
+| **App Ownership** | Die Wartungs-App wird Mitbesitzer der CompanyGPT-App, damit Updates deren Konfiguration (Weiterleitungs-URLs, Berechtigungen) aktuell halten können. Meist ist das bereits im vorherigen Schritt geschehen und wird hier nur geprüft. | `Application.ReadWrite.All` |
+| **Finish & Notify** | Das Portal zeigt eine Zusammenfassung (IDs der Gruppen und der App, Firmenname, Kontakt-E-Mail). Mit **Save & Notify** wird sie gespeichert und das innFactory-Team benachrichtigt, dass Ihr Tenant bereit ist. In Ihrem Tenant ändert sich dabei nichts. | Keine Microsoft-Graph-Berechtigung |
+
+Beim Hosting auf STACKIT entfällt der Schritt **Subscription Permissions**; Phase 1 hat dann acht statt neun Schritte.
+
+#### Berechtigungen der CompanyGPT-App
+
+Standardmäßig erhält die CompanyGPT-App den vollständigen Satz an Berechtigungen, auf den CompanyGPT und das Microsoft-365-Add-in ausgelegt sind. Im Modus Schritt für Schritt können Sie die Liste im Schritt **CompanyGPT App** aufklappen und einzelne Berechtigungen abwählen. Sie ist in die Gruppen **Anmeldung (erforderlich)**, **companyGPT Kern**, **Microsoft 365 Add-in** und **Anwendungsberechtigungen** gegliedert. Die Berechtigungen für die Anmeldung lassen sich nicht abwählen. Wählen Sie andere ab, weist das Portal darauf hin, welche Funktionen dann nicht vollständig funktionieren.
+
+Die Domain, unter der CompanyGPT erreichbar sein wird (zum Beispiel `FIRMA.company-gpt.com`), ermittelt das Portal automatisch. Anzeigename und Domain der App können Sie im Modus Schritt für Schritt anpassen.
+
+### Phase 2: Rollout
+
+Im Schritt **Deployment (innFactory)** stellt innFactory CompanyGPT bereit. Sie müssen dafür nichts tun. Der Schritt bleibt gesperrt, bis innFactory ihn für die Bereitstellung freischaltet; am Ende markiert innFactory ihn als erledigt. Den aktuellen Stand (**Locked**, **In Progress**, **Live** oder **Change Required**) zeigt das Portal in der Kopfzeile. Sind alle Schritte erledigt, zeigt das Portal **Onboarding Complete**.
+
+## Was danach passiert
+
+- **Bereitstellung:** Nach **Finish & Notify** erhält das innFactory-Team eine Benachrichtigung und richtet CompanyGPT ein – beim Hosting auf Azure in Ihrer Subscription, beim Hosting auf STACKIT in der von innFactory betriebenen Umgebung.
+- **Hinweise von innFactory:** Hat innFactory Ihnen etwas mitzuteilen, erscheint das im Portal im Feld **Notes from innFactory**.
+- **Zugang für Ihre Nutzer:** Wer sich bei CompanyGPT anmelden darf, steuern Sie über die Mitgliedschaft in der Gruppe Users (standardmäßig `COMPANYGPT_USERS`).
+- **Neue Berechtigungen nach Updates:** Benötigt CompanyGPT nach einem Update zusätzliche Microsoft-Berechtigungen, schickt innFactory Ihnen einen Link zur Seite **Renew Admin Consent** (siehe [Fehlerbehebung](#fehlerbehebung)).
+- **Support-Zugang:** Braucht innFactory für einen Supportfall einen Gastzugang, erhalten Sie einen Link zur Seite **Support Access Invitation**. Dort sehen Sie, wer eingeladen werden soll und in welche Gruppen, und bestätigen die Einladung selbst.
+
+## Sicherheit und Datenschutz
+
+- **Delegierte Rechte:** Das Portal handelt mit Ihrem Administratorkonto. Es kann nie mehr tun als Sie selbst und nur, solange Sie angemeldet sind.
+- **Direkt in Ihrem Tenant:** Alle Änderungen führt das Portal direkt in Ihrem Tenant aus. Sie sind in den Überwachungsprotokollen (Audit-Log) von Microsoft Entra ID nachvollziehbar, die Rollenzuweisung auf der Azure-Subscription im Azure-Aktivitätsprotokoll.
+- **Nur lesend, wo möglich:** Richtlinien für bedingten Zugriff werden nur gelesen, nie geändert. Auf E-Mails oder Dateien in Ihrem Tenant greift das Portal nicht zu.
+- **Was gespeichert wird:** Bei innFactory werden nur der Fortschritt der Einrichtung und die Angaben gespeichert, die für den Rollout nötig sind – zum Beispiel die IDs und Namen der Gruppen und der App, die eingeladenen Gäste, die gefundenen Anmelderichtlinien, Ihre Kontaktdaten sowie Name und E-Mail-Adresse der Administratoren, die das Portal für Ihren Tenant verwenden. Die Zusammenfassung in **Finish & Notify** zeigt, was übermittelt wird.
+- **Jederzeit widerrufbar:** Zustimmungen widerrufen Sie in Microsoft Entra ID unter **Unternehmensanwendungen**; Gruppenmitgliedschaften, Gäste und die Rollenzuweisung auf der Subscription können Sie jederzeit entfernen. Entfernen Sie die Wartungs-App aus der Gruppe Infrastructure Admins, enden ihre Owner-Rechte auf der Subscription; bereits ausgestellte Tokens können bis zu ihrem Ablauf gültig bleiben. Als Besitzerin der CompanyGPT-App bleibt die Wartungs-App eingetragen, bis Sie sie in Microsoft Entra ID unter **App-Registrierungen** → **Besitzer** entfernen.
+
+## Fehlerbehebung
+
+### „Please complete Step … first“
+
+Ein vorheriger Schritt ist noch nicht erledigt. Maßgeblich ist der Schrittname in Klammern – zum Beispiel bedeutet *Please complete Step 1 (Create Groups) first.*, dass der Schritt **Security Groups** fehlt. Die Nummer in der Meldung kann von der Nummerierung der Schrittliste abweichen. Wechseln Sie über die Schrittliste zum genannten Schritt und schließen Sie ihn ab.
+
+### Die Zustimmungsseite von Microsoft öffnet sich nicht
+
+Lassen Sie Pop-ups für `onboarding.company-gpt.com` zu. Im Schritt **Approve Maintenance Access** gibt es außerdem einen Link, um die Zustimmung manuell zu erteilen. Im One-Click Setup öffnen Sie die Seite mit **Re-open consent page** erneut. Wartet der Assistent zu lange auf die Zustimmung, bricht er mit einer Zeitüberschreitung ab; erteilen Sie die Zustimmung im geöffneten Tab und wählen Sie dann **Retry**.
+
+### Zustimmung fehlt oder ist unvollständig
+
+Öffnen Sie den Zustimmungslink, den Sie von innFactory erhalten haben. Er hat die Form `https://onboarding.company-gpt.com/consent?tenantId=…`. Melden Sie sich als Globaler Administrator des betreffenden Tenants an. Die Seite **Renew Admin Consent** listet jede Berechtigung der CompanyGPT-App als **Granted** oder **Missing**; neu hinzugekommene sind als **new** markiert. Klicken Sie auf **Grant Admin Consent**. Lassen sich einzelne Berechtigungen nicht automatisch erteilen, schließen Sie die Zustimmung über **Open Microsoft consent page** ab.
+
+### Subscription-Berechtigung kann nicht vergeben werden (nur Azure)
+
+Wird Ihre Subscription über einen indirekten CSP verwaltet, zeigt das Portal **Azure Resource Access Required**. Als Globaler Administrator müssen Sie dann einmalig „Access management for Azure resources“ aktivieren – mit **Enable Access Management** direkt im Portal oder manuell in den Eigenschaften von Microsoft Entra ID.
+
+### Ein Schritt ist bereits eingerichtet
+
+Erkennt das Portal, dass ein Schritt in Ihrem Tenant schon erledigt ist, zeigt es **Already configured**. Übernehmen Sie den Stand mit **Mark as Complete**.
+
+### Der gewünschte Tenant erscheint nicht
+
+Das Portal zeigt den Heimat-Tenant des angemeldeten Kontos. Melden Sie sich mit einem Administratorkonto des Tenants an, in dem CompanyGPT eingerichtet werden soll.
+
+### Weitere Fragen
+
+Wenden Sie sich an Ihren Ansprechpartner bei innFactory. Halten Sie dafür die Tenant-ID und gegebenenfalls die Fehlermeldung aus dem Portal bereit.

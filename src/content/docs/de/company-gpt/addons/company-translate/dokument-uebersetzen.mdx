@@ -1,49 +1,80 @@
 ---
 title: Dokument übersetzen
-description: Ganze Dateien in companyTRANSLATE übersetzen – unterstützte Formate, Sprachwahl, Glossarauswahl, Statusverfolgung und Download der übersetzten Kopie.
+description: Ganze Dateien im Bereich Dokumente von companyTRANSLATE übersetzen – unterstützte Formate, Sprach- und Glossarwahl, Status, Download und Verlauf.
 ---
 
-Der Bereich **Dokument übersetzen** übersetzt vollständige Dateien und gibt sie im Ausgangsformat zurück. Die Anwendung beschreibt den Bereich mit „Lade ein Dokument hoch und erhalte mit einem Klick eine übersetzte Kopie."
-
-![Dokument übersetzen mit leerem Ablagebereich](./dokument-upload.png)
+Der Bereich **Dokumente** übersetzt vollständige Dateien und gibt sie im Ausgangsformat zurück. Die Seite trägt den Titel **Dokument übersetzen** und den Hinweis „Lade ein Dokument hoch und erhalte mit einem Klick eine übersetzte Kopie.“
 
 ## Unterstützte Formate
 
-Der Ablagebereich nennt die zulässigen Formate direkt: **PDF, DOCX, PPTX bis 40 MB**. Dateien werden per Drag-and-drop abgelegt oder über **Datei auswählen** aus dem Dateisystem geladen.
+Der Ablagebereich **Datei zum Übersetzen ablegen** nennt die zulässigen Formate: **PDF, Word, PowerPoint, Excel, TXT, Markdown, HTML bis 40 MB**. Sie legen eine Datei per Drag-and-drop ab oder wählen sie über **Datei auswählen** aus.
+
+![Bereich „Dokumente“ mit leerem Ablagebereich und der Liste „Letzte Übersetzungen“](./dokument-upload.png)
+
+| Format | Dateiendung |
+|---|---|
+| PDF | `.pdf` |
+| Word | `.docx` |
+| PowerPoint | `.pptx` |
+| Excel | `.xlsx` |
+| Text | `.txt` |
+| Markdown | `.md` |
+| HTML | `.html` |
+
+companyTRANSLATE prüft Format, Größe und Inhalt jeder Datei. Passt etwas nicht, bleibt der Ablagebereich stehen und nennt den Grund, zum Beispiel „Datei ist zu groß (max. 40 MB)“ oder „Der Inhalt der Datei passt nicht zu ihrem Dateityp.“ Textdateien (TXT, Markdown, HTML) müssen UTF-8-kodiert sein.
 
 :::note
-Anders als bei der [Textübersetzung](/de/company-gpt/addons/company-translate/text-uebersetzen/) gibt es hier keine automatische Spracherkennung. Ausgangs- und Zielsprache müssen vor der Übersetzung gesetzt werden.
+Anders als bei der [Textübersetzung](/de/company-gpt/addons/company-translate/text-uebersetzen/) gibt es hier keine automatische Spracherkennung. Wählen Sie vor der Übersetzung eine Ausgangssprache; ohne sie bleibt **Übersetzen** gesperrt und companyTRANSLATE weist mit „Bitte Quellsprache auswählen (kein Automatisch möglich bei Dateien)“ darauf hin.
 :::
 
 ## Sprachen und Glossar wählen
 
-Nach dem Upload zeigt companyTRANSLATE die Datei mit Namen und Größe an. Über **Neue Datei** lässt sich eine andere Datei wählen. Unterhalb der Datei steht der Glossarstatus für die gewählte Sprachkombination – entweder der Hinweis **Kein Glossar für dieses Sprachpaar vorhanden** oder die Auswahl **Glossar auswählen** mit den passenden Glossaren als Kontrollkästchen.
+Nach der Auswahl zeigt companyTRANSLATE die Datei mit Namen und Größe an. Über **Neue Datei** wählen Sie eine andere Datei. Darunter steht der Glossarstatus für das gewählte Sprachpaar: entweder **Kein Glossar für dieses Sprachpaar vorhanden** oder die Liste **Glossar auswählen** mit allen passenden Glossaren als Kontrollkästchen.
 
 ![Hochgeladene Datei ohne verfügbares Glossar](./dokument-sprachen.png)
 
-![Ausgewähltes Glossar de-en-tutorial vor der Übersetzung](./dokument-glossar.png)
+Alle passenden Glossare sind zunächst ausgewählt; globale Glossare tragen den Zusatz **global**. Entfernen Sie den Haken bei Glossaren, die nicht angewendet werden sollen. In der Dokumentübersetzung wirken Glossare in jeder Umgebung, auch ohne Google.
 
-Die Schaltfläche **Übersetzen** startet den Vorgang.
+![Ausgewählte Glossare muster-glossar und firmenbegriffe (global) vor der Übersetzung](./dokument-glossar.png)
+
+**Übersetzen** startet den Vorgang. companyTRANSLATE zeigt dabei zuerst **Wird hochgeladen...** und dann **Wird übersetzt...**.
 
 ## Ergebnis herunterladen
 
-Nach Abschluss meldet die Anwendung **Übersetzung abgeschlossen** und bietet **Übersetzung herunterladen** an. **Neue Datei** setzt den Bereich für den nächsten Vorgang zurück.
+Nach Abschluss meldet companyTRANSLATE **Übersetzung abgeschlossen** und bietet **Übersetzung herunterladen** an. **Neue Datei** oder **Neue Übersetzung** im Seitenkopf setzen den Bereich für den nächsten Vorgang zurück.
 
 ![Abgeschlossene Übersetzung mit Download-Schaltfläche](./dokument-download.png)
 
-Die übersetzte Kopie behält Aufbau und Formatierung der Ausgangsdatei: Überschriften, Absätze, Hervorhebungen und Seitenumbrüche bleiben erhalten, sodass Ausgangs- und Zieldokument nebeneinander vergleichbar sind.
+Die übersetzte Kopie behält Aufbau und Formatierung der Ausgangsdatei: Überschriften, Absätze, Hervorhebungen und Seitenumbrüche bleiben erhalten, sodass sich Ausgangs- und Zieldokument nebeneinander vergleichen lassen.
+
+Schlägt die Übersetzung fehl, erscheint **Übersetzung fehlgeschlagen**, wenn möglich mit dem Grund, etwa „Übersetzungslimit erreicht“.
 
 ## Letzte Übersetzungen
 
-Unterhalb des Ablagebereichs listet **Letzte Übersetzungen** die bisherigen Vorgänge mit Dateiname, Zielsprache, Dateigröße und Zeitpunkt. Je Eintrag stehen ein Kontextmenü und eine Schaltfläche zum erneuten Herunterladen bereit.
+Unter dem Ablagebereich listet **Letzte Übersetzungen** Ihre bisherigen Dokumentübersetzungen, die neuesten zuerst. Die Liste enthält auch Übersetzungen, die ein Agent im [Chat](/de/company-gpt/addons/company-translate/im-chat/) für Sie erstellt hat. Jeder Eintrag zeigt Dateiname, Zielsprache, Dateigröße und Zeitpunkt.
 
-Noch laufende Vorgänge sind mit **In Bearbeitung** gekennzeichnet und bieten keinen Download an.
+| Markierung | Bedeutung |
+|---|---|
+| **In Bearbeitung** | Die Übersetzung läuft noch; es gibt noch keinen Download. |
+| **Fehlgeschlagen** | Die Übersetzung ist gescheitert. |
+| ohne Markierung | Die Übersetzung ist fertig; die Schaltfläche rechts lädt sie herunter. |
+
+Das Menü am Eintrag bietet:
+
+- **Original herunterladen** – die hochgeladene Ausgangsdatei
+- **Neu übersetzen** – startet die Übersetzung erneut mit derselben Ausgangsdatei, Ausgangssprache und denselben Glossaren. Das Ergebnis erscheint als neuer Eintrag; der bisherige bleibt bestehen.
+- **Löschen** – entfernt Übersetzung und Ausgangsdatei nach einer Rückfrage („Wirklich löschen?“)
+
+Gibt es ein Glossar, das bei der ursprünglichen Übersetzung verwendet wurde, nicht mehr, bricht **Neu übersetzen** mit „Das gewählte Glossar wurde nicht gefunden.“ ab.
 
 :::tip[Hinweis]
-Bei größeren Dokumenten kann die Übersetzung einen Moment dauern. Der Eintrag in **Letzte Übersetzungen** wechselt von **In Bearbeitung** auf die Download-Schaltfläche, sobald das Ergebnis bereitsteht.
+Größere Dokumente brauchen einen Moment. Sie müssen die Seite dafür nicht geöffnet lassen: Eine laufende Übersetzung finden Sie später in **Letzte Übersetzungen** wieder.
 :::
+
+Übersetzungen ab Version 2.0 werden 30 Tage aufbewahrt. Danach verschwinden sie aus der Liste; ein späterer Versuch meldet „Diese Übersetzung ist abgelaufen und nicht mehr verfügbar“.
 
 ## Weiterführende Themen
 
 - [Glossare](/de/company-gpt/addons/company-translate/glossare/) – einheitliche Terminologie für Dokumentübersetzungen
 - [Text übersetzen](/de/company-gpt/addons/company-translate/text-uebersetzen/) – kurze Texte direkt in der Oberfläche übersetzen
+- [Übersetzen im Chat](/de/company-gpt/addons/company-translate/im-chat/) – Dateien aus dem Chat per Agent übersetzen

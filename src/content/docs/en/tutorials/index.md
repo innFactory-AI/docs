@@ -7,7 +7,7 @@ This section contains ready-to-use agent templates and guides for CompanyGPT. Al
 
 ## Addons
 
-- [Using CompanyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/) – Set up a search agent with the MCP Server ai-search
+- [Using companyRAG in CompanyGPT](/en/tutorials/addons/companyrag-in-companygpt/) – Set up a search agent with the MCP Server ai-search
 - [Help Agent with a Web Crawl Source](/en/tutorials/addons/companygpt-hilfe-agent/) – Crawl a sitemap on a schedule, index it, and serve it as an agent
 
 ## MCP
@@ -42,7 +42,6 @@ Agents for meetings, documents, communication, and everyday office work.
 - [Executive Summarizer](/en/tutorials/agenten/executive-summarizer/) – Condense documents and threads to the essentials
 - [Meeting Notes Agent](/en/tutorials/agenten/meeting-notizen-agent/) – Create meeting minutes from raw transcripts
 - [Document Comparison](/en/tutorials/agenten/dokumenten-abgleich/) – Compare two files for differences
-- [CompanyGPT Helper](/en/tutorials/agenten/companygpt-helper/) – Develop ideas into well-formed concepts
 
 ### Strategy & Analysis
 

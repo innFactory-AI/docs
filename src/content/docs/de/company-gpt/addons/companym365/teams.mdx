@@ -1,0 +1,125 @@
+---
+title: Teams
+description: CompanyGPT in Microsoft Teams – der Teams-Tab für den Chat und der Teams-Bot für Fragen per @-Erwähnung, mit Befehlen, privaten Antworten und Teilen im Thread.
+---
+
+companyM365 bringt CompanyGPT auf zwei Wegen in Microsoft Teams:
+
+- Der **Teams-Tab** ist ein persönlicher Tab mit dem CompanyGPT-Chat. Er gehört zum selben App-Paket wie das [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/).
+- Der **Teams-Bot** ist eine eigene Teams-App. Sie sprechen ihn im 1:1-Chat oder per @-Erwähnung in Gruppenchats, Meeting-Chats und Kanälen an.
+
+Deshalb zeigt Teams zwei Apps: den Tab unter dem Namen Ihrer CompanyGPT-Umgebung und den Bot unter seinem eigenen Namen.
+
+## Teams-Tab
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::
+
+Den Tab finden Sie in der App-Leiste von Teams unter dem Namen Ihrer CompanyGPT-Umgebung. Er bietet den CompanyGPT-Chat mit Modellen und Agenten, Datei-Upload, Quellen und Paletten – so, wie es auf der Seite [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/) beschrieben ist. Da kein Dokument geöffnet ist, entfallen die Funktionen zum Bearbeiten eines Dokuments.
+
+Der Tab folgt dem Design von Teams, auch dem Modus mit hohem Kontrast. In einem breiten Fenster stehen Nachrichten und Eingabefeld in einer mittigen Spalte.
+
+## Teams-Bot
+
+:::note[Derzeit nur in Pilotumgebungen]
+Diese Funktion ist derzeit nur in Pilotumgebungen verfügbar.
+:::
+
+Der Teams-Bot beantwortet Fragen direkt im Gespräch – mit einem Modell oder mit einem Agenten, der auf Microsoft 365 und weitere Quellen zugreifen kann. Den Namen des Bots legt Ihr Unternehmen fest; in Teams finden Sie ihn unter **Apps**.
+
+### Den Bot ansprechen
+
+- **Im 1:1-Chat** mit dem Bot genügt eine Nachricht.
+- **In Gruppenchats, Meeting-Chats und Kanälen** erwähnen Sie den Bot mit @ und seinem Namen.
+- **Nur für Sie (in Gruppenchats und Kanälen):** Tippen Sie `/` in ein leeres Eingabefeld und wählen Sie den Bot. Frage und Antwort sehen dann nur Sie; auch die Befehle stehen dort im Menü. Im 1:1-Chat mit dem Bot gibt es dieses Menü nicht; dort schreiben Sie einfach eine Nachricht.
+
+Den Bot im `/`-Menü gibt es erst, wenn Ihr Administrator das Bot-Paket ab Version 4.1.1 hochgeladen hat.
+
+Beim ersten Gespräch bittet Sie der Bot, sich anzumelden. Haben Sie sich noch nie in CompanyGPT angemeldet, werden Sie gebeten, das einmal im Browser nachzuholen. Fordert der Bot Sie auf, die App einmal persönlich zu installieren (**Apps** → Name des Bots → **Hinzufügen**), ist das nötig, damit er Ihnen privat antworten kann.
+
+Gastkonten werden nicht unterstützt. Mit Gästen oder Externen arbeiten Sie in einem Gruppenchat, den Sie selbst starten – im 1:1-Chat mit Externen erlaubt Teams keine Apps.
+
+### Befehle
+
+| Eingabe | Wirkung |
+|---|---|
+| `Frage` | Antwort mit dem Agenten dieses Chats |
+| `/Alias Frage` | nur diese Frage an den freigegebenen Agenten mit diesem Alias |
+| `/agent Alias` oder `/agent Name` | Agenten als Ihren Standard für diesen Chat setzen; eine Frage dahinter beantwortet er gleich |
+| `/agent standard` | Ihren Standard für diesen Chat wieder entfernen |
+| `/agents` | freigegebene und – wenn Ihr Unternehmen es erlaubt – Ihre eigenen Agenten anzeigen, mit **Als Standard setzen** |
+| `/neu` | eine neue Unterhaltung beginnen; der bisherige Verlauf zählt nicht mehr. Eine Frage dahinter beginnt sie gleich. |
+| `/öffentlich Frage` | genau diese eine Antwort für alle sichtbar (auch `/oeffentlich` oder `/public`); Bilder und Dateien bleiben privat |
+| `/hilfe` | Befehle, aktueller Agent und Datenschutzhinweis |
+
+### Welcher Agent antwortet?
+
+Ohne Alias antwortet Ihr eigener Standard für diesen Chat, sonst der Standard-Agent Ihres Unternehmens, sonst das Standardmodell. Jede Antwort nennt in der Fußzeile den Agenten, der sie erstellt hat.
+
+`/agents` zeigt zwei Gruppen:
+
+- **Für Teams freigegeben:** Agenten, die Ihr Administrator mit einem Alias für Teams freigegeben hat.
+- **Deine Agents:** Ihre eigenen und die mit Ihnen geteilten Agenten – sofern Ihr Unternehmen eigene Agenten in Teams erlaubt. Geteilte Agenten sind mit „geteilt von …“ gekennzeichnet.
+
+Agenten, die jemand anderes mit Ihnen geteilt hat, bekommen den Verlauf des Chats nicht zu sehen – keinen Thread-, Meeting- oder Anrufkontext, nur Ihre Erwähnung und Ihre eigenen Dateien.
+
+### Kontext
+
+- **Im Kanal** liest der Bot den ganzen Thread.
+- **Im Gruppenchat** liest er alles seit seiner letzten Antwort, beim ersten Mal die letzten 24 Stunden.
+- `/neu` beginnt ohne den bisherigen Verlauf.
+- Erwähnen Sie den Bot ohne Frage in einem Thread, fasst er den bisherigen Verlauf zusammen.
+
+### Wer sieht die Antwort?
+
+Im 1:1-Chat sehen Sie jede Antwort allein. In Gruppenchats, Meeting-Chats und Kanälen antwortet der Bot **privat** – also nur für Sie –, sobald einer dieser Fälle eintritt:
+
+- Die Antwort nutzt ein Werkzeug außer der Websuche, z. B. Microsoft 365, die Dateisuche oder Code.
+- Der Bot verarbeitet Ihre Dateien, Bilder oder Sprachnachrichten oder gibt Bilder oder Dateien zurück.
+- Es antwortet ein Agent, den Ihr Administrator auf „Immer privat“ gestellt hat, oder einer Ihrer eigenen Agenten.
+- Sie haben Erinnerungen gespeichert.
+
+Ab dann bleiben Ihre Antworten in diesem Thread privat. Sind Gäste, Personen aus anderen Organisationen oder anonyme Teilnehmende im Chat, ist jede Antwort privat. Rückfragen, Freigaben und Hinweise gehen immer nur an Sie, ebenso Antworten auf Fragen über das `/`-Menü.
+
+Unter einer privaten Antwort steht „Nur du siehst diese Antwort; Teams entfernt sie nach 24 Stunden.“ mit einem Link, über den Sie die Unterhaltung in CompanyGPT im Browser öffnen.
+
+### Antwort im Thread teilen
+
+Eine private Antwort machen nur Sie selbst öffentlich:
+
+- **Im Thread teilen** unter der Antwort (24 Stunden lang möglich) zeigt genau diese Antwort mit Text und Webquellen für alle im Thread, gekennzeichnet mit „Geteilt von …“. Ihre nächsten Antworten bleiben privat.
+- `/öffentlich Frage` beantwortet genau diese Frage öffentlich.
+
+Bilder, Dateien und Treffer der Dateisuche bleiben immer privat. Für Agenten auf „Immer privat“ gibt es kein Teilen; dann erscheint „Dieser Agent darf nur privat antworten — vom Admin so eingestellt.“ Lesen Externe mit, antwortet auch `/öffentlich` privat, und **Im Thread teilen** warnt vorher: „Achtung: Im Chat sind externe Teilnehmer — sie sehen die geteilte Antwort.“
+
+### Ergebnisse
+
+- Antworten können Tabellen, Code und Formeln enthalten.
+- Erzeugte Bilder erscheinen als Vorschau (bis zu drei), Dateien und Quellen als Liste.
+- Über einen Link setzen Sie die Unterhaltung in CompanyGPT im Browser fort.
+- Antworten sind als KI-generiert gekennzeichnet; mit den Feedback-Knöpfen geben Sie eine Bewertung ab, die in CompanyGPT gespeichert wird.
+
+### Dateien, Bilder und Sprachnachrichten
+
+- Der Bot verarbeitet Dateien und eingefügte Bilder aus Ihrer Erwähnung, aus zitierten Nachrichten, aus dem ersten Beitrag des Threads und aus früheren Beiträgen.
+- Grenzen: höchstens fünf Dateien je Erwähnung, je Datei bis 25 MB. Unterstützt werden Text, PDF, Word- und Excel-Dateien (.docx, .xlsx) und Bilder.
+- Dateien im Format .doc, .xls, .ppt oder .pptx überspringt der Bot. Legen Sie sie in OneDrive oder SharePoint ab; dort kann der Assistent sie lesen.
+- Sprachnachrichten und Audiodateien transkribiert der Bot mit der Spracherkennung Ihrer CompanyGPT-Umgebung („🎤 Transkribiert: …“). Im Chat mit dem Bot bietet Teams keine Sprachaufnahme an; Audiodateien funktionieren dort trotzdem. Eine Sprachnachricht in einem Gruppenchat oder Kanal beantworten Sie mit Zitat und erwähnen dabei den Bot.
+
+### Meetings und Anrufe
+
+Im Chat eines Teams-Meetings erkennt der Bot das Meeting und gibt dem Agenten Titel und Zeit mit. Ist ein Transkript verfügbar, kann der Agent es lesen und das Meeting zusammenfassen; die Antwort ist dann privat. Der Bot nimmt nicht live am Meeting teil. Transkripte von Ad-hoc-Anrufen ohne Meeting kann er noch nicht lesen.
+
+### Rückfragen und Freigaben
+
+Rückfragen und Freigaben des Agenten erscheinen als Karte, die nur Sie sehen – mit **Antworten** bzw. **Zulassen** und **Ablehnen**; bei mehreren Freigaben senden Sie Ihre Auswahl mit **Entscheidungen senden** oder lehnen mit **Alle ablehnen** alle ab. Ist eine Karte für Teams zu groß, verweist der Bot auf CompanyGPT im Browser. Im 1:1-Chat können Sie eine laufende Antwort mit dem Stopp-Knopf von Teams abbrechen.
+
+### Was im Teams-Bot nicht geht
+
+Einige Aktionen sind im Teams-Bot gesperrt und laufen nur in CompanyGPT selbst:
+
+- Posteingangsregeln anlegen oder löschen, Weiterleitungsentwürfe anlegen, E-Mails verschieben, Entwürfe löschen,
+- Dateien hochladen oder löschen, Excel-Dateien beschreiben,
+- Termine absagen, Einladungen verschicken und Termine mit Teilnehmenden ändern,
+- Freigabelinks für anonymen Zugriff erstellen.

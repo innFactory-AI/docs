@@ -1,0 +1,144 @@
+---
+title: Office add-in
+description: The CompanyGPT chat in Word, Excel, PowerPoint and Outlook – opening it, choosing a model or agent, palettes, sources, edit modes and suggestion cards.
+---
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+The Office add-in opens the CompanyGPT chat as a pane next to your document. The assistant reads the open Word document, Excel workbook, presentation or email and can edit it on request. The pane looks like the CompanyGPT chat in the browser; light, dark and high-contrast themes follow your Office setting. You will also find your chats from the add-in in the CompanyGPT sidebar in the browser.
+
+The add-in's interface is in German. This page gives the German labels with an English translation in parentheses at their first mention. What else is possible in the individual applications is described on the pages [Word, Excel and PowerPoint](/en/company-gpt/addons/companym365/word-excel-powerpoint/) and [Outlook](/en/company-gpt/addons/companym365/outlook/).
+
+## Supported applications
+
+- **Word, Excel and PowerPoint** on Windows, on the Mac and in the browser (Office on the web).
+- **Outlook:** classic and new Outlook on Windows, Outlook on the web and Outlook for Mac – both when reading and when composing an email.
+
+You don't need to install anything: your administrator deploys the add-in centrally (see [Administration](/en/company-gpt/addons/companym365/administration/#installation)). After deployment, it can take up to 24 hours until the add-in appears in all applications.
+
+## Opening the add-in
+
+1. In Word, Excel or PowerPoint, open the **Home** tab. In Outlook, open or compose an email.
+2. Click the menu with the name and logo of your CompanyGPT environment.
+3. Choose the first entry ("… öffnen", i.e. "Open …") to open the chat pane, or pick one of the quick actions directly.
+4. The first time, click **Anmelden** (Sign in) if prompted. The normal CompanyGPT sign-in opens; afterwards you are taken back to the add-in automatically.
+
+Each application offers six quick actions in the menu:
+
+| Application | Quick actions |
+|---|---|
+| Word | Zusammenfassen (Summarize) · Korrektur lesen (Proofread) · Umformulieren (Rephrase) · Sprache vereinfachen (Simplify language) · Entwurf schreiben (Write draft) · Übersetzen (Translate) |
+| Excel | Formel erklären (Explain formula) · Formel erstellen (Create formula) · Daten analysieren (Analyze data) · Diagramm vorschlagen (Suggest chart) · Rechtschreibung prüfen (Check spelling) · Sprache vereinfachen (Simplify language) |
+| PowerPoint | Deck erstellen (Create deck) · Folien prüfen (Check slides) · An Vorlage angleichen (Match template) · Texte straffen (Tighten text) · Rechtschreibung prüfen (Check spelling) · Deck zusammenfassen (Summarize deck) |
+| Outlook when reading | Antwort entwerfen (Draft reply) · Zusammenfassen (Summarize) · Aufgaben extrahieren (Extract tasks) |
+| Outlook when composing | Korrektur lesen (Proofread) · Sprache vereinfachen (Simplify language) · Professioneller Ton (Professional tone) |
+
+## Layout of the pane
+
+- **Header:** **Neuer Chat** (New chat) starts a new conversation. **Verlauf** (History) shows your previous chats with a search; via the menu of a row you can **Anpinnen** (Pin) or **Loslösen** (Unpin), **Umbenennen** (Rename) or **Löschen** (Delete) a chat. In a narrow pane, both buttons only show their icon.
+- **Starter suggestions:** In an empty chat, four suggestions matching the application appear above the input field, e.g. in Word **Dokument zusammenfassen** (Summarize document) or **Coaching**. If the selected agent has its own conversation starters, these appear instead. Your environment can customize the suggestions.
+- **Input field** with paper clip: **Datei hochladen** (Upload file) attaches a file (PDF, Word, Excel, text, CSV, Markdown or images, up to 100 MB), **Referenz einfügen (#)** (Insert reference) opens the reference search (see [palettes](#palettes-in-the-input-field)). The add-in does not upload files in .doc, .xls, .ppt or .pptx format; store them in OneDrive and tell the assistant the file name.
+- **Footer:** model or agent selection, edit mode (pen icon), **+** for sources (with the number of active sources), context indicator, **↗** (opens the chat in CompanyGPT in the browser) and a dot that shows the connection to the document. In a narrow pane, the footer has two rows.
+
+## Choosing a model or agent
+
+The selection in the footer determines who answers. Without a search text, the list shows:
+
+- **Favoriten** (Favorites) – pinned agents and models,
+- **Meine Agents** (My agents) – your own agents,
+- **Modelle** (Models),
+- **Weitere Agents: Namen eingeben** (More agents: enter a name) – you find all other agents via the search.
+
+The search covers all agents (name, description, category) and all models. With **Anpinnen** (Pin) or **Loslösen** (Unpin) on a row you manage your favorites; they are the same favorites as in the CompanyGPT sidebar in the browser (at most 50). Agents that others have shared with you are marked "geteilt" (shared), globally shared agents with a globe.
+
+Every start begins with the default model – the same one in Word, Excel, PowerPoint, Outlook and the Teams tab. Unless your environment specifies otherwise, this is a model of the latest GPT generation. The add-in only remembers a selected agent, separately for each application. A selected model applies as long as the pane is open; the next start begins with the default model again. Which models and agents are available is determined by your environment.
+
+You can type and send as soon as the models have loaded; the agents appear in the selection shortly afterwards. If you have not chosen anything else by then, the add-in switches to your remembered agent.
+
+Saved agents can only edit the open document if this is enabled in your environment. Otherwise the add-in shows "Dokumentwerkzeuge für Agents im Tenant nicht aktiv" (Document tools for agents not active in this tenant); the agent then answers, but cannot read or change the document.
+
+## Palettes in the input field
+
+Four characters open a selection list above the input field:
+
+| Character | Opens | Note |
+|---|---|---|
+| `@` | switch agent or model | only as the first character; in the middle of text, `@` remains a normal character (e.g. in email addresses) |
+| `#` | references: **Dateien** (Files), **Mails**, **Termine** (Appointments), **Transkripte** (Transcripts) | at the start of the text or at the start of a word mid-sentence; the search starts from two characters |
+| `/` | prompts: the application's quick actions and your [prompt library](/en/company-gpt/prompts/) | a prompt with variables opens a dialog to fill them in |
+| `$` | [skills](/en/company-gpt/skills/) | |
+
+Use the arrow keys to move through the list; **Enter** or **Tab** applies the entry (without sending), **Escape** closes the list.
+
+- **References (`#`)** appear as a chip above the input field; the assistant then reads the referenced item specifically. With **Ctrl+Enter** (Mac: **⌘+Enter**) you open a hit in the browser without inserting it. If several Office windows are open, the list additionally shows **Offene Fenster** (Open windows) at the top (see [Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/)). Whether references are available depends on your environment.
+- **Prompts (`/`)** can contain two add-in variables in addition to the usual variables: `{{selection}}` (**Markierter Text**, selected text) and `{{document_title}}` (**Dokumenttitel**, document title). The add-in pre-fills both from the document; you can change them in the dialog.
+
+## Sources
+
+Via **+** in the footer, you determine what a model may additionally access:
+
+- **Dieses Dokument** (This document) is always connected and cannot be deselected.
+- **Further sources** set up in your environment, e.g. web research, files, knowledge base or transcription. Each source shows whether it is **verbunden** (connected) or **nicht verfügbar** (not available); with **Erneut prüfen** (Check again) you re-check an unavailable source.
+- **Websuche** (Web search) and – only if memories are enabled in your environment – **Gedächtnis** (Memory) (see [Memories](/en/company-gpt/erinnerungen/)).
+
+If an agent is selected, its own sources apply: "Quellen gelten für Modelle; Agents nutzen ihre eigenen Quellen" (Sources apply to models; agents use their own sources). Web search and memory can still be toggled.
+
+## Edit modes
+
+You choose how the assistant's changes land in the document via the pen icon in the footer. The add-in remembers the mode for each application.
+
+| Mode | Meaning |
+|---|---|
+| **Vorschläge** (Suggestions, default) | Confirm as a card first: each change appears as a suggestion card and is only carried out after **Übernehmen** (Apply). |
+| **Direkt** (Direct) | Carry out changes immediately. |
+| **Nachverfolgen** (Track, Word only) | As a tracked change (Word review): you accept or reject the changes in Word as usual. |
+
+The same menu has two switches:
+
+- **Direkt ohne Rückfrage** (Direct without asking): quick actions without confirmation. If the switch is off, a quick action that changes the document asks first in **Direkt** mode ("Diese Aktion ändert das Dokument direkt" – This action changes the document directly – with **Anwenden** (Apply) and **Abbrechen** (Cancel)).
+- **Deck direkt bauen** (Build deck directly, PowerPoint only): without an outline first (see [PowerPoint](/en/company-gpt/addons/companym365/word-excel-powerpoint/#powerpoint)).
+
+## Suggestion cards
+
+In **Vorschläge** mode, each change appears as a separate card:
+
+- **Ort:** (Location) names the place, e.g. "Absatz 3" (paragraph 3), a slide or a cell range.
+- The text of the change is fully visible; long texts are collapsed behind **Mehr anzeigen** (Show more).
+- **Übernehmen** (Apply) carries out the change, **Verwerfen** (Discard) discards it.
+- If the place has moved in the meantime, the card offers **Stelle erneut markieren und Übernehmen** (Mark location again and apply).
+
+While cards are open, a bar above the input field shows how many, e.g. "2 Vorschläge offen" (2 suggestions open). **Anzeigen** (Show) brings the first open card into view. With several cards, **Alle übernehmen** (Apply all) and **Alle verwerfen** (Discard all) in that bar decide on all open cards at once – except cards for other windows; you apply those individually (see [Multiple Office windows](/en/company-gpt/addons/companym365/mehrere-fenster/#confirmation-in-your-own-chat)). If only such cards are still open, **Alle übernehmen** is disabled.
+
+## Show all changes
+
+Below an answer that changed the document, you'll find **Alle Änderungen zeigen (n)** (Show all changes). It shows where the changes are: Word highlights the places, Excel selects the ranges, PowerPoint jumps to the slide, Outlook shows a notice. **Hervorhebung entfernen** (Remove highlighting) hides the highlighting again.
+
+## Approvals and questions
+
+- **Approvals:** If the assistant wants to run a tool that requires confirmation, a card shows the full details with **Zulassen** (Allow) and **Ablehnen** (Deny). Your decision remains visible in the history.
+- **Questions:** If the assistant needs a decision from you, it asks a question as a card with answer options and a free-text field. The card is kept even after a reload. If it has expired, "Rückfrage abgelaufen, erneut senden" (Question expired, send again) appears.
+
+## While the assistant is working
+
+- Each tool step appears as a separate card, together with a plan for longer tasks. Reasoning steps appear as a collapsed block **Gedanken** (Thoughts) that you can expand. While the assistant is thinking, the block shows "Nachdenken..." (Thinking...) or a short, automatically generated title. If your environment hides the reasoning content, only "Hat nachgedacht" (Thought about it) appears there, without any text.
+- **Steering:** While an answer is running, you can write an addition and send it with **Enter** or the **Steuern** (Steer) button. It is taken into account after the current step. You can withdraw a waiting addition with **Entfernen** (Remove); if it was no longer taken into account, send it with **Als neue Nachricht senden** (Send as new message). Whether steering is available depends on your environment.
+- **Cancel:** The button with the stop icon in the input field (**Abbrechen**, Cancel) stops the answer, also on the server. The answer is then marked "abgebrochen" (cancelled).
+- **Context indicator:** If enabled in your environment, a ring in the footer shows how much of the chat's context is used; from 80 % it warns you. A new chat resets the context.
+
+## Using results
+
+- Below each answer you'll find **Kopieren** (Copy), **Neu generieren** (Regenerate) and **Bearbeiten** (Edit).
+- **Ins Dokument einfügen** (Insert into document, Word) inserts the answer using your document's styles. In Outlook, the button is called **In E-Mail einfügen** (Insert into email) when composing and **Als Antwort öffnen** (Open as reply) when reading. Only the answer is inserted, not the reasoning.
+- **Sources:** Citation markers in the answer open a card with the source.
+- **Files:** Generated files and images appear as cards with a download. In Word, **Ins Dokument einfügen** (Insert into document) inserts Word documents, images and text files at the cursor position; when composing in Outlook, **In E-Mail einfügen** (Insert into email) attaches the file to your draft.
+- **Artifacts** appear as a text preview and can be opened in CompanyGPT in the browser.
+
+## Sign-in and error messages
+
+- If your session has expired, the add-in shows the sign-in again; your text is kept in the input field.
+- Under **Details**, the sign-in page shows technical information such as the tenant ID and error code, which helps your administrator troubleshoot.
+- Without the **Use Microsoft 365** permission, "Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen" (No access to the document connection – please ask your administration to enable it) appears. You can keep chatting, but the assistant can neither read nor edit the document.
+- If starting takes longer than usual, "Das dauert gerade länger als üblich." (This is taking longer than usual.) appears.
+- If Office ends the add-in pane unexpectedly and restarts it, the add-in reopens the chat of this document or email (up to 30 minutes later). Open suggestion cards are lost in the process; a notice names them, e.g. "2 Vorschläge der vorigen Sitzung sind verloren – bitte erneut anfragen" (2 suggestions from the previous session are lost – please ask again). This does not apply to new documents and drafts that have not been saved yet. If you closed the pane yourself, it starts with a new chat the next time you open it.

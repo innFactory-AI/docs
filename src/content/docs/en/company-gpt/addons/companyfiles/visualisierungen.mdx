@@ -1,6 +1,6 @@
 ---
 title: Visualizations
-description: Interactive charts, Mermaid diagrams and maps in the CompanyGPT chat – customizing them, exporting them as PNG and embedding them in documents.
+description: Interactive charts, Mermaid diagrams and maps in the CompanyGPT chat – customizing them, exporting them as images and embedding them in documents.
 ---
 
 Raw numbers can be visualized directly as meaningful graphics. companyFILES knows three representations that are interactive in the chat: **charts** for number series, **diagrams** for processes and structures, and **maps** for locations. Everything created this way is collected in the interface under [Visualizations](/en/company-gpt/addons/companyfiles/oberflaeche/#visualizations).
@@ -11,7 +11,13 @@ The screenshots on this page show the German interface, because that is the lang
 
 ## Interactive charts
 
-Bar, line, pie, scatter, bubble or radar charts can be produced from data in the chat – for example directly from a spreadsheet created earlier: *"Show me the revenue as a chart."*
+Charts can be produced from data in the chat – for example directly from a spreadsheet created earlier: *"Show me the revenue as a chart."* The following are available:
+
+- bar charts, also stacked or horizontal,
+- line and area charts,
+- pie and doughnut charts as well as polar area charts,
+- radar, scatter and bubble charts,
+- waterfall and funnel charts.
 
 ![Interactive bar chart in the chat with the export menu open, offering PNG (1x), PNG (2x), PNG (4x), Copy CSV and Copy Image](./files-chart-export.png)
 
@@ -21,24 +27,24 @@ The toolbar above the chart controls the presentation:
 |---|---|
 | chart type (e.g. **Bar**) | switches the form of presentation |
 | **Reset** | restores the initial view |
-| **+/- Zoom, Esc to go back** | zoom into the data range; `Esc` returns |
+| **+/- zoom, Esc reset** | zoom into the data range; `Esc` returns |
 | **Table** | toggles between the chart and the underlying table |
-| **Options** | fine-tuning of the presentation, for example grid lines or stacked bars |
+| **Config** | fine-tuning such as title, axis labels, legend position, **Color Theme**, **Grid Lines**, **Stacked** or **Fill Area**; **Apply Changes** applies them |
 | **Export** | **PNG (1x)**, **PNG (2x)**, **PNG (4x)**, **Copy CSV**, **Copy Image** |
 
-Below the chart there is an additional link for downloading the chart as a PNG.
+companyFILES also stores exported image files under **Documents**. Below the chart, the agent additionally gives a link to the full view and a link for downloading the chart as a PNG.
 
 :::tip[Note]
-The colors of the chart come from the [settings](/en/company-gpt/addons/companyfiles/einstellungen/). If the primary and secondary color of the organization are set, new charts automatically appear in the corporate colors.
+The colors of the chart come from the [settings](/en/company-gpt/addons/companyfiles/einstellungen/). As soon as a primary color is set, new charts automatically appear in the corporate colors.
 :::
 
 ## Mermaid diagrams
 
-Flowcharts, sequence diagrams, class diagrams and state machines can be generated via prompt. A described process is enough as input – including one from a document produced earlier: you attach the PDF and ask for a flowchart.
+Flowcharts, sequence diagrams, class diagrams, state machines, ER diagrams and further Mermaid diagram types can be generated via prompt. A described process is enough as input – including one from a document produced earlier: you attach the PDF and ask for a flowchart.
 
 ![Mermaid Flowchart](fileforge-flowchart.png)
 
-The diagram view in the chat can be zoomed and reset to the initial view; the current magnification is shown as a percentage next to it. A download option saves the diagram as a PNG image.
+The diagram view in the chat can be zoomed and reset via **Reset View**; the current magnification is shown as a percentage next to it. At the top right you choose the diagram's color theme (**Default**, **Dark**, **Forest** or **Neutral**) and export it via **SVG**, **PNG** or **JPG**. After the export the view reports "Exported" with the file name; **Copy link** puts the file's download link on the clipboard. The exported file is then also listed under **Documents**. If a diagram has expired or no longer exists, the view shows "Diagram Not Available".
 
 **Example: pie chart**
 
@@ -46,7 +52,7 @@ The diagram view in the chat can be zoomed and reset to the initial view; the cu
 
 ## Maps
 
-Locations can be shown on an interactive map. The prompt only names the places or the organizations – in the example: *"Show the main locations of BMW, Audi, Mercedes-Benz and Porsche on a map."*
+Locations can be shown on an interactive map – as a world map or as a map of Germany with the borders of the federal states. The prompt only names the places or the organizations – in the example: *"Show the main locations of BMW, Audi, Mercedes-Benz and Porsche on a map."*
 
 ![Interactive map with markers for the main locations, a legend and the tooltip "Audi – Ingolstadt, Audi AG Hauptsitz"](./files-karte.png)
 
@@ -56,9 +62,9 @@ Every marker carries a label, the legend maps the colors to the entries, and the
 |---|---|
 | **Cluster** | groups markers that sit close together |
 | **Open externally** | opens the map as a page of its own |
-| **Export** | saves the map as an image |
+| **Export** | saves the map as an image (PNG or JPG) |
 
-Below the map the agent lists the locations it found once more as text.
+Below the map the agent lists the locations it found once more as text. In some environments the map can additionally turn addresses into map points and show routes between places, distances and travel times, or the area reachable from a point.
 
 :::note
 For locations that are not part of the prompt the agent additionally needs a **web search** – see [Setting up the agent](/en/company-gpt/addons/companyfiles/agent/#combining-other-tools). Only then does it find not just the town but the location actually designated as headquarters.

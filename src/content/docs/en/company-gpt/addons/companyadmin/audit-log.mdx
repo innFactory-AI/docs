@@ -1,22 +1,61 @@
 ---
-title: Audit log
-description: Tamper-evident record of administration actions in CompanyGPT – with filters for actor, target and action, plus verification of the record chain.
+title: Logs
+description: The two logs in companyADMIN – the companyADMIN log for changes made through companyADMIN and the tamper-evident companyGPT log with chain verification.
 ---
 
-The audit log under **Access** records administration actions in a tamper-evident way – for example granted capabilities and configuration changes. It serves traceability and troubleshooting.
+Under **Status** → **Logs** you see who changed what. There are two separate logs:
 
-!["Audit log" tab with filters and chain verification](./audit-log.png)
+| Log | Content | Chained |
+|---|---|---|
+| **companyADMIN log** | Every change made through companyADMIN | No |
+| **companyGPT log** | Granted and revoked rights and Insights shares on agents, recorded by CompanyGPT itself | Yes, with **Verify chain** |
 
-The following are available for narrowing down entries:
+The section needs the right **View audit log**. Without it the section is missing.
 
-- **Search** by actor, target or action
-- **Filters** for the kind of entry
-- **Period** via a from and to date
+## companyADMIN log
 
-**Verify chain** checks the integrity of the record chain. Entries are chained so that subsequent modifications become apparent – a passing check means the log has been unchanged since the first entry.
+The companyADMIN log contains every change made through companyADMIN: in the interface, over the machine API that innFactory uses for example to set start values, and by companyADMIN's own maintenance jobs.
 
-:::note
-The range of recorded actions grows as the administration area is extended. As long as no administration actions have taken place, the list stays empty.
-:::
+| Column | Content |
+|---|---|
+| **Time** | When the change happened |
+| **Who** | Person or service |
+| **Action** | What was changed |
+| **Via** | **UI**, **Machine API** or **Maintenance job** |
+| **Result** | **Succeeded** or **Failed** |
 
-Which capabilities were granted is shown under [Direct grants](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/); the origin of administration access is shown by the **Admin sources** tab under [Users and groups](/en/company-gpt/addons/companyadmin/benutzer-und-gruppen/).
+An expanded row shows which fields were affected. The log stores only field paths and counts, never the values themselves.
+
+To narrow it down there is the search **Search by person …** and the filter **Source**.
+
+The entries are not chained and are deleted after 90 days by default. As long as nothing has been changed, the log shows **No entries yet.**
+
+## companyGPT log
+
+The companyGPT log contains CompanyGPT's own tamper-evident entries. It shows granted and revoked rights and Insights shares on agents. Every other change from companyADMIN is in the companyADMIN log. An empty list is normal as long as nobody has changed any rights.
+
+| Column | Content |
+|---|---|
+| **Time** | When it happened |
+| **Category** | **Grant**, **Agent run**, **Tool call**, **MCP**, **Config**, **Permission**, **Auth** or **Approval** |
+| **Action** | The logged operation |
+| **Outcome** | **Success**, **Failure**, **Denied** or **Pending** |
+| **Severity** | **Info**, **Warning** or **Critical** |
+| **Actor** | Who triggered the operation |
+| **Target** | What it refers to |
+
+To narrow it down there is the search **Search …** and the filters **Category**, **Outcome**, **Severity** and **Period** (**Last 24 hours**, **Last 7 days**, **Last 30 days**). If nothing matches, the log shows **No entries for this selection.**
+
+### Verify chain
+
+The entries of the companyGPT log are chained so that a later change stands out. **Verify chain** checks the whole chain:
+
+- If everything is in order, **Chain intact — N entries verified.** appears.
+- If the chain is broken, the message **Chain verification failed** gives the reason.
+
+Chain verification exists for the companyGPT log only.
+
+## Related pages
+
+- Who holds which rights: [Direct grants](/en/company-gpt/addons/companyadmin/direkte-berechtigungen/)
+- Where administration access comes from: [Status → Admin sources](/en/company-gpt/addons/companyadmin/status/)

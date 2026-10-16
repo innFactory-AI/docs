@@ -1,38 +1,55 @@
 ---
 title: Agent capabilities
-description: Define which capabilities the agent builder offers per role in CompanyGPT – from code execution and web search to subagents.
+description: Decide in companyADMIN which agent capabilities people can use in CompanyGPT – for everyone and with an own selection per role, for example to limit code execution, web search or subagents.
 ---
 
-Agent capabilities determine which abilities the agent builder offers – such as code execution, web search, file search or subagents. They are released per role.
+**Configuration** → **Agent capabilities** decides which capabilities people with a role can use, such as code execution, web search, file search or subagents. This lets you limit costly or risky capabilities to individual roles without blocking them for everyone.
 
-![Capability matrix with baseline and role columns](./capabilities.png)
+The selection applies to people with the role in question: in the agent builder, for the tools in the chat and for the tools of every agent they use. What people may do in CompanyGPT beyond that is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
 
-## How to read the matrix
+:::caution[Also affects existing agents]
+CompanyGPT checks the capabilities while chatting, for the person who is writing. If their role lacks a capability, the matching tool is missing from every agent they use, including shared agents and agents from the marketplace.
 
-The **Everyone** column is the baseline that everyone gets. Each role column **replaces** that baseline wholesale for holders of that role – it does not add to it. Under **Roles with their own set** you define which roles get a set of their own at all.
+- Without `tools`, no MCP tools and no other tools run any more.
+- In the normal chat, missing capabilities such as web search, run code, file search, artifacts or skills disappear from the tools menu.
+:::
 
-`USER` is a role like any other here: it covers everyone whose login matched no role mapping.
+## Switching management on
 
-## Available capabilities
+In the **Management** section, tick **Govern agent capabilities from companyADMIN**. As long as the box is unticked, everyone gets the capabilities from the base configuration.
 
-| Capability | Note |
+If no role has an own selection yet when you switch it on, companyADMIN immediately creates an own selection for ADMIN, as a copy of the base configuration. If you then shrink **For everyone**, this therefore does not affect ADMIN.
+
+To stop managing, untick **Govern agent capabilities from companyADMIN**. The dialog **Stop managing?** asks first; **Stop managing** removes every selection. Afterwards the base configuration applies to everyone again.
+
+## For everyone
+
+The **For everyone** section is the selection every role without an own selection gets. Set the ticks and click **Save**.
+
+## Own selection per role
+
+1. Under **Own selection per role**, pick a role (**Pick a role**).
+2. Click **Create own selection**. The selection starts as a copy of **For everyone**.
+3. Adjust the ticks and save the role's section.
+
+An own selection replaces the selection **For everyone** for everyone with this role; it does not add to it. **Remove own selection** gives the role **For everyone** again. The last own selection cannot be removed; to lift management completely, stop it above.
+
+USER is a role like any other. If ADMIN has no own selection, administrators get **For everyone** too. companyADMIN itself is not affected.
+
+## The capabilities
+
+| Capability | Meaning |
 |---|---|
-| `execute_code` | Code execution; marked as costly |
-| `web_search` | Web search; costly |
-| `file_search` | File search within the agent's file context |
+| `execute_code` | Run code – badge **costly** |
+| `web_search` | Web search – badge **costly** |
+| `file_search` | File search in the agent's file context |
 | `artifacts` | Artifacts as an output format |
-| `subagents` | Subagents; costly |
-| `actions` | Actions via external interfaces |
-| `skills` | Use of skills |
-| `ask_user_question` | Follow-up questions to the user |
-| `tools` | Use of tools |
+| `subagents` | Subagents – badge **costly** |
+| `actions` | Actions through external interfaces |
+| `skills` | Use skills |
+| `ask_user_question` | Ask the person follow-up questions |
+| `tools` | Use tools |
 
-:::note
-Not governed by this page and unchanged for everyone are `ocr`, `chain`, `context`, `deferred_tools` and `memory`. These follow the server configuration and are kept in every set defined above.
-:::
+The **costly** badge marks capabilities that are expensive or risky – the main reason to use this page at all. **not in librechat.yaml** means that the base configuration does not provide the capability.
 
-:::tip[Note]
-Costly capabilities such as code execution, web search and subagents can be limited to individual roles this way, without blocking them for everyone.
-:::
-
-This setting concerns the agent builder. Which features a user may use in CompanyGPT in general is governed by the feature permissions under [Roles and permissions](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+All other capabilities your environment provides are not controlled on this page. They follow the base configuration and stay in every selection. The page lists them under **For everyone**.

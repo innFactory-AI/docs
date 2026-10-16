@@ -13,6 +13,9 @@ export const TAG_HUE: Record<ChangelogTag, number> = {
 	companyTRANSLATE: 41, // orange
 	companyM365: 215, // microsoft blue
 	companyTRANSCRIBE: 70, // lime
+	companyADMIN: 345, // rose
+	companyLEARN: 120, // green
+	companyKNOWLEDGE: 25, // amber
 	MCP: 200,
 	Skills: 320,
 	Agents: 260,

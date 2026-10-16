@@ -34,23 +34,28 @@ The tools are added under **Tools → Add**:
 - **Knowledge**: the connection to the OKF bundles — reading **and** writing. This is the tool used to write concepts, index and log.
 - **WebFetch**: optional, for content from outside. See [Creating and maintaining knowledge](/en/company-gpt/addons/companyknowledge/wissen-erzeugen/).
 
-The Knowledge connection brings ten tools. The ones used in the workflow are:
+The Knowledge connection brings ten tools:
 
 | Tool | Purpose |
 |---|---|
-| `okf_list_bundles` | list the available bundles |
+| `okf_list_bundles` | list the bundles you are allowed to read |
 | `okf_read_index` | read a bundle's index |
 | `okf_read_concept` | read a single concept |
-| `okf_write_concept` | write a concept |
+| `okf_write_concept` | create or update a concept |
+| `okf_delete_concept` | delete a concept; `index.md` and `log.md` are excluded |
 | `okf_update_index` | update the index |
 | `okf_append_log` | add an entry to the change log |
 | `okf_validate_bundle` | check the bundle for errors |
-| `okf_commit` | write the changes back |
+| `okf_commit` | finalize the changes: for GitHub bundles in *pull request* commit mode it opens the pull request. In *direct commit* mode and for SharePoint, the changes are already saved when they are written. |
 | `okf_get_update_context` | determine what has changed since the last run |
 
-:::note
-The recording this page is based on does not show the full tool list of the Knowledge connection in detail. The table names the tools that actually appear in the workflow — the connection reports ten.
-:::
+## Personal GitHub token (optional)
+
+For bundles in GitHub, each person can store their own GitHub token. The Knowledge connection has the variable **GitHub PAT** (personal access token) for this. You enter the value in the chat under **MCP Settings** for the **Knowledge** server. Enter only the token itself in the field.
+
+If a token is stored, the Knowledge connection uses it for GitHub bundles. Reading and writing then go through your own GitHub account and its permissions. For the agent to be able to write concepts, the token needs write access to the bundle's repository. Without a token of your own, the connection uses the access set up centrally for your environment, if there is one.
+
+Bundles in SharePoint need no token. There, the permissions of your Microsoft account apply.
 
 ## A skill for the rules
 

@@ -7,7 +7,7 @@ In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen ru
 
 ## Addons
 
-- [CompanyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
+- [companyRAG in CompanyGPT nutzen](/de/tutorials/addons/companyrag-in-companygpt/) – Such-Agent mit dem MCP Server ai-search einrichten
 - [Hilfe-Agent mit Webcrawl-Quelle](/de/tutorials/addons/companygpt-hilfe-agent/) – Sitemap regelmäßig crawlen, indexieren und als Agent bereitstellen
 
 ## MCP
@@ -42,7 +42,6 @@ Agenten für Meetings, Dokumente, Kommunikation und Büroarbeit.
 - [Executive Summarizer](/de/tutorials/agenten/executive-summarizer/) – Dokumente und Threads auf das Wesentliche verdichten
 - [Meeting Notizen Agent](/de/tutorials/agenten/meeting-notizen-agent/) – Protokolle aus Rohtranskripten erstellen
 - [Dokumenten Abgleich](/de/tutorials/agenten/dokumenten-abgleich/) – Zwei Dateien auf Unterschiede vergleichen
-- [CompanyGPT Helper](/de/tutorials/agenten/companygpt-helper/) – Ideen in durchdachte Konzepte entwickeln
 
 ### Strategie & Analyse
 

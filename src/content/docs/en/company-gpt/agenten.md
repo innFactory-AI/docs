@@ -159,7 +159,7 @@ Under **Support Contact**, each agent can be assigned contact information for th
 
 #### Max Agent Steps
 
-Limits how many steps the agent can take in a run before giving a final answer. Without your own value, CompanyGPT uses a default of 150 steps; the hint text in the interface still says 25. If you enter your own value, it applies instead of the 150 steps, even if it is higher. A step is either an AI API request or a tool usage round. For example, a simple tool interaction involves 3 steps: the initial request, the tool usage, and the follow-up request.
+Limits how many steps the agent can take in a run before giving a final answer. Without your own value, CompanyGPT uses a default of 150 steps. If you enter your own value, it applies instead of the 150 steps, even if it is higher. A step is either an AI API request or a tool usage round. For example, a simple tool interaction involves 3 steps: the initial request, the tool usage, and the follow-up request.
 
 ### Version
 

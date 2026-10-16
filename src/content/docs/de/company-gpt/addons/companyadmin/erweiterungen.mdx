@@ -21,8 +21,8 @@ Die Vergabe an Gruppen ist nicht in jeder Umgebung möglich. Solange CompanyGPT 
 
 Ein entzogenes Recht ist sofort weg; die Erweiterungen speichern die Antwort höchstens eine Minute zwischen.
 
-:::caution[Rechte blenden MCP-Tools derzeit nicht aus]
-Derzeit sind die MCP-Server der Erweiterungen in der Regel noch zentral für alle eingebunden. Das Recht zum Nutzen steuert dann nicht, ob ihre Tools im Chat erscheinen: Auch wer eine Erweiterung nicht nutzen darf, sieht ihre MCP-Tools, und ein entzogenes Recht blendet sie nicht aus. Sprechen Sie innFactory an, wenn Sie das trennen möchten.
+:::note[MCP-Tools im Chat]
+Die MCP-Server der Erweiterungen sind in der Regel für alle eingebunden. Ihre Tools können deshalb im Chat auch Personen ohne Nutzungsrecht angezeigt werden; beim Aufruf prüft die Erweiterung das Recht. Sprechen Sie innFactory an, wenn die Tools nur berechtigten Personen angezeigt werden sollen.
 :::
 
 ## Die Rechte
@@ -37,7 +37,7 @@ Derzeit sind die MCP-Server der Erweiterungen in der Regel noch zentral für all
 | | **Organisation & Branding verwalten** | `ext:files:admin` | Organisations-Einstellungen und Branding (Logo, Farben); globale Vorlagen sind ein eigenes Recht |
 | [companyRAG](/de/company-gpt/addons/companyrag/) | **Wissen nutzen** | `ext:rag:use` | Wissenssammlungen durchsuchen, auf die die Person Zugriff hat |
 | | **RAG-Einstellungen verwalten** | `ext:rag:admin` | Benutzer, API-Schlüssel und Anbieter-Einstellungen einschließlich der Zugangsdaten von Konnektoren. Wissensbasen pflegt man über die Eigentümerschaft der Collection, nicht über dieses Recht |
-| | **Superadmin** | `ext:rag:superadmin` | Sieht alle Collections der Umgebung, dazu Audit-Log, Mitarbeiteraktivität und Schreib-Bypass. Klasse **Nur ausdrücklich** |
+| | **Superadmin** | `ext:rag:superadmin` | Sieht alle Collections der Umgebung, dazu Audit-Log, Mitarbeiteraktivität und Schreibzugriff auf alle Collections. Klasse **Nur ausdrücklich** |
 | [companyM365](/de/company-gpt/addons/companym365/) | **Microsoft 365 nutzen** | `ext:m365:use` | Office-Add-in (Word, Excel, PowerPoint, Outlook), die Microsoft-365-Werkzeuge im Chat und der Teams-Bot, sofern in Ihrer Umgebung verfügbar. Wer das Recht entzieht, nimmt alle drei weg |
 | | **Microsoft 365 verwalten** | `ext:m365:admin` | Admin-Bereich von companyM365: Teams-Bot einrichten, Agents für Teams freigeben, Einstellungen, Audit, Löschen der Bot-Daten einzelner Personen und Installationspakete des Add-ins. Nie für alle |
 | [companyLEARN](/de/company-gpt/addons/companylearn/) | **Kurse nutzen** | `ext:learn:use` | Kurse belegen |
@@ -46,7 +46,7 @@ Derzeit sind die MCP-Server der Erweiterungen in der Regel noch zentral für all
 
 Alle Rechte außer **Superadmin** von companyRAG gehören zur Klasse **Admins automatisch**.
 
-Gibt es in Ihrer Umgebung mehrere companyRAG-Instanzen, hat jede weitere Instanz eine eigene Karte, zum Beispiel „companyRAG (vertrieb)“, mit eigenen Rechten.
+Gibt es in Ihrer Umgebung mehrere companyRAG-Instanzen, hat jede weitere Instanz eine eigene Karte, zum Beispiel „companyRAG (Instanz 2)“, mit eigenen Rechten.
 
 Die Administration von companyADMIN selbst ist kein vergebbares Recht. Sie hängt an der Rolle ADMIN und den [Admin-Quellen](/de/company-gpt/addons/companyadmin/status/); die Karte von companyADMIN zeigt sie nur an.
 
@@ -73,4 +73,4 @@ Schränken Sie ein Recht ein, das geteilte Agents brauchen, warnt companyADMIN m
 
 ## Vergabe an Gruppen
 
-Ein Recht an einer Gruppe bekommt jedes Mitglied. Bei Rechten, deren technischer Name auf `:admin` oder `:superadmin` endet, und bei Rechten der Klasse **Nur ausdrücklich** weist companyADMIN darauf hin: Wer die Gruppe verwaltet, verwaltet damit auch das Recht. Bei **Globale Vorlagen verwalten** und **Insights ansehen** fehlt dieser Hinweis, das Risiko ist aber dasselbe. Nutzen Sie für solche Rechte nur Sicherheitsgruppen mit eingeschränkten Besitzern, keine Microsoft-365-Gruppen, denen Personen selbst beitreten können.
+Ein Recht an einer Gruppe bekommt jedes Mitglied. Bei Rechten, deren technischer Name auf `:admin` oder `:superadmin` endet, und bei Rechten der Klasse **Nur ausdrücklich** weist companyADMIN darauf hin: Wer die Gruppe verwaltet, verwaltet damit auch das Recht. Das gilt ebenso für **Globale Vorlagen verwalten** und **Insights ansehen**. Nutzen Sie für solche Rechte nur Sicherheitsgruppen mit eingeschränkten Besitzern, keine Microsoft-365-Gruppen, denen Personen selbst beitreten können.

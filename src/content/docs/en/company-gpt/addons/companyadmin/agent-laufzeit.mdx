@@ -12,7 +12,7 @@ You can take over each setting with **Manage via companyADMIN**. As long as it i
 Scheduled chats are recurring chats with an agent that run at set times.
 
 :::note[Currently only in pilot environments]
-This feature is currently only available in pilot environments; there is no date yet for customer environments.
+This feature is currently only available in pilot environments.
 :::
 
 | Setting | Meaning |
@@ -70,8 +70,8 @@ Here you set four settings for a single role or group. First choose under **Pick
 | **Memories** | **Off** switches memories off for this role or group, even if the base configuration enables them for everyone |
 | **Retention** | How long chats are kept: **What is deleted** (**Temporary chats only** or **All chats**), **Delete temporary chats after (hours)**, **Delete all chats after (hours)** and **Keep agent files** |
 | **Agent builder** | Whether the agent builder is **Visible** or **Hidden** in the chat, and **Providers for agents** (nothing selected means every provider is allowed). The role's right to create agents still applies |
-| **File uploads** | **Uploads**: **Allowed** or **Off**, plus **Files per message**, **Size per file (MB)** and **Size of all files (MB)**. Empty means as default. The values apply to agents and to models without their own file settings; **Off** therefore does not block uploads for providers that have their own upload values in the base configuration |
+| **File uploads** | **Uploads**: **Allowed** or **Off**, plus **Files per message**, **Size per file (MB)** and **Size of all files (MB)**. Empty means as default. The values apply to agents and to models without their own file settings; providers with their own file settings in the base configuration keep those values |
 
-A value on the role always wins over a value on the group. All groups share one priority: if two of a person's groups set different values, it is undefined which one applies. **Providers for agents** can therefore only be set per role.
+A value on the role always wins over a value on the group. All groups share one priority, so avoid different values in several groups of the same person. **Providers for agents** can therefore only be set per role.
 
 You also find the same settings on the role (**companyGPT** tab) and on the group (**Configuration** tab).

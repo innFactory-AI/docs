@@ -7,7 +7,7 @@ topic: documentation
 Welcome to your CompanyGPT demo account! This page walks you through the key concepts in a few minutes and shows you, using pre-built example agents, what you can try right away. For everything beyond that, the full documentation is always available.
 
 :::note[Your demo account shows the new chat interface]
-Your demo account already shows the new chat interface. It is currently only available in the demo access and in pilot environments; no date has been set yet for customer environments. Some controls therefore look different from those on some pages of this documentation – for example, the Enter key inserts a line break by default, and you send with Ctrl+Enter (macOS: ⌘+Enter). The [New Chat Interface](/en/company-gpt/neue-chat-oberflaeche/) page describes what changes.
+Your demo account already shows the new chat interface. It is currently only available in the demo access and in pilot environments. Some controls therefore look different from those on some pages of this documentation – for example, the Enter key inserts a line break by default, and you send with Ctrl+Enter (macOS: ⌘+Enter). The [New Chat Interface](/en/company-gpt/neue-chat-oberflaeche/) page describes what changes.
 :::
 
 ## What is CompanyGPT?
@@ -38,7 +38,7 @@ In your demo account, you **cannot create your own collections** — we take car
 
 ## The Pre-Built Example Agents
 
-For your demo account, we've prepared four example agents. Just click a link below to start a new chat with that agent directly — you can also find them via the model picker in the chat.
+For your demo account, we've prepared four example agents. Just click a link below to start a new chat with that agent directly. Alternatively, you can find the agents in the [Agent Marketplace](/en/company-gpt/agenten/#agent-marketplace) in the sidebar, where they are called **[DEMO] Wiki**, **[DEMO] AI Search Datensatz**, **[DEMO] AI Search (AI Topics)** and **Web Research Agent**.
 
 :::tip
 The example data behind the RAG agents (Internal Wiki, Dataset Query, AI Topics) is for illustration only. In a real setup, these agents would access your own documents, datasets, and internal content. The Web Research agent, on the other hand, always works with current, real content from the internet.
@@ -104,7 +104,7 @@ Once you're comfortable with the basics, you can create your own agents that acc
 
 ## Questions?
 
-Your demo account also includes a help agent that knows this documentation and answers your questions about CompanyGPT directly in the chat — the fastest way to get an answer.
+Your demo account also includes a help agent (**CompanyGPT Hilfe**) that knows this documentation and answers your questions about CompanyGPT directly in the chat — the fastest way to get an answer.
 
 **[→ Start a chat with the Help agent](https://companygpt.innfactory.ai/c/new?agent_id=agent_nGxgjeBKLv1vRTxrEAluy)**
 

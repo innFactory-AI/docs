@@ -60,7 +60,7 @@ The table shows each role with its **Origin**, the number of **People** and **Hi
 
 Possible hints are **No rights**, **Entra group unknown**, **Nobody holds it**, **Not in the role sync** and **Missing although registered**.
 
-- **Create missing roles** creates roles that are registered for automatic role assignment but missing. As long as such a role is missing, every sign-in except that of administrators fails. companyADMIN therefore also creates missing roles itself, at start and every five minutes afterwards, each with the rights of the USER role.
+- **Create missing roles** creates roles that are registered for automatic role assignment but missing. As long as such a role is missing, the people concerned cannot sign in. companyADMIN therefore also creates missing roles itself, at start and every five minutes afterwards, each with the rights of the USER role.
 - **Copy rights from "User"** gives a role without rights the same rights as USER. You change individual rights in the role afterwards.
 
 ### Role mismatches

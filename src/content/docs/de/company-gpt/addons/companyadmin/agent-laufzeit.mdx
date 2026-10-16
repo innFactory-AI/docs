@@ -12,7 +12,7 @@ Jede Einstellung können Sie mit **Über companyADMIN steuern** übernehmen. Sol
 Geplante Chats sind wiederkehrende Chats mit einem Agent, die zu festen Zeiten laufen.
 
 :::note[Derzeit nur in Pilotumgebungen]
-Diese Funktion ist derzeit nur in Pilotumgebungen verfügbar; für Kundenumgebungen steht noch kein Termin fest.
+Diese Funktion ist derzeit nur in Pilotumgebungen verfügbar.
 :::
 
 | Einstellung | Bedeutung |
@@ -70,8 +70,8 @@ Hier stellen Sie vier Einstellungen für eine einzelne Rolle oder Gruppe ein. W�
 | **Memories** | **Ausgeschaltet** schaltet die Memories für diese Rolle oder Gruppe aus, auch wenn die Grundkonfiguration sie für alle aktiviert |
 | **Aufbewahrung** | Wie lange Chats gespeichert bleiben: **Was gelöscht wird** (**Nur temporäre Chats** oder **Alle Chats**), **Temporäre Chats löschen nach (Stunden)**, **Alle Chats löschen nach (Stunden)** und **Dateien von Agents behalten** |
 | **Agent-Builder** | Ob der Agent-Builder im Chat **Sichtbar** oder **Ausgeblendet** ist, und **Anbieter für Agents** (nichts ausgewählt heißt: alle Anbieter erlaubt). Das Recht der Rolle, Agents zu erstellen, gilt weiter |
-| **Datei-Uploads** | **Uploads**: **Erlaubt** oder **Ausgeschaltet**, dazu **Dateien pro Nachricht**, **Größe pro Datei (MB)** und **Größe aller Dateien (MB)**. Leer heißt: wie Vorgabe. Die Werte gelten für Agents und für Modelle ohne eigene Datei-Einstellung; **Ausgeschaltet** sperrt Uploads also nicht bei Anbietern, für die die Grundkonfiguration eigene Upload-Werte festlegt |
+| **Datei-Uploads** | **Uploads**: **Erlaubt** oder **Ausgeschaltet**, dazu **Dateien pro Nachricht**, **Größe pro Datei (MB)** und **Größe aller Dateien (MB)**. Leer heißt: wie Vorgabe. Die Werte gelten für Agents und für Modelle ohne eigene Datei-Einstellung; für Anbieter mit eigener Datei-Einstellung in der Grundkonfiguration gelten deren Werte |
 
-Ein Wert der Rolle geht einem Wert der Gruppe immer vor. Alle Gruppen haben dieselbe Priorität: Setzen zwei Gruppen einer Person verschiedene Werte, ist offen, welcher gilt. **Anbieter für Agents** lässt sich deshalb nur pro Rolle festlegen.
+Ein Wert der Rolle geht einem Wert der Gruppe immer vor. Alle Gruppen haben dieselbe Priorität; vermeiden Sie deshalb verschiedene Werte in mehreren Gruppen derselben Person. **Anbieter für Agents** lässt sich deshalb nur pro Rolle festlegen.
 
 Dieselben Einstellungen finden Sie auch an der Rolle (Reiter **companyGPT**) und an der Gruppe (Reiter **Konfiguration**).

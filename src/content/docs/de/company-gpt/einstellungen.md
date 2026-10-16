@@ -332,4 +332,4 @@ Das Löschen des Benutzerkontos kann nicht rückgängig gemacht werden.
 
 ### Versionsinformationen
 
-Zeigt Informationen zur installierten Version: **Version**, **Commit**, **Branch** und **Erstellt** (Build-Datum). Über **Diagnoseinformationen kopieren** lassen sich diese Angaben kopieren, damit Maintainer den konkreten Build identifizieren können.
+Zeigt Informationen zur installierten Version: **Version**, **Commit**, **Branch** und **Erstellt** (Build-Datum). Über **Diagnoseinformationen kopieren** lassen sich diese Angaben kopieren, damit der Support von innFactory den konkreten Build identifizieren kann.

@@ -332,4 +332,4 @@ Deleting your user account cannot be undone.
 
 ### Version information
 
-Shows information about the installed version: **Version**, **Commit**, **Branch**, and **Built** (build date). Via **Copy diagnostics**, these details can be copied so that maintainers can identify the specific build.
+Shows information about the installed version: **Version**, **Commit**, **Branch**, and **Built** (build date). Via **Copy diagnostics**, these details can be copied so that innFactory support can identify the specific build.

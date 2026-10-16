@@ -30,12 +30,7 @@ Mit **Feld oder Rolle suchen …** finden Sie eine Einstellung. Eine aufgeklappt
 - **Altes Profil löschen** – löscht Überbleibsel einer sehr alten Version, die CompanyGPT nicht mehr liest.
 
 :::caution[Modell-Einschränkungen und Agent-Fähigkeiten nicht hier entfernen]
-**Nur hier entfernen** steht auch an Zeilen mit Modell-Einschränkungen und Agent-Fähigkeiten. Dort entsteht ein Zustand, den die Fachseiten falsch anzeigen:
-
-- **Zeile für Alle entfernt:** Für alle ohne eigene Rollen-Anpassung gilt wieder die volle Liste aus der Vorgabe, die Zeilen einzelner Rollen wirken aber weiter. **Provider und Modelle** zeigt dann bei jeder Rolle **Alle Modelle**, **Agent-Fähigkeiten** zeigt „Nicht gesteuert“. Bei eigenen Endpoints betrifft eine solche Zeile alle eigenen Endpoints zugleich.
-- **Zeile einer Rolle entfernt** (bei einer Modell-Einschränkung): Die Rolle fällt nicht auf die Vorgabe zurück, sondern verliert den Anbieter.
-
-Ändern Sie diese Einstellungen deshalb auf der Fachseite: unter **Provider und Modelle** mit **Für alle öffnen**, unter **Agent-Fähigkeiten** durch Entfernen des Häkchens **Agent-Fähigkeiten über companyADMIN steuern**. Hier entfernen Sie sie nur vollständig, mit **Auf innFactory-Standard zurücksetzen**.
+**Nur hier entfernen** steht auch an Zeilen mit Modell-Einschränkungen und Agent-Fähigkeiten. Ändern Sie diese Einstellungen auf der Fachseite: unter **Provider und Modelle** mit **Für alle öffnen**, unter **Agent-Fähigkeiten** durch Entfernen des Häkchens **Agent-Fähigkeiten über companyADMIN steuern**. Vollständig entfernen Sie sie hier nur mit **Auf innFactory-Standard zurücksetzen**.
 :::
 
 **Wirkt nicht** bedeutet: gespeichert, aber CompanyGPT wendet es nicht an. Häufige Gründe sind Rechte, die CompanyGPT nur pro Rolle setzt, Einstellungen einer älteren Version oder eine Funktion, die die Vorgabe ausschaltet. Der Grund steht in der Zeile. Bei Einstellungen einer älteren Version genügt meist ein erneutes Speichern auf der Fachseite.

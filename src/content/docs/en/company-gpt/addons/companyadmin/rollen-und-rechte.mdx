@@ -34,7 +34,7 @@ The new role starts with USER's feature rights (**companyGPT** tab). It does not
 
 An Entra group does not give a role by itself. For all members of an Entra group to receive a role automatically at sign-in:
 
-1. Create the role. The ID must be exactly the Entra group's object ID (Entra portal → Groups → group → Overview → Object ID). If your environment uses app roles instead of groups, the ID is the app role's value, for example `KEYUSER`.
+1. Create the role. The ID must be exactly the Entra group's object ID (Entra portal → Groups → group → Overview → Object ID). If your environment uses app roles instead of groups, the ID is the app role's value, for example `POWERUSER`.
 2. Have innFactory register the role for your environment. Without this registration nobody gets the role automatically.
 3. Set the role's rights, models and agent capabilities.
 4. People sign in again. Only then do they have the role, and they get it again at every sign-in.
@@ -42,7 +42,7 @@ An Entra group does not give a role by itself. For all members of an Entra group
 Administrators keep ADMIN. Someone in several registered groups gets the role listed first in the registration.
 
 :::caution
-A registered role can be neither deleted nor renamed, because without it every sign-in of people without admin rights fails. If a registered role is missing, companyADMIN creates it itself. If it is no longer needed, innFactory first removes the registration; afterwards it can be deleted.
+A registered role can be neither deleted nor renamed, because automatic role assignment at sign-in needs it. If a registered role is missing, companyADMIN creates it itself. If it is no longer needed, innFactory first removes the registration; afterwards it can be deleted.
 :::
 
 ## A role's detail page

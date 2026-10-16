@@ -315,6 +315,7 @@ export default defineConfig({
 												{ label: 'Administration', translations: { en: 'Administration' }, slug: 'company-gpt/addons/companym365/administration' },
 											]
 										},
+										{ label: 'AI Gateway', translations: { en: 'AI Gateway' }, slug: 'company-gpt/addons/ai-gateway' },
 										{
 											label: 'companyADMIN',
 											translations: { en: 'companyADMIN' },

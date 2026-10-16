@@ -17,7 +17,9 @@ Mehr Informationen zu MCP finden Sie hier: [Prompt Engineering / MCP](/de/prompt
 
 Die MCP Server, die Ihnen zur Verfügung stehen, finden Sie in der linken Seitenleiste unter **MCP Einstellungen**. Dort sehen Sie den Status jedes Servers. Verlangt ein Server eine Anmeldung oder einen eigenen Schlüssel, können Sie sich dort mit **Verbinden** anmelden bzw. den Server konfigurieren.
 
-Im [Chat](/de/company-gpt/chat/#integrationen) wählen Sie MCP Server über das Plus-Symbol in der Chateingabe (**Attach and tools**) im Bereich **MCP Servers** aus; **Alle anzeigen** öffnet die vollständige Liste. In [Agenten](/de/company-gpt/agenten/#mcp-server) fügen Sie MCP Server über die Tool-Bibliothek hinzu.
+Im [Chat](/de/company-gpt/chat/#integrationen) wählen Sie MCP Server über das Plus-Symbol in der Chateingabe (**Attach and tools**) im Bereich **MCP Servers** aus; **Alle anzeigen** öffnet die vollständige Liste. Neben jedem Server steht dort sein Status: **Verbunden**, **Getrennt** oder **Auth benötigt** (der Server verlangt eine Anmeldung). In [Agenten](/de/company-gpt/agenten/#mcp-server) fügen Sie MCP Server über die Tool-Bibliothek hinzu.
+
+Je nach Umgebung sind die MCP Server der Addons bereits eingerichtet, zum Beispiel **Files** ([companyFILES](/de/company-gpt/addons/companyfiles/agent/)), **ai-search** ([companyRAG](/de/company-gpt/addons/companyrag/in-companygpt/)), **Microsoft365** ([companyM365](/de/company-gpt/addons/companym365/werkzeuge/)), **companyTRANSLATE** ([companyTRANSLATE](/de/company-gpt/addons/company-translate/im-chat/)), **companyTRANSCRIBE** ([companyTRANSCRIBE](/de/company-gpt/addons/company-transcribe/mcp-integration/)), **Learn** ([companyLEARN](/de/company-gpt/addons/companylearn/im-chat/)), **Knowledge** ([companyKNOWLEDGE](/de/company-gpt/addons/companyknowledge/agent/)) und **WebFetch** ([Websuche & WebFetch](/de/company-gpt/integrationen/websuche/)).
 
 ## MCP Server hinzufügen
 

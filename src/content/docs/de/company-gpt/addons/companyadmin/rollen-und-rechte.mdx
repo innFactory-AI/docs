@@ -34,7 +34,7 @@ Die neue Rolle startet mit den Funktionsrechten von USER (Reiter **companyGPT**)
 
 Eine Entra-Gruppe gibt nicht von selbst eine Rolle. Damit alle Mitglieder einer Entra-Gruppe eine Rolle bei der Anmeldung automatisch erhalten:
 
-1. Legen Sie die Rolle an. Die ID muss exakt die Object-ID der Entra-Gruppe sein (Entra-Portal → Gruppen → Gruppe → Übersicht → Objekt-ID). Arbeitet Ihre Umgebung mit App-Rollen statt Gruppen, ist die ID der Wert der App-Rolle, zum Beispiel `KEYUSER`.
+1. Legen Sie die Rolle an. Die ID muss exakt die Object-ID der Entra-Gruppe sein (Entra-Portal → Gruppen → Gruppe → Übersicht → Objekt-ID). Arbeitet Ihre Umgebung mit App-Rollen statt Gruppen, ist die ID der Wert der App-Rolle, zum Beispiel `POWERUSER`.
 2. Lassen Sie die Rolle von innFactory für Ihre Umgebung registrieren. Ohne diese Registrierung bekommt niemand die Rolle automatisch.
 3. Legen Sie Rechte, Modelle und Agent-Fähigkeiten der Rolle fest.
 4. Die Personen melden sich neu an. Erst dann haben sie die Rolle, und sie bekommen sie bei jeder Anmeldung wieder.
@@ -42,7 +42,7 @@ Eine Entra-Gruppe gibt nicht von selbst eine Rolle. Damit alle Mitglieder einer 
 Administratoren behalten ADMIN. Wer in mehreren registrierten Gruppen ist, bekommt die Rolle, die in der Registrierung zuerst steht.
 
 :::caution
-Eine registrierte Rolle lässt sich weder löschen noch umbenennen, denn ohne sie scheitert jede Anmeldung von Personen ohne Admin-Rechte. Fehlt eine registrierte Rolle, legt companyADMIN sie selbst an. Wird sie nicht mehr gebraucht, trägt innFactory sie zuerst aus; danach lässt sie sich löschen.
+Eine registrierte Rolle lässt sich weder löschen noch umbenennen, denn die automatische Rollenvergabe bei der Anmeldung braucht sie. Fehlt eine registrierte Rolle, legt companyADMIN sie selbst an. Wird sie nicht mehr gebraucht, trägt innFactory sie zuerst aus; danach lässt sie sich löschen.
 :::
 
 ## Detailseite einer Rolle

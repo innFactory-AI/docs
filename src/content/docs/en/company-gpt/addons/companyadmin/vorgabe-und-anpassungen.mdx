@@ -30,12 +30,7 @@ Use **Search field or role …** to find a setting. Depending on the case, an ex
 - **Delete old profile** – deletes leftovers of a very old version that CompanyGPT no longer reads.
 
 :::caution[Do not remove model restrictions and agent capabilities here]
-**Remove here only** also appears on rows with model restrictions and agent capabilities. There it leads to a state that the respective pages show wrongly:
-
-- **Row for Everyone removed:** everyone without a role adjustment of their own gets the full list from the baseline again, but the rows of individual roles still apply. **Providers and models** then shows **All models** for every role, and **Agent capabilities** shows "Not governed". For custom endpoints such a row covers all custom endpoints at once.
-- **Row of a role removed** (for a model restriction): the role does not fall back to the baseline but loses the provider.
-
-Change these settings on the respective page instead: under **Providers and models** with **Open for everyone**, under **Agent capabilities** by unticking **Govern agent capabilities from companyADMIN**. Here you only remove them completely, with **Reset to innFactory default**.
+**Remove here only** also appears on rows with model restrictions and agent capabilities. Change these settings on the respective page instead: under **Providers and models** with **Open for everyone**, under **Agent capabilities** by unticking **Govern agent capabilities from companyADMIN**. Here you only remove them completely, with **Reset to innFactory default**.
 :::
 
 **Not in force** means: saved, but CompanyGPT does not apply it. Common reasons are rights that CompanyGPT sets per role only, settings from an older version, or a feature the baseline switches off. The reason is shown in the row. For settings from an older version, saving again on the respective page is usually enough.

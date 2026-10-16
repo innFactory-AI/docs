@@ -245,7 +245,7 @@
       "lang": "de",
       "baseUrl": "demo",
       "path": "/companygpt/translate/de/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/).",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",
@@ -282,7 +282,7 @@
       "lang": "en",
       "baseUrl": "demo",
       "path": "/companygpt/translate/en/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/).",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",
@@ -319,7 +319,7 @@
       "lang": "de",
       "baseUrl": "demo",
       "path": "/companygpt/translate/de/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt. Globales Glossar gestellt.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Globales Glossar gestellt.",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",
@@ -360,7 +360,7 @@
       "lang": "en",
       "baseUrl": "demo",
       "path": "/companygpt/translate/en/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt. Globales Glossar gestellt.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Globales Glossar gestellt.",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",
@@ -401,7 +401,7 @@
       "lang": "de",
       "baseUrl": "demo",
       "path": "/companygpt/translate/de/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt. Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",
@@ -470,7 +470,7 @@
       "lang": "en",
       "baseUrl": "demo",
       "path": "/companygpt/translate/en/file",
-      "note": "Braucht die Aktion \"upload\" (setInputFiles aus fixtures/), die capture.mjs noch nicht kennt. Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
+      "note": "Nutzt die Aktion \"upload\" (Datei aus fixtures/). Upload, Status und Download sind gestellt, damit kein neuer Auftrag im Tenant entsteht.",
       "routes": [
         {
           "urlPattern": "**/api/translate/history",

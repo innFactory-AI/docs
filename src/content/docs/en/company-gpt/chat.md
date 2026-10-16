@@ -95,6 +95,10 @@ When a model or agent uses tools, such as web search or an MCP server, CompanyGP
 
 If an agent reaches the maximum number of steps for one response, it stops and shows the notice **Reached the tool call limit for this turn**. Everything done up to that point is kept. Choose **Keep going** to let the agent continue from where it stopped, or **Answer now** to have it answer immediately with what it already has.
 
+## Comparing two models
+
+Use the **Add multi-conversation** button in the header to have the same message answered by two models. The previously selected model then appears as an additional row above the input field; in the model selection you choose the second model. After sending, both answers appear side by side. Use the x in the additional row to end the comparison.
+
 ## Temporary chat
 
 Use the **Temporary Chat** button in the header to start a temporary chat. It does not appear in your chat history and is deleted automatically. While a temporary chat is active, the header shows a corresponding indicator.

@@ -95,6 +95,10 @@ Nutzt ein Modell oder Agent Werkzeuge, etwa die Websuche oder einen MCP-Server, 
 
 Erreicht ein Agent die maximale Anzahl an Schritten für eine Antwort, hält er an und zeigt den Hinweis **Reached the tool call limit for this turn**. Alles bis dahin Erarbeitete bleibt erhalten. Mit **Keep going** macht der Agent dort weiter, wo er aufgehört hat, mit **Answer now** antwortet er sofort mit dem bisherigen Stand.
 
+## Zwei Modelle vergleichen
+
+Über die Schaltfläche **Mehrere Chats hinzufügen** im Kopfbereich lassen Sie dieselbe Nachricht von zwei Modellen beantworten. Das bisher gewählte Modell erscheint dann als zusätzliche Zeile über dem Eingabefeld; in der Modellauswahl wählen Sie das zweite Modell. Nach dem Senden stehen beide Antworten nebeneinander. Über das x in der zusätzlichen Zeile beenden Sie den Vergleich.
+
 ## Temporärer Chat
 
 Über die Schaltfläche **Privater Chat** im Kopfbereich starten Sie einen temporären Chat. Er erscheint nicht im Chatverlauf und wird automatisch gelöscht. Solange ein temporärer Chat aktiv ist, zeigt der Kopfbereich einen entsprechenden Hinweis.

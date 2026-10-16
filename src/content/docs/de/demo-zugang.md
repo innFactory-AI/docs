@@ -7,7 +7,7 @@ topic: documentation
 Willkommen in Ihrem CompanyGPT-Demo-Zugang! Diese Seite führt Sie in wenigen Minuten durch die wichtigsten Konzepte und zeigt Ihnen anhand vorbereiteter Beispiel-Agenten, was Sie direkt ausprobieren können. Für alle Details darüber hinaus steht Ihnen die vollständige Dokumentation offen.
 
 :::note[Ihr Demo-Zugang zeigt die neue Chat-Oberfläche]
-Im Demo-Zugang sehen Sie bereits die neue Chat-Oberfläche. Sie ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar; für Kundenumgebungen steht noch kein Termin fest. Einzelne Bedienelemente sehen deshalb anders aus als auf manchen Seiten dieser Dokumentation – so fügt die Eingabetaste standardmäßig einen Zeilenumbruch ein, gesendet wird mit Strg+Enter (macOS: ⌘+Enter). Was sich ändert, beschreibt die Seite [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
+Im Demo-Zugang sehen Sie bereits die neue Chat-Oberfläche. Sie ist derzeit nur im Demo-Zugang bzw. in Pilotumgebungen verfügbar. Einzelne Bedienelemente sehen deshalb anders aus als auf manchen Seiten dieser Dokumentation – so fügt die Eingabetaste standardmäßig einen Zeilenumbruch ein, gesendet wird mit Strg+Enter (macOS: ⌘+Enter). Was sich ändert, beschreibt die Seite [Neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/).
 :::
 
 ## Was ist CompanyGPT?
@@ -38,7 +38,7 @@ In Ihrem Demo-Zugang können Sie **keine eigenen Sammlungen (Collections)** anle
 
 ## Die vorbereiteten Beispiel-Agenten
 
-Für Ihren Demo-Zugang haben wir vier Beispiel-Agenten vorbereitet. Klicken Sie einfach auf einen der Links, um direkt einen neuen Chat mit dem jeweiligen Agenten zu starten – Sie finden die Agenten alternativ auch über die Modellauswahl im Chat.
+Für Ihren Demo-Zugang haben wir vier Beispiel-Agenten vorbereitet. Klicken Sie einfach auf einen der Links, um direkt einen neuen Chat mit dem jeweiligen Agenten zu starten. Alternativ finden Sie die Agenten im [Agenten-Marktplatz](/de/company-gpt/agenten/#agenten-marktplatz) in der Seitenleiste; dort heißen sie **[DEMO] Wiki**, **[DEMO] AI Search Datensatz**, **[DEMO] AI Search (AI Topics)** und **Web Research Agent**.
 
 :::tip
 Die Beispieldaten hinter den RAG-Agenten (Internes Wiki, Datensatz-Abfrage, KI-Themen) dienen zur Veranschaulichung. In einer echten Einrichtung würden diese Agenten auf Ihre eigenen Dokumente, Datensätze und internen Inhalte zugreifen. Der Web-Recherche-Agent arbeitet dagegen immer mit aktuellen, echten Inhalten aus dem Internet.
@@ -104,7 +104,7 @@ Sobald Sie sich mit den Grundlagen vertraut gemacht haben, können Sie eigene Ag
 
 ## Fragen?
 
-In Ihrem Demo-Zugang steht Ihnen außerdem ein Hilfe-Agent zur Verfügung, der diese Dokumentation kennt und Ihre Fragen zu CompanyGPT direkt im Chat beantwortet – der schnellste Weg zu einer Antwort.
+In Ihrem Demo-Zugang steht Ihnen außerdem ein Hilfe-Agent (**CompanyGPT Hilfe**) zur Verfügung, der diese Dokumentation kennt und Ihre Fragen zu CompanyGPT direkt im Chat beantwortet – der schnellste Weg zu einer Antwort.
 
 **[→ Chat mit dem Hilfe-Agenten starten](https://companygpt.innfactory.ai/c/new?agent_id=agent_nGxgjeBKLv1vRTxrEAluy)**
 

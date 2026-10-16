@@ -91,14 +91,14 @@ Without the superadmin features the tab only shows content within your own scope
 The rights all members of the group receive in the extensions, for example **Use knowledge** or **Use courses**. A tick grants the right. All rights are described in [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
 
 :::caution
-Every member gets a right granted to a group, and whoever manages the group in Entra ID thereby manages the right. Grant managing rights only to security groups with restricted owners, not to Microsoft 365 groups that people can join themselves. companyADMIN does not check the group type.
+Every member gets a right granted to a group, and whoever manages the group in Entra ID thereby manages the right. Grant managing rights only to security groups with restricted owners, not to Microsoft 365 groups that people can join themselves.
 :::
 
 In some environments granting to groups is locked, for example as long as CompanyGPT does not know any members of the Entra groups yet. The tab then shows **Group rights locked** with the reason.
 
 ### Configuration
 
-Settings that apply to the group's members: memories, retention, agent builder and file uploads. Without a value of its own, the role or the base configuration applies. A value on the role always wins. If two of a person's groups set different values, it is undefined which one applies.
+Settings that apply to the group's members: memories, retention, agent builder and file uploads. Without a value of its own, the role or the base configuration applies. A value on the role always wins. Avoid different values in several groups of the same person; set such values on the role instead.
 
 Models are released per role, not per group. **Go to roles** takes you there.
 

@@ -159,7 +159,7 @@ Unter **Ansprechpartner-Kontakt** kann jeder Agent mit Kontaktdaten zum Erstelle
 
 #### Maximale Agenten-Schritte
 
-Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Ohne eigene Angabe gilt in CompanyGPT ein Standardwert von 150 Schritten; der Hinweistext in der Oberfläche nennt noch 25. Tragen Sie einen eigenen Wert ein, gilt dieser statt der 150 Schritte, auch wenn er höher liegt. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
+Begrenzt, wie viele Schritte der Agent in einem Durchlauf ausführen kann, bevor er eine endgültige Antwort gibt. Ohne eigene Angabe gilt in CompanyGPT ein Standardwert von 150 Schritten. Tragen Sie einen eigenen Wert ein, gilt dieser statt der 150 Schritte, auch wenn er höher liegt. Ein Schritt ist entweder eine KI-API-Anfrage oder eine Werkzeugnutzungsrunde. Eine einfache Werkzeuginteraktion umfasst beispielsweise 3 Schritte: die ursprüngliche Anfrage, die Werkzeugnutzung und die Folgeanfrage.
 
 ### Version
 

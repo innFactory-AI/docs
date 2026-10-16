@@ -44,7 +44,7 @@ In August, agents work more closely with you, generated documents move straight 
 - **STACKIT for embeddings**: Besides Azure and Google, companyRAG can also compute embeddings via STACKIT, provided this is set up in your environment — for example in [CompanyGPT Sovereign](/en/company-gpt/sovereign/).
 - **Tidier source cards**: Pausing, editing and deleting a source now live in the "…" menu, while **Sync Now** stays directly visible.
 - **No more sign-in loop**: People with a very large number of group memberships no longer end up in a loop when signing in.
-- **More security**: Access checks and the separation between users have been hardened further.
+- **More security**: Access checks have been improved further.
 
 ## 🧩 companyM365
 

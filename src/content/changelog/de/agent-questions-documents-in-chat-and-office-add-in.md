@@ -44,7 +44,7 @@ Im August arbeiten Agenten enger mit Ihnen zusammen, erzeugte Dokumente rücken 
 - **STACKIT für Embeddings**: Neben Azure und Google kann companyRAG Embeddings auch über STACKIT berechnen, sofern das in Ihrer Umgebung eingerichtet ist – etwa in [CompanyGPT Sovereign](/de/company-gpt/sovereign/).
 - **Aufgeräumte Quellenkarten**: Pausieren, Bearbeiten und Löschen einer Quelle liegen jetzt im Menü „…“, direkt sichtbar bleibt **Jetzt synchronisieren**.
 - **Keine Anmeldeschleife mehr**: Personen mit sehr vielen Gruppenmitgliedschaften landen beim Anmelden nicht mehr in einer Schleife.
-- **Mehr Sicherheit**: Zugriffsprüfungen und die Trennung zwischen Nutzern wurden weiter gehärtet.
+- **Mehr Sicherheit**: Zugriffsprüfungen wurden weiter verbessert.
 
 ## 🧩 companyM365
 

@@ -109,12 +109,13 @@ const privacyUrl = 'https://innfactory.ai/de/datenschutz/';
 		margin-top: 1rem;
 	}
 
+	/* The SDK Button recipes: `outline` here, `default` (inverted ink) for the primary action below. */
 	.consent__button {
 		padding: 0.4rem 0.9rem;
-		border: 1px solid var(--sl-color-gray-5);
+		border: 1px solid rgb(var(--border-light));
 		border-radius: var(--cg-radius);
 		background: transparent;
-		color: var(--sl-color-text);
+		color: rgb(var(--text-primary));
 		font: inherit;
 		font-size: var(--sl-text-xs);
 		font-weight: 600;
@@ -124,19 +125,18 @@ const privacyUrl = 'https://innfactory.ai/de/datenschutz/';
 	}
 
 	.consent__button:hover {
-		background: var(--sl-color-gray-6);
-		border-color: var(--sl-color-gray-4);
+		background: rgb(var(--surface-hover));
 	}
 
 	.consent__button--primary {
-		border-color: var(--cg-accent);
-		background: var(--cg-accent);
-		color: #ffffff;
+		border-color: rgb(var(--button-primary));
+		background: rgb(var(--button-primary));
+		color: rgb(var(--text-inverted));
 	}
 
 	.consent__button--primary:hover {
-		background: var(--cg-accent-hover);
-		border-color: var(--cg-accent-hover);
+		background: rgb(var(--button-primary-hover));
+		border-color: rgb(var(--button-primary-hover));
 	}
 
 	.consent__privacy {

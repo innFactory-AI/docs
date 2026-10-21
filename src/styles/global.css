@@ -1,159 +1,92 @@
-:root,
-::backdrop {
+/*
+ * ============================================================================
+ * COMPANYGPT DOCS THEME
+ *
+ * The docs paint the same colour roles as the companyGPT chat and every extension
+ * built on @innfactory/companygpt-ui. Those roles come from the SDK, synced into
+ * ./companygpt-ui/ (theme.css, fonts.css) by `npm run ui:sync`; this block only
+ * maps Starlight's variables onto them. Never hard-code a colour here: pick the
+ * LibreChat role the SDK uses for the same job.
+ *
+ * The roles are `R G B` triplets that flip between light and dark on their own,
+ * so one mapping serves both modes. The block is unlayered, so it wins over
+ * Starlight's own (layered) light and dark values.
+ * ============================================================================
+ */
+:root {
+	--cg-radius: var(--theme-radius-lg); /* 0.5rem: nav rows, code, cards */
+	--cg-radius-lg: var(--theme-radius-xl); /* 0.75rem: dialogs, images */
 	/*
-		 * ============================================================================
-		 * COMPANYGPT DOCS THEME
-		 *
-		 * Design tokens aligned with the CompanyGPT product UI (LibreChat-based).
-		 * Mirrors companyFILES/ui/src/globals.css and companyRAG/apps/ui/src/index.css:
-		 *
-		 *   Grays   #0d0d0d (surface-primary) … #f7f7f8 (surface-secondary, light)
-		 *   Accent  #10a37f (green-500), hover #0d8c6d
-		 *   Font    Inter
-		 *   Radius  0.5rem
-		 *
-		 * Keep in sync with those two files when the product palette moves.
-		 * ============================================================================
-		 */
-
-	/* Product tokens defined for re-use */
-	--cg-accent: #10a37f;
-	--cg-accent-hover: #0d8c6d;
-	--cg-accent-hue: 165;
-	--cg-radius: 0.5rem;
-	--cg-radius-lg: 0.75rem;
-	/* Code frame surfaces, consumed by the expressiveCode overrides in astro.config.mjs */
-	--cg-code-bg: #171717;
-	--cg-code-tabbar-bg: #212121;
-
-	--sl-font: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
-
-	/* Colors (dark mode) — LibreChat surface scale */
-	--sl-color-white: #ececec;
-	/* text-primary */
-	--sl-color-gray-1: #ececec;
-	--sl-color-gray-2: #cdcdcd;
-	/* text-secondary */
-	--sl-color-gray-3: #999696;
-	/* text-secondary-alt */
-	--sl-color-gray-4: #595959;
-	/* text-tertiary / border-xheavy */
-	--sl-color-gray-5: #424242;
-	/* surface-hover / border-medium */
-	--sl-color-gray-6: #212121;
-	/* surface-secondary */
-	--sl-color-gray-7: #171717;
-	/* surface-primary-alt / header-primary */
-	--sl-color-black: #0d0d0d;
-	/* surface-primary */
-
-	/* Accent — LibreChat green, lightened for text contrast on dark surfaces */
-	--sl-color-accent-low: hsl(var(--cg-accent-hue), 55%, 14%);
-	--sl-color-accent: var(--cg-accent);
-	--sl-color-accent-high: hsl(var(--cg-accent-hue), 62%, 50%);
-
-	--sl-color-text: var(--sl-color-gray-2);
-	--sl-color-text-accent: var(--sl-color-accent-high);
-	--sl-color-text-invert: var(--sl-color-black);
-
-	--sl-color-bg: var(--sl-color-black);
-	--sl-color-bg-nav: var(--sl-color-gray-7);
-	--sl-color-bg-sidebar: var(--sl-color-gray-7);
-	--sl-color-bg-inline-code: var(--sl-color-gray-6);
-	--sl-color-bg-accent: var(--sl-color-accent);
-
-	--sl-color-hairline-light: #2f2f2f;
-	/* border-light */
-	--sl-color-hairline: #212121;
-	--sl-color-hairline-shade: #171717;
-
-	--sl-color-backdrop-overlay: hsla(0, 0%, 5%, 0.66);
-
-	/* Admonition hues — kept for asides and changelog tags. */
-	--sl-hue-orange: 41;
-	--sl-color-orange-low: hsl(var(--sl-hue-orange), 39%, 18%);
-	--sl-color-orange: hsl(var(--sl-hue-orange), 82%, 63%);
-	--sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 87%);
-	--sl-hue-green: var(--cg-accent-hue);
-	--sl-color-green-low: hsl(var(--sl-hue-green), 45%, 16%);
-	--sl-color-green: hsl(var(--sl-hue-green), 62%, 50%);
-	--sl-color-green-high: hsl(var(--sl-hue-green), 62%, 82%);
-	--sl-hue-blue: 234;
-	--sl-color-blue-low: hsl(var(--sl-hue-blue), 45%, 18%);
-	--sl-color-blue: hsl(var(--sl-hue-blue), 90%, 68%);
-	--sl-color-blue-high: hsl(var(--sl-hue-blue), 100%, 87%);
-	--sl-hue-purple: 281;
-	--sl-color-purple-low: hsl(var(--sl-hue-purple), 39%, 18%);
-	--sl-color-purple: hsl(var(--sl-hue-purple), 82%, 63%);
-	--sl-color-purple-high: hsl(var(--sl-hue-purple), 82%, 89%);
-	--sl-hue-red: 339;
-	--sl-color-red-low: hsl(var(--sl-hue-red), 39%, 18%);
-	--sl-color-red: hsl(var(--sl-hue-red), 82%, 63%);
-	--sl-color-red-high: hsl(var(--sl-hue-red), 82%, 87%);
-}
-
-:root[data-theme='light'],
-[data-theme='light'] ::backdrop {
-	/* Colors (light mode) — LibreChat surface scale, inverted */
-	--sl-color-white: #212121;
-	/* In light mode 'white' is the darkest color (headings) */
-	--sl-color-gray-1: #212121;
-	--sl-color-gray-2: #424242;
-	--sl-color-gray-3: #595959;
-	--sl-color-gray-4: #999696;
-	--sl-color-gray-5: #cdcdcd;
-	/* border-medium */
-	--sl-color-gray-6: #e3e3e3;
-	/* border-light / surface-hover */
-	--sl-color-gray-7: #f7f7f8;
-	/* surface-secondary */
-	--sl-color-black: #ffffff;
-	/* surface-primary */
-
-	/* Accent darkened so links stay readable on white */
-	--sl-color-accent-high: hsl(var(--cg-accent-hue), 82%, 20%);
-	--sl-color-accent: var(--cg-accent);
-	--sl-color-accent-low: hsl(var(--cg-accent-hue), 55%, 92%);
-
-	--sl-color-text: var(--sl-color-gray-2);
-	--sl-color-text-accent: hsl(var(--cg-accent-hue), 82%, 26%);
-	--sl-color-text-invert: #ffffff;
-
-	--sl-color-bg-nav: var(--sl-color-black);
-	--sl-color-bg-sidebar: var(--sl-color-gray-7);
-	--sl-color-bg-inline-code: #ececec;
-	--sl-color-bg-accent: var(--sl-color-accent);
-
-	--sl-color-hairline-light: #e3e3e3;
-	--sl-color-hairline: #ececec;
-	--sl-color-hairline-shade: #e3e3e3;
-
-	--sl-color-backdrop-overlay: hsla(0, 0%, 20%, 0.66);
-
-	--cg-code-bg: #f7f7f8;
-	--cg-code-tabbar-bg: #ececec;
-
-	/*
-	 * The admonition hues are declared unlayered above, so they also win over
-	 * Starlight's own light-theme values — they have to be restated here, or
-	 * light mode keeps the dark tints (visible on card icon tiles).
+	 * Code frame surfaces, consumed by the expressiveCode overrides in astro.config.mjs. The chat
+	 * puts `surface-code` on `surface-chat`; here the page is `presentation`, where `surface-code`
+	 * vanishes in dark mode, so frames take the rail's surface one step off the page.
 	 */
-	--sl-color-orange: hsl(var(--sl-hue-orange), 75%, 42%);
-	--sl-color-orange-low: hsl(var(--sl-hue-orange), 82%, 90%);
-	--sl-color-orange-high: hsl(var(--sl-hue-orange), 82%, 24%);
-	--sl-color-green: hsl(var(--sl-hue-green), 75%, 33%);
-	--sl-color-green-low: hsl(var(--sl-hue-green), 55%, 90%);
-	--sl-color-green-high: hsl(var(--sl-hue-green), 82%, 20%);
-	--sl-color-blue: hsl(var(--sl-hue-blue), 75%, 55%);
-	--sl-color-blue-low: hsl(var(--sl-hue-blue), 82%, 93%);
-	--sl-color-blue-high: hsl(var(--sl-hue-blue), 75%, 32%);
-	--sl-color-purple: hsl(var(--sl-hue-purple), 70%, 50%);
-	--sl-color-purple-low: hsl(var(--sl-hue-purple), 82%, 93%);
-	--sl-color-purple-high: hsl(var(--sl-hue-purple), 75%, 30%);
-	--sl-color-red: hsl(var(--sl-hue-red), 75%, 50%);
-	--sl-color-red-low: hsl(var(--sl-hue-red), 82%, 94%);
-	--sl-color-red-high: hsl(var(--sl-hue-red), 75%, 32%);
+	--cg-code-bg: rgb(var(--surface-primary-alt));
+	--cg-code-tabbar-bg: rgb(var(--surface-secondary-alt));
+
+	--sl-font: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+	--sl-font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	/* Gray ramp: Starlight's `white` is the strongest ink and `black` the page in both modes. */
+	--sl-color-white: rgb(var(--text-primary));
+	--sl-color-gray-1: rgb(var(--text-primary));
+	--sl-color-gray-2: rgb(var(--text-secondary));
+	--sl-color-gray-3: rgb(var(--text-secondary-alt));
+	--sl-color-gray-4: rgb(var(--text-tertiary));
+	--sl-color-gray-5: rgb(var(--border-medium));
+	--sl-color-gray-6: rgb(var(--surface-active-alt));
+	--sl-color-gray-7: rgb(var(--surface-primary-alt));
+	--sl-color-black: rgb(var(--presentation));
+
+	/* Accent: the SDK's `accent-primary` (link-accent buttons), teal in both modes. */
+	--sl-color-accent: rgb(var(--accent-primary));
+	--sl-color-accent-high: rgb(var(--accent-primary-hover));
+	--sl-color-accent-low: color-mix(in srgb, rgb(var(--accent-primary)) 14%, rgb(var(--presentation)));
+
+	--sl-color-text: rgb(var(--text-secondary));
+	--sl-color-text-accent: rgb(var(--accent-primary));
+	--sl-color-text-invert: rgb(var(--text-inverted));
+
+	/* Surfaces as the AppShell lays them out: page = presentation, rail = surface-sidebar. */
+	--sl-color-bg: rgb(var(--presentation));
+	--sl-color-bg-nav: rgb(var(--presentation));
+	--sl-color-bg-sidebar: rgb(var(--surface-sidebar));
+	--sl-color-bg-inline-code: rgb(var(--surface-code-inline));
+	--sl-color-bg-accent: rgb(var(--accent-primary));
+
+	--sl-color-hairline-light: rgb(var(--border-light));
+	--sl-color-hairline: rgb(var(--border-light));
+	--sl-color-hairline-shade: rgb(var(--border-medium));
+
+	/* Asides and badges: the SDK's status roles. */
+	--sl-color-green: rgb(var(--status-success));
+	--sl-color-green-low: rgb(var(--status-success-subtle));
+	--sl-color-green-high: rgb(var(--status-success));
+	--sl-color-blue: rgb(var(--status-info));
+	--sl-color-blue-low: rgb(var(--status-info-subtle));
+	--sl-color-blue-high: rgb(var(--status-info));
+	--sl-color-orange: rgb(var(--status-warning));
+	--sl-color-orange-low: rgb(var(--status-warning-subtle));
+	--sl-color-orange-high: rgb(var(--status-warning));
+	--sl-color-red: rgb(var(--status-error));
+	--sl-color-red-low: rgb(var(--status-error-subtle));
+	--sl-color-red-high: rgb(var(--status-error));
+	--sl-color-purple: rgb(var(--brand-purple));
+	--sl-color-purple-low: color-mix(in srgb, rgb(var(--brand-purple)) 14%, rgb(var(--presentation)));
+	--sl-color-purple-high: rgb(var(--brand-purple));
+
+	/* Type scale: the SDK's steps (PageHeader title 1.25rem/600, body 1rem, nav 0.875rem). */
+	--sl-text-h1: 2rem;
+	--sl-text-h2: 1.5rem;
+	--sl-text-h3: 1.25rem;
+	--sl-text-h4: 1.125rem;
 }
+
+/* `::backdrop` does not inherit from :root, so it cannot read the roles: LibreChat's dark scrim. */
+::backdrop {
+	--sl-color-backdrop-overlay: rgb(0 0 0 / 0.5);
+}
+
 
 /* Skill Download Button */
 .skill-download-btn {
@@ -590,37 +523,35 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
  * ADMONITIONS
  *
  * Starlight ships `tip` in purple. It reads as the brand voice in these docs
- * ("Kurzübersicht" callouts), so it gets the accent green instead. Background,
- * border and title all move together — the light/dark `green-*` tokens above
- * already carry the per-theme values.
+ * ("Kurzübersicht" callouts), so it gets the SDK accent (`accent-primary`)
+ * instead. Background, border and title all move together; the role flips
+ * between light and dark on its own.
  * ========================================================================== */
 
 .starlight-aside--tip {
-	--sl-color-asides-text-accent: var(--sl-color-green-high);
-	--sl-color-asides-border: var(--sl-color-green);
-	background-color: var(--sl-color-green-low);
+	--sl-color-asides-text-accent: var(--sl-color-accent);
+	--sl-color-asides-border: var(--sl-color-accent);
+	background-color: var(--sl-color-accent-low);
 }
 
 /* ============================================================================
- * COMPANYGPT UI POLISH
+ * COMPANYGPT UI SHELL
  *
- * Surface treatment borrowed from the product UI: soft 0.5rem corners, muted
- * hairlines instead of hard borders, and a pill-shaped active sidebar entry.
+ * Starlight's chrome restyled after the @innfactory/companygpt-ui AppShell:
+ * the rail's 2.25rem nav rows with a gray selected pill, the PageHeader bar,
+ * and the SDK Button recipes (inverted `default`, `outline`). Colours only
+ * through the LibreChat roles in ./companygpt-ui/theme.css.
  * ========================================================================== */
 
 /* --- Typography --- */
-/* Inter runs wider than Sora did, so headings get a touch of negative tracking. */
 .sl-markdown-content :is(h1, h2, h3, h4),
 .content-panel h1,
 .hero h1 {
-	letter-spacing: -0.02em;
-}
-
-.sl-markdown-content :is(h2, h3) {
 	font-weight: 600;
+	letter-spacing: -0.01em;
 }
 
-/* --- Header --- */
+/* --- Header: the PageHeader bar --- */
 /*
  * `.header` on its own is too broad — Starlight uses it for the inner nav grid
  * and Expressive Code for its code-block caption bar, so an unlayered rule on
@@ -628,53 +559,121 @@ main:has(.changelog-entry) .content-panel:has(h1#_top) {
  * frames. Scope it to the real <header> element.
  */
 header.header {
-	border-bottom-color: var(--sl-color-hairline-light);
+	border-bottom-color: rgb(var(--border-light));
 	box-shadow: none;
 }
 
-/* --- Sidebar: LibreChat-style rounded rows --- */
+.site-title {
+	color: rgb(var(--text-primary));
+	font-size: var(--theme-text-lg);
+	font-weight: 600;
+}
+
+/* --- Sidebar: the AppShell rail (page rows at the sub-page height, 2rem; topics below at 2.25rem) --- */
 .sidebar-pane {
-	border-inline-end: 1px solid var(--sl-color-hairline-light);
+	border-inline-end: 1px solid rgb(var(--border-light));
 }
 
 .sidebar-content a[href] {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	column-gap: 0.25rem;
+	min-height: 2rem;
 	border-radius: var(--cg-radius);
+	color: rgb(var(--text-secondary));
+	font-size: var(--theme-text-sm);
+	font-weight: 500;
+	line-height: var(--theme-text-sm-leading);
 	transition: background-color 120ms ease, color 120ms ease;
 }
 
 .sidebar-content a[href]:hover,
 .sidebar-content a[href]:focus-visible {
-	background-color: var(--sl-color-gray-6);
-	color: var(--sl-color-white);
+	background-color: rgb(var(--surface-nav-hover));
+	color: rgb(var(--text-primary));
 }
 
 .sidebar-content a[aria-current='page'],
 .sidebar-content a[aria-current='page']:hover,
 .sidebar-content a[aria-current='page']:focus {
-	background-color: var(--sl-color-accent-low);
-	color: var(--sl-color-text-accent);
-	font-weight: 600;
+	background-color: rgb(var(--surface-nav-selected));
+	color: rgb(var(--text-primary));
+	font-weight: 500;
 }
 
 .sidebar-content summary {
 	border-radius: var(--cg-radius);
 }
 
-/* --- Search box --- */
+.sidebar-content summary:hover {
+	background-color: rgb(var(--surface-nav-hover));
+}
+
+.sidebar-content .group-label .large {
+	color: rgb(var(--text-primary));
+	font-size: var(--theme-text-sm);
+	font-weight: 600;
+}
+
+/*
+ * Topic switcher (starlight-sidebar-topics) as the rail's top entries ("Neuer Chat",
+ * "Alle Apps"): icon and name on a nav row, no accent tile. The plugin's styles are
+ * scoped and include a light-theme rule, hence the `:root` prefix.
+ */
+:root ul.starlight-sidebar-topics a {
+	min-height: 2.25rem;
+	padding: 0 0.5rem;
+	border-radius: var(--cg-radius);
+	color: rgb(var(--text-primary));
+	font-size: var(--theme-text-sm);
+	font-weight: 500;
+}
+
+:root ul.starlight-sidebar-topics a:is(:hover, :focus-visible) {
+	background-color: rgb(var(--surface-nav-hover));
+	color: rgb(var(--text-primary));
+}
+
+:root ul.starlight-sidebar-topics a.starlight-sidebar-topics-current {
+	background-color: rgb(var(--surface-nav-selected));
+	color: rgb(var(--text-primary));
+}
+
+:root ul.starlight-sidebar-topics .starlight-sidebar-topics-icon,
+:root ul.starlight-sidebar-topics a:is(.starlight-sidebar-topics-current, :hover, :focus-visible) .starlight-sidebar-topics-icon {
+	padding: 0;
+	border: 0;
+	background: none;
+	color: rgb(var(--text-primary));
+}
+
+:root ul.starlight-sidebar-topics .starlight-sidebar-topics-icon svg {
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+/*
+ * --- Search box: the SDK field ---
+ * `border-medium` rather than the field's `border-control`: at ui-v2.0.0 that edge is invisible on
+ * `presentation` in dark mode (the SDK raises it in 2.1.0, WCAG 1.4.11).
+ */
 site-search button[data-open-modal] {
 	border-radius: var(--cg-radius);
-	border-color: var(--sl-color-hairline-light);
-	background-color: var(--sl-color-bg-nav);
+	border-color: rgb(var(--border-medium));
+	background-color: rgb(var(--surface-primary-alt));
+	color: rgb(var(--text-secondary));
 	transition: border-color 120ms ease;
 }
 
 site-search button[data-open-modal]:hover {
-	border-color: var(--sl-color-gray-4);
+	border-color: rgb(var(--border-heavy));
+	color: rgb(var(--text-primary));
 }
 
 site-search dialog {
 	border-radius: var(--cg-radius-lg);
-	border: 1px solid var(--sl-color-hairline-light);
+	border: 1px solid rgb(var(--border-light));
 }
 
 /* --- Asides / admonitions --- */
@@ -684,68 +683,124 @@ site-search dialog {
 	padding: 1rem 1.25rem;
 }
 
-/* --- Cards, tabs, and other panels --- */
+/*
+ * --- Cards, tabs, and other panels: the SDK Card (rounded-xl, border-light) ---
+ * Filled with `surface-primary-alt`: `surface-card` equals the page in dark mode.
+ */
 .card,
 starlight-tabs,
 .sl-markdown-content > details {
-	border-radius: var(--cg-radius);
+	border-radius: var(--cg-radius-lg);
 }
 
 .card {
-	border-color: var(--sl-color-hairline-light);
-	background-color: var(--sl-color-gray-7);
+	border-color: rgb(var(--border-light));
+	background-color: rgb(var(--surface-primary-alt));
 }
 
-:root[data-theme='light'] .card {
-	background-color: var(--sl-color-gray-7);
+/*
+ * --- Code frames ---
+ * Starlight's Expressive Code preset paints frames from `--sl-color-gray-6/7` (the selected nav
+ * pill in dark mode), and the codeBackground override in astro.config.mjs does not reach it, so the
+ * frame variables are set here, on `.frame`, below wherever the preset defines them.
+ */
+.expressive-code .frame {
+	--ec-codeBg: var(--cg-code-bg);
+	--ec-frm-edBg: var(--cg-code-bg);
+	--ec-frm-trmBg: var(--cg-code-bg);
+	--ec-frm-edActTabBg: var(--cg-code-bg);
+	--ec-frm-edTabBarBg: var(--cg-code-tabbar-bg);
+	--ec-frm-trmTtbBg: var(--cg-code-tabbar-bg);
 }
 
 /* --- Inline code --- */
 .sl-markdown-content :not(pre) > code {
 	border-radius: 0.3rem;
-	border: 1px solid var(--sl-color-hairline-light);
 	padding: 0.15em 0.4em;
-	font-size: 0.9em;
+	font-size: 0.875em;
+	font-weight: var(--theme-inline-code-weight);
 }
 
 /* --- Images and figures --- */
 .sl-markdown-content img:not([data-no-frame]) {
 	border-radius: var(--cg-radius-lg);
-	border: 1px solid var(--sl-color-hairline-light);
+	border: 1px solid rgb(var(--border-light));
 }
 
-/* --- Tables --- */
+/* --- Tables: the SDK Table (row rules only, quiet header) --- */
 .sl-markdown-content table {
 	border-collapse: separate;
 	border-spacing: 0;
+	font-size: var(--theme-text-sm);
 }
 
 .sl-markdown-content :is(th, td) {
-	border-color: var(--sl-color-hairline-light);
+	border-color: rgb(var(--border-light));
 }
 
 .sl-markdown-content thead th {
-	background-color: var(--sl-color-gray-7);
+	background-color: transparent;
+	color: rgb(var(--text-secondary));
+	font-size: var(--theme-text-xs);
+	font-weight: 500;
 }
 
-/* --- Links --- */
+/* --- Links: the SDK `link-accent` recipe --- */
 .sl-markdown-content a:not(:where(.not-content *)) {
+	color: rgb(var(--accent-primary));
 	text-underline-offset: 0.2em;
 	text-decoration-thickness: 1px;
 }
 
-/* --- Buttons (hero CTAs) --- */
+.sl-markdown-content a:not(:where(.not-content *)):hover {
+	color: rgb(var(--accent-primary-hover));
+}
+
+/* --- Buttons (hero CTAs): SDK `default` (inverted) and `outline`, rounded-full like page actions --- */
 .sl-link-button {
-	border-radius: var(--cg-radius);
+	border-radius: var(--theme-round-control-radius);
+	font-weight: 500;
+}
+
+.sl-link-button.primary {
+	border-color: rgb(var(--button-primary));
+	background-color: rgb(var(--button-primary));
+	color: rgb(var(--text-inverted));
+}
+
+.sl-link-button.primary:hover {
+	border-color: rgb(var(--button-primary-hover));
+	background-color: rgb(var(--button-primary-hover));
+	color: rgb(var(--text-inverted));
+}
+
+.sl-link-button.secondary {
+	border-color: rgb(var(--border-light));
+	background-color: transparent;
+	color: rgb(var(--text-primary));
+}
+
+.sl-link-button.secondary:hover {
+	background-color: rgb(var(--surface-hover));
+}
+
+.sl-link-button.minimal {
+	color: rgb(var(--text-primary));
 }
 
 /* --- Pagination --- */
 .pagination-links a {
-	border-radius: var(--cg-radius);
-	border-color: var(--sl-color-hairline-light);
+	border-radius: var(--cg-radius-lg);
+	border-color: rgb(var(--border-light));
 	box-shadow: none;
 }
 
 .pagination-links a:hover {
-	border-color: var(--sl-color-gray-4);
+	border-color: rgb(var(--border-medium));
+	background-color: rgb(var(--surface-hover));
+}
+
+/* --- Focus: the SDK's focus outline --- */
+:focus-visible {
+	outline-color: rgb(var(--focus-control));
 }

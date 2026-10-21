@@ -21,3 +21,12 @@ Diese Dokumentation richtet sich an alle Mitarbeiter, die den CompanyGPT nutzen 
 ## Beitrag
 
 Diese Dokumentation ist ein lebendiges Dokument und wird kontinuierlich erweitert und verbessert. 
+## Design: companyGPT UI theme
+
+Die Seite nutzt dieselben Farbrollen, Schriften und Radien wie der companyGPT-Chat und alle Extensions
+(`@innfactory/companygpt-ui` aus `innFactory/companygpt-sdk`). Die Dateien liegen in `src/styles/companygpt-ui/`
+und werden nicht von Hand bearbeitet; `src/styles/global.css` bildet Starlight nur auf diese Rollen ab.
+
+- `npm run ui:sync` holt das Theme vom gepinnten SDK-Release (`REF` in `scripts/sync-companygpt-ui.mjs`, braucht `gh` mit Zugriff auf innFactory).
+  Lokal geht auch `node scripts/sync-companygpt-ui.mjs --from ../companygpt-sdk/ui`.
+- `npm run ui:check` prüft, ob die eingecheckten Dateien zum gepinnten Release passen.

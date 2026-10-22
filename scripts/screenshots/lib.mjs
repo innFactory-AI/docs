@@ -21,23 +21,19 @@ export function expandHome(p) {
 /** true, wenn `target` innerhalb von `dir` liegt (oder gleich ist). */
 export function isInside(dir, target) {
   const rel = path.relative(dir, target);
-  return rel === '' || (!rel.startsWith('..') && !path.isAbsolute(rel));
+  return rel === '' || (rel !== '..' && !rel.startsWith(`..${path.sep}`) && !path.isAbsolute(rel));
 }
 
 /**
- * Eine Sitzungsdatei darf nur außerhalb des Repos liegen oder an einem Ort, den .gitignore abdeckt
- * (scripts/screenshots/.auth/ oder *.storage-state.json bzw. storage-state.json).
+ * Eine Sitzungsdatei darf nur außerhalb des Repos oder unter scripts/screenshots/.auth/ liegen.
  */
 export function assertSafeStatePath(file) {
   const abs = path.resolve(file);
   if (!isInside(REPO_ROOT, abs)) return abs;
   const rel = path.relative(REPO_ROOT, abs).split(path.sep).join('/');
-  const base = path.basename(abs);
-  const ignored =
-    rel.startsWith('scripts/screenshots/.auth/') || base.endsWith('.storage-state.json') || base === 'storage-state.json';
-  if (!ignored) {
+  if (!rel.startsWith('scripts/screenshots/.auth/')) {
     throw new Error(
-      `Die Sitzungsdatei ${rel} läge im Repo und wäre nicht durch .gitignore geschützt. ` +
+      `Die Sitzungsdatei ${rel} läge außerhalb von scripts/screenshots/.auth/ im Repo. ` +
         `Nutze einen Pfad außerhalb des Repos (Standard: ${DEFAULT_STORAGE_STATE}) oder scripts/screenshots/.auth/.`,
     );
   }

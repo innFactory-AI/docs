@@ -56,7 +56,7 @@ npm run screenshots:login -- demo --out ~/.config/companygpt-docs/superadmin.jso
 Die Sitzung wird mit Rechten `600` gespeichert, standardmäßig unter `~/.config/companygpt-docs/storage-state.json` (oder `--out`, oder `$SCREENSHOT_STORAGE_STATE`).
 
 > [!CAUTION]
-> Die Datei enthält Anmelde-Cookies und gehört **nie** ins Repo und in keinen Chat. `.gitignore` deckt `scripts/screenshots/.auth/`, `*.storage-state.json` und `storage-state.json` ab; `login.mjs` und `capture.mjs` verweigern andere Pfade innerhalb des Repos.
+> Die Datei enthält Anmelde-Cookies und darf **nie eingecheckt oder in einen Chat kopiert** werden. Für lokale Tests erlauben `login.mjs` und `capture.mjs` innerhalb des Repos ausschließlich `scripts/screenshots/.auth/`; andere Repo-Pfade werden abgelehnt, auch wenn ihr Dateiname von `.gitignore` erfasst wird. Empfohlen ist ein Pfad außerhalb des Repos.
 
 `login.mjs` braucht einen Bildschirm, also auf dem eigenen Rechner ausführen. Ist die Sitzung abgelaufen, meldet `capture.mjs` „Umgeleitet auf … Sitzung abgelaufen?“: dann erneut anmelden.
 

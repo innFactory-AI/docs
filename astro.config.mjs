@@ -103,12 +103,12 @@ export default defineConfig({
 			social: [
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
 			],
+			// The companyGPT UI theme (colour roles + fonts) from @innfactory/companygpt-ui,
+			// synced by `npm run ui:sync`; global.css maps Starlight onto it.
 			customCss: [
+				'./src/styles/companygpt-ui/fonts.css',
+				'./src/styles/companygpt-ui/theme.css',
 				'./src/styles/global.css',
-				'@fontsource/inter/400.css',
-				'@fontsource/inter/500.css',
-				'@fontsource/inter/600.css',
-				'@fontsource/inter/700.css',
 			],
 			// Code blocks pick up the same 0.5rem radius as the rest of the
 			// CompanyGPT UI; Starlight's default is square corners.

@@ -9,13 +9,14 @@
     "preview": "astro preview",
     "astro": "astro",
     "screenshots": "node scripts/screenshots/capture.mjs",
-    "screenshots:login": "node scripts/screenshots/login.mjs"
+    "screenshots:login": "node scripts/screenshots/login.mjs",
+    "ui:sync": "node scripts/sync-companygpt-ui.mjs",
+    "ui:check": "node scripts/sync-companygpt-ui.mjs --check"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.1",
     "@astrojs/markdown-satteri": "^0.3.4",
     "@astrojs/starlight": "^0.41.5",
-    "@fontsource/inter": "^5.3.0",
     "astro": "^7.1.4",
     "sharp": "^0.34.2",
     "starlight-llms-txt": "^0.11.0",

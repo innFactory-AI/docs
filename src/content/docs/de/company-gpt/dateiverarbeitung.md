@@ -34,6 +34,18 @@ Dokumente können auch für die Dateisuche hochgeladen werden. Dabei werden die 
 
 **Limitierung**: Die Dokumente sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/de/company-gpt/agenten) oder auch über [companyRAG](/de/company-gpt/addons/companyrag) integriert werden.
 
+## Code ausführen
+
+Ist die Integration [Code ausführen](/de/company-gpt/code-interpreter/) aktiv, werden angehängte Dateien zusätzlich in die Sandbox des Code Interpreters gelegt. So lassen sich z. B. Excel- oder CSV-Dateien exakt auswerten, filtern und als Diagramm darstellen, statt sie nur als Text zu lesen.
+
+## Dateien in Erweiterungen
+
+Erweiterungen wie [companyFILES](/de/company-gpt/addons/companyfiles/), companyTRANSCRIBE oder companyTRANSLATE greifen über die Datei-ID direkt auf angehängte Dateien zu: Sie können eine Word-Datei bearbeiten, eine Audiodatei transkribieren oder ein Dokument übersetzen lassen, ohne die Datei erneut hochzuladen. Dateien, die companyFILES erzeugt, erscheinen wieder als Anhang im Chat.
+
+:::note
+Dateien aus dem Chat werden **nicht** in [companyRAG](/de/company-gpt/addons/companyrag) indexiert. Sollen Dokumente dauerhaft für viele Nutzer durchsuchbar sein, gehören sie in eine companyRAG-Collection.
+:::
+
 ## SharePoint-Integration
 
 Über die SharePoint-Integration stehen die gleichen Möglichkeiten für die Dateiverarbeitung zur Verfügung. Dabei müssen die Dateien nicht manuell hochgeladen werden, sondern können direkt aus allen dem Nutzer zugänglichen SharePoint-Speicherorten hinzugefügt werden, jeweils als [Hochladen zum KI-Anbieter](#hochladen-zum-ki-anbieter), [Text](#hochladen-als-text) oder für die [Dateisuche](#dateisuche).

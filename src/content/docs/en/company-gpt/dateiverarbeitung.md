@@ -33,6 +33,18 @@ Documents can also be uploaded for file search. The contents are indexed and sto
 
 **Limitation**: The documents are only accessible to the respective user. To make documents accessible to multiple users or the entire organization in the file search, they can be integrated via [agents](/en/company-gpt/agenten) or via [companyRAG](/en/company-gpt/addons/companyrag).
 
+## Run code
+
+When the [Run Code](/en/company-gpt/code-interpreter/) integration is active, attached files are also placed in the Code Interpreter's sandbox. Excel or CSV files, for example, can then be analysed exactly, filtered and charted instead of only being read as text.
+
+## Files in extensions
+
+Extensions such as [companyFILES](/en/company-gpt/addons/companyfiles/), companyTRANSCRIBE or companyTRANSLATE access attached files directly by their file ID: they can edit a Word file, transcribe an audio file or translate a document without uploading it again. Files created by companyFILES appear as attachments in the chat again.
+
+:::note
+Files from the chat are **not** indexed in [companyRAG](/en/company-gpt/addons/companyrag). Documents that many users should be able to search permanently belong in a companyRAG collection.
+:::
+
 ## SharePoint integration
 
 The same file processing options are available via SharePoint integration. The files do not have to be uploaded manually, but can be added directly from all SharePoint locations accessible to the user, either as [Upload to AI provider](#upload-to-ai-provider), [Text](#upload-as-text) or for the [file search](#file-search).

@@ -8,12 +8,15 @@ read the matching one before adding content. Theme rules are in `README.md` ("De
 
 The pages under `src/content/docs/{de,en}/tutorials/skills/` (every skill page plus `index.md`) and their sidebar
 groups are **generated** from [innFactory-AI/company-ai-stack-skills](https://github.com/innFactory-AI/company-ai-stack-skills).
-That repo is the single source: one folder per skill and locale with `SKILL.md` (the skill) and `page.md` (title,
-description, sidebar label, intro), plus `catalog.json` (categories, order, index texts). Its `AGENTS.md` has the
+That repo is the single source: one folder per skill and locale with `SKILL.md` (the skill, plus optional bundled
+files such as `references/`), a page wrapper `<locale>/pages/<category>/<slug>.md` (title, description, sidebar
+label, intro), and `catalog.json` (categories, order, index texts). Its `AGENTS.md` has the
 writing rules.
 
 - `scripts/sync-skills.mjs` (`npm run skills:sync`) downloads `main` of that repo (or `SKILLS_REF`), validates it and
   writes the pages and `src/generated/skills-sidebar.json`, which `astro.config.mjs` spreads into the Skills group.
+  Skills with bundled files also get a zip package under `public/skill-packages/<locale>/<category>/<slug>.zip`,
+  linked from the page.
 - It runs automatically before `npm run dev`, `npm start` and `npm run build`, and as its own step in
   `.github/workflows/ci.yaml`.
 - The output is gitignored. **Never edit or commit generated skill pages here**; changes would be overwritten on the

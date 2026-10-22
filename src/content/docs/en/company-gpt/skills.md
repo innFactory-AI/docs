@@ -40,8 +40,10 @@ The following file formats are supported:
 | `.md`             | Must contain skill name and description in YAML   |
 | `.zip` / `.skill` | Must include a `SKILL.md` file                    |
 
+A `.zip` file contains a folder with the `SKILL.md` and, optionally, further files, for example detailed guides under `references/` or scripts under `scripts/`. The assistant reads these files when needed. When [Run Code](/en/company-gpt/code-interpreter/) is active, they are also available read-only in the sandbox under `/mnt/data/skills/<skill-name>/`, so bundled scripts can be run.
+
 :::tip
-You can find ready-made skills to try and download in [Skills Tutorials](/en/tutorials/skills/).
+You can find ready-made skills to try and download in [Skills Tutorials](/en/tutorials/skills/). Skills with bundled files are offered as a `.zip` package there. Administrators can also add all ready-made skills for the whole organization via [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/#adding-the-ready-made-skills-from-innfactory).
 :::
 
 ## Skill view

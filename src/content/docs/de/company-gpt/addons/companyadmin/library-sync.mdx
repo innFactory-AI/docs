@@ -36,6 +36,26 @@ Je Repository stehen bereit: **Sync**, **Detect changes (DB ↔ Git)**, **Export
 Ohne die Kennzeichnung als eigenes Repository ist die Synchronisation einseitig: Inhalte kommen aus Git nach CompanyGPT, Änderungen in CompanyGPT werden nicht zurückgeschrieben.
 :::
 
+### Ordner mit Skills
+
+Für Skills durchsucht Library Sync den angegebenen Pfad **beliebig tief**: Jeder Ordner mit einer `SKILL.md` wird zu einem Skill. Weitere Textdateien im selben Ordner (z. B. `references/` oder `scripts/`) werden mit dem Skill übernommen; Binärdateien werden übersprungen. Maßgeblich ist der `name` in der `SKILL.md` – kommt ein Name doppelt vor, wird nur der erste übernommen.
+
+### Fertige Skills von innFactory einbinden
+
+Die [fertigen Skills](/de/tutorials/skills/) liegen im öffentlichen Repository [innFactory-AI/company-ai-stack-skills](https://github.com/innFactory-AI/company-ai-stack-skills) und lassen sich direkt verbinden – ohne Token:
+
+| Feld | Wert |
+|---|---|
+| Repository | `innFactory-AI/company-ai-stack-skills`, Branch `main` |
+| Structure (sources) | Typ `skill`, Pfad `de/skills` (deutsche Skills) **oder** `en/skills` (englische Skills) |
+| We own this repo | aus |
+
+Verbinden Sie nur **eine** Sprache: Deutsche und englische Fassung tragen denselben Skill-Namen. Alternativ fügen Sie `https://github.com/innFactory-AI/company-ai-stack-skills/tree/main/de/skills` als Repository ein; Branch und Pfad werden dann übernommen. Ein **Sync** holt neue und geänderte Skills; einen automatischen Zeitplan gibt es nicht.
+
+:::note
+Synchronisierte Skills stehen Agenten sofort zur Verfügung. In der Skill-Auswahl im Chat (`$`) erscheinen sie zunächst inaktiv, bis Nutzer sie einschalten.
+:::
+
 ## Änderungen prüfen
 
 **Detect changes (DB ↔ Git)** vergleicht den Stand in CompanyGPT mit dem Repository und fasst das Ergebnis zusammen: wie viele Einträge im Repository neuer sind, wie viele in der Anwendung geändert wurden und wie viele übereinstimmen. Je Eintrag wird der Status einzeln ausgewiesen.

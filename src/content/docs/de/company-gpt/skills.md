@@ -40,8 +40,10 @@ Folgende Dateiformate werden unterstützt:
 | `.md`             | Muss Skill-Name und Beschreibung im YAML-Format enthalten |
 | `.zip` / `.skill` | Muss eine `SKILL.md`-Datei enthalten                      |
 
+Eine `.zip`-Datei enthält einen Ordner mit der `SKILL.md` und optional weiteren Dateien, zum Beispiel ausführliche Anleitungen unter `references/` oder Skripte unter `scripts/`. Der Assistent liest diese Dateien bei Bedarf nach. Ist [Code ausführen](/de/company-gpt/code-interpreter/) aktiv, stehen sie zusätzlich schreibgeschützt in der Sandbox unter `/mnt/data/skills/<skill-name>/` bereit, sodass mitgelieferte Skripte ausgeführt werden können.
+
 :::tip
-Unter [Skills-Tutorials](/de/tutorials/skills/) finden Sie fertige Skills zum Ausprobieren und Herunterladen.
+Unter [Skills-Tutorials](/de/tutorials/skills/) finden Sie fertige Skills zum Ausprobieren und Herunterladen. Skills mit Zusatzdateien gibt es dort als `.zip`-Paket. Administratoren können alle fertigen Skills auch per [Library Sync](/de/company-gpt/addons/companyadmin/library-sync/#fertige-skills-von-innfactory-einbinden) für die ganze Organisation einbinden.
 :::
 
 ## Skill-Ansicht

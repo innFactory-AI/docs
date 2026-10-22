@@ -9,7 +9,7 @@ description: Use when adding a tutorial under src/content/docs/.../tutorials - e
 
 Tutorials live under `src/content/docs/<locale>/tutorials/` and are practical, task-oriented content. There are **two shapes**:
 
-1. **How-to guide** — numbered steps to accomplish something (connect Confluence, set up CompanyRAG). Subfolders: `tutorials/addons/`, `tutorials/MCP/`, `tutorials/skills/`.
+1. **How-to guide** — numbered steps to accomplish something (connect Confluence, set up CompanyRAG). Subfolders: `tutorials/addons/`, `tutorials/MCP/`. (`tutorials/skills/` is generated from innFactory-AI/company-ai-stack-skills; see `AGENTS.md` and `converting-skill-packages`.)
 2. **Agent template** — a reusable CompanyGPT agent: an intro, the full system prompt in a code block, and how to use it. Folder: `tutorials/agenten/`.
 
 Like docs pages, tutorials are **bilingual** (`de/` + `en/` mirror) and registered in `astro.config.mjs` under the **Tutorials** topic.

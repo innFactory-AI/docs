@@ -16,6 +16,13 @@ The integration can be enabled or disabled for individual messages directly in t
 - **Exact calculations**: Instead of estimating a result, the model writes the calculation as code and returns the actually computed result.
 - **Format conversion and code testing**: Unstructured data can be converted into structured formats (e.g. JSON), and code snippets can be executed and verified directly.
 
+## Files in the Code Interpreter
+
+- **Attached files**: When **Run Code** is active, files attached to a message (e.g. CSV, Excel) are available to the code in the working directory `/mnt/data`.
+- **Result files**: Files the code creates (e.g. a chart as PNG or a cleaned Excel file) appear as attachments to the response and can be downloaded.
+- **Templates from companyFILES**: With the tool `attach_template_to_chat`, [companyFILES](/en/company-gpt/addons/companyfiles/) places a template in the chat as a file. From the **next message** on, the code can edit it, for example to change many parts of a Word or PowerPoint layout at once. This requires companyFILES to be allowed to store files directly in the chat; your administrators set this up.
+- **Skills with bundled files**: If a [skill](/en/company-gpt/skills/) ships its own files (e.g. guides under `references/` or scripts), they are provided read-only under `/mnt/data/skills/<skill-name>/`. Ready-made skills are listed under [Skills tutorials](/en/tutorials/skills/).
+
 ## Supported languages
 
 The Code Interpreter executes **Python**, **JavaScript/TypeScript** (Node.js and Bun), and **Bash**.

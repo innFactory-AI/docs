@@ -93,7 +93,7 @@ You can have a whole course created in the chat, for example from a policy or a 
 - **learn_admin_create_course**: creates a whole course as a draft.
 - **learn_admin_update_course**: changes a draft.
 - **learn_admin_publish**: publishes or unpublishes a course. The model asks you first.
-- **learn_admin_report**: reports (overview, course, person).
+- **learn_admin_report**: reports (overview, course, person, assignments).
 - **learn_admin_enroll**: enrols or unenrols a person.
 - **learn_admin_reset_quiz_attempts**: resets a person's attempts on one quiz.
 - **learn_admin_find_people**: searches people and groups for an assignment.

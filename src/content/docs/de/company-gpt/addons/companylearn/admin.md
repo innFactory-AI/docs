@@ -93,7 +93,7 @@ Du kannst einen ganzen Kurs im Chat erstellen lassen, zum Beispiel aus einer Ric
 - **learn_admin_create_course**: legt einen ganzen Kurs als Entwurf an.
 - **learn_admin_update_course**: ändert einen Entwurf.
 - **learn_admin_publish**: veröffentlicht einen Kurs oder zieht ihn zurück. Das Modell fragt vorher nach.
-- **learn_admin_report**: Auswertungen (Übersicht, Kurs, Person).
+- **learn_admin_report**: Auswertungen (Übersicht, Kurs, Person, Zuweisungen).
 - **learn_admin_enroll**: schreibt eine Person ein oder aus.
 - **learn_admin_reset_quiz_attempts**: setzt die Versuche einer Person bei einem Quiz zurück.
 - **learn_admin_find_people**: sucht Personen und Gruppen für eine Zuweisung.

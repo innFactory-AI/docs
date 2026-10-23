@@ -1,0 +1,45 @@
+---
+title: MCP-Domains
+description: In companyADMIN festlegen, welche Domains MCP-Server in CompanyGPT nutzen dürfen – die Grundliste von innFactory und eigene Domains Ihres Unternehmens.
+---
+
+**Konfiguration** → **MCP-Domains** legt fest, welche Domains MCP-Server in CompanyGPT nutzen dürfen. Eigene Domains ergänzen Sie hier selbst, ohne innFactory.
+
+## Grundliste und eigene Domains
+
+- **Grundliste (innFactory)** – kommt aus der Konfiguration von CompanyGPT und gilt immer. Einträge, die CompanyGPT selbst braucht, tragen das Badge **intern**. Ändern kann die Grundliste nur innFactory.
+- **Eigene Domains** – kommen zur Grundliste hinzu und gelten für alle. Änderungen wirken ohne Neustart nach spätestens etwa einer Minute.
+
+## Domain hinzufügen
+
+1. Geben Sie in das Feld mit dem Platzhalter `mcp.example.com` eine oder mehrere Domains ein, getrennt durch Leerzeichen oder Komma.
+2. Klicken Sie auf **Hinzufügen**.
+3. Klicken Sie auf **Speichern**.
+
+| Möglich | Nicht möglich |
+|---|---|
+| `mcp.example.com` | `*` |
+| `*.example.com` | Ein Platzhalter für eine ganze Endung wie `*.de` oder `*.co.uk` |
+| `https://mcp.example.com:8443` | Pfade, Parameter oder Zugangsdaten in der Adresse |
+| | Interne Namen und private IP-Adressen |
+| | IPv6-Adressen |
+| | Dienste wie nip.io, die auf jede IP-Adresse zeigen |
+| | Loopback-, Link-Local- und Cloud-Metadaten-Adressen |
+
+Erlaubt sind die Schemata http, https, ws und wss. Ist ein Eintrag nicht erlaubt, speichert companyADMIN nichts und nennt den Grund je Eintrag.
+
+:::note
+In einzelnen Umgebungen sind auch interne Namen und private IP-Adressen erlaubt. Die Seite weist dann selbst darauf hin. Loopback-, Link-Local- und Cloud-Metadaten-Adressen bleiben immer gesperrt.
+:::
+
+## Domain entfernen
+
+Entfernen Sie die Domain aus der Liste und speichern Sie. **Domains entfernen?** fragt nach: Nach dem Speichern sind MCP-Server auf diesen Domains für alle gesperrt. Bestätigen Sie mit **Speichern und entfernen**.
+
+## Besondere Zustände
+
+- **Keine Domain-Liste**: Ist in Ihrer Umgebung keine Domain-Liste hinterlegt, dürfen MCP-Server jede öffentliche Domain nutzen; private Adressen und interne Namen sind gesperrt. Eigene Domains würden das auf die Liste beschränken und sind deshalb nicht möglich.
+- **Vorgabe geändert**: Hat sich die Grundliste geändert, erscheint **Die Vorgabe hat sich geändert, Speichern übernimmt die Änderung.** Darunter nennt die Seite, was beim Speichern dazukommt (**Kommt dazu:**) und was wegfällt (**Fällt weg:**).
+- **Liste nicht von companyADMIN**: Wurde die gespeicherte Liste an anderer Stelle geschrieben, ersetzt Speichern sie durch Grundliste, interne und eigene Domains. companyADMIN fragt vorher mit **Gespeicherte Liste ersetzen?** nach; der Dialog nennt auch hier, was wegfällt (**Fällt weg:**) und was dazukommt (**Kommt dazu:**). Bestätigen Sie mit **Liste ersetzen**. Einträge, die nicht von companyADMIN stammen, übernehmen Sie mit **Als eigene Domains übernehmen**.
+- **Eigene Liste für Rollen oder Gruppen**: Hat eine Rolle oder Gruppe eine eigene Domain-Liste, gilt für deren Mitglieder diese statt der hier gepflegten. Die Seite weist darauf hin.
+- **Inzwischen geändert**: Hat jemand die Liste seit dem Laden geändert, speichert companyADMIN nichts. Prüfen Sie den aktuellen Stand und speichern Sie erneut.

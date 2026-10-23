@@ -1,0 +1,281 @@
+---
+title: AI Gateway API
+description: Direct access to the AI models of your environment via the AI Gateway—compatible with OpenAI, Anthropic, and Gemini, with a personal API key, budgets, and cost centers.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+The AI Gateway is the central interface between CompanyGPT and the AI providers. What the optional gateway brings your organization and how it shows up in CompanyGPT is described on the [AI Gateway](/en/company-gpt/addons/ai-gateway/) page. In environments with an AI Gateway, you can also access the approved AI models directly from your own applications, scripts, and tools. The gateway speaks the interfaces your libraries already use:
+
+- **OpenAI-compatible** – Chat Completions, Responses, embeddings, image generation, and audio
+- **Anthropic-compatible** – Messages API
+- **Gemini-compatible** – GenerateContent
+
+Which interface you use is independent of the provider the model actually runs on. The gateway translates the request. For example, you can also call a GPT model with the Anthropic SDK.
+
+All requests are subject to the model approvals, budgets, and limits your organization has set in the gateway.
+
+## Base URL
+
+The API is available under the domain of your AI Gateway. Your administrator can tell you the exact address.
+
+| Interface | Base URL in the SDK | Example path |
+| --- | --- | --- |
+| OpenAI | `https://<your-gateway-domain>/v1` | `POST /v1/chat/completions` |
+| Anthropic | `https://<your-gateway-domain>` | `POST /v1/messages` |
+| Gemini | `https://<your-gateway-domain>` | `POST /v1beta/models/<model-id>:generateContent` |
+
+If your administrator has set up an access group for you, they can also give you a separate base URL of the form `https://<your-gateway-domain>/v1/<group>`. It only offers the models of this group.
+
+## API keys
+
+To access the API, you need a personal API key. Gateway keys start with `aig_`.
+
+### Creating a key
+
+<Steps>
+
+1. Open the AI Gateway dashboard at `https://<your-gateway-domain>/` and sign in with **Continue with company account**.
+2. In the sidebar, select **Overview** → **My settings** → **API keys**.
+3. Click **New key**, enter a name, and confirm with **Create key**.
+4. Copy the key right away. It won't be shown again.
+
+</Steps>
+
+If you belong to a cost center, you can also create a key directly for this cost center: under **Overview** → **My usage** → **Spending**, via **New key** next to the respective cost center. Such a key bills against the cost center and inherits your access.
+
+Whether you may create your own keys and which areas of the dashboard you see depends on your role and the configuration of your environment. If you cannot create a key, contact your administrator.
+
+A key inherits the model approvals and the budget of its owner. Treat it like a password. Under **My settings** → **API keys**, you can revoke one of your own keys yourself (**Revoke**) or create a new secret for it (**Rotate secret**); afterwards, the previous secret no longer works. Anyone who may create keys can also create a new secret. Administrators can do both as well. If a key has fallen into the wrong hands, revoke it immediately; if in doubt, contact your administrator.
+
+### Passing the key
+
+The gateway accepts the key in the headers the respective SDKs send anyway:
+
+| Header | Typical client |
+| --- | --- |
+| `Authorization: Bearer aig_...` | OpenAI SDKs, your own clients |
+| `x-api-key: aig_...` | Anthropic SDKs |
+| `x-goog-api-key: aig_...` | Google GenAI SDKs |
+
+If the key is missing, the gateway responds with `401`.
+
+## Examples
+
+Replace `<model-id>` with a model ID from the [model list](#available-models).
+
+<Tabs>
+  <TabItem label="OpenAI SDK (Python)">
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<your-gateway-domain>/v1",
+    api_key="aig_...",
+)
+
+response = client.chat.completions.create(
+    model="<model-id>",
+    messages=[{"role": "user", "content": "Summarize the three most important points."}],
+)
+print(response.choices[0].message.content)
+```
+  </TabItem>
+  <TabItem label="Anthropic SDK (Python)">
+```python
+import anthropic
+
+client = anthropic.Anthropic(
+    base_url="https://<your-gateway-domain>",
+    api_key="aig_...",
+)
+
+message = client.messages.create(
+    model="<model-id>",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Summarize the three most important points."}],
+)
+print(message.content[0].text)
+```
+  </TabItem>
+  <TabItem label="curl (OpenAI)">
+```bash
+curl https://<your-gateway-domain>/v1/chat/completions \
+  -H "Authorization: Bearer aig_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "<model-id>",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+```
+  </TabItem>
+  <TabItem label="curl (Gemini)">
+```bash
+curl "https://<your-gateway-domain>/v1beta/models/<model-id>:generateContent" \
+  -H "x-goog-api-key: aig_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [{"role": "user", "parts": [{"text": "Hello!"}]}]
+  }'
+```
+  </TabItem>
+</Tabs>
+
+With the Anthropic interface, `max_tokens` is required. Streaming works as with the respective provider, for example with `"stream": true` for OpenAI and Anthropic or via `:streamGenerateContent` for Gemini.
+
+## Endpoints
+
+| Path | Interface | Purpose |
+| --- | --- | --- |
+| `POST /v1/chat/completions` | OpenAI | Chat |
+| `POST /v1/responses` | OpenAI | Responses API; earlier responses cannot be retrieved or deleted by their ID |
+| `POST /v1/messages` | Anthropic | Messages API |
+| `POST /v1beta/models/<model-id>:generateContent` | Gemini | Response without streaming |
+| `POST /v1beta/models/<model-id>:streamGenerateContent` | Gemini | Response with streaming |
+| `POST /v1/embeddings` | OpenAI | Text embeddings |
+| `POST /v1/images/generations` | OpenAI | Image generation |
+| `POST /v1/audio/transcriptions`, `POST /v1/audio/speech` | OpenAI | Speech to text, text to speech |
+| `GET /v1/models` | OpenAI | Models available for your key |
+
+Which endpoints you can actually use depends on the models approved in your environment.
+
+## Available models
+
+`GET /v1/models` returns the models your key may use. The list is filtered per person: two people in the same environment may see different lists. Therefore, don't rely on hard-coded model IDs without checking them against the list.
+
+```bash
+curl https://<your-gateway-domain>/v1/models \
+  -H "Authorization: Bearer aig_..."
+```
+
+## Budgets and cost centers
+
+Every request incurs costs that the gateway records. Depending on the setup, budgets apply to the whole organization, to you personally, and to cost centers, for example per month, week, or day as well as per model.
+
+You can see your current costs in the dashboard under **Overview** → **My usage** → **Spending** (page **My spending**). For each cost center you belong to, it shows your usage, the applicable limits, and a status from **OK** to **Blocked**. If a cost center has a limit per member, you only see your own spending there.
+
+### Budget used up (402)
+
+If a budget is used up, the gateway rejects the request with status `402`. Don't retry the request: it will only be accepted again once the next billing period starts or your administrator raises the limit. In your application, it is best to show users a clear message such as "budget used up". If no budget has been set up for you at all, the error message contains the code `budget_required`.
+
+Instead, your organization can define a cheaper fallback model. In that case, the gateway answers chat requests with this model despite the used-up budget. You can recognize this by the `x-gateway-budget-fallback` header and the different `model` field in the response.
+
+### Costs and budget in the response headers
+
+| Header | Meaning |
+| --- | --- |
+| `x-aigateway-response-cost` | Cost of this request in USD (e.g. `0.001234`) |
+| `X-Budget-User-Remaining` | Your remaining personal budget, if a limit is set |
+| `X-Budget-CostCenter-Remaining` | Remaining budget of the cost center, if a limit is set |
+| `x-request-id` | ID of the request. Include it when you contact your administrator about an error. |
+
+The `X-Budget-*` values are integers in millionths of a US dollar: `4250000` equals USD 4.25.
+
+## Rate limits (429)
+
+If your organization has set rate limits, every response contains the headers `X-RateLimit-Limit`, `X-RateLimit-Remaining`, and `X-RateLimit-Reset`. If the headers are missing, no limit is set.
+
+If a limit is reached or the AI provider throttles the model, the gateway responds with `429` and the `Retry-After` header. Wait at least the number of seconds given there before retrying the request.
+
+### Waiting time for briefly paused models
+
+If the gateway briefly pauses a model after several throttling responses from the provider, it also responds with `429`. `Retry-After` then states the remaining waiting time, and the message reads `The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s).`
+
+### Provider quota exhausted
+
+If the quota or credit of the provider account behind a model is exhausted, the gateway does not treat this as throttling: it fails over to another deployment of the same model. If none is left, it responds not with `429` but with `422` and the code `upstream_quota_exhausted`. Retrying does not help then; contact your administrator.
+
+## Request size (413)
+
+The gateway accepts requests up to 128 MiB. It rejects larger requests with status `413` and the code `request_too_large`. The error message states the limit (`limit_bytes`) and, if known, the size of your request (`size_bytes`):
+
+```json
+{
+  "error": {
+    "message": "Request too large: 140.0 MiB exceeds this gateway's limit of 128.0 MiB (MAX_BODY_SIZE).",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "request_too_large",
+    "limit_bytes": 134217728,
+    "size_bytes": 146800640
+  }
+}
+```
+
+In addition, the limits of the AI providers apply, for example 32 MB or 100 PDF pages per request for Claude models, 50 MB for files for OpenAI models, and 20 MB per request including embedded files for Gemini models (Google Vertex AI). If the provider rejects a request, the gateway usually passes on its status and message.
+
+## Timeouts
+
+- By default, responses without streaming may take up to 10 minutes (600 seconds). For streamed responses, this time applies until the response starts.
+- If no data arrives from the provider for 15 minutes (900 seconds) during a streamed response, the gateway aborts the stream.
+
+Set your client's timeout to at least 600 seconds. This matches the default of the OpenAI and Anthropic SDKs.
+
+Request responses that may take longer than a few minutes (e.g. reasoning with a high thinking depth or large PDFs) with streaming. Without streaming, the connection may be dropped after about 4 minutes without data, even if the gateway itself would wait longer. For streamed responses, the gateway regularly sends a keep-alive signal so that the connection stays open.
+
+## Error messages
+
+Errors arrive in the format of the called interface; the status code is the same everywhere:
+
+<Tabs>
+  <TabItem label="OpenAI">
+```json
+{
+  "error": {
+    "message": "Not found: Model '<model-id>' not found or not available",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "E4040"
+  }
+}
+```
+  </TabItem>
+  <TabItem label="Anthropic">
+```json
+{
+  "type": "error",
+  "error": {
+    "type": "not_found_error",
+    "message": "Not found: Model '<model-id>' not found or not available"
+  }
+}
+```
+  </TabItem>
+  <TabItem label="Gemini">
+```json
+{
+  "error": {
+    "code": 404,
+    "message": "Not found: Model '<model-id>' not found or not available",
+    "status": "NOT_FOUND"
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+This also applies to errors that occur in the middle of a streamed response.
+
+In your application, evaluate the status code and, for the OpenAI interface, the `code` field, not the free text of the message.
+
+| Status | Meaning | Retry? |
+| --- | --- | --- |
+| `400` | Invalid request, rejected by the provider (e.g. prompt too long), or blocked by a content policy (guardrail), code `E4220` | No |
+| `401` | API key missing or invalid | No |
+| `402` | Budget used up | No |
+| `403` | Key revoked or expired, or the model is not approved for you (`model_not_allowed`) | No |
+| `404` | Model unknown or not available | No |
+| `413` | Request too large (`request_too_large`) | No |
+| `422` | Response blocked by a content policy (guardrail), code `E4220`, or a problem in the gateway configuration, such as an exhausted provider quota (`upstream_quota_exhausted`). Your key is fine; contact your administrator. | No |
+| `429` | Rate limit reached or model throttled | Yes, after `Retry-After` |
+| `500`, `502`, `503` | Temporary error in the gateway or at the provider | Yes, with increasing intervals |
+
+## Related documentation
+
+- [AI Gateway](/en/company-gpt/addons/ai-gateway/) — What the optional AI Gateway is and how it shows up in CompanyGPT
+- [Agents API](/en/api/agents-api/) — Accessing CompanyGPT agents programmatically
+- [Model selection](/en/company-gpt/modellauswahl/) — Overview of the models in CompanyGPT

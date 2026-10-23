@@ -3,16 +3,18 @@ title: Modellauswahl
 description: Wann welches KI Modell nutzen? Diese Übersicht hilft Ihnen.
 ---
 
-### Dynamisches Model Routing
-
-Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Routing von CompanyGPT zu aktivieren. Das System analysiert Ihren Prompt und wählt automatisch das effizienteste OpenAI-Modell: Schnelle, kleinere Modelle für Standardfragen und High-End-Modelle für komplexe Analysen. So sparen Sie ohne manuellen Aufwand Zeit und Token-Kosten.
+Welche Modelle Ihnen in der Modellauswahl angezeigt werden, legt Ihr Unternehmen fest – nicht jede Umgebung bietet alle hier beschriebenen Modelle an. In den meisten Umgebungen ist **gpt-6-luna** das voreingestellte Modell für neue Chats.
 
 ### Faustregel:
 
-- **Schnell & günstig** → Mini / Flash / Nano / Haiku
+- **Schnell & günstig** → Luna / Mini / Nano / Flash / Haiku
 - **Standard & zuverlässig** → große Allround-Modelle
 - **Komplex & kritisch** → stärkste Modelle
-- **EU / intern / Datenschutz** → STACKIT-Modelle
+- **Hosting in Deutschland / Open Source** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern in Ihrer Umgebung verfügbar
+
+:::note[Wo laufen die Modelle?]
+Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßig in EU-Rechenzentren betrieben (Azure OpenAI in der EU-Datenzone, Google Vertex AI in EU-Regionen). Einzelne Umgebungen oder Modelle – insbesondere zur Bildgenerierung – können abweichen. Die STACKIT-Modelle laufen in Rechenzentren in Deutschland. Details zu Ihrer Umgebung erfahren Sie bei Ihrem Administrator.
+:::
 
 ---
 
@@ -20,19 +22,19 @@ Wählen Sie unter der OpenAI-Modellauswahl einfach "auto", um das dynamische Rou
 
 ### Die GPT-6-Familie
 
-GPT-6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Astra** (maximale Leistungsfähigkeit), **Sol** (ausgewogen) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
+GPT-6 steht in CompanyGPT in zwei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Sol** (die leistungsstärkere Stufe) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
 
 ### gpt-6-sol
 
 - **Für:** anspruchsvolle Aufgaben mit starker Intelligenz zu fairen Kosten
 - **Wann:** agentisches Coding, mehrstufige Entwicklungsaufgaben, komplexe Workflows
-- **Warum:** das ausgewogene Mittelklasse-Modell der GPT-6-Generation mit sorgfältiger Validierung
+- **Warum:** die leistungsstärkere Stufe der GPT-6-Generation mit sorgfältiger Validierung
 
-### gpt-6-luna
+### gpt-6-luna (Standardmodell)
 
 - **Für:** schnelle Antworten bei minimalen Kosten
-- **Wann:** kleinere Aufgaben, Hochvolumen-Anwendungen, automatisierte Pipelines
-- **Warum:** das günstigste und schlankste Modell der GPT-6-Familie für effizientes Arbeiten
+- **Wann:** alltägliche Aufgaben, Hochvolumen-Anwendungen, automatisierte Pipelines
+- **Warum:** das günstigste und schlankste Modell der GPT-6-Familie – in den meisten Umgebungen für neue Chats voreingestellt
 
 ### Die GPT-5.6-Familie
 
@@ -58,9 +60,9 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 
 ### gpt-5.4
 
-- **Für:** komplexe Problemstellungen und maximale Intelligenz
-- **Wann:** anspruchsvolles Coding, wissenschaftliche Analysen, strategische Planung
-- **Warum:** OpenAIs fortschrittlichstes Modell mit unübertroffenem logischen Denkvermögen
+- **Für:** anspruchsvolle Aufgaben über viele Themen hinweg
+- **Wann:** Coding, Analysen, Textarbeit und Planung im Arbeitsalltag
+- **Warum:** starkes Allround-Modell der GPT-5-Generation; für die höchste Leistungsfähigkeit wählen Sie GPT-5.6 Sol oder gpt-6-sol
 
 ### gpt-5.1
 
@@ -80,33 +82,35 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 - **Wann:** schnelle Fragen, einfache Formatierungen, Textkorrekturen
 - **Warum:** extrem ressourcensparendes Modell der GPT-5-Familie mit minimaler Latenz
 
-### auto
-
-- **Für:** automatisierte Effizienz ohne manuelles Auswählen
-- **Wann:** wechselnde Aufgaben, unkomplizierte Workflows
-- **Warum:** wählt je nach Komplexität deiner Anfrage automatisch das am besten geeignete Modell
-
 ### GPT Image 1.5
 
 - **Für:** Bildgenerierung
 - **Wann:** wenn Bilder generiert werden sollen
-- **Warum:** OpenAI's Bildgenerierungsmodell
+- **Warum:** OpenAIs Bildgenerierungsmodell
+
+In einzelnen Umgebungen gibt es zusätzlich neuere Bildmodelle (z. B. GPT Image 2). Diese laufen außerhalb der EU-Datenzone.
+
+:::caution
+Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerierung können Sie alternativ [Nano Banana](#gemini-image-tools--nano-banana) nutzen, sofern es in Ihrer Umgebung verfügbar ist.
+:::
 
 ---
 
 ## Google
 
-### Gemini 3.1 Flash-Lite
+Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist. In einzelnen Umgebungen gibt es weitere Gemini-Varianten (z. B. Gemini 3.6 Flash).
 
-- **Für:** maximale Geschwindigkeit und Kosteneffizienz
-- **Wann:** schnelles Nachfragen, einfache Massenaufgaben, Echtzeit-Übersetzungen
-- **Warum:** extrem kurze Antwortzeit bei unschlagbar geringen Kosten
-
-### Gemini 3.5 Flash
+### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
 - **Für:** autonomes Denken bei hoher Geschwindigkeit
 - **Wann:** komplexe Workflows, tiefe Analysen, anspruchsvolles Coding
-- **Warum:** Googles schnelles Modell mit flexiblen Denkstufen für intelligentere Aufgaben
+- **Warum:** Googles schnelle Modelle mit flexiblen Denkstufen; 3.8 Flash ist die neueste Generation
+
+### Gemini 3.5 Flash-Lite / Gemini 3.1 Flash-Lite
+
+- **Für:** maximale Geschwindigkeit und Kosteneffizienz
+- **Wann:** schnelles Nachfragen, einfache Massenaufgaben, Echtzeit-Übersetzungen
+- **Warum:** extrem kurze Antwortzeit bei sehr geringen Kosten; 3.5 Flash-Lite ist die neuere Stufe
 
 ### Gemini Image Tools / Nano Banana
 
@@ -117,6 +121,14 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 ---
 
 ## Anthropic
+
+Die Claude-Modelle stehen zur Verfügung, wenn Anthropic in Ihrer Umgebung freigeschaltet ist.
+
+### Claude Opus 4.6
+
+- **Für:** die anspruchsvollsten Aufgaben, bei denen Qualität vor Kosten geht
+- **Wann:** komplexe Analysen, umfangreiche Code-Änderungen, mehrstufige agentische Aufgaben
+- **Warum:** das leistungsstärkste Claude-Modell der 4.6-Generation
 
 ### Claude Sonnet 4.6
 
@@ -130,11 +142,27 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 - **Wann:** große Datenmengen filtern, UI-basierte Chatbots, einfache bis mittlere Tasks in Masse
 - **Warum:** sehr schnell und kosteneffizient (weniger Reasoning als Sonnet/Opus)
 
+:::note
+In einzelnen Umgebungen stehen statt oder zusätzlich zu den 4.x-Modellen neuere Claude-Modelle zur Verfügung (z. B. Claude Sonnet 5, Opus 5, Sonnet 5.5, Opus 5.5) sowie weitere Anbieter wie Mistral oder Perplexity.
+:::
+
 ---
 
 ## STACKIT
 
-Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eignen sich besonders für Workloads mit hohen Anforderungen an Datenschutz, Datenhoheit und interne Compliance.
+Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutschland und eignen sich besonders für Workloads mit hohen Anforderungen an Datenhoheit und interne Compliance. Sie stehen in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) zur Verfügung, sonst nur in Umgebungen, in denen STACKIT freigeschaltet ist; welche Modelle genau angeboten werden, unterscheidet sich je nach Umgebung. Daneben nutzt die Suche in [companyRAG](/de/company-gpt/addons/companyrag/) je nach Umgebung eigene Embedding-Modelle; sie sind im Chat nicht auswählbar.
+
+### google/gemma-4-31B-it
+
+- **Für:** vielseitige Instruct-Aufgaben mit guter Effizienz
+- **Wann:** interne Assistenten, Wissensarbeit, strukturierte Textproduktion
+- **Warum:** neuere Gemma-Generation als Mittelbau zwischen kleinen schnellen und großen OSS-Modellen
+
+### Qwen/Qwen3.8-27B
+
+- **Für:** vielseitige Textaufgaben und starkes multilinguales Verständnis
+- **Wann:** kreatives Schreiben, logische Problemlösung, präzise Übersetzungen
+- **Warum:** neuere Qwen-Generation mit gutem Verhältnis aus kompakter Größe und Leistungsfähigkeit
 
 ### openai/gpt-oss-120b
 
@@ -154,42 +182,20 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud (EU/Deutschland) und eigne
 - **Wann:** komplexere Unternehmensfragen, längere Antworten, bessere Detailtiefe
 - **Warum:** 70B-Klasse liefert deutlich mehr Qualität als kleine Modelle bei weiterhin OSS-Flexibilität
 
-### google/gemma-3-27b-it
-
-- **Für:** vielseitige Instruct-Aufgaben mit guter Effizienz
-- **Wann:** interne Assistenten, Wissensarbeit, strukturierte Textproduktion
-- **Warum:** starker Mittelbau zwischen kleinen schnellen und großen teuren OSS-Modellen
-
-### Qwen/Qwen3.6-27B
-
-- **Für:** vielseitige Textaufgaben und starkes multilinguales Verständnis
-- **Wann:** kreatives Schreiben, logische Problemlösung, präzise Übersetzungen
-- **Warum:** die neueste Qwen-Generation im optimalen Verhältnis aus kompakter Größe und hoher Intelligenz
-
 ### openai/gpt-oss-20b
 
 - **Für:** leichtgewichtige Open-Source-Textaufgaben
 - **Wann:** kostensensitive interne Workflows mit kontrollierbarer Infrastruktur
 - **Warum:** kompakter OSS-Ansatz für solide Qualität bei geringeren Ressourcenanforderungen
 
-### Qwen/Qwen3-VL-Embedding-8B
-
-- **Für:** multimodale Embeddings (Text/Bild) für Suche und Retrieval
-- **Wann:** semantische Suche, RAG-Indizierung, Ähnlichkeitssuche über gemischte Daten
-- **Warum:** spezialisiert auf Vektor-Repräsentationen statt auf klassische Chat-Antworten
-
-### intfloat/e5-mistral-7b-instruct
-
-- **Für:** hochwertige Text-Embeddings für Retrieval und Ranking
-- **Wann:** Vektorsuche, Dokument-Retrieval, Relevanzsortierung in RAG-Pipelines
-- **Warum:** bewährtes Embedding-Modell für präzise semantische Suchanwendungen
-
 ---
 
 ## Legacy-Modelle
 
 :::caution[Wird eingestellt]
-Die komplette GPT-4-Familie (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt. Bitte wechseln Sie auf ein aktuelles Modell: **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und gpt-4o, **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini und gpt-4o-mini.
+Die komplette GPT-4-Familie (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt; in einigen Umgebungen ist sie bereits nicht mehr verfügbar. Bitte wechseln Sie auf ein aktuelles Modell: **gpt-6-luna**, **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und gpt-4o, **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini und gpt-4o-mini.
+
+Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
 :::
 
 ### gpt-4.1
@@ -224,11 +230,11 @@ Die komplette GPT-4-Familie (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) wird in
 
 ## Schnelle Entscheidungshilfe
 
-- **„Ich will einfach eine sehr gute Antwort“** → GPT-5.6 Terra / gpt-5.1 / gpt-5-mini / Claude Sonnet 4.6
-- **„Es soll maximal schnell und günstig sein“** → GPT-5.6 Luna / gpt-5-nano / Gemini 3.1 Flash-Lite / Claude Haiku 4.5
-- **„Ich will programmieren / Code schreiben“** → GPT-5.6 Sol / Claude Sonnet 4.6 / gpt-5.4
-- **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-5.4 / gpt-5.1
-- **„Ich führe viele Aufgaben parallel aus“** → GPT-5.6 Luna / Claude Haiku 4.5
-- **„Datenschutz (EU/Deutschland) ist Pflicht“** → STACKIT-Modelle (z. B. Llama 3.3 70B Instruct)
-- **„Ich weiß nicht, welches Modell passt“** → auto (dynamisches Routing)
+- **„Ich weiß nicht, welches Modell passt“** → gpt-6-luna (Standardmodell)
+- **„Ich will einfach eine sehr gute Antwort“** → gpt-6-sol / GPT-5.6 Terra / Claude Sonnet 4.6
+- **„Es soll maximal schnell und günstig sein“** → gpt-6-luna / GPT-5.6 Luna / gpt-5-nano / Gemini 3.5 Flash-Lite / Claude Haiku 4.5
+- **„Ich will programmieren / Code schreiben“** → gpt-6-sol / GPT-5.6 Sol / Claude Sonnet 4.6
+- **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-6-sol / Claude Opus 4.6
+- **„Ich führe viele Aufgaben parallel aus“** → gpt-6-luna / GPT-5.6 Luna / Claude Haiku 4.5
+- **„Hosting in Deutschland ist Pflicht“** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern verfügbar (z. B. Llama 3.3 70B Instruct)
 - **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana

@@ -3,13 +3,17 @@ title: Skills
 description: Erfahren Sie, wie Sie Skills in CompanyGPT verwenden, erstellen und hochladen können – wiederverwendbare Anweisungen, die den KI-Assistenten für bestimmte Aufgaben spezialisieren.
 ---
 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
 Skills sind wiederverwendbare Anweisungen, die den KI-Assistenten für bestimmte Aufgaben spezialisieren. Sie erweitern die Fähigkeiten des Assistenten, ohne dass Sie jedes Mal komplexe Prompts neu schreiben müssen.
 
 ## Skills-Übersicht
 
-Skills werden in der linken Seitenleiste unter **Skills** verwaltet. Unter **My Skills** sehen Sie alle Ihre Skills auf einen Blick.
+Skills werden in der linken Seitenleiste unter **Skills** verwaltet. Unter **Meine Skills** sehen Sie alle Ihre Skills auf einen Blick.
 
-![Skills-Übersicht in der linken Sidebar mit einer Liste eigener Skills](./skills-main-de.png)
+![Skills-Seitenleiste mit dem Suchfeld und der Liste unter Meine Skills](./skills-main-de.png)
 
 ## Skill erstellen
 
@@ -19,13 +23,13 @@ Klicken Sie auf den **+**-Button oben in der Skills-Sidebar, um einen neuen Skil
 
 ### Skill-Anweisungen schreiben
 
-Wählen Sie **Write skill instructions**, um ein Skill selber zu erstellen. Dafür müssen folgende Felder ausgefüllt werden:
+Wählen Sie **Skill-Anweisungen schreiben**, um einen Skill selbst zu erstellen. Dafür werden folgende Angaben benötigt:
 
 - **Name** – Ein eindeutiger Name für den Skill
 - **Beschreibung** – Kurze Erklärung, wann und wofür der Skill eingesetzt wird
-- **Instructions** – Die eigentlichen Anweisungen im Markdown-Format
+- **Anleitung** – Die eigentlichen Anweisungen im Markdown-Format
 
-![Formular zum Schreiben eines neuen Skills mit Name, Beschreibung und Instructions](./skills-write-de.png)
+![Dialog Skill-Anweisungen schreiben mit ausgefüllten Feldern Name, Beschreibung und Anleitung](./skills-write-de.png)
 
 ### Skill hochladen
 
@@ -40,6 +44,8 @@ Folgende Dateiformate werden unterstützt:
 | `.md`             | Muss Skill-Name und Beschreibung im YAML-Format enthalten |
 | `.zip` / `.skill` | Muss eine `SKILL.md`-Datei enthalten                      |
 
+Die Datei darf höchstens 50 MB groß sein.
+
 Eine `.zip`-Datei enthält einen Ordner mit der `SKILL.md` und optional weiteren Dateien, zum Beispiel ausführliche Anleitungen unter `references/` oder Skripte unter `scripts/`. Der Assistent liest diese Dateien bei Bedarf nach. Ist [Code ausführen](/de/company-gpt/code-interpreter/) aktiv, stehen sie zusätzlich schreibgeschützt in der Sandbox unter `/mnt/data/skills/<skill-name>/` bereit, sodass mitgelieferte Skripte ausgeführt werden können.
 
 :::tip
@@ -50,11 +56,11 @@ Unter [Skills-Tutorials](/de/tutorials/skills/) finden Sie fertige Skills zum Au
 
 Die Detailansicht eines Skills zeigt den gerenderten Inhalt mit Beschreibung und Markdown-Inhalt, zum Beispiel Tools-Tabellen oder Decision Guides.
 
-![Detailansicht eines Skills mit gerendertem Markdown-Inhalt](./skills-view-de.png)
+![Detailansicht eines Skills mit Beschreibung, gerendertem Markdown-Inhalt und dem Schalter Available to agent](./skills-view-de.png)
 
 Von hier aus können Sie den Skill:
 
-- **Aktivieren oder deaktivieren** – über den Toggle oben rechts
+- **Für Agenten freigeben oder sperren** – über den Schalter **Available to agent** oben rechts. Ist er eingeschaltet, kann ein Agent den Skill in neuen Nachrichten verwenden. Die Einstellung gilt nur für Sie.
 - **Bearbeiten** – Anweisungen, Name oder Kategorie anpassen
 - **Löschen** – den Skill dauerhaft entfernen
 
@@ -62,7 +68,7 @@ Von hier aus können Sie den Skill:
 
 Öffnen Sie einen Skill und klicken Sie auf **Bearbeiten**, um Name, Beschreibung, Anweisungen und Kategorie anzupassen.
 
-![Bearbeitungsformular eines Skills mit Feldern für Name, Beschreibung und Kategorie](./skills-edit-de.png)
+![Bearbeitungsansicht eines Skills mit Name, Beschreibung, Skill-Inhalt und geöffnetem Menü Kategorie](./skills-edit-de.png)
 
 :::note
 Die **Beschreibung** legt fest, wann der Skill automatisch aktiviert wird. Formulieren Sie sie so, dass der Assistent den richtigen Anwendungsfall erkennt.
@@ -70,10 +76,12 @@ Die **Beschreibung** legt fest, wann der Skill automatisch aktiviert wird. Formu
 
 ## Skills zu Agenten hinzufügen
 
-Skills können auch direkt einem [Agenten](/de/company-gpt/agenten/) zugewiesen werden. Öffnen Sie dazu die Agenten-Einstellungen und aktivieren Sie den **Skills**-Toggle. Standardmäßig hat der Agent Zugriff auf den gesamten Skill-Katalog.
+Skills können auch direkt einem [Agenten](/de/company-gpt/agenten/) zugewiesen werden. Öffnen Sie dazu den Agenten und wählen Sie im Abschnitt **Skills** einen der drei Modi:
 
-![Skills-Toggle in den Agenten-Einstellungen aktivieren](./skills-agent-enable-de.png)
+| Modus | Wirkung |
+| ----- | ------- |
+| **Off** | Der Agent verwendet keine Skills. |
+| **All** | Der Agent hat Zugriff auf alle Skills, die Ihnen zur Verfügung stehen und für Agenten freigegeben sind. Die Liste der verfügbaren Skills lässt sich aufklappen. |
+| **Selected** | Der Agent verwendet nur die Skills, die Sie ausgewählt haben. |
 
-Über **Add Skills** können Sie gezielt einzelne Skills auswählen, die der Agent verwenden darf. So lässt sich der Funktionsumfang eines Agenten präzise steuern.
-
-![Skill-Katalog zum Hinzufügen von Skills zu einem Agenten](./skills-agent-add-de.png)
+Im Modus **Selected** fügen Sie Skills über **Add skill** hinzu. Es öffnet sich ein Dialog, in dem Sie die verfügbaren Skills durchsuchen und dem Agenten hinzufügen. Über das Kreuz neben einem Skill entfernen Sie ihn wieder aus der Auswahl. So lässt sich der Funktionsumfang eines Agenten präzise steuern.

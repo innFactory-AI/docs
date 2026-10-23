@@ -1,0 +1,122 @@
+---
+title: Kurse verwalten
+description: In companyLEARN Kurse, Kapitel, Lektionen und Quizze anlegen, die Reihenfolge ändern, die Kapitel-Sperre einstellen und Kurse veröffentlichen.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Die Kursverwaltung steht Personen mit dem Recht **Kurse verwalten** zur Verfügung (siehe [Rechte](/de/company-gpt/addons/companylearn/#rechte)). Sie öffnen sie über **Kursverwaltung** im Menü.
+
+## Kursübersicht
+
+Die Tabelle zeigt alle Kurse, auch Entwürfe. Unveröffentlichte Kurse tragen neben dem Titel die Markierung **Entwurf**.
+
+| Spalte | Inhalt |
+|---|---|
+| **Titel** | Titel des Kurses |
+| **Veröffentlicht** | Schalter: Ist er an, sehen Lernende den Kurs im Katalog. |
+| **Kapitel-Sperre** | Schalter: Ist er an, werden die Kapitel nacheinander freigeschaltet. |
+| **Kapitel** | Anzahl der Kapitel |
+| **Einschreibungen** | Anzahl der eingeschriebenen Personen |
+| **Erstellt** | Datum, an dem der Kurs angelegt wurde |
+| **Aktionen** | **Bearbeiten** (Stift) öffnet den Kurseditor, **Löschen** (Papierkorb) entfernt den Kurs. |
+
+## Einen Kurs anlegen
+
+<Steps>
+
+1. Klicken Sie in der Kursverwaltung oben rechts auf **Neuer Kurs**.
+
+2. Geben Sie im Dialog **Kurs erstellen** einen **Titel** und optional eine **Beschreibung** ein und klicken Sie auf **Speichern**. Der Kurs startet als unveröffentlichter Entwurf.
+
+3. companyLEARN öffnet den neuen Kurs im Kurseditor. Legen Sie dort Kapitel, Lektionen und Quizze an.
+
+4. Wenn der Kurs fertig ist, schalten Sie **Veröffentlicht** ein.
+
+</Steps>
+
+Ein Titel darf bis zu 500 Zeichen lang sein, eine Beschreibung bis zu 2.000 Zeichen. Das gilt auch für Kapitel.
+
+## Der Kurseditor
+
+Oben im Kurseditor bearbeiten Sie Titel und Beschreibung des Kurses direkt im Feld. Die Änderung wird gespeichert, sobald Sie das Feld verlassen. Darunter stehen die Schalter **Veröffentlicht** und **Kapitel-Sperre**. **Zurück zu den Kursen** führt zur Kursübersicht.
+
+### Kapitel
+
+Unter **Kapitel** steht jedes Kapitel als eigene Karte.
+
+- **Kapitel hinzufügen:** Klicken Sie auf **Kapitel hinzufügen**, geben Sie einen **Titel** ein und klicken Sie auf **Speichern**. Neue Kapitel werden am Ende angefügt.
+- **Bearbeiten:** Titel und Beschreibung (optional) ändern Sie direkt in der Kapitelkarte; gespeichert wird beim Verlassen des Felds.
+- **Reihenfolge:** Mit den Pfeilen **Nach oben** und **Nach unten** verschieben Sie ein Kapitel um eine Position.
+- **Löschen:** Der Papierkorb entfernt das Kapitel nach einer Rückfrage dauerhaft, mit allen Lektionen und seinem Quiz.
+
+### Lektionen
+
+In jeder Kapitelkarte stehen die Lektionen mit einem Symbol für Video oder Text. Neben jeder Lektion finden Sie **Nach oben**, **Nach unten**, **Bearbeiten** und **Löschen**.
+
+So legen Sie eine Lektion an:
+
+<Steps>
+
+1. Klicken Sie in der Kapitelkarte auf **Lektion hinzufügen**. Der Dialog **Neue Lektion** öffnet sich.
+
+2. Geben Sie einen **Titel** ein.
+
+3. Wählen Sie unter **Typ** entweder **Text** oder **Video**.
+
+4. Bei **Text** schreiben Sie den Inhalt in Markdown in das Feld **Inhalt (Markdown)**, bis zu 10.000 Zeichen. Daneben zeigt die **Vorschau**, wie der Text für Lernende aussieht.
+
+   Bei **Video** klicken Sie auf **Video auswählen…** und wählen ein Video aus der Videobibliothek oder laden über **Neues Video hochladen** ein neues hoch (siehe [Videos](/de/company-gpt/addons/companylearn/videos/)).
+
+5. Klicken Sie auf **Speichern**. Neue Lektionen werden am Ende des Kapitels angefügt.
+
+</Steps>
+
+Über **Bearbeiten** öffnet sich derselbe Dialog als **Lektion bearbeiten**. Beim **Löschen** einer Lektion geht auch der Fortschritt aller Lernenden bei dieser Lektion verloren.
+
+### Quiz
+
+Jedes Kapitel kann ein Quiz haben. In der Kapitelkarte steht dazu entweder **Noch kein Quiz** mit der Schaltfläche **Quiz hinzufügen** oder der Titel des Quiz mit der Anzahl der Fragen und der Schaltfläche **Quiz bearbeiten**.
+
+Im Dialog **Quiz** legen Sie fest:
+
+| Feld | Beschreibung |
+|---|---|
+| **Titel** | Pflichtfeld, bis zu 500 Zeichen |
+| **Bestehensgrenze (%)** | ganze Zahl von 0 bis 100; bei einem neuen Quiz mit 70 vorbelegt. Ein leeres Feld wird nicht als 0 % gewertet, sondern verhindert das Speichern. |
+| **Frage 1**, **Frage 2** … | Text der Frage, bis zu 2.000 Zeichen |
+| Antwortoptionen | Text jeder Option, bis zu 500 Zeichen. Das Kästchen vor einer Option markiert sie als **Richtige Antwort**; eine Frage kann mehrere richtige Antworten haben. |
+
+Mit **Option hinzufügen** und **Frage hinzufügen** erweitern Sie das Quiz; der Papierkorb entfernt eine Frage oder Option. Damit sich ein Quiz speichern lässt, braucht es mindestens eine Frage, und jede Frage braucht zwei bis 20 Optionen, davon mindestens eine richtige. Ein Quiz kann bis zu 200 Fragen haben.
+
+Klicken Sie auf **Speichern** und bestätigen Sie die Rückfrage **Quiz speichern?**. **Quiz löschen** entfernt das Quiz nach einer Rückfrage mit allen Versuchen.
+
+:::caution[Speichern setzt alle Versuche zurück]
+Beim Speichern eines Quiz werden alle bisherigen Versuche aller Lernenden für dieses Quiz gelöscht – auch bestandene. Bei eingeschalteter Kapitel-Sperre sind die folgenden Kapitel für diese Personen dann wieder gesperrt, bis sie das Quiz erneut bestehen. Ändern Sie Quizze in laufenden Kursen deshalb mit Bedacht.
+:::
+
+Wie Lernende ein Quiz ablegen und wie bewertet wird, steht unter [Quiz](/de/company-gpt/addons/companylearn/lernen/#quiz).
+
+## Veröffentlichen
+
+Mit dem Schalter **Veröffentlicht** – in der Kursübersicht oder im Kurseditor – geben Sie einen Kurs frei. Erst dann erscheint er im Kurskatalog und im Chat, und erst dann können sich Lernende einschreiben.
+
+Schalten Sie einen veröffentlichten Kurs wieder aus, verschwindet er aus dem Katalog und aus dem Dashboard der Eingeschriebenen, und diese können seine Lektionen und Quizze nicht mehr öffnen. Ihr Fortschritt bleibt gespeichert.
+
+## Kapitel-Sperre
+
+Die **Kapitel-Sperre** ist bei neuen Kursen eingeschaltet. Dann öffnet sich ein Kapitel erst, wenn das vorherige abgeschlossen ist – also alle Lektionen erledigt sind und das Quiz bestanden ist. Schalten Sie sie aus, sind nach der Einschreibung alle Kapitel offen. Die Einstellung können Sie jederzeit ändern; sie wirkt sofort.
+
+## Änderungen an laufenden Kursen
+
+companyLEARN berechnet Freischaltung und Fortschritt immer aus dem aktuellen Inhalt des Kurses. Änderungen wirken deshalb sofort auf alle Eingeschriebenen:
+
+- Fügen Sie einem Kapitel eine Lektion hinzu, ist es für alle, die es schon abgeschlossen hatten, wieder offen. Bei eingeschalteter Kapitel-Sperre sind die Kapitel danach wieder gesperrt, bis die neue Lektion erledigt ist.
+- Speichern Sie ein Quiz neu, müssen es alle erneut bestehen (siehe oben).
+- Ändern Sie die Reihenfolge der Kapitel, richtet sich auch die Freischaltung nach der neuen Reihenfolge.
+
+## Einen Kurs löschen
+
+Klicken Sie in der Kursübersicht auf den Papierkorb und bestätigen Sie **Kurs löschen?**. companyLEARN löscht den Kurs dauerhaft mit allen Kapiteln, Lektionen und Quizzen und entfernt alle Einschreibungen; die Rückfrage nennt deren Anzahl. Die Videos bleiben in der Videobibliothek erhalten.
+
+Als Nächstes: [Videos](/de/company-gpt/addons/companylearn/videos/).

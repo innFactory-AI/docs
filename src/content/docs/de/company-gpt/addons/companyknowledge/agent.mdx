@@ -34,23 +34,28 @@ Unter **Tools → Hinzufügen** kommen die Werkzeuge dazu:
 - **Knowledge**: die Verbindung zu den OKF-Bundles – Lesen **und** Schreiben. Das ist das Werkzeug, mit dem Konzepte, Index und Protokoll geschrieben werden.
 - **WebFetch**: optional, für Inhalte von außen. Siehe [Wissen erzeugen und pflegen](/de/company-gpt/addons/companyknowledge/wissen-erzeugen/).
 
-Die Knowledge-Verbindung bringt zehn Werkzeuge mit. Die im Ablauf verwendeten sind:
+Die Knowledge-Verbindung bringt zehn Werkzeuge mit:
 
 | Werkzeug | Aufgabe |
 |---|---|
-| `okf_list_bundles` | verfügbare Bundles auflisten |
+| `okf_list_bundles` | Bundles auflisten, die Sie lesen dürfen |
 | `okf_read_index` | Index eines Bundles lesen |
 | `okf_read_concept` | ein einzelnes Konzept lesen |
-| `okf_write_concept` | ein Konzept schreiben |
+| `okf_write_concept` | ein Konzept anlegen oder ändern |
+| `okf_delete_concept` | ein Konzept löschen; `index.md` und `log.md` sind davon ausgenommen |
 | `okf_update_index` | Index nachziehen |
 | `okf_append_log` | Eintrag im Änderungsprotokoll ergänzen |
 | `okf_validate_bundle` | Bundle auf Fehler prüfen |
-| `okf_commit` | Änderungen zurückschreiben |
+| `okf_commit` | Änderungen abschließen: Bei GitHub-Bundles im Commit-Modus *Pull Request* öffnet es den Pull Request. Im Modus *Direkter Commit* und bei SharePoint sind die Änderungen schon beim Schreiben gespeichert. |
 | `okf_get_update_context` | ermitteln, was sich seit dem letzten Lauf geändert hat |
 
-:::note
-Die Aufnahme, aus der diese Seite entstanden ist, zeigt die vollständige Werkzeugliste der Knowledge-Verbindung nicht im Detail. Die Tabelle nennt die Werkzeuge, die im Ablauf tatsächlich vorkommen – die Verbindung meldet zehn.
-:::
+## Persönliches GitHub-Token (optional)
+
+Für Bundles in GitHub kann jede Person ein eigenes GitHub-Token hinterlegen. Die Knowledge-Verbindung hat dafür die Variable **GitHub PAT** (Personal Access Token). Sie tragen den Wert im Chat unter **MCP Einstellungen** beim Server **Knowledge** ein. In das Feld gehört nur das Token selbst.
+
+Ist ein Token hinterlegt, arbeitet die Knowledge-Verbindung bei GitHub-Bundles mit diesem Token. Lesen und Schreiben laufen dann über Ihr eigenes GitHub-Konto und mit dessen Rechten. Damit der Agent Konzepte schreiben kann, braucht das Token Schreibrechte auf das Repository des Bundles. Ohne eigenes Token nutzt die Verbindung den Zugang, der für Ihre Umgebung zentral eingerichtet ist, sofern es einen gibt.
+
+Für Bundles in SharePoint ist kein Token nötig. Dort gelten die Rechte Ihres Microsoft-Kontos.
 
 ## Skill für die Regeln
 

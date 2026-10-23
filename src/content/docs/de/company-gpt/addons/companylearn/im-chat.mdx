@@ -1,0 +1,87 @@
+---
+title: companyLEARN im Chat
+description: Mit dem MCP-Server Learn Kurse im CompanyGPT-Chat finden, sich einschreiben, den Fortschritt abfragen und Lektionen und Quizze direkt in der Unterhaltung öffnen.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Über den MCP-Server **Learn** steht companyLEARN auch im CompanyGPT-Chat zur Verfügung. Der Assistent findet Kurse, schreibt Sie ein, zeigt Ihren Fortschritt und öffnet Lektionen und Quizze direkt in der Unterhaltung. Er arbeitet dabei mit Ihrem Konto: Was Sie im Chat erledigen, zählt genauso wie in der Oberfläche.
+
+Voraussetzung ist das Recht **Kurse nutzen** (siehe [Rechte](/de/company-gpt/addons/companylearn/#rechte)).
+
+## Den MCP-Server aktivieren
+
+Wählen Sie im Chat den MCP-Server **Learn** aus – so, wie Sie auch andere MCP-Server für eine Unterhaltung zuschalten. Allgemeines dazu steht unter [MCP Server](/de/company-gpt/integrationen/mcp-server/). Danach genügt eine Bitte in normaler Sprache, zum Beispiel „Welche Kurse gibt es?“.
+
+## Die Tools
+
+Der Server stellt sieben Tools bereit. Sie müssen sie nicht selbst aufrufen: Der Assistent wählt sie anhand Ihrer Anfrage aus und übernimmt die Kennungen (IDs) von Kursen, Lektionen und Quizzen aus seinen vorherigen Ergebnissen.
+
+| Tool | Zweck | Eingaben |
+|---|---|---|
+| `learn_list_courses` | Veröffentlichte Kurse auflisten, jeweils mit Einschreibestatus und Fortschritt | optional `enrolledOnly`: nur Kurse, in die Sie eingeschrieben sind |
+| `learn_course_overview` | Aufbau eines Kurses mit Kapiteln, Lektionen und Quiz, einschließlich Sperr- und Erledigt-Status | `courseId` |
+| `learn_enroll` | In einen veröffentlichten Kurs einschreiben und die erste Lektion nennen; ein erneuter Aufruf ändert nichts | `courseId` |
+| `learn_my_progress` | Fortschritt in allen eingeschriebenen, veröffentlichten Kursen, mit einem Vorschlag für den nächsten Schritt je Kurs | – |
+| `learn_watch_lesson` | Eine Lektion (Video oder Text) im Chat anzeigen | `lessonId` |
+| `learn_take_quiz` | Ein Quiz im Chat anzeigen | `quizId` |
+| `learn_open_ui` | Die Oberfläche von companyLEARN im Chat öffnen: Dashboard (Standard), Kurskatalog oder einen bestimmten Kurs | optional `page` (`dashboard`, `courses` oder `course`) und `courseId` (nötig bei `course`) |
+
+Die Tools listen nur veröffentlichte Kurse auf. Lektionen und Quizze lassen sich erst nach der Einschreibung und nur in freigeschalteten Kapiteln öffnen; sonst erhält der Assistent einen entsprechenden Hinweis, etwa dass Sie sich zuerst einschreiben müssen. Kurse anlegen oder ändern können Sie über den Chat nicht – dafür gibt es die [Kursverwaltung](/de/company-gpt/addons/companylearn/kurse-verwalten/).
+
+## Lektionen und Quizze im Chat
+
+`learn_watch_lesson`, `learn_take_quiz` und `learn_open_ui` zeigen companyLEARN direkt in der Unterhaltung an, ohne Seitenleiste und Menü:
+
+- **Lektion:** Oben stehen der Titel sowie Kurs und Kapitel, darunter die Schaltfläche **Als erledigt markieren**, dann das Video oder der Text. Ein Video, das bis zum Ende läuft, wird automatisch als erledigt markiert.
+- **Quiz:** Sie beantworten die Fragen, klicken auf **Antworten abschicken** und sehen das Ergebnis – wie in der Oberfläche (siehe [Quiz](/de/company-gpt/addons/companylearn/lernen/#quiz)). Zusätzlich sendet das Quiz Ihr Ergebnis automatisch als Nachricht in die Unterhaltung, mit Punktzahl, Bestehensgrenze und der Zahl richtiger Antworten. Die Nachricht ist auf Englisch formuliert. So kann der Assistent direkt darauf eingehen, etwa den nächsten Schritt vorschlagen. **Erneut versuchen** startet einen neuen Versuch; auch dessen Ergebnis kommt als neue Nachricht in den Chat.
+- **Oberfläche:** Dashboard, Kurskatalog oder Kursseite erscheinen wie in companyLEARN, nur ohne Seitenleiste.
+
+Unter einer eingebetteten Lektion oder einem Quiz öffnet **Vollständigen Kurs öffnen** den Kurs in companyLEARN in einem neuen Tab.
+
+:::tip
+Fragen Sie nach einer Lektion einfach nach dem nächsten Schritt, etwa „Was steht als Nächstes an?“. Über `learn_my_progress` kann der Assistent dann Ihren aktuellen Stand abrufen und die passende Lektion oder das passende Quiz vorschlagen. Nach einem Quiz ist das nicht nötig: Der Assistent erhält das Ergebnis automatisch.
+:::
+
+## Beispiel-Prompts
+
+| Prompt | Typisches Tool |
+|---|---|
+| „Welche Kurse gibt es in companyLEARN?“ | `learn_list_courses` |
+| „In welchen Kursen bin ich eingeschrieben?“ | `learn_list_courses` |
+| „Wie ist der Kurs ‚Datenschutz-Grundlagen‘ aufgebaut?“ | `learn_course_overview` |
+| „Schreib mich in den Kurs ‚Datenschutz-Grundlagen‘ ein.“ | `learn_enroll` |
+| „Wie weit bin ich in meinen Kursen, und was steht als Nächstes an?“ | `learn_my_progress` |
+| „Zeig mir die nächste Lektion.“ | `learn_my_progress`, dann `learn_watch_lesson` |
+| „Ich möchte das Quiz zu Kapitel 2 machen.“ | `learn_course_overview`, dann `learn_take_quiz` |
+| „Öffne mein companyLEARN-Dashboard hier im Chat.“ | `learn_open_ui` |
+
+## Learn-Tools einem Agenten zuweisen
+
+Statt den MCP-Server in jedem Chat einzeln zu aktivieren, können Sie einen Agenten mit den Learn-Tools anlegen, zum Beispiel als Lernbegleiter für Ihr Team. companyLEARN bringt keine fertigen Agenten oder Skills mit.
+
+<Steps>
+
+1. Legen Sie einen Agenten an oder öffnen Sie einen bestehenden (siehe [Agenten](/de/company-gpt/agenten/)).
+
+2. Fügen Sie dem Agenten den MCP-Server **Learn** hinzu und wählen Sie die Tools aus, die er nutzen soll. Für einen Lernbegleiter sind in der Regel alle sieben sinnvoll.
+
+3. Ergänzen Sie kurze Anweisungen, zum Beispiel:
+
+   ```text
+   Du begleitest Mitarbeitende beim Lernen mit companyLEARN.
+   Nutze die Learn-Tools, um Kurse zu finden, den Fortschritt zu zeigen
+   und Lektionen und Quizze direkt im Chat zu öffnen. Schlage nach jedem
+   Schritt den nächsten vor. Wenn du eine Lektion oder ein Quiz anzeigst,
+   schreibe keinen zusätzlichen Einleitungstext.
+   ```
+
+4. Speichern Sie den Agenten und teilen Sie ihn bei Bedarf mit Ihrem Team.
+
+</Steps>
+
+:::note
+Der Agent arbeitet immer mit dem Konto der Person, die gerade mit ihm chattet: Er sieht deren Einschreibungen und deren Fortschritt. Jede Person, die den Agenten nutzt, braucht das Recht **Kurse nutzen**.
+:::
+
+Als Nächstes: [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/).

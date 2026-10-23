@@ -1,0 +1,138 @@
+---
+title: Administration
+description: The companyM365 admin area – deploying the add-in, setting up the Teams bot, releasing agents for Teams, settings, offboarding, audit, as well as admin consents and error codes.
+---
+
+This page is aimed at administrators. It describes the companyM365 admin area and the consents required in Microsoft 365. The admin area's interface is in German; labels are given in German with an English translation in parentheses. For the Microsoft portals, the English labels are given with the German ones in parentheses.
+
+## Opening the admin area
+
+The admin area is available at the following address:
+
+```
+https://COMPANY.company-gpt.com/companygpt/m365/admin/
+```
+
+The address `https://COMPANY.company-gpt.com/companygpt/m365/` also redirects there.
+
+Access requires the **Manage Microsoft 365** permission. It is granted in companyADMIN (see [extension permissions](/en/company-gpt/addons/companyadmin/erweiterungen/)); administrators have it automatically. Anyone without the permission sees the **Kein Zugriff** (No access) page with a note on where the permission is granted. Anyone who is not signed in is taken to the sign-in.
+
+The admin area uses the [shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/) of the CompanyGPT add-ons: a sidebar with **Neuer Chat** (New chat), **Alle Apps** (All apps) and the areas, and the account menu with **Design** (Theme) and **Abmelden** (Sign out).
+
+| Area | Content |
+|---|---|
+| **Installation** | The app package for Word, Excel, PowerPoint, Outlook and Teams – deploy it once in the Microsoft 365 admin center. |
+| **Teams-Bot** (Teams bot) | Connect the Teams bot to its app registration, provision it in Azure and deploy it as a Teams app. |
+| **Agents** | Which agents shared in the tenant the Teams bot offers, under which alias and whether they always answer privately. |
+| **Einstellungen** (Settings) | Brand name and default agent of this tenant, plus offboarding. |
+| **Audit** | Every change in the admin area, newest first. |
+
+The sidebar only shows the areas that are set up in your environment. If, for example, no Teams bot is planned, the **Teams-Bot** area is missing.
+
+## Installation
+
+The app package bundles the add-ins for Word, Excel, PowerPoint and Outlook as well as the Teams tab into **one** installation. Deployment is done centrally via the Microsoft 365 admin center; end users don't need to install anything.
+
+1. In the **Installation** area, download the file `teams-app.zip` with **App-Paket herunterladen** (Download app package).
+2. Open admin.microsoft.com and go to **Settings → Integrated apps** (Einstellungen → Integrierte Apps).
+3. Choose **Upload custom apps** (Benutzerdefinierte Apps hochladen), select the app type **Teams app** (Teams-App) and select the downloaded `.zip` file. (The app type is "Teams app" because the package uses the unified Microsoft 365 manifest. Under "Office Add-in", the admin center only accepts individual XML manifests.)
+4. Assign the users – the entire organization or a test group – and deploy the app.
+5. Within up to 24 hours (usually much faster), the add-in appears in the ribbon of Word, Excel, PowerPoint and Outlook, and the tab in Teams. Sign-in runs automatically via single sign-on with the CompanyGPT session.
+
+Under **Grenzen & Hinweise** (Limits & notes), the area summarizes where the add-in runs – Word, Excel, PowerPoint and Outlook on Windows, on the Mac and in the browser (Office on the web) – and how the [edit modes](/en/company-gpt/addons/companym365/office-add-in/#edit-modes) work: changes appear as a suggestion card by default, immediately in **Direkt** (Direct) mode, and in Word as tracked changes with **Nachverfolgen** (Track).
+
+Use this package and do not sideload individual XML manifests: individually loaded XML add-ins are often greyed out and not clickable in the new Outlook (Windows and Mac).
+
+### Additionally for Outlook on the Mac
+
+Microsoft does not support the app package in Outlook on the Mac; Word, Excel and PowerPoint on the Mac are covered. Without the following step, Mac users have no add-in in Outlook.
+
+1. In the admin center, choose **Settings → Integrated apps → Upload custom apps** again.
+2. This time, select the app type **Office Add-in** (Office-Add-In) and choose to provide a link to the manifest file. Paste the address that the **Installation** area shows under **Outlook-Manifest (URL)**.
+3. Assign the app to the entire organization and deploy it.
+
+The app then appears twice under the same name in the admin center – this is intentional. On Windows and in the browser, Office hides the second variant automatically; for up to 24 hours, two buttons may appear side by side there.
+
+The Teams bot is a separate app and is deployed in the **Teams-Bot** area.
+
+## Setting up the Teams bot
+
+:::note[Currently only in pilot environments]
+This feature is currently only available in pilot environments.
+:::
+
+The **Teams-Bot** area guides you through the setup step by step. Each step names the Microsoft Entra role that may carry it out; a Global Administrator is never needed. Terms from the Microsoft portals are given in German and English, and values can be copied.
+
+1. **Schritt 1 – App-Registrierung für den Bot anlegen** (Step 1 – create the app registration for the bot): in Microsoft Entra, e.g. as Application Administrator, Cloud Application Administrator or Application Developer. Afterwards, you enter the app ID of the bot app; the values for the following steps are derived from it.
+2. **Schritt 2 – API verfügbar machen** (Step 2 – expose an API).
+3. **Schritt 3 – Berechtigung auf die Tenant-App + Administratorzustimmung** (Step 3 – permission on the tenant app + admin consent): admin consent is mandatory (Cloud Application Administrator or Application Administrator). A **Prüfliste vor dem Speichern** (checklist before saving) summarizes the Entra steps.
+4. **Schritt 4 – Client-Secret eintragen** (Step 4 – enter the client secret): the bot app's credentials are stored encrypted.
+5. **Schritt 4b – Azure-Bot** (Step 4b – Azure bot): depending on the environment, companyM365 creates the Azure Bot resource automatically, or you create it in the Azure portal using the click-by-click guide and then confirm **Azure-Bot im Portal angelegt und Verbindung getestet** (Azure bot created in the portal and connection tested).
+6. **Schritt 5 – Teams-Paket hochladen** (Step 5 – upload the Teams package): download the bot package and deploy it in the Microsoft 365 admin center (**Settings → Integrated apps → Upload custom apps**, app type **Teams app**) and assign users or groups. As a Teams administrator, you can also do this in the Teams admin center under **Teams apps → Manage apps → Upload**.
+
+Further notes:
+
+- **Data residency:** The area shows which token service your environment uses. When creating the Azure bot, choose the matching data residency ("Europe" or "Global").
+- **Bot name:** The area shows the name under which people mention the bot in Teams. innFactory sets up a custom name for your environment.
+- **People from other tenants:** If your organization includes people from other Microsoft tenants (multi-tenant organization or cross-tenant synchronization), contact innFactory. Without additional configuration, the bot rejects these people like guests.
+
+## Releasing agents for Teams
+
+The **Agents** area lists the agents that are shared in the tenant in CompanyGPT (publicly, with a group or from the companyADMIN library). For each agent, you specify:
+
+| Column | Meaning |
+|---|---|
+| **In Teams** | whether the agent can be reached in the Teams bot |
+| **Alias** | the shortcut for `/alias` in the bot: 1–32 characters from a–z, 0–9, "_" and "-". On the first release, it is derived from the name. The command words `agent`, `agents`, `neu`, `hilfe`, `öffentlich`, `oeffentlich`, `public` and `standard` are not allowed. |
+| **Immer privat** (Always private) | The agent only answers the person asking; **Im Thread teilen** (Share in thread) and `/öffentlich` do not make its answers public either. Preset if the agent accesses Microsoft 365, companyFILES or companyTRANSCRIBE. |
+| **Standard** (Default) | **Als Tenant-Standard** (Set as tenant default) makes the agent the bot's default for everyone who has not set their own default in a chat. |
+
+A released agent that is no longer shared can only be revoked. If **Eigene Agents in Teams erlauben** (Allow personal agents in Teams) is switched on, a person's own agents and the agents shared with them need no release; people use them with `/agent name`, outside 1:1 chats only privately.
+
+## Settings
+
+- **Markenname** (Brand name): appears in the description of the Teams bot app and in the admin area. After a change, **Paket neu hochladen** (Upload package again) points out that the bot package (**Teams-Bot** area, step 5) has to be downloaded and uploaded again. The name in the add-in, the Teams tab and the bot's answers is set by innFactory during deployment.
+- **Standard-Agent (Agent-ID)** (Default agent, agent ID): the agent the Teams bot uses without an alias. Empty means: no default, the bot answers with the default model.
+- **Eigene Agents in Teams erlauben** (Allow personal agents in Teams, on by default): everyone can use in the Teams bot any saved agent they are allowed to use in CompanyGPT – their own and those shared with them. Outside 1:1 chats, only the person asking sees their answers. If the switch is off, only the agents released under **Agents** can be reached.
+
+### Offboarding
+
+Under **Offboarding: Bot-Daten einer Person löschen** (Offboarding: delete a person's bot data), you remove all of a person's mapping data in the Teams bot (Art. 17 GDPR): conversation mappings, default agents per chat, remembered mentions, open questions, shared answers and links to feedback.
+
+1. Enter the **Objekt-ID (Entra oid) der Person** (the person's object ID). You find it in the Entra admin center under **Users**.
+2. Click **Daten löschen** (Delete data) and confirm the deletion. It cannot be undone.
+
+The deletion is recorded in the audit, but only with a hash of the object ID. For about 12 minutes afterwards, the bot stores nothing for the person. To exclude a person permanently, revoke the **Use Microsoft 365** permission in companyADMIN.
+
+## Audit
+
+The **Audit** area shows every change in the admin area, newest first – with time, action, actor (as a hash), result and details. Recorded are, among other things, set or rotated secrets, provisioning runs, released and blocked agents, changed aliases, "Immer privat", default agent and brand name, as well as deleted user data.
+
+Each administrator can make up to 60 changes per minute. Beyond that, "Zu viele Änderungen in kurzer Zeit — bitte kurz warten und erneut versuchen." (Too many changes in a short time – please wait briefly and try again.) appears.
+
+## Admin consents in Microsoft 365
+
+companyM365 accesses Microsoft Graph with delegated permissions. An administrator of your Microsoft Entra tenant has to grant admin consent for this once. The consent applies to the permissions that were requested at the time of consent. If new features add permissions, renewed consent is required.
+
+If a consent is missing, the tools remain visible. Only the affected tool returns `graph_consent_missing` when called; everything else keeps working.
+
+| Permission | What for | Note |
+|---|---|---|
+| `Mail.Read.Shared` | reading shared mailboxes | renewed consent required if your tenant consented before this feature was introduced |
+| `Notes.Create`, `Notes.ReadWrite` | creating and appending to OneNote pages | renewed consent required if your tenant consented before this feature was introduced; reading works without it |
+| `Group.Read.All` | Microsoft 365 groups and group members (e.g. for Planner assignments) | far-reaching permission; without consent, only these tools report an error |
+| `Calendars.ReadWrite` | creating, changing and cancelling appointments | sends invitations, updates and cancellations |
+| `MailboxSettings.ReadWrite` | Outlook categories and inbox rules | |
+| `ChannelMessage.Read.All`, `Chat.Read`, `Files.Read.All` | Teams bot: reading the history of threads and chats as well as file attachments | without consent, the bot answers without context or without the file |
+
+### Transcripts of attended meetings
+
+The `list_attended_meeting_transcripts` tool reads transcripts of all meetings a person attended – not only those they organized. For this, the application additionally needs the **application permissions** `OnlineMeetings.Read.All` and `OnlineMeetingTranscript.Read.All` as well as an Application Access Policy, which is set up via PowerShell in Microsoft Teams. If either is missing, the tool returns `app_access_missing`. Coordinate the setup with innFactory.
+
+## Error codes
+
+| Code | Meaning | Remedy |
+|---|---|---|
+| `graph_consent_missing` | Admin consent for the required permission is missing. Only the affected tool fails. | Grant or renew admin consent (see [above](#admin-consents-in-microsoft-365)). |
+| `app_access_missing` | The application permissions or the Application Access Policy for transcripts of attended meetings are missing. | Set up both (see [Transcripts of attended meetings](#transcripts-of-attended-meetings)). |
+| `reauth_required` | The person's session has expired or was revoked. | The person signs out and in again; no administrator action is needed. |

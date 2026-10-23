@@ -1,0 +1,698 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "prompts",
+      "lang": "de",
+      "note": "Seitenleiste Prompts, nach Namen gefiltert. Braucht die eigenen Demo-Prompts „Besprechungsprotokoll“ (DE) und „Meeting minutes“ (EN).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=textbox[name=\"Prompts nach Namen filtern\"]",
+          "value": "Protokoll"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "hover",
+          "selector": "role=complementary >> role=heading[name=\"Prompts\"]"
+        }
+      ],
+      "clip": {
+        "x": 52,
+        "y": 0,
+        "width": 308,
+        "height": 230
+      },
+      "output": "src/content/docs/de/company-gpt/prompts.png"
+    },
+    {
+      "id": "prompt-variablen",
+      "lang": "de",
+      "note": "Bearbeitungsseite des eigenen Demo-Prompts mit Text, Variablen, Beschreibung und Befehl (nur geöffnet, nichts gespeichert).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "click",
+          "selector": "div.group:has(button[aria-label^=\"Besprechungsprotokoll\"]) >> button[aria-label=\"Optionen des Gesprächsmenüs\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Bearbeiten\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=heading[name=\"Variablen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=complementary >> role=heading[name=\"Prompts\"]"
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 820
+      },
+      "output": "src/content/docs/de/company-gpt/variables.png"
+    },
+    {
+      "id": "prompt-variablen-eingabe",
+      "lang": "de",
+      "note": "Variablen-Dialog des eigenen Demo-Prompts; nur das erste Feld ausgefüllt, nicht abgesendet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Thema\"]",
+          "value": "Planung Sommerfest"
+        }
+      ],
+      "selector": "role=dialog[name=\"Besprechungsprotokoll\"]",
+      "padding": 0,
+      "output": "src/content/docs/de/company-gpt/variables-input.png"
+    },
+    {
+      "id": "prompt-dropdown",
+      "lang": "de",
+      "note": "Variablen-Dialog mit geöffnetem Dropdown der Variable „Format“; nicht abgesendet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name^=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Besprechungsprotokoll\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Thema\"]",
+          "value": "Planung Sommerfest"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=combobox[name=\"Format\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog >> role=listbox"
+        }
+      ],
+      "selector": "role=dialog[name=\"Besprechungsprotokoll\"]",
+      "padding": 0,
+      "output": "src/content/docs/de/company-gpt/colors.png"
+    },
+    {
+      "id": "projekte-uebersicht",
+      "lang": "de",
+      "note": "Projektübersicht mit den Demo-Projekten „Planung Sommerfest“, „Summer party planning“ und „Newsletter“.",
+      "baseUrl": "demo",
+      "path": "/projects",
+      "waitFor": "role=main >> text=Planung Sommerfest",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 312
+      },
+      "output": "src/content/docs/de/company-gpt/projekte.png"
+    },
+    {
+      "id": "projekt-neu",
+      "lang": "de",
+      "note": "Dialog „Projekt erstellen“ nur ausgefüllt, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/projects",
+      "waitFor": "role=main >> text=Planung Sommerfest",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=main >> role=button[name=\"Neues Projekt\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Projektname\"]",
+          "value": "Jahresbericht 2026"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Beschreibung (Optional)\"]",
+          "value": "Texte, Zahlen und Grafiken für den Jahresbericht"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 0,
+      "output": "src/content/docs/de/company-gpt/projekt-neu.png"
+    },
+    {
+      "id": "projekt-arbeitsbereich",
+      "lang": "de",
+      "note": "Arbeitsbereich des eigenen Demo-Projekts mit Instructions, einer Referenzdatei und zwei Chats.",
+      "baseUrl": "demo",
+      "path": "/projects/6ad27c7521f4b1d7a8aa9991",
+      "waitFor": "role=main >> text=Sommerfest: Budgetfreundliche Programmpunkte",
+      "output": "src/content/docs/de/company-gpt/projekt-arbeitsbereich.png"
+    },
+    {
+      "id": "projekt-chat-zuordnen",
+      "lang": "de",
+      "note": "Menü „Chat options“ im eigenen Demo-Projekt-Chat mit geöffnetem Untermenü zum Projektwechsel (nichts geändert).",
+      "baseUrl": "demo",
+      "path": "/c/6bfe38e8-e0b9-563d-86d4-34c98966acfd",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=\"Projekt wechseln\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Projekt wechseln\"]"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 1070,
+        "height": 400
+      },
+      "output": "src/content/docs/de/company-gpt/projekt-chat-zuordnen.png"
+    },
+    {
+      "id": "websuche",
+      "lang": "de",
+      "note": "Eigener Demo-Chat mit aktiver Websuche (Wetterfrage).",
+      "baseUrl": "demo",
+      "path": "/c/344bb9ab-2e97-54cb-bf2f-a128d15ca407",
+      "waitFor": "role=button[name=\"Neu generieren\"]",
+      "clip": {
+        "x": 440,
+        "y": 50,
+        "width": 912,
+        "height": 830
+      },
+      "output": "src/content/docs/de/company-gpt/integrationen/web-search.png"
+    },
+    {
+      "id": "webfetch",
+      "lang": "de",
+      "note": "Eigener Demo-Chat mit WebFetch (öffentliche Wikipedia-Seite zum Englischen Garten). Der Chip „WebFetch“ wird nach dem Laden nicht wiederhergestellt und deshalb über die Palette erneut gewählt (nur im Browser).",
+      "baseUrl": "demo",
+      "path": "/c/d0ad88d3-7718-5386-862d-4d26a9ddc68d",
+      "waitFor": "role=button[name=\"Neu generieren\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=combobox[name=\"Search tools, skills and servers\"]",
+          "value": "WebFetch"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name^=\"WebFetch\"]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "role=list[name=\"Tools\"] >> text=WebFetch"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Nachrichteneingabe\"]"
+        }
+      ],
+      "clip": {
+        "x": 440,
+        "y": 50,
+        "width": 912,
+        "height": 830
+      },
+      "output": "src/content/docs/de/company-gpt/integrationen/web-fetch-de.png"
+    },
+    {
+      "id": "artefakte",
+      "lang": "de",
+      "note": "Eigener Demo-Chat mit Balkendiagramm als Artefakt (erfundene Zahlen der Muster GmbH). Der Chip „Artefakte“ wird nach dem Laden nicht wiederhergestellt und deshalb über die Palette erneut gewählt (nur im Browser); danach das Artefakt per Klick geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/224cfe37-11a4-539e-9f22-b512ee17a5be",
+      "waitFor": "role=button[name=\"Neu generieren\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Artefakte\"]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "click",
+          "selector": "role=main >> role=button[name^=\"Umsatz der Muster GmbH\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=radio[name=\"Vorschau\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2500
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 900
+      },
+      "output": "src/content/docs/de/company-gpt/integrationen/artefakte-beispiel.png"
+    },
+    {
+      "id": "prompts",
+      "lang": "en",
+      "note": "Seitenleiste Prompts, nach Namen gefiltert. Braucht die eigenen Demo-Prompts „Besprechungsprotokoll“ (DE) und „Meeting minutes“ (EN).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=textbox[name=\"Filter prompts by name\"]",
+          "value": "minutes"
+        },
+        {
+          "action": "wait",
+          "ms": 1200
+        },
+        {
+          "action": "hover",
+          "selector": "role=complementary >> role=heading[name=\"Prompts\"]"
+        }
+      ],
+      "clip": {
+        "x": 52,
+        "y": 0,
+        "width": 308,
+        "height": 230
+      },
+      "output": "src/content/docs/en/company-gpt/prompts-en.png"
+    },
+    {
+      "id": "prompt-variablen",
+      "lang": "en",
+      "note": "Bearbeitungsseite des eigenen Demo-Prompts mit Text, Variablen, Beschreibung und Befehl (nur geöffnet, nichts gespeichert).",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "click",
+          "selector": "div.group:has(button[aria-label^=\"Meeting minutes\"]) >> button[aria-label=\"Conversation Menu Options\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Edit\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=heading[name=\"Variables\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=complementary >> role=heading[name=\"Prompts\"]"
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 820
+      },
+      "output": "src/content/docs/en/company-gpt/variables-en.png"
+    },
+    {
+      "id": "prompt-variablen-eingabe",
+      "lang": "en",
+      "note": "Variablen-Dialog des eigenen Demo-Prompts; nur das erste Feld ausgefüllt, nicht abgesendet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Meeting minutes\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Topic\"]",
+          "value": "Summer party planning"
+        }
+      ],
+      "selector": "role=dialog[name=\"Meeting minutes\"]",
+      "padding": 0,
+      "output": "src/content/docs/en/company-gpt/variables-input-en.png"
+    },
+    {
+      "id": "prompt-dropdown",
+      "lang": "en",
+      "note": "Variablen-Dialog mit geöffnetem Dropdown der Variable „Format“; nicht abgesendet.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Prompts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=region >> role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name^=\"Meeting minutes\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Meeting minutes\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Topic\"]",
+          "value": "Summer party planning"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=combobox[name=\"Format\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog >> role=listbox"
+        }
+      ],
+      "selector": "role=dialog[name=\"Meeting minutes\"]",
+      "padding": 0,
+      "output": "src/content/docs/en/company-gpt/colors-en.png"
+    },
+    {
+      "id": "projekte-uebersicht",
+      "lang": "en",
+      "note": "Projektübersicht mit den Demo-Projekten „Planung Sommerfest“, „Summer party planning“ und „Newsletter“.",
+      "baseUrl": "demo",
+      "path": "/projects",
+      "waitFor": "role=main >> text=Summer party planning",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 312
+      },
+      "output": "src/content/docs/en/company-gpt/projekte-en.png"
+    },
+    {
+      "id": "projekt-neu",
+      "lang": "en",
+      "note": "Dialog „Projekt erstellen“ nur ausgefüllt, nicht gespeichert.",
+      "baseUrl": "demo",
+      "path": "/projects",
+      "waitFor": "role=main >> text=Summer party planning",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=main >> role=button[name=\"New project\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Project name\"]",
+          "value": "Annual report 2026"
+        },
+        {
+          "action": "fill",
+          "selector": "role=dialog >> role=textbox[name=\"Description (optional)\"]",
+          "value": "Texts, figures and charts for the annual report"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 0,
+      "output": "src/content/docs/en/company-gpt/projekt-neu-en.png"
+    },
+    {
+      "id": "projekt-arbeitsbereich",
+      "lang": "en",
+      "note": "Arbeitsbereich des eigenen Demo-Projekts mit Instructions, einer Referenzdatei und zwei Chats.",
+      "baseUrl": "demo",
+      "path": "/projects/6ad27cc121f4b1d7a8aaa0b2",
+      "waitFor": "role=main >> text=Budget-Friendly Summer Party Ideas",
+      "output": "src/content/docs/en/company-gpt/projekt-arbeitsbereich-en.png"
+    },
+    {
+      "id": "projekt-chat-zuordnen",
+      "lang": "en",
+      "note": "Menü „Chat options“ im eigenen Demo-Projekt-Chat mit geöffnetem Untermenü zum Projektwechsel (nichts geändert).",
+      "baseUrl": "demo",
+      "path": "/c/a77b20cd-2db3-5f67-ac0b-6283b1c0881b",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=\"Change project\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Change project\"]"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 1070,
+        "height": 400
+      },
+      "output": "src/content/docs/en/company-gpt/projekt-chat-zuordnen-en.png"
+    },
+    {
+      "id": "websuche",
+      "lang": "en",
+      "note": "Eigener Demo-Chat mit aktiver Websuche (Wetterfrage).",
+      "baseUrl": "demo",
+      "path": "/c/733ac377-ceeb-5ce2-aa8d-0f63e5421b4f",
+      "waitFor": "role=button[name=\"Regenerate\"]",
+      "clip": {
+        "x": 440,
+        "y": 50,
+        "width": 912,
+        "height": 830
+      },
+      "output": "src/content/docs/en/company-gpt/integrationen/web-search-en.png"
+    },
+    {
+      "id": "webfetch",
+      "lang": "en",
+      "note": "Eigener Demo-Chat mit WebFetch (öffentliche Wikipedia-Seite zum Englischen Garten). Der Chip „WebFetch“ wird nach dem Laden nicht wiederhergestellt und deshalb über die Palette erneut gewählt (nur im Browser).",
+      "baseUrl": "demo",
+      "path": "/c/48b5fe30-63ba-5024-b7a8-fd8aed874007",
+      "waitFor": "role=button[name=\"Regenerate\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=combobox[name=\"Search tools, skills and servers\"]",
+          "value": "WebFetch"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name^=\"WebFetch\"]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "role=list[name=\"Tools\"] >> text=WebFetch"
+        },
+        {
+          "action": "hover",
+          "selector": "role=textbox[name=\"Message input\"]"
+        }
+      ],
+      "clip": {
+        "x": 440,
+        "y": 50,
+        "width": 912,
+        "height": 830
+      },
+      "output": "src/content/docs/en/company-gpt/integrationen/web-fetch-en.png"
+    },
+    {
+      "id": "artefakte",
+      "lang": "en",
+      "note": "Eigener Demo-Chat mit Balkendiagramm als Artefakt (erfundene Zahlen der Muster GmbH). Der Chip „Artefakte“ wird nach dem Laden nicht wiederhergestellt und deshalb über die Palette erneut gewählt (nur im Browser); danach das Artefakt per Klick geöffnet.",
+      "baseUrl": "demo",
+      "path": "/c/9a9c734c-cb3b-5f0b-be5f-50e1794a0b7d",
+      "waitFor": "role=button[name=\"Regenerate\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog >> role=button[name=\"Artifacts\"]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "click",
+          "selector": "role=main >> role=button[name^=\"Muster GmbH Revenue\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=radio[name=\"Preview\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 2500
+        }
+      ],
+      "clip": {
+        "x": 360,
+        "y": 0,
+        "width": 1080,
+        "height": 900
+      },
+      "output": "src/content/docs/en/company-gpt/integrationen/artefakte-beispiel-en.png"
+    }
+  ]
+}

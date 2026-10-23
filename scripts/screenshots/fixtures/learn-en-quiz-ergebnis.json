@@ -1,0 +1,39 @@
+{
+  "scorePercent": 80,
+  "passed": true,
+  "passThresholdPercent": 70,
+  "perQuestion": [
+    {
+      "questionId": "00000000-0000-4000-8000-0000f0000001",
+      "correct": true
+    },
+    {
+      "questionId": "00000000-0000-4000-8000-0000f0000002",
+      "correct": false
+    },
+    {
+      "questionId": "00000000-0000-4000-8000-0000f0000003",
+      "correct": true
+    },
+    {
+      "questionId": "00000000-0000-4000-8000-0000f0000004",
+      "correct": true
+    },
+    {
+      "questionId": "00000000-0000-4000-8000-0000f0000005",
+      "correct": true
+    }
+  ],
+  "chapterCompletion": {
+    "chapterId": "00000000-0000-4000-8000-0000a0000002",
+    "lessonsDone": 1,
+    "lessonsTotal": 3,
+    "quizPassed": true,
+    "complete": false
+  },
+  "courseProgress": {
+    "courseId": "00000000-0000-4000-8000-0000c0000001",
+    "progressPercent": 33,
+    "completedAt": null
+  }
+}

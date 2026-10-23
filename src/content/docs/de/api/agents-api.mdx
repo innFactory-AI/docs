@@ -20,12 +20,12 @@ Beide Schnittstellen werden per API-Key authentifiziert und unterstützen Stream
 
 Um die Agents API nutzen zu können, müssen folgende Voraussetzungen erfüllt sein:
 
-1. **API-Zugriff muss aktiviert sein** — Ein Administrator muss die `remoteAgents`-Konfiguration aktivieren.
-2. **API-Key generieren** — Sobald der Zugriff aktiviert ist, kannst du in der CompanyGPT-Oberfläche unter den Einstellungen einen API-Key erstellen.
-3. **Agenten-ID ermitteln** — Jeder Agent hat eine eindeutige ID (z. B. `agent_ulS_lcjGw...`), die du als `model`-Parameter verwendest.
+1. **API-Zugriff** — Ihre Rolle benötigt das Recht **Remote-Agenten** (**Nutzen**). Es ist standardmäßig für alle Nutzer aktiv; Administratoren können es in [companyADMIN](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) unter **Zugriff** → **Rollen** → Rolle öffnen → Reiter **companyGPT** entziehen. Das Recht allein reicht nicht: Per API erreichbar ist ein Agent nur für seinen Eigentümer oder wenn er ausdrücklich für den API-Zugriff mit Ihnen geteilt ist. Sonst antwortet die API mit `403` und der Meldung `No remote access to agent: <Agenten-ID>`.
+2. **API-Key generieren** — Mit diesem Recht erstellen Sie in CompanyGPT unter **Einstellungen** → **Datenschutz & Sicherheit** → **API-Schlüssel für Agenten** → **Verwalten** über **API-Schlüssel erstellen** einen Schlüssel. Dabei vergeben Sie einen Namen und wählen unter **Ablaufdatum**, wie lange der Schlüssel gilt: **7 Tage**, **30 Tage** (voreingestellt), **90 Tage**, **1 Jahr** oder **Nie**. Kopieren Sie den Schlüssel sofort, er wird später nicht mehr angezeigt.
+3. **Agenten-ID ermitteln** — Jeder Agent hat eine eindeutige ID (z. B. `agent_ulS_lcjGw...`), die Sie als `model`-Parameter verwenden.
 
 :::tip
-Die Agenten-ID findest du in der URL, wenn du einen Agenten in CompanyGPT öffnest, oder über den Endpunkt `GET /api/agents/v1/models`, der alle verfügbaren Agenten als Modelle auflistet.
+Die Agenten-ID finden Sie in der URL, wenn Sie einen Agenten in CompanyGPT öffnen, oder über den Endpunkt `GET /api/agents/v1/models`, der die Agenten, auf die Sie per API zugreifen dürfen, als Modelle auflistet.
 :::
 
 :::caution
@@ -37,7 +37,7 @@ Agenten, die MCP-Server mit OAuth-Authentifizierung verwenden, funktionieren mö
 Alle Anfragen an die Agents API müssen mit einem Bearer-Token authentifiziert werden:
 
 ```
-Authorization: Bearer sk-dein-api-key
+Authorization: Bearer sk-ihr-api-key
 ```
 
 API-Keys werden in der CompanyGPT-Oberfläche generiert und haben das Format `sk-...`.
@@ -59,7 +59,7 @@ import { OpenAI } from "openai";
 
 const client = new OpenAI({
     baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
-    apiKey: "sk-dein-api-key",
+    apiKey: "sk-ihr-api-key",
 });
 
 const stream = await client.chat.completions.create({
@@ -110,7 +110,7 @@ console.log(`\nFertig. Tool-Aufrufe: ${toolCalls.size}`);
   <TabItem label="curl">
 ```bash
 curl -X POST https://<COMPANYGPT URL>/api/agents/v1/chat/completions \
-  -H "Authorization: Bearer sk-dein-api-key" \
+  -H "Authorization: Bearer sk-ihr-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
@@ -138,7 +138,7 @@ import { OpenAI } from "openai";
 
 const client = new OpenAI({
     baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
-    apiKey: "sk-dein-api-key",
+    apiKey: "sk-ihr-api-key",
 });
 
 const stream = await client.responses.create({
@@ -160,7 +160,7 @@ for await (const event of stream) {
   <TabItem label="curl">
 ```bash
 curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
-  -H "Authorization: Bearer sk-dein-api-key" \
+  -H "Authorization: Bearer sk-ihr-api-key" \
   -H "Content-Type: application/json" \
   -d '{
     "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
@@ -170,13 +170,55 @@ curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
   </TabItem>
 </Tabs>
 
+#### Eigene Funktionen (Client-Function-Tools)
+
+In der Open Responses API können Sie dem Agenten zusätzlich eigene Funktionen mitgeben, die Ihre Anwendung selbst ausführt. Dazu übergeben Sie im Feld `tools` Einträge vom Typ `function` mit Name, Beschreibung und Parametern im JSON-Schema-Format. Der Funktionsname darf nur Buchstaben, Ziffern, `_` und `-` enthalten.
+
+Ruft das Modell eine solche Funktion auf, wird sie nicht in CompanyGPT ausgeführt. Stattdessen endet der Durchlauf, und die Antwort enthält den Aufruf als Element vom Typ `function_call`. Das gilt nur, wenn Ihre Funktion der einzige Tool-Aufruf ihres Durchlaufs ist: Ruft das Modell sie zusammen mit einem Werkzeug auf, das CompanyGPT selbst ausführt (Server-Tool), wird der Aufruf nicht an Ihre Anwendung übergeben. Ihre Anwendung führt die Funktion aus und setzt die Unterhaltung mit einer neuen Anfrage fort. Darin senden Sie im Feld `input` den bisherigen Verlauf, das erhaltene `function_call`-Element und Ihr Ergebnis als `function_call_output` mit derselben `call_id`:
+
+```json
+{
+  "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+  "tools": [
+    {
+      "type": "function",
+      "name": "open_service_page",
+      "description": "Öffnet die Serviceseite zu einer Auftragsnummer",
+      "parameters": {
+        "type": "object",
+        "properties": { "order_id": { "type": "string" } },
+        "required": ["order_id"]
+      }
+    }
+  ],
+  "input": [
+    { "role": "user", "content": "Öffne die Serviceseite zu Auftrag 4711." },
+    {
+      "type": "function_call",
+      "call_id": "call_1",
+      "name": "open_service_page",
+      "arguments": "{\"order_id\": \"4711\"}"
+    },
+    {
+      "type": "function_call_output",
+      "call_id": "call_1",
+      "output": "Serviceseite geöffnet."
+    }
+  ]
+}
+```
+
+:::note
+Eine Fortsetzung über `previous_response_id` funktioniert für eigene Funktionen nicht. Senden Sie das `function_call`- und das `function_call_output`-Element immer gemeinsam im Feld `input` der nächsten Anfrage.
+:::
+
 ### Verfügbare Agenten abrufen
 
 ```
 GET /api/agents/v1/models
 ```
 
-Gibt alle für deinen API-Key zugänglichen Agenten als Modell-Liste zurück.
+Gibt als Modell-Liste nur die Agenten zurück, auf die Sie per API zugreifen dürfen.
 
 <Tabs>
   <TabItem label="JavaScript (OpenAI SDK)">
@@ -185,7 +227,7 @@ import { OpenAI } from "openai";
 
 const client = new OpenAI({
     baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
-    apiKey: "sk-dein-api-key",
+    apiKey: "sk-ihr-api-key",
 });
 
 const models = await client.models.list();
@@ -195,7 +237,7 @@ console.log(models);
   <TabItem label="curl">
 ```bash
 curl https://<COMPANYGPT URL>/api/agents/v1/models \
-  -H "Authorization: Bearer sk-dein-api-key"
+  -H "Authorization: Bearer sk-ihr-api-key"
 ```
   </TabItem>
 </Tabs>
@@ -204,7 +246,18 @@ curl https://<COMPANYGPT URL>/api/agents/v1/models \
 
 Alle Anfragen an die Agents API werden gegen das Token-Guthaben des Benutzers verrechnet (sofern Token-Spending konfiguriert ist). Sowohl Eingabe- als auch Ausgabe-Tokens werden gezählt, inklusive Cache-Tokens bei unterstützten Anbietern (OpenAI, Anthropic).
 
+### Budgets im AI Gateway
+
+In Umgebungen, in denen CompanyGPT die KI-Modelle über das [AI Gateway](/de/api/ai-gateway/) anspricht, gelten für Anfragen über die Agents API zusätzlich die Budgets des Gateways. Ist ein Budget aufgebraucht, lehnt das Gateway die Modellanfrage ab; Anfragen an den Agenten schlagen dann fehl, bis wieder Budget verfügbar ist. Wie der Fehler bei Ihrer Anwendung ankommt, hängt vom Modus ab:
+
+- **Ohne Streaming** erhalten Sie den Status `402` mit der Meldung des Gateways.
+- **Mit Streaming über Chat Completions** lautet der Status `200`; der Fehler steht als „Error: …“ im letzten Chunk.
+- **Mit Streaming über die Open Responses API** endet der Stream nur mit `[DONE]`, ohne Fehlermeldung.
+
+Hat Ihr Unternehmen für aufgebrauchte Budgets ein [Ersatzmodell](/de/api/ai-gateway/#budget-aufgebraucht-402) eingerichtet, kommt kein `402`; das Gateway beantwortet die Anfrage dann mit diesem Modell.
+
 ## Verwandte Dokumentation
 
 - [Agenten](/de/company-gpt/agenten) — Agenten in CompanyGPT erstellen und konfigurieren
 - [MCP Server](/de/company-gpt/integrationen/mcp-server) — MCP-Server-Integrationen
+- [AI Gateway API](/de/api/ai-gateway/) — Direkter Zugriff auf die KI-Modelle über das AI Gateway

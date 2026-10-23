@@ -8,7 +8,7 @@ Der Dokumenten-Abgleich-Agent analysiert den reinen Inhalt zweier Dateien unabh�
 ## Systemanweisung
 
 :::tip
-Die gesamte Systemanweisung wird als Prompt eingegeben. Die zu vergleichenden Dokumente können über den Dateiupload hochgeladen werden. Für diesen Agenten funktioniert der Modus „Hochladen zum KI-Anbieter" am besten.
+Die gesamte Systemanweisung wird als Prompt eingegeben. Die zu vergleichenden Dokumente können über den Dateiupload hochgeladen werden. Ein Upload-Ziel müssen Sie dabei nicht wählen: CompanyGPT gibt PDFs und Bilder direkt an das KI-Modell weiter und wandelt Office-Dokumente in Text um. Mehr dazu unter [Dateiverarbeitung](/de/company-gpt/dateiverarbeitung/).
 :::
 
 ```markdown

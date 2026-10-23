@@ -8,7 +8,7 @@ The Document Comparison agent analyzes the pure content of two files regardless 
 ## System Instructions
 
 :::tip
-The entire system instruction is entered as a prompt. The documents to be compared can be uploaded via file upload. For this agent, the "Upload to AI provider" mode works best.
+The entire system instruction is entered as a prompt. The documents to be compared can be uploaded via file upload. You do not have to choose an upload destination: CompanyGPT passes PDFs and images directly to the AI model and converts Office documents to text. For more information, see [File processing](/en/company-gpt/dateiverarbeitung/).
 :::
 
 ```markdown

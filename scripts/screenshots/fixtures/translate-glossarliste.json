@@ -1,0 +1,41 @@
+{
+  "entries": [
+    {
+      "id": "personal:muster-glossar:de-en",
+      "blobPath": "glossaries/muster/muster-glossar_de_to_en.csv",
+      "name": "muster-glossar",
+      "fromLang": "de",
+      "toLang": "en",
+      "scope": "user",
+      "sizeBytes": 106,
+      "lastModified": "2026-10-16T16:38:47.000Z",
+      "format": "csv",
+      "googleState": "ready"
+    },
+    {
+      "id": "personal:muster-glossar:en-de",
+      "blobPath": "glossaries/muster/muster-glossar_en_to_de.csv",
+      "name": "muster-glossar",
+      "fromLang": "en",
+      "toLang": "de",
+      "scope": "user",
+      "sizeBytes": 106,
+      "lastModified": "2026-10-16T16:38:48.000Z",
+      "format": "csv",
+      "googleState": "ready"
+    },
+    {
+      "id": "global:firmenbegriffe:de-en",
+      "blobPath": "glossaries/global/firmenbegriffe_de_to_en.csv",
+      "name": "firmenbegriffe",
+      "fromLang": "de",
+      "toLang": "en",
+      "scope": "global",
+      "sizeBytes": 2380,
+      "lastModified": "2026-10-02T09:15:00.000Z",
+      "format": "csv",
+      "googleState": "ready"
+    }
+  ],
+  "bidirectionalEnabled": true
+}

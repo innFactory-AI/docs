@@ -1,0 +1,91 @@
+---
+title: Status
+description: Die Status-Seite von companyADMIN zeigt, was in CompanyGPT gerade gilt und ob alles läuft – Erreichbarkeit der Dienste, aktive Konfiguration, Rollen, Admin-Quellen und Protokolle.
+---
+
+Die Seite **Status** beantwortet zwei Fragen: Was gilt gerade, und läuft alles? Wenn Sie Insights nicht ansehen dürfen, ist sie Ihre Startseite in companyADMIN.
+
+Oben stehen der Zeitpunkt der Abfrage (**Stand …**) und die Version von companyADMIN. Die Seite aktualisiert sich alle fünf Minuten; **Neu prüfen** fragt sofort neu ab.
+
+Die Seite hat fünf Abschnitte. Welche Sie sehen, hängt an Ihren Rechten:
+
+- Für die ersten vier Abschnitte brauchen Sie das Recht **Konfiguration ansehen**. Ohne dieses Recht erscheinen sie gar nicht; an ihrer Stelle steht ein Hinweis.
+- **Rollen im Überblick** braucht zusätzlich **Rollen ansehen**, **Admin-Quellen** zusätzlich **Zugang zum Admin-Bereich**. Fehlt eines davon, bleibt der Abschnitt leer.
+- Die **Protokolle** erscheinen nur mit dem Recht **Audit-Protokoll ansehen**.
+
+## Erweiterungen erreichbar
+
+Der Abschnitt zeigt, ob die Dienste Ihrer Umgebung antworten: CompanyGPT selbst und die eingerichteten Erweiterungen. Der Kopf fasst das Ergebnis zusammen, zum Beispiel „11/12 erreichbar“.
+
+| Spalte | Inhalt |
+|---|---|
+| **Dienst** | Name des Dienstes |
+| **Adresse** | Geprüfte Adresse |
+| **Zustand** | **Erreichbar**, **Nicht erreichbar** oder **Ausgeschaltet** |
+| **Antwortzeit** | Dauer der Prüfung in Millisekunden |
+| **Version** | Version des Dienstes; **laut Deployment**, wenn der Dienst sie nicht selbst meldet, sonst **unbekannt** |
+
+**Erreichbar** heißt bei den meisten Diensten nur, dass der Dienst antwortet (**Dienst antwortet**). Ob alles dahinter funktioniert, wird nicht geprüft. Nur das AI Gateway und n8n melden echte Bereitschaft (**Betriebsbereit**).
+
+Bei einem Fehler nennt die Zeile den Grund, etwa **Keine Antwort in 3 Sekunden** oder **Verbindung fehlgeschlagen**.
+
+## Aktive Konfiguration
+
+Der Abschnitt zeigt, was in CompanyGPT tatsächlich gilt. Die Einstellungen setzen sich aus Schichten zusammen; eine spätere Schicht geht einer früheren vor:
+
+1. **Vorgabe aus dem Deployment (YAML)** – die Grundkonfiguration, die innFactory pflegt
+2. **Basis für alle** – Anpassungen für alle Nutzer
+3. **Gruppe**
+4. **Rolle**
+5. **Nutzer**
+
+Darunter stehen:
+
+- **Wirkt nicht** – gespeicherte Anpassungen, die CompanyGPT nicht anwendet
+- **Hier gewinnt die Vorgabe** – Punkte, bei denen die Vorgabe immer Vorrang hat, etwa die Obergrenze für Subagents oder MCP-Server aus der Vorgabe
+- **Wird beim Start überschrieben** – Rechte, die CompanyGPT bei jedem Neustart zurücksetzt. Eine Änderung in companyADMIN hält nur bis zum nächsten Neustart.
+
+**Vorgabe und Anpassungen öffnen** führt zur ausführlichen Ansicht unter [Vorgabe & Anpassungen](/de/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/).
+
+## Rollen im Überblick
+
+Die Tabelle zeigt jede Rolle mit **Herkunft**, Anzahl der **Personen** und **Hinweisen**. Ein Klick öffnet die Rolle.
+
+| Herkunft | Bedeutung |
+|---|---|
+| **Rollen-Sync** | Die Rolle wird bei der Anmeldung automatisch aus Entra ID vergeben |
+| **Admin-Rolle** | Die Rolle, die genau wie der Eintrag der Admin-Gruppe heißt (Groß- und Kleinschreibung zählt nicht) |
+| **System** | Mit CompanyGPT ausgeliefert (ADMIN, USER). ADMIN selbst erscheint in der Regel hier |
+| **Von Hand** | In companyADMIN angelegt und von Hand zugewiesen |
+
+Mögliche Hinweise sind **Ohne Rechte**, **Entra-Gruppe unbekannt**, **Niemand hat sie**, **Nicht im Rollen-Sync** und **Fehlt, obwohl eingetragen**.
+
+- **Fehlende Rollen anlegen** legt Rollen an, die für die automatische Rollenvergabe eingetragen sind, aber fehlen. Solange eine solche Rolle fehlt, können sich die betroffenen Personen nicht anmelden. companyADMIN legt fehlende Rollen deshalb auch selbst an, beim Start und danach alle fünf Minuten, jeweils mit den Rechten der Rolle USER.
+- **Rechte von „Nutzer“ übernehmen** gibt einer Rolle ohne Rechte dieselben Rechte wie USER. Einzelne Rechte ändern Sie danach in der Rolle.
+
+### Rollen-Abweichungen
+
+Hat jemand eine gespeicherte Rolle, die nicht mehr zu seinen Gruppen passt, erscheint er unter **Rollen-Abweichungen**. CompanyGPT gleicht die Rolle erst bei der nächsten Anmeldung an. **Sessions widerrufen** setzt die Rolle sofort und beendet laufende Sitzungen, wo das möglich ist. Administratoren werden dabei nie geändert.
+
+Die Liste stützt sich auf die Gruppenmitgliedschaften, die CompanyGPT kennt. Wer seit dem letzten Abgleich nicht angemeldet war, fehlt darin; kennt CompanyGPT die Mitglieder der Rollen- und Admin-Gruppen nicht, lassen sich Abweichungen gar nicht berechnen. Die nächste Anmeldung gleicht die Rolle in beiden Fällen trotzdem an.
+
+## Admin-Quellen
+
+Der Abschnitt zeigt, wer Administrator oder Insights-Nutzer ist und warum. Er ist nur lesbar.
+
+| Spalte | Inhalt |
+|---|---|
+| **Quelle** | Der Weg, über den der Zugang entsteht, etwa **Entra-Gruppe**, **LibreChat-Rolle**, **LibreChat-Grant**, **OAuth-Rollen-Claim** oder eine fest hinterlegte Nutzer-ID |
+| **Eintrag** | Der konkrete Wert, zum Beispiel die Gruppe oder die Rolle |
+| **Panel-Rolle** | **Administration** (alle Bereiche) oder **Insights** (nur Insights) |
+| **Hinweise** | Zum Beispiel, über welche Quelle Ihre eigene Sitzung zugelassen wurde |
+
+Ältere Wege sind mit **alt** markiert. Sie gelten weiter. Neue Zugänge zu Insights vergeben Sie mit dem Recht **Insights ansehen** an einer Rolle oder Gruppe.
+
+Bei Gruppen aus fest hinterlegten Einstellungen zeigt **Gruppen je Einstellung** die Gruppen mit ihrer Mitgliederzahl oder dem Hinweis **in companyGPT unbekannt**.
+
+Die meisten Quellen legt innFactory bei der Einrichtung fest. Wenden Sie sich an innFactory, wenn ein weiterer Weg dazukommen oder einer entfallen soll.
+
+## Protokolle
+
+Der Abschnitt **Protokolle** enthält das **companyADMIN-Protokoll** und das **companyGPT-Protokoll**. Beide beschreibt [Protokolle](/de/company-gpt/addons/companyadmin/audit-log/).

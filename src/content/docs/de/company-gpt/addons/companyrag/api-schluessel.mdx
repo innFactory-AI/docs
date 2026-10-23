@@ -3,18 +3,26 @@ title: API-Schlüssel
 description: API-Schlüssel für Desktop-Apps, Skripte und Integrationen in companyRAG erstellen, verwenden und widerrufen – inklusive Hinweisen zum nutzerbezogenen Zugriff.
 ---
 
-Hier können Administratoren API-Schlüssel erstellen und verwalten, um andere Programme und eigene Tools sicher mit dem RAG-Service zu verbinden – etwa den [Windows Syncer](/de/company-gpt/addons/companyrag/#downloads), ein Skript oder den Ingestion-Endpunkt einer [Datensatzsammlung](/de/company-gpt/addons/companyrag/datensaetze/).
+Unter **API-Schlüssel** erstellen und verwalten Administratoren Schlüssel, um andere Programme und eigene Tools sicher mit dem RAG-Service zu verbinden – etwa den [Windows Syncer](/de/company-gpt/addons/companyrag/#downloads), ein Skript, die [companyRAG API](/de/api/company-rag-api/) oder den Ingestion-Endpunkt einer [Datensatzsammlung](/de/company-gpt/addons/companyrag/datensaetze/).
+
+Der Bereich erscheint nur für Administratoren von companyRAG (siehe [Rechte und Rollen](/de/company-gpt/addons/companyrag/#rechte-und-rollen)).
 
 ![Übersicht der API-Schlüssel mit Dialog zum Erstellen eines neuen Schlüssels](./api-schluessel.png)
 
 Die Übersicht zeigt:
 
 - **Name**: Der frei gewählte Name des Schlüssels (z. B. „Intranet-Suche"), um ihn später zuzuordnen.
-- **Schlüssel**: Der gekürzte API-Schlüssel (z. B. `sk-...1a2b`), um ihn zu identifizieren.
-- **Erstellt am / Zuletzt verwendet**: Zeigt, wann der Schlüssel erstellt und wann er das letzte Mal für eine Abfrage genutzt wurde.
-- **Aktionen**:
-  - **Erstellen**: Generiert einen neuen Schlüssel. *(Achtung: Der Schlüssel wird nur einmalig direkt nach der Erstellung komplett angezeigt. Kopieren Sie ihn sofort an einen sicheren Ort.)*
-  - **Widerrufen**: Sperrt den Schlüssel sofort und unwiderruflich. Alle damit verknüpften Programme verlieren sofort den Zugriff.
+- **Erstellt** / **Zuletzt verwendet**: Wann der Schlüssel erstellt und wann er das letzte Mal genutzt wurde.
+- **Status**: **Aktiv** oder **Widerrufen**.
+- **Aktionen**: **Widerrufen** sperrt den Schlüssel sofort und unwiderruflich. Alle damit verknüpften Programme verlieren sofort den Zugriff.
+
+## Schlüssel erstellen
+
+1. **Neuen Schlüssel erstellen** wählen.
+2. Im Dialog **API-Schlüssel erstellen** einen **Schlüsselname** vergeben und **Schlüssel erstellen** wählen.
+3. Den Schlüssel im Dialog **API-Schlüssel erstellt** mit **Kopieren** übernehmen und an einem sicheren Ort ablegen.
+
+Der Schlüssel beginnt mit `rag_` und wird nur einmalig direkt nach der Erstellung komplett angezeigt. Geht er verloren, erstellen Sie einen neuen.
 
 ## Nutzerbezogener Zugriff
 

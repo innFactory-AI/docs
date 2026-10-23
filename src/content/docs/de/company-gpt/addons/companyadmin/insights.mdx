@@ -1,0 +1,110 @@
+---
+title: Insights
+description: Nutzung, Tokens, geschätzte Kosten und Aktivität Ihrer CompanyGPT-Umgebung in companyADMIN – mit Zeitraum, Reselling-Kosten und Export als Excel-Datei.
+---
+
+**Insights** zeigt, wie Ihre CompanyGPT-Umgebung genutzt wird: wer aktiv ist, welche Agents, Modelle und MCP-Tools gefragt sind, wie viele Tokens anfallen und was das ungefähr kostet. Insights ersetzt das frühere companyDASHBOARD.
+
+Die Zahlen stammen aus vorberechneten Tageswerten und werden alle 10 Minuten aktualisiert. Der laufende Tag ist live enthalten und noch nicht abgeschlossen.
+
+## Zugang
+
+Sie öffnen Insights über die Kachel **Insights** unter **Alle Apps** oder im Menü von companyADMIN.
+
+Insights ansehen darf, wer das Recht **Insights ansehen** (`ext:admin:insights`) hat:
+
+- Die Rolle ADMIN hat das Recht automatisch. Wer auf anderem Weg Administrator ist, etwa als fest hinterlegte Person oder über das Recht **Zugang zum Admin-Bereich** an einer eigenen Rolle, braucht es zusätzlich an seiner Rolle oder Gruppe.
+- Weiteren Personen geben Sie es über eine Rolle oder eine Gruppe, jeweils im Reiter **Erweiterungen** (siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) und [Gruppen](/de/company-gpt/addons/companyadmin/gruppen/)).
+- **Für alle** lässt sich das Recht nicht freigeben, weil Insights Kosten, Tokens und E-Mail-Adressen aller Nutzer zeigt.
+
+Wer nur dieses Recht hat und kein Administrator ist, sieht in companyADMIN ausschließlich **Insights**. Ein Klick auf einen Agent zeigt dann nur dessen Nutzung, nicht seine Konfiguration.
+
+Ältere Wege zu Insights gelten weiter. Welche Wege in Ihrer Umgebung eingerichtet sind, zeigt [Status → Admin-Quellen](/de/company-gpt/addons/companyadmin/status/) mit der Panel-Rolle **Insights**.
+
+## Zeitraum und Export
+
+Oben auf der Seite wählen Sie den **Zeitraum**:
+
+- **Aktueller Monat**
+- **Letzter Monat**
+- **7 Tage**
+- **30 Tage**
+- **Benutzerdefiniert** mit **Von** und **Bis**, höchstens 366 Tage
+
+Jede Kennzahl vergleicht den gewählten Zeitraum mit einem **Vorzeitraum**:
+
+- Bei **Aktueller Monat**, **Letzter Monat** und einem benutzerdefinierten Zeitraum über genau einen Kalendermonat ist der Vorzeitraum der ganze Vormonat. Im laufenden Monat vergleicht Insights also einen angefangenen Monat mit einem vollen.
+- Bei **7 Tagen**, **30 Tagen** und allen anderen Zeiträumen ist es der gleich lange Zeitraum davor.
+
+**Export (XLSX)** lädt die Zahlen des gewählten Zeitraums als Excel-Datei herunter. Sie enthält die Blätter **Übersicht**, **Modelle**, **Agents**, **MCP-Tools** und **Kosten je Nutzer**, jeweils mit allen Zeilen.
+
+## Reiter
+
+### Übersicht
+
+Die Übersicht zeigt Kacheln mit Verlauf und Vergleich zum Vorzeitraum:
+
+| Kachel | Bedeutung |
+|---|---|
+| **Aktive Nutzer** | Verschiedene Nutzer, die im Zeitraum mindestens eine Nachricht geschickt haben |
+| **Neue Nutzer** | Nutzer, deren allererste Nachricht in den Zeitraum fällt |
+| **Abgewanderte Nutzer** | Nutzer, deren letzte Nachricht im Zeitraum 28 Tage alt wurde |
+| **Konversationen** | Verschiedene Konversationen mit mindestens einer Nachricht im Zeitraum |
+| **Anfragen** | Nachrichten von Nutzern an ein Modell oder einen Agent |
+| **Input-Tokens** / **Output-Tokens** | An die Modelle gesendete bzw. von ihnen erzeugte Tokens |
+| **Geschätzte Token-Kosten** | Schätzung aus festen Token-Preisen, siehe unten |
+| **MCP-Calls** | Aufrufe von MCP-Tools durch Agents und Modelle |
+| **Dateien** | Im Zeitraum hochgeladene Dateien |
+| **STT**, **TTS**, **OCR**, **Bilder** | Transkribiertes Audio in Sekunden, gesprochene Zeichen, verarbeitete Seiten und erzeugte Bilder, jeweils mit geschätzten Kosten |
+| **Alle Nutzer** / **Alle Agents** | Alle Konten bzw. Agents der Umgebung, unabhängig vom Zeitraum |
+
+Darunter folgen **Top-Nutzer** (die 10 Nutzer mit den meisten Anfragen im Zeitraum) und **Abgewanderte Nutzer**.
+
+#### Reselling-Kosten
+
+Die erste Kachel der Übersicht, **Reselling-Kosten**, zeigt den Betrag, den der innFactory Hub für einen Kalendermonat abrechnet. Sie ist nur für ganze Monate verfügbar; bei anderen Zeiträumen bietet sie **Aktueller Monat** und **Letzter Monat** zum schnellen Umschalten an.
+
+- Der laufende Monat ist als **vorläufig** gekennzeichnet und zeigt eine **Prognose**.
+- **Stand** nennt das Datum der Abrechnungsdaten. Cloud-Anbieter liefern Verbrauchsdaten mit mindestens 2–3 Tagen Verzug; endgültig sind die Zahlen erst bis zu 15 Tage nach Monatsende.
+- Fährt man mit der Maus über den Betrag, erscheint die **Aufteilung nach Workload**.
+- Das Symbol oben rechts öffnet den innFactory Hub.
+
+Ist für Ihre Umgebung keine Abrechnung über den innFactory Hub hinterlegt, zeigt die Kachel **Nicht konfiguriert**.
+
+### Agents
+
+Nutzung je Agent. Ein Klick auf den Namen öffnet die Detailseite des Agents.
+
+Ohne Superadmin-Funktionen sehen Sie private Agents anderer Personen nur als Summe in der Zeile **private Agents anderer Nutzer**, ohne Namen und ohne Verlauf.
+
+### Modelle
+
+Nutzung je Modell. Konversationen mit einem Agent werden dem Modell des Agents zugerechnet.
+
+### MCP-Tools
+
+Aufrufe je MCP-Tool und Server.
+
+### Kosten
+
+- **Kosten je Nutzer** und **Kosten je Domain**, jeweils mit Suche
+- **Tokens nach Provider und Modell** als Ringdiagramm: innen der Provider, außen das Modell
+
+### Aktivität
+
+**Aktivität nach Tageszeit** zeigt als Wärmekarte, an welchen Tagen und zu welchen Uhrzeiten Nachrichten geschickt werden.
+
+## Was die Kosten bedeuten
+
+**Geschätzte Token-Kosten** sind eine Schätzung, keine Rechnung:
+
+- Gerechnet wird mit vereinfachten, festen Token-Preisen.
+- Rabatte und Cache-Tokens sind nicht berücksichtigt.
+- Modelle ohne hinterlegten Preis fließen nicht in die Schätzung ein.
+
+Verbindliche Zahlen liefert der innFactory Hub, in Insights über die Kachel **Reselling-Kosten**.
+
+## Hinweise zu den Zahlen
+
+- Liegt die letzte Berechnung zu lange zurück, erscheint der Hinweis **Insights ist nicht aktuell**. companyADMIN versucht es automatisch weiter; hält der Hinweis an, wenden Sie sich an innFactory.
+- Namen gelöschter Konten entfernt companyADMIN täglich aus Insights.

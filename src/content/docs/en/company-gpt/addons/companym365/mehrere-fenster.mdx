@@ -1,0 +1,67 @@
+---
+title: Multiple Office windows
+description: Working with the Office add-in in several open Office windows – reading other documents and inserting content across applications.
+---
+
+If you have the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) open in several windows – for example in two Word documents, plus Excel, PowerPoint or Outlook – each chat works in its own window. On request, the assistant also reads the other open windows and inserts content across applications, for example a table from a Word report as a new sheet in Excel. It only carries out a change in another window once you have confirmed it in your own chat.
+
+A window counts as open if the add-in pane is open in it. The assistant cannot see a document in which the add-in is not open. It then asks you to open the add-in in that window from the ribbon instead of uploading the file. Your organization can switch off working with multiple windows; each chat then only works in its own window. The add-in's interface is in German; labels are given in German with an English translation in parentheses.
+
+## Finding open windows
+
+- Ask the assistant, for example, "Which Office windows do I have open?". It lists the connected windows with their name and application.
+- Type `#` in the input field: at the very top, the **Offene Fenster** (Open windows) section lists all other connected windows. A selected window appears as a chip; the assistant then reads exactly this window.
+
+If two windows have the same name, the add-in distinguishes them with a number, e.g. "Bericht.docx" and "Bericht.docx (2)".
+
+The assistant lists windows whose connection has just dropped separately; it cannot read or change them then. Click into such a window once or reopen the add-in there, and it connects again.
+
+## Reading other windows
+
+Reading requires no confirmation and changes nothing. Depending on the application, the assistant reads:
+
+| Application | What is read |
+|---|---|
+| Word | the text of the document |
+| Excel | a cell range or the overview of the workbook |
+| PowerPoint | the slide overview |
+| Outlook | the open email or the open draft |
+
+Windows in the background sometimes respond with a delay. If a window does not respond within 25 seconds, the assistant asks you to bring the window to the front briefly.
+
+## Inserting into another window
+
+The assistant can insert text, formatted text or a table into any connected window – even into another application:
+
+| Target | Where the content lands |
+|---|---|
+| Word | at the end of the document |
+| Excel | tables only, always as a new sheet; existing cells are never overwritten |
+| PowerPoint | as a new slide at the end, with a title and table or the text as bullet points |
+| Outlook | at the beginning of an open draft; nothing can be inserted into an email in reading mode |
+
+A new slide holds at most 20 lines of text or a table with up to 20 rows and 10 columns. If the table does not fit any slide of the template, the assistant does not create a slide.
+
+### Confirmation in your own chat
+
+A change in another window never lands there directly – in every [edit mode](/en/company-gpt/addons/companym365/office-add-in/#edit-modes), including **Direkt** (Direct). Instead, your own chat shows a card, for example **Änderung in „Umsatz.xlsx“ (Excel)** (Change in "Umsatz.xlsx" (Excel)).
+
+- **Übernehmen** (Apply) carries out the change exactly once in the other window. Afterwards, the card shows "In „Umsatz.xlsx“ übernommen" (Applied in "Umsatz.xlsx") or the error. For some errors, the card stays open so that you can try again.
+- **Verwerfen** (Discard), **Alle verwerfen** (Discard all) or a new chat discard the change.
+- **Alle übernehmen** (Apply all) does not apply changes for other windows. You apply these cards individually; a notice points this out. If only such cards are still open, **Alle übernehmen** is disabled.
+- **Alle Änderungen zeigen** (Show all changes) in your own chat also lists the change in the other window.
+- A card is valid for 30 minutes. If the target window shows different content in the meantime – such as another email – the change is not carried out.
+
+## Limits
+
+- **At most ten windows** per person are connected at the same time. In the eleventh window, "Zu viele Fenster verbunden — …" (Too many windows connected) appears with **Erneut verbinden** (Reconnect). Close the add-in pane in another window and then click **Erneut verbinden**. Until then, the chat in this window works like a normal chat, without access to the document.
+- **Selection and cursor** of another window remain untouched. Actions that work at the selection – such as inserting an image at the selected position – are only carried out by the assistant in its own window.
+
+## Closing a window while an answer is running
+
+If you close the window or the add-in pane while an answer is running, that answer at first has no window left to write into. What happens next depends on whether you open the add-in pane again:
+
+- **Reopened:** If you open the add-in pane again in the same saved document or the same email within 10 minutes, the add-in recognizes the window. If the answer is still running, this window is its home again – until 3 minutes after closing or until you send a message there yourself. During this time, the answer's writes land in this window; changes to other windows appear as a card in this add-in pane and are only carried out after **Übernehmen** (Apply).
+- **Not reopened or not saved:** Without reopening, and for unsaved documents and drafts, the answer no longer writes into any window. Open the add-in pane there again and send the message again.
+
+In the first 3 minutes after closing, the assistant may refuse a write with this notice: "Das Fenster einer früheren Antwort wurde geschlossen, während sie noch lief; bis 3 Minuten nach dem Schließen ist unklar, aus welchem Fenster ein Schreibaufruf kommt — er wird nicht ausgeführt." (The window of an earlier answer was closed while it was still running; until 3 minutes after closing, it is unclear which window a write comes from – it is not carried out.) Try again once the 3 minutes have passed.

@@ -1,38 +1,67 @@
 ---
 title: Dateiverarbeitung
-description: Erfahren Sie, wie CompanyGPT Dateien verarbeitet - Kontextbezogene Analyse (Bilder, OCR), Dateisuche mittels RAG und nahtlose SharePoint-Integration für effizientes Informationsmanagement.
+description: Erfahren Sie, wie CompanyGPT hochgeladene Dateien verarbeitet - Bilder und PDFs direkt beim KI-Modell, Office-Dokumente als Text, Dateisuche und Code Interpreter je nach aktiven Werkzeugen sowie die SharePoint-Integration.
 ---
 
-Im CompanyGPT können Dateien auf unterschiedliche Arten verarbeitet werden. Je nach Art stehen die Dateiinhalte dann unterschiedlich zur Verfügung.
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
+Im CompanyGPT können Sie Dateien an Ihre Nachrichten anhängen. Wie eine Datei verarbeitet wird, entscheidet CompanyGPT automatisch anhand des Dateityps, des gewählten KI-Modells und der aktiven Werkzeuge. Sie müssen beim Hochladen kein Ziel mehr auswählen.
 
 :::tip[Kurzübersicht]
 
-- Hochladen zum KI-Anbieter: Die Dateien werden inklusive Prompt an die KI gesendet (je nach Fähigkeiten der KI und Dateityp). Die Inhalte können so interpretiert werden, beispielsweise Bilder oder Texte inklusive Grafiken.
-- Hochladen als Text: Verarbeitung als Text über OCR (Optical Character Recognition). In Gänze Verfügbar.
-- Hochladen für Dateisuche: Verarbeiten als Text, Zerlegen in Abschnitte und umwandeln als Embeddings durch ein Embeddingsmodell. Ähnlichkeitssuche bei der Abfrage.
-  :::
+- Bilder und PDFs: gehen direkt an das KI-Modell, sofern es diese Dateien verarbeiten kann. So werden auch Grafiken, Layout und handschriftliche Inhalte berücksichtigt.
+- Office-Dokumente und Textdateien: werden in Text umgewandelt und der Nachricht angehängt, pro Datei bis zu 100.000 Token. Längere Texte werden gekürzt.
+- Dateisuche und Code ausführen: Ist eines dieser Werkzeuge aktiv, stehen die Dateien bei Bedarf auch diesem Werkzeug zur Verfügung.
+:::
 
-![files](files.png)
+## Dateien hochladen
 
-## Hochladen zum KI-Anbieter
+Klicken Sie in der Chateingabe auf das Plus-Symbol (**Attach and tools**), wählen Sie unter **Attach** den Eintrag **Vom lokalen Computer** und anschließend die gewünschten Dateien aus. Ist in Ihrer Umgebung die [SharePoint-Integration](#sharepoint-integration) aktiviert, finden Sie dort zusätzlich **Von SharePoint**.
 
-Die Dateien werden in gänze zusammen mit einem Prompt an das KI Modell gesendet. Dadurch können die Inhalte ausgelesen und verarbeitet werden. Durch den Prompt können zusätzliche Anweisungen geben. So können beispielsweise Bilder analysiert werden, Texte inklusive Grafiken verarbeitet und interpretiert werden oder handschirftliche Scans / Fotos verarbeitet werden.
+In der Standardkonfiguration gelten folgende Grenzen, die Ihr Unternehmen anpassen kann:
 
-**Limitierung**: Es kommt hierbei auf das KI Modell an, welche Informationen und Dateitypen verarbeitet werden können.
+- bis zu 50 Dateien pro Nachricht
+- bis zu 100 MB pro Datei
 
-## Hochladen als Text
+## So werden Dateien verarbeitet
 
-Hierbei werden die Dateien, zum Beispiel PDFs, hochgeladen und mit Hilfe von OCR (Optical Character Recognition) durch ein KI-Modell alle Texte extrahiert und der Nachricht in Gänze angehängt. Das ist nützlich, wenn man beispielsweise Texte zusammenfassen möchte oder wichtige Punkte extrahieren möchte.
+### Bilder und PDFs
 
-**Limitierung**: Es werden hierbei keine Bilder in den Texten verarbeitet. Die `Document API` von Azure auf Basis von Mistral OCR erlaubt nur Dokumente mit maximal 30 Seiten länge und 50mb Dateigröße.
+Bilder und PDF-Dateien werden zusammen mit Ihrer Nachricht an das KI-Modell gesendet. Dadurch kann das Modell die Inhalte vollständig auslesen und interpretieren, zum Beispiel Bilder analysieren, Texte inklusive Grafiken verarbeiten oder handschriftliche Scans und Fotos auswerten. Über die Nachricht können Sie zusätzliche Anweisungen geben.
 
-![files-text-ocr](files-text-ocr.png)
+Kann das gewählte Modell PDF-Dateien nicht direkt verarbeiten, extrahiert CompanyGPT stattdessen den Text.
 
-## Dateisuche
+**Limitierung**: Es kommt hierbei auf das KI-Modell an, welche Informationen und Dateitypen verarbeitet werden können. Zusätzlich gelten die Grenzen des jeweiligen KI-Anbieters pro Anfrage, bei Claude-Modellen zum Beispiel 32 MB bzw. 100 PDF-Seiten, bei Gemini-Modellen (Google Vertex AI) 20 MB für die gesamte Anfrage einschließlich der angehängten Dateien. Sehr große PDF-Dateien teilen Sie daher am besten auf.
 
-Dokumente können auch für die Dateisuche hochgeladen werden. Dabei werden die Inhalte indexiert und in der Datenbank gespeichert. Diese können dann durch die KI-Modelle bei Bedarf durchsucht und die Antworten durch die Ergebnisse angereichert werden. Informationen zur Funktionsweise finden Sie hier: [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
+### Office-Dokumente und Textdateien
 
-**Limitierung**: Die Dokumente sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/de/company-gpt/agenten) oder auch über [companyRAG](/de/company-gpt/addons/companyrag) integriert werden.
+Aus Office-Dokumenten wird der Text ausgelesen und der Nachricht angehängt. Pro Datei werden bis zu 100.000 Token übernommen, längere Texte werden gekürzt. Das ist nützlich, wenn Sie beispielsweise Texte zusammenfassen oder wichtige Punkte extrahieren möchten.
+
+| Dateityp | Verarbeitung |
+| --- | --- |
+| Word (`.docx`), PowerPoint (`.pptx`, `.potx`, `.ppt`), E-Books (`.epub`) | Texterkennung (OCR) durch ein KI-Modell, bis 30 Seiten pro Dokument. Bei Word-Dateien übernimmt der eingebaute Parser (bis 15 MB pro Datei), wenn die Texterkennung fehlschlägt oder das Dokument mehr als 30 Seiten hat. |
+| Excel (`.xlsx`, `.xls`), OpenDocument (`.odt`, `.ods`) | Eingebauter Parser, bis 15 MB pro Datei. Excel-Dateien werden Blatt für Blatt als Tabelle (CSV) übernommen. |
+| Ältere Word-Dateien (`.doc`, Word 97–2003) | werden nicht ausgelesen. Laden Sie solche Dateien bitte als `.docx` oder PDF hoch. |
+| Textdateien (z. B. `.txt`, `.md`, `.csv`, `.json`) | werden direkt als Text gelesen |
+
+In einzelnen Umgebungen ohne Texterkennung werden Word-Dateien (`.docx`) direkt mit dem eingebauten Parser ausgelesen.
+
+**Limitierung**: Bei der Umwandlung in Text werden Bilder in den Dokumenten nicht berücksichtigt.
+
+### Dateisuche und Code ausführen
+
+Ist im Chat oder im Agenten die [Dateisuche](/de/company-gpt/integrationen/dateisuche/) oder [Code ausführen](/de/company-gpt/code-interpreter/) aktiv, stellt CompanyGPT die angehängten Dateien bei Bedarf auch diesen Werkzeugen bereit:
+
+- Die **Dateisuche** indexiert die Inhalte und durchsucht sie nach den Abschnitten, die zur Frage passen. Informationen zur Funktionsweise finden Sie hier: [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/#rag-workflow-für-die-dateiverarbeitung)
+- **Code ausführen** kann Dateien, zum Beispiel CSV- oder Excel-Dateien, mit Code auswerten und umwandeln.
+
+**Limitierung**: Dokumente in der Dateisuche sind nur für den jeweiligen User zugänglich. Um Dokumente in der Dateisuche für mehrere User oder die gesamte Organisation zugänglich zu machen, können diese über [Agenten](/de/company-gpt/agenten) oder auch über [companyRAG](/de/company-gpt/addons/companyrag) integriert werden.
+
+## Dateien in Antworten
+
+Erzeugt ein Werkzeug eine Datei, zum Beispiel der Code Interpreter oder companyFILES, erscheint sie in der Antwort als Karte. Darüber laden Sie die Datei herunter; für viele Formate steht auch eine Vorschau zur Verfügung.
 
 ## Code ausführen
 
@@ -48,4 +77,8 @@ Dateien aus dem Chat werden **nicht** in [companyRAG](/de/company-gpt/addons/com
 
 ## SharePoint-Integration
 
-Über die SharePoint-Integration stehen die gleichen Möglichkeiten für die Dateiverarbeitung zur Verfügung. Dabei müssen die Dateien nicht manuell hochgeladen werden, sondern können direkt aus allen dem Nutzer zugänglichen SharePoint-Speicherorten hinzugefügt werden, jeweils als [Hochladen zum KI-Anbieter](#hochladen-zum-ki-anbieter), [Text](#hochladen-als-text) oder für die [Dateisuche](#dateisuche).
+Über **Von SharePoint** müssen Dateien nicht manuell hochgeladen werden, sondern können direkt aus allen Ihnen zugänglichen SharePoint-Speicherorten hinzugefügt werden. Sie werden genauso verarbeitet wie hochgeladene Dateien.
+
+:::note[Nicht in allen Umgebungen verfügbar]
+Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
+:::

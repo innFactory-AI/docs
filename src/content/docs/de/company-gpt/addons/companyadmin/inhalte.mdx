@@ -1,45 +1,139 @@
 ---
 title: Inhalte und Sichtbarkeit
-description: Steuern, welche Gruppen welche Agenten, Prompts, Skills und MCP-Tools in CompanyGPT sehen und nutzen können.
+description: Agents, Prompts, Skills und MCP-Tools in companyADMIN einsehen, ihre Herkunft prüfen und festlegen, wer sie in CompanyGPT sieht – einzeln oder für mehrere Einträge auf einmal.
 ---
 
-Unter **Content** steuern Sie die Sichtbarkeit der Inhalte: Agenten, Prompts, Skills und MCP-Tools. Die Reiter trennen die Inhaltsarten; **Categories** pflegt zusätzlich die [Kategorien des Agenten-Marktplatzes](/de/company-gpt/addons/companyadmin/kategorien/).
+Unter **Inhalte** sehen Sie, welche Agents, Prompts, Skills und MCP-Server es in CompanyGPT gibt, woher sie stammen und wer sie sieht. Die Unterseiten sind **Agents**, **Prompts**, **Skills**, **MCP-Tools**, **Kategorien** und **Bibliotheks-Sync**. Dieser Abschnitt beschreibt die ersten vier; die [Kategorien](/de/company-gpt/addons/companyadmin/kategorien/) und den [Bibliotheks-Sync](/de/company-gpt/addons/companyadmin/library-sync/) beschreiben eigene Seiten.
 
-![Reiter „Agents" mit Sichtbarkeit und Synchronisationsstatus je Agent](./content-agents.png)
+## Was Sie sehen
 
-Die Liste zeigt je Eintrag den Namen, die Beschreibung und den aktuellen Sichtbarkeitsstatus. Zusätzliche Kennzeichnungen geben Auskunft über die Herkunft:
+Was in den Listen erscheint, hängt davon ab, ob Sie Superadmin sind:
+
+- **Superadmins** sehen alle Agents, Prompts und Skills, auch private Inhalte anderer Personen.
+- **Admins ohne Superadmin-Funktionen** sehen öffentliche, mit ihnen geteilte und über die Bibliothek verwaltete Einträge. Über der Liste erklärt ein Hinweis diese eingeschränkte Ansicht.
+
+Ob Sie Superadmin sind, zeigt das Kontomenü.
+
+## Agents, Prompts und Skills
+
+### Listen
+
+| Liste | Spalten | Suche |
+|---|---|---|
+| **Agents** | Name, **Besitzer**, **Modell**, **Sichtbarkeit**, **Herkunft**, **Anfragen (30 T.)**, **Zuletzt genutzt** | **Name, Beschreibung oder Repo suchen** |
+| **Prompts** | Name, **Beschreibung**, **Sichtbarkeit**, **Herkunft** | **Name, Befehl oder Repo suchen** |
+| **Skills** | Name, **Beschreibung**, **Sichtbarkeit**, **Herkunft** | **Name, Beschreibung oder Repo suchen** |
+
+Hervorgehobene Agents tragen das Badge **Empfohlen**.
+
+Die Spalte **Sichtbarkeit** zeigt **Nur Besitzer**, **Öffentlich** oder **Gruppen (n)**. Die Spalte **Herkunft** zeigt:
 
 | Kennzeichnung | Bedeutung |
 |---|---|
-| `manual` | Der Inhalt wurde in CompanyGPT selbst angelegt |
-| `synced` | Der Inhalt stammt aus einem über [Library Sync](/de/company-gpt/addons/companyadmin/library-sync/) verbundenen Repository |
-| `modified` | Der synchronisierte Inhalt wurde in CompanyGPT nachträglich geändert und weicht damit vom Repository ab |
-| `Owner only` | Aktuell sieht nur der Eigentümer den Inhalt |
+| **manuell** | In CompanyGPT angelegt |
+| **synchronisiert** | Kommt über den [Bibliotheks-Sync](/de/company-gpt/addons/companyadmin/library-sync/) aus einem Git-Repository |
+| **geändert in LibreChat** | Synchronisiert, aber seitdem in CompanyGPT geändert. Was der nächste Sync damit macht, beschreibt [Bibliotheks-Sync](/de/company-gpt/addons/companyadmin/library-sync/) |
 
-:::note
-Aufgelistet werden nur Inhalte, die Ihnen gehören, mit Ihnen geteilt wurden oder öffentlich sind. Eine globale Liste aller privaten Inhalte anderer Nutzer existiert plattformseitig nicht. Für die aufgeführten Inhalte verwalten Sie die Freigabe hier.
-:::
+Filter:
+
+- **Herkunft**: **Aus der Bibliothek** oder **In companyGPT erstellt**
+- **Sichtbar für**
+- **Änderungen**: **In companyGPT geändert** oder **Wie im Repository**
+
+Die Listen laden beim Scrollen nach. Angezeigt werden höchstens 1.000 Einträge; Suche und Filter wirken dann nur auf diese.
+
+### Detailseiten
+
+Ein Klick auf eine Zeile öffnet die Detailseite. Die Konfiguration eines Inhalts ändern Sie in CompanyGPT; in companyADMIN sehen Sie sie ein und steuern die Sichtbarkeit.
+
+**Agent**
+
+- **Überblick**: Besitzer, Modell, Kategorie, Nutzung der letzten 30 Tage und das Diagramm **Anfragen pro Tag (30 T.)**
+- **Konfiguration**: **Instructions**, **Tools** mit der Spalte **Laden**, **MCP-Server**, **Skills**, **Subagents & Handoff-Edges** sowie **Code & Gedächtnis**
+- **Sichtbarkeit**
+- **Herkunft**
+
+**Prompt**
+
+- **Überblick**: **Text (Produktivversion)**, **Einstellungen** wie **Befehl** und Kategorie sowie die **Versionen**. Der Sync ersetzt nur die Produktivversion; ältere Versionen bleiben erhalten.
+- **Sichtbarkeit**
+- **Herkunft**
+
+**Skill**
+
+- **Überblick**: **Verhalten** mit **Aufruf durch Nutzer**, **Aufruf durch das Modell**, **Immer aktiv**, **Erlaubte Werkzeuge** und **Version**
+- **Inhalt**: **Anleitung (SKILL.md)**, **Dateien** und **Kopfdaten**
+- **Sichtbarkeit**
+- **Herkunft**
+
+### Herkunft
+
+Der Reiter **Herkunft** zeigt bei synchronisierten Inhalten **Repository** (mit Link zum Bibliotheks-Sync), **Pfad**, **Commit**, **Zuletzt geschrieben** und **Stand**. Steht dort, dass der Inhalt seit dem letzten Sync in CompanyGPT geändert wurde, überschreibt der nächste Sync diese Änderung. Nur bei einem Repository mit **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)** bleiben geänderte Agents und Skills bis zum Zurückschreiben erhalten, solange ihre Datei im Repository liegt.
+
+Bei Inhalten, die in CompanyGPT angelegt wurden, steht **In companyGPT erstellt, nicht aus der Bibliothek.**
 
 ## Sichtbarkeit setzen
 
-Über **Visibility** öffnen Sie die Freigabe eines Eintrags.
+Die Sichtbarkeit setzen Sie auf der Detailseite im Reiter **Sichtbarkeit**. Er nennt den Besitzer (**Besitzer: …**) und bietet drei Stufen:
 
-![Sichtbarkeits-Dialog eines Agenten mit den drei Freigabestufen](./agent-sichtbarkeit.png)
+- **Nur Besitzer** – keine Freigabe für alle und keine Gruppenfreigaben. Freigaben an einzelne Personen oder Rollen bleiben bestehen.
+- **Öffentlich — alle Nutzer dieser Umgebung** – alle in Ihrer Umgebung sehen den Inhalt, mit Leserechten.
+- **Nur bestimmte Gruppen** – die gewählten Gruppen und der Besitzer sehen den Inhalt. Mit **Gruppen suchen…** finden Sie Gruppen über den Namen oder die Entra-Object-ID. Ohne gewählte Gruppe lässt sich nicht speichern.
 
-Drei Stufen stehen zur Wahl:
+Bestätigen Sie mit **Speichern**.
 
-- **Owner only** – nur der Eigentümer sieht den Inhalt.
-- **Public — all users of this environment** – alle Nutzer der Umgebung sehen den Inhalt, unternehmensintern.
-- **Specific groups only** – nur die ausgewählten [Gruppen](/de/company-gpt/addons/companyadmin/benutzer-und-gruppen/) und der Eigentümer sehen den Inhalt.
+:::caution[Speichern ersetzt bestehende Freigaben]
+Gespeichert wird immer die gewählte Stufe als Ganzes. Sie ersetzt die bisherige Freigabe für alle und die bisherigen Gruppenfreigaben.
 
-Der Dialog nennt zusätzlich den Eigentümer und – bei synchronisierten Inhalten – das Quell-Repository sowie die dort gesetzte Standardsichtbarkeit. Bereits bestehende Einzelfreigaben an Personen werden unter **Also individually shared with** aufgeführt und können dort einzeln zurückgenommen werden.
-
-Für Skills funktioniert der Dialog identisch:
-
-![Freigabe-Dialog eines Skills](./skill-freigabe.png)
-
-:::tip[Hinweis]
-Ob eine Rolle Inhalte überhaupt teilen oder öffentlich freigeben darf, legen die Funktionsrechte unter [Rollen und Rechte](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) fest. Die Sichtbarkeit hier entscheidet nur über den einzelnen Inhalt.
+- Ein Wechsel auf **Öffentlich** oder **Nur Besitzer** entfernt alle Gruppenfreigaben, auch Bearbeiter-Freigaben, die Personen in CompanyGPT vergeben haben. **Öffentlich** gibt allen nur Leserechte.
+- Bei synchronisierten Inhalten ist der Besitzer das Systemkonto. **Nur Besitzer** heißt dort: Kein Nutzer sieht den Inhalt.
 :::
 
-Wird die Standardsichtbarkeit im Repository gepflegt, überschreibt eine Änderung hier den Repo-Standard für diesen Inhalt. Siehe [Library Sync](/de/company-gpt/addons/companyadmin/library-sync/).
+Eine Entra-Gruppe ist erst auswählbar, wenn CompanyGPT sie kennt, also wenn sich ein Mitglied angemeldet hat oder die Gruppe angelegt bzw. synchronisiert wurde. Freigaben aus companyADMIN geben Leserechte (**Betrachter**). Die Stufen **Bearbeiter** und **Besitzer** stammen aus Freigaben, die Personen in CompanyGPT selbst vergeben haben.
+
+### Wer die Sichtbarkeit ändern darf
+
+| Inhalt | Ändern dürfen |
+|---|---|
+| Synchronisiert (aus der Bibliothek) | Jeder Administrator mit dem passenden Verwalten-Recht (**Agenten verwalten**, **Prompts verwalten** oder **Skills verwalten**) |
+| In CompanyGPT angelegt (**manuell**) | Nur Superadmins. Andere Administratoren sehen die Sichtbarkeit und einen Hinweis |
+
+Der Besitzer eines Inhalts kann dessen Freigabe weiterhin in CompanyGPT selbst ändern, soweit seine Rolle das Teilen erlaubt. Ob eine Rolle überhaupt teilen oder öffentlich teilen darf, legen die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) fest.
+
+Bei Inhalten, die in CompanyGPT angelegt wurden, listet **Zusätzlich einzeln freigegeben für:** Freigaben an einzelne Personen oder Rollen. Superadmins nehmen sie mit **Entziehen** zurück.
+
+### Synchronisierte Inhalte und der Repo-Standard
+
+Synchronisierte Inhalte bekommen ihre Sichtbarkeit aus dem Repository (**Verwaltet durch den Repo-Standard (Library Sync)**). Ändern Sie die Sichtbarkeit hier, gilt **Individuell verwaltet (überschreibt den Repo-Standard)**: Der Bibliotheks-Sync lässt die Sichtbarkeit dieses Eintrags dann in Ruhe. **Auf Repo-Standard zurücksetzen** gibt sie an das Repository zurück; das greift ab dem nächsten Sync.
+
+### Sichtbarkeit für mehrere Einträge
+
+In den Listen **Agents**, **Prompts** und **Skills** setzen Sie die Sichtbarkeit für mehrere Einträge auf einmal. Die Leiste dafür erscheint nur mit dem passenden Verwalten-Recht (**Agenten verwalten**, **Prompts verwalten** oder **Skills verwalten**).
+
+1. Wählen Sie die Zeilen über die Kästchen aus.
+2. Wählen Sie in der Leiste über der Tabelle die Sichtbarkeit.
+3. Klicken Sie auf **Für Auswahl setzen**. **Öffentlich** fragt vorher nach.
+
+Geändert werden dabei nur synchronisierte Einträge. Alle anderen werden übersprungen; ihre Sichtbarkeit setzen Sie auf der jeweiligen Detailseite.
+
+Jeder geänderte Eintrag gilt danach als **Individuell verwaltet (überschreibt den Repo-Standard)**. Spätere Änderungen an der Standardsichtbarkeit des Repositorys erreichen diese Einträge nicht mehr. Zurück an den Repo-Standard geben Sie sie nur einzeln, auf der Detailseite mit **Auf Repo-Standard zurücksetzen**.
+
+## MCP-Tools
+
+**MCP-Tools** listet alle MCP-Server Ihrer Umgebung. Zugangsdaten wie Tokens oder Passwörter zeigt companyADMIN nie an.
+
+| Kennzeichnung | Bedeutung |
+|---|---|
+| **Aus dem Deployment** | Von innFactory in der Grundkonfiguration eingerichtet; gilt wie festgelegt |
+| **Aus der Admin-Konfiguration** | Über die Konfiguration eingerichtet; gilt für den angegebenen Bereich (alle, eine Rolle oder eine Gruppe) |
+| **Aus einem Plugin** | Von einem Plugin bereitgestellt |
+| **Von Nutzer angelegt** | Von einer Person in CompanyGPT angelegt |
+| **nur über Agent** | Nur über Agents nutzbar, nicht direkt im Chat |
+
+Die Spalten **Besitzer** und **Wer ihn sieht** zeigen, wem ein Server gehört und für wen er gilt. Für Server aus Deployment, Konfiguration oder Plugin steht dort **wie konfiguriert (nicht pro Gruppe)**. Mit **Server suchen** und dem Filter **Herkunft** grenzen Sie die Liste ein.
+
+Eine aufgeklappte Zeile zeigt **Verbindung**, die Adresse bzw. den **Befehl**, ob die **Anmeldung per OAuth** läuft und welche **Eigene Angaben der Nutzer** der Server erwartet.
+
+- Eine eigene Freigabe haben nur Server mit **Von Nutzer angelegt**. Ändern dürfen sie nur Superadmins; der Besitzer kann sie in CompanyGPT selbst ändern. Die Details privater Server sehen nur Superadmins.
+- Die MCP-Server der Erweiterungen (etwa companyFILES oder companyRAG) sind in der Regel für alle eingebunden; ihre Tools können deshalb auch Personen ohne Nutzungsrecht angezeigt werden, siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+- Welche Domains MCP-Server nutzen dürfen, legen Sie unter [MCP-Domains](/de/company-gpt/addons/companyadmin/mcp-domains/) fest.

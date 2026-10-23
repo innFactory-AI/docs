@@ -34,3 +34,8 @@ pnpm-debug.log*
 
 k8s/
 Dockerfile
+
+# Screenshot-Pipeline: Login-Sitzungen (Cookies) nie einchecken
+scripts/screenshots/.auth/
+*.storage-state.json
+storage-state.json

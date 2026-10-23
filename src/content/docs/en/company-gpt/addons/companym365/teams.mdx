@@ -1,0 +1,125 @@
+---
+title: Teams
+description: CompanyGPT in Microsoft Teams – the Teams tab for the chat and the Teams bot for questions via @mention, with commands, private answers and sharing in the thread.
+---
+
+companyM365 brings CompanyGPT into Microsoft Teams in two ways:
+
+- The **Teams tab** is a personal tab with the CompanyGPT chat. It belongs to the same app package as the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/).
+- The **Teams bot** is a separate Teams app. You address it in a 1:1 chat or via @mention in group chats, meeting chats and channels.
+
+That is why Teams shows two apps: the tab under the name of your CompanyGPT environment and the bot under its own name. Tab and bot use German texts; labels and messages are given in German with an English translation in parentheses.
+
+## Teams tab
+
+:::note[Not available in all environments]
+Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
+:::
+
+You find the tab in the Teams app bar under the name of your CompanyGPT environment. It offers the CompanyGPT chat with models and agents, file upload, sources and palettes – as described on the [Office add-in](/en/company-gpt/addons/companym365/office-add-in/) page. Since no document is open, the features for editing a document are not available.
+
+The tab follows the Teams theme, including high-contrast mode. In a wide window, messages and the input field are shown in a centered column.
+
+## Teams bot
+
+:::note[Currently only in pilot environments]
+This feature is currently only available in pilot environments.
+:::
+
+The Teams bot answers questions directly in the conversation – with a model or with an agent that can access Microsoft 365 and other sources. Your organization decides the bot's name; in Teams you find it under **Apps**.
+
+### Addressing the bot
+
+- **In a 1:1 chat** with the bot, a message is enough.
+- **In group chats, meeting chats and channels**, mention the bot with @ and its name.
+- **Just for you (in group chats and channels):** Type `/` into an empty input field and choose the bot. Only you then see the question and the answer; the commands are also listed in that menu. In a 1:1 chat with the bot, this menu does not exist; there you simply write a message.
+
+The bot only appears in the `/` menu once your administrator has uploaded the bot package from version 4.1.1 onwards.
+
+In your first conversation, the bot asks you to sign in. If you have never signed in to CompanyGPT, you are asked to do so once in the browser. If the bot asks you to install the app personally once (**Apps** → bot name → **Add**), this is required so that it can answer you privately.
+
+Guest accounts are not supported. To work with guests or external people, use a group chat that you start yourself – Teams does not allow apps in a 1:1 chat with external people.
+
+### Commands
+
+| Input | Effect |
+|---|---|
+| `question` | answer from this chat's agent |
+| `/alias question` | only this question goes to the released agent with this alias |
+| `/agent alias` or `/agent name` | set the agent as your default for this chat; a question after it is answered right away |
+| `/agent standard` | remove your default for this chat again |
+| `/agents` | show released agents and – if your organization allows it – your own agents, with **Als Standard setzen** (Set as default) |
+| `/neu` | start a new conversation; the previous history no longer counts. A question after it starts it right away. |
+| `/öffentlich question` | make exactly this one answer visible to everyone (also `/oeffentlich` or `/public`); images and files remain private |
+| `/hilfe` | commands, current agent and privacy notice |
+
+### Which agent answers?
+
+Without an alias, your own default for this chat answers; otherwise your organization's default agent; otherwise the default model. Every answer names the agent that created it in its footer.
+
+`/agents` shows two groups:
+
+- **Für Teams freigegeben** (Released for Teams): agents that your administrator has released for Teams with an alias.
+- **Deine Agents** (Your agents): your own agents and those shared with you – provided your organization allows personal agents in Teams. Shared agents are marked "geteilt von …" (shared by …).
+
+Agents that someone else has shared with you don't get to see the chat history – no thread, meeting or call context, only your mention and your own files.
+
+### Context
+
+- **In a channel**, the bot reads the whole thread.
+- **In a group chat**, it reads everything since its last answer, the first time the last 24 hours.
+- `/neu` starts without the previous history.
+- If you mention the bot in a thread without a question, it summarizes the history so far.
+
+### Who sees the answer?
+
+In a 1:1 chat, only you see every answer. In group chats, meeting chats and channels, the bot answers **privately** – that is, only for you – as soon as one of these cases applies:
+
+- The answer uses a tool other than web search, e.g. Microsoft 365, file search or code.
+- The bot processes your files, images or voice messages or returns images or files.
+- An agent that your administrator has set to "Immer privat" (Always private) answers, or one of your own agents.
+- You have saved memories.
+
+From then on, your answers in this thread remain private. If guests, people from other organizations or anonymous participants are in the chat, every answer is private. Questions, approvals and notices always go to you only, as do answers to questions asked via the `/` menu.
+
+Below a private answer, it says "Nur du siehst diese Antwort; Teams entfernt sie nach 24 Stunden." (Only you can see this answer; Teams removes it after 24 hours.) with a link that opens the conversation in CompanyGPT in the browser.
+
+### Sharing an answer in the thread
+
+Only you yourself can make a private answer public:
+
+- **Im Thread teilen** (Share in thread) below the answer (possible for 24 hours) shows exactly this answer with its text and web sources to everyone in the thread, marked "Geteilt von …" (Shared by …). Your next answers remain private.
+- `/öffentlich question` answers exactly this question publicly.
+
+Images, files and file search hits always remain private. Agents set to "Immer privat" (Always private) cannot be shared; then "Dieser Agent darf nur privat antworten — vom Admin so eingestellt." (This agent may only answer privately – set by the admin.) appears. If external people are reading along, `/öffentlich` also answers privately, and **Im Thread teilen** warns beforehand: "Achtung: Im Chat sind externe Teilnehmer — sie sehen die geteilte Antwort." (Note: there are external participants in the chat – they will see the shared answer.)
+
+### Results
+
+- Answers can contain tables, code and formulas.
+- Generated images appear as previews (up to three), files and sources as a list.
+- Via a link, you continue the conversation in CompanyGPT in the browser.
+- Answers are marked as AI-generated; with the feedback buttons you submit a rating that is stored in CompanyGPT.
+
+### Files, images and voice messages
+
+- The bot processes files and pasted images from your mention, from quoted messages, from the first post of the thread and from earlier posts.
+- Limits: at most five files per mention, up to 25 MB per file. Supported are text, PDF, Word and Excel files (.docx, .xlsx) and images.
+- The bot skips files in .doc, .xls, .ppt or .pptx format. Store them in OneDrive or SharePoint; the assistant can read them there.
+- The bot transcribes voice messages and audio files with the speech recognition of your CompanyGPT environment ("🎤 Transkribiert: …", transcribed). In the chat with the bot, Teams offers no voice recording; audio files still work there. To use a voice message in a group chat or channel, reply to it with a quote and mention the bot.
+
+### Meetings and calls
+
+In the chat of a Teams meeting, the bot recognizes the meeting and passes its title and time to the agent. If a transcript is available, the agent can read it and summarize the meeting; the answer is then private. The bot does not join the meeting live. It cannot yet read transcripts of ad-hoc calls without a meeting.
+
+### Questions and approvals
+
+The agent's questions and approvals appear as a card that only you see – with **Antworten** (Answer) or **Zulassen** (Allow) and **Ablehnen** (Deny); for several approvals, you send your choice with **Entscheidungen senden** (Send decisions) or reject all of them with **Alle ablehnen** (Reject all). If a card is too large for Teams, the bot refers you to CompanyGPT in the browser. In a 1:1 chat, you can stop a running answer with the Teams stop button.
+
+### What the Teams bot cannot do
+
+Some actions are blocked in the Teams bot and only run in CompanyGPT itself:
+
+- creating or deleting inbox rules, creating forward drafts, moving emails, deleting drafts,
+- uploading or deleting files, writing to Excel files,
+- cancelling appointments, sending invitations and changing appointments that have attendees,
+- creating share links for anonymous access.

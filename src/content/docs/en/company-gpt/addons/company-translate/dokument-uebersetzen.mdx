@@ -1,49 +1,80 @@
 ---
 title: Translate document
-description: Translating entire files in companyTRANSLATE — supported formats, language selection, glossary choice, status tracking and download of the translated copy.
+description: Translating entire files in the Documents area of companyTRANSLATE — supported formats, language and glossary choice, status, download and history.
 ---
 
-The **Dokument übersetzen** (translate document) area translates complete files and returns them in their original format. The application describes the area as "Lade ein Dokument hoch und erhalte mit einem Klick eine übersetzte Kopie" — upload a document and get a translated copy with one click.
+The **Documents** area translates complete files and returns them in their original format. The page is titled **Translate document** and carries the note "Upload a document and get a translated copy in one click."
 
-![Translate document with an empty drop area](./dokument-upload.png)
+## Supported formats
 
-## Supported Formats
+The **Drop file to translate** area names the permitted formats: **PDF, Word, PowerPoint, Excel, TXT, Markdown, HTML up to 40 MB**. You add a file by drag and drop or select it via **Select file**.
 
-The drop area names the permitted formats directly: **PDF, DOCX, PPTX bis 40 MB**. Files are added by drag and drop or loaded from the file system via **Datei auswählen** (select file).
+![The Documents area with an empty drop area and the Recent translations list](./dokument-upload.png)
+
+| Format | File extension |
+|---|---|
+| PDF | `.pdf` |
+| Word | `.docx` |
+| PowerPoint | `.pptx` |
+| Excel | `.xlsx` |
+| Text | `.txt` |
+| Markdown | `.md` |
+| HTML | `.html` |
+
+companyTRANSLATE checks the format, size and content of every file. If something does not fit, the drop area stays and names the reason, for example "File is too large (max 40 MB)" or "The file content does not match its file type." Text files (TXT, Markdown, HTML) must be UTF-8 encoded.
 
 :::note
-Unlike [text translation](/en/company-gpt/addons/company-translate/text-uebersetzen/), there is no automatic language detection here. Source and target language must be set before translating.
+Unlike [text translation](/en/company-gpt/addons/company-translate/text-uebersetzen/), there is no automatic language detection here. Select a source language before translating; without it, **Translate** stays disabled and companyTRANSLATE points this out with "Please select source language (auto-detect not available for files)".
 :::
 
-## Choosing Languages and a Glossary
+## Choosing languages and a glossary
 
-After the upload, companyTRANSLATE shows the file with its name and size. **Neue Datei** (new file) selects a different file. Below the file, the glossary status for the chosen language combination appears — either the note **Kein Glossar für dieses Sprachpaar vorhanden** (no glossary available for this language pair) or the **Glossar auswählen** (select glossary) list with matching glossaries as checkboxes.
+After selection, companyTRANSLATE shows the file with its name and size. **New file** selects a different file. Below it, the glossary status for the chosen language pair appears: either **No glossary available for this language pair** or the **Select glossary** list with all matching glossaries as checkboxes.
 
 ![Uploaded file with no glossary available](./dokument-sprachen.png)
 
-![Selected glossary de-en-tutorial before translating](./dokument-glossar.png)
+All matching glossaries are initially selected; global glossaries carry the suffix **global**. Untick any glossaries that should not be applied. In document translation, glossaries work in every environment, even without Google.
 
-The **Übersetzen** (translate) button starts the process.
+![Selected glossaries muster-glossar and firmenbegriffe (global) before translating](./dokument-glossar.png)
 
-## Downloading the Result
+**Translate** starts the process. companyTRANSLATE first shows **Uploading...** and then **Translating...**.
 
-Once finished, the application reports **Übersetzung abgeschlossen** (translation complete) and offers **Übersetzung herunterladen** (download translation). **Neue Datei** resets the area for the next job.
+## Downloading the result
+
+Once finished, companyTRANSLATE reports **Translation complete** and offers **Download translation**. **New file** or **New translation** in the page header resets the area for the next job.
 
 ![Completed translation with the download button](./dokument-download.png)
 
 The translated copy retains the structure and formatting of the source file: headings, paragraphs, emphasis and page breaks are preserved, so source and target document can be compared side by side.
 
-## Recent Translations
+If the translation fails, **Translation failed** appears, where possible with the reason, for example "Translation limit reached".
 
-Below the drop area, **Letzte Übersetzungen** (recent translations) lists previous jobs with file name, target language, file size and timestamp. Each entry offers a context menu and a button to download it again.
+## Recent translations
 
-Jobs still running are marked **In Bearbeitung** (in progress) and offer no download.
+Below the drop area, **Recent translations** lists your previous document translations, newest first. The list also contains translations an agent created for you in the [chat](/en/company-gpt/addons/company-translate/im-chat/). Each entry shows the file name, target language, file size and time.
+
+| Marker | Meaning |
+|---|---|
+| **Processing** | The translation is still running; there is no download yet. |
+| **Failed** | The translation failed. |
+| no marker | The translation is finished; the button on the right downloads it. |
+
+The entry's menu offers:
+
+- **Download original** – the uploaded source file
+- **Retry translation** – runs the translation again with the same source file, source language and glossaries. The result appears as a new entry; the previous one remains.
+- **Delete** – removes the translation and the source file after a confirmation ("Really delete?")
+
+If a glossary used in the original translation no longer exists, **Retry translation** stops with "The selected glossary was not found."
 
 :::tip[Note]
-Larger documents can take a moment to translate. The entry under **Letzte Übersetzungen** switches from **In Bearbeitung** to the download button as soon as the result is ready.
+Larger documents take a moment. You do not have to keep the page open: you will find a running translation later under **Recent translations**.
 :::
 
-## Related Topics
+Translations from version 2.0 onward are kept for 30 days. After that they disappear from the list; a later attempt reports "This translation has expired and is no longer available".
+
+## Related topics
 
 - [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – consistent terminology for document translations
 - [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – translating short texts directly in the interface
+- [Translating in the chat](/en/company-gpt/addons/company-translate/im-chat/) – translating files from the chat with an agent

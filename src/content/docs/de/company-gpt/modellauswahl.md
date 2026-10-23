@@ -118,11 +118,17 @@ Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerie
 
 Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist. Die Modelle der Gemini-2.5-Generation sind abgelöst, siehe [Legacy-Modelle](#legacy-modelle).
 
+### Gemini 4 Argon
+
+- **Für:** anspruchsvolle Aufgaben mit sehr viel Kontext
+- **Wann:** umfangreiche Dokumente und Codebasen (bis zu 1 Mio. Token Kontext), komplexe Analysen und mehrstufiges Reasoning
+- **Warum:** das erste Modell der Gemini-4-Generation, in einer EU-Region verarbeitet; bisher erst in einzelnen Umgebungen verfügbar
+
 ### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
 - **Für:** autonomes Denken bei hoher Geschwindigkeit
 - **Wann:** komplexe Workflows, tiefe Analysen, anspruchsvolles Coding
-- **Warum:** Googles schnelle Modelle mit flexiblen Denkstufen; 3.8 Flash ist die neueste Generation
+- **Warum:** Googles schnelle Modelle mit flexiblen Denkstufen; 3.8 Flash ist die neueste Flash-Stufe
 
 ### Gemini 3.5 Flash-Lite / Gemini 3.1 Flash-Lite
 

@@ -118,11 +118,17 @@ Microsoft is retiring GPT Image 1.5 in Azure on 16 December 2026. For image gene
 
 The Gemini models are available if Google is enabled in your environment. The models of the Gemini 2.5 generation have been superseded, see [Legacy models](#legacy-models).
 
+### Gemini 4 Argon
+
+- **For:** demanding tasks with a lot of context
+- **When:** large documents and codebases (up to 1M tokens of context), complex analyses and multi-step reasoning
+- **Why:** the first model of the Gemini 4 generation, processed in an EU region; so far only available in some environments
+
 ### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
 - **For:** autonomous reasoning at high speed
 - **When:** complex workflows, deep analyses, demanding coding
-- **Why:** Google's fast models with flexible thinking levels; 3.8 Flash is the newest generation
+- **Why:** Google's fast models with flexible thinking levels; 3.8 Flash is the newest Flash tier
 
 ### Gemini 3.5 Flash-Lite / Gemini 3.1 Flash-Lite
 

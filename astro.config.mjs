@@ -281,6 +281,14 @@ export default defineConfig({
 											]
 										},
 										{
+											label: 'companyLEARN',
+											translations: { en: 'companyLEARN' },
+											items: [
+												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companylearn' },
+												{ label: 'Für Admins', translations: { en: 'For admins' }, slug: 'company-gpt/addons/companylearn/admin' },
+											]
+										},
+										{
 											label: 'companyKNOWLEDGE',
 											translations: { en: 'companyKNOWLEDGE' },
 											badge: { text: 'Experimentell', variant: 'caution' },

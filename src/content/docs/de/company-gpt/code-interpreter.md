@@ -26,6 +26,13 @@ Dateien, die der Code Interpreter erzeugt, zum Beispiel eine ausgewertete Excel-
 - **Exakte Berechnungen**: Statt ein Ergebnis zu schätzen, schreibt das Modell die Berechnung als Code und liefert das tatsächlich berechnete Ergebnis.
 - **Formatkonvertierung und Code-Tests**: Unstrukturierte Daten können in strukturierte Formate (z. B. JSON) umgewandelt und Code-Snippets direkt ausgeführt und geprüft werden.
 
+## Dateien im Code Interpreter
+
+- **Angehängte Dateien**: Ist **Code ausführen** aktiv, stehen die an eine Nachricht angehängten Dateien (z. B. CSV, Excel) dem Code im Arbeitsverzeichnis `/mnt/data` zur Verfügung.
+- **Ergebnisdateien**: Dateien, die der Code erzeugt (z. B. ein Diagramm als PNG oder eine bereinigte Excel-Datei), erscheinen als Anhang an der Antwort und können heruntergeladen werden.
+- **Vorlagen aus companyFILES**: Mit dem Tool `attach_template_to_chat` legt [companyFILES](/de/company-gpt/addons/companyfiles/) eine Vorlage als Datei in den Chat. Ab der **nächsten Nachricht** kann der Code sie bearbeiten, etwa um viele Stellen eines Word- oder PowerPoint-Layouts auf einmal zu ändern. Voraussetzung ist, dass companyFILES Dateien direkt im Chat ablegen darf; das richtet Ihre Administration ein.
+- **Skills mit Zusatzdateien**: Bringt ein [Skill](/de/company-gpt/skills/) eigene Dateien mit (z. B. Anleitungen unter `references/` oder Skripte), werden sie schreibgeschützt unter `/mnt/data/skills/<skill-name>/` bereitgestellt. Fertige Skills finden Sie unter [Skills-Tutorials](/de/tutorials/skills/).
+
 ## Unterstützte Sprachen
 
 Der Code Interpreter führt **Python**, **JavaScript/TypeScript** (Node.js und Bun) sowie **Bash** aus.

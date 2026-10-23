@@ -62,6 +62,18 @@ If [file search](/en/company-gpt/integrationen/dateisuche/) or [Run Code](/en/co
 
 If a tool creates a file, for example the Code Interpreter or companyFILES, it appears in the answer as a card. From there, you can download the file; for many formats, a preview is available as well.
 
+## Run code
+
+When the [Run Code](/en/company-gpt/code-interpreter/) integration is active, attached files are also placed in the Code Interpreter's sandbox. Excel or CSV files, for example, can then be analysed exactly, filtered and charted instead of only being read as text.
+
+## Files in extensions
+
+Extensions such as [companyFILES](/en/company-gpt/addons/companyfiles/), companyTRANSCRIBE or companyTRANSLATE access attached files directly by their file ID: they can edit a Word file, transcribe an audio file or translate a document without uploading it again. Files created by companyFILES appear as attachments in the chat again.
+
+:::note
+Files from the chat are **not** indexed in [companyRAG](/en/company-gpt/addons/companyrag). Documents that many users should be able to search permanently belong in a companyRAG collection.
+:::
+
 ## SharePoint integration
 
 With **From SharePoint**, files do not have to be uploaded manually but can be added directly from all SharePoint locations accessible to you. They are processed in the same way as uploaded files.

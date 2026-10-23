@@ -52,6 +52,28 @@ Mit **Repository suchen** finden Sie ein Repository. **Alle synchronisieren** sy
 
 Ältere Prompt-Versionen und Freigaben, die Personen in CompanyGPT vergeben haben, bleiben beim Sync erhalten. Avatar, Gesprächseinstiege und hochgeladene Dateien eines Agents bleiben nur erhalten, wenn die YAML-Datei im Repository das jeweilige Feld nicht selbst setzt. Exportierte Agents (siehe [Bestehende Inhalte exportieren](#bestehende-inhalte-exportieren)) haben diese Felder in ihrer YAML-Datei.
 
+### Ordner mit Skills
+
+Für Skills durchsucht Library Sync den angegebenen Pfad **beliebig tief**: Jeder Ordner mit einer `SKILL.md` wird zu einem Skill. Weitere Textdateien im selben Ordner (z. B. `references/` oder `scripts/`) werden mit dem Skill übernommen; Binärdateien werden übersprungen. Maßgeblich ist der `name` in der `SKILL.md` – kommt ein Name doppelt vor, wird nur der erste übernommen.
+
+### Fertige Skills von innFactory einbinden
+
+Die [fertigen Skills](/de/tutorials/skills/) liegen im öffentlichen Repository [innFactory-AI/company-ai-stack-skills](https://github.com/innFactory-AI/company-ai-stack-skills) und lassen sich direkt verbinden – ohne Token:
+
+| Feld | Wert |
+|---|---|
+| Repository | `innFactory-AI/company-ai-stack-skills`, Branch `main` |
+| Structure (sources) | Typ `skill`, Pfad `de/skills` (deutsche Skills) **oder** `en/skills` (englische Skills) |
+| We own this repo | aus |
+
+Verbinden Sie nur **eine** Sprache: Deutsche und englische Fassung tragen denselben Skill-Namen. Alternativ fügen Sie `https://github.com/innFactory-AI/company-ai-stack-skills/tree/main/de/skills` als Repository ein; Branch und Pfad werden dann übernommen. Ein **Sync** holt neue und geänderte Skills; einen automatischen Zeitplan gibt es nicht.
+
+:::note
+Synchronisierte Skills stehen Agenten sofort zur Verfügung. In der Skill-Auswahl im Chat (`$`) erscheinen sie zunächst inaktiv, bis Nutzer sie einschalten.
+:::
+
+## Änderungen prüfen
+
 ## Detailseite eines Repositorys
 
 Die Detailseite hat die Reiter **Überblick**, **Inhalt**, **Läufe**, **Herausnehmen** und **Einstellungen** sowie eine Gefahrenzone.

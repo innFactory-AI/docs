@@ -63,6 +63,18 @@ Ist im Chat oder im Agenten die [Dateisuche](/de/company-gpt/integrationen/datei
 
 Erzeugt ein Werkzeug eine Datei, zum Beispiel der Code Interpreter oder companyFILES, erscheint sie in der Antwort als Karte. Darüber laden Sie die Datei herunter; für viele Formate steht auch eine Vorschau zur Verfügung.
 
+## Code ausführen
+
+Ist die Integration [Code ausführen](/de/company-gpt/code-interpreter/) aktiv, werden angehängte Dateien zusätzlich in die Sandbox des Code Interpreters gelegt. So lassen sich z. B. Excel- oder CSV-Dateien exakt auswerten, filtern und als Diagramm darstellen, statt sie nur als Text zu lesen.
+
+## Dateien in Erweiterungen
+
+Erweiterungen wie [companyFILES](/de/company-gpt/addons/companyfiles/), companyTRANSCRIBE oder companyTRANSLATE greifen über die Datei-ID direkt auf angehängte Dateien zu: Sie können eine Word-Datei bearbeiten, eine Audiodatei transkribieren oder ein Dokument übersetzen lassen, ohne die Datei erneut hochzuladen. Dateien, die companyFILES erzeugt, erscheinen wieder als Anhang im Chat.
+
+:::note
+Dateien aus dem Chat werden **nicht** in [companyRAG](/de/company-gpt/addons/companyrag) indexiert. Sollen Dokumente dauerhaft für viele Nutzer durchsuchbar sein, gehören sie in eine companyRAG-Collection.
+:::
+
 ## SharePoint-Integration
 
 Über **Von SharePoint** müssen Dateien nicht manuell hochgeladen werden, sondern können direkt aus allen Ihnen zugänglichen SharePoint-Speicherorten hinzugefügt werden. Sie werden genauso verarbeitet wie hochgeladene Dateien.

@@ -3,8 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "skills:sync": "node scripts/sync-skills.mjs",
+    "predev": "npm run skills:sync",
     "dev": "astro dev",
+    "prestart": "npm run skills:sync",
     "start": "astro dev",
+    "prebuild": "npm run skills:sync",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",

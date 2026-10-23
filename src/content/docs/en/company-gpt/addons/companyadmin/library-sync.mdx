@@ -52,6 +52,28 @@ Use **Search repository** to find a repository. **Sync all** syncs all repositor
 
 Older prompt versions and shares that people made in CompanyGPT are kept on sync. An agent's avatar, conversation starters and uploaded files are only kept if the YAML file in the repository does not set the field itself. Exported agents (see [Export existing content](#export-existing-content)) have these fields in their YAML file.
 
+### Skill folders
+
+For skills, Library Sync searches the given path **at any depth**: every folder that contains a `SKILL.md` becomes one skill. Other text files in the same folder (e.g. `references/` or `scripts/`) are imported with the skill; binary files are skipped. The `name` in `SKILL.md` identifies the skill – if a name occurs twice, only the first one is imported.
+
+### Adding the ready-made skills from innFactory
+
+The [ready-made skills](/en/tutorials/skills/) live in the public repository [innFactory-AI/company-ai-stack-skills](https://github.com/innFactory-AI/company-ai-stack-skills) and can be connected directly – no token needed:
+
+| Field | Value |
+|---|---|
+| Repository | `innFactory-AI/company-ai-stack-skills`, branch `main` |
+| Structure (sources) | type `skill`, path `de/skills` (German skills) **or** `en/skills` (English skills) |
+| We own this repo | off |
+
+Connect only **one** language: the German and English versions use the same skill name. You can also paste `https://github.com/innFactory-AI/company-ai-stack-skills/tree/main/en/skills` as the repository; branch and path are filled in for you. **Sync** fetches new and changed skills; there is no automatic schedule.
+
+:::note
+Synced skills are available to agents right away. In the chat's skill picker (`$`) they first show as inactive until users switch them on.
+:::
+
+## Reviewing changes
+
 ## A repository's detail page
 
 The detail page has the tabs **Overview**, **Content**, **Runs**, **Exclude** and **Settings**, plus a danger zone.

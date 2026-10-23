@@ -12,6 +12,8 @@ Welche Modelle Ihnen in der Modellauswahl angezeigt werden, legt Ihr Unternehmen
 - **Komplex & kritisch** → stärkste Modelle
 - **Hosting in Deutschland / Open Source** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern in Ihrer Umgebung verfügbar
 
+Modelle, die als veraltet gekennzeichnet sind, finden Sie unter [Legacy-Modelle](#legacy-modelle) – dort steht jeweils, auf welches Modell Sie wechseln sollten.
+
 :::note[Wo laufen die Modelle?]
 Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßig in EU-Rechenzentren betrieben (Azure OpenAI in der EU-Datenzone, Google Vertex AI in EU-Regionen). Einzelne Umgebungen oder Modelle – insbesondere zur Bildgenerierung – können abweichen. Die STACKIT-Modelle laufen in Rechenzentren in Deutschland. Details zu Ihrer Umgebung erfahren Sie bei Ihrem Administrator.
 :::
@@ -22,7 +24,13 @@ Die Modelle von OpenAI, Google und Anthropic werden in CompanyGPT standardmäßi
 
 ### Die GPT-6-Familie
 
-GPT-6 steht in CompanyGPT in zwei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Sol** (die leistungsstärkere Stufe) und **Luna** (am schnellsten und günstigsten). Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
+GPT-6 steht in CompanyGPT in zwei Stufen zur Verfügung. Sie gehören zur selben Generation und unterscheiden sich darin, wie viel Denktiefe, Geschwindigkeit und Kosten Sie erhalten: **Sol** (die leistungsstärkere Stufe) und **Luna** (am schnellsten und günstigsten). Von der Sol-Stufe gibt es mit **gpt-6.1-sol** zusätzlich eine neuere Version. Wählen Sie die Stufe nach der Komplexität der Aufgabe, nicht aus Gewohnheit.
+
+### gpt-6.1-sol
+
+- **Für:** anspruchsvolle Aufgaben, bei denen Sie die neueste Version der Sol-Stufe nutzen möchten
+- **Wann:** agentisches Coding, mehrstufige Entwicklungsaufgaben, komplexe Analysen und Workflows
+- **Warum:** die aktualisierte Version von gpt-6-sol – gleiche Stufe, neuerer Stand
 
 ### gpt-6-sol
 
@@ -62,7 +70,7 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 
 - **Für:** anspruchsvolle Aufgaben über viele Themen hinweg
 - **Wann:** Coding, Analysen, Textarbeit und Planung im Arbeitsalltag
-- **Warum:** starkes Allround-Modell der GPT-5-Generation; für die höchste Leistungsfähigkeit wählen Sie GPT-5.6 Sol oder gpt-6-sol
+- **Warum:** starkes Allround-Modell der GPT-5-Generation; für die höchste Leistungsfähigkeit wählen Sie GPT-5.6 Sol, gpt-6-sol oder gpt-6.1-sol
 
 ### gpt-5.1
 
@@ -82,23 +90,33 @@ GPT-5.6 steht in drei Stufen zur Verfügung. Sie gehören zur selben Generation 
 - **Wann:** schnelle Fragen, einfache Formatierungen, Textkorrekturen
 - **Warum:** extrem ressourcensparendes Modell der GPT-5-Familie mit minimaler Latenz
 
+:::note[Weitere GPT-Modelle in einzelnen Umgebungen]
+In einzelnen Umgebungen gibt es zusätzlich weitere Varianten der GPT-5-Generation, etwa **gpt-5.4-mini**, **gpt-5**, **gpt-5.2** oder **gpt-5.2-codex** (auf Programmieraufgaben spezialisiert), sowie das ältere Reasoning-Modell **o3-mini**. Für neue Aufgaben empfehlen wir die oben beschriebenen Modelle; statt o3-mini zum Beispiel gpt-5-mini.
+:::
+
 ### GPT Image 1.5
 
-- **Für:** Bildgenerierung
-- **Wann:** wenn Bilder generiert werden sollen
-- **Warum:** OpenAIs Bildgenerierungsmodell
+- **Für:** Bildgenerierung und Bildbearbeitung
+- **Wann:** wenn Bilder erzeugt oder bearbeitet werden sollen
+- **Warum:** OpenAIs Bildmodell, das in der EU-Datenzone verarbeitet wird
 
-In einzelnen Umgebungen gibt es zusätzlich neuere Bildmodelle (z. B. GPT Image 2). Diese laufen außerhalb der EU-Datenzone.
+### GPT Image 2.5
+
+- **Für:** Bildgenerierung und Bildbearbeitung mit der neueren Generation der OpenAI-Bildmodelle
+- **Wann:** wenn Bilder erzeugt oder bearbeitet werden sollen und Ihre Umgebung GPT Image 2.5 nutzt
+- **Warum:** neuere Generation der OpenAI-Bildmodelle; die Verarbeitung erfolgt global und nicht in der EU-Datenzone
+
+Die Bilder erzeugen Sie über das Werkzeug **OpenAI Image Tools**. Welches Bildmodell dahinter steht, legt Ihre Umgebung fest – in den meisten Umgebungen ist es GPT Image 1.5, in einzelnen GPT Image 2.5 oder GPT Image 2. GPT Image 2 und GPT Image 2.5 laufen außerhalb der EU-Datenzone.
 
 :::caution
-Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerierung können Sie alternativ [Nano Banana](#gemini-image-tools--nano-banana) nutzen, sofern es in Ihrer Umgebung verfügbar ist.
+Microsoft stellt GPT Image 1.5 in Azure zum 16.12.2026 ein. Für die Bildgenerierung können Sie alternativ [Nano Banana](#gemini-image-tools--nano-banana) nutzen oder – sofern Ihre Umgebung es anbietet – GPT Image 2.5.
 :::
 
 ---
 
 ## Google
 
-Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist. In einzelnen Umgebungen gibt es weitere Gemini-Varianten (z. B. Gemini 3.6 Flash).
+Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigeschaltet ist. Die Modelle der Gemini-2.5-Generation sind abgelöst, siehe [Legacy-Modelle](#legacy-modelle).
 
 ### Gemini 3.8 Flash / Gemini 3.7 Flash / Gemini 3.5 Flash
 
@@ -112,38 +130,52 @@ Die Gemini-Modelle stehen zur Verfügung, wenn Google in Ihrer Umgebung freigesc
 - **Wann:** schnelles Nachfragen, einfache Massenaufgaben, Echtzeit-Übersetzungen
 - **Warum:** extrem kurze Antwortzeit bei sehr geringen Kosten; 3.5 Flash-Lite ist die neuere Stufe
 
+### Gemini 3.1 Pro (Vorschau)
+
+- **Für:** besonders anspruchsvolle Analysen und komplexes Reasoning
+- **Wann:** wenn die Flash-Modelle an ihre Grenzen kommen, etwa bei sehr umfangreichen oder verschachtelten Aufgaben
+- **Warum:** Googles leistungsstärkere Pro-Stufe; bisher nur in einzelnen Umgebungen und als Vorschau verfügbar, Verhalten und Verfügbarkeit können sich noch ändern
+
 ### Gemini Image Tools / Nano Banana
 
 - **Für:** Bildanalyse, Bildgenerierung, Bildbearbeitung
 - **Wann:** Text-zu-Bild-Generierung, Bildbearbeitung mit Prompts (Bild+Text) und Komposition mehrerer Bilder
-- **Warum:** Googles Bildmodelle, die in CompanyGPT integriert sind
+- **Warum:** Googles Bildmodelle, die in CompanyGPT integriert sind; Nano Banana wird in einer EU-Region verarbeitet
+
+In einzelnen Umgebungen steht hinter den Gemini Image Tools das leistungsstärkere **Nano Banana Pro**. Es wird global verarbeitet und nicht in einer EU-Region.
 
 ---
 
 ## Anthropic
 
-Die Claude-Modelle stehen zur Verfügung, wenn Anthropic in Ihrer Umgebung freigeschaltet ist.
+Die Claude-Modelle stehen zur Verfügung, wenn Anthropic in Ihrer Umgebung freigeschaltet ist. Die aktuelle Generation ist **Claude 5.5** mit den Stufen Opus, Sonnet und Haiku; sie läuft über die EU-Region von Google Vertex AI. Die Claude-4.x-Modelle sind veraltet, siehe [Legacy-Modelle](#legacy-modelle).
 
-### Claude Opus 4.6
+### Claude Opus 5.5
 
 - **Für:** die anspruchsvollsten Aufgaben, bei denen Qualität vor Kosten geht
-- **Wann:** komplexe Analysen, umfangreiche Code-Änderungen, mehrstufige agentische Aufgaben
-- **Warum:** das leistungsstärkste Claude-Modell der 4.6-Generation
+- **Wann:** komplexe Analysen, umfangreiche Code-Änderungen, lange mehrstufige agentische Aufgaben
+- **Warum:** das leistungsstärkste Claude-Modell der aktuellen 5.5-Generation; Nachfolger von Claude Opus 5 und der Opus-4.x-Modelle
 
-### Claude Sonnet 4.6
+### Claude Sonnet 5.5
 
 - **Für:** Programmieren, komplexe Textverarbeitung und anspruchsvolle Allround-Aufgaben (Empfohlen)
-- **Wann:** Softwareentwicklung, Code-Refactoring, tiefes Textverständnis
-- **Warum:** Der Sweetspot der Reihe. Opus-Klasse Performance zum Sonnet-Preis (1M Kontext)
+- **Wann:** Softwareentwicklung, Code-Refactoring, Agenten, tiefes Textverständnis
+- **Warum:** der Sweetspot der Reihe – hohe Leistungsfähigkeit für den Arbeitsalltag zu deutlich geringeren Kosten als Opus; Nachfolger von Claude Sonnet 5 und Sonnet 4.6
 
-### Claude Haiku 4.5
+### Claude Haiku 5.5
 
-- **Für:** sehr schnelle Verarbeitung bei hoher logischer Präzision
-- **Wann:** große Datenmengen filtern, UI-basierte Chatbots, einfache bis mittlere Tasks in Masse
-- **Warum:** sehr schnell und kosteneffizient (weniger Reasoning als Sonnet/Opus)
+- **Für:** sehr schnelle Verarbeitung zu sehr geringen Kosten
+- **Wann:** große Datenmengen filtern, UI-basierte Chatbots, einfache bis mittlere Tasks in Masse, Teilaufgaben von Agenten
+- **Warum:** das schnellste und günstigste Modell der 5.5-Generation; Nachfolger von Claude Haiku 4.5
+
+### Claude Opus 5 / Claude Sonnet 5 (Vorgängergeneration)
+
+- **Für:** anspruchsvollste Aufgaben (Opus 5) bzw. Programmieren und Allround-Aufgaben (Sonnet 5)
+- **Wann:** wenn Ihre Umgebung die 5.5-Generation noch nicht anbietet
+- **Warum:** die Vorgängergeneration von Claude 5.5; sobald verfügbar, wechseln Sie auf Claude Opus 5.5 bzw. Claude Sonnet 5.5
 
 :::note
-In einzelnen Umgebungen stehen statt oder zusätzlich zu den 4.x-Modellen neuere Claude-Modelle zur Verfügung (z. B. Claude Sonnet 5, Opus 5, Sonnet 5.5, Opus 5.5) sowie weitere Anbieter wie Mistral oder Perplexity.
+Welche Claude-Generation Ihnen angezeigt wird, unterscheidet sich je nach Umgebung: Manche Umgebungen bieten bereits Claude 5.5, andere noch Claude 5 oder die veralteten 4.x-Modelle. In einzelnen Umgebungen gibt es zusätzlich weitere Anbieter wie Mistral oder Perplexity.
 :::
 
 ---
@@ -192,10 +224,14 @@ Diese Open-Source-Modelle laufen in der STACKIT Cloud in Rechenzentren in Deutsc
 
 ## Legacy-Modelle
 
+Die folgenden Modelle sind veraltet und werden durch neuere Generationen abgelöst. Solange Ihre Umgebung sie noch anbietet, können Sie sie weiter nutzen; für neue Chats und Agenten wählen Sie bitte das jeweils genannte Nachfolgemodell.
+
 :::caution[Wird eingestellt]
 Die komplette GPT-4-Familie (gpt-4.1, gpt-4.1-mini, gpt-4o, gpt-4o-mini) wird in absehbarer Zeit nicht mehr unterstützt und aus CompanyGPT entfernt; in einigen Umgebungen ist sie bereits nicht mehr verfügbar. Bitte wechseln Sie auf ein aktuelles Modell: **gpt-6-luna**, **GPT-5.6 Terra** oder **gpt-5-mini** als Ersatz für gpt-4.1 und gpt-4o, **GPT-5.6 Luna** oder **gpt-5-nano** als Ersatz für gpt-4.1-mini und gpt-4o-mini.
 
-Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
+Die Claude-4.x-Modelle (Claude Opus 4.5, 4.6, 4.7 und 4.8, Claude Sonnet 4.5 und 4.6, Claude Haiku 4.5) werden durch die Generation Claude 5.5 abgelöst: **Claude Opus 5.5** ersetzt Opus 4.x, **Claude Sonnet 5.5** ersetzt Sonnet 4.x, **Claude Haiku 5.5** ersetzt Haiku 4.5.
+
+Die Modelle der Gemini-2.5-Generation (Gemini 2.5 Pro, 2.5 Flash und 2.5 Flash-Lite) und älter stehen im Chat nicht mehr zur Verfügung. Nachfolger sind **Gemini 3.8 Flash** für 2.5 Pro und 2.5 Flash sowie **Gemini 3.5 Flash-Lite** für 2.5 Flash-Lite; wo verfügbar, ersetzt **Gemini 3.1 Pro** das Modell 2.5 Pro. Das Bildwerkzeug Nano Banana ist davon nicht betroffen.
 :::
 
 ### gpt-4.1
@@ -203,7 +239,7 @@ Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
 - **Für:** verlässliche Problemlösungen und Standard-Kontexte
 - **Wann:** Textoptimierung, Recherchen, logische Vergleiche
 - **Warum:** das bewährte, weiterentwickelte Arbeitstier für anspruchsvolle Alltagsaufgaben
-- **Wechseln auf:** GPT-5.6 Terra / gpt-5-mini
+- **Wechseln auf:** gpt-6-luna / GPT-5.6 Terra / gpt-5-mini
 
 ### gpt-4.1-mini
 
@@ -217,7 +253,7 @@ Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
 - **Für:** vielseitige Multimodalität und flüssige Interaktion
 - **Wann:** Bild- und Sprachverarbeitung, kreative Entwürfe, Brainstorming
 - **Warum:** das etablierte Flaggschiff-Modell für schnelle, multimediale Aufgaben
-- **Wechseln auf:** GPT-5.6 Terra / gpt-5-mini
+- **Wechseln auf:** gpt-6-luna / GPT-5.6 Terra / gpt-5-mini
 
 ### gpt-4o-mini
 
@@ -226,15 +262,37 @@ Die Modelle der Gemini-2.5-Generation stehen im Chat nicht mehr zur Verfügung.
 - **Warum:** extrem günstiges Leichtgewicht-Modell mit solider Grundintelligenz
 - **Wechseln auf:** GPT-5.6 Luna / gpt-5-nano
 
+### Claude Opus 4.x (4.5, 4.6, 4.7, 4.8)
+
+- **Für:** die anspruchsvollsten Aufgaben, bei denen Qualität vor Kosten geht
+- **Wann:** komplexe Analysen, umfangreiche Code-Änderungen, mehrstufige agentische Aufgaben
+- **Warum:** die leistungsstärksten Claude-Modelle der 4.x-Generation
+- **Wechseln auf:** Claude Opus 5.5
+
+### Claude Sonnet 4.x (4.5, 4.6)
+
+- **Für:** Programmieren, komplexe Textverarbeitung und anspruchsvolle Allround-Aufgaben
+- **Wann:** Softwareentwicklung, Code-Refactoring, tiefes Textverständnis
+- **Warum:** der bisherige Sweetspot der Claude-Reihe zwischen Leistung und Kosten
+- **Wechseln auf:** Claude Sonnet 5.5
+
+### Claude Haiku 4.5
+
+- **Für:** sehr schnelle Verarbeitung bei hoher logischer Präzision
+- **Wann:** große Datenmengen filtern, UI-basierte Chatbots, einfache bis mittlere Tasks in Masse
+- **Warum:** schnell und kosteneffizient (weniger Reasoning als Sonnet/Opus)
+- **Wechseln auf:** Claude Haiku 5.5
+
 ---
 
 ## Schnelle Entscheidungshilfe
 
 - **„Ich weiß nicht, welches Modell passt“** → gpt-6-luna (Standardmodell)
-- **„Ich will einfach eine sehr gute Antwort“** → gpt-6-sol / GPT-5.6 Terra / Claude Sonnet 4.6
-- **„Es soll maximal schnell und günstig sein“** → gpt-6-luna / GPT-5.6 Luna / gpt-5-nano / Gemini 3.5 Flash-Lite / Claude Haiku 4.5
-- **„Ich will programmieren / Code schreiben“** → gpt-6-sol / GPT-5.6 Sol / Claude Sonnet 4.6
-- **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-6-sol / Claude Opus 4.6
-- **„Ich führe viele Aufgaben parallel aus“** → gpt-6-luna / GPT-5.6 Luna / Claude Haiku 4.5
+- **„Ich will einfach eine sehr gute Antwort“** → gpt-6-sol / gpt-6.1-sol / GPT-5.6 Terra / Claude Sonnet 5.5
+- **„Es soll maximal schnell und günstig sein“** → gpt-6-luna / GPT-5.6 Luna / gpt-5-nano / Gemini 3.5 Flash-Lite / Claude Haiku 5.5
+- **„Ich will programmieren / Code schreiben“** → gpt-6.1-sol / gpt-6-sol / GPT-5.6 Sol / Claude Sonnet 5.5
+- **„Es ist kompliziert oder extrem wichtig“** → GPT-5.6 Sol / gpt-6.1-sol / Claude Opus 5.5
+- **„Ich führe viele Aufgaben parallel aus“** → gpt-6-luna / GPT-5.6 Luna / Claude Haiku 5.5
 - **„Hosting in Deutschland ist Pflicht“** → STACKIT-Modelle in [CompanyGPT Sovereign](/de/company-gpt/sovereign/) bzw. sofern verfügbar (z. B. Llama 3.3 70B Instruct)
-- **„Ich brauche Bilder“** → GPT Image 1.5 / Gemini Image Tools / Nano Banana
+- **„Ich brauche Bilder“** → OpenAI Image Tools (GPT Image 1.5 bzw. GPT Image 2.5) / Gemini Image Tools (Nano Banana)
+- **„Ich nutze noch ein GPT-4- oder Claude-4.x-Modell“** → siehe [Legacy-Modelle](#legacy-modelle) für das passende Nachfolgemodell

@@ -191,6 +191,11 @@ const privacyUrl = 'https://innfactory.ai/de/datenschutz/';
 
 	const banner = document.getElementById('cg-consent');
 	if (banner) {
+		// The footer sits inside Starlight's `.main-pane`, which is `isolation: isolate`,
+		// so the card's z-index only counts within that pane and the fixed right
+		// sidebar (TOC, ≥72rem) swallows its clicks. Hoisting it to <body> escapes that.
+		document.body.append(banner);
+
 		const read = () => {
 			try {
 				return localStorage.getItem(STORAGE_KEY);

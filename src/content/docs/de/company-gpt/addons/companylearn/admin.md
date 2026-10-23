@@ -7,7 +7,7 @@ Diese Seite richtet sich an Personen mit der Berechtigung `ext:learn:admin`. Wie
 
 ## Kurse erstellen
 
-Ein Kurs besteht aus **Kapiteln**. Ein Kapitel enthält **Lektionen** (Text in Markdown oder ein Video) und optional ein **Quiz**. Kapitel und Lektionen lassen sich mit Hoch/Runter umsortieren.
+Ein Kurs besteht aus **Kapiteln**. Ein Kapitel enthält **Lektionen** (Text in Markdown oder ein Video) und optional ein **Quiz**. Kapitel und Lektionen lassen sich mit **Nach oben** und **Nach unten** umsortieren.
 
 - **Textlektionen:** Neben dem Markdown-Editor zeigt eine Live-Vorschau das Ergebnis. Bilder (PNG, JPEG, WebP, GIF) lädst du an der Cursorposition hoch. Externe Bild-URLs werden aus Sicherheitsgründen nicht geladen, sondern als Link dargestellt.
 - **Videolektionen:** Du lädst die Videodatei hoch. Die Wiedergabe ist geschützt und unterstützt Vorspulen.
@@ -36,7 +36,7 @@ Abschlüsse sind endgültig. Wenn du nachträglich ein Kapitel, ein Quiz oder ei
 
 ## Veröffentlichen und Sichtbarkeit
 
-Ein neuer Kurs ist ein **Entwurf**, den Lernende nicht sehen. Mit **Veröffentlichen** gibst du ihn frei, mit **Zurückziehen** nimmst du ihn wieder aus dem Angebot.
+Ein neuer Kurs ist ein **Entwurf**, den Lernende nicht sehen. Das Statusabzeichen zeigt **Entwurf**. Mit dem Schalter **Veröffentlicht** gibst du den Kurs frei und nimmst ihn durch Ausschalten wieder aus dem Angebot.
 
 Der Schalter **Selbsteinschreibung erlauben** steuert die Sichtbarkeit:
 
@@ -58,18 +58,18 @@ Als Frist wählst du ein **festes Datum** oder **N Tage nach der Zuweisung**. Le
 Pro Zuweisung siehst du die Statuszahlen (zugewiesen, in Bearbeitung, abgeschlossen, überfällig) und die Personenliste mit Status, Frist und Fortschritt. Du kannst nach **überfällig** filtern und die Liste als **CSV** exportieren. Das Löschen einer Zuweisung entzieht sie allen Personen.
 
 :::note
-Bei Gruppen erhalten alle Mitglieder die Zuweisung, auch wer companyLEARN noch nie geöffnet hat. Solche Personen sind in der Liste mit **noch nie angemeldet** markiert, damit sofort klar ist, warum jemand überfällig ist. Wähle deshalb Gruppen, deren Mitglieder Zugriff auf companyLEARN haben. Bei der Zuweisung an **Alle** zählen nur Personen, die companyLEARN schon genutzt haben, die Zahlen sind entsprechend begrenzt.
+Bei Gruppen erhalten alle Mitglieder die Zuweisung, auch wer companyLEARN noch nie geöffnet hat. Solche Personen sind in der Liste mit **Noch nie angemeldet** markiert, damit sofort klar ist, warum jemand überfällig ist. Wähle deshalb Gruppen, deren Mitglieder Zugriff auf companyLEARN haben. Bei der Zuweisung an **Alle** zählen nur Personen, die companyLEARN schon genutzt haben, die Zahlen sind entsprechend begrenzt.
 :::
 
 Auf Systemen mit Keycloak statt Entra beziehen sich Gruppenzuweisungen auf einen Gruppennamen. Die Zuweisung greift, sobald sich jemand mit dieser Gruppe anmeldet. Dort zählen nur Personen, die sich seit der Zuweisung angemeldet haben.
 
 ## Übersicht
 
-Die **Übersicht** zeigt Kennzahlen mit Verlauf (7, 30 oder 90 Tage), eine Kurstabelle, Kursberichte mit allen Lernenden (auch „ins Stocken geraten": seit mehr als 14 Tagen ohne Aktivität), eine Lernendenliste und eine Personenansicht mit Kursen, Quiz-Versuchen und Verlauf. Hier schreibst du Personen ein oder aus und exportierst als CSV. Beim Ausschreiben bleiben Fortschritt und Quizergebnisse erhalten, nur das Abschlussdatum entfällt. Das zugehörige Zertifikat ist dann nicht mehr abrufbar. Zuweisungen und Fristen erscheinen auch in den Kurs- und Personenansichten. Namen und E-Mail-Adressen sehen nur Admins.
+Die **Übersicht** (im Menü) zeigt Kennzahlen mit Verlauf (7, 30 oder 90 Tage), eine Kurstabelle, Kursberichte mit allen Lernenden (auch „ins Stocken geraten": seit mehr als 14 Tagen ohne Aktivität), eine Lernendenliste und eine Personenansicht mit Kursen, Quiz-Versuchen und Verlauf. Hier schreibst du Personen ein oder aus und exportierst als CSV. Beim Ausschreiben bleiben Fortschritt und Quizergebnisse erhalten, nur das Abschlussdatum entfällt. Das zugehörige Zertifikat ist dann nicht mehr abrufbar. Zuweisungen und Fristen erscheinen auch in den Kurs- und Personenansichten. Namen und E-Mail-Adressen sehen nur Admins.
 
 ## Zertifikate
 
-Zertifikate entstehen aus **Word-Vorlagen** (`.docx`). Du lädst eine Vorlage pro Sprache (Deutsch, Englisch) hoch, entweder als Standard für alle Kurse oder für einen einzelnen Kurs. Pro Kurs schaltest du das Zertifikat an oder aus und wählst die Vorlage (kursspezifisch oder Standard).
+Zertifikate entstehen aus **Word-Vorlagen** (`.docx`). Du lädst eine Vorlage pro Sprache (Deutsch, Englisch) hoch, entweder als Standard für alle Kurse oder für einen einzelnen Kurs. Pro Kurs schaltest du **Zertifikat bei Abschluss** an oder aus und wählst die Vorlage (kursspezifisch oder Standard).
 
 In der Vorlage stehen feste Platzhalter, die als Text ersetzt werden. Es wird nichts berechnet oder ausgeführt:
 
@@ -86,9 +86,22 @@ Das PDF wird beim ersten Download je Sprache erzeugt und gespeichert. Eine geän
 
 ## Kurse im Chat aus einem Dokument erstellen
 
-Du kannst einen ganzen Kurs im Chat erstellen lassen, zum Beispiel aus einer Richtlinie oder einem Handbuch. Hänge das Dokument an (oder nutze companyRAG oder M365) und bitte das Modell, einen Kurs daraus zu erstellen. Das Modell liest das Dokument und legt Kapitel, Textlektionen, Quizze mit Erklärungen und optional eine Abschlussprüfung über das Tool `learn_admin_create_course` an. Weitere Admin-Werkzeuge sind `learn_admin_list_courses`, `learn_admin_get_course`, `learn_admin_update_course`, `learn_admin_publish`, `learn_admin_report`, `learn_admin_enroll` und `learn_admin_reset_quiz_attempts`. Sie stehen nur Admins zur Verfügung.
+Du kannst einen ganzen Kurs im Chat erstellen lassen, zum Beispiel aus einer Richtlinie oder einem Handbuch. Hänge das Dokument an (oder nutze companyRAG oder M365) und bitte das Modell, einen Kurs daraus zu erstellen. Das Modell liest das Dokument und legt Kapitel, Textlektionen, Quizze mit Erklärungen und optional eine Abschlussprüfung über das Tool `learn_admin_create_course` an. Alle Admin-Werkzeuge stehen nur Admins zur Verfügung:
 
-Eine Schritt-für-Schritt-Anleitung mit Prompt liefert der Skill [Kurs aus Dokument erstellen](/de/tutorials/skills/company-learn/course-authoring-skill/).
+- **learn_admin_list_courses**: alle Kurse inklusive Entwürfen.
+- **learn_admin_get_course**: der vollständige Kurs mit Lösungen und Erklärungen.
+- **learn_admin_create_course**: legt einen ganzen Kurs als Entwurf an.
+- **learn_admin_update_course**: ändert einen Entwurf.
+- **learn_admin_publish**: veröffentlicht einen Kurs oder zieht ihn zurück. Das Modell fragt vorher nach.
+- **learn_admin_report**: Auswertungen (Übersicht, Kurs, Person).
+- **learn_admin_enroll**: schreibt eine Person ein oder aus.
+- **learn_admin_reset_quiz_attempts**: setzt die Versuche einer Person bei einem Quiz zurück.
+- **learn_admin_find_people**: sucht Personen und Gruppen für eine Zuweisung.
+- **learn_admin_assign**: weist einen Kurs einer Person, einer Gruppe oder allen zu, mit Frist.
+
+So kannst du auch direkt im Chat zuweisen, zum Beispiel „Weise den Kurs an die Gruppe Alle Mitarbeitenden zu, Frist 30. November". Dafür muss der Kurs veröffentlicht sein.
+
+Eine Schritt-für-Schritt-Anleitung mit Prompt liefert der Skill [Kurse erstellen](/de/tutorials/skills/company-learn/course-authoring-skill/).
 
 :::caution[Der Kurs bleibt ein Entwurf]
 Ein im Chat erzeugter Kurs ist immer unveröffentlicht. Das Tool liefert dir einen Link zum Kurs-Editor. Prüfe Inhalt und Quizfragen, ergänze Videos und Bilder (die gibt es nur im Editor) und veröffentliche den Kurs erst dann. Über den Chat lässt sich ein bereits veröffentlichter Kurs nicht ändern. Zieh ihn dazu zuerst zurück oder bearbeite ihn im Editor.

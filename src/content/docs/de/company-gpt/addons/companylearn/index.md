@@ -9,7 +9,7 @@ Du findest companyLEARN unter **Alle Apps** und im Apps-Bereich des Chats. Die A
 
 ## Katalog und zugewiesene Kurse
 
-Auf deiner Startseite stehen zuerst die **dir zugewiesenen Kurse**, jeweils mit Frist, Fortschritt und einer Schaltfläche zum Weitermachen. Ist die Frist verstrichen und der Kurs nicht abgeschlossen, erscheint ein Hinweis **überfällig**. Fristen gelten bis zum Ende des Tages (Zeitzone Europe/Berlin). Bist du über mehrere Zuweisungen demselben Kurs zugeordnet, gilt die früheste Frist.
+Auf deiner Startseite stehen zuerst die **dir zugewiesenen Kurse**, jeweils mit Frist, Fortschritt und einer Schaltfläche zum Weitermachen. Ist die Frist verstrichen und der Kurs nicht abgeschlossen, erscheint der Hinweis **Überfällig seit …** mit dem Fristdatum. Fristen gelten bis zum Ende des Tages (Zeitzone Europe/Berlin). Bist du über mehrere Zuweisungen demselben Kurs zugeordnet, gilt die früheste Frist.
 
 Der **Katalog** zeigt alle Kurse, in die du dich selbst einschreiben darfst. Zugewiesene Kurse sind dort markiert. Kurse, die ein Admin nur für bestimmte Personen freigegeben hat, siehst du im Katalog nicht. Sie erscheinen erst, wenn sie dir zugewiesen wurden.
 
@@ -17,9 +17,9 @@ Der **Katalog** zeigt alle Kurse, in die du dich selbst einschreiben darfst. Zug
 
 Eine Lektion ist ein Text mit Bildern oder ein Video. Unter der Lektion findest du gegebenenfalls **Anhänge** zum Herunterladen, etwa PDFs oder Arbeitsblätter.
 
-Neben der Lektion zeigt die **Gliederung** den gesamten Kurs: Kapitel mit Lektionen und Quiz, erledigte Schritte, gesperrte Kapitel und den aktuellen Schritt. Mit **Zurück** und **Weiter** unten gehst du in der Reihenfolge der Gliederung voran. Gesperrte Schritte werden übersprungen. Auf schmalen Bildschirmen klappt die Gliederung ein.
+Neben der Lektion zeigt die **Kursübersicht** den gesamten Kurs: Kapitel mit Lektionen und Quiz, erledigte Schritte, gesperrte Kapitel und den aktuellen Schritt. Mit **Zurück** und **Weiter** unten gehst du in der Reihenfolge der Kursübersicht voran. Gesperrte Schritte werden übersprungen. Auf schmalen Bildschirmen klappt die Kursübersicht ein.
 
-Ein Kapitel bleibt gesperrt, bis die Lektionen des vorherigen Kapitels erledigt und dessen Quiz bestanden ist.
+Ist die **Kapitel-Sperre** für den Kurs eingeschaltet (Standard), bleibt ein Kapitel gesperrt, bis die Lektionen des vorherigen Kapitels erledigt und dessen Quiz bestanden ist.
 
 ## Quizze
 
@@ -60,4 +60,4 @@ Du kannst companyLEARN auch im Chat nutzen, wenn der Agent oder das Modell das T
 - **learn_take_quiz**: Zeigt ein Quiz im Chat. Das Ergebnis wird nach dem Absenden ins Gespräch zurückgemeldet.
 - **learn_open_ui**: Öffnet companyLEARN (Startseite, Katalog oder einen Kurs) im Chat.
 
-Im Chat zeigen Lektionen nur den Inhalt, ohne Gliederung. Beim Abschluss eines Kurses erscheint eine kompakte Abschlussansicht.
+Im Chat zeigen Lektionen nur den Inhalt, ohne Kursübersicht. Beim Abschluss eines Kurses erscheint eine kompakte Abschlussansicht.

@@ -9,7 +9,7 @@ You find companyLEARN under **All apps** and in the Apps panel of the chat. Sign
 
 ## Catalog and assigned courses
 
-Your start page leads with the **courses assigned to you**, each with due date, progress and a button to continue. If the due date has passed and the course is not completed, it shows an **overdue** badge. Due dates run until the end of the day (time zone Europe/Berlin). If several assignments cover the same course, the earliest due date applies.
+Your start page leads with the **courses assigned to you**, each with due date, progress and a button to continue. If the due date has passed and the course is not completed, it shows **Overdue since …** with the due date. Due dates run until the end of the day (time zone Europe/Berlin). If several assignments cover the same course, the earliest due date applies.
 
 The **catalog** shows all courses you may enrol in yourself. Assigned courses are marked there. Courses an admin has released only for specific people do not appear in the catalog. They show up once they are assigned to you.
 
@@ -17,9 +17,9 @@ The **catalog** shows all courses you may enrol in yourself. Assigned courses ar
 
 A lesson is a text with images or a video. Below the lesson you may find **attachments** to download, such as PDFs or worksheets.
 
-Next to the lesson, the **outline** shows the whole course: chapters with lessons and quiz, completed steps, locked chapters and the current step. **Previous** and **Next** at the bottom move you along in outline order. Locked steps are skipped. On narrow screens the outline collapses.
+Next to the lesson, the **course outline** shows the whole course: chapters with lessons and quiz, completed steps, locked chapters and the current step. **Previous** and **Next** at the bottom move you along in course outline order. Locked steps are skipped. On narrow screens the course outline collapses.
 
-A chapter stays locked until the lessons of the previous chapter are done and its quiz is passed.
+If **chapter gating** is on for the course (the default), a chapter stays locked until the lessons of the previous chapter are done and its quiz is passed.
 
 ## Quizzes
 
@@ -60,4 +60,4 @@ You can also use companyLEARN in the chat if the agent or model has the **Learn*
 - **learn_take_quiz**: shows a quiz in the chat. The result is reported back into the conversation after you submit.
 - **learn_open_ui**: opens companyLEARN (start page, catalog or a course) in the chat.
 
-In the chat, lessons show only the content, without the outline. Completing a course shows a compact completion view.
+In the chat, lessons show only the content, without the course outline. Completing a course shows a compact completion view.

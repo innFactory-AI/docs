@@ -118,6 +118,19 @@ Only synced items are changed. All others are skipped; you set their visibility 
 
 Every changed item is then **Individually managed (overrides the repo default)**. Later changes to the repository's default visibility no longer reach these items. You hand them back to the repo default only one at a time, on the detail page with **Reset to repo default**.
 
+### Share an agent with yourself
+
+:::note[Superadmins only]
+Superadmins see other people's private agents in the list, but cannot simply use them in CompanyGPT. **Share with me** adds you as an **Owner** of the agent.
+:::
+
+- On an agent's detail page, **Share with me** is at the top right.
+- In the **Agents** list, select several rows and click **Share N agents with me** in the bar above the table.
+
+The agent then appears in your agent list in CompanyGPT. As an owner you can share it further there with the share dialog. An existing share with everyone stays as it is, and the previous owners keep their rights.
+
+The button is hidden when you can already share the agent through a share of your own, for example because you own it. Every share is recorded in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/).
+
 ## MCP tools
 
 **MCP tools** lists every MCP server of your environment. companyADMIN never shows credentials such as tokens or passwords.

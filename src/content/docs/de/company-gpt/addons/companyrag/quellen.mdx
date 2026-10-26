@@ -7,7 +7,7 @@ Quellen verbinden companyRAG dauerhaft mit einem Drittsystem und synchronisieren
 
 companyRAG liest die Quellsysteme nur. Es schreibt weder Dateien noch Änderungen nach SharePoint, Google Drive oder in andere Systeme zurück. Einzige Ausnahme sind [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/).
 
-Voraussetzung ist eine verbundene [Integration](/de/company-gpt/addons/companyrag/integrationen/). WebDAV- und FTP-Quellen bringen ihre Zugangsdaten selbst mit und brauchen keine vorherige Verbindung.
+Voraussetzung ist eine verbundene [Integration](/de/company-gpt/addons/companyrag/integrationen/). WebDAV- und FTP-Quellen bringen ihre Zugangsdaten selbst mit und brauchen keine vorherige Verbindung. Öffentliche GitHub-Repositories lassen sich ebenfalls ohne Verbindung hinzufügen.
 
 ![Übersicht der Quellen mit Filtern je System und Synchronisationsstatus](./quellen-uebersicht.png)
 
@@ -77,9 +77,22 @@ Bei Google Drive werden keine Berechtigungen übernommen. Der Zugriff auf die sy
 
 Bei **Nextcloud** wählen Sie über **Quelle erstellen** einen Ordner Ihrer Nextcloud, vergeben einen Quellennamen und legen Dateitypen, Sammlung und **Auto-Sync** fest.
 
-Bei **GitHub** wählen Sie über **GitHub-Quelle hinzufügen** Repository und Branch, optional ein **Unterverzeichnis (optional)**, die **Dateiendungen** (`.md`, `.markdown`, `.mdx`, `.txt`), die Ziel-Kollektion und **Auto-Sync**. Unter **Zugang zum Repository** stehen drei Wege zur Wahl:
+Bei **GitHub** wählen Sie über **GitHub-Quelle hinzufügen** Repository und Branch, optional ein **Unterverzeichnis (optional)**, die **Dateiendungen** (`.md`, `.markdown`, `.mdx`, `.txt`), die Ziel-Kollektion und **Auto-Sync**.
 
-- **Token des Erstellers**: Die Quelle nutzt den GitHub-Token aus Ihrer [Integration](/de/company-gpt/addons/companyrag/integrationen/). Läuft er ab oder wird er entfernt, schlägt die Synchronisation fehl.
+Das Repository finden Sie auf zwei Wegen:
+
+- **Meine Repositories**: die Repositories Ihres GitHub-Tokens. Diese Auswahl gibt es nur mit verbundener [Integration](/de/company-gpt/addons/companyrag/integrationen/).
+- **Öffentliches Repository**: Sie geben `owner/repo`, eine GitHub-URL wie `https://github.com/owner/repo` oder einen Suchbegriff ein und klicken auf **Suchen**. Dafür brauchen Sie keinen Token. Ohne Token sind nur öffentliche Repositories möglich.
+
+:::note[Abfragelimit ohne Token]
+Ohne Token erlaubt GitHub nur wenige Abfragen pro Stunde, gemeinsam für alle Nutzer Ihrer Umgebung. Eine URL oder `owner/repo` braucht weniger Abfragen als eine Suche. Erscheint **GitHub-Abfragelimit erreicht**, versuchen Sie es später erneut oder verbinden Sie einen Token. Die Synchronisation selbst ist davon nicht betroffen.
+:::
+
+Bei großen Repositories setzen Sie am besten ein **Unterverzeichnis (optional)**, damit nur der benötigte Teil indexiert wird.
+
+Unter **Zugang zum Repository** stehen drei Wege zur Wahl:
+
+- **Token des Erstellers**: Die Quelle nutzt den GitHub-Token aus Ihrer [Integration](/de/company-gpt/addons/companyrag/integrationen/). Läuft er ab oder wird er entfernt, schlägt die Synchronisation fehl. Ist kein Token verbunden, synchronisiert die Quelle ohne Token; das funktioniert nur für öffentliche Repositories.
 - **Eigener Personal Access Token**: Ein Token mit Lesezugriff, der verschlüsselt bei dieser Quelle gespeichert und nie wieder angezeigt wird.
 - **SSH-Deploy-Key**: companyRAG erzeugt ein Schlüsselpaar. Den öffentlichen Schlüssel tragen Sie im Repository als Deploy-Key ohne Schreibzugriff ein; erst danach gelingt die erste Synchronisation.
 

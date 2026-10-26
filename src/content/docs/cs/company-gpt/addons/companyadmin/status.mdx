@@ -1,0 +1,91 @@
+---
+title: Stav
+description: Stránka stavu v companyADMIN ukazuje, co v CompanyGPT právě platí a zda vše běží – dostupnost služeb, aktivní konfigurace, role, zdroje administrátorů a protokoly.
+---
+
+Stránka **Status** odpovídá na dvě otázky: co právě platí a běží vše? Pokud nesmíte zobrazovat Insights, je to vaše úvodní stránka v companyADMIN.
+
+Nahoře vidíte, kdy byla data načtena (**As of …**), a verzi companyADMIN. Stránka se obnovuje každých pět minut; **Check again** provede dotaz okamžitě.
+
+Stránka má pět sekcí. Které z nich vidíte, závisí na vašich právech:
+
+- První čtyři sekce vyžadují právo **View configuration**. Bez něj se vůbec nezobrazí; místo nich se objeví upozornění.
+- **Roles at a glance** vyžaduje navíc **View roles**, **Admin sources** navíc **Access the admin area**. Pokud některé z nich chybí, zůstane sekce prázdná.
+- Sekce **Logs** se zobrazí pouze s právem **View audit log**.
+
+## Dostupnost rozšíření
+
+Tato sekce ukazuje, zda služby vašeho prostředí odpovídají: samotné CompanyGPT a nastavená rozšíření. Záhlaví shrnuje výsledek, například „11/12 reachable“.
+
+| Sloupec | Obsah |
+|---|---|
+| **Service** | Název služby |
+| **Address** | Kontrolovaná adresa |
+| **State** | **Reachable**, **Not reachable** nebo **Switched off** |
+| **Response time** | Doba kontroly v milisekundách |
+| **Version** | Verze služby; **per deployment**, pokud ji služba sama nehlásí, jinak **unknown** |
+
+U většiny služeb znamená **Reachable** pouze to, že služba odpovídá (**Process answers**). Zda vše za ní funguje, se nekontroluje. Skutečnou připravenost (**Ready for work**) hlásí pouze AI Gateway a n8n.
+
+Pokud něco selže, řádek uvede důvod, například **No answer within 3 seconds** nebo **Connection failed**.
+
+## Aktivní konfigurace
+
+Tato sekce ukazuje, co v CompanyGPT skutečně platí. Nastavení se skládají z vrstev; pozdější vrstva má přednost před dřívější:
+
+1. **Deployment default (YAML)** – základní konfigurace spravovaná innFactory
+2. **Base for everyone** – úpravy pro všechny uživatele
+3. **Group**
+4. **Role**
+5. **User**
+
+Pod tím najdete:
+
+- **Does not apply** – uložené úpravy, které CompanyGPT nepoužije
+- **Where the default wins** – místa, kde má výchozí stav vždy přednost, například horní limit pro subagenty nebo MCP servery z výchozího stavu
+- **Overwritten at start** – práva, která CompanyGPT při každém restartu obnoví. Změna v companyADMIN vydrží jen do příštího restartu.
+
+**Open default and adjustments** vede k podrobnému zobrazení v části [Výchozí stav a úpravy](/cs/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/).
+
+## Přehled rolí
+
+Tabulka zobrazuje každou roli s jejím **Origin**, počtem **People** a **Hints**. Kliknutím roli otevřete.
+
+| Původ | Význam |
+|---|---|
+| **Role sync** | Role se přiřazuje automaticky z Entra ID při přihlášení |
+| **Admin role** | Role, jejíž název přesně odpovídá položce administrátorské skupiny (na velikosti písmen nezáleží) |
+| **System** | Dodáváno s CompanyGPT (ADMIN, USER). Zde se obvykle zobrazuje samotná role ADMIN |
+| **By hand** | Vytvořeno v companyADMIN a přiřazeno ručně |
+
+Možná upozornění jsou **No rights**, **Entra group unknown**, **Nobody holds it**, **Not in the role sync** a **Missing although registered**.
+
+- **Create missing roles** vytvoří role, které jsou registrované pro automatické přiřazování rolí, ale chybí. Dokud taková role chybí, dotčené osoby se nemohou přihlásit. companyADMIN proto chybějící role vytváří i sám, při spuštění a poté každých pět minut, vždy s právy role USER.
+- **Copy rights from "User"** dá roli bez práv stejná práva jako USER. Jednotlivá práva pak změníte v roli.
+
+### Nesoulad rolí
+
+Pokud má někdo uloženou roli, která již neodpovídá jeho skupinám, zobrazí se v části **Role mismatches**. CompanyGPT roli sladí až při jeho příštím přihlášení. **Revoke sessions** nastaví roli okamžitě a pokud možno ukončí běžící relace. Administrátoři se nikdy nemění.
+
+Seznam vychází z členství ve skupinách, která CompanyGPT zná. Osoby, které se od posledního sladění nepřihlásily, v něm chybí; pokud CompanyGPT nezná členy rolí a administrátorských skupin, nelze nesoulad vůbec vypočítat. V obou případech příští přihlášení roli přesto sladí.
+
+## Zdroje administrátorů
+
+Tato sekce ukazuje, kdo je administrátor nebo uživatel Insights a proč. Slouží pouze ke čtení.
+
+| Sloupec | Obsah |
+|---|---|
+| **Source** | Cesta, kterou přístup vzniká, například **Entra group**, **LibreChat role**, **LibreChat grant**, **OAuth role claim** nebo pevné ID uživatele |
+| **Entry** | Konkrétní hodnota, například skupina nebo role |
+| **Panel role** | **Administration** (všechny sekce) nebo **Insights** (pouze Insights) |
+| **Hints** | Například to, přes který zdroj byla připuštěna vaše vlastní relace |
+
+Starší cesty jsou označeny **legacy**. Stále platí. Nový přístup k Insights udělujte právem **View Insights** u role nebo skupiny.
+
+U skupin z pevných nastavení zobrazuje **Groups per setting** skupiny s počtem jejich členů nebo upozornění **unknown in companyGPT**.
+
+Většinu zdrojů nastavuje innFactory při zřizování. Pokud má být přidána další cesta nebo některá odebrána, obraťte se na innFactory.
+
+## Protokoly
+
+Sekce **Logs** obsahuje **companyADMIN log** a **companyGPT log**. Oba jsou popsány v části [Protokoly](/cs/company-gpt/addons/companyadmin/audit-log/).

@@ -1,0 +1,86 @@
+---
+title: Outlook
+description: Doplněk Office v Outlooku – rychlé akce, navrhování schůzek, příprava schůzek, úklid doručené pošty, koučink konceptů a také koncepty a přílohy.
+---
+
+V Outlooku pracuje [doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/) s e-mailem, který právě čtete nebo píšete. Doplněk není povolen ve všech prostředích; základy, jako je otevření, výběr modelu a palety, najdete na stránce [Doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/). Rozhraní doplňku je v němčině; popisky jsou uvedeny německy s českým překladem v závorkách.
+
+E-maily vždy odesíláte pouze vy: asistent nanejvýš zapíše text do konceptu, který odešlete sami. U pozvánek na schůzky je to jinak – viz [Navržení schůzky](#navržení-schůzky).
+
+## Rychlé akce
+
+Outlook má dvě nabídky – jednu při čtení a jednu při psaní e-mailu.
+
+| Zobrazení | Rychlá akce | Co dělá |
+|---|---|---|
+| Čtení | **Antwort entwerfen** (Navrhnout odpověď) | Navrhne odpověď na otevřený e-mail. |
+| Čtení | **Zusammenfassen** (Shrnout) | Shrne e-mail (a vlákno). |
+| Čtení | **Aufgaben extrahieren** (Extrahovat úkoly) | Vytáhne z e-mailu úkoly a termíny. |
+| Psaní | **Korrektur lesen** (Korektura) | Zkontroluje koncept z hlediska pravopisu, gramatiky a interpunkce. |
+| Psaní | **Sprache vereinfachen** (Zjednodušit jazyk) | Přeformuluje koncept jednoduchým a srozumitelným jazykem. |
+| Psaní | **Professioneller Ton** (Profesionální tón) | Přeformuluje koncept profesionálněji a závazněji. |
+
+Rychlé akce pro psaní zobrazují svůj výsledek v chatu a samy váš koncept nenahrazují – podpis a citované vlákno tak zůstanou zachovány. Návrh převezmete pomocí **In E-Mail einfügen** (Vložit do e-mailu).
+
+### Předání e-mailu jako kontextu
+
+Při čtení e-mailu připojí tlačítko **Diese E-Mail an …** (Tento e-mail do …, následuje název vašeho prostředí CompanyGPT) nad vstupním polem otevřený e-mail k vaší další zprávě. Poté napíšete už jen svůj pokyn. Připojený e-mail se zobrazí jako štítek s předmětem a lze ho opět odebrat.
+
+## Čtyři pracovní postupy v Outlooku
+
+Kromě rychlých akcí existují čtyři pracovní postupy. Spustíte je pomocí úvodních návrhů v prázdném chatu nebo přes paletu `/`.
+
+| Pracovní postup | Zobrazení | Výsledek |
+|---|---|---|
+| **Termin vorschlagen** (Navrhnout schůzku) | Čtení | tři návrhy schůzky k potvrzení |
+| **Meeting vorbereiten** (Připravit schůzku) | Čtení | podklady v chatu, bez změn |
+| **Posteingang aufräumen** (Uklidit doručenou poštu) | Čtení | návrhy pro jednotlivé e-maily k potvrzení |
+| **Coaching** | Psaní | připomínky ke konceptu, použitelné jednotlivě |
+
+U všech pracovních postupů, které by něco změnily v kalendáři nebo poštovní schránce, asistent nejprve pouze čte a předkládá návrhy. Provede se jen to, co vyberete na kartě **Bestätigung erforderlich** (Vyžadováno potvrzení): „Diese Vorschläge werden erst nach Ihrem Klick ausgeführt. Prüfen Sie Empfänger und Inhalt, bevor Sie bestätigen.“ (Tyto návrhy se provedou až po vašem kliknutí. Před potvrzením zkontrolujte příjemce a obsah.) Každý návrh má zaškrtávací políčko; **Ausgewählte ausführen** (Provést vybrané) provede zaškrtnuté, **Alle ausführen** (Provést vše) provede všechny.
+
+### Navržení schůzky
+
+U **Termin vorschlagen** (Navrhnout schůzku) asistent přečte otevřený e-mail včetně vlákna, určí účastníky a vyhledá tři volné termíny v následujících deseti pracovních dnech. Pokud vlákno neuvádí délku, naplánuje 30 minut.
+
+Každý návrh zobrazuje čas, název, **Teilnehmer (erhalten eine Einladung)** (účastníci, obdrží pozvánku) a popis, který se stane textem pozvánky. Účastníci s jinou e-mailovou doménou než vaše jsou označeni jako **extern** (externí).
+
+:::caution[Pozvánky se odesílají okamžitě]
+Pokud návrh schůzky potvrdíte, asistent vytvoří schůzku a Outlook **okamžitě** odešle pozvánku všem uvedeným účastníkům. Bez účastníků se pozvánka neodešle.
+:::
+
+### Příprava schůzky
+
+U **Meeting vorbereiten** (Připravit schůzku) asistent vyhledá nejbližší schůzku, která patří k otevřenému e-mailu (stejní účastníci nebo stejný předmět); pokud žádná taková není, vezme nejbližší schůzku v příštích 24 hodinách. Doplní to, co k ní bylo naposledy sdíleno e-mailem a v souborech, a odpoví čtyřmi oddíly: „Zusammenfassung“ (Shrnutí), „Offene Punkte“ (Otevřené body), „Zuletzt geteilte Dateien“ (Naposledy sdílené soubory) a „Teilnehmer“ (Účastníci). Pracovní postup pouze čte a nic nemění.
+
+### Úklid doručené pošty
+
+U **Posteingang aufräumen** (Uklidit doručenou poštu) asistent přečte 15 nejnovějších e-mailů ve vaší doručené poště a ke každému e-mailu navrhne nejvýše jednu akci:
+
+- přiřadit **kategorii**,
+- **přesunout** jej do existující složky,
+- označit jej jako **vyřízený** (označit jako přečtený).
+
+U každého návrhu karta zobrazuje předmět a odesílatele. Přesuny do složek odstraněné pošty, nevyžádané pošty nebo archivu jsou označeny varováním. Návrhy pro e-maily, které asistent nenajde mezi přečtenými e-maily, jsou označeny „Mail nicht in den gelesenen Ergebnissen gefunden“ (E-mail nebyl nalezen v přečtených výsledcích) a nejsou zaškrtnuté; provedou se pouze tehdy, pokud je zaškrtnete sami.
+
+### Koučink
+
+Při psaní poskytuje **Coaching** zpětnou vazbu k vašemu vlastnímu textu – podpis a citované vlákno se nehodnotí. Asistent vrátí krátký celkový dojem a až šest připomínek k **Ton** (tón), **Klarheit** (srozumitelnost), **Länge** (délka) nebo **Struktur** (struktura), každou s pasáží, zdůvodněním a návrhem.
+
+V seznamu připomínek nahradí **Übernehmen** (Převzít) přesně danou pasáž ve vašem konceptu, **Rückgängig** (Zpět) změnu vrátí. Pomocí **Alle übernehmen** (Převzít vše) použijete všechny otevřené připomínky. Podpis a citované vlákno zůstanou beze změny.
+
+## Koncepty
+
+- **Při psaní** vloží **In E-Mail einfügen** (Vložit do e-mailu) pod odpovědí text na pozici kurzoru ve vašem konceptu; vybraný text bude nahrazen. Písmo a formát odstavce se řídí vaším konceptem; podpis a citované vlákno zůstanou zachovány.
+- **Z jiného okna Office:** Pokud asistent vloží obsah do vašeho konceptu z chatu jiného okna, ocitne se po vašem potvrzení na začátku konceptu, nikoli na pozici kurzoru (viz [Více oken Office](/cs/company-gpt/addons/companym365/mehrere-fenster/)).
+- **Při čtení** otevře **Als Antwort öffnen** (Otevřít jako odpověď) odpověď na otevřený e-mail, která již text obsahuje.
+- Prostřednictvím [nástrojů v chatu](/cs/company-gpt/addons/companym365/werkzeuge/#e-mail-outlook) vytváří asistent odpovědi, přeposlání a nové e-maily jako koncepty ve vaší složce **Drafts** (Koncepty). Odeslat je musíte sami.
+
+## Přílohy
+
+- **Čtení příloh:** Asistent může číst přílohy otevřeného e-mailu nebo e-mailu, který našel – text, Word, Excel, PowerPoint, CSV, HTML a PDF, připojené e-maily a schůzky i odkazy na OneDrive/SharePoint. Obrázky a naskenovaná PDF se předávají jako obrázky; vybraný model musí umět zpracovávat obrázky.
+- **Připojení souborů ke konceptu:** Asistent může ke konceptu připojit soubor (až 25 MB), aniž by jej odeslal – z OneDrive nebo SharePointu, z aktuálního chatu, z [companyFILES](/cs/company-gpt/addons/companyfiles/) nebo z otevřeného dokumentu Office.
+
+## Outlook na Macu
+
+Pro Outlook na Macu musí váš administrátor doplněk nasadit navíc (viz [Administrace](/cs/company-gpt/addons/companym365/administration/#instalace)). Bez tohoto kroku tam doplněk chybí. Ve Windows a v prohlížeči není potřeba nic dalšího.

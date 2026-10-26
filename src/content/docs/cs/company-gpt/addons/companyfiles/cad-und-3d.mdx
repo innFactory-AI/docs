@@ -1,0 +1,81 @@
+---
+title: CAD, BIM a 3D
+description: Analýza výkresů CAD, modelů BIM a 3D souborů pomocí companyFILES v chatu CompanyGPT, jejich zobrazení v interaktivním prohlížeči, převod a úpravy.
+---
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+S rozšířením CAD čte companyFILES technické výkresy, modely budov a 3D soubory. Soubor přiložíte v chatu a položíte otázku – agent poskytne přehled modelu, vypíše a spočítá prvky, vypočítá množství a plochy, zobrazí pohledy, vytvoří zprávy a otevře model v interaktivním prohlížeči přímo v chatu.
+
+## Podporované formáty
+
+| Formát | Typický obsah |
+|---|---|
+| DXF | 2D a 3D výkresy s hladinami, bloky, texty a rozvrženími |
+| STEP (`.step`, `.stp`), IGES (`.iges`, `.igs`) | objemové modely CAD ze strojírenství a výstavby zařízení |
+| IFC | modely BIM s podlažími, místnostmi, stavebními prvky a jejich vlastnostmi |
+| STL, OBJ, PLY, 3MF, glTF/GLB | 3D sítě, například pro 3D tisk nebo vizualizaci |
+
+Formáty **DWG** a **DGN** nejsou podporovány. Takové výkresy uložte jako DXF; soubory DGN lze také exportovat jako IFC. Pro další nativní formáty:
+
+| Původ | Funkční export |
+|---|---|
+| Revit (`.rvt`, `.rfa`) | IFC |
+| SolidWorks, Inventor, CATIA, Creo, NX | STEP |
+| SketchUp | IFC, OBJ nebo glTF |
+| FBX | glTF/GLB nebo OBJ |
+
+Při prvním přístupu companyFILES soubor analyzuje. U velkých modelů to chvíli trvá; agent pak oznámí, že se model ještě zpracovává, a krátce nato se zeptá znovu.
+
+## Co agent s modelem dělá
+
+| Nástroj | Účinek |
+|---|---|
+| `describe_model` | přehled: zdroj, jednotky, rozměry, objem, typy prvků a jejich počty, podlaží nebo rozvržení, struktura a dostupné vlastnosti |
+| `query_model` | vypíše prvky filtrované podle typu, podlaží, hladiny, materiálu, názvu nebo vlastností |
+| `get_model_element` | všechny vlastnosti, množství a materiál jednoho prvku |
+| `aggregate_model` | spočítá prvky a sečte množství, seskupené podle typu, podlaží, materiálu nebo hladiny |
+| `model_areas` | plochy: u IFC místnosti podle podlaží (čistá, jinak hrubá podlahová plocha) se seznamem místností, u DXF uzavřené tvary podle hladiny |
+| `render_model_view` | vytvoří obrázek modelu – 3D pohledy (izometrický, shora, zepředu, z boku, volitelně s prvky zvýrazněnými červeně) nebo 2D plán (rozvržení DXF, půdorys podlaží IFC); obrázek se uloží jako PNG |
+| `create_model_report` | zpráva o modelu ve formátu Word nebo PDF s klíčovými údaji, pohledy, plánem každého podlaží, počty prvků, plochami a poznámkami – v designu podle vašich [nastavení](/cs/company-gpt/addons/companyfiles/einstellungen/) |
+| `show_model_viewer` | otevře [interaktivní prohlížeč](#prohlížeč-modelu) v chatu |
+| `convert_model` | převede do jiného formátu, například STEP → STL nebo GLB, IFC → GLB nebo OBJ, STL ↔ OBJ, PLY nebo GLB |
+| `edit_model` | mění vlastnosti, atributy nebo texty: u IFC vlastnosti a atributy jako název nebo popis, u DXF atributy bloků, texty a názvy hladin |
+
+Počty, objemy a plochy vypočítává companyFILES z modelu – nikoli jazykový model. Převody a změny vždy vytvoří **nový dokument**; původní soubor zůstane beze změny. Před provedením změny agent ukáže, co se změní.
+
+Příklady promptů:
+
+- *„Kolik stěn je na každém podlaží a jaký je jejich čistý objem?“*
+- *„Jaké místnosti má přízemí a jak jsou velké?“*
+- *„Vytvoř zprávu o modelu jako PDF.“*
+- *„Převeď model STEP na soubor STL pro 3D tisk.“*
+- *„Zobraz mi model v prohlížeči.“*
+
+## Prohlížeč modelu
+
+Prohlížeč se otevře přímo v chatu; **Open in new tab** jej zobrazí v samostatné kartě prohlížeče.
+
+**Zobrazení**
+
+- **3D** otáčí a přibližuje model; **View** přepne na **Iso**, **Top**, **Front** nebo **Side**.
+- **Plan** zobrazí 2D plán – u IFC vyberete **Storey** (podlaží), u DXF **Layout** (rozvržení).
+- **Section** vloží do modelu rovinu řezu: s volbami **Section direction**, **Section position** a **Other side**.
+- **Measure** určí vzdálenost mezi dvěma body, na které v modelu kliknete.
+
+**Prvky**
+
+- Seznam prvků zobrazuje stavební prvky jako **List** nebo **Structure**, s vyhledáváním **Search elements…** a filtry **All types** a **All storeys**.
+- Kliknutím na prvek – v seznamu nebo v modelu – se zobrazí jeho **Properties** a **Quantities**. Odtud můžete použít **Zoom to element**, **Isolate** nebo **Hide**.
+- **Matches only** zobrazí ve 3D modelu pouze prvky, které odpovídají vyhledávání a filtrům seznamu. Po **Isolate** nebo **Hide** vrátí **Show all** ostatní prvky zpět.
+
+**Export a dotazy**
+
+- **Image** a **Element list (CSV)** uloží aktuální pohled nebo prvky do vašich souborů.
+- **Ask the AI** položí otázku k **Current view** (aktuálnímu pohledu) nebo k vybranému prvku. Otázka se pak objeví v chatu; u pohledu jej companyFILES uloží jako obrázek, který si agent prohlédne pomocí `view_image`.
+
+**Úpravy**
+
+Stejná pole, která může měnit `edit_model`, lze upravovat i v prohlížeči: vyberte prvek a změňte hodnoty v oblasti **Edit** jeho vlastností. Přes **Review … change(s)** uvidíte všechny změny se starou a novou hodnotou a uložíte je pomocí **Save as new version** – původní soubor zůstane beze změny. Poté **Open new version** otevře změněný model.

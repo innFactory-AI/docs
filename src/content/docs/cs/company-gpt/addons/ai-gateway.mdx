@@ -1,0 +1,81 @@
+---
+title: AI Gateway
+description: Volitelná AI Gateway je centrálním rozhraním mezi CompanyGPT a poskytovateli AI – se schvalováním modelů, rozpočty, záložním řešením při přetížení, transparentností nákladů a přístupem přes API pro vaše vlastní aplikace.
+---
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+AI Gateway je volitelné rozšíření CompanyGPT. Funguje jako centrální rozhraní mezi CompanyGPT a poskytovateli AI, v prostředích CompanyGPT například Microsoft Azure a Google Cloud. Pokud je gateway ve vašem prostředí nastavena, CompanyGPT již nevolá modely AI přímo, ale prostřednictvím gateway. Tam je každý požadavek přiřazen konkrétní osobě, ověřen vůči schválením a rozpočtům, zaznamenán i s náklady a předán správnému poskytovateli.
+
+## Co AI Gateway přináší vaší organizaci
+
+- **Modely a schválení na jednom místě:** Gateway propojuje poskytovatele AI ve vašem prostředí a zpřístupňuje jejich modely. U každého požadavku ověřuje, zda daná osoba smí model používat.
+- **Rozpočty a limity:** Vaše organizace může nastavit rozpočty pro celou organizaci, na osobu a na nákladové středisko, například na měsíc, týden nebo den a na poskytovatele nebo model. Jakmile je rozpočet vyčerpán, gateway další požadavky odmítá. Alternativně může vaše organizace určit levnější záložní model, který místo toho odpoví. Možné jsou také limity četnosti požadavků (rate limits).
+- **Záložní řešení při přetížení:** Má-li model více nasazení, gateway přepne na jiné, jakmile poskytovatel některé nasazení omezí nebo je vyčerpána jeho kvóta. Je-li model omezen všude, gateway jej krátce pozastaví a uvede dobu čekání.
+- **Transparentnost využití a nákladů:** Každý požadavek je zaznamenán i s náklady, včetně požadavků z chatu. Administrátoři analyzují využití v dashboardu gateway podle modelu, osoby a nákladového střediska. Každá osoba zde vidí své vlastní využití a náklady.
+- **Přístup přes API pro vaše vlastní aplikace:** Pomocí [AI Gateway API](/cs/api/ai-gateway/) můžete schválené modely volat i z vlastních aplikací, skriptů a nástrojů – kompatibilně s OpenAI, Anthropic a Gemini a s osobním API klíčem. Platí stejná schválení a rozpočty jako v chatu.
+
+## Čeho si všimnete v chatu
+
+Používání CompanyGPT se nemění. Model si jako obvykle zvolíte ve [výběru modelu](/cs/company-gpt/modellauswahl/). Přesto existuje několik rozdílů:
+
+- **Větší požadavky, více času:** Gateway přijímá požadavky až do velikosti 128 MiB, například s mnoha nebo velkými přílohami. Než začne odpověď, může uplynout až deset minut, například u modelů s uvažováním (reasoning). Limity poskytovatelů AI nadále platí, viz [Request size](/cs/api/ai-gateway/#velikost-požadavku-413).
+- **Vyčerpaný rozpočet:** Je-li rozpočet vyčerpán, například váš osobní nebo rozpočet vašeho nákladového střediska, obdržíte místo odpovědi chybovou zprávu. Nové požadavky jsou opět možné až po začátku dalšího období nebo poté, co váš administrátor limit navýší. Pokud vaše organizace určila záložní model, odpoví místo toho tento model.
+- **Krátce pozastavený model:** Pokud poskytovatel model dočasně omezí, může požadavek rovněž skončit chybovou zprávou. Zkuste to znovu po krátké chvíli nebo zvolte jiný model.
+
+Co jednotlivé chyby znamenají a zda pomůže opakování, je popsáno v části [Error messages](/cs/api/ai-gateway/#chybové-zprávy) dokumentace AI Gateway API.
+
+## Otevření gateway
+
+V prostředích s AI Gateway obsahuje stránka [Všechny aplikace](/cs/company-gpt/addons/alle-apps/) dlaždici **AI Gateway** s textem **Control LLM providers, budgets and routing.** Otevírá dashboard gateway. O tom, zda dlaždici uvidíte, rozhoduje vaše organizace.
+
+![Dlaždice AI Gateway, n8n a AI Gateway Infos na stránce Všechny aplikace v demo přístupu](./ai-gateway-kacheln.png)
+
+V [demo přístupu](/cs/demo-zugang/) je navíc dlaždice **AI Gateway Infos** (**Mehr über das optionale AI Gateway erfahren** – „Zjistěte více o volitelné AI Gateway“). Jde o vlastní dlaždici demo přístupu, která vede na [produktovou stránku AI Gateway](https://innfactory.ai/en/services/ai-gateway/) na innfactory.ai.
+
+V dashboardu se přihlásíte pomocí **Continue with company account** přes jednotné přihlášení (single sign-on). Co poté uvidíte, závisí na vaší roli v gateway:
+
+- V části **Overview** → **My usage** vidíte své vlastní využití a tam v části **Spending** své výdaje a platné limity (stránka **My spending**).
+- Pokud smíte vytvářet vlastní API klíče, najdete je v části **Overview** → **My settings** → **API keys**. Jak to funguje, je popsáno v [AI Gateway API](/cs/api/ai-gateway/#klíče-api).
+- Pokud dashboard pro vaši roli není povolen, zobrazí se **Dashboard not available**. V takovém případě se obraťte na svého administrátora.
+
+## Pro administrátory
+
+### Kdo gateway spravuje
+
+innFactory v gateway nastavuje připojení k poskytovatelům AI a modely vašeho prostředí. Změny, například další model, si vyžádejte u innFactory.
+
+Jakou roli má osoba v gateway, se odvozuje ze skupin ve vašem adresáři; mapování pro vaše prostředí nastavuje innFactory. Dlaždice na stránce Všechny aplikace je pouze odkaz: přístup k dashboardu řídí samotná gateway. V companyADMIN přepínač **Show in companyTOOLS** v části **Configuration → [Tools](/cs/company-gpt/addons/companyadmin/tools/)** dlaždici pouze zobrazuje nebo skrývá.
+
+### Co dashboard zobrazuje administrátorům
+
+V závislosti na své roli vidí administrátoři v dashboardu mimo jiné tyto oblasti:
+
+| Oblast | Obsah |
+|---|---|
+| **Usage** | Kdo a co gateway používá, podle modelu, uživatele a nákladového střediska |
+| **Costs & budgets** | **Cost centers** se členy a limity a **Model limits** pro jednotlivé modely |
+| **Providers & models** | Připojení poskytovatelé a modely s cenami, limity a stavem |
+| **Access** | **Users** s rolemi a rozpočty, **Access groups** a **API keys** |
+| **Events** | Zamítnutí, chyby a akce administrátorů |
+
+### Součinnost s companyADMIN
+
+- **Modely v chatu:** Gateway spravuje poskytovatele, modely a rozpočty. Která role vidí v chatu které modely, se nadále rozhoduje v companyADMIN, viz [Modely](/cs/company-gpt/addons/companyadmin/modelle/#ai-gateway). Tlačítkem **Open gateway** se odtud dostanete do gateway.
+- **Provozní stav:** V části [Stav](/cs/company-gpt/addons/companyadmin/status/) companyADMIN ukazuje, zda je gateway připravena k provozu.
+
+## Dostupnost
+
+AI Gateway je volitelná a není nastavena v každém prostředí CompanyGPT. innFactory ji pro vaše prostředí nastaví na vyžádání – kontaktujte nás, pokud ji chcete používat.
+
+V [CompanyGPT Sovereign](/cs/company-gpt/sovereign/) nejsou rozpočty a nákladové funkce AI Gateway momentálně k dispozici.
+
+## Související dokumentace
+
+- [AI Gateway API](/cs/api/ai-gateway/) — volání modelů z vlastních aplikací, rozpočty, limity a chybové kódy
+- [Agents API](/cs/api/agents-api/#rozpočty-v-ai-gateway) — rozpočty gateway pro požadavky na agenty
+- [Všechny aplikace](/cs/company-gpt/addons/alle-apps/) — dlaždice a kdo je vidí
+- [Modely v companyADMIN](/cs/company-gpt/addons/companyadmin/modelle/) — která role vidí v chatu které modely
+- [Výběr modelu](/cs/company-gpt/modellauswahl/) — přehled modelů v CompanyGPT

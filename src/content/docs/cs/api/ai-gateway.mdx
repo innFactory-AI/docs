@@ -1,0 +1,281 @@
+---
+title: AI Gateway API
+description: Přímý přístup k modelům AI vašeho prostředí přes AI Gateway – kompatibilní s OpenAI, Anthropic a Gemini, s osobním klíčem API, rozpočty a nákladovými středisky.
+---
+
+import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+AI Gateway je centrální rozhraní mezi CompanyGPT a poskytovateli AI. Co volitelná brána přináší vaší organizaci a jak se projevuje v CompanyGPT, popisuje stránka [AI Gateway](/cs/company-gpt/addons/ai-gateway/). V prostředích s AI Gateway můžete ke schváleným modelům AI přistupovat také přímo z vlastních aplikací, skriptů a nástrojů. Brána používá rozhraní, která už vaše knihovny znají:
+
+- **Kompatibilní s OpenAI** – Chat Completions, Responses, embeddingy, generování obrázků a audio
+- **Kompatibilní s Anthropic** – Messages API
+- **Kompatibilní s Gemini** – GenerateContent
+
+Které rozhraní použijete, nezávisí na poskytovateli, u kterého model skutečně běží. Brána požadavek přeloží. Model GPT tak můžete volat například i pomocí Anthropic SDK.
+
+Všechny požadavky podléhají schválením modelů, rozpočtům a limitům, které vaše organizace v bráně nastavila.
+
+## Základní URL
+
+API je dostupné pod doménou vaší AI Gateway. Přesnou adresu vám sdělí váš administrátor.
+
+| Rozhraní | Základní URL v SDK | Příklad cesty |
+| --- | --- | --- |
+| OpenAI | `https://<your-gateway-domain>/v1` | `POST /v1/chat/completions` |
+| Anthropic | `https://<your-gateway-domain>` | `POST /v1/messages` |
+| Gemini | `https://<your-gateway-domain>` | `POST /v1beta/models/<model-id>:generateContent` |
+
+Pokud pro vás administrátor nastavil přístupovou skupinu, může vám také předat samostatnou základní URL ve tvaru `https://<your-gateway-domain>/v1/<group>`. Ta nabízí pouze modely této skupiny.
+
+## Klíče API
+
+Pro přístup k API potřebujete osobní klíč API. Klíče brány začínají na `aig_`.
+
+### Vytvoření klíče
+
+<Steps>
+
+1. Otevřete dashboard AI Gateway na adrese `https://<your-gateway-domain>/` a přihlaste se pomocí **Continue with company account**.
+2. V postranním panelu vyberte **Overview** → **My settings** → **API keys**.
+3. Klikněte na **New key**, zadejte název a potvrďte tlačítkem **Create key**.
+4. Klíč si ihned zkopírujte. Znovu už zobrazen nebude.
+
+</Steps>
+
+Pokud patříte k nákladovému středisku, můžete klíč vytvořit také přímo pro toto středisko: v části **Overview** → **My usage** → **Spending** pomocí **New key** vedle příslušného nákladového střediska. Takový klíč se účtuje na nákladové středisko a přebírá vaše přístupová práva.
+
+Zda smíte vytvářet vlastní klíče a které oblasti dashboardu vidíte, závisí na vaší roli a konfiguraci vašeho prostředí. Pokud klíč vytvořit nemůžete, obraťte se na svého administrátora.
+
+Klíč přebírá schválení modelů a rozpočet svého vlastníka. Zacházejte s ním jako s heslem. V části **My settings** → **API keys** můžete svůj klíč sami zneplatnit (**Revoke**) nebo pro něj vytvořit nový tajný klíč (**Rotate secret**); předchozí tajný klíč pak přestane fungovat. Kdo smí vytvářet klíče, může vytvořit i nový tajný klíč. Obojí mohou provést také administrátoři. Pokud se klíč dostal do nesprávných rukou, okamžitě jej zneplatněte; v případě pochybností se obraťte na svého administrátora.
+
+### Předání klíče
+
+Brána přijímá klíč v hlavičkách, které příslušná SDK posílají tak jako tak:
+
+| Hlavička | Typický klient |
+| --- | --- |
+| `Authorization: Bearer aig_...` | OpenAI SDK, vlastní klienti |
+| `x-api-key: aig_...` | Anthropic SDK |
+| `x-goog-api-key: aig_...` | Google GenAI SDK |
+
+Pokud klíč chybí, brána odpoví stavem `401`.
+
+## Příklady
+
+Nahraďte `<model-id>` ID modelu ze [seznamu modelů](#dostupné-modely).
+
+<Tabs>
+  <TabItem label="OpenAI SDK (Python)">
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://<your-gateway-domain>/v1",
+    api_key="aig_...",
+)
+
+response = client.chat.completions.create(
+    model="<model-id>",
+    messages=[{"role": "user", "content": "Summarize the three most important points."}],
+)
+print(response.choices[0].message.content)
+```
+  </TabItem>
+  <TabItem label="Anthropic SDK (Python)">
+```python
+import anthropic
+
+client = anthropic.Anthropic(
+    base_url="https://<your-gateway-domain>",
+    api_key="aig_...",
+)
+
+message = client.messages.create(
+    model="<model-id>",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Summarize the three most important points."}],
+)
+print(message.content[0].text)
+```
+  </TabItem>
+  <TabItem label="curl (OpenAI)">
+```bash
+curl https://<your-gateway-domain>/v1/chat/completions \
+  -H "Authorization: Bearer aig_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "<model-id>",
+    "messages": [{"role": "user", "content": "Hello!"}]
+  }'
+```
+  </TabItem>
+  <TabItem label="curl (Gemini)">
+```bash
+curl "https://<your-gateway-domain>/v1beta/models/<model-id>:generateContent" \
+  -H "x-goog-api-key: aig_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contents": [{"role": "user", "parts": [{"text": "Hello!"}]}]
+  }'
+```
+  </TabItem>
+</Tabs>
+
+U rozhraní Anthropic je parametr `max_tokens` povinný. Streaming funguje stejně jako u příslušného poskytovatele, například pomocí `"stream": true` u OpenAI a Anthropic nebo přes `:streamGenerateContent` u Gemini.
+
+## Endpointy
+
+| Cesta | Rozhraní | Účel |
+| --- | --- | --- |
+| `POST /v1/chat/completions` | OpenAI | Chat |
+| `POST /v1/responses` | OpenAI | Responses API; dřívější odpovědi nelze podle jejich ID načíst ani smazat |
+| `POST /v1/messages` | Anthropic | Messages API |
+| `POST /v1beta/models/<model-id>:generateContent` | Gemini | Odpověď bez streamingu |
+| `POST /v1beta/models/<model-id>:streamGenerateContent` | Gemini | Odpověď se streamingem |
+| `POST /v1/embeddings` | OpenAI | Textové embeddingy |
+| `POST /v1/images/generations` | OpenAI | Generování obrázků |
+| `POST /v1/audio/transcriptions`, `POST /v1/audio/speech` | OpenAI | Převod řeči na text, převod textu na řeč |
+| `GET /v1/models` | OpenAI | Modely dostupné pro váš klíč |
+
+Které endpointy můžete skutečně používat, závisí na modelech schválených ve vašem prostředí.
+
+## Dostupné modely
+
+`GET /v1/models` vrací modely, které smí váš klíč používat. Seznam je filtrován pro každou osobu zvlášť: dvě osoby ve stejném prostředí mohou vidět různé seznamy. Nespoléhejte proto na napevno zadaná ID modelů, aniž byste je ověřili podle seznamu.
+
+```bash
+curl https://<your-gateway-domain>/v1/models \
+  -H "Authorization: Bearer aig_..."
+```
+
+## Rozpočty a nákladová střediska
+
+Každý požadavek vytváří náklady, které brána zaznamenává. V závislosti na nastavení platí rozpočty pro celou organizaci, pro vás osobně a pro nákladová střediska, například za měsíc, týden nebo den a také pro jednotlivé modely.
+
+Své aktuální náklady najdete v dashboardu v části **Overview** → **My usage** → **Spending** (stránka **My spending**). Pro každé nákladové středisko, ke kterému patříte, zobrazuje vaši spotřebu, platné limity a stav od **OK** po **Blocked**. Pokud má nákladové středisko limit na člena, vidíte tam pouze své vlastní výdaje.
+
+### Vyčerpaný rozpočet (402)
+
+Pokud je rozpočet vyčerpán, brána požadavek odmítne se stavem `402`. Požadavek neopakujte: znovu bude přijat až se začátkem dalšího zúčtovacího období, nebo jakmile váš administrátor limit navýší. Ve své aplikaci uživatelům nejlépe zobrazte srozumitelnou zprávu, například „rozpočet vyčerpán“. Pokud pro vás nebyl nastaven vůbec žádný rozpočet, obsahuje chybová zpráva kód `budget_required`.
+
+Vaše organizace může místo toho definovat levnější záložní model. Brána pak na požadavky chatu odpovídá tímto modelem i přes vyčerpaný rozpočet. Poznáte to podle hlavičky `x-gateway-budget-fallback` a odlišného pole `model` v odpovědi.
+
+### Náklady a rozpočet v hlavičkách odpovědi
+
+| Hlavička | Význam |
+| --- | --- |
+| `x-aigateway-response-cost` | Náklady tohoto požadavku v USD (např. `0.001234`) |
+| `X-Budget-User-Remaining` | Váš zbývající osobní rozpočet, pokud je nastaven limit |
+| `X-Budget-CostCenter-Remaining` | Zbývající rozpočet nákladového střediska, pokud je nastaven limit |
+| `x-request-id` | ID požadavku. Uveďte jej, když se kvůli chybě obracíte na svého administrátora. |
+
+Hodnoty `X-Budget-*` jsou celá čísla v miliontinách amerického dolaru: `4250000` odpovídá 4,25 USD.
+
+## Limity četnosti požadavků (429)
+
+Pokud vaše organizace nastavila limity četnosti, obsahuje každá odpověď hlavičky `X-RateLimit-Limit`, `X-RateLimit-Remaining` a `X-RateLimit-Reset`. Pokud hlavičky chybí, žádný limit nastaven není.
+
+Pokud je limit dosažen nebo poskytovatel AI model omezuje, brána odpoví stavem `429` a hlavičkou `Retry-After`. Před opakováním požadavku počkejte alespoň tolik sekund, kolik je v ní uvedeno.
+
+### Čekací doba u krátce pozastavených modelů
+
+Pokud brána po několika omezujících odpovědích poskytovatele model krátce pozastaví, odpoví rovněž stavem `429`. `Retry-After` pak udává zbývající čekací dobu a zpráva zní `The provider rate-limited every deployment of model '<model-id>' (429). Retry later (in about N s).`
+
+### Vyčerpaná kvóta poskytovatele
+
+Pokud je vyčerpána kvóta nebo kredit účtu poskytovatele, na kterém model běží, brána to nepovažuje za omezení: přepne na jiné nasazení téhož modelu. Pokud žádné nezbývá, neodpoví stavem `429`, ale `422` s kódem `upstream_quota_exhausted`. Opakování pak nepomůže; obraťte se na svého administrátora.
+
+## Velikost požadavku (413)
+
+Brána přijímá požadavky do velikosti 128 MiB. Větší požadavky odmítne se stavem `413` a kódem `request_too_large`. Chybová zpráva uvádí limit (`limit_bytes`) a, je-li známa, velikost vašeho požadavku (`size_bytes`):
+
+```json
+{
+  "error": {
+    "message": "Request too large: 140.0 MiB exceeds this gateway's limit of 128.0 MiB (MAX_BODY_SIZE).",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "request_too_large",
+    "limit_bytes": 134217728,
+    "size_bytes": 146800640
+  }
+}
+```
+
+Kromě toho platí limity poskytovatelů AI, například 32 MB nebo 100 stran PDF na požadavek u modelů Claude, 50 MB pro soubory u modelů OpenAI a 20 MB na požadavek včetně vložených souborů u modelů Gemini (Google Vertex AI). Pokud poskytovatel požadavek odmítne, brána zpravidla předá jeho stav a zprávu.
+
+## Časové limity
+
+- Ve výchozím nastavení mohou odpovědi bez streamingu trvat až 10 minut (600 sekund). U streamovaných odpovědí platí tato doba do začátku odpovědi.
+- Pokud během streamované odpovědi nepřijdou od poskytovatele po dobu 15 minut (900 sekund) žádná data, brána stream přeruší.
+
+Nastavte časový limit svého klienta alespoň na 600 sekund. To odpovídá výchozímu nastavení OpenAI a Anthropic SDK.
+
+Odpovědi, které mohou trvat déle než několik minut (např. uvažování s vysokou hloubkou přemýšlení nebo velká PDF), si vyžádejte se streamingem. Bez streamingu může být spojení přerušeno přibližně po 4 minutách bez dat, i když by brána sama čekala déle. U streamovaných odpovědí brána pravidelně posílá signál keep-alive, aby spojení zůstalo otevřené.
+
+## Chybové zprávy
+
+Chyby přicházejí ve formátu volaného rozhraní; stavový kód je všude stejný:
+
+<Tabs>
+  <TabItem label="OpenAI">
+```json
+{
+  "error": {
+    "message": "Not found: Model '<model-id>' not found or not available",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "E4040"
+  }
+}
+```
+  </TabItem>
+  <TabItem label="Anthropic">
+```json
+{
+  "type": "error",
+  "error": {
+    "type": "not_found_error",
+    "message": "Not found: Model '<model-id>' not found or not available"
+  }
+}
+```
+  </TabItem>
+  <TabItem label="Gemini">
+```json
+{
+  "error": {
+    "code": 404,
+    "message": "Not found: Model '<model-id>' not found or not available",
+    "status": "NOT_FOUND"
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
+To platí i pro chyby, ke kterým dojde uprostřed streamované odpovědi.
+
+Ve své aplikaci vyhodnocujte stavový kód a u rozhraní OpenAI pole `code`, nikoli volný text zprávy.
+
+| Stav | Význam | Opakovat? |
+| --- | --- | --- |
+| `400` | Neplatný požadavek, odmítnutý poskytovatelem (např. příliš dlouhý prompt), nebo zablokovaný pravidly obsahu (guardrail), kód `E4220` | Ne |
+| `401` | Klíč API chybí nebo je neplatný | Ne |
+| `402` | Rozpočet vyčerpán | Ne |
+| `403` | Klíč zneplatněn nebo vypršel, nebo model pro vás není schválen (`model_not_allowed`) | Ne |
+| `404` | Model neznámý nebo nedostupný | Ne |
+| `413` | Požadavek je příliš velký (`request_too_large`) | Ne |
+| `422` | Odpověď zablokována pravidly obsahu (guardrail), kód `E4220`, nebo problém v konfiguraci brány, například vyčerpaná kvóta poskytovatele (`upstream_quota_exhausted`). Váš klíč je v pořádku; obraťte se na svého administrátora. | Ne |
+| `429` | Dosažen limit četnosti nebo je model omezen | Ano, po uplynutí `Retry-After` |
+| `500`, `502`, `503` | Dočasná chyba v bráně nebo u poskytovatele | Ano, s prodlužujícími se intervaly |
+
+## Související dokumentace
+
+- [AI Gateway](/cs/company-gpt/addons/ai-gateway/) — Co je volitelná AI Gateway a jak se projevuje v CompanyGPT
+- [Agents API](/cs/api/agents-api/) — Programový přístup k agentům CompanyGPT
+- [Výběr modelu](/cs/company-gpt/modellauswahl/) — Přehled modelů v CompanyGPT

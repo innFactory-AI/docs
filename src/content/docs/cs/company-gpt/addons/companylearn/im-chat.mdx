@@ -1,0 +1,87 @@
+---
+title: companyLEARN v chatu
+description: Pomocí MCP serveru Learn můžete v chatu CompanyGPT vyhledávat kurzy, zapisovat se do nich, kontrolovat svůj pokrok a otevírat lekce a kvízy přímo v konverzaci.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Prostřednictvím MCP serveru **Learn** je companyLEARN k dispozici i v chatu CompanyGPT. Asistent vyhledává kurzy, zapisuje Vás do nich, zobrazuje Váš pokrok a otevírá lekce a kvízy přímo v konverzaci. Pracuje s Vaším účtem: vše, co dokončíte v chatu, se započítá přesně stejně jako v rozhraní.
+
+Potřebujete oprávnění **Use courses** (viz [Oprávnění](/cs/company-gpt/addons/companylearn/#oprávnění)).
+
+## Aktivace MCP serveru
+
+Vyberte v chatu MCP server **Learn** – stejným způsobem, jakým do konverzace přidáváte jiné MCP servery. Obecné informace najdete na stránce [MCP server](/cs/company-gpt/integrationen/mcp-server/). Poté stačí požadavek v přirozeném jazyce, například „Jaké kurzy jsou k dispozici?“.
+
+## Nástroje
+
+Server poskytuje sedm nástrojů. Nevoláte je sami: asistent je vybírá podle Vašeho požadavku a identifikátory (ID) kurzů, lekcí a kvízů přebírá ze svých dřívějších výsledků.
+
+| Nástroj | Účel | Vstupy |
+|---|---|---|
+| `learn_list_courses` | Vypsání publikovaných kurzů, každý se stavem zápisu a pokrokem | volitelně `enrolledOnly`: pouze kurzy, do kterých jste zapsáni |
+| `learn_course_overview` | Osnova kurzu s kapitolami, lekcemi a kvízem, včetně stavu uzamčení a dokončení | `courseId` |
+| `learn_enroll` | Zápis do publikovaného kurzu a uvedení první lekce; opakované volání nic nezmění | `courseId` |
+| `learn_my_progress` | Pokrok ve všech kurzech, do kterých jste zapsáni a které jsou publikované, s návrhem dalšího kroku pro každý z nich | – |
+| `learn_watch_lesson` | Zobrazení lekce (video nebo text) v chatu | `lessonId` |
+| `learn_take_quiz` | Zobrazení kvízu v chatu | `quizId` |
+| `learn_open_ui` | Otevření rozhraní companyLEARN v chatu: nástěnka (výchozí), katalog kurzů nebo konkrétní kurz | volitelně `page` (`dashboard`, `courses` nebo `course`) a `courseId` (povinné pro `course`) |
+
+Nástroje vypisují pouze publikované kurzy. Lekce a kvízy lze otevřít až po zápisu a pouze v odemčených kapitolách; v opačném případě asistent obdrží odpovídající upozornění, například že se nejprve musíte zapsat. Kurzy nelze prostřednictvím chatu vytvářet ani měnit – k tomu slouží [správa kurzů](/cs/company-gpt/addons/companylearn/kurse-verwalten/).
+
+## Lekce a kvízy v chatu
+
+`learn_watch_lesson`, `learn_take_quiz` a `learn_open_ui` zobrazují companyLEARN přímo v konverzaci, bez postranního panelu a nabídky:
+
+- **Lekce:** Nahoře se zobrazí název spolu s kurzem a kapitolou, pod nimi tlačítko **Mark complete** a poté video nebo text. Video přehrané do konce se automaticky označí jako dokončené.
+- **Kvíz:** Odpovíte na otázky, kliknete na **Submit answers** a uvidíte výsledek – stejně jako v rozhraní (viz [Kvíz](/cs/company-gpt/addons/companylearn/lernen/#kvíz)). Kvíz navíc automaticky odešle Váš výsledek do konverzace jako zprávu se skóre, hranicí úspěšnosti a počtem správných odpovědí. Asistent na něj tak může hned reagovat, například navržením dalšího kroku. **Retry** spustí nový pokus; i jeho výsledek dorazí do chatu jako nová zpráva.
+- **Rozhraní:** Nástěnka, katalog kurzů nebo stránka kurzu se zobrazí jako v companyLEARN, jen bez postranního panelu.
+
+Pod vloženou lekcí nebo kvízem otevře **Open full course** kurz v companyLEARN na nové kartě.
+
+:::tip
+Po lekci se jednoduše zeptejte na další krok, například „Co dál?“. Pomocí `learn_my_progress` pak asistent zjistí Váš aktuální stav a navrhne vhodnou lekci nebo kvíz. Po kvízu to není nutné: asistent obdrží výsledek automaticky.
+:::
+
+## Ukázkové prompty
+
+| Prompt | Typický nástroj |
+|---|---|
+| „Jaké kurzy jsou v companyLEARN k dispozici?“ | `learn_list_courses` |
+| „Do kterých kurzů jsem zapsán/a?“ | `learn_list_courses` |
+| „Jak je strukturován kurz ‚Základy ochrany osobních údajů‘?“ | `learn_course_overview` |
+| „Zapiš mě do kurzu ‚Základy ochrany osobních údajů‘.“ | `learn_enroll` |
+| „Jak daleko jsem ve svých kurzech a co mě čeká dál?“ | `learn_my_progress` |
+| „Ukaž mi další lekci.“ | `learn_my_progress`, poté `learn_watch_lesson` |
+| „Chtěl/a bych absolvovat kvíz ke kapitole 2.“ | `learn_course_overview`, poté `learn_take_quiz` |
+| „Otevři mi tady v chatu moji nástěnku companyLEARN.“ | `learn_open_ui` |
+
+## Přiřazení nástrojů Learn agentovi
+
+Místo aktivace MCP serveru v každém chatu můžete vytvořit agenta s nástroji Learn, například jako studijního průvodce pro Váš tým. companyLEARN nedodává žádné hotové agenty ani skills.
+
+<Steps>
+
+1. Vytvořte agenta nebo otevřete existujícího (viz [Agenti](/cs/company-gpt/agenten/)).
+
+2. Přidejte agentovi MCP server **Learn** a vyberte nástroje, které má používat. Pro studijního průvodce je obvykle užitečných všech sedm.
+
+3. Přidejte krátké instrukce, například:
+
+   ```text
+   Podporuješ zaměstnance při učení s companyLEARN.
+   Pomocí nástrojů Learn vyhledávej kurzy, zobrazuj pokrok a otevírej
+   lekce a kvízy přímo v chatu. Po každém kroku navrhni
+   další. Když zobrazuješ lekci nebo kvíz, nepiš
+   žádný další úvodní text.
+   ```
+
+4. Agenta uložte a v případě potřeby jej sdílejte se svým týmem.
+
+</Steps>
+
+:::note
+Agent vždy pracuje s účtem osoby, která s ním právě chatuje: vidí její zápisy a pokrok. Každý, kdo agenta používá, potřebuje oprávnění **Use courses**.
+:::
+
+Dále: [Správa kurzů](/cs/company-gpt/addons/companylearn/kurse-verwalten/).

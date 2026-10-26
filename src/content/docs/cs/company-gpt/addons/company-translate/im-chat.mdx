@@ -1,0 +1,87 @@
+---
+title: Překlad v chatu
+description: S MCP serverem companyTRANSLATE překládá agent v chatu CompanyGPT celé soubory i text, používá glosáře a znovu poskytuje dřívější překlady.
+---
+
+:::note[Zatím jen v pilotních prostředích]
+Tato funkce je v současnosti k dispozici pouze v pilotních prostředích.
+:::
+
+Prostřednictvím MCP serveru **companyTRANSLATE** překládá agent v chatu CompanyGPT soubory a text, aniž byste museli otevírat webové rozhraní. Například připojíte smlouvu a napíšete „Přelož soubor do němčiny a použij náš glosář legal-en-de“. Agent přeloží celý dokument a vloží přeložený soubor do chatu.
+
+V chatu platí stejná oprávnění, glosáře a historie jako ve webovém rozhraní: překlady z chatu se zobrazují v části **Recent translations** v oblasti [Dokumenty](/cs/company-gpt/addons/company-translate/dokument-uebersetzen/#nedávné-překlady) a glosáře, které agent uloží, najdete v oblasti [Glosáře](/cs/company-gpt/addons/company-translate/glossare/).
+
+## Předpoklady
+
+- Máte oprávnění k používání companyTRANSLATE (viz [Přístup a oprávnění](/cs/company-gpt/addons/company-translate/#přístup-a-oprávnění)). Bez něj agent nemůže companyTRANSLATE používat.
+- Agent má jako nástroj připojený MCP server **companyTRANSLATE**. Nastavení probíhá stejně jako u [MCP serveru companyTRANSCRIBE](/cs/company-gpt/addons/company-transcribe/mcp-integration/#nastavení-agenta); obecné informace najdete na stránkách [Agenti](/cs/company-gpt/agenten/) a [MCP Server](/cs/company-gpt/integrationen/mcp-server/).
+
+Agent přistupuje pouze k vašim vlastním souborům a překladům a k vašim vlastním a globálním glosářům.
+
+## Překlad souboru
+
+Připojte soubor v chatu – nebo odkažte na soubor, který už v chatu je – a uveďte cílový jazyk. Překládají se stejné formáty jako v oblasti **Documents**: PDF, Word, PowerPoint, Excel, TXT, Markdown a HTML do 40 MB. Struktura a formátování zůstanou zachovány.
+
+Zdrojový jazyk můžete uvést. Pokud ho neuvedete, companyTRANSLATE ho rozpozná z textu souboru. Glosáře zdrojový jazyk vyžadují, takže pokud chcete glosáře použít, je nejlepší ho uvést rovnou.
+
+Agent vloží výsledek do chatu jako nový soubor, se kterým se zachází jako se souborem, který jste nahráli sami. Pokud vložení do chatu selže, dostanete místo toho odkaz ke stažení. Ten je platný do konce doby uchovávání, tedy až 30 dní po překladu.
+
+## Delší překlady
+
+Menší soubory bývají hotové rychle. Pokud překlad trvá déle, než chat na nástroj čeká – což se stává hlavně u velkých souborů a PDF –, pokračuje na pozadí a agent ohlásí, že ještě probíhá. Po chvíli se na výsledek zeptejte, například „Je překlad hotový?“. Agent pak zkontroluje stav a vloží soubor do chatu, jakmile bude k dispozici. Překlad najdete také v části **Recent translations** ve webovém rozhraní.
+
+Pokud odpověď agenta v chatu zastavíte ve chvíli, kdy ještě čeká na výsledek, companyTRANSLATE překlad také zruší; v historii nezůstane žádný záznam. Překlad, který již pokračuje na pozadí, se tím nezruší.
+
+Každá osoba může v chatu spustit nejvýše dva překlady souborů současně; třetí companyTRANSLATE dočasně odmítne.
+
+## Překlad textu
+
+Agent může s companyTRANSLATE přeložit i text, který napíšete nebo vložíte do chatu. Překlad se zobrazí jako odpověď v chatu. Na jeden překlad je možné až 50 000 znaků, přes Google Cloud Translation až 30 000 znaků.
+
+## Glosáře v chatu
+
+V chatu jsou k dispozici tři druhy glosářů:
+
+| Druh | Jak ho použít |
+|---|---|
+| **Uložené glosáře** | Uveďte název glosáře nebo požádejte o použití všech odpovídajících glosářů. Agent také dokáže vypsat, které glosáře pro danou jazykovou dvojici existují. |
+| **Termíny v chatu** | Napište dvojice termínů do své zprávy, například „Vorstand = Board of Management“. Platí jen pro tento jeden překlad. |
+| **Soubor glosáře v chatu** | Připojte soubor CSV nebo TSV s dvojicemi termínů (do 10 MB). I ten platí jen pro tento jeden překlad. |
+
+Na požádání může agent termíny z chatu nebo z připojeného souboru trvale uložit, například pokynem „Ulož tyto termíny jako glosář legal-en-de“. Glosář se pak zobrazí v části **My glossaries**. Globální glosáře může agent uložit, jen pokud máte oprávnění **Manage glossaries**. Glosář se stejným názvem a jazykovým směrem bude nahrazen.
+
+Pro glosáře v chatu platí dvě omezení:
+
+- U prostého textu se glosáře uplatní jen tehdy, je-li ve vašem prostředí povolen Google Cloud Translation. U souborů fungují i bez Googlu.
+- Jako soubor v chatu přijímá companyTRANSLATE pouze glosáře CSV a TSV. Glosáře TMX a XLIFF nahrajte ve webovém rozhraní v oblasti [Glosáře](/cs/company-gpt/addons/company-translate/glossare/#nahrání-glosáře).
+
+## Překladová služba
+
+Ve výchozím nastavení překládá companyTRANSLATE i v chatu prostřednictvím Azure AI Translator. Google Cloud Translation se použije jen tehdy, když necháte přeložit text s glosářem nebo o Google výslovně požádáte – a jen pokud je ve vašem prostředí povolen. Služba se nikdy nepřepíná potichu.
+
+U souborů má Google přísnější limity: nejvýše 20 MB, PDF nejvýše 20 stran, žádné soubory Markdown, nejvýše jeden uložený glosář a žádné glosáře XLIFF. Co Google nezvládne, companyTRANSLATE odmítne a jako alternativu uvede Azure. Kam se váš obsah přenáší, popisuje část [Překladové služby a tok dat](/cs/company-gpt/addons/company-translate/#překladové-služby-a-tok-dat).
+
+## Dřívější překlady
+
+Agent dokáže vypsat vaše nedávné překlady – z chatu i z webového rozhraní – a dřívější překlad znovu vložit do chatu jako soubor, například pokynem „Pošli mi znovu německou verzi včerejší smlouvy“. Funguje to, dokud je překlad uchováván, tedy 30 dní. Starší překlady již vypršely.
+
+## Nástroje MCP serveru
+
+Pro ty, kdo si vytvářejí vlastní překladatelské agenty: MCP server poskytuje osm nástrojů.
+
+| Nástroj | Účel |
+|---|---|
+| `translate_document` | Úplný překlad souboru z chatu a jeho vložení do chatu jako nového souboru |
+| `get_translation_status` | Kontrola stavu déle trvajícího překladu a vyzvednutí výsledku |
+| `translate_text` | Překlad textu |
+| `list_languages` | Vypsání dostupných jazyků s jejich jazykovými kódy |
+| `list_glossaries` | Vypsání osobních a globálních glosářů, volitelně podle jazykové dvojice |
+| `save_glossary` | Uložení dvojic termínů nebo souboru CSV/TSV z chatu jako glosáře |
+| `list_translations` | Vypsání vlastních překladů z chatu a webového rozhraní, od nejnovějších |
+| `get_translation` | Opětovné vložení dřívějšího překladu do chatu jako souboru |
+
+## Související témata
+
+- [Překlad dokumentu](/cs/company-gpt/addons/company-translate/dokument-uebersetzen/) – formáty, historie a uchovávání
+- [Glosáře](/cs/company-gpt/addons/company-translate/glossare/) – vytváření a správa glosářů
+- [Agenti](/cs/company-gpt/agenten/) – vytváření agentů a připojování nástrojů

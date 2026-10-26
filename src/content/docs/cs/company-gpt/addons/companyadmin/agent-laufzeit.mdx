@@ -1,0 +1,77 @@
+---
+title: Běhové prostředí agentů
+description: Řiďte v companyADMIN plánované chaty, schvalování nástrojů a limit subagentů a nastavte paměti, uchovávání dat, tvůrce agentů a nahrávání souborů pro jednotlivé role nebo skupiny.
+---
+
+**Configuration** → **Agent runtime** sdružuje nastavení, která určují, jak agenti v CompanyGPT běží.
+
+Každé nastavení můžete převzít pomocí **Manage via companyADMIN**. Dokud spravováno není, platí hodnota ze základní konfigurace; stránka ji zobrazuje (zdroj **librechat.yaml**). Spravované hodnoty (zdroj **companyADMIN**) platí pro všechny, jakmile znovu načtou CompanyGPT. Každá sekce má vlastní tlačítko pro uložení.
+
+## Plánované chaty
+
+Plánované chaty jsou opakované chaty s agentem, které se spouštějí ve stanovených časech.
+
+:::note[Aktuálně pouze v pilotních prostředích]
+Tato funkce je aktuálně k dispozici pouze v pilotních prostředích.
+:::
+
+| Nastavení | Význam |
+|---|---|
+| **Allow scheduled chats** | Zapíná funkci. Je vypnuta, dokud není zapnuta zde ani v základní konfiguraci |
+| **Max schedules per user** | Kolik plánovaných chatů smí mít jedna osoba nejvýše |
+| **Min interval (minutes)** | Nejkratší interval mezi dvěma spuštěními |
+| **Auto-disable after failures** | Po kolika neúspěších se plánovaný chat vypne |
+| **Require a chat project** | Zda musí plánovaný chat patřit k projektu |
+
+Kdo smí plánované chaty používat nebo vytvářet, se nastavuje pro každou roli: role → karta **companyGPT** → funkce **Scheduled chats** (**Use**, **Create**), viz [Role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+Pokud základní konfigurace plánované chaty vypíná, nastavení zde je zapnout nemůže. V takovém případě kontaktujte innFactory.
+
+Jak lidé plánované chaty používají, ukazuje náhled [Nové rozhraní chatu](/cs/company-gpt/neue-chat-oberflaeche/).
+
+## Schvalování nástrojů
+
+Při schvalování nástrojů se CompanyGPT zeptá dané osoby předtím, než agent spustí nástroj. Pravidla se vyhodnocují v pořadí deny → ask → allow a vztahují se i na nástroje MCP a subagentů.
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+**Ask before tool calls** má tři hodnoty:
+
+- **Not set** – platí výchozí hodnota základní konfigurace (pokud žádná není: bez dotazů).
+- **On** – ptát se před voláním nástrojů.
+- **Off** – bez dotazů: nástroje se spouštějí bez ptaní a neplatí už ani pravidla zákazu (deny) a schvalování kódu.
+
+**Mode** určuje, jak dotazování funguje:
+
+| Režim | Chování |
+|---|---|
+| **default** | Ptát se na vše, co není výslovně povoleno. Vhodné výchozí nastavení pro začátek |
+| **dontAsk** | Zamítnout vše, co není výslovně povoleno, bez ptaní. Užitečné pouze s explicitními seznamy povolených položek |
+| **bypass** | Automaticky schválit, pokud to není výslovně zakázáno. Odpovídá přepínači „už se mě neptej“ dané osoby |
+
+Vlastní pravidla schvalování načítá CompanyGPT pouze ze základní konfigurace; nastavuje je innFactory.
+
+## Limit subagentů
+
+**Maximum subagents** omezuje, kolik subagentů lze agentovi v tvůrci agentů přiřadit. Základní konfigurace stanoví horní mez (výchozí 10, nejvýše 50); hodnota zde je touto mezí omezena. Již uložení agenti si své subagenty ponechají, i když hodnotu později snížíte.
+
+## Filtry osobních údajů a tajných údajů
+
+Tato sekce slouží pouze k zobrazení (**librechat.yaml only**). Ukazuje, které filtry pro osobní údaje a tajné údaje (secrets) jsou nastaveny v základní konfiguraci, včetně jejich akce (**Block** nebo **Audit**) a počtu vzorů. Změny provádí innFactory.
+
+## Pro roli nebo skupinu
+
+Zde nastavíte čtyři nastavení pro jednu roli nebo skupinu. Nejprve vyberte v **Pick a role or group**. Každá hodnota může také zůstat **As default**.
+
+| Nastavení | Význam |
+|---|---|
+| **Memories** | **Off** vypne paměti pro tuto roli nebo skupinu, i když je základní konfigurace zapíná pro všechny |
+| **Retention** | Jak dlouho se chaty uchovávají: **What is deleted** (**Temporary chats only** nebo **All chats**), **Delete temporary chats after (hours)**, **Delete all chats after (hours)** a **Keep agent files** |
+| **Agent builder** | Zda je tvůrce agentů v chatu **Visible** nebo **Hidden**, a **Providers for agents** (žádný výběr znamená, že je povolen každý poskytovatel). Oprávnění role vytvářet agenty nadále platí |
+| **File uploads** | **Uploads**: **Allowed** nebo **Off**, dále **Files per message**, **Size per file (MB)** a **Size of all files (MB)**. Prázdné pole znamená výchozí hodnotu. Hodnoty platí pro agenty a pro modely bez vlastního nastavení souborů; poskytovatelé s vlastním nastavením souborů v základní konfiguraci si tyto hodnoty ponechávají |
+
+Hodnota u role má vždy přednost před hodnotou u skupiny. Všechny skupiny mají stejnou prioritu, proto se vyhněte rozdílným hodnotám v několika skupinách téže osoby. **Providers for agents** proto lze nastavit pouze pro roli.
+
+Stejná nastavení najdete také u role (karta **companyGPT**) a u skupiny (karta **Configuration**).

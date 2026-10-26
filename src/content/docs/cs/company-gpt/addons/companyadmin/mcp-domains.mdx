@@ -1,0 +1,45 @@
+---
+title: Domény MCP
+description: Rozhodněte v companyADMIN, které domény smějí MCP servery v CompanyGPT používat – základní seznam od innFactory a vlastní domény vaší organizace.
+---
+
+**Configuration** → **MCP domains** určuje, které domény smějí MCP servery v CompanyGPT používat. Vlastní domény zde přidáváte sami, bez innFactory.
+
+## Základní seznam a vlastní domény
+
+- **Base list (innFactory)** – pochází z konfigurace CompanyGPT a platí vždy. Položky, které CompanyGPT potřebuje samo, nesou odznak **internal**. Základní seznam může měnit pouze innFactory.
+- **Own domains** – přidávají se k základnímu seznamu a platí pro všechny. Změny se projeví bez restartu přibližně do minuty.
+
+## Přidání domény
+
+1. Do pole se zástupným textem `mcp.example.com` zadejte jednu nebo více domén oddělených mezerami nebo čárkami.
+2. Klikněte na **Add**.
+3. Klikněte na **Save**.
+
+| Možné | Nemožné |
+|---|---|
+| `mcp.example.com` | `*` |
+| `*.example.com` | Zástupný znak přes celou příponu jako `*.de` nebo `*.co.uk` |
+| `https://mcp.example.com:8443` | Cesty, parametry nebo přihlašovací údaje v adrese |
+| | Interní názvy a privátní IP adresy |
+| | Adresy IPv6 |
+| | Služby jako nip.io, které odkazují na libovolnou IP adresu |
+| | Adresy loopback, link-local a cloudových metadat |
+
+Povolená schémata jsou http, https, ws a wss. Pokud položka není povolena, companyADMIN neuloží nic a u každé položky uvede důvod.
+
+:::note
+V některých prostředích jsou povoleny i interní názvy a privátní IP adresy. Stránka to pak sama uvádí. Adresy loopback, link-local a cloudových metadat zůstávají vždy blokovány.
+:::
+
+## Odebrání domény
+
+Odeberte doménu ze seznamu a uložte. **Remove domains?** se nejprve zeptá: po uložení budou MCP servery na těchto doménách pro všechny blokovány. Potvrďte tlačítkem **Save and remove**.
+
+## Zvláštní stavy
+
+- **Žádný seznam domén**: pokud vaše prostředí nemá seznam domén, smějí MCP servery používat libovolnou veřejnou doménu; privátní adresy a interní názvy jsou blokovány. Vlastní domény by to omezily na seznam, a proto nejsou možné.
+- **Změněné výchozí hodnoty**: pokud se základní seznam změnil, zobrazí se **The defaults have changed; saving takes the change over.** Pod tím stránka uvádí, co uložení přidá (**Added:**) a co odebere (**Dropped:**).
+- **Seznam nepochází z companyADMIN**: pokud byl uložený seznam zapsán jinde, uložení ho nahradí základním seznamem, interními a vlastními doménami. companyADMIN se nejprve zeptá dialogem **Replace the stored list?**; i tento dialog uvádí, co se odebere (**Dropped:**) a co se přidá (**Added:**). Potvrďte tlačítkem **Replace list**. Položky, které nepocházejí z companyADMIN, převezmete tlačítkem **Take over as own domains**.
+- **Vlastní seznam pro role nebo skupiny**: pokud má role nebo skupina vlastní seznam domén, platí pro její členy místo seznamu spravovaného zde. Stránka na to upozorňuje.
+- **Mezitím změněno**: pokud někdo seznam od jeho načtení změnil, companyADMIN neuloží nic. Zkontrolujte aktuální stav a uložte znovu.

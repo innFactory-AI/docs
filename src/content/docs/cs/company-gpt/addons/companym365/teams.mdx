@@ -1,0 +1,125 @@
+---
+title: Teams
+description: CompanyGPT v Microsoft Teams – karta Teams pro chat a bot pro Teams pro dotazy přes @zmínku, s příkazy, soukromými odpověďmi a sdílením ve vlákně.
+---
+
+companyM365 přináší CompanyGPT do Microsoft Teams dvěma způsoby:
+
+- **Karta Teams** je osobní karta s chatem CompanyGPT. Patří do stejného balíčku aplikace jako [doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/).
+- **Bot pro Teams** je samostatná aplikace Teams. Oslovíte ho v chatu 1:1 nebo přes @zmínku ve skupinových chatech, chatech schůzek a kanálech.
+
+Proto Teams zobrazuje dvě aplikace: kartu pod názvem vašeho prostředí CompanyGPT a bota pod jeho vlastním názvem. Karta i bot používají německé texty; popisky a zprávy jsou uvedeny v němčině s českým překladem v závorce.
+
+## Karta Teams
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+Kartu najdete na panelu aplikací Teams pod názvem vašeho prostředí CompanyGPT. Nabízí chat CompanyGPT s modely a agenty, nahráváním souborů, zdroji a paletami – jak je popsáno na stránce [Doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/). Protože není otevřen žádný dokument, nejsou funkce pro úpravu dokumentu k dispozici.
+
+Karta se řídí motivem Teams včetně režimu vysokého kontrastu. V širokém okně se zprávy a vstupní pole zobrazují ve vystředěném sloupci.
+
+## Bot pro Teams
+
+:::note[Momentálně pouze v pilotních prostředích]
+Tato funkce je momentálně k dispozici pouze v pilotních prostředích.
+:::
+
+Bot pro Teams odpovídá na dotazy přímo v konverzaci – pomocí modelu nebo agenta, který má přístup k Microsoft 365 a dalším zdrojům. Název bota určuje vaše organizace; v Teams ho najdete v části **Apps**.
+
+### Oslovení bota
+
+- **V chatu 1:1** s botem stačí napsat zprávu.
+- **Ve skupinových chatech, chatech schůzek a kanálech** zmiňte bota pomocí @ a jeho názvu.
+- **Jen pro vás (ve skupinových chatech a kanálech):** Do prázdného vstupního pole napište `/` a vyberte bota. Dotaz i odpověď pak uvidíte pouze vy; v této nabídce jsou uvedeny i příkazy. V chatu 1:1 s botem tato nabídka neexistuje; tam jednoduše napíšete zprávu.
+
+Bot se v nabídce `/` zobrazí až poté, co váš administrátor nahraje balíček bota ve verzi 4.1.1 nebo novější.
+
+Při první konverzaci vás bot požádá o přihlášení. Pokud jste se do CompanyGPT nikdy nepřihlásili, budete o to jednou požádáni v prohlížeči. Pokud vás bot požádá, abyste si aplikaci jednou nainstalovali osobně (**Apps** → název bota → **Add**), je to nutné, aby vám mohl odpovídat soukromě.
+
+Účty hostů nejsou podporovány. Chcete-li pracovat s hosty nebo externími osobami, použijte skupinový chat, který sami založíte – Teams nepovoluje aplikace v chatu 1:1 s externími osobami.
+
+### Příkazy
+
+| Zadání | Účinek |
+|---|---|
+| `dotaz` | odpověď od agenta tohoto chatu |
+| `/alias dotaz` | pouze tento dotaz jde uvolněnému agentovi s tímto aliasem |
+| `/agent alias` nebo `/agent název` | nastaví agenta jako váš výchozí pro tento chat; dotaz za tím je zodpovězen ihned |
+| `/agent standard` | znovu odebere vaše výchozí nastavení pro tento chat |
+| `/agents` | zobrazí uvolněné agenty a – pokud to vaše organizace povoluje – vaše vlastní agenty, s **Als Standard setzen** (Nastavit jako výchozí) |
+| `/neu` | zahájí novou konverzaci; dosavadní historie se již nepočítá. Dotaz za tím ji zahájí ihned. |
+| `/öffentlich dotaz` | zviditelní právě tuto jednu odpověď pro všechny (také `/oeffentlich` nebo `/public`); obrázky a soubory zůstávají soukromé |
+| `/hilfe` | příkazy, aktuální agent a upozornění na ochranu soukromí |
+
+### Který agent odpovídá?
+
+Bez aliasu odpovídá váš vlastní výchozí agent pro tento chat; jinak výchozí agent vaší organizace; jinak výchozí model. Každá odpověď v zápatí uvádí agenta, který ji vytvořil.
+
+`/agents` zobrazuje dvě skupiny:
+
+- **Für Teams freigegeben** (Uvolněno pro Teams): agenti, které váš administrátor uvolnil pro Teams s aliasem.
+- **Deine Agents** (Vaši agenti): vaši vlastní agenti a agenti sdílení s vámi – pokud vaše organizace povoluje vlastní agenty v Teams. Sdílení agenti jsou označeni „geteilt von …“ (sdílel/a …).
+
+Agenti, které s vámi sdílel někdo jiný, nevidí historii chatu – žádné vlákno, kontext schůzky ani hovoru, pouze vaši zmínku a vaše vlastní soubory.
+
+### Kontext
+
+- **V kanálu** bot čte celé vlákno.
+- **Ve skupinovém chatu** čte vše od své poslední odpovědi, napoprvé posledních 24 hodin.
+- `/neu` začne bez dosavadní historie.
+- Pokud bota ve vlákně zmíníte bez dotazu, shrne dosavadní průběh.
+
+### Kdo odpověď vidí?
+
+V chatu 1:1 vidíte každou odpověď pouze vy. Ve skupinových chatech, chatech schůzek a kanálech odpovídá bot **soukromě** – tedy pouze vám –, jakmile nastane některý z těchto případů:
+
+- Odpověď používá jiný nástroj než vyhledávání na webu, např. Microsoft 365, vyhledávání v souborech nebo kód.
+- Bot zpracovává vaše soubory, obrázky nebo hlasové zprávy nebo vrací obrázky či soubory.
+- Odpovídá agent, kterého váš administrátor nastavil na „Immer privat“ (Vždy soukromě), nebo některý z vašich vlastních agentů.
+- Máte uložené vzpomínky.
+
+Od té chvíle zůstávají vaše odpovědi v tomto vlákně soukromé. Pokud jsou v chatu hosté, osoby z jiných organizací nebo anonymní účastníci, je každá odpověď soukromá. Dotazy, schválení a upozornění jdou vždy pouze vám, stejně jako odpovědi na dotazy položené přes nabídku `/`.
+
+Pod soukromou odpovědí je uvedeno „Nur du siehst diese Antwort; Teams entfernt sie nach 24 Stunden.“ (Tuto odpověď vidíte pouze vy; Teams ji po 24 hodinách odstraní.) s odkazem, který otevře konverzaci v CompanyGPT v prohlížeči.
+
+### Sdílení odpovědi ve vlákně
+
+Soukromou odpověď můžete zveřejnit pouze vy sami:
+
+- **Im Thread teilen** (Sdílet ve vlákně) pod odpovědí (možné po dobu 24 hodin) zobrazí právě tuto odpověď s jejím textem a webovými zdroji všem ve vlákně, označenou „Geteilt von …“ (Sdílel/a …). Vaše další odpovědi zůstávají soukromé.
+- `/öffentlich dotaz` odpoví veřejně právě na tento dotaz.
+
+Obrázky, soubory a výsledky vyhledávání v souborech zůstávají vždy soukromé. Agenty nastavené na „Immer privat“ (Vždy soukromě) nelze sdílet; zobrazí se pak „Dieser Agent darf nur privat antworten — vom Admin so eingestellt.“ (Tento agent smí odpovídat pouze soukromě – nastaveno administrátorem.) Pokud čtou s sebou externí osoby, odpovídá i `/öffentlich` soukromě a **Im Thread teilen** předem varuje: „Achtung: Im Chat sind externe Teilnehmer — sie sehen die geteilte Antwort.“ (Pozor: v chatu jsou externí účastníci – uvidí sdílenou odpověď.)
+
+### Výsledky
+
+- Odpovědi mohou obsahovat tabulky, kód a vzorce.
+- Vygenerované obrázky se zobrazují jako náhledy (až tři), soubory a zdroje jako seznam.
+- Přes odkaz pokračujete v konverzaci v CompanyGPT v prohlížeči.
+- Odpovědi jsou označeny jako vytvořené umělou inteligencí; tlačítky zpětné vazby odešlete hodnocení, které se uloží v CompanyGPT.
+
+### Soubory, obrázky a hlasové zprávy
+
+- Bot zpracovává soubory a vložené obrázky z vaší zmínky, z citovaných zpráv, z prvního příspěvku vlákna a z dřívějších příspěvků.
+- Limity: nejvýše pět souborů na jednu zmínku, až 25 MB na soubor. Podporovány jsou textové soubory, PDF, soubory Word a Excel (.docx, .xlsx) a obrázky.
+- Soubory ve formátu .doc, .xls, .ppt nebo .pptx bot přeskočí. Uložte je na OneDrive nebo SharePoint; asistent je tam dokáže přečíst.
+- Hlasové zprávy a zvukové soubory bot přepíše pomocí rozpoznávání řeči vašeho prostředí CompanyGPT („🎤 Transkribiert: …“, přepsáno). V chatu s botem Teams nenabízí nahrávání hlasu; zvukové soubory tam přesto fungují. Chcete-li použít hlasovou zprávu ve skupinovém chatu nebo kanálu, odpovězte na ni s citací a zmiňte bota.
+
+### Schůzky a hovory
+
+V chatu schůzky Teams bot schůzku rozpozná a předá agentovi její název a čas. Pokud je k dispozici přepis, může ho agent přečíst a schůzku shrnout; odpověď je pak soukromá. Bot se ke schůzce živě nepřipojuje. Přepisy ad hoc hovorů bez schůzky zatím číst neumí.
+
+### Dotazy a schválení
+
+Dotazy a schválení agenta se zobrazují jako karta, kterou vidíte pouze vy – s **Antworten** (Odpovědět) nebo **Zulassen** (Povolit) a **Ablehnen** (Odmítnout); u více schválení odešlete svou volbu pomocí **Entscheidungen senden** (Odeslat rozhodnutí) nebo všechna odmítnete pomocí **Alle ablehnen** (Odmítnout vše). Pokud je karta pro Teams příliš velká, bot vás odkáže na CompanyGPT v prohlížeči. V chatu 1:1 můžete probíhající odpověď zastavit tlačítkem stop v Teams.
+
+### Co bot pro Teams neumí
+
+Některé akce jsou v botovi pro Teams blokovány a fungují pouze přímo v CompanyGPT:
+
+- vytváření nebo mazání pravidel doručené pošty, vytváření konceptů přeposlání, přesouvání e-mailů, mazání konceptů,
+- nahrávání nebo mazání souborů, zápis do souborů Excel,
+- rušení schůzek, odesílání pozvánek a změna schůzek, které mají účastníky,
+- vytváření odkazů pro sdílení s anonymním přístupem.

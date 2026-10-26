@@ -1,0 +1,92 @@
+---
+title: Nové rozhraní chatu
+description: Náhled přepracovaného rozhraní chatu CompanyGPT s novým vstupním panelem, projekty s pokyny, oznámeními a plánovanými chaty.
+---
+
+:::note[V současnosti pouze v ukázkovém přístupu]
+Nové rozhraní chatu je v současnosti k dispozici pouze v ukázkovém přístupu a v pilotních prostředích.
+:::
+
+CompanyGPT dostává přepracované rozhraní chatu. Tato stránka shrnuje nejdůležitější změny. Stránky o chatu, agentech, skills, promptech, projektech a integracích již zobrazují nové rozhraní a upozorňují na to v horní části. Nové rozhraní si již můžete vyzkoušet v [ukázkovém přístupu](/cs/demo-zugang/).
+
+V německém rozhraní se popisky nových funkcí zatím zobrazují anglicky.
+
+## Nový vstupní panel
+
+Ikona plus ve vstupním poli otevře kombinovanou nabídku pro přílohy a nástroje (**Attach and tools**). Nahrazuje dosavadní kancelářskou sponku, nabídku **Tools** a připínání integrací.
+
+![Vstupní panel s otevřenou nabídkou Attach and tools: vyhledávací pole, možnosti nahrávání a nástroje](./neue-oberflaeche-palette.png)
+
+- **Vše na jednom místě**: Nabídka obsahuje možnosti nahrávání, nedávno použité soubory, vestavěné nástroje jako [Web Search](/cs/company-gpt/integrationen/websuche/), [File Search](/cs/company-gpt/integrationen/dateisuche/) nebo [Run Code](/cs/company-gpt/code-interpreter/), vaše [skills](/cs/company-gpt/skills/) a [MCP servery](/cs/company-gpt/integrationen/mcp-server/). Pomocí vyhledávacího pole v horní části nabídky (**Search tools, skills and servers**) najdete nástroje, skills a servery přímo.
+- **Oblíbené**: Často používané položky označte hvězdičkou nebo klávesami `Ctrl` + `D` (macOS: `⌘` + `D`). Poté se shromáždí v nabídce v části **Favorites**.
+- **Čipy**: Aktivní nástroje a MCP servery se zobrazují jako čipy ve vstupním panelu; vybrané skills se zobrazují jako čipy nad textovým polem. Kliknutím na čip položku opět odeberete.
+- **Míra uvažování**: U modelů s myšlenkovým procesem otevře tlačítko ve vstupním panelu posuvník pro volbu mezi rychlejšími (**Faster**) a chytřejšími (**Smarter**) odpověďmi. Dříve bylo toto nastavení k dispozici pouze v panelu [Parametry](/cs/company-gpt/ki-einstellungen/#reasoning-effort).
+
+![Otevřený posuvník míry uvažování (Thinking) ve vstupním panelu](./neue-oberflaeche-denkaufwand.png)
+
+### Enter přidá nový řádek
+
+V novém rozhraní `Enter` ve výchozím stavu přidá nový řádek. K odeslání stiskněte `Ctrl` + `Enter` (macOS: `⌘` + `Enter`). Ve výchozím stavu jsou zapnutá také nastavení [**Collapse long user messages**](/cs/company-gpt/einstellungen/#collapse-long-user-messages) a [**Resize images before upload**](/cs/company-gpt/einstellungen/#resize-images-before-upload). Pokud jste tato nastavení nebo [odesílání klávesou Enter](/cs/company-gpt/einstellungen/#odesílání) již nastavili sami, vaše volba zůstane zachována.
+
+## Možnosti chatu v záhlaví
+
+Dosavadní nabídka **Export/Share** v záhlaví chatu se nyní jmenuje **Chat options**. Kromě sdílení a exportu nyní nabízí také **Rename**, **Pin**, přiřazení chatu k projektu, **Duplicate**, **Archive** a **Delete**. Dosud byly tyto akce dostupné pouze v nabídce chatu v postranním panelu.
+
+![Otevřená nabídka Chat options v záhlaví chatu](./neue-oberflaeche-chat-optionen.png)
+
+## Projekty s pokyny a soubory
+
+[Projekty](/cs/company-gpt/projekte/) dostávají vlastní pokyny a referenční soubory:
+
+- **Pokyny** (**Instructions**): Nastavte tón, cíle nebo kontext pro všechny chaty v projektu. Pokyny se použijí pro nové zprávy v projektu; dřívější zprávy se nemění. Pravidla vašeho prostředí nadále platí.
+- **Soubory** (**Files**): Uložte do projektu referenční soubory. Je-li zapnuto File Search, chaty v projektu používají relevantní výňatky místo celých souborů. Pracovní prostor projektu ukazuje, kolik souborů může projekt obsahovat. Odebrání souboru ovlivní pouze budoucí zprávy.
+
+![Pracovní prostor projektu s Instructions, Files a chaty projektu; vlevo projekt v postranním panelu](./neue-oberflaeche-projekt.png)
+
+Ve výchozím stavu se chaty projektu zobrazují pouze ve svém projektu a již ne také v seznamu **Chats**. Volba v nabídce filtru seznamu chatů (**Show project chats**) je tam opět zobrazí. Vyhledávání a archivované chaty nadále zahrnují všechny chaty.
+
+## Nepřečtené odpovědi a oznámení
+
+Chaty s novými, nepřečtenými odpověďmi jsou v seznamu chatů označeny. Pomocí **Mark as unread** v nabídce chatu chat znovu označíte jako nepřečtený.
+
+Do [Nastavení](/cs/company-gpt/einstellungen/) v části **General** přibývají tyto volby:
+
+- **Show unread count in the tab title**: zobrazí počet chatů s nepřečtenými odpověďmi v názvu a ikoně karty prohlížeče.
+- **Notify me when a reply arrives**: zobrazí oznámení na ploše, když přijde odpověď ve chvíli, kdy nejste v CompanyGPT. Při prvním zapnutí vás prohlížeč požádá o povolení. Když se na CompanyGPT právě díváte, oznámení se nezobrazují.
+- **Play a sound for new replies**: přehraje krátký zvukový signál. Prohlížeče přehrávají zvuky až poté, co jste se stránkou interagovali.
+- **UI scale**: změní měřítko celého rozhraní.
+
+## Agent Marketplace
+
+[Agent Marketplace](/cs/company-gpt/agenten/#agent-marketplace) dostává nové možnosti:
+
+- řazení agentů podle oblíbenosti (**Popular**), podle data vytvoření (**Newest first**, **Oldest first**) nebo podle jména tvůrce (**By creator name**)
+- zobrazení pouze agentů, které jste vytvořili (**Only Agents I created**)
+- úvodní podněty konverzace v podrobném zobrazení agenta: kliknutím na některý z nich otevřete nový chat s agentem; text můžete před odesláním upravit.
+
+Kromě toho lze pokyny agenta propojit s uloženým [promptem](/cs/company-gpt/prompts/), místo aby se zadávaly přímo v agentovi.
+
+## Indikátor kontextu s náklady a zůstatkem
+
+Rozpis [indikátoru kontextu](/cs/company-gpt/chat/#indikátor-kontextu) navíc zobrazuje hodnoty posledního nebo právě probíhajícího kola. Je-li to ve vašem prostředí k dispozici, zobrazuje také jejich náklady a již využitý podíl vašeho zůstatku.
+
+## Artefakty v samostatném okně
+
+[Artefakty](/cs/company-gpt/integrationen/artefakte/) lze otevřít v samostatném okně prohlížeče (**Open in new window**). Pokud váš prohlížeč nové okno zablokuje, povolte pro CompanyGPT vyskakovací okna a zkuste to znovu.
+
+## Plánované chaty
+
+Pomocí **Scheduled chats** necháte [agenta](/cs/company-gpt/agenten/) pravidelně a automaticky pracovat, například na denním shrnutí. Přístup k nim máte přes samostatnou položku v postranním panelu.
+
+Při vytváření plánovaného chatu zadáte:
+
+- název
+- agenta
+- prompt, který agent dostane při každém spuštění
+- volitelně projekt, ke kterému se výsledné chaty přiřadí
+- **Frequency**: **Hourly** (s minutou po celé hodině), **Daily**, **Weekdays** nebo **Weekly** (vždy s časem, u týdenní frekvence i se dny v týdnu), nebo **Custom** pomocí výrazu cron
+- **Time zone**
+
+![Dialog New schedule pro vytvoření plánovaného chatu](./neue-oberflaeche-geplanter-chat.png)
+
+Dialog zobrazuje příští časy spuštění. Každé spuštění zahájí nový chat se zvoleným agentem. V přehledu můžete plánovaný chat ihned spustit pomocí **Run now**, upravit jej nebo vypnout. Pokud plánovaný chat opakovaně selže, automaticky se deaktivuje. Kolik plánovaných chatů můžete vytvořit a jaký je minimální interval mezi spuštěními, určuje vaše prostředí.

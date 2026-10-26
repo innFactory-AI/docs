@@ -1,0 +1,56 @@
+---
+title: Kategorie
+description: Vytváření, přejmenování, skrytí nebo smazání kategorií pro tržiště agentů v companyADMIN.
+---
+
+Kategorie strukturují **tržiště agentů** (agent marketplace) CompanyGPT. Zobrazují se jako karty v tržišti a jako pole v nástroji pro tvorbu agentů. Spravujete je v části **Content** → **Categories**.
+
+Přidávání a úpravy vyžadují oprávnění **Manage agents**. Bez něj chybí tlačítko **Add category** i editační pole; rozbalený řádek pak zobrazuje pouze popis.
+
+## Tabulka
+
+| Sloupec | Obsah |
+|---|---|
+| **Label** | Název zobrazený v tržišti |
+| **Value** | Technický klíč |
+| **State** | **Custom** u kategorií, které jste přidali, **Hidden** u skrytých |
+| **Agents** | Kolik agentů kategorii používá |
+
+Pomocí **Search categories** a filtrů **Visibility** (**Visible** nebo **Hidden**) a **Kind** (**Custom** nebo **Built in**) tabulku zúžíte.
+
+## Přidání kategorie
+
+1. Klikněte na **Add category**. Nad tabulkou se otevře formulář.
+2. Vyplňte pole:
+
+   | Pole | Význam |
+   |---|---|
+   | **Value** | Technický klíč, například `tutorial`. 1–64 znaků: malá písmena, číslice, pomlčky nebo podtržítka, na začátku písmeno nebo číslice. Velká písmena se automaticky převedou na malá |
+   | **Label** | Název zobrazený v tržišti, například `Tutorial` |
+   | **Description** | Krátký popis zobrazený v tržišti pod názvem |
+
+3. Klikněte na **Create**, nebo na **Cancel** pro zahození.
+
+Nové kategorie jsou vlastní kategorie. Můžete je kdykoli přejmenovat, skrýt nebo smazat.
+
+## Úprava kategorie
+
+Rozbalte řádek, změňte **Label** a **Description** a změnu uložte tlačítkem **Save**. Najdete tam také:
+
+- **Hide** nebo **Show** – skryje kartu v tržišti nebo ji znovu zobrazí.
+- **Delete** – pouze u vlastních kategorií. Agenti, kteří kategorii používají, si zachovají její hodnotu, ta se však již nezobrazuje jako karta tržiště.
+- **Restore default** – u přejmenovaných kategorií, vestavěných i vlastních. Obnoví název z doby před prvním přejmenováním.
+
+Vestavěné kategorie lze přejmenovat a skrýt, ale nelze je smazat. Přejmenování nahradí vestavěný přeložený název pro všechny jazyky.
+
+## Výsledek v tržišti
+
+Po vytvoření se kategorie zobrazí jako karta v tržišti agentů s názvem a popisem. Dokud k ní není přiřazen žádný agent, seznam zůstává prázdný.
+
+![Tržiště agentů s novou kategorií a nástrojem pro tvorbu agentů](./marktplatz.png)
+
+V nástroji pro tvorbu agentů uživatelé volí kategorii v poli **Category**. Teprve toto přiřazení zobrazí agenta na příslušné kartě tržiště.
+
+:::tip[Poznámka]
+Zda uživatelé tržiště vůbec vidí, se řídí na kartě **companyGPT** příslušné [role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) funkcí **Marketplace** → **Use**. Kdo v tržišti vidí kterého agenta, vyplývá z jeho [viditelnosti](/cs/company-gpt/addons/companyadmin/inhalte/).
+:::

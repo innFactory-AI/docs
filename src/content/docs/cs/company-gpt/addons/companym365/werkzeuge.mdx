@@ -1,0 +1,170 @@
+---
+title: Nástroje v chatu
+description: Všechny nástroje Microsoft 365, které mohou agenti CompanyGPT používat v chatu – od e-mailu a kalendáře přes soubory a Teams až po úkoly a přepisy schůzek.
+---
+
+Prostřednictvím [serveru MCP](/cs/company-gpt/integrationen/mcp-server/) poskytuje companyM365 nástroje pro Microsoft 365. Agenti s nimi mohou prohledávat e-maily, kontrolovat schůzky, číst soubory z OneDrivu a SharePointu, vyhledávat zprávy v Teams, spravovat úkoly a mnoho dalšího – aniž byste museli sami otevírat příslušnou aplikaci Microsoft.
+
+## Používání nástrojů v chatu
+
+Doplněk se připojuje jako každý jiný [server MCP](/cs/company-gpt/integrationen/mcp-server/) a poté jej lze používat v [chatu](/cs/company-gpt/chat/#integrace) nebo přiřadit přímo [agentovi](/cs/company-gpt/agenten/). Během konverzace agent sám rozhoduje, který z níže popsaných nástrojů se hodí pro váš požadavek.
+
+Nástroje jsou seskupeny podle oblastí Microsoft 365. Pokud ve vašem tenantu chybí pro některou oblast souhlas administrátora, nástroje zůstanou viditelné; volání pak vrátí chybu `graph_consent_missing` a všechny ostatní nástroje fungují dál. Které souhlasy jsou potřeba, je popsáno v části [Administrace](/cs/company-gpt/addons/companym365/administration/#souhlasy-správce-v-microsoft-365).
+
+:::caution[Nástroje kalendáře odesílají okamžitě]
+companyM365 vytváří e-maily vždy pouze jako koncepty. Nástroje kalendáře však odesílají pozvánky, aktualizace a zrušení **okamžitě**, jakmile jsou zadáni účastníci. Přehled všech zapisovacích akcí najdete na [stránce s přehledem](/cs/company-gpt/addons/companym365/).
+:::
+
+## E-mail (Outlook)
+
+Vyhledávání, čtení, třídění a příprava e-mailů. E-maily se nikdy neodesílají, pouze se vytvářejí jako koncepty.
+
+- **search_emails**: Fulltextové vyhledávání v celé poštovní schránce (předmět, text a odesílatel), seřazené podle relevance.
+- **list_recent_emails**: Výpis nejnovějších e-mailů ve složce (výchozí: Doručená pošta).
+- **get_email**: Načtení jednoho e-mailu v plném rozsahu – včetně celého textu, odesílatele, příjemců a údajů o přílohách.
+- **read_email_attachment**: Čtení obsahu přílohy e-mailu: text, Word, Excel, PowerPoint, CSV a HTML, připojené e-maily a schůzky a také odkazy na OneDrive/SharePoint. Obrázky a naskenovaná PDF se předávají jako obrázky – zvolený model musí umět zpracovávat obrázky. Nepodporováno: .doc, .xls a .msg.
+- **create_email_draft**: Vytvoření nového e-mailu jako konceptu (volitelně formátovaného).
+- **create_reply_draft**: Vytvoření odpovědi na existující e-mail jako konceptu.
+- **create_forward_draft**: Vytvoření přeposlání existujícího e-mailu jako konceptu.
+- **update_email_draft**: Úprava existujícího konceptu.
+- **attach_file_to_draft**: Připojení souboru (do 25 MB) ke konceptu bez jeho odeslání – z OneDrivu/SharePointu, z aktuálního chatu, z [companyFILES](/cs/company-gpt/addons/companyfiles/) nebo v [doplňku pro Office](/cs/company-gpt/addons/companym365/office-add-in/) otevřený dokument.
+- **delete_email_draft**: Smazání konceptu (pouze skutečných konceptů).
+- **categorize_email**: Přiřazení kategorií Outlooku k e-mailu.
+- **flag_email**: Označení e-mailu příznakem k vyřízení nebo odstranění příznaku.
+- **mark_email_read**: Označení e-mailu jako přečteného nebo nepřečteného.
+- **move_email**: Přesunutí e-mailu do jiné složky.
+- **create_mail_folder**: Vytvoření nové poštovní složky.
+
+## Nastavení poštovní schránky
+
+- **list_categories** / **create_category**: Výpis nebo vytvoření kategorií Outlooku.
+- **list_inbox_rules** / **create_inbox_rule** / **delete_inbox_rule**: Výpis, vytvoření a smazání pravidel doručené pošty. Pravidlo může přesouvat e-maily do složky, přiřazovat kategorie, označovat je jako přečtené nebo nastavovat jejich důležitost. Pravidla, která e-maily přeposílají, přesměrovávají nebo mažou, nejsou možná. Smazání pravidla ponechá již roztříděné e-maily tam, kde jsou.
+
+## Sdílené poštovní schránky
+
+Sdílené poštovní schránky, ke kterým máte přístup (např. info@ nebo support@), lze pouze číst.
+
+- **list_shared_mailboxes**: Výpis sdílených poštovních schránek, které smíte číst.
+- **list_shared_mailbox_folders**: Výpis složek sdílené poštovní schránky.
+- **list_shared_mailbox_emails**: Výpis e-mailů ve složce sdílené poštovní schránky.
+- **search_shared_mailbox_emails**: Prohledání sdílené poštovní schránky.
+- **get_shared_mailbox_email**: Načtení e-mailu ze sdílené poštovní schránky v plném rozsahu.
+
+## Kalendář
+
+Vyhledávání schůzek, kontrola dostupnosti a správa schůzek.
+
+- **search_calendar**: Vyhledání schůzek podle hledaného výrazu v časovém rozmezí.
+- **list_upcoming_events**: Výpis nejbližších nadcházejících schůzek.
+- **get_event**: Načtení jedné schůzky v plném rozsahu – včetně účastníků se stavem přijetí/odmítnutí, místa a odkazu pro připojení k Teams.
+- **list_shared_calendar_events**: Zobrazení schůzek ze sdíleného kalendáře kolegy – včetně sekundárních kalendářů a s hledaným výrazem. Pokud kalendář sdílený není, agent obdrží upozornění.
+- **find_meeting_times**: Návrh vhodných termínů schůzek pro vás, další účastníky i místnosti a prostředky. Nástroj termíny pouze navrhuje a schůzku nevytváří.
+- **get_schedule**: Načtení časů volno/obsazeno pro až 20 osob a místností.
+- **create_calendar_event**: Vytvoření schůzky. **Pokud jsou zadáni účastníci, pozvánka se odešle okamžitě.**
+- **update_calendar_event**: Změna schůzky. **U schůzek, které organizujete, obdrží účastníci aktualizaci okamžitě.**
+- **cancel_calendar_event**: Zrušení schůzky, kterou organizujete. **Účastníci obdrží zrušení okamžitě.**
+
+## Soubory (OneDrive a SharePoint)
+
+Vyhledávání, čtení, nahrávání a sdílení souborů.
+
+- **search_files**: Vyhledávání souborů ve vlastním OneDrivu a v části „Shared with me“ (sdíleno se mnou). Týmové weby SharePointu agent prohledává pomocí **microsoft_search** nebo **find_sharepoint_sites**.
+- **find_sharepoint_sites**: Vyhledání webů SharePointu včetně jejich knihoven dokumentů podle názvu nebo URL.
+- **list_recent_files**: Výpis naposledy otevřených nebo upravených souborů na OneDrivu.
+- **list_recently_used_files**: Výpis naposledy použitých dokumentů napříč všemi aplikacemi Microsoft 365.
+- **list_trending_files**: Zobrazení dokumentů, které jsou ve vašem okolí právě aktuální („Na čem můj tým právě pracuje?“).
+- **read_file**: Načtení obsahu souboru jako textu nebo Markdownu (text, Word, Excel, PDF a PowerPoint jako přehled snímků s poznámkami řečníka) – také přes odkaz pro sdílení nebo odkaz SharePointu či z companyFILES. Buňky Excelu se vzorci zobrazují svou vypočtenou hodnotu. U souborů nad 25 MB nebo u velmi velkých souborů Word, Excel či PowerPoint se nevrací žádný obsah; velký sešit z OneDrivu nebo SharePointu pak agent čte selektivně pomocí **workbook_get_overview** a **workbook_read_range**.
+- **list_folder_contents**: Výpis obsahu složky OneDrivu nebo knihovny dokumentů SharePointu.
+- **create_file_share_link**: Vytvoření odkazu pro sdílení souboru na OneDrivu nebo SharePointu (přístup pro zobrazení nebo úpravy). Ve výchozím nastavení odkaz funguje pouze v rámci vaší organizace; odkaz se neodesílá e-mailem.
+- **upload_small_file**: Nahrání souboru do 4 MB na OneDrive. Existující soubor se stejnou cestou se přepíše.
+- **delete_file**: Přesunutí souboru do koše (obnovitelné, nejde o trvalé smazání).
+
+## Sešity Excelu
+
+Čtení a úprava souborů Excelu na OneDrivu nebo SharePointu bez jejich otevření.
+
+- **workbook_get_overview**: Zobrazení listů, tabulek a použitých oblastí sešitu.
+- **workbook_read_range**: Čtení oblasti buněk.
+- **workbook_write_range**: Zápis hodnot do oblasti buněk. **Soubor se změní okamžitě.**
+- **workbook_list_table_rows**: Výpis řádků tabulky Excelu.
+
+## Lidé a kontakty
+
+Vyhledávání kolegů i osobních kontaktů.
+
+- **search_people**: Vyhledávání podle relevance ve firemním adresáři a častých kontaktech – podle jména, e-mailu nebo pracovní pozice.
+- **search_contacts**: Prohledání vašich osobních kontaktů v Outlooku.
+- **get_person**: Načtení podrobných informací o osobě (pracovní pozice, firma, e-mailové adresy, telefonní čísla).
+
+## Teams
+
+Vyhledávání a čtení chatů a zpráv v kanálech Teams.
+
+- **search_teams_messages**: Vyhledávání v chatech a zprávách kanálů podle hledaného výrazu.
+- **list_recent_chats**: Výpis naposledy aktivních chatů Teams (individuální, skupinové a chaty schůzek).
+- **get_chat_message**: Načtení jedné zprávy Teams.
+
+## OneNote
+
+Vyhledávání, čtení a psaní poznámek.
+
+- **search_onenote_pages**: Vyhledávání stránek OneNote podle názvu; na vyžádání také v obsahu naposledy změněných stránek.
+- **read_onenote_page**: Načtení obsahu stránky OneNote jako textu.
+- **create_onenote_page**: Vytvoření nové stránky OneNote. Markdown se převede na jednoduché formátování (nadpisy, seznamy, tabulky, tučné písmo, kurzíva, odkazy); obrázky se nepřenášejí.
+- **append_to_onenote_page**: Připojení textu na konec existující stránky OneNote.
+
+## Úkoly (To Do a Planner)
+
+Zobrazení a správa úkolů z Microsoft To Do a Microsoft Planner.
+
+- **list_tasks**: Výpis všech úkolů z Planneru a To Do.
+- **search_tasks**: Vyhledávání úkolů podle názvu.
+- **list_task_lists**: Výpis vašich osobních seznamů To Do.
+- **get_task**: Načtení jednoho úkolu v plném rozsahu.
+- **create_task**: Vytvoření nového úkolu To Do.
+- **update_task**: Změna existujícího úkolu To Do.
+- **complete_task**: Označení úkolu To Do jako dokončeného.
+- **delete_task**: Smazání úkolu To Do. **To Do nemá koš – smazání je trvalé.**
+- **list_planner_plans** / **list_planner_buckets**: Výpis dostupných plánů Planneru nebo jejich sloupců (buckets).
+- **get_planner_task**: Načtení úkolu Planneru s popisem, kontrolním seznamem a přiřazeními.
+- **create_planner_task** / **update_planner_task**: Vytvoření nebo změna úkolů Planneru, včetně jejich přiřazení osobám.
+- **complete_planner_task**: Označení úkolu Planneru jako dokončeného.
+- **delete_planner_task**: Smazání úkolu Planneru. **Planner nemá koš – smazání je trvalé.**
+- **list_group_members**: Výpis členů skupiny Microsoft 365, například pro přiřazení úkolů Planneru.
+
+## Přepisy schůzek
+
+Vyhledávání a čtení přepisů schůzek Teams a přepisů z [companyTRANSCRIBE](/cs/company-gpt/addons/company-transcribe/).
+
+- **list_my_meeting_transcripts**: Výpis přepisů schůzek Teams, které jste v daném časovém rozmezí organizovali nebo spoluorganizovali.
+- **list_attended_meeting_transcripts**: Výpis přepisů všech schůzek Teams, kterých jste se zúčastnili. To vyžaduje, aby váš administrátor navíc nastavil aplikační oprávnění a Application Access Policy; jinak nástroj vrátí `app_access_missing` (viz [Administrace](/cs/company-gpt/addons/companym365/administration/#souhlasy-správce-v-microsoft-365)).
+- **read_meeting_transcript**: Načtení přepisu schůzky – rozděleného podle mluvčího, časové značky a textu.
+- **list_transcripts**: Výpis vašich vlastních přepisů z companyTRANSCRIBE (nikoli schůzek Teams).
+- **read_transcript**: Přečtení přepisu z companyTRANSCRIBE v plném rozsahu, s označením mluvčích, pokud bylo aktivní rozpoznávání mluvčích.
+
+Oba nástroje companyTRANSCRIBE fungují pouze tehdy, je-li companyTRANSCRIBE ve vašem prostředí k dispozici a smíte jej používat.
+
+## Vyhledávání napříč zdroji a profil
+
+Vyhledávání napříč zdroji a nástroje pro orientaci ve vlastním účtu Microsoft 365.
+
+- **microsoft_search**: Vyhledávání napříč soubory, SharePointem, e-maily, schůzkami a osobami; volitelně zúžené na jeden web SharePointu nebo typ souboru.
+- **get_my_profile**: Načtení vlastního profilu (jméno, e-mail, pracovní pozice, oddělení, místo) – aby agenti mohli interpretovat požadavky jako „můj nadřízený“ nebo „moje kancelář“.
+- **list_mail_folders**: Výpis vlastních poštovních složek.
+- **list_calendars**: Výpis vlastních kalendářů a kalendářů jiných osob – u každého s informací, zda jde o výchozí, sdílený nebo sekundární kalendář.
+
+## Skupiny Microsoft 365
+
+Tyto nástroje fungují, jakmile váš administrátor udělí souhlas pro `Group.Read.All`; jinak vracejí `graph_consent_missing`.
+
+- **list_groups**: Výpis skupin Microsoft 365, jejichž jste přímým členem.
+- **search_group_conversations**: Prohledání konverzací Outlooku konkrétní skupiny (s krátkým náhledem).
+- **read_group_conversation**: Přečtení konverzace skupiny v plném rozsahu – všechny příspěvky s odesílatelem a časem.
+
+## Nástroje pro otevřený dokument
+
+V [doplňku pro Office](/cs/company-gpt/addons/companym365/office-add-in/) přibývají další nástroje, kterými asistent čte a upravuje otevřený dokument Word, sešit Excelu, prezentaci nebo e-mail. Každá aplikace Office má pro to vlastní sadu nástrojů. Jsou k dispozici pouze v doplňku, nikoli v chatu v prohlížeči; asistent je používá sám. Jak se změny dostanou do dokumentu, určují [režimy úprav](/cs/company-gpt/addons/companym365/office-add-in/#režimy-úprav).
+
+## Omezení v botovi Teams
+
+Pokud se asistenta ptáte přes [bota Teams](/cs/company-gpt/addons/companym365/teams/#bot-pro-teams), jsou některé zapisovací nástroje blokovány, například pravidla doručené pošty, přesouvání e-mailů, nahrávání a mazání souborů nebo pozvánky. Tyto akce běží pouze přímo v CompanyGPT. Úplný seznam najdete v části [Co bot Teams neumí](/cs/company-gpt/addons/companym365/teams/#co-bot-pro-teams-neumí).

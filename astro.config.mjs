@@ -13,7 +13,14 @@ const skillsSidebarFile = new URL('./src/generated/skills-sidebar.json', import.
 if (!existsSync(skillsSidebarFile)) {
 	throw new Error('src/generated/skills-sidebar.json is missing. Run `npm run skills:sync` first.');
 }
-const skillsSidebar = JSON.parse(readFileSync(skillsSidebarFile, 'utf8'));
+const skillsSidebarRaw = JSON.parse(readFileSync(skillsSidebarFile, 'utf8'));
+// Skill pages exist only in de/en; the cs locale falls back to German content, so give it the English labels.
+const withCsLabels = (item) => ({
+	...item,
+	...(item.translations?.en && { translations: { ...item.translations, cs: item.translations.en } }),
+	...(item.items && { items: item.items.map(withCsLabels) }),
+});
+const skillsSidebar = skillsSidebarRaw.map(withCsLabels);
 
 // Measurement ID of the innfactory.ai GA4 web data stream. docs.company-gpt.com
 // reports into that same stream via cross-domain measurement, so the ID is
@@ -99,7 +106,7 @@ export default defineConfig({
 					},
 				},
 			],
-			title: { de: 'CompanyGPT Dokumentation', en: 'CompanyGPT Documentation' },
+			title: { de: 'CompanyGPT Dokumentation', en: 'CompanyGPT Documentation', cs: 'Dokumentace CompanyGPT' },
 			editLink: {
 				baseUrl: 'https://github.com/innFactory-AI/docs/edit/main'
 			},
@@ -107,6 +114,7 @@ export default defineConfig({
 			locales: {
 				de: { label: 'Deutsch', lang: 'de' },
 				en: { label: 'English', lang: 'en' },
+				cs: { label: 'Čeština', lang: 'cs' },
 			},
 			social: [
 				{ label: 'innFactory AI Consulting GmbH', icon: 'rocket', href: 'https://innfactory.ai' }
@@ -179,7 +187,7 @@ export default defineConfig({
 				}),
 				starlightSidebarTopics([
 					{
-						label: { de: 'Dokumentation', en: 'Documentation' },
+						label: { de: 'Dokumentation', en: 'Documentation', cs: 'Dokumentace' },
 						link: 'intro/company-gpt',
 						icon: 'open-book',
 						// Lets unlisted pages (e.g. the hidden onboarding page, via the `topic`
@@ -187,215 +195,215 @@ export default defineConfig({
 						id: 'documentation',
 						items: [{
 							label: 'Einführung',
-							translations: { en: 'Introduction' },
+							translations: { en: 'Introduction', cs: 'Úvod' },
 							items: [
 								// Each item here is one entry in the navigation menu.
-								{ label: 'CompanyGPT', translations: { en: 'CompanyGPT' }, slug: 'intro/company-gpt' },
+								{ label: 'CompanyGPT', translations: { en: 'CompanyGPT', cs: 'CompanyGPT' }, slug: 'intro/company-gpt' },
 							],
 						},
 						{
 							label: 'Einrichtung',
-							translations: { en: 'Setup' },
+							translations: { en: 'Setup', cs: 'Nastavení' },
 							items: [
-								{ label: 'Onboarding-Portal', translations: { en: 'Onboarding portal' }, slug: 'einrichtung/onboarding-portal' },
-								{ label: 'CompanyGPT Sovereign', translations: { en: 'CompanyGPT Sovereign' }, slug: 'company-gpt/sovereign' },
+								{ label: 'Onboarding-Portal', translations: { en: 'Onboarding portal', cs: 'Portál pro onboarding' }, slug: 'einrichtung/onboarding-portal' },
+								{ label: 'CompanyGPT Sovereign', translations: { en: 'CompanyGPT Sovereign', cs: 'CompanyGPT Sovereign' }, slug: 'company-gpt/sovereign' },
 							]
 						},
 						{
 							label: 'CompanyGPT',
-							translations: { en: 'CompanyGPT' },
+							translations: { en: 'CompanyGPT', cs: 'CompanyGPT' },
 							items: [
-								{ label: 'Modellauswahl', translations: { en: 'Model selection' }, slug: 'company-gpt/modellauswahl' },
-								{ label: 'User Interface', translations: { en: 'User Interface' }, slug: 'company-gpt/user-interface' },
-								{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/einstellungen' },
-								{ label: 'Chat', translations: { en: 'Chat' }, slug: 'company-gpt/chat' },
-								{ label: 'Neue Chat-Oberfläche', translations: { en: 'New chat interface' }, badge: { text: { de: 'Vorschau', en: 'Preview' }, variant: 'caution' }, slug: 'company-gpt/neue-chat-oberflaeche' },
-								{ label: 'Projekte', translations: { en: 'Projects' }, slug: 'company-gpt/projekte' },
+								{ label: 'Modellauswahl', translations: { en: 'Model selection', cs: 'Výběr modelu' }, slug: 'company-gpt/modellauswahl' },
+								{ label: 'User Interface', translations: { en: 'User Interface', cs: 'Uživatelské rozhraní' }, slug: 'company-gpt/user-interface' },
+								{ label: 'Einstellungen', translations: { en: 'Settings', cs: 'Nastavení' }, slug: 'company-gpt/einstellungen' },
+								{ label: 'Chat', translations: { en: 'Chat', cs: 'Chat' }, slug: 'company-gpt/chat' },
+								{ label: 'Neue Chat-Oberfläche', translations: { en: 'New chat interface', cs: 'Nové rozhraní chatu' }, badge: { text: { de: 'Vorschau', en: 'Preview', cs: 'Náhled' }, variant: 'caution' }, slug: 'company-gpt/neue-chat-oberflaeche' },
+								{ label: 'Projekte', translations: { en: 'Projects', cs: 'Projekty' }, slug: 'company-gpt/projekte' },
 								{
 									label: 'Integrationen',
-									translations: { en: 'Integrations' },
+									translations: { en: 'Integrations', cs: 'Integrace' },
 									items: [
-										{ label: 'Websuche & WebFetch', translations: { en: 'Web Search & WebFetch' }, slug: 'company-gpt/integrationen/websuche' },
-										{ label: 'Dateisuche', translations: { en: 'File Search' }, slug: 'company-gpt/integrationen/dateisuche' },
-										{ label: 'Artefakte', translations: { en: 'Artifacts' }, slug: 'company-gpt/integrationen/artefakte' },
-										{ label: 'MCP Server', translations: { en: 'MCP Servers' }, slug: 'company-gpt/integrationen/mcp-server' },
+										{ label: 'Websuche & WebFetch', translations: { en: 'Web Search & WebFetch', cs: 'Vyhledávání na webu a WebFetch' }, slug: 'company-gpt/integrationen/websuche' },
+										{ label: 'Dateisuche', translations: { en: 'File Search', cs: 'Vyhledávání v souborech' }, slug: 'company-gpt/integrationen/dateisuche' },
+										{ label: 'Artefakte', translations: { en: 'Artifacts', cs: 'Artefakty' }, slug: 'company-gpt/integrationen/artefakte' },
+										{ label: 'MCP Server', translations: { en: 'MCP Servers', cs: 'MCP servery' }, slug: 'company-gpt/integrationen/mcp-server' },
 									]
 								},
 								{
 									label: 'Addons',
-									translations: { en: 'Add-ons' },
+									translations: { en: 'Add-ons', cs: 'Doplňky' },
 									items: [
-										{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons' },
-										{ label: 'Gemeinsame Oberfläche', translations: { en: 'Shared interface' }, slug: 'company-gpt/addons/gemeinsame-oberflaeche' },
-										{ label: 'Alle Apps', translations: { en: 'All apps' }, slug: 'company-gpt/addons/alle-apps' },
+										{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons' },
+										{ label: 'Gemeinsame Oberfläche', translations: { en: 'Shared interface', cs: 'Společné rozhraní' }, slug: 'company-gpt/addons/gemeinsame-oberflaeche' },
+										{ label: 'Alle Apps', translations: { en: 'All apps', cs: 'Všechny aplikace' }, slug: 'company-gpt/addons/alle-apps' },
 										{
 											label: 'companyRAG',
-											translations: { en: 'companyRAG' },
+											translations: { en: 'companyRAG', cs: 'companyRAG' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyrag' },
-												{ label: 'Sammlungen', translations: { en: 'Collections' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
-												{ label: 'Strukturierte Daten', translations: { en: 'Structured data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
-												{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
-												{ label: 'OKF-Bundles', translations: { en: 'OKF bundles' }, badge: { text: { de: 'Experimentell', en: 'Experimental' }, variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
-												{ label: 'Dateien', translations: { en: 'Files' }, slug: 'company-gpt/addons/companyrag/dateien' },
-												{ label: 'Hochladen', translations: { en: 'Upload' }, slug: 'company-gpt/addons/companyrag/hochladen' },
-												{ label: 'Quellen', translations: { en: 'Sources' }, slug: 'company-gpt/addons/companyrag/quellen' },
-												{ label: 'Integrationen', translations: { en: 'Integrations' }, slug: 'company-gpt/addons/companyrag/integrationen' },
-												{ label: 'Aufträge', translations: { en: 'Jobs' }, slug: 'company-gpt/addons/companyrag/auftraege' },
-												{ label: 'API-Schlüssel', translations: { en: 'API keys' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
-												{ label: 'Audit-Protokoll', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
-												{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companyrag' },
+												{ label: 'Sammlungen', translations: { en: 'Collections', cs: 'Kolekce' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
+												{ label: 'Strukturierte Daten', translations: { en: 'Structured data', cs: 'Strukturovaná data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
+												{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections', cs: 'Kolekce datových sad' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
+												{ label: 'OKF-Bundles', translations: { en: 'OKF bundles', cs: 'Balíčky OKF' }, badge: { text: { de: 'Experimentell', en: 'Experimental', cs: 'Experimentální' }, variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
+												{ label: 'Dateien', translations: { en: 'Files', cs: 'Soubory' }, slug: 'company-gpt/addons/companyrag/dateien' },
+												{ label: 'Hochladen', translations: { en: 'Upload', cs: 'Nahrávání' }, slug: 'company-gpt/addons/companyrag/hochladen' },
+												{ label: 'Quellen', translations: { en: 'Sources', cs: 'Zdroje' }, slug: 'company-gpt/addons/companyrag/quellen' },
+												{ label: 'Integrationen', translations: { en: 'Integrations', cs: 'Integrace' }, slug: 'company-gpt/addons/companyrag/integrationen' },
+												{ label: 'Aufträge', translations: { en: 'Jobs', cs: 'Úlohy' }, slug: 'company-gpt/addons/companyrag/auftraege' },
+												{ label: 'API-Schlüssel', translations: { en: 'API keys', cs: 'API klíče' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
+												{ label: 'Audit-Protokoll', translations: { en: 'Audit log', cs: 'Auditní protokol' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
+												{ label: 'In CompanyGPT nutzen', translations: { en: 'Using it in CompanyGPT', cs: 'Použití v CompanyGPT' }, slug: 'company-gpt/addons/companyrag/in-companygpt' },
 											]
 										},
 										{
 											label: 'companyKNOWLEDGE',
-											translations: { en: 'companyKNOWLEDGE' },
-											badge: { text: { de: 'Experimentell', en: 'Experimental' }, variant: 'caution' },
+											translations: { en: 'companyKNOWLEDGE', cs: 'companyKNOWLEDGE' },
+											badge: { text: { de: 'Experimentell', en: 'Experimental', cs: 'Experimentální' }, variant: 'caution' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyknowledge' },
-												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyknowledge/agent' },
-												{ label: 'Wissen erzeugen und pflegen', translations: { en: 'Creating and maintaining knowledge' }, slug: 'company-gpt/addons/companyknowledge/wissen-erzeugen' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companyknowledge' },
+												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent', cs: 'Nastavení agenta' }, slug: 'company-gpt/addons/companyknowledge/agent' },
+												{ label: 'Wissen erzeugen und pflegen', translations: { en: 'Creating and maintaining knowledge', cs: 'Vytváření a správa znalostí' }, slug: 'company-gpt/addons/companyknowledge/wissen-erzeugen' },
 											]
 										},
 										{
 											label: 'companyFILES',
-											translations: { en: 'companyFILES' },
+											translations: { en: 'companyFILES', cs: 'companyFILES' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyfiles' },
-												{ label: 'Die Oberfläche', translations: { en: 'The interface' }, slug: 'company-gpt/addons/companyfiles/oberflaeche' },
-												{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/addons/companyfiles/einstellungen' },
-												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent' }, slug: 'company-gpt/addons/companyfiles/agent' },
-												{ label: 'Dokumente erstellen', translations: { en: 'Creating documents' }, slug: 'company-gpt/addons/companyfiles/dokumente-erstellen' },
-												{ label: 'Visualisierungen', translations: { en: 'Visualizations' }, slug: 'company-gpt/addons/companyfiles/visualisierungen' },
-												{ label: 'Präsentationen bearbeiten', translations: { en: 'Editing presentations' }, slug: 'company-gpt/addons/companyfiles/praesentationen' },
-												{ label: 'Vorlagen', translations: { en: 'Templates' }, slug: 'company-gpt/addons/companyfiles/vorlagen' },
-												{ label: 'CAD, BIM und 3D', translations: { en: 'CAD, BIM and 3D' }, slug: 'company-gpt/addons/companyfiles/cad-und-3d' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companyfiles' },
+												{ label: 'Die Oberfläche', translations: { en: 'The interface', cs: 'Rozhraní' }, slug: 'company-gpt/addons/companyfiles/oberflaeche' },
+												{ label: 'Einstellungen', translations: { en: 'Settings', cs: 'Nastavení' }, slug: 'company-gpt/addons/companyfiles/einstellungen' },
+												{ label: 'Agent einrichten', translations: { en: 'Setting up the agent', cs: 'Nastavení agenta' }, slug: 'company-gpt/addons/companyfiles/agent' },
+												{ label: 'Dokumente erstellen', translations: { en: 'Creating documents', cs: 'Vytváření dokumentů' }, slug: 'company-gpt/addons/companyfiles/dokumente-erstellen' },
+												{ label: 'Visualisierungen', translations: { en: 'Visualizations', cs: 'Vizualizace' }, slug: 'company-gpt/addons/companyfiles/visualisierungen' },
+												{ label: 'Präsentationen bearbeiten', translations: { en: 'Editing presentations', cs: 'Úprava prezentací' }, slug: 'company-gpt/addons/companyfiles/praesentationen' },
+												{ label: 'Vorlagen', translations: { en: 'Templates', cs: 'Šablony' }, slug: 'company-gpt/addons/companyfiles/vorlagen' },
+												{ label: 'CAD, BIM und 3D', translations: { en: 'CAD, BIM and 3D', cs: 'CAD, BIM a 3D' }, slug: 'company-gpt/addons/companyfiles/cad-und-3d' },
 											]
 										},
 										{
 											label: 'companyTRANSLATE',
-											translations: { en: 'companyTRANSLATE' },
+											translations: { en: 'companyTRANSLATE', cs: 'companyTRANSLATE' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/company-translate' },
-												{ label: 'Text übersetzen', translations: { en: 'Translate text' }, slug: 'company-gpt/addons/company-translate/text-uebersetzen' },
-												{ label: 'Dokument übersetzen', translations: { en: 'Translate document' }, slug: 'company-gpt/addons/company-translate/dokument-uebersetzen' },
-												{ label: 'Glossare', translations: { en: 'Glossaries' }, slug: 'company-gpt/addons/company-translate/glossare' },
-												{ label: 'Übersetzen im Chat', translations: { en: 'Translating in the chat' }, slug: 'company-gpt/addons/company-translate/im-chat' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/company-translate' },
+												{ label: 'Text übersetzen', translations: { en: 'Translate text', cs: 'Překlad textu' }, slug: 'company-gpt/addons/company-translate/text-uebersetzen' },
+												{ label: 'Dokument übersetzen', translations: { en: 'Translate document', cs: 'Překlad dokumentu' }, slug: 'company-gpt/addons/company-translate/dokument-uebersetzen' },
+												{ label: 'Glossare', translations: { en: 'Glossaries', cs: 'Glosáře' }, slug: 'company-gpt/addons/company-translate/glossare' },
+												{ label: 'Übersetzen im Chat', translations: { en: 'Translating in the chat', cs: 'Překládání v chatu' }, slug: 'company-gpt/addons/company-translate/im-chat' },
 											]
 										},
 										{
 											label: 'companyTRANSCRIBE',
-											translations: { en: 'companyTRANSCRIBE' },
+											translations: { en: 'companyTRANSCRIBE', cs: 'companyTRANSCRIBE' },
 											badge: { text: 'Beta', variant: 'caution' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/company-transcribe' },
-												{ label: 'Aufnehmen und transkribieren', translations: { en: 'Recording and transcribing' }, slug: 'company-gpt/addons/company-transcribe/aufnehmen' },
-												{ label: 'Transkripte bearbeiten', translations: { en: 'Editing transcripts' }, slug: 'company-gpt/addons/company-transcribe/transkripte' },
-												{ label: 'Sprachausgaben', translations: { en: 'Voiceovers' }, slug: 'company-gpt/addons/company-transcribe/sprachausgaben' },
-												{ label: 'Zugriff über den CompanyGPT-Chat', translations: { en: 'Access from the CompanyGPT chat' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/company-transcribe' },
+												{ label: 'Aufnehmen und transkribieren', translations: { en: 'Recording and transcribing', cs: 'Nahrávání a přepis' }, slug: 'company-gpt/addons/company-transcribe/aufnehmen' },
+												{ label: 'Transkripte bearbeiten', translations: { en: 'Editing transcripts', cs: 'Úprava přepisů' }, slug: 'company-gpt/addons/company-transcribe/transkripte' },
+												{ label: 'Sprachausgaben', translations: { en: 'Voiceovers', cs: 'Hlasové výstupy' }, slug: 'company-gpt/addons/company-transcribe/sprachausgaben' },
+												{ label: 'Zugriff über den CompanyGPT-Chat', translations: { en: 'Access from the CompanyGPT chat', cs: 'Přístup z chatu CompanyGPT' }, slug: 'company-gpt/addons/company-transcribe/mcp-integration' },
 											]
 										},
 										{
 											label: 'companyLEARN',
-											translations: { en: 'companyLEARN' },
-											badge: { text: { de: 'Neu', en: 'New' }, variant: 'tip' },
+											translations: { en: 'companyLEARN', cs: 'companyLEARN' },
+											badge: { text: { de: 'Neu', en: 'New', cs: 'Nové' }, variant: 'tip' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companylearn' },
-												{ label: 'Die Oberfläche', translations: { en: 'The interface' }, slug: 'company-gpt/addons/companylearn/oberflaeche' },
-												{ label: 'Lernen', translations: { en: 'Learning' }, slug: 'company-gpt/addons/companylearn/lernen' },
-												{ label: 'Im Chat', translations: { en: 'In the chat' }, slug: 'company-gpt/addons/companylearn/im-chat' },
-												{ label: 'Kurse verwalten', translations: { en: 'Managing courses' }, slug: 'company-gpt/addons/companylearn/kurse-verwalten' },
-												{ label: 'Videos', translations: { en: 'Videos' }, slug: 'company-gpt/addons/companylearn/videos' },
-												{ label: 'Externe API', translations: { en: 'External API' }, slug: 'company-gpt/addons/companylearn/api' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companylearn' },
+												{ label: 'Die Oberfläche', translations: { en: 'The interface', cs: 'Rozhraní' }, slug: 'company-gpt/addons/companylearn/oberflaeche' },
+												{ label: 'Lernen', translations: { en: 'Learning', cs: 'Učení' }, slug: 'company-gpt/addons/companylearn/lernen' },
+												{ label: 'Im Chat', translations: { en: 'In the chat', cs: 'V chatu' }, slug: 'company-gpt/addons/companylearn/im-chat' },
+												{ label: 'Kurse verwalten', translations: { en: 'Managing courses', cs: 'Správa kurzů' }, slug: 'company-gpt/addons/companylearn/kurse-verwalten' },
+												{ label: 'Videos', translations: { en: 'Videos', cs: 'Videa' }, slug: 'company-gpt/addons/companylearn/videos' },
+												{ label: 'Externe API', translations: { en: 'External API', cs: 'Externí API' }, slug: 'company-gpt/addons/companylearn/api' },
 											]
 										},
 										{
 											label: 'companyM365',
-											translations: { en: 'companyM365' },
+											translations: { en: 'companyM365', cs: 'companyM365' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companym365' },
-												{ label: 'Werkzeuge im Chat', translations: { en: 'Tools in the chat' }, slug: 'company-gpt/addons/companym365/werkzeuge' },
-												{ label: 'Office-Add-in', translations: { en: 'Office add-in' }, slug: 'company-gpt/addons/companym365/office-add-in' },
-												{ label: 'Word, Excel und PowerPoint', translations: { en: 'Word, Excel and PowerPoint' }, slug: 'company-gpt/addons/companym365/word-excel-powerpoint' },
-												{ label: 'Outlook', translations: { en: 'Outlook' }, slug: 'company-gpt/addons/companym365/outlook' },
-												{ label: 'Mehrere Office-Fenster', translations: { en: 'Multiple Office windows' }, badge: { text: { de: 'Neu', en: 'New' }, variant: 'tip' }, slug: 'company-gpt/addons/companym365/mehrere-fenster' },
-												{ label: 'Teams', translations: { en: 'Teams' }, slug: 'company-gpt/addons/companym365/teams' },
-												{ label: 'Administration', translations: { en: 'Administration' }, slug: 'company-gpt/addons/companym365/administration' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companym365' },
+												{ label: 'Werkzeuge im Chat', translations: { en: 'Tools in the chat', cs: 'Nástroje v chatu' }, slug: 'company-gpt/addons/companym365/werkzeuge' },
+												{ label: 'Office-Add-in', translations: { en: 'Office add-in', cs: 'Doplněk pro Office' }, slug: 'company-gpt/addons/companym365/office-add-in' },
+												{ label: 'Word, Excel und PowerPoint', translations: { en: 'Word, Excel and PowerPoint', cs: 'Word, Excel a PowerPoint' }, slug: 'company-gpt/addons/companym365/word-excel-powerpoint' },
+												{ label: 'Outlook', translations: { en: 'Outlook', cs: 'Outlook' }, slug: 'company-gpt/addons/companym365/outlook' },
+												{ label: 'Mehrere Office-Fenster', translations: { en: 'Multiple Office windows', cs: 'Více oken Office' }, badge: { text: { de: 'Neu', en: 'New', cs: 'Nové' }, variant: 'tip' }, slug: 'company-gpt/addons/companym365/mehrere-fenster' },
+												{ label: 'Teams', translations: { en: 'Teams', cs: 'Teams' }, slug: 'company-gpt/addons/companym365/teams' },
+												{ label: 'Administration', translations: { en: 'Administration', cs: 'Správa' }, slug: 'company-gpt/addons/companym365/administration' },
 											]
 										},
-										{ label: 'AI Gateway', translations: { en: 'AI Gateway' }, slug: 'company-gpt/addons/ai-gateway' },
+										{ label: 'AI Gateway', translations: { en: 'AI Gateway', cs: 'AI Gateway' }, slug: 'company-gpt/addons/ai-gateway' },
 										{
 											label: 'companyADMIN',
-											translations: { en: 'companyADMIN' },
+											translations: { en: 'companyADMIN', cs: 'companyADMIN' },
 											items: [
-												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyadmin' },
-												{ label: 'Insights', translations: { en: 'Insights' }, slug: 'company-gpt/addons/companyadmin/insights' },
-												{ label: 'Status', translations: { en: 'Status' }, slug: 'company-gpt/addons/companyadmin/status' },
-												{ label: 'Protokolle', translations: { en: 'Logs' }, slug: 'company-gpt/addons/companyadmin/audit-log' },
+												{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'company-gpt/addons/companyadmin' },
+												{ label: 'Insights', translations: { en: 'Insights', cs: 'Insights' }, slug: 'company-gpt/addons/companyadmin/insights' },
+												{ label: 'Status', translations: { en: 'Status', cs: 'Stav' }, slug: 'company-gpt/addons/companyadmin/status' },
+												{ label: 'Protokolle', translations: { en: 'Logs', cs: 'Protokoly' }, slug: 'company-gpt/addons/companyadmin/audit-log' },
 												{
 													label: 'Zugriff',
-													translations: { en: 'Access' },
+													translations: { en: 'Access', cs: 'Přístup' },
 													items: [
-														{ label: 'Nutzer', translations: { en: 'Users' }, slug: 'company-gpt/addons/companyadmin/nutzer' },
-														{ label: 'Rollen', translations: { en: 'Roles' }, slug: 'company-gpt/addons/companyadmin/rollen-und-rechte' },
-														{ label: 'Gruppen', translations: { en: 'Groups' }, slug: 'company-gpt/addons/companyadmin/gruppen' },
-														{ label: 'Direkt-Grants', translations: { en: 'Direct grants' }, slug: 'company-gpt/addons/companyadmin/direkte-berechtigungen' },
+														{ label: 'Nutzer', translations: { en: 'Users', cs: 'Uživatelé' }, slug: 'company-gpt/addons/companyadmin/nutzer' },
+														{ label: 'Rollen', translations: { en: 'Roles', cs: 'Role' }, slug: 'company-gpt/addons/companyadmin/rollen-und-rechte' },
+														{ label: 'Gruppen', translations: { en: 'Groups', cs: 'Skupiny' }, slug: 'company-gpt/addons/companyadmin/gruppen' },
+														{ label: 'Direkt-Grants', translations: { en: 'Direct grants', cs: 'Přímá oprávnění' }, slug: 'company-gpt/addons/companyadmin/direkte-berechtigungen' },
 													]
 												},
 												{
 													label: 'Inhalte',
-													translations: { en: 'Content' },
+													translations: { en: 'Content', cs: 'Obsah' },
 													items: [
-														{ label: 'Inhalte und Sichtbarkeit', translations: { en: 'Content and visibility' }, slug: 'company-gpt/addons/companyadmin/inhalte' },
-														{ label: 'Kategorien', translations: { en: 'Categories' }, slug: 'company-gpt/addons/companyadmin/kategorien' },
-														{ label: 'Bibliotheks-Sync', translations: { en: 'Library Sync' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
+														{ label: 'Inhalte und Sichtbarkeit', translations: { en: 'Content and visibility', cs: 'Obsah a viditelnost' }, slug: 'company-gpt/addons/companyadmin/inhalte' },
+														{ label: 'Kategorien', translations: { en: 'Categories', cs: 'Kategorie' }, slug: 'company-gpt/addons/companyadmin/kategorien' },
+														{ label: 'Bibliotheks-Sync', translations: { en: 'Library Sync', cs: 'Synchronizace knihovny' }, slug: 'company-gpt/addons/companyadmin/library-sync' },
 													]
 												},
 												{
 													label: 'Konfiguration',
-													translations: { en: 'Configuration' },
+													translations: { en: 'Configuration', cs: 'Konfigurace' },
 													items: [
-														{ label: 'Provider und Modelle', translations: { en: 'Providers and models' }, slug: 'company-gpt/addons/companyadmin/modelle' },
-														{ label: 'Agent-Fähigkeiten', translations: { en: 'Agent capabilities' }, slug: 'company-gpt/addons/companyadmin/agent-capabilities' },
-														{ label: 'Agent-Laufzeit', translations: { en: 'Agent runtime' }, slug: 'company-gpt/addons/companyadmin/agent-laufzeit' },
-														{ label: 'MCP-Domains', translations: { en: 'MCP domains' }, slug: 'company-gpt/addons/companyadmin/mcp-domains' },
-														{ label: 'Vorgabe & Anpassungen', translations: { en: 'Baseline & adjustments' }, slug: 'company-gpt/addons/companyadmin/vorgabe-und-anpassungen' },
-														{ label: 'Tools', translations: { en: 'Tools' }, slug: 'company-gpt/addons/companyadmin/tools' },
-														{ label: 'Erweiterungen', translations: { en: 'Extensions' }, slug: 'company-gpt/addons/companyadmin/erweiterungen' },
+														{ label: 'Provider und Modelle', translations: { en: 'Providers and models', cs: 'Poskytovatelé a modely' }, slug: 'company-gpt/addons/companyadmin/modelle' },
+														{ label: 'Agent-Fähigkeiten', translations: { en: 'Agent capabilities', cs: 'Schopnosti agentů' }, slug: 'company-gpt/addons/companyadmin/agent-capabilities' },
+														{ label: 'Agent-Laufzeit', translations: { en: 'Agent runtime', cs: 'Běhové prostředí agentů' }, slug: 'company-gpt/addons/companyadmin/agent-laufzeit' },
+														{ label: 'MCP-Domains', translations: { en: 'MCP domains', cs: 'MCP domény' }, slug: 'company-gpt/addons/companyadmin/mcp-domains' },
+														{ label: 'Vorgabe & Anpassungen', translations: { en: 'Baseline & adjustments', cs: 'Výchozí stav a úpravy' }, slug: 'company-gpt/addons/companyadmin/vorgabe-und-anpassungen' },
+														{ label: 'Tools', translations: { en: 'Tools', cs: 'Nástroje' }, slug: 'company-gpt/addons/companyadmin/tools' },
+														{ label: 'Erweiterungen', translations: { en: 'Extensions', cs: 'Rozšíření' }, slug: 'company-gpt/addons/companyadmin/erweiterungen' },
 													]
 												},
 											]
 										},
 									]
 								},
-								{ label: 'Agenten', translations: { en: 'Agents' }, slug: 'company-gpt/agenten' },
-								{ label: 'Skills', translations: { en: 'Skills' }, slug: 'company-gpt/skills' },
-								{ label: 'Code Interpreter', translations: { en: 'Code Interpreter' }, slug: 'company-gpt/code-interpreter' },
-								{ label: 'Prompts', translations: { en: 'Prompts' }, slug: 'company-gpt/prompts' },
-								{ label: 'Erinnerungen', translations: { en: 'Memories' }, slug: 'company-gpt/erinnerungen' },
-								{ label: 'KI Einstellungen', translations: { en: 'AI Settings' }, slug: 'company-gpt/ki-einstellungen' },
-								{ label: 'Dateiverarbeitung', translations: { en: 'File processing' }, slug: 'company-gpt/dateiverarbeitung' },
-								{ label: 'Lesezeichen', translations: { en: 'Bookmarks' }, slug: 'company-gpt/lesezeichen' },
+								{ label: 'Agenten', translations: { en: 'Agents', cs: 'Agenti' }, slug: 'company-gpt/agenten' },
+								{ label: 'Skills', translations: { en: 'Skills', cs: 'Skills' }, slug: 'company-gpt/skills' },
+								{ label: 'Code Interpreter', translations: { en: 'Code Interpreter', cs: 'Code Interpreter' }, slug: 'company-gpt/code-interpreter' },
+								{ label: 'Prompts', translations: { en: 'Prompts', cs: 'Prompty' }, slug: 'company-gpt/prompts' },
+								{ label: 'Erinnerungen', translations: { en: 'Memories', cs: 'Paměť' }, slug: 'company-gpt/erinnerungen' },
+								{ label: 'KI Einstellungen', translations: { en: 'AI Settings', cs: 'Nastavení AI' }, slug: 'company-gpt/ki-einstellungen' },
+								{ label: 'Dateiverarbeitung', translations: { en: 'File processing', cs: 'Zpracování souborů' }, slug: 'company-gpt/dateiverarbeitung' },
+								{ label: 'Lesezeichen', translations: { en: 'Bookmarks', cs: 'Záložky' }, slug: 'company-gpt/lesezeichen' },
 							]
 						},
 						{
 							label: 'Prompt Engineering',
-							translations: { en: 'Prompt Engineering' },
+							translations: { en: 'Prompt Engineering', cs: 'Prompt Engineering' },
 							items: [
-								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'prompt-engineering/uebersicht' },
-								{ label: 'Bestandteile von Prompts', translations: { en: 'Components of Prompts' }, slug: 'prompt-engineering/bestandteile-von-prompts' },
-								{ label: 'Prompts formatieren', translations: { en: 'Formatting prompts' }, slug: 'prompt-engineering/prompts-formatieren' },
-								{ label: 'Prompts strukturieren', translations: { en: 'Structuring prompts' }, slug: 'prompt-engineering/prompts-strukturieren' },
+								{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'prompt-engineering/uebersicht' },
+								{ label: 'Bestandteile von Prompts', translations: { en: 'Components of Prompts', cs: 'Součásti promptů' }, slug: 'prompt-engineering/bestandteile-von-prompts' },
+								{ label: 'Prompts formatieren', translations: { en: 'Formatting prompts', cs: 'Formátování promptů' }, slug: 'prompt-engineering/prompts-formatieren' },
+								{ label: 'Prompts strukturieren', translations: { en: 'Structuring prompts', cs: 'Strukturování promptů' }, slug: 'prompt-engineering/prompts-strukturieren' },
 								{
 									label: 'Prompttechniken',
-									translations: { en: 'Prompt techniques' },
+									translations: { en: 'Prompt techniques', cs: 'Techniky promptování' },
 									items: [
-										{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'prompt-engineering/prompt-techniken/uebersicht' },
-										{ label: 'Zero-Shot Prompting', translations: { en: 'Zero-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/zero-shot' },
-										{ label: 'Few-Shot Prompting', translations: { en: 'Few-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/few-shot' },
-										{ label: 'Prompt Chaining', translations: { en: 'Prompt chaining' }, slug: 'prompt-engineering/prompt-techniken/prompt-chaining' },
-										{ label: 'RAG', translations: { en: 'RAG' }, slug: 'prompt-engineering/prompt-techniken/rag' },
-										{ label: 'Tool Use', translations: { en: 'Tool use' }, slug: 'prompt-engineering/prompt-techniken/tool-use' },
+										{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'prompt-engineering/prompt-techniken/uebersicht' },
+										{ label: 'Zero-Shot Prompting', translations: { en: 'Zero-shot prompting', cs: 'Zero-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/zero-shot' },
+										{ label: 'Few-Shot Prompting', translations: { en: 'Few-shot prompting', cs: 'Few-shot prompting' }, slug: 'prompt-engineering/prompt-techniken/few-shot' },
+										{ label: 'Prompt Chaining', translations: { en: 'Prompt chaining', cs: 'Řetězení promptů' }, slug: 'prompt-engineering/prompt-techniken/prompt-chaining' },
+										{ label: 'RAG', translations: { en: 'RAG', cs: 'RAG' }, slug: 'prompt-engineering/prompt-techniken/rag' },
+										{ label: 'Tool Use', translations: { en: 'Tool use', cs: 'Používání nástrojů' }, slug: 'prompt-engineering/prompt-techniken/tool-use' },
 									]
 								},
 								// { label: 'Best Practices', slug: 'prompt-engineering/best-practices' },
@@ -404,7 +412,7 @@ export default defineConfig({
 						]
 					},
 					{
-						label: { de: 'API Referenz', en: 'API Reference' },
+						label: { de: 'API Referenz', en: 'API Reference', cs: 'Reference API' },
 						link: 'api',
 						icon: 'laptop',
 						// The OpenAPI pages generated by starlight-openapi live outside the docs
@@ -413,11 +421,11 @@ export default defineConfig({
 						items: [
 							{
 								label: 'API',
-								translations: { en: 'API' },
+								translations: { en: 'API', cs: 'API' },
 								items: [
-									{ label: 'companyRAG API', translations: { en: 'companyRAG API' }, slug: 'api/company-rag-api' },
-									{ label: 'Agents API', translations: { en: 'Agents API' }, slug: 'api/agents-api' },
-									{ label: 'AI Gateway API', translations: { en: 'AI Gateway API' }, slug: 'api/ai-gateway' },
+									{ label: 'companyRAG API', translations: { en: 'companyRAG API', cs: 'companyRAG API' }, slug: 'api/company-rag-api' },
+									{ label: 'Agents API', translations: { en: 'Agents API', cs: 'Agents API' }, slug: 'api/agents-api' },
+									{ label: 'AI Gateway API', translations: { en: 'AI Gateway API', cs: 'AI Gateway API' }, slug: 'api/ai-gateway' },
 								]
 							},
 							// Endpoint and schema pages generated from src/openapi/rag-api.yaml.
@@ -425,60 +433,60 @@ export default defineConfig({
 						]
 					},
 					{
-						label: { de: 'Tutorials', en: 'Tutorials' },
+						label: { de: 'Tutorials', en: 'Tutorials', cs: 'Návody' },
 						link: 'tutorials',
 						icon: 'rocket',
 						items: [
 							{
 								label: 'Addons',
-								translations: { en: 'Addons' },
+								translations: { en: 'Addons', cs: 'Doplňky' },
 								items: [
-									{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
-									{ label: 'CompanyGPT Hilfe Agent', translations: { en: 'CompanyGPT Help Agent' }, slug: 'tutorials/addons/companygpt-hilfe-agent' },
+									{ label: 'CompanyRAG in CompanyGPT nutzen', translations: { en: 'Using CompanyRAG in CompanyGPT', cs: 'Použití CompanyRAG v CompanyGPT' }, slug: 'tutorials/addons/companyrag-in-companygpt' },
+									{ label: 'CompanyGPT Hilfe Agent', translations: { en: 'CompanyGPT Help Agent', cs: 'Agent nápovědy CompanyGPT' }, slug: 'tutorials/addons/companygpt-hilfe-agent' },
 								]
 							},
 							{
 								label: 'MCP',
-								translations: { en: 'MCP' },
+								translations: { en: 'MCP', cs: 'MCP' },
 								items: [
-									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
+									{ label: 'Confluence verbinden', translations: { en: 'Connect Confluence', cs: 'Připojení Confluence' }, slug: 'tutorials/mcp/connect_confluence' },
 								]
 							},
 							{
 								label: 'Skills',
-								translations: { en: 'Skills' },
+								translations: { en: 'Skills', cs: 'Skills' },
 								items: [
-									{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
+									{ label: 'Übersicht', translations: { en: 'Overview', cs: 'Přehled' }, slug: 'tutorials/skills' },
 									// Generated from innFactory-AI/company-ai-stack-skills by scripts/sync-skills.mjs
 									...skillsSidebar,
 								]
 							},
 							{
 								label: 'Agenten',
-								translations: { en: 'Agents' },
+								translations: { en: 'Agents', cs: 'Agenti' },
 								items: [
 									{
 										label: 'Marketing & Content',
-										translations: { en: 'Marketing & Content' },
+										translations: { en: 'Marketing & Content', cs: 'Marketing a obsah' },
 										items: [
-											{ label: 'Bildgenerierung', translations: { en: 'Image Generation' }, slug: 'tutorials/agenten/bildgenerierung' },
+											{ label: 'Bildgenerierung', translations: { en: 'Image Generation', cs: 'Generování obrázků' }, slug: 'tutorials/agenten/bildgenerierung' },
 										]
 									},
 									{
 										label: 'Produktivität & Büro',
-										translations: { en: 'Productivity & Office' },
+										translations: { en: 'Productivity & Office', cs: 'Produktivita a kancelář' },
 										items: [
-											{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
-											{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
-											{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
+											{ label: 'Executive Summarizer', translations: { en: 'Executive Summarizer', cs: 'Executive Summarizer' }, slug: 'tutorials/agenten/executive-summarizer' },
+											{ label: 'Meeting Notizen Agent', translations: { en: 'Meeting Notes Agent', cs: 'Agent pro zápisy ze schůzek' }, slug: 'tutorials/agenten/meeting-notizen-agent' },
+											{ label: 'Dokumenten Abgleich', translations: { en: 'Document Comparison', cs: 'Porovnání dokumentů' }, slug: 'tutorials/agenten/dokumenten-abgleich' },
 											//{ label: 'CompanyGPT Helper', translations: { en: 'CompanyGPT Helper' }, slug: 'tutorials/agenten/companygpt-helper' },
 										]
 									},
 									{
 										label: 'Strategie & Analyse',
-										translations: { en: 'Strategy & Analysis' },
+										translations: { en: 'Strategy & Analysis', cs: 'Strategie a analýza' },
 										items: [
-											{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator' }, slug: 'tutorials/agenten/brainstorming' },
+											{ label: 'Brainstorming-Facilitator', translations: { en: 'Brainstorming Facilitator', cs: 'Facilitátor brainstormingu' }, slug: 'tutorials/agenten/brainstorming' },
 										]
 									},
 								]
@@ -487,7 +495,7 @@ export default defineConfig({
 						]
 					},
 					{
-						label: { de: 'Changelog', en: 'Changelog' },
+						label: { de: 'Changelog', en: 'Changelog', cs: 'Seznam změn' },
 						link: 'changelog/',
 						icon: 'list-format',
 						// Empty items keeps this a "group" topic so the plugin generates a

@@ -1,0 +1,57 @@
+---
+title: Přímá oprávnění
+description: Přehled všech známých práv v companyADMIN – systémová práva a práva rozšíření s vysvětlením a s informací, kdo je má. Práva se udělují u role nebo skupiny.
+---
+
+**Access** → **Direct grants** zobrazuje všechna známá práva a to, kdo je má. Stránka slouží **pouze k zobrazení**: práva udělujete a odebíráte na stránce [role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) nebo [skupiny](/cs/company-gpt/addons/companyadmin/gruppen/).
+
+## Přehled
+
+| Sloupec | Obsah |
+|---|---|
+| **Right** | Popisek a technický název, například **Access the admin area** (`access:admin`) |
+| **Kind** | **System** nebo **Extension: …** s názvem rozšíření |
+| **Explanation** | Co právo umožňuje |
+| **Who has it** | Role, skupiny nebo **Everyone**; **nobody**, pokud právo zatím nikdo nemá. Občas se zde objeví i jednotlivé osoby (**Person …**), viz níže |
+
+**Search right** prohledává technický název a ID rozšíření, například `manage:roles` nebo `translate`, nikoli popisek. Rozbalený řádek ukazuje **Class** práva, zda platí **ADMIN has it automatically** a zda je právo **Set at start**.
+
+## Kde se práva udělují
+
+| Druh | Uděluje se | Kde |
+|---|---|---|
+| **System** (administrátorská práva) | Pouze rolím | Role → karta **companyGPT** → sekce **Admin rights in LibreChat** |
+| **Extension** | Rolím, skupinám nebo všem | Role nebo skupina → karta **Extensions**; pro všechny v části [Configuration → Extensions](/cs/company-gpt/addons/companyadmin/erweiterungen/) |
+
+Jednotlivým osobám se práva neudělují. Pokud má osoba získat určité právo, přidělte jí roli s tímto právem (role → **Members**) nebo ji přidejte do skupiny s tímto právem.
+
+Pokud **Who has it** přesto zobrazuje jednotlivou osobu, pochází právo ze starší verze nebo bylo nastaveno přímo v CompanyGPT. companyADMIN takové právo odebrat nemůže. V takovém případě se obraťte na innFactory.
+
+## Systémová práva
+
+Systémová práva řídí oblast administrace. Role ADMIN je dostává automaticky při každém spuštění CompanyGPT. Právo „manage“ zahrnuje i odpovídající právo „view“.
+
+| Právo | Technický název | Umožňuje |
+|---|---|---|
+| **Access the admin area** | `access:admin` | Otevře oblast administrace |
+| **View users** / **Manage users** | `read:users` / `manage:users` | Zobrazit seznam uživatelů a podrobnosti o nich, nebo upravovat uživatele |
+| **View roles** / **Manage roles** | `read:roles` / `manage:roles` | Zobrazit role a jejich práva, nebo vytvářet role a měnit jejich práva |
+| **View groups** / **Manage groups** | `read:groups` / `manage:groups` | Zobrazit skupiny a členy, nebo vytvářet a měnit skupiny a spravovat členy |
+| **View configuration** / **Manage configuration** | `read:configs` / `manage:configs` | Zobrazit nebo měnit konfiguraci a úpravy |
+| **Assign configuration profiles** | `assign:configs` | Přiřazovat úpravy rolím, skupinám nebo osobám |
+| **View agents** / **Manage agents** | `read:agents` / `manage:agents` | Zobrazit všechny agenty, nebo upravovat a sdílet všechny agenty |
+| **View prompts** / **Manage prompts** | `read:prompts` / `manage:prompts` | Zobrazit všechny prompty, nebo upravovat a sdílet všechny prompty |
+| **View skills** / **Manage skills** | `read:skills` / `manage:skills` | Zobrazit všechny skills, nebo upravovat a sdílet všechny skills |
+| **View shared links** / **Manage shared links** | `read:sharedlinks` / `manage:sharedlinks` | Zobrazit nebo spravovat sdílené odkazy |
+| **View assistants** / **Manage assistants** | `read:assistants` / `manage:assistants` | Vyhrazeno, momentálně bez účinku |
+| **Manage MCP servers** | `manage:mcpservers` | Spravovat MCP servery |
+| **View usage** | `read:usage` | Zobrazit údaje o využití |
+| **View audit log** | `read:audit_log` | Zobrazit a exportovat [protokoly](/cs/company-gpt/addons/companyadmin/audit-log/) |
+| **View insights** | `read:insights` | Starší způsob přístupu k Insights; pro nový přístup udělte právo rozšíření **View Insights** |
+| **Manage code environments** | `manage:code_environments` | Spravovat prostředí pro kód daného nasazení |
+
+:::caution
+**Manage roles** a **Manage groups** fungují jako administrátorská práva: role může nést libovolné právo a členství ve skupinách práva předává dál. Udělujte je pouze rolím, které mají být administrátory tak jako tak.
+:::
+
+Práva pro rozšíření, například **Use translation** nebo **View Insights**, jsou popsána v části [Rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/).

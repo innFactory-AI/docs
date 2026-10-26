@@ -1,0 +1,76 @@
+---
+title: companyRAG API
+description: Programový přístup k indexeru companyRAG – autentizace, základní URL a referenční přehled endpointů generovaný ze specifikace OpenAPI.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+Indexer companyRAG poskytuje HTTP API, pomocí kterého můžete programově spravovat soubory, sbírky, indexační úlohy a zdroje dat. Obsah tak lze do companyRAG přenášet automaticky, například ze stávajícího systému pro správu dokumentů nebo prostřednictvím noční synchronizace.
+
+Tato stránka popisuje to podstatné: autentizaci, základní URL a zpracování chyb. Referenční přehled endpointů je generován ze specifikace OpenAPI. Obsahuje nejdůležitější endpointy; některé novější endpointy a pole v něm zatím nejsou.
+
+<LinkCard
+	title="Referenční přehled companyRAG API"
+	description="Nejdůležitější endpointy s parametry, schématy požadavků a odpovědí a ukázkami kódu – generováno ze specifikace OpenAPI."
+	href="/api/companyrag/"
+/>
+
+## Autentizace
+
+Všechny endpointy vyžadují autentizaci pomocí [klíče API](/cs/company-gpt/addons/companyrag/api-schluessel/). Klíč se odesílá v hlavičce `Authorization` jako token typu Bearer:
+
+```
+Authorization: Bearer rag_a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890
+```
+
+Klíče API vytvářejí administrátoři v companyRAG v sekci **API Keys**. Mají formát `rag_`, za kterým následuje 64znakový hexadecimální řetězec, a vždy jednají jménem osoby, která je vytvořila.
+
+API přijímá také cookie `access_token`. Tato cesta slouží jako záložní řešení pro klienty v prohlížeči, kteří jsou již do companyRAG přihlášeni; integrace a skripty by měly používat token typu Bearer.
+
+## Základní URL
+
+API je dostupné pod doménou vaší instance CompanyGPT:
+
+```
+https://COMPANY.company-gpt.com/companygpt/rag/api
+```
+
+`COMPANY` je zástupný symbol pro subdoménu vašeho prostředí. Můžete ji vyčíst z adresního řádku prohlížeče, když máte otevřené rozhraní companyRAG. Pokud vaše prostředí používá vlastní doménu, připojte k ní `/companygpt/rag/api`.
+
+## Zpracování chyb
+
+Chyby se většinou vracejí jako objekt JSON s polem `error`:
+
+```json
+{
+  "error": "Error message description"
+}
+```
+
+Několik endpointů místo toho vrací tělo v podobě prostého textu; to je u příslušného endpointu v referenčním přehledu uvedeno.
+
+| Stav | Význam |
+| :----- | :------ |
+| `400 Bad Request` | Neplatné parametry požadavku |
+| `401 Unauthorized` | Chybějící nebo neplatná autentizace |
+| `403 Forbidden` | Nedostatečná oprávnění |
+| `404 Not Found` | Prostředek nebyl nalezen |
+| `409 Conflict` | Konflikt s aktuálním stavem prostředku, například úloha, kterou v aktuálním stavu nelze zopakovat, nebo změna sdílení, po které by sbírka zůstala bez vlastníka |
+| `500 Internal Server Error` | Chyba na straně serveru |
+
+## Funkční oblasti
+
+Endpointy jsou v referenčním přehledu seskupeny podle oblastí:
+
+- **Files** – nahrávání, výpis, načtení, mazání a opětovná indexace souborů.
+- **Jobs** – sledování, opakování, rušení a úklid indexačních úloh.
+- **Collections** – vytváření, úprava a mazání sbírek a správa jejich sdílení.
+- **Ingest** – načítání strukturovaných datových sad po řádcích (až 10 000 řádků na jedno volání) a vyprázdnění tabulek.
+- **Sources** – konfigurace a synchronizace zdrojů dat, jako jsou SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP nebo procházení webu (web crawl).
+- **Admin – API Keys** – výpis, vytváření a odvolávání klíčů API (pouze pro administrátory).
+
+## Další zdroje
+
+- [Doplněk companyRAG](/cs/company-gpt/addons/companyrag/) – funkce a používání uživatelského rozhraní
+- [Používání companyRAG v CompanyGPT](/cs/tutorials/addons/companyrag-in-companygpt/) – nastavení jako zdroje znalostí pro agenty
+- [Agents API](/cs/api/agents-api/) – programový přístup k agentům CompanyGPT

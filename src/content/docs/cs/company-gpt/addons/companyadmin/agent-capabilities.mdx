@@ -1,0 +1,55 @@
+---
+title: Schopnosti agentů
+description: Rozhodněte v companyADMIN, které schopnosti agentů mohou lidé v CompanyGPT používat – pro všechny i s vlastním výběrem pro každou roli, například k omezení spouštění kódu, webového vyhledávání nebo subagentů.
+---
+
+**Configuration** → **Agent capabilities** určuje, které schopnosti mohou používat lidé s danou rolí, například spouštění kódu, webové vyhledávání, vyhledávání v souborech nebo subagenty. Nákladné nebo rizikové schopnosti tak můžete omezit na jednotlivé role, aniž byste je blokovali všem.
+
+Výběr platí pro osoby s danou rolí: v nástroji pro tvorbu agentů, pro nástroje v chatu a pro nástroje každého agenta, kterého používají. Co dalšího smějí lidé v CompanyGPT dělat, určují práva k funkcím dané [role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+:::caution[Týká se i stávajících agentů]
+CompanyGPT kontroluje schopnosti během chatu, a to pro osobu, která píše. Pokud její roli určitá schopnost chybí, chybí odpovídající nástroj u každého agenta, kterého používá, včetně sdílených agentů a agentů z marketplace.
+
+- Bez `tools` již neběží žádné nástroje MCP ani žádné jiné nástroje.
+- V běžném chatu zmizí chybějící schopnosti, jako je webové vyhledávání, spouštění kódu, vyhledávání v souborech, artefakty nebo skills, z nabídky nástrojů.
+:::
+
+## Zapnutí správy
+
+V sekci **Management** zaškrtněte **Govern agent capabilities from companyADMIN**. Dokud políčko není zaškrtnuté, dostávají všichni schopnosti ze základní konfigurace.
+
+Pokud při zapnutí ještě žádná role nemá vlastní výběr, companyADMIN okamžitě vytvoří vlastní výběr pro ADMIN jako kopii základní konfigurace. Pokud poté zúžíte **For everyone**, ADMIN to proto neovlivní.
+
+Chcete-li správu ukončit, zrušte zaškrtnutí **Govern agent capabilities from companyADMIN**. Dialog **Stop managing?** se nejprve zeptá; **Stop managing** odstraní všechny výběry. Poté opět platí pro všechny základní konfigurace.
+
+## Pro všechny
+
+Sekce **For everyone** obsahuje výběr, který dostane každá role bez vlastního výběru. Nastavte zaškrtnutí a klikněte na **Save**.
+
+## Vlastní výběr pro každou roli
+
+1. V části **Own selection per role** zvolte roli (**Pick a role**).
+2. Klikněte na **Create own selection**. Výběr začíná jako kopie **For everyone**.
+3. Upravte zaškrtnutí a uložte sekci dané role.
+
+Vlastní výběr nahrazuje výběr **For everyone** pro všechny s touto rolí; nedoplňuje jej. **Remove own selection** vrátí roli opět výběr **For everyone**. Poslední vlastní výběr nelze odstranit; chcete-li správu zrušit úplně, ukončete ji výše.
+
+USER je role jako každá jiná. Pokud ADMIN nemá vlastní výběr, dostanou i administrátoři **For everyone**. Samotného companyADMIN se to netýká.
+
+## Schopnosti
+
+| Schopnost | Význam |
+|---|---|
+| `execute_code` | Spouštění kódu – štítek **costly** |
+| `web_search` | Webové vyhledávání – štítek **costly** |
+| `file_search` | Vyhledávání v souborovém kontextu agenta |
+| `artifacts` | Artefakty jako výstupní formát |
+| `subagents` | Subagenti – štítek **costly** |
+| `actions` | Akce prostřednictvím externích rozhraní |
+| `skills` | Používání skills |
+| `ask_user_question` | Doplňující dotazy na osobu |
+| `tools` | Používání nástrojů |
+
+Štítek **costly** označuje schopnosti, které jsou nákladné nebo rizikové – to je hlavní důvod, proč tuto stránku vůbec používat. **not in librechat.yaml** znamená, že základní konfigurace tuto schopnost neposkytuje.
+
+Všechny ostatní schopnosti, které vaše prostředí poskytuje, se na této stránce neřídí. Řídí se základní konfigurací a zůstávají v každém výběru. Stránka je uvádí v části **For everyone**.

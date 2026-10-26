@@ -1,0 +1,66 @@
+---
+title: Výchozí stav a úpravy
+description: V companyADMIN dohledáte, co dodává základní konfigurace CompanyGPT, co administrátoři nad ní upravili, jaké počáteční hodnoty nastavuje innFactory a co CompanyGPT při spuštění přepisuje.
+---
+
+**Configuration** → **Baseline & adjustments** ukazuje, jak vznikají nastavení CompanyGPT. Stránka slouží hlavně k dohledávání a úklidu; nastavení se mění na příslušných stránkách.
+
+## Jak fungují výchozí stav a úpravy
+
+- **Výchozí stav** pochází z nasazení, tedy ze základní konfigurace CompanyGPT. Spravuje ho innFactory a znovu ho dodává s každou aktualizací.
+- **Úpravy**, které provedete v companyADMIN, leží nad ním jako samostatná vrstva: pro všechny, pro jednu roli nebo pro jednu skupinu. Aktualizace výchozího stavu je nemění.
+- CompanyGPT obojí kombinuje. Několik bodů pochází vždy z výchozího stavu nebo se nastavuje znovu při každém spuštění.
+
+## Úpravy v administraci
+
+Tabulka uvádí vše, co bylo v companyADMIN změněno oproti výchozímu stavu:
+
+| Sloupec | Obsah |
+|---|---|
+| **Setting** | Změněné nastavení |
+| **Applies to** | **Everyone**, role, skupina nebo osoba |
+| **Managed on** | Stránka, na které nastavení měníte, například **Providers and models** nebo **Agent runtime** |
+| **Status** | **In force** nebo **Not in force** s uvedením důvodu |
+
+Pomocí **Search field or role …** najdete nastavení. Rozbalený řádek nabízí podle situace:
+
+- **Remove here only** – odebere úpravu pouze na tomto místě; poté platí nejbližší nižší vrstva.
+- **Reset to innFactory default** – odebere nastavení ze všech úprav (pro všechny, role, skupiny i jednotlivé osoby). Opět platí výchozí stav.
+- **Activate** – znovu zapne deaktivované úpravy, a to všechny úpravy této role, skupiny nebo osoby najednou, nikoli jen jeden řádek.
+- **Delete old profile** – smaže pozůstatky velmi staré verze, které CompanyGPT již nečte.
+
+:::caution[Omezení modelů a schopnosti agentů zde neodebírejte]
+**Remove here only** se zobrazuje i u řádků s omezeními modelů a schopnostmi agentů. Tato nastavení raději měňte na příslušné stránce: v části **Providers and models** pomocí **Open for everyone**, v části **Agent capabilities** zrušením zaškrtnutí **Govern agent capabilities from companyADMIN**. Zde je odeberete pouze úplně, pomocí **Reset to innFactory default**.
+:::
+
+**Not in force** znamená: uloženo, ale CompanyGPT to nepoužívá. Častými důvody jsou práva, která CompanyGPT nastavuje pouze podle role, nastavení ze starší verze nebo funkce, kterou výchozí stav vypíná. Důvod je uveden v řádku. U nastavení ze starší verze obvykle stačí znovu uložit na příslušné stránce.
+
+## Co se při spuštění přepisuje
+
+Tato sekce uvádí, co CompanyGPT při každém spuštění nastavuje sám a kde má výchozí stav vždy přednost, například:
+
+- Práva rolí „User“ (USER) a ADMIN pro určité funkce. CompanyGPT vždy nastaví právo k používání; vytváření a sdílení pouze tam, kde je výchozí stav výslovně uvádí. Vlastní role se to netýká.
+- Horní limit subagentů na agenta. Hodnota v části [Běhové prostředí agentů](/cs/company-gpt/addons/companyadmin/agent-laufzeit/) ho může pouze snížit.
+- MCP servery z výchozího stavu. Platí pro všechny a nelze je udělovat podle skupin.
+- Práva k funkcím (agenti, prompty, vyhledávání na webu …) nelze měnit přes konfiguraci, pouze podle role.
+
+U každého zámku je uvedeno, zda a jak ho můžete obejít, například vlastní rolí. Ostatní body se změní pouze aktualizací výchozího stavu ze strany innFactory.
+
+## Počáteční hodnoty innFactory
+
+innFactory nastavuje tyto hodnoty jako počáteční při zřizování a při aktualizacích. Co změníte, zůstává vaše; innFactory to nikdy nepřepíše.
+
+| Sloupec | Obsah |
+|---|---|
+| **Setting** | Nastavení |
+| **Start value** | Hodnota, kterou poskytuje innFactory |
+| **Current** | Hodnota, která platí nyní |
+| **Status** | **Start value active**, **Equals the start value**, **Changed by you**, **Not set yet**, **No longer managed**, **Could not be set** nebo **LibreChat resets this at every start** |
+
+**Reset to start value** zahodí vaši změnu; opět platí aktuální počáteční hodnota innFactory.
+
+## Výchozí stav nasazení
+
+Na konci stránka zobrazuje základní konfiguraci tak, jak ji CompanyGPT načetlo při spuštění. Slouží pouze ke čtení; tajné údaje, jako jsou klíče API, jsou skryté. Změny výchozího stavu provádí innFactory.
+
+Stručné shrnutí této stránky najdete v části [Status → Active configuration](/cs/company-gpt/addons/companyadmin/status/).

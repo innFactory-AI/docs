@@ -1,0 +1,61 @@
+---
+title: companyM365
+description: Propojuje CompanyGPT s Microsoft 365 – jako nástroje v chatu, jako doplněk Office ve Wordu, Excelu, PowerPointu a Outlooku a v Microsoft Teams.
+---
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+companyM365 propojuje CompanyGPT s prostředím Microsoft 365 vaší společnosti. Asistent tak může číst – a v závislosti na nástroji také upravovat – e-maily, schůzky, soubory, zprávy v Teams, stránky OneNote, úkoly a přepisy schůzek. V doplňku Office pracuje přímo v otevřeném dokumentu nebo otevřeném e-mailu.
+
+companyM365 běží jako součást vašeho prostředí CompanyGPT a přistupuje k vašemu tenantu Microsoft 365 přes Microsoft Graph jménem přihlášené osoby (delegovaná oprávnění). Asistent proto zásadně vidí jen to, co smí v Microsoft 365 vidět tato osoba sama. Výjimkou je volitelný nástroj pro přepisy schůzek, kterých se osoba zúčastnila; ten musí váš administrátor povolit zvlášť (viz [Správa](/cs/company-gpt/addons/companym365/administration/#souhlasy-správce-v-microsoft-365)).
+
+## Rozhraní
+
+companyM365 přináší Microsoft 365 do vaší práce na čtyřech místech:
+
+| Rozhraní | Kde | K čemu |
+|---|---|---|
+| **Nástroje v chatu** | chat a agenti CompanyGPT | dotazování a úpravy poštovní schránky, kalendáře, souborů, Teams, OneNote, úkolů a přepisů schůzek |
+| **Doplněk Office** | Word, Excel, PowerPoint a Outlook | panel chatu vedle otevřeného dokumentu nebo e-mailu, který jej čte a upravuje |
+| **Karta Teams** | osobní karta v Microsoft Teams | chat CompanyGPT s modely a agenty přímo v Teams |
+| **Bot Teams** | chaty, skupinové chaty, chaty schůzek a kanály v Teams | dotaz na asistenta v konverzaci pomocí @zmínky |
+
+Kromě toho existuje **administrátorská oblast**, ve které administrátoři nasazují doplněk, nastavují bota Teams a uvolňují agenty pro Teams.
+
+Která rozhraní můžete používat, závisí na vašem prostředí. V některých prostředích jsou k dispozici pouze nástroje v chatu; bot Teams existuje jen tam, kde byl nastaven.
+
+## Přístup a přihlášení
+
+Přihlašujete se přes jednotné přihlášení Microsoft (SSO) svým stávajícím firemním účtem (Microsoft Entra). Samostatné přihlašovací údaje nejsou potřeba. Každý přístup k Microsoft 365 probíhá s identitou přihlášené osoby, takže vždy platí její oprávnění a viditelnost.
+
+- **Doplněk Office a karta Teams** se přihlašují automaticky stejnou relací CompanyGPT. Napoprvé může být nutné kliknout na **Anmelden** (Přihlásit se); poté se automaticky vrátíte do doplňku. Chaty z doplňku se zobrazují i v postranním panelu CompanyGPT v prohlížeči.
+- **Bot Teams:** Při první konverzaci vás bot požádá o přihlášení. Své konverzace z Teams pak najdete i v CompanyGPT v prohlížeči.
+
+## Oprávnění
+
+Používání companyM365 vyžaduje oprávnění **Use Microsoft 365**. Zahrnuje doplněk Office, nástroje Microsoft 365 v chatu a bota Teams. Administrátoři oprávnění udělují v companyADMIN (viz [oprávnění rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/)); sami administrátoři jej mají automaticky.
+
+Bez oprávnění nástroje v chatu a bot Teams odmítají pracovat. V doplňku můžete dál chatovat, ale bez přístupu k dokumentu; zobrazí se upozornění „Kein Zugriff auf die Dokumentverbindung – bitte bei der Administration freischalten lassen“ (Žádný přístup k propojení s dokumentem – požádejte prosím administraci o povolení).
+
+Administrátorská oblast vyžaduje oprávnění **Manage Microsoft 365** (viz [Správa](/cs/company-gpt/addons/companym365/administration/)). Některé oblasti navíc vyžadují souhlas administrátora v Microsoft 365; pokud chybí, hlásí chybu pouze dotčený nástroj.
+
+:::caution[Co companyM365 mění samostatně]
+- **E-maily** se vždy vytvářejí pouze jako **koncepty**. companyM365 nikdy neodesílá e-maily sám – odeslání zůstává vždy vědomým rozhodnutím uživatele v Outlooku.
+- **Výjimkou jsou schůzky v kalendáři:** když agent vytvoří, aktualizuje nebo zruší schůzku s účastníky, Outlook **okamžitě odešle pozvánku, aktualizaci nebo zrušení**. Bez účastníků se nic neodesílá.
+- Ostatní zapisovací nástroje mění data přímo: oblasti v Excelu, stránky OneNote, úkoly, pravidla doručené pošty, kategorie a přesouvání e-mailů.
+- V **doplňku Office** se změny otevřeného dokumentu ve výchozím stavu nejprve zobrazí jako návrh, který použijete nebo zahodíte. V režimu úprav **Direkt** (Přímo) je asistent provede okamžitě.
+
+U zapisovacích akcí požádejte agenta, aby nejprve shrnul, co se chystá udělat.
+:::
+
+## Oblasti v přehledu
+
+- **[Nástroje v chatu](/cs/company-gpt/addons/companym365/werkzeuge/)** — všechny nástroje Microsoft 365 pro chat CompanyGPT a pro agenty.
+- **[Doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/)** — otevření chatu ve Wordu, Excelu, PowerPointu a Outlooku, volba modelu nebo agenta, režimy úprav a karty s návrhy.
+- **[Word, Excel a PowerPoint](/cs/company-gpt/addons/companym365/word-excel-powerpoint/)** — rychlé akce, koučink ve Wordu, analýzy v Excelu a prezentace z osnovy.
+- **[Outlook](/cs/company-gpt/addons/companym365/outlook/)** — koncepty odpovědí, návrhy schůzek, příprava schůzek, úklid doručené pošty a koučink konceptů.
+- **[Více oken Office](/cs/company-gpt/addons/companym365/mehrere-fenster/)** — čtení dalších otevřených dokumentů a vkládání obsahu napříč aplikacemi.
+- **[Teams](/cs/company-gpt/addons/companym365/teams/)** — karta Teams a bot Teams s příkazy, soukromými odpověďmi a sdílením ve vlákně.
+- **[Správa](/cs/company-gpt/addons/companym365/administration/)** — administrátorská oblast, instalace, nastavení bota Teams, souhlasy administrátora a chybové kódy.

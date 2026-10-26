@@ -1,0 +1,76 @@
+---
+title: companyTRANSLATE
+description: Aplikace pro překlad textů a celých dokumentů v CompanyGPT s glosáři pro jednotnou terminologii a s překladem přímo v chatu.
+---
+
+companyTRANSLATE překládá texty i celé dokumenty. Pomocí glosářů určíte, jak se mají překládat odborné termíny, názvy produktů nebo ustálená spojení. companyTRANSLATE mohou využívat také agenti v chatu CompanyGPT a překládat soubory nebo texty přímo v chatu.
+
+## Otevření a přihlášení
+
+companyTRANSLATE otevřete v CompanyGPT přes [**All apps**](/cs/company-gpt/addons/alle-apps/) a dlaždici **Translate**.
+
+companyTRANSLATE využívá vaši relaci CompanyGPT. Pokud jste přihlášeni do CompanyGPT, jste přihlášeni i do companyTRANSLATE; žádné samostatné přihlašovací údaje nejsou potřeba. To platí bez ohledu na způsob přihlášení, který vaše organizace pro CompanyGPT používá.
+
+## Rozhraní
+
+companyTRANSLATE používá [společné rozhraní rozšíření CompanyGPT](/cs/company-gpt/addons/gemeinsame-oberflaeche/). V postranním panelu najdete **New chat** a **All apps** a pod nimi tři oblasti aplikace. Nabídka účtu nabízí mimo jiné **Theme** a **Language**; rozhraní je k dispozici v němčině a angličtině.
+
+| Oblast | Stránka | Obsah |
+|---|---|---|
+| **Text** | [Překlad textu](/cs/company-gpt/addons/company-translate/text-uebersetzen/) | Překlad textu v reálném čase, až 5 000 znaků |
+| **Documents** | [Překlad dokumentu](/cs/company-gpt/addons/company-translate/dokument-uebersetzen/) | Překlad celých souborů do 40 MB se zachováním formátování |
+| **Glossaries** | [Glosáře](/cs/company-gpt/addons/company-translate/glossare/) | Správa osobních a globálních glosářů |
+
+Akce dané oblasti najdete vpravo v záhlaví stránky: **New translation** v oblastech **Text** a **Documents**, **Upload glossary** a – pro administrátory – **Upload global glossary** v oblasti **Glossaries**. Na úzkých obrazovkách otevřete oblasti přes nabídku v horní liště; oblast **Glossaries** není na chytrých telefonech k dispozici.
+
+Pokud přetáhnete soubor na stránku **Text**, companyTRANSLATE přepne do oblasti **Documents** a soubor převezme tam.
+
+## Přístup a oprávnění
+
+O tom, kdo smí companyTRANSLATE používat, rozhoduje váš administrátor – v companyADMIN prostřednictvím [oprávnění rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/) nebo, v závislosti na prostředí, prostřednictvím skupin. companyADMIN k tomu nabízí dvě oprávnění:
+
+- **Use translation** – překlad textů a dokumentů, správa vlastních glosářů
+- **Manage glossaries** – navíc vytváření, nahrávání a mazání globálních glosářů pro všechny
+
+Pokud nemáte oprávnění k používání, companyTRANSLATE zobrazí stránku **No access**. Stejná oprávnění platí, i když za vás v chatu překládá agent.
+
+## Překladové služby a tok dat
+
+companyTRANSLATE sám nepřekládá; obsah předává překladové službě. Výchozí službou je **Azure AI Translator** od Microsoftu. **Google Cloud Translation** je volitelná; o tom, zda je ve vašem prostředí zapnutá, rozhoduje vaše organizace.
+
+| Obsah | Překladová služba |
+|---|---|
+| Dokumenty v oblasti **Documents** | Azure AI Translator; **Retry translation** zachovává původní službu (překlad, který agent v chatu vytvořil přes Google, se znovu přeloží přes Google) |
+| Text v oblasti **Text** | Azure AI Translator; pokud je ve vašem prostředí zapnutý Google, probíhá překlad textu přes Google Cloud Translation |
+| Glosáře | odesílají se službě spolu s překladem; pokud je zapnutý Google, nahrané glosáře se ukládají také u Googlu, aby platily při překladu textu |
+| [Překlad v chatu](/cs/company-gpt/addons/company-translate/im-chat/) | Azure AI Translator; Google pouze pro text s glosářem nebo na výslovné vyžádání, a to jen tehdy, je-li zapnutý |
+
+Pro překlad se obsah – texty, soubory a termíny z glosářů – přenáší do příslušné služby. Nahrané dokumenty a jejich překlady ukládá companyTRANSLATE v úložišti vašeho prostředí CompanyGPT (k době uchování viz [Historie překladů](#historie-překladů-a-doba-uchování)).
+
+Při překladu v chatu navíc platí:
+
+- companyTRANSLATE načte přiložený soubor z úložiště souborů CompanyGPT a výsledek tam vrátí jako soubor chatu. Od té chvíle s ním CompanyGPT zachází jako s každým nahraným souborem – u výsledků ve formátu Word a PowerPoint včetně rozpoznávání textu (OCR), které může být zpoplatněno.
+- Pokud překlad textu pokračuje na pozadí, companyTRANSLATE text krátce (nejvýše jeden den) uloží v úložišti vašeho prostředí.
+- Při překladu přes Google se termíny z chatu nebo z přiloženého souboru glosáře dočasně uloží jako glosář u Googlu a odstraní se nejdříve po 7 dnech.
+
+## Podporované formáty a limity
+
+| Oblast | Vstup | Limit |
+|---|---|---|
+| **Text** | Přímé zadání v rozhraní | 5 000 znaků na jeden překlad |
+| **Documents** | PDF, Word (`.docx`), PowerPoint (`.pptx`), Excel (`.xlsx`), TXT, Markdown (`.md`), HTML | 40 MB na soubor |
+| **Glossaries** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | Překladové služby omezují glosáře na 10 MB; větší soubory TMX se zredukují na terminologický glosář |
+| **V chatu** | Soubory ve formátech oblasti **Documents** a také text | Soubory do 40 MB, text do 50 000 znaků (přes Google do 30 000 znaků) |
+
+## Historie překladů a doba uchování
+
+V oblasti **Documents** zobrazuje **Recent translations** vaše překlady dokumentů – včetně těch, které pro vás v chatu vytvořil agent. Každá položka uvádí název souboru, cílový jazyk, velikost souboru a čas. Probíhající překlady jsou označeny **Processing**, neúspěšné **Failed**; volbou **Retry translation** v nabídce položky je spustíte znovu.
+
+Překlady se uchovávají 30 dní: poté je companyTRANSLATE skryje a pravidlo úložiště ve vašem prostředí je smaže. Prošlé překlady již nelze stáhnout ani zopakovat; companyTRANSLATE pak hlásí „This translation has expired and is no longer available“. Výsledky, které potřebujete déle, si včas stáhněte. Lhůta 30 dní platí pro překlady od verze 2.0; starší položky z doby před ní zůstávají, dokud je nesmažete.
+
+## Související témata
+
+- [Překlad textu](/cs/company-gpt/addons/company-translate/text-uebersetzen/) – výběr jazyka, rozpoznání jazyka a glosáře
+- [Překlad dokumentu](/cs/company-gpt/addons/company-translate/dokument-uebersetzen/) – formáty, stav, stažení a historie
+- [Glosáře](/cs/company-gpt/addons/company-translate/glossare/) – struktura, nahrání a použití glosářů
+- [Překlad v chatu](/cs/company-gpt/addons/company-translate/im-chat/) – překlad souborů a textů pomocí agenta

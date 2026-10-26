@@ -1,0 +1,54 @@
+---
+title: Nástroje
+description: Vytvářejte v companyADMIN vlastní dlaždice pro „All apps“, zpřístupněte je všem, rolím nebo skupinám a zapínejte či vypínejte rozšíření s dlaždicí.
+---
+
+**Configuration** → **Tools** určuje, co lidé vidí jako dlaždice v části [All apps](/cs/company-gpt/addons/alle-apps/): vlastní odkazy pro vaše týmy a dlaždice rozšíření.
+
+Dlaždice je pouze odkaz. O přístupu rozhoduje sám cíl; viditelná dlaždice neuděluje žádná práva.
+
+## Vlastní dlaždice
+
+Můžete vytvořit nejvýše 50 vlastních dlaždic, například pro intranet. Tabulka **Custom tiles** zobrazuje **Tile**, **Address**, **Visible to** a **Status** (**Active** nebo **Off**). Pomocí **Search tile or address …** dlaždici vyhledáte.
+
+### Přidání dlaždice
+
+1. Klikněte na **Add tile**.
+2. Vyplňte oddíl **Tile**:
+
+   | Pole | Význam |
+   |---|---|
+   | **Name** | Název dlaždice, nejvýše 60 znaků |
+   | **Description** | Volitelné, nejvýše 160 znaků |
+   | **Address** | Adresa `https://` nebo cesta na vaší doméně, například `/wiki/` |
+   | **Icon** | Jedna z nabízených ikon, například **Link**, **Globe**, **Book** nebo **Document** |
+   | **Active** | Zda se dlaždice zobrazuje; u nové dlaždice předvoleno |
+
+   **Preview** ukazuje, jak dlaždice vypadá.
+3. V části **Visibility** rozhodněte, kdo dlaždici uvidí: **Every signed-in user** (předvoleno), **Specific roles** nebo **Specific groups**. U rolí nebo skupin musí být vybrána alespoň jedna, jinak dlaždici nelze uložit (**Please pick at least one role or group.**).
+4. Klikněte na **Create**.
+
+V části **In companyTOOLS** stránka shrnuje, kdo dlaždici vidí. Mějte na paměti:
+
+- U **Specific roles** rozhoduje role v CompanyGPT. Administrátoři (role ADMIN) vidí dlaždici pouze tehdy, je-li vybrána role ADMIN.
+- U **Specific groups** rozhoduje členství, které CompanyGPT zná: ze synchronizace skupin nebo z posledního přihlášení.
+- Vlastní dlaždice se zobrazují za dlaždicemi rozšíření. Tlačítka **Move forward** a **Move back** mění jejich pořadí.
+
+Existující dlaždici otevřete kliknutím na její řádek. **Save tile** a **Save visibility** ukládají oddíly samostatně. **Delete tile** ji odstraní pro všechny najednou.
+
+## Dlaždice rozšíření
+
+**Extension tiles** obsahuje seznam všech rozšíření s dlaždicí. Přepínač funguje podle rozšíření různě:
+
+- **n8n a AI Gateway** – přepínač **Show in companyTOOLS**. Tyto aplikace spravují přístup samy; přepínač pouze zobrazuje nebo skrývá dlaždici, a to stejně pro každou přihlášenou osobu. Je to pro ně v companyADMIN jediné nastavení.
+- **Všechna ostatní rozšíření**, například companyTRANSLATE nebo companyRAG – přepínač **Active (tile and rights)**. Jde o stejný přepínač jako v části [Rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/). Neskrývá jen dlaždici, ale vypíná celé rozšíření.
+
+:::caution[Vypnutí odebere práva všem]
+Pokud u rozšíření, jako je companyTRANSLATE nebo companyRAG, vypnete **Active (tile and rights)**, všichni ztratí veškerá práva v tomto rozšíření a agenti přijdou o jeho nástroje MCP. companyADMIN se předtím zeptá.
+:::
+
+## Kdy se změny projeví
+
+„All apps“ si dlaždice vyžádá při každém otevření. Již otevřené zobrazení ukáže změnu až po opětovném načtení.
+
+Pokud stránka zobrazuje upozornění, že vlastní dlaždice a přepínače se ve vašem prostředí zatím neprojevují, obraťte se na innFactory.

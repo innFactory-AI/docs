@@ -1,0 +1,61 @@
+---
+title: Protokoly
+description: Dva protokoly v companyADMIN – protokol companyADMIN se změnami provedenými přes companyADMIN a protokol companyGPT odolný proti manipulaci s ověřením řetězce.
+---
+
+V části **Status** → **Logs** vidíte, kdo co změnil. K dispozici jsou dva samostatné protokoly:
+
+| Protokol | Obsah | Zřetězený |
+|---|---|---|
+| **companyADMIN log** | Každá změna provedená přes companyADMIN | Ne |
+| **companyGPT log** | Udělená a odebraná práva a sdílení Insights u agentů, zaznamenaná samotným CompanyGPT | Ano, s **Verify chain** |
+
+Tato část vyžaduje právo **View audit log**. Bez něj se část nezobrazí.
+
+## Protokol companyADMIN
+
+Protokol companyADMIN obsahuje každou změnu provedenou přes companyADMIN: v rozhraní, přes strojové API, které innFactory používá například k nastavení počátečních hodnot, a vlastními údržbovými úlohami companyADMIN.
+
+| Sloupec | Obsah |
+|---|---|
+| **Time** | Kdy ke změně došlo |
+| **Who** | Osoba nebo služba |
+| **Action** | Co bylo změněno |
+| **Via** | **UI**, **Machine API** nebo **Maintenance job** |
+| **Result** | **Succeeded** nebo **Failed** |
+
+Rozbalený řádek ukazuje, kterých polí se změna týkala. Protokol ukládá pouze cesty k polím a počty, nikdy samotné hodnoty.
+
+Pro zúžení výběru slouží vyhledávání **Search by person …** a filtr **Source**.
+
+Záznamy nejsou zřetězené a ve výchozím nastavení se mažou po 90 dnech. Dokud nebylo nic změněno, protokol zobrazuje **No entries yet.**
+
+## Protokol companyGPT
+
+Protokol companyGPT obsahuje vlastní záznamy CompanyGPT odolné proti manipulaci. Zobrazuje udělená a odebraná práva a sdílení Insights u agentů. Všechny ostatní změny z companyADMIN najdete v protokolu companyADMIN. Prázdný seznam je normální, dokud nikdo práva nezměnil.
+
+| Sloupec | Obsah |
+|---|---|
+| **Time** | Kdy k události došlo |
+| **Category** | **Grant**, **Agent run**, **Tool call**, **MCP**, **Config**, **Permission**, **Auth** nebo **Approval** |
+| **Action** | Zaznamenaná operace |
+| **Outcome** | **Success**, **Failure**, **Denied** nebo **Pending** |
+| **Severity** | **Info**, **Warning** nebo **Critical** |
+| **Actor** | Kdo operaci spustil |
+| **Target** | Čeho se operace týká |
+
+Pro zúžení výběru slouží vyhledávání **Search …** a filtry **Category**, **Outcome**, **Severity** a **Period** (**Last 24 hours**, **Last 7 days**, **Last 30 days**). Pokud nic neodpovídá, protokol zobrazí **No entries for this selection.**
+
+### Ověření řetězce
+
+Záznamy protokolu companyGPT jsou zřetězené, takže pozdější změna je odhalitelná. **Verify chain** zkontroluje celý řetězec:
+
+- Pokud je vše v pořádku, zobrazí se **Chain intact — N entries verified.**
+- Pokud je řetězec porušen, zpráva **Chain verification failed** uvede důvod.
+
+Ověření řetězce existuje pouze pro protokol companyGPT.
+
+## Související stránky
+
+- Kdo má jaká práva: [Přímá oprávnění](/cs/company-gpt/addons/companyadmin/direkte-berechtigungen/)
+- Odkud pochází přístup k administraci: [Status → Admin sources](/cs/company-gpt/addons/companyadmin/status/)

@@ -1,0 +1,76 @@
+---
+title: Rozšíření
+description: Oprávnění pro companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN a Insights v companyADMIN – co jednotlivá oprávnění umožňují, kdo je má automaticky a kde je udělujete.
+---
+
+companyADMIN je centrálním místem pro oprávnění v rozšířeních CompanyGPT. Každé rozšíření se companyADMIN ptá, zda je daná osoba smí používat nebo spravovat.
+
+**Configuration** → **Extensions** zobrazuje každé rozšíření s jeho stavem, dlaždicí a oprávněními. Oprávnění se udělují u [role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) nebo [skupiny](/cs/company-gpt/addons/companyadmin/gruppen/) na kartě **Extensions**; zde oprávnění zpřístupníte všem zaškrtnutím **For everyone**.
+
+## Udělování oprávnění
+
+| Způsob | Kde | Účinek |
+|---|---|---|
+| Roli | Role → karta **Extensions** | Všichni s touto rolí |
+| Skupině | Skupina → karta **Extensions** | Každý člen skupiny |
+| Všem | Configuration → **Extensions**, zaškrtnout **For everyone** | Všichni v prostředí |
+
+Role ADMIN má vždy oprávnění třídy **Admins automatically**; companyADMIN to zajišťuje při každém spuštění. Oprávnění třídy **Explicit only** nedostane nikdo automaticky, ani administrátoři. Nikdy je nelze zpřístupnit všem. Udělit je může pouze administrátor s rolí ADMIN; všem ostatním administrátorům jsou na kartě **Extensions** skrytá. Týká se to oprávnění **Superadmin** v companyRAG, a to i pro každou další instanci companyRAG.
+
+Udělování skupinám není možné v každém prostředí. Dokud CompanyGPT nezná žádné členy skupin Entra nebo dokud vašemu CompanyGPT chybí potřebná aktualizace, zobrazuje karta **Extensions** skupiny hlášení **Group rights locked** s uvedením důvodu.
+
+Odebrané oprávnění okamžitě zaniká; rozšíření si odpověď ukládají do mezipaměti nejvýše na minutu.
+
+:::note[Nástroje MCP v chatu]
+MCP servery rozšíření jsou zpravidla připojeny pro všechny. Jejich nástroje se proto mohou v chatu zobrazovat i osobám bez oprávnění k jejich používání; rozšíření oprávnění kontroluje při volání nástroje. Pokud se mají nástroje zobrazovat pouze osobám s oprávněním, obraťte se na innFactory.
+:::
+
+## Oprávnění
+
+| Rozšíření | Oprávnění | Technický název | Umožňuje |
+|---|---|---|---|
+| [companyTRANSLATE](/cs/company-gpt/addons/company-translate/) | **Use translation** | `ext:translate:use` | Překládat texty a dokumenty |
+| | **Manage glossaries** | `ext:translate:admin` | Vytvářet, nahrávat a mazat glosáře pro všechny |
+| [companyTRANSCRIBE](/cs/company-gpt/addons/company-transcribe/) | **Use transcription** | `ext:transcribe:use` | Přepisovat zvukové a video soubory |
+| [companyFILES](/cs/company-gpt/addons/companyfiles/) | **Use Files** | `ext:files:use` | Vytvářet a upravovat dokumenty ze šablon |
+| | **Manage global templates** | `ext:files:templates` | Nahrávat, publikovat a mazat globální šablony; bez brandingu organizace |
+| | **Manage organisation & branding** | `ext:files:admin` | Nastavení organizace a branding (logo, barvy); globální šablony jsou samostatné oprávnění |
+| [companyRAG](/cs/company-gpt/addons/companyrag/) | **Use knowledge** | `ext:rag:use` | Vyhledávat ve znalostních sbírkách, ke kterým má osoba přístup |
+| | **Manage RAG settings** | `ext:rag:admin` | Uživatelé, klíče API a nastavení poskytovatelů včetně přihlašovacích údajů konektorů. Znalostní báze se spravují prostřednictvím vlastnictví sbírek, nikoli tímto oprávněním |
+| | **Superadmin** | `ext:rag:superadmin` | Vidí všechny sbírky prostředí, navíc protokol auditu, aktivitu zaměstnanců a přístup pro zápis do všech sbírek. Třída **Explicit only** |
+| [companyM365](/cs/company-gpt/addons/companym365/) | **Use Microsoft 365** | `ext:m365:use` | Doplněk Office (Word, Excel, PowerPoint, Outlook), nástroje Microsoft 365 v chatu a bot pro Teams, pokud jsou ve vašem prostředí k dispozici. Odebrání oprávnění odebere všechny tři |
+| | **Manage Microsoft 365** | `ext:m365:admin` | Administrace companyM365: nastavení bota pro Teams, uvolnění agentů pro Teams, nastavení, audit, mazání dat bota jednotlivých osob a instalační balíčky doplňku. Nikdy pro všechny |
+| [companyLEARN](/cs/company-gpt/addons/companylearn/) | **Use courses** | `ext:learn:use` | Absolvovat kurzy |
+| | **Manage courses** | `ext:learn:admin` | Spravovat kurzy |
+| companyADMIN | **View Insights** | `ext:admin:insights` | Otevřít [Insights](/cs/company-gpt/addons/companyadmin/insights/). Nikdy pro všechny, protože Insights zobrazuje náklady, tokeny a e-mailové adresy všech uživatelů |
+
+Všechna oprávnění kromě **Superadmin** v companyRAG patří do třídy **Admins automatically**.
+
+Pokud má vaše prostředí více instancí companyRAG, má každá další instance vlastní kartu, například „companyRAG (instance 2)“, s vlastními oprávněními.
+
+Správa samotného companyADMIN není udělitelné oprávnění. Je vázána na roli ADMIN a [zdroje administrátorů](/cs/company-gpt/addons/companyadmin/status/); karta companyADMIN ji pouze zobrazuje.
+
+## Karta rozšíření
+
+Každé rozšíření má vlastní kartu:
+
+- **Stav** – **reachable** s dobou odezvy a verzí, **not reachable** nebo **Status unknown**. Podrobnosti najdete v části [Stav](/cs/company-gpt/addons/companyadmin/status/).
+- **Active (tile and rights)** – zapíná nebo vypíná rozšíření. Je-li vypnuté, dlaždice zmizí z **All apps** a rozšíření už nedostává žádná oprávnění: nikdo v něm již nemá oprávnění a sdílené nástroje MCP jsou pro agenty zúženy. Před vypnutím se systém nejprve zeptá.
+- U každého oprávnění jeho popisek, technický název, třída, vysvětlení a **Who has it:** s rolemi a skupinami (s odkazem na roli nebo skupinu), **For everyone** nebo **nobody yet**.
+- Zaškrtávací políčko **For everyone**, pokud lze oprávnění zpřístupnit všem.
+
+Pro n8n a AI Gateway existuje pouze přepínač **Show in companyTOOLS**. Tyto aplikace spravují přístup samy; přepínač pouze zobrazuje nebo skrývá jejich dlaždici.
+
+## Zpřístupnění oprávnění všem
+
+Zpřístupnit oprávnění všem mohou pouze administrátoři s rolí ADMIN. **View Insights**, **Manage Microsoft 365** a oprávnění třídy **Explicit only** nelze zpřístupnit všem.
+
+Pokud **For everyone** zrušíte, companyADMIN se nejprve zeptá. Role a skupiny, které oprávnění měly předtím, si ho ponechají, stejně jako ADMIN; všichni ostatní ho ztratí.
+
+## Když agenti ztratí přístup
+
+Pokud zúžíte oprávnění, které potřebují sdílení agenti, companyADMIN zobrazí varování **Access will be narrowed**: dotčení agenti pak hlásí chybu, dokud neupravíte jejich sdílení. **Narrow anyway** změnu přesto provede.
+
+## Udělování skupinám
+
+Oprávnění udělené skupině získá každý člen. U oprávnění, jejichž technický název končí na `:admin` nebo `:superadmin`, a u oprávnění třídy **Explicit only** na to companyADMIN upozorní: kdo spravuje skupinu, spravuje tím i oprávnění. Totéž platí pro **Manage global templates** a **View Insights**. Pro taková oprávnění používejte pouze bezpečnostní skupiny s omezenými vlastníky, žádné skupiny Microsoft 365, do kterých se lidé mohou sami přihlásit.

@@ -1,0 +1,68 @@
+---
+title: companyLEARN
+description: Výuková platforma v CompanyGPT s video a textovými lekcemi, kvízy s hranicí úspěšnosti a kapitolami, které se odemykají postupně – ve vlastním rozhraní i přímo v chatu.
+---
+
+companyLEARN je výuková platforma v CompanyGPT. Správci kurzů sestavují kurzy z video a textových lekcí, přidávají kvízy a kurzy publikují. Studující se do kurzů zapisují, procházejí lekce a vyplňují kvízy – ve vlastním rozhraní companyLEARN nebo přímo v chatu.
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+## Jak je kurz strukturován
+
+| Stavební prvek | Popis |
+|---|---|
+| **Kurz** | Název, volitelný popis a posloupnost kapitol. Nový kurz začíná jako koncept; studující jej uvidí až po publikování. |
+| **Kapitola** | Strukturuje kurz. Každá kapitola obsahuje lekce a volitelně kvíz. |
+| **Lekce** | Buď **video**, nebo **text** napsaný v Markdownu. |
+| **Kvíz** | Nejvýše jeden na kapitolu, s otázkami, možnostmi odpovědí a **hranicí úspěšnosti** v procentech. |
+
+Kapitola je dokončena, jakmile jsou hotové všechny její lekce a – pokud jej má – je splněn její kvíz. Při zapnutém **postupném odemykání kapitol** (výchozí nastavení u nových kurzů) se kapitola otevře až po dokončení předchozí. Pokrok v kurzu odpovídá podílu dokončených kapitol.
+
+## Dva přístupy, jeden záznam o studiu
+
+- **Rozhraní companyLEARN** – dashboard, katalog kurzů, lekce a kvízy a pro správce kurzů také správa kurzů.
+- **Chat** – prostřednictvím serveru MCP **Learn** asistent vyhledává kurzy, ukazuje váš pokrok a otevírá lekce a kvízy přímo v konverzaci.
+
+Oba přístupy pracují se stejnými daty: co dokončíte v chatu, je jako hotové označeno i v rozhraní – a naopak.
+
+## Pro koho je určen?
+
+| Kdo | Úkoly | Relevantní stránky |
+|---|---|---|
+| **Studující** | Vyhledávání kurzů, zápis, sledování lekcí, vyplňování kvízů | [Studium](/cs/company-gpt/addons/companylearn/lernen/), [V chatu](/cs/company-gpt/addons/companylearn/im-chat/) |
+| **Správci kurzů a lektoři** | Vytváření kurzů, kapitol, lekcí a kvízů, nahrávání videí, publikování kurzů | [Správa kurzů](/cs/company-gpt/addons/companylearn/kurse-verwalten/), [Videa](/cs/company-gpt/addons/companylearn/videos/) |
+| **Techničtí administrátoři** | Udělování oprávnění, připojování dalších systémů přes REST API | [Oprávnění](#oprávnění), [Externí API](/cs/company-gpt/addons/companylearn/api/) |
+
+## Otevření companyLEARN
+
+companyLEARN otevřete v CompanyGPT přes [**All apps**](/cs/company-gpt/addons/alle-apps/) a dlaždici **Learn**. Dostupný je také přímo na adrese:
+
+```
+https://COMPANY.company-gpt.com/companygpt/learn/
+```
+
+companyLEARN používá vaše přihlášení z chatu CompanyGPT; samostatné přihlášení neexistuje. Postranní panel, nabídka účtu a další prvky společné pro všechny doplňky jsou popsány na stránce [Společné rozhraní](/cs/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Oprávnění
+
+companyLEARN má dvě oprávnění:
+
+| Oprávnění | Umožňuje |
+|---|---|
+| **Use courses** | Otevřít companyLEARN, zapisovat se do kurzů, studovat a používat nástroje Learn v chatu |
+| **Manage courses** | Navíc oddíly **Course management**, **Videos** a **API keys** |
+
+Pokud se oprávnění udělují přes companyADMIN, uvidí každý bez oprávnění **Use courses** při otevření companyLEARN stránku **No access**; nástroje Learn v chatu mu rovněž nejsou k dispozici. Správa kurzů vyžaduje obě oprávnění.
+
+Tato oprávnění obvykle uděluje váš administrátor v companyADMIN v části **Extensions** (viz [Oprávnění rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/)). V některých prostředích je nastavuje innFactory během instalace; v takovém případě se obraťte na svého administrátora.
+
+## Co dál?
+
+- [Rozhraní](/cs/company-gpt/addons/companylearn/oberflaeche/) – nabídka, oddíl správy a vložené zobrazení v chatu.
+- [Studium](/cs/company-gpt/addons/companylearn/lernen/) – vyhledávání kurzů, zápis, lekce, kvízy a dashboard.
+- [V chatu](/cs/company-gpt/addons/companylearn/im-chat/) – používání serveru MCP Learn a jeho přiřazení agentovi.
+- [Správa kurzů](/cs/company-gpt/addons/companylearn/kurse-verwalten/) – vytváření a publikování kurzů, kapitol, lekcí a kvízů.
+- [Videa](/cs/company-gpt/addons/companylearn/videos/) – nahrávání videí, jejich použití v lekcích a mazání.
+- [Externí API](/cs/company-gpt/addons/companylearn/api/) – klíče API, rozsahy oprávnění (scopes) a REST API pro integrace.

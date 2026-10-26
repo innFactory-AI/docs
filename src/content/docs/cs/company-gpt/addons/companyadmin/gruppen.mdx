@@ -1,0 +1,114 @@
+---
+title: Skupiny
+description: Vytváření lokálních skupin, registrace a synchronizace skupin Entra a správa sdílení, práv v rozšířeních a nastavení skupiny v companyADMIN.
+---
+
+Skupiny sdružují osoby. Především rozhodují o tom, **s kým se něco sdílí**: kdo vidí agenty, prompty, skills a MCP servery, závisí na skupinách. Skupiny mohou také nést práva v rozšířeních a vlastní nastavení.
+
+Co smí někdo v CompanyGPT dělat (funkce) a které modely vidí, závisí na jeho [roli](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/), nikoli na skupinách.
+
+Skupiny najdete v části **Access** → **Groups**.
+
+## Druhy skupin
+
+| Zdroj | Původ | Členové |
+|---|---|---|
+| **Local** | Vytvořeny v companyADMIN | Spravujete je sami |
+| **Entra** | Skupiny z Microsoft Entra ID | Přicházejí z Entra, při přihlášení nebo prostřednictvím synchronizace skupin; v companyADMIN jen pro čtení |
+| **OIDC** | Skupiny z group claimu přihlášení (OIDC) | Přicházejí při přihlášení; v companyADMIN jen pro čtení |
+
+CompanyGPT zná skupinu Entra teprve tehdy, když se přihlásí některý její člen nebo když ji zaregistrujete v companyADMIN.
+
+## Seznam skupin
+
+Ve výchozím stavu seznam zobrazuje pouze skupiny, které se někde používají. Volba **Show all groups** přidá i ostatní. Vyhledávání vždy najde každou skupinu.
+
+| Sloupec | Obsah |
+|---|---|
+| **Name** | Název skupiny; odznak **Duplicate**, pokud byla stejná skupina Entra vytvořena dvakrát |
+| **Source** | **Local**, **Entra** nebo **OIDC** |
+| **Members** | Počet členů |
+| **Linked to** | U lokálních skupin: propojené skupiny Entra |
+| **Last synced** | Poslední sesouhlasení členů |
+| **Used in** | Práva, nastavení a sdílení navázaná na skupinu |
+
+Pomocí **Search name or Entra ID** najdete skupinu i podle jejího ID objektu.
+
+## Vytvoření skupiny
+
+Administrátoři s právem **Manage groups** vidí v seznamu skupin sekci **Create group**.
+
+1. Zadejte **Name** a volitelně **Description**. Název je vždy povinný, i u skupin Entra.
+2. Zvolte **Source**: **Local** nebo **Entra**. U **Entra** zadejte také **Entra object ID** skupiny. Na velikosti písmen nezáleží.
+3. Klikněte na **Create**.
+
+Je-li nastavena synchronizace skupin Entra, companyADMIN ověří ID objektu v Entra ID, nahradí zadaný název názvem z Entra a ihned přidá členy. U velkých skupin se členové načítají na pozadí. Bez synchronizace skupin je skupina pouze zaregistrována; její členové pak přibývají při přihlášení.
+
+Skupinu Entra, která již existuje, nelze vytvořit podruhé. companyADMIN pak nabídne **Open the existing group**.
+
+## Synchronizace skupin Entra
+
+Bez synchronizace zná CompanyGPT členství ve skupině Entra pouze z přihlášení jejích členů. Synchronizace skupin načte z Microsoft Graph členy všech skupin Entra, které CompanyGPT zná, a zapíše je. Nikdy nevytváří nové skupiny.
+
+Synchronizaci skupin pro vaše prostředí nastavuje innFactory. Kromě toho vyžaduje souhlas správce v Microsoft Entra ID pro oprávnění `GroupMember.Read.All`.
+
+S právem **Manage groups** najdete v horní části seznamu skupin akci **Sync Entra groups**. Otevře oblast synchronizace, která zobrazuje:
+
+- **Last run** s výsledkem (**successful**, **partly** nebo **failed**)
+- **Daily**: zda synchronizace běží automaticky každý den a kdy proběhne další běh
+- **Owners count as members**: zda se vlastníci skupiny Entra počítají jako členové
+
+Ruční synchronizace:
+
+1. V horní části seznamu skupin klikněte na **Sync Entra groups**.
+2. Klikněte na **Preview**. Náhled uvádí, kolik skupin bylo načteno a které osoby přibudou (**joins**) nebo odpadnou (**drops out**).
+3. Klikněte na **Sync now**.
+
+companyADMIN a rozšíření vidí výsledek okamžitě, CompanyGPT do pěti minut. Skupiny, které Microsoft Graph nedovolí načíst nebo pro které Graph nevrátí žádné členy, zůstanou beze změny a jsou hlášeny jako nepoužité.
+
+Pokud companyADMIN hlásí, že Microsoft Graph aplikaci odmítá, obvykle chybí souhlas správce pro `GroupMember.Read.All`. Pokud synchronizace není nastavena, na akci nelze kliknout a companyADMIN uvede důvod **The Entra group sync is not set up.** V takovém případě kontaktujte innFactory.
+
+## Stránka s podrobnostmi skupiny
+
+Stránka s podrobnostmi má karty **Overview**, **Content**, **Extensions**, **Configuration** a **Members** a navíc nebezpečnou zónu **Delete group**.
+
+### Overview
+
+Název, popis, **Entra object ID**, **Source**, **Members**, **Last synced** a **Used in**. Název a popis měníte pouze u lokálních skupin, s právem **Manage groups**; změnu potvrďte tlačítkem **Save**. U skupin Entra a OIDC nelze v přehledu nic měnit.
+
+Pokud stejná skupina Entra existuje dvakrát, zobrazí se **Created twice**. Sloučení se provádí ručně: přesuňte práva a sdílení do jedné skupiny a druhou smažte.
+
+### Content
+
+Co je se skupinou sdíleno: agenti, prompty, skills a MCP servery, každý s právem **View** nebo **Edit**. Toto měníte přímo u daného obsahu, viz [Obsah a viditelnost](/cs/company-gpt/addons/companyadmin/inhalte/).
+
+:::note[Bez funkcí superadministrátora]
+Bez funkcí superadministrátora zobrazuje karta pouze obsah v rámci vašeho rozsahu: obsah spravovaný knihovnou, veřejný a sdílený s vámi. Vše ostatní se zobrazí pouze jako počet („N more items not visible (you lack the rights for them).“) a MCP servery mimo váš rozsah pouze s názvem.
+:::
+
+### Extensions
+
+Práva, která všichni členové skupiny dostávají v rozšířeních, například **Use knowledge** nebo **Use courses**. Zaškrtnutím právo udělíte. Všechna práva jsou popsána v části [Rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/).
+
+:::caution
+Právo udělené skupině dostane každý její člen a kdo spravuje skupinu v Entra ID, spravuje tím i toto právo. Správcovská práva udělujte pouze bezpečnostním skupinám s omezenými vlastníky, nikoli skupinám Microsoft 365, ke kterým se lidé mohou připojit sami.
+:::
+
+V některých prostředích je udělování práv skupinám uzamčeno, například dokud CompanyGPT nezná žádné členy skupin Entra. Karta pak zobrazí **Group rights locked** s uvedením důvodu.
+
+### Configuration
+
+Nastavení, která platí pro členy skupiny: paměti, uchovávání dat, tvůrce agentů a nahrávání souborů. Bez vlastní hodnoty platí role nebo základní konfigurace. Hodnota nastavená u role má vždy přednost. Vyhněte se rozdílným hodnotám v několika skupinách téže osoby; takové hodnoty raději nastavte u role.
+
+Modely se uvolňují podle role, nikoli podle skupiny. Tlačítko **Go to roles** vás tam přenese.
+
+### Members
+
+- **Lokální skupiny**: v sekci **Add person** vyhledáváte osoby podle jména nebo e-mailu a přidáváte je. Osoby, které odeberete, ztratí vše, co bylo této skupině uvolněno.
+- **Skupiny Entra a OIDC**: členové pocházejí z Entra ID nebo z přihlášení a zde je lze pouze zobrazit.
+
+V sekci **Link with Entra group** můžete lokální skupinu propojit s jednou nebo více skupinami Entra. Vyberte skupiny Entra a propojení uložte tlačítkem **Save**. Teprve s uloženým propojením zkopíruje **Reconcile now** jejich členy: noví jsou přidáni a kdo již není v žádné ze skupin Entra, je odebrán, včetně ručně přidaných osob. Zahrnuty jsou pouze osoby, které se alespoň jednou přihlásily.
+
+### Smazání skupiny
+
+**Delete group** odstraní skupinu se všemi právy, sdíleními a nastaveními, která jsou na ni navázána. Tuto akci nelze vrátit zpět. Skupina Entra v Entra ID zůstane; když se některý člen přihlásí, CompanyGPT ji vytvoří znovu bez práv.

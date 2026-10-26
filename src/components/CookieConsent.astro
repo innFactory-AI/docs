@@ -13,7 +13,8 @@
 // Starlight's locales both carry a URL prefix, so the pathname is the most
 // reliable locale source here — it also works on the openapi routes, which are
 // generated without a prefix and fall back to German.
-const lang = Astro.url.pathname.startsWith('/en') ? 'en' : 'de';
+// No Czech copy of the consent text yet; cs pages show the English one.
+const lang = /^\/(en|cs)(\/|$)/.test(Astro.url.pathname) ? 'en' : 'de';
 
 const strings = {
 	de: {

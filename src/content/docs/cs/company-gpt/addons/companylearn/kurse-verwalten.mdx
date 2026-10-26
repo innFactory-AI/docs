@@ -1,0 +1,122 @@
+---
+title: Správa kurzů
+description: Vytváření kurzů, kapitol, lekcí a kvízů v companyLEARN, změna jejich pořadí, nastavení postupného odemykání kapitol a publikování kurzů.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Správa kurzů je k dispozici osobám s oprávněním **Manage courses** (viz [Oprávnění](/cs/company-gpt/addons/companylearn/#oprávnění)). Otevřete ji přes **Course management** v nabídce.
+
+## Přehled kurzů
+
+Tabulka zobrazuje všechny kurzy včetně konceptů. Nepublikované kurzy mají vedle názvu označení **Draft**.
+
+| Sloupec | Obsah |
+|---|---|
+| **Title** | Název kurzu |
+| **Published** | Přepínač: je-li zapnutý, studující vidí kurz v katalogu. |
+| **Chapter gating** | Přepínač: je-li zapnutý, kapitoly se odemykají jedna po druhé. |
+| **Chapters** | Počet kapitol |
+| **Enrollments** | Počet zapsaných osob |
+| **Created** | Datum vytvoření kurzu |
+| **Actions** | **Edit** (tužka) otevře editor kurzu, **Delete** (koš) kurz odstraní. |
+
+## Vytvoření kurzu
+
+<Steps>
+
+1. Ve správě kurzů klikněte vpravo nahoře na **New course**.
+
+2. V dialogu **Create course** zadejte **Title** a volitelně **Description** a klikněte na **Save**. Kurz začíná jako nepublikovaný koncept.
+
+3. companyLEARN otevře nový kurz v editoru kurzu. Tam přidejte kapitoly, lekce a kvízy.
+
+4. Až bude kurz připraven, zapněte **Published**.
+
+</Steps>
+
+Název může mít až 500 znaků, popis až 2 000 znaků. Totéž platí pro kapitoly.
+
+## Editor kurzu
+
+V horní části editoru kurzu upravujete název a popis kurzu přímo v poli. Změna se uloží, jakmile pole opustíte. Pod nimi jsou přepínače **Published** a **Chapter gating**. **Back to courses** vás vrátí do přehledu kurzů.
+
+### Kapitoly
+
+V části **Chapters** má každá kapitola vlastní kartu.
+
+- **Přidání kapitoly:** Klikněte na **Add chapter**, zadejte **Title** a klikněte na **Save**. Nové kapitoly se přidávají na konec.
+- **Úpravy:** Název a (volitelný) popis měníte přímo v kartě kapitoly; změny se uloží, jakmile pole opustíte.
+- **Pořadí:** Šipky **Move up** a **Move down** posunou kapitolu o jednu pozici.
+- **Smazání:** Koš po potvrzení trvale odstraní kapitolu se všemi jejími lekcemi a kvízem.
+
+### Lekce
+
+Každá karta kapitoly uvádí své lekce s ikonou videa nebo textu. Vedle každé lekce najdete **Move up**, **Move down**, **Edit** a **Delete**.
+
+Vytvoření lekce:
+
+<Steps>
+
+1. V kartě kapitoly klikněte na **Add lesson**. Otevře se dialog **New lesson**.
+
+2. Zadejte **Title**.
+
+3. V části **Type** zvolte buď **Text**, nebo **Video**.
+
+4. U typu **Text** napište obsah v Markdownu do pole **Content (Markdown)**, až 10 000 znaků. Vedle něj **Preview** ukazuje, jak text uvidí studující.
+
+   U typu **Video** klikněte na **Choose a video…** a vyberte video z knihovny videí nebo nahrajte nové pomocí **Upload a new video** (viz [Videa](/cs/company-gpt/addons/companylearn/videos/)).
+
+5. Klikněte na **Save**. Nové lekce se přidávají na konec kapitoly.
+
+</Steps>
+
+**Edit** otevře stejný dialog jako **Edit lesson**. Když lekci **smažete**, ztratí se i pokrok všech studujících v této lekci.
+
+### Kvíz
+
+Každá kapitola může mít jeden kvíz. Karta kapitoly zobrazuje buď **No quiz yet** s tlačítkem **Add quiz**, nebo název kvízu s počtem otázek a tlačítkem **Edit quiz**.
+
+V dialogu **Quiz** definujete:
+
+| Pole | Popis |
+|---|---|
+| **Title** | Povinné, až 500 znaků |
+| **Pass threshold (%)** | Celé číslo od 0 do 100; u nového kvízu předvyplněno hodnotou 70. Prázdné pole se nepovažuje za 0 %, ale zabrání uložení. |
+| **Question 1**, **Question 2** … | Text otázky, až 2 000 znaků |
+| Možnosti odpovědí | Text každé možnosti, až 500 znaků. Zaškrtávací políčko před možností ji označí jako **Correct answer**; otázka může mít více než jednu správnou odpověď. |
+
+**Add option** a **Add question** kvíz rozšiřují; koš odstraní otázku nebo možnost. Aby bylo možné kvíz uložit, potřebuje alespoň jednu otázku a každá otázka potřebuje dvě až 20 možností, z nichž alespoň jedna je správná. Kvíz může mít až 200 otázek.
+
+Klikněte na **Save** a potvrďte **Save quiz?**. **Delete quiz** po potvrzení odstraní kvíz i všechny pokusy.
+
+:::caution[Uložení vynuluje všechny pokusy]
+Uložení kvízu smaže všechny předchozí pokusy všech studujících v tomto kvízu – včetně úspěšných. Je-li zapnuté postupné odemykání kapitol, následující kapitoly se pro tyto osoby opět uzamknou, dokud kvíz znovu nesplní. Kvízy v probíhajících kurzech proto měňte opatrně.
+:::
+
+Jak studující kvíz absolvují a jak se hodnotí, je popsáno v části [Kvíz](/cs/company-gpt/addons/companylearn/lernen/#kvíz).
+
+## Publikování
+
+Přepínač **Published** – v přehledu kurzů nebo v editoru kurzu – kurz uvolní. Teprve pak se zobrazí v katalogu kurzů a v chatu a teprve pak se do něj studující mohou zapsat.
+
+Pokud publikovaný kurz opět vypnete, zmizí z katalogu i z nástěnky zapsaných studujících a ti již nemohou otevírat jeho lekce a kvízy. Jejich pokrok zůstane zachován.
+
+## Postupné odemykání kapitol
+
+**Chapter gating** je u nových kurzů zapnuté. Kapitola se pak otevře teprve tehdy, když je předchozí dokončena – tedy všechny její lekce jsou hotové a její kvíz je splněn. Pokud jej vypnete, jsou po zápisu otevřené všechny kapitoly. Toto nastavení můžete kdykoli změnit; projeví se okamžitě.
+
+## Změny v probíhajících kurzech
+
+companyLEARN vždy počítá odemykání a pokrok z aktuálního obsahu kurzu. Změny se proto okamžitě projeví u všech zapsaných studujících:
+
+- Pokud do kapitoly přidáte lekci, kapitola je opět otevřená pro všechny, kdo ji již dokončili. Je-li zapnuté postupné odemykání kapitol, následující kapitoly se opět uzamknou, dokud nebude nová lekce hotová.
+- Pokud kvíz znovu uložíte, musí jej všichni splnit znovu (viz výše).
+- Pokud změníte pořadí kapitol, odemykání se řídí i novým pořadím.
+
+## Smazání kurzu
+
+V přehledu kurzů klikněte na koš a potvrďte **Delete course?**. companyLEARN trvale smaže kurz se všemi kapitolami, lekcemi a kvízy a odstraní všechny zápisy; potvrzení uvádí jejich počet. Videa zůstanou v knihovně videí.
+
+Další: [Videa](/cs/company-gpt/addons/companylearn/videos/).

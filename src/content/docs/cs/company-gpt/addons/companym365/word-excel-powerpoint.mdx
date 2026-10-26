@@ -1,0 +1,91 @@
+---
+title: Word, Excel a PowerPoint
+description: Co dalšího umí doplněk Office ve Wordu, Excelu a PowerPointu – rychlé akce, koučink ve Wordu, analýza dat v Excelu a prezentace z osnovy.
+---
+
+Tato stránka popisuje funkce, které [doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/) přináší specificky pro Word, Excel a PowerPoint. Doplněk není povolen ve všech prostředích; základy, jako je otevření, výběr modelu a režimy úprav, najdete na stránce [Doplněk Office](/cs/company-gpt/addons/companym365/office-add-in/). Rozhraní doplňku je v němčině; popisky jsou uvedeny německy s českým překladem v závorce.
+
+Rychlé akce spouštíte přes nabídku na kartě **Home**, přes paletu `/` ve vstupním poli nebo – u některých z nich – přes úvodní návrhy v prázdném chatu. Pokud rychlá akce mění dokument, platí zvolený [režim úprav](/cs/company-gpt/addons/companym365/office-add-in/#režimy-úprav): v režimu **Vorschläge** (Návrhy) se změny nejprve zobrazí jako karta.
+
+## Word
+
+| Rychlá akce | Co dělá |
+|---|---|
+| **Zusammenfassen** (Shrnout) | Shrne dokument (nebo označený text) do odrážek. Dokument zůstane beze změny. |
+| **Korrektur lesen** (Zkontrolovat text) | Zkontroluje pravopis, gramatiku a interpunkci a opraví je. |
+| **Umformulieren** (Přeformulovat) | Přeformuluje označený text jasněji a stručněji. |
+| **Sprache vereinfachen** (Zjednodušit jazyk) | Přepíše text jednoduchým, snadno srozumitelným jazykem. |
+| **Entwurf schreiben** (Napsat koncept) | Napíše nový koncept ve stylu dokumentu. Asistent se nejprve zeptá na téma, cílovou skupinu, délku a tón. |
+| **Übersetzen** (Přeložit) | Přeloží text a zachová jeho strukturu. Asistent se nejprve zeptá na cílový jazyk. |
+
+Pokud je označen text, většina akcí se vztahuje pouze na označení.
+
+Ve výchozím stavu jsou úvodními návrhy v prázdném chatu **Dokument zusammenfassen** (Shrnout dokument), **Rechtschreibung und Grammatik prüfen** (Zkontrolovat pravopis a gramatiku), **Coaching** (Koučink) a **Gliederung vorschlagen** (Navrhnout osnovu).
+
+### Koučink
+
+**Coaching** Vám poskytne zpětnou vazbu k Vašemu textu, aniž by jej sám přepisoval. Spustíte jej pomocí úvodního návrhu **Coaching** nebo přes `/`.
+
+1. Dialog zobrazí **Markierter Text** (označený text) a **Dokumenttitel** (název dokumentu). Pokud je označen text, asistent posuzuje pouze ten; pokud je pole prázdné, celý dokument.
+2. Asistent vrátí krátký celkový dojem a až osm zjištění k oblastem **Klarheit** (srozumitelnost), **Ton** (tón), **Länge** (délka) nebo **Struktur** (struktura) – každé s pasáží, zdůvodněním a návrhem.
+3. V režimu **Vorschläge** (Návrhy) se každé zjištění zobrazí jako karta návrhu s umístěním (např. „Absatz 3“, odstavec 3). V režimech **Direkt** (Přímo) a **Nachverfolgen** (Sledovat) se zobrazí seznam zjištění: **Übernehmen** (Převzít) nahradí přesně danou pasáž, **Rückgängig** (Zpět) ji vrátí. **Alle übernehmen** (Převzít vše) a **Alle rückgängig** (Vrátit vše) působí na všechna zjištění.
+
+Během koučinku asistent dokument sám nemění; každou změnu převezmete jednotlivě.
+
+### Vkládání odpovědí do dokumentu
+
+Pomocí **Ins Dokument einfügen** (Vložit do dokumentu) pod odpovědí převezmete text do svého dokumentu. Doplněk použije styly Vašeho dokumentu. Vloží se pouze samotná odpověď, nikoli uvažování.
+
+## Excel
+
+| Rychlá akce | Co dělá |
+|---|---|
+| **Formel erklären** (Vysvětlit vzorec) | Krok za krokem vysvětlí vzorec v označené buňce. |
+| **Formel erstellen** (Vytvořit vzorec) | Sestaví správný vzorec Excelu pro Váš výpočet. Asistent se zeptá, co se má počítat a kam vzorec patří. |
+| **Daten analysieren** (Analyzovat data) | Popíše anomálie a trendy v označené oblasti. Sešit zůstane beze změny. |
+| **Diagramm vorschlagen** (Navrhnout graf) | Navrhne vhodnou vizualizaci a vytvoří ji. |
+| **Rechtschreibung prüfen** (Zkontrolovat pravopis) | Najde překlepy a pravopisné chyby v textech listu. |
+| **Sprache vereinfachen** (Zjednodušit jazyk) | Přeformuluje popisky a poznámky jasně a srozumitelně. |
+
+Pokud není nic označeno, asistent použije využitou oblast aktivního listu.
+
+Ve výchozím stavu jsou úvodními návrhy v prázdném chatu **Daten analysieren** (Analyzovat data), **Formel erklären** (Vysvětlit vzorec), **Diagramm vorschlagen** (Navrhnout graf) a **Tabelle bereinigen** (Vyčistit tabulku).
+
+### Výsledná tabulka jako nový list
+
+Pokud hotová odpověď v Excelu obsahuje výslednou tabulku, zobrazí se pod ní **Als neues Blatt einfügen** (Vložit jako nový list) – i bez spouštění kódu. Tlačítko okamžitě vytvoří nový list „Analyse“ s tabulkou, v každém režimu úprav a bez karty návrhu. Pokud spuštění kódu vytvořilo graf, přidá se na list také. Stávající buňky se nepřepisují. Poté tlačítko ukazuje, do kterého listu byl obsah vložen.
+
+### Analýza dat pomocí kódu
+
+Pokud je ve Vašem prostředí povoleno [spouštění kódu](/cs/company-gpt/code-interpreter/), asistent při **Daten analysieren** (Analyzovat data) počítá pomocí kódu v Pythonu, nikoli jen pomocí vzorců. Krok nástroje zobrazí kód, výstup a případně graf. Výslednou tabulku a graf přidáte pomocí **Als neues Blatt einfügen** (viz [výše](#výsledná-tabulka-jako-nový-list)).
+
+Pokud spouštění kódu není povoleno, zobrazí se jednou upozornění „Code-Ausführung ist in diesem Tenant nicht freigeschaltet — die Analyse nutzt Formeln.“ (Spouštění kódu není v tomto tenantu povoleno – analýza používá vzorce.)
+
+## PowerPoint
+
+| Rychlá akce | Co dělá |
+|---|---|
+| **Deck erstellen** (Vytvořit prezentaci) | Z textu nebo dokumentu sestaví sadu snímků v šabloně. |
+| **Folien prüfen** (Zkontrolovat snímky) | Zkontroluje prezentaci z hlediska překryvů, přetékajícího textu a okrajů a zjištění opraví. |
+| **An Vorlage angleichen** (Přizpůsobit šabloně) | Sladí rozvržení, barvy a písma s firemní šablonou. Asistent nejprve ukáže, co hodlá změnit. |
+| **Texte straffen** (Zestručnit texty) | Zkrátí a zjednoduší texty snímků, aniž by změnil jejich sdělení. |
+| **Rechtschreibung prüfen** (Zkontrolovat pravopis) | Najde překlepy a pravopisné chyby na všech snímcích. |
+| **Deck zusammenfassen** (Shrnout prezentaci) | Shrne prezentaci a její linii příběhu. Prezentace zůstane beze změny. |
+
+Ve výchozím stavu jsou úvodními návrhy v prázdném chatu **Folien prüfen** (Zkontrolovat snímky), **Präsentation zusammenfassen** (Shrnout prezentaci), **Sprechernotizen erstellen** (Vytvořit poznámky řečníka) a **Folientexte kürzen** (Zkrátit texty snímků).
+
+### Od osnovy k prezentaci
+
+**Deck erstellen** (Vytvořit prezentaci) probíhá ve dvou krocích:
+
+1. Asistent nejprve vrátí **osnovu** (**Gliederung**) jako kartu: názvy snímků, odrážky, tip k rozvržení a zdroje pro každý snímek.
+2. Pomocí **Bearbeiten** (Upravit) měníte názvy a odrážky, přidáváte snímky pomocí **Folie hinzufügen** (Přidat snímek), odebíráte snímky nebo je posouváte nahoru či dolů. **Fertig** (Hotovo) úpravy ukončí.
+3. **Deck bauen (n Folien)** (Sestavit prezentaci, n snímků) vytvoří snímky – s rozvrženími a zástupnými symboly Vaší šablony. Osnova má nejvýše 20 snímků.
+
+Karta je pak označena „Gebaut“ (Sestaveno); pomocí **Erneut bauen** (Sestavit znovu) můžete nechat prezentaci vytvořit ještě jednou. I vytváření snímků se řídí zvoleným režimem úprav.
+
+Pokud chcete osnovu přeskočit, zapněte v nabídce režimu úprav **Deck direkt bauen** (Sestavit prezentaci přímo).
+
+### Omezení v PowerPointu
+
+Asistent může upravovat snímky, textová pole a tabulky, ale ne grafy a animace. Jde o omezení rozhraní společnosti Microsoft.

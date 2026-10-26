@@ -1,0 +1,68 @@
+---
+title: companyTRANSCRIBE
+description: Aplikace pro přepis v souladu s GDPR, která běží ve vašem prostředí CompanyGPT – s přepisem zvuku a videa, rozpoznáváním mluvčích, historií přepisů, převodem textu na řeč a integrací do chatu CompanyGPT.
+beta: true
+---
+
+:::tip[Beta]
+companyTRANSCRIBE je momentálně ve fázi beta. Jednotlivé funkce se ještě mohou změnit nebo v některých případech nemusí fungovat podle očekávání.
+:::
+
+companyTRANSCRIBE je aplikace pro přepis, která stejně jako CompanyGPT běží v cloudovém prostředí vaší společnosti. Přepisuje zvukové a video soubory i nahrávky pořízené přímo v prohlížeči a automaticky přitom rozlišuje jednotlivé mluvčí. Funguje i opačným směrem a převádí text zpět na zvuk.
+
+Přepis zajišťuje služba Azure Speech ve vašem prostředí Azure. Pro [hlasové výstupy](/cs/company-gpt/addons/company-transcribe/sprachausgaben/) mohou být podle konfigurace jako poskytovatelé navíc povoleny Azure OpenAI nebo Google (Chirp 3 HD) – o tom, kteří poskytovatelé jsou k dispozici, rozhoduje váš administrátor.
+
+:::caution[Přepis v němčině]
+companyTRANSCRIBE v současnosti přepisuje vždy pomocí německého jazykového modelu; výběr jazyka není k dispozici. Nahrávky v jiných jazycích jsou proto rozpoznávány nespolehlivě.
+:::
+
+## Otevření a přihlášení
+
+companyTRANSCRIBE otevřete v CompanyGPT přes [**All apps**](/cs/company-gpt/addons/alle-apps/) a dlaždici **Transcribe**.
+
+companyTRANSCRIBE používá vaši relaci CompanyGPT. Pokud jste přihlášeni do CompanyGPT, jste přihlášeni i do companyTRANSCRIBE; samostatné přihlašovací údaje nejsou potřeba.
+
+O tom, kdo smí companyTRANSCRIBE používat, rozhoduje váš administrátor – podle prostředí v companyADMIN prostřednictvím oprávnění **Use transcription** (viz [oprávnění rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/)) nebo prostřednictvím skupin. Pokud přístup nemáte, zobrazí companyTRANSCRIBE stránku **No access**.
+
+## Uspořádání aplikace
+
+companyTRANSCRIBE používá [společné rozhraní rozšíření CompanyGPT](/cs/company-gpt/addons/gemeinsame-oberflaeche/). V postranním panelu najdete **New chat** a **All apps** a pod nimi nabídku aplikace ve dvou skupinách:
+
+| Skupina nabídky | Položky |
+|---|---|
+| Přepisy | **Transcripts** (úvodní stránka), **Record**, **Upload** |
+| Hlasové výstupy | **Voiceovers**, **New voiceover** |
+
+Nabídka účtu nabízí mimo jiné **Theme** a **Language**; rozhraní je k dispozici v němčině a angličtině. Tato dokumentace uvádí anglické popisky. Akce stránky jsou vpravo v záhlaví stránky: **Record** a **Upload** v přehledu **Transcripts**, **New voiceover** v přehledu **Voiceovers**. Na úzkých obrazovkách otevřete nabídku přes lištu záhlaví, ve které jsou pak i akce.
+
+Úvodní stránka **Transcripts** obsahuje všechny nahrávky, které jste sami pořídili nebo nahráli („Everything you have recorded or uploaded.“).
+
+![Přehled vlastních přepisů s tlačítky pro nahrání souboru a záznam](./transcribe-liste.png)
+
+Každý řádek zobrazuje název, případný popis, čas vytvoření, délku zvukového záznamu a vlastníka. Kliknutím na řádek přepis otevřete. Vpravo je ikona stavu (dokončeno, chyba nebo probíhá) a koš. Koš si před smazáním vyžádá potvrzení; zvukový záznam i přepis se smažou trvale.
+
+## Přehled oblastí
+
+- **[Nahrávání a přepis](/cs/company-gpt/addons/company-transcribe/aufnehmen/)** — výběr zdroje zvuku a rozpoznávání mluvčích, nahrávání v prohlížeči nebo nahrání souboru; co se stane při výpadku připojení.
+- **[Úprava přepisů](/cs/company-gpt/addons/company-transcribe/transkripte/)** — metadata, oprava textu, přiřazení mluvčích a export do Markdownu.
+- **[Hlasové výstupy](/cs/company-gpt/addons/company-transcribe/sprachausgaben/)** — převod textu na zvuk pomocí hlasu AI.
+- **[Přístup z CompanyGPT](/cs/company-gpt/addons/company-transcribe/mcp-integration/)** — používání přepisů a hlasových výstupů v chatu prostřednictvím MCP serveru.
+
+## Podporované formáty a limity
+
+| Aspekt | Hodnota |
+|---|---|
+| Zvukové a video formáty při nahrání | běžné zvukové a video soubory, např. `.mp3`, `.wav`, `.m4a`, `.mp4`, `.webm` |
+| Maximální velikost souboru při nahrání | 200 MB |
+| Maximální délka | 240 minut (4 hodiny) při nahrání souboru a u nahrávek s rozpoznáváním mluvčích |
+| Jazyk | němčina |
+| Rozpoznávání mluvčích | až 35 hlasů na nahrávku |
+| Export | soubor Markdown (`.md`) s označením mluvčích |
+
+U video souborů se zvuková stopa extrahuje automaticky. Přepis probíhá jako úloha na pozadí; průběh je viditelný v aplikaci.
+
+## Ukládání dat
+
+Všechny přepisy se ukládají do historie jednotlivého uživatele, kde je lze zobrazit, upravit nebo smazat. Zvukové záznamy, přepisy a hlasové výstupy zůstávají v cloudovém prostředí vaší společnosti.
+
+Pro přepis se zvuk odesílá do služby Azure Speech. U hlasového výstupu se text odesílá vybranému poskytovateli – v případě Google (Chirp 3 HD) do Google Cloud Text-to-Speech.

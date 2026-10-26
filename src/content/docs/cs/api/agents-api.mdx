@@ -1,0 +1,263 @@
+---
+title: Agents API
+description: Programový přístup k agentům CompanyGPT prostřednictvím Agents API – kompatibilní s OpenAI a Open Responses API.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Agents API umožňuje externím aplikacím, skriptům a službám programově komunikovat s agenty CompanyGPT. CompanyGPT je založen na [LibreChat](https://librechat.ai) a poskytuje dvě rozhraní kompatibilní s API.
+
+## Přehled
+
+Agents API nabízí dvě rozhraní:
+
+- **Chat Completions kompatibilní s OpenAI** — `POST /api/agents/v1/chat/completions`
+- **Open Responses API** — `POST /api/agents/v1/responses`
+
+Obě rozhraní se ověřují pomocí API klíčů a podporují streamování odpovědí. Agenty CompanyGPT tak snadno začleníte do stávajících pracovních postupů, které již používají OpenAI SDK nebo podobné nástroje.
+
+## Předpoklady
+
+Pro používání Agents API musí být splněny tyto předpoklady:
+
+1. **Přístup k API** — Vaše role potřebuje oprávnění **Remote agents** (**Use**). Ve výchozím stavu je povoleno pro všechny uživatele; administrátoři jej mohou odebrat v [companyADMIN](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) v části **Access** → **Roles** → otevřít roli → karta **companyGPT**. Samotné oprávnění nestačí: agent je přes API dostupný pouze pro svého vlastníka nebo pokud s Vámi byl výslovně sdílen pro přístup přes API. V opačném případě API odpoví stavem `403` a zprávou `No remote access to agent: <agent-id>`.
+2. **Vygenerování API klíče** — S tímto oprávněním vytvoříte klíč v CompanyGPT v části **Settings** → **Data & Privacy** → **Agent API keys** → **Manage** pomocí **Create API Key**. Zadáte název a v poli **Expiration** zvolíte, jak dlouho bude klíč platný: **7 days**, **30 days** (předvoleno), **90 days**, **1 year** nebo **Never**. Klíč si ihned zkopírujte; znovu se již nezobrazí.
+3. **Zjištění ID agenta** — Každý agent má jedinečné ID (např. `agent_ulS_lcjGw...`), které použijete jako parametr `model`.
+
+:::tip
+ID agenta najdete v URL, když agenta v CompanyGPT otevřete, nebo prostřednictvím endpointu `GET /api/agents/v1/models`, který vypíše jako modely agenty, ke kterým máte přes API přístup.
+:::
+
+:::caution
+Agenti, kteří používají MCP servery s ověřováním OAuth, přes API **nemusí** fungovat. Toky OAuth vyžadují interaktivní relaci v prohlížeči, kterou přes API nelze provést.
+:::
+
+## Ověřování
+
+Všechny požadavky na Agents API musí být ověřeny pomocí tokenu Bearer:
+
+```
+Authorization: Bearer sk-your-api-key
+```
+
+API klíče se generují v rozhraní CompanyGPT a mají formát `sk-...`.
+
+## Endpoints
+
+### Chat Completions (kompatibilní s OpenAI)
+
+```
+POST /api/agents/v1/chat/completions
+```
+
+Kompatibilní s formátem OpenAI Chat Completions. Parametr `model` odpovídá ID agenta.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const stream = await client.chat.completions.create({
+    model: "agent_ulS_lcjGw...", // Agent ID
+    messages: [
+        {
+            role: "user",
+            content: "What can you help me with?",
+        },
+    ],
+    stream: true,
+});
+
+let contentBuffer = "";
+const toolCalls = new Map();
+
+for await (const event of stream) {
+    const delta = event.choices?.[0]?.delta;
+    if (!delta) continue;
+
+    // Stream text content
+    if (delta.content) {
+        contentBuffer += delta.content;
+        process.stdout.write(delta.content);
+    }
+
+    // Handle tool calls
+    if (delta.tool_calls) {
+        for (const toolCall of delta.tool_calls) {
+            const toolId = toolCall.index || 0;
+            if (!toolCalls.has(toolId)) {
+                toolCalls.set(toolId, {
+                    id: toolCall.id,
+                    name: toolCall.function?.name || "",
+                    arguments: "",
+                });
+            }
+            if (toolCall.function?.arguments) {
+                toolCalls.get(toolId).arguments += toolCall.function.arguments;
+            }
+        }
+    }
+}
+
+console.log(`\nDone. Tool calls: ${toolCalls.size}`);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/chat/completions \
+  -H "Authorization: Bearer sk-your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "messages": [
+      {"role": "user", "content": "What can you help me with?"}
+    ],
+    "stream": true
+  }'
+```
+  </TabItem>
+</Tabs>
+
+### Open Responses API
+
+```
+POST /api/agents/v1/responses
+```
+
+Open Responses API vychází ze [standardu Open Responses](https://www.openresponses.org/) — otevřeného inferenčního standardu navrženého pro agentní pracovní postupy s nativní podporou používání nástrojů, strukturovaných výstupů a streamování. Do budoucna jde o primární rozhraní.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const stream = await client.responses.create({
+    model: "agent_ulS_lcjGwTAG2Ly3zTcgz", // Agent ID
+    input: [
+        {
+            role: "user",
+            content: "What can you help me with?",
+        },
+    ],
+    stream: true,
+});
+
+for await (const event of stream) {
+    console.log(event);
+}
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl -X POST https://<COMPANYGPT URL>/api/agents/v1/responses \
+  -H "Authorization: Bearer sk-your-api-key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+    "input": "What can you help me with?"
+  }'
+```
+  </TabItem>
+</Tabs>
+
+#### Vlastní funkce (client function tools)
+
+V Open Responses API můžete agentovi předat také vlastní funkce, které spouští přímo Vaše aplikace. Za tímto účelem předejte v poli `tools` položky typu `function` s názvem, popisem a parametry ve formátu JSON Schema. Název funkce smí obsahovat pouze písmena, číslice, `_` a `-`.
+
+Pokud model takovou funkci zavolá, nespustí se v CompanyGPT. Místo toho běh skončí a odpověď obsahuje volání jako položku typu `function_call`. To platí pouze tehdy, je-li Vaše funkce jediným voláním nástroje v daném běhu: pokud ji model zavolá společně s nástrojem, který CompanyGPT spouští sám (serverový nástroj), volání se Vaší aplikaci nepředá. Vaše aplikace funkci provede a pokračuje v konverzaci novým požadavkem. V něm v poli `input` odešlete dosavadní historii, přijatou položku `function_call` a svůj výsledek jako `function_call_output` se stejným `call_id`:
+
+```json
+{
+  "model": "agent_ulS_lcjGwTAG2Ly3zTcgz",
+  "tools": [
+    {
+      "type": "function",
+      "name": "open_service_page",
+      "description": "Opens the service page for an order number",
+      "parameters": {
+        "type": "object",
+        "properties": { "order_id": { "type": "string" } },
+        "required": ["order_id"]
+      }
+    }
+  ],
+  "input": [
+    { "role": "user", "content": "Open the service page for order 4711." },
+    {
+      "type": "function_call",
+      "call_id": "call_1",
+      "name": "open_service_page",
+      "arguments": "{\"order_id\": \"4711\"}"
+    },
+    {
+      "type": "function_call_output",
+      "call_id": "call_1",
+      "output": "Service page opened."
+    }
+  ]
+}
+```
+
+:::note
+Pokračování přes `previous_response_id` u vlastních funkcí nefunguje. Položky `function_call` a `function_call_output` vždy odešlete společně v poli `input` dalšího požadavku.
+:::
+
+### Výpis dostupných agentů
+
+```
+GET /api/agents/v1/models
+```
+
+Vrací jako seznam modelů pouze ty agenty, ke kterým máte přes API přístup.
+
+<Tabs>
+  <TabItem label="JavaScript (OpenAI SDK)">
+```js
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://<COMPANYGPT URL>/api/agents/v1",
+    apiKey: "sk-your-api-key",
+});
+
+const models = await client.models.list();
+console.log(models);
+```
+  </TabItem>
+  <TabItem label="curl">
+```bash
+curl https://<COMPANYGPT URL>/api/agents/v1/models \
+  -H "Authorization: Bearer sk-your-api-key"
+```
+  </TabItem>
+</Tabs>
+
+## Spotřeba tokenů
+
+Všechny požadavky na Agents API se započítávají do tokenového zůstatku uživatele (pokud je čerpání tokenů nakonfigurováno). Sledují se vstupní i výstupní tokeny, včetně tokenů mezipaměti u poskytovatelů, kteří je podporují (OpenAI, Anthropic).
+
+### Rozpočty v AI Gateway
+
+V prostředích, kde CompanyGPT přistupuje k modelům AI přes [AI Gateway](/cs/api/ai-gateway/), platí rozpočty gateway i pro požadavky přes Agents API. Pokud je rozpočet vyčerpán, gateway požadavek na model odmítne; požadavky na agenta pak selhávají, dokud nebude rozpočet opět k dispozici. Jak se chyba dostane k Vaší aplikaci, závisí na režimu:
+
+- **Bez streamování** obdržíte stav `402` se zprávou gateway.
+- **Při streamování přes Chat Completions** je stav `200`; chyba se objeví jako „Error: …“ v posledním bloku (chunku).
+- **Při streamování přes Open Responses API** stream pouze skončí s `[DONE]`, bez chybové zprávy.
+
+Pokud má Vaše organizace pro vyčerpané rozpočty nastavený [záložní model](/cs/api/ai-gateway/#vyčerpaný-rozpočet-402), stav `402` nenastane; gateway pak na požadavek odpoví tímto modelem.
+
+## Související dokumentace
+
+- [Agenti](/cs/company-gpt/agenten) — Vytváření a konfigurace agentů v CompanyGPT
+- [MCP servery](/cs/company-gpt/integrationen/mcp-server) — Integrace MCP serverů
+- [AI Gateway API](/cs/api/ai-gateway/) — Přímý přístup k modelům AI přes AI Gateway

@@ -1,0 +1,231 @@
+---
+title: Externí API
+description: Vytvářejte v companyLEARN API klíče s omezenými oprávněními (scopes) a používejte REST API na /api/v1 pro integrace – vytvářejte kurzy, spravujte obsah a vyhodnocujte pokrok ve vzdělávání.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+companyLEARN má verzované REST API pro integrace, například pro vytváření kurzů z jiného systému nebo pro vyhodnocování pokroku ve vzdělávání. Je určeno pro volání mezi servery (server-to-server) a ověřuje se pomocí API klíčů místo přihlášení uživatele. Volání ze stránky v prohlížeči načtené z jiné adresy nejsou podporována.
+
+Základní URL je:
+
+```
+https://COMPANY.company-gpt.com/companygpt/learn/api/v1
+```
+
+## Klíče jednají jménem svého vlastníka
+
+Každý API klíč patří osobě, která jej vytvořila, a jedná jejím jménem:
+
+- Kurzy a videa, které klíč vytvoří, jsou přiřazeny této osobě.
+- Endpointy pod `/me` vracejí vlastní zápisy do kurzů a pokrok této osoby.
+- Co klíč smí dělat, vyplývá z jeho scopes a z oprávnění této osoby v companyLEARN, která se znovu kontrolují při každém požadavku. Pokud osoba již nemá oprávnění **Use courses**, nefunguje žádný z jejích klíčů.
+
+Udělujte proto pouze ty scopes, které integrace skutečně potřebuje, a klíče, které již nejsou potřeba, odvolejte.
+
+## Vytvoření API klíče
+
+Osoby s oprávněním **Manage courses** vytvářejí API klíče v companyLEARN v části **API keys**. Každý zde vidí pouze své vlastní klíče.
+
+<Steps>
+
+1. Klikněte vpravo nahoře na **New key**. Otevře se dialog **Create API key**.
+
+2. Do pole **Name** zadejte označení, podle kterého integraci poznáte, například `course-seeder`.
+
+3. V části **Scopes** vyberte alespoň jeden scope. Předvybrán je `courses:read`.
+
+4. V části **Expires** nastavte datum vypršení, zaškrtněte **Never expires** nebo pole ponechte prázdné. Bez data klíč ve výchozím stavu vyprší po 90 dnech.
+
+5. Klikněte na **New key**.
+
+6. Dialog **Key created** zobrazí klíč. Zkopírujte jej pomocí **Copy key** a bezpečně uložte. Dialog zavřete tlačítkem **Done**.
+
+</Steps>
+
+:::caution[Klíč se zobrazí pouze jednou]
+companyLEARN neukládá klíč v čitelné podobě a nemůže jej později znovu zobrazit. Pokud jej ztratíte, odvolejte jej a vytvořte nový.
+:::
+
+Klíč má tvar `learn_<prefix>_<secret>`. Úvodní část `learn_<prefix>` není tajná; zobrazuje se v seznamu ve sloupci **Key** a identifikuje klíč. Ve výchozím stavu může mít každá osoba až 10 aktivních klíčů.
+
+## Správa a odvolání klíčů
+
+Seznam v části **API keys** zobrazuje u každého vašeho klíče **Name**, **Key** (veřejnou část), **Scopes**, **Status** (**Active**, **Revoked** nebo **Expired**), **Last used** a **Expires**.
+
+**Revoke** a potvrzení **Revoke API key?** klíč deaktivují. Klíč okamžitě přestane fungovat; každá integrace, která jej používá, od té chvíle dostává odpovědi 401. Odvolání nelze vrátit zpět.
+
+:::caution[Byla odebrána administrátorská oprávnění?]
+Pokud osoba ztratí svá administrátorská oprávnění v companyLEARN, odvolejte její API klíče.
+:::
+
+## Scopes
+
+| Scope | Vyžaduje **Manage courses** | Umožňuje |
+|---|---|---|
+| `courses:read` | ne | Čtení kurzů, kapitol a lekcí, včetně nepublikovaných, a všechny endpointy pod `/me` |
+| `courses:write` | ano | Vytváření, změnu, přeřazování a mazání kurzů, kapitol a lekcí |
+| `quizzes:read` | ano | Čtení kvízů **včetně** klíče správných odpovědí |
+| `quizzes:write` | ano | Vytváření, nahrazování a mazání kvízů |
+| `videos:read` | ano | Výpis a stahování videí |
+| `videos:write` | ano | Nahrávání a mazání videí |
+| `progress:read` | ano | Čtení zápisů do kurzů, pokroku a pokusů v kvízech jiných osob |
+| `enrollments:write` | ano | Zapisování a odhlašování jiných osob |
+| `keys:read` | ano | Výpis vlastních API klíčů |
+| `keys:write` | ano | Vytváření a odvolávání klíčů – nikdy s více scopes, než má volající klíč |
+
+Klíče vytvořené přes API mohou dostat nejvýše scopes volajícího klíče. Klíče tak můžete automaticky rotovat, ale nemůžete vytvářet klíče s širšími oprávněními.
+
+## Odesílání požadavků
+
+Klíč odešlete v jedné z těchto dvou hlaviček:
+
+```bash
+curl -H "Authorization: Bearer learn_..." https://COMPANY.company-gpt.com/companygpt/learn/api/v1/courses
+curl -H "X-API-Key: learn_..."            https://COMPANY.company-gpt.com/companygpt/learn/api/v1/courses
+```
+
+`GET /api/v1/me` vrací vlastníka klíče a scopes, které klíč v daném okamžiku skutečně má. `GET /api/v1/openapi.json` vrací úplný popis API ve formátu OpenAPI 3.1, včetně požadovaného scope pro každý endpoint. Oba endpointy fungují s jakýmkoli platným klíčem bez ohledu na jeho scopes.
+
+### Příklad: vytvoření a publikování kurzu
+
+Klíč v tomto příkladu má scopes `courses:read` a `courses:write`.
+
+```bash
+BASE=https://COMPANY.company-gpt.com/companygpt/learn/api/v1
+KEY=learn_...   # created under API keys
+
+# 1. Check what the key may do
+curl -s $BASE/me -H "Authorization: Bearer $KEY" | jq .apiKey.effectiveScopes
+
+# 2. Create a course (starts as a draft)
+CID=$(curl -s -X POST $BASE/courses -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Onboarding"}' | jq -r .id)
+
+# 3. Create a chapter
+CHID=$(curl -s -X POST $BASE/courses/$CID/chapters -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Week 1"}' | jq -r .id)
+
+# 4. Create a text lesson
+curl -s -X POST $BASE/chapters/$CHID/lessons -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Welcome","type":"text","contentMarkdown":"# Welcome\n\nGood to have you here."}'
+
+# 5. Publish
+curl -s -X PATCH $BASE/courses/$CID -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"isPublished":true}'
+```
+
+Kvíz vytvoříte se scope `quizzes:write`. `PUT` stávající kvíz zcela nahradí a – stejně jako v rozhraní – vynuluje všechny předchozí pokusy:
+
+```bash
+curl -s -X PUT $BASE/chapters/$CHID/quiz -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{
+    "title": "Week 1 quiz",
+    "passThresholdPercent": 70,
+    "questions": [
+      { "text": "Where do you find companyLEARN?",
+        "options": [
+          { "text": "Under All apps", "isCorrect": true },
+          { "text": "Only by email", "isCorrect": false }
+        ] }
+    ]
+  }'
+```
+
+## Endpointy
+
+Všechny cesty jsou relativní vůči základní URL `…/companygpt/learn/api/v1`.
+
+### Identita
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/me` | libovolný | Vlastník klíče a jeho efektivní scopes |
+| GET | `/openapi.json` | libovolný | Popis API (OpenAPI 3.1) |
+
+### Správa kurzů, kapitol a lekcí
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/courses` | `courses:read` | Všechny kurzy, včetně nepublikovaných, s počítadly |
+| POST | `/courses` | `courses:write` | Vytvoření kurzu |
+| GET | `/courses/:id` | `courses:read` | Kurz s úplnou osnovou |
+| PATCH | `/courses/:id` | `courses:write` | Změna kurzu, např. `isPublished` nebo `gatingEnabled` (postupné odemykání kapitol) |
+| DELETE | `/courses/:id` | `courses:write` | Smazání kurzu s veškerým obsahem |
+| GET | `/courses/:id/chapters` | `courses:read` | Kapitoly kurzu |
+| POST | `/courses/:id/chapters` | `courses:write` | Vytvoření kapitoly |
+| PUT | `/courses/:id/chapters/order` | `courses:write` | Změna pořadí kapitol |
+| PATCH | `/chapters/:id` | `courses:write` | Změna kapitoly |
+| DELETE | `/chapters/:id` | `courses:write` | Smazání kapitoly |
+| POST | `/chapters/:id/lessons` | `courses:write` | Vytvoření lekce |
+| PUT | `/chapters/:id/lessons/order` | `courses:write` | Změna pořadí lekcí |
+| GET | `/lessons/:id` | `courses:read` | Načtení lekce |
+| PATCH | `/lessons/:id` | `courses:write` | Změna lekce |
+| DELETE | `/lessons/:id` | `courses:write` | Smazání lekce |
+
+### Kvízy
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/chapters/:id/quiz` | `quizzes:read` | Kvíz **včetně** klíče správných odpovědí |
+| PUT | `/chapters/:id/quiz` | `quizzes:write` | Vytvoření nebo nahrazení kvízu |
+| DELETE | `/chapters/:id/quiz` | `quizzes:write` | Smazání kvízu |
+
+### Videa
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/videos` | `videos:read` | Výpis videí |
+| POST | `/videos` | `videos:write` | Nahrání videa (pole multipart `file`) |
+| GET | `/videos/:assetId/content` | `videos:read` | Stažení souboru videa (bez částečného stahování přes Range) |
+| DELETE | `/videos/:id` | `videos:write` | Smazání videa |
+
+### Zápisy a pokrok
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/courses/:id/enrollments` | `progress:read` | Všichni zapsaní do kurzu |
+| POST | `/courses/:id/enrollments` | `enrollments:write` | Zapsání osoby, i do nepublikovaných kurzů |
+| DELETE | `/courses/:id/enrollments/:userId` | `enrollments:write` | Odhlášení osoby; její pokrok zůstává zachován |
+| GET | `/courses/:id/progress` | `progress:read` | Pokrok jednotlivých osob v kurzu |
+| GET | `/quizzes/:id/attempts` | `progress:read` | Pokusy všech osob, pomocí `?userId=` filtrované na jednu osobu |
+| GET | `/learners` | `progress:read` | Všechna známá ID uživatelů s počítadly aktivity |
+| GET | `/learners/:userId/progress` | `progress:read` | Pokrok jedné osoby ve všech jejích kurzech |
+
+Osoby se oslovují pomocí ID uživatele, pod kterým je companyLEARN zná; `GET /learners` vypíše všechna známá ID.
+
+### Vzdělávání jako vlastník (`/me`)
+
+Tyto endpointy odpovídají zobrazení pro studující a jednají za vlastníka klíče.
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/me/courses` | `courses:read` | Publikované kurzy |
+| GET | `/me/courses/:id` | `courses:read` | Osnova kurzu se stavem uzamčení |
+| POST | `/me/courses/:id/enroll` | `courses:read` | Zapsání se |
+| GET | `/me/lessons/:id` | `courses:read` | Načtení lekce |
+| POST | `/me/lessons/:id/complete` | `courses:read` | Označení lekce jako dokončené |
+| GET | `/me/progress` | `courses:read` | Vlastní pokrok |
+| GET | `/me/quizzes/:id` | `courses:read` | Kvíz **bez** klíče správných odpovědí |
+| POST | `/me/quizzes/:id/attempts` | `courses:read` | Odeslání pokusu |
+| GET | `/me/quizzes/:id/attempts` | `courses:read` | Vlastní předchozí pokusy |
+
+### Klíče
+
+| Metoda | Cesta | Scope | Popis |
+|---|---|---|---|
+| GET | `/keys` | `keys:read` | Výpis vlastních klíčů |
+| POST | `/keys` | `keys:write` | Vytvoření klíče; scopes nejvýše ty, které má volající klíč |
+| DELETE | `/keys/:id` | `keys:write` | Odvolání klíče |
+
+## Chybové odpovědi
+
+| Stav | Význam |
+|---|---|
+| 401 | Klíč chybí, je neplatný, vypršel nebo byl odvolán. |
+| 403 s `INSUFFICIENT_SCOPE` | Klíči chybí požadovaný scope. Odpověď jej uvádí v `requiredScope` a efektivní scopes vypisuje v `grantedScopes`. |
+| 403 s `EXT_ACCESS_DENIED` | Vlastník klíče nemá oprávnění **Use courses**. |
+| 429 | Příliš mnoho požadavků s tímto klíčem. Každý klíč má vlastní kvótu, ve výchozím stavu 600 požadavků za minutu; odpověď uvádí v `retryAfter` délku časového okna v sekundách (ve výchozím stavu 60). |
+
+Zpět na [přehled](/cs/company-gpt/addons/companylearn/).

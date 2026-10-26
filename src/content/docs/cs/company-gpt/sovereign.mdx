@@ -1,0 +1,56 @@
+---
+title: CompanyGPT Sovereign
+description: CompanyGPT Sovereign provozuje CompanyGPT v suverénním cloudu STACKIT v Německu – se stejným rozhraním, flexibilním přihlašováním a modely s otevřenými vahami z německých datových center.
+---
+
+CompanyGPT Sovereign je CompanyGPT na platformě **STACKIT**, suverénním cloudu z Německa. Rozhraní i způsob práce jsou stejné jako v jakémkoli jiném prostředí CompanyGPT: chat, agenti, prompty, skills a doplňky fungují tak, jak je popsáno v této dokumentaci. Rozdíly spočívají v hostingu, přihlašování, nabízených modelech a jednotlivých doplňcích. Tato stránka je shrnuje.
+
+## Hosting a ukládání dat
+
+- **Provoz v Německu:** CompanyGPT běží v datových centrech STACKIT v Německu a provozuje ho innFactory.
+- **Data uložená u STACKIT:** Chaty, nahrané soubory, agenti a znalostní kolekce se ukládají v databázích a úložištích tohoto prostředí. Výjimkou jsou dokumenty překládané pomocí companyTRANSLATE: pro účely překladu se ukládají u překladové služby v EU.
+- **Další služby jen po schválení:** O tom, zda se navíc používají služby evropských poskytovatelů cloudu – například pro jednotlivé modely, pro výpočet embeddingů companyRAG nebo pro překlad a přepis –, rozhoduje vaše organizace společně s innFactory pro vaše prostředí. Tyto služby běží v regionech EU daných poskytovatelů.
+
+## Přihlašování a správa
+
+CompanyGPT Sovereign podporuje tři možnosti přihlášení:
+
+| Poskytovatel identity | Popis |
+|---|---|
+| Keycloak provozovaný společností innFactory | innFactory zajišťuje přihlašování prostřednictvím vlastního Keycloaku. Propojení s vaší stávající správou uživatelů – například přes SAML nebo OpenID Connect – s vámi nastavíme během zřizování. |
+| Váš vlastní Keycloak | CompanyGPT používá Keycloak provozovaný vaší organizací – například napojený na vaši službu Active Directory. |
+| Microsoft Entra ID | Přihlašování probíhá přes vašeho tenanta Entra, stejně jako u CompanyGPT v Microsoft Azure. Vaši IT administrátoři připraví tenanta prostřednictvím [onboardingového portálu](/cs/einrichtung/onboarding-portal/) a zvolí v něm STACKIT jako možnost hostingu; krok s předplatným Azure se přeskočí. |
+
+Kdo se smí přihlásit a kdo je administrátorem, se obvykle řídí skupinami ve vašem poskytovateli identity. Role, oprávnění a sdílení v rámci CompanyGPT se spravují jako obvykle v [companyADMIN](/cs/company-gpt/addons/companyadmin/), bez ohledu na poskytovatele identity.
+
+:::note[Doba trvání relace]
+V závislosti na poskytovateli identity a jeho zásadách může relace zůstat platná kratší dobu než v jiných prostředích. Pak budete vyzváni k opětovnému přihlášení častěji.
+:::
+
+## Modely
+
+- **Modely s otevřenými vahami z Německa:** Výběr modelů nabízí modely ze STACKIT Model Serving, například z rodin Qwen, gpt-oss, Gemma a Llama. Běží v datových centrech v Německu.
+- **Volitelné modely od evropských hyperscalerů:** Pokud je to pro vaše prostředí schváleno, přibudou modely provozované přes Microsoft Azure nebo Google Cloud v regionech EU.
+
+Které modely vám budou skutečně nabídnuty, se liší prostředí od prostředí. Doporučení, který model se hodí pro jakou úlohu, najdete na stránce [Výběr modelu](/cs/company-gpt/modellauswahl/).
+
+## Doplňky
+
+O tom, které doplňky jsou ve vašem prostředí aktivní, rozhoduje vaše organizace. V CompanyGPT Sovereign platí následující:
+
+| Doplněk / funkce | V CompanyGPT Sovereign |
+|---|---|
+| [Web Search & WebFetch](/cs/company-gpt/integrationen/websuche/) | K dispozici |
+| [companyFILES](/cs/company-gpt/addons/companyfiles/) | K dispozici |
+| [companyRAG](/cs/company-gpt/addons/companyrag/) | K dispozici |
+| [Code Interpreter](/cs/company-gpt/code-interpreter/) | K dispozici |
+| [companyADMIN](/cs/company-gpt/addons/companyadmin/) | K dispozici |
+| [All apps](/cs/company-gpt/addons/alle-apps/) | K dispozici |
+| [companyTRANSCRIBE](/cs/company-gpt/addons/company-transcribe/) | Podle prostředí |
+| [companyTRANSLATE](/cs/company-gpt/addons/company-translate/) | Podle prostředí |
+| [companyM365](/cs/company-gpt/addons/companym365/) | Pouze s Microsoft Entra ID jako poskytovatelem identity |
+| n8n | Podle prostředí |
+| [companyLEARN](/cs/company-gpt/addons/companylearn/), [companyKNOWLEDGE](/cs/company-gpt/addons/companyknowledge/) | V současnosti nedostupné |
+| Rozpočty a nákladové funkce [AI Gateway](/cs/company-gpt/addons/ai-gateway/) | V současnosti nedostupné |
+
+companyTRANSCRIBE a companyTRANSLATE používají řečové a překladové služby evropských poskytovatelů cloudu; zda jsou aktivní, se rozhoduje pro každé prostředí zvlášť. S dotazy k doplňkům, které zde nejsou uvedeny, se prosím obraťte na innFactory.

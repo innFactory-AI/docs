@@ -1,0 +1,73 @@
+---
+title: Doplňky
+description: Přehled doplňků CompanyGPT – co dělají, kde je najdete a kdo je smí používat.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Doplňky rozšiřují CompanyGPT o další aplikace: zpřístupnění dokumentů pro vyhledávání, generování souborů, překlady, přepisy, vzdělávání a administraci CompanyGPT. Mnoho doplňků má vlastní rozhraní a své funkce poskytuje také jako nástroje pro agenty v chatu (prostřednictvím [MCP serverů](/cs/company-gpt/integrationen/mcp-server/)).
+
+## Kde doplňky najdete
+
+Doplňky s vlastním rozhraním, které máte povolené, otevřete přes **[All apps](/cs/company-gpt/addons/alle-apps/)**: jako samostatnou stránku a v chatu přes oblast **Apps** v postranním panelu. companyM365 a companyKNOWLEDGE nemají žádnou dlaždici – používáte je v chatu nebo v Office.
+
+Rozhraní companyRAG, companyFILES, companyTRANSLATE, companyTRANSCRIBE, companyLEARN, companyADMIN, administrátorské oblasti companyM365 a All apps mají stejnou strukturu. Mají stejný postranní panel s **New chat** a **All apps**, stejnou nabídku účtu s motivem a jazykem a stejné přihlášení jako chat. Podrobnosti najdete v části [Společné rozhraní](/cs/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Kdo smí které doplňky používat
+
+O tom, které doplňky máte k dispozici, rozhoduje vaše organizace. Podle prostředí udělují administrátoři oprávnění k nim v [companyADMIN](/cs/company-gpt/addons/companyadmin/erweiterungen/) nebo prostřednictvím skupin ve vašem adresáři, které spravuje innFactory. Pokud vám potřebný doplněk chybí, obraťte se na svého administrátora.
+
+## Přehled doplňků
+
+<CardGrid>
+	<LinkCard
+		title="companyRAG"
+		description="Zpřístupní pro vyhledávání velké objemy dokumentů ze SharePointu, Nextcloudu, Google Drive, GitHubu a webu – jako sémantické vyhledávání, jako strukturovaná data a jako datové sady pro vaše agenty."
+		href="/cs/company-gpt/addons/companyrag/"
+	/>
+	<LinkCard
+		title="companyKNOWLEDGE"
+		description="Udržujte znalosti jako soubory Markdown ve formátu Open Knowledge Format: agent udržuje balíček na GitHubu nebo v SharePointu aktuální a companyRAG ho zpřístupní pro vyhledávání. Momentálně experimentální."
+		href="/cs/company-gpt/addons/companyknowledge/"
+	/>
+	<LinkCard
+		title="companyFILES"
+		description="Vytvářejte, převádějte a spravujte soubory Excel, Word, PowerPoint a PDF pomocí přirozeného jazyka – v chatu i ve vlastním rozhraní se šablonami a vizualizacemi."
+		href="/cs/company-gpt/addons/companyfiles/"
+	/>
+	<LinkCard
+		title="companyTRANSLATE"
+		description="Překládejte texty i celé dokumenty, s glosáři pro jednotnou terminologii a s překladem přímo v chatu."
+		href="/cs/company-gpt/addons/company-translate/"
+	/>
+	<LinkCard
+		title="companyTRANSCRIBE"
+		description="Přepisujte zvukové a video soubory i nahrávky pořízené v prohlížeči, s rozlišením mluvčích, historií přepisů, převodem textu na řeč a napojením na chat."
+		href="/cs/company-gpt/addons/company-transcribe/"
+	/>
+	<LinkCard
+		title="companyLEARN"
+		description="Vzdělávací platforma s video a textovými lekcemi, kvízy a kapitolami, které se odemykají postupně – ve vlastním rozhraní i přímo v chatu."
+		href="/cs/company-gpt/addons/companylearn/"
+	/>
+	<LinkCard
+		title="companyM365"
+		description="Propojuje CompanyGPT s Microsoft 365 – jako nástroje v chatu, jako doplněk Office ve Wordu, Excelu, PowerPointu a Outlooku a v Microsoft Teams. Přístup je zásadně omezen na data, která smí vidět přihlášená osoba."
+		href="/cs/company-gpt/addons/companym365/"
+	/>
+	<LinkCard
+		title="AI Gateway"
+		description="Volitelné centrální rozhraní mezi CompanyGPT a poskytovateli AI: schvalování modelů, rozpočty, záložní řešení při výpadcích kapacity, využití a náklady podle osoby a nákladového střediska a přístup přes API pro vaše vlastní aplikace."
+		href="/cs/company-gpt/addons/ai-gateway/"
+	/>
+	<LinkCard
+		title="companyADMIN"
+		description="Oblast administrace CompanyGPT: stav systému, role a skupiny, viditelnost obsahu, modely a oprávnění pro všechny doplňky."
+		href="/cs/company-gpt/addons/companyadmin/"
+	/>
+	<LinkCard
+		title="Insights (companyADMIN)"
+		description="Analyzujte využití a náklady CompanyGPT. Insights je součástí companyADMIN a nahrazuje dřívější companyDASHBOARD."
+		href="/cs/company-gpt/addons/companyadmin/insights/"
+	/>
+</CardGrid>

@@ -1,0 +1,62 @@
+---
+title: Uživatelé
+description: Zobrazte si osoby v companyADMIN, změňte jejich roli a dohledejte, jaká práva, modely a skupiny mají a odkud jednotlivá práva pocházejí.
+---
+
+**Access** → **Users** uvádí všechny, kdo se do CompanyGPT alespoň jednou přihlásili. Osoby, které se nikdy nepřihlásily, se zde nezobrazují.
+
+:::note[Pouze pro superadministrátory]
+Seznam uživatelů vidí pouze superadministrátoři. Bez funkcí superadministrátora položka nabídky chybí a přímé otevření stránky vede na **Roles**. Role pak přiřazujete prostřednictvím dané role na její kartě **Members**, viz [Role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/). Zda jste superadministrátor, ukazuje nabídka účtu.
+:::
+
+## Seznam
+
+| Sloupec | Obsah |
+|---|---|
+| **Name** | Zobrazované jméno |
+| **Email** | E-mailová adresa |
+| **Role** | Jediná role dané osoby |
+| **Last sign-in** | Přibližný čas posledního přihlášení |
+| **Origin of the role** | **System**, **Role sync** (automaticky z Entra ID), **Manual** nebo administrátorská skupina, prostřednictvím které se někdo stává ADMIN |
+
+Pomocí **Search name or email** a filtru **Role** seznam zúžíte. Kliknutím na řádek otevřete stránku s podrobnostmi.
+
+## Stránka s podrobnostmi
+
+### Přehled
+
+Sekce **Person** zobrazuje e-mail, jméno, **Entra object ID**, **Signs in via**, **Account created** a **Last sign-in (approximate)**. CompanyGPT neukládá čas přihlášení; zobrazuje se poslední změna účtu, k níž dochází při každém přihlášení.
+
+V sekci **Role** změníte roli osoby pomocí výběru **Role**. Změna se uloží okamžitě a okamžitě platí; má-li osoba CompanyGPT otevřené, může být nutné, aby stránku znovu načetla. Protože každý má právě jednu roli, nová role nahradí tu předchozí.
+
+Roli USER zde přiřadit nelze; CompanyGPT ji odmítne. Chcete-li někoho vrátit na USER, odeberte jej v jeho aktuální roli → **Members**.
+
+:::caution
+Je-li ve vašem prostředí aktivní automatické přiřazování rolí z Entra ID (role sync), CompanyGPT při příštím přihlášení nastaví roli opět podle skupin v Entra. Role nastavená zde se tím ztratí. Stránka na to upozorňuje.
+:::
+
+**Takes effect at the next sign-in** uvádí skupiny Entra a OIDC, které se staly známými od posledního přihlášení osoby nebo od poslední synchronizace skupin a ve kterých osoba ještě není. Je-li aktivní automatické přiřazování rolí, upozornění uvádí také role, které byly od té doby nově přidány do synchronizace rolí. Upozornění zmizí při příštím přihlášení, u skupin také při příští synchronizaci skupin. Odkud pocházejí zobrazená členství ve skupinách (přihlášení nebo synchronizace skupin), je uvedeno níže.
+
+### Efektivní práva
+
+**Effective rights** uvádí každé právo osoby spolu s jeho zdrojem:
+
+| Sloupec | Obsah |
+|---|---|
+| **Right** | Právo, například **Access the admin area** nebo **Use translation** |
+| **Kind** | **System**, **Extension** nebo **companyADMIN** |
+| **Source** | Odkud právo pochází: **Role …**, **Group …**, **Everyone**, **Default for admins** nebo **Setting …** |
+
+Níže **companyGPT features** ukazuje, co osoba smí v CompanyGPT dělat (**Allowed** nebo **Not allowed**). Tato práva k funkcím určuje role; měníte je tam na kartě **companyGPT**.
+
+### Modely
+
+Které modely osoba vidí, podle poskytovatele. Modely zablokované její rolí jsou uvedeny v části **Hidden:**.
+
+### Skupiny
+
+Všechny skupiny osoby s jejich zdrojem (**Source**: **Local**, **Entra** nebo **OIDC**) a počtem členů.
+
+### Aktivita
+
+**First use**, **Last use**, **Messages in total** a **Conversations in total**. **Open in Insights** otevře využití v [Insights](/cs/company-gpt/addons/companyadmin/insights/).

@@ -1,0 +1,138 @@
+---
+title: Administrace
+description: Administrátorská oblast companyM365 – nasazení doplňku, nastavení bota pro Teams, uvolnění agentů pro Teams, nastavení, offboarding, audit a také souhlasy správce a chybové kódy.
+---
+
+Tato stránka je určena administrátorům. Popisuje administrátorskou oblast companyM365 a souhlasy potřebné v Microsoft 365. Rozhraní administrátorské oblasti je v němčině; popisky jsou uvedeny v němčině s českým překladem v závorce. U portálů Microsoftu jsou uvedeny anglické popisky s německými v závorce.
+
+## Otevření administrátorské oblasti
+
+Administrátorská oblast je k dispozici na následující adrese:
+
+```
+https://COMPANY.company-gpt.com/companygpt/m365/admin/
+```
+
+Přesměrovává sem také adresa `https://COMPANY.company-gpt.com/companygpt/m365/`.
+
+Přístup vyžaduje oprávnění **Manage Microsoft 365**. Uděluje se v companyADMIN (viz [oprávnění rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/)); administrátoři ho mají automaticky. Kdo oprávnění nemá, uvidí stránku **Kein Zugriff** (Žádný přístup) s upozorněním, kde se oprávnění uděluje. Kdo není přihlášen, je přesměrován na přihlášení.
+
+Administrátorská oblast používá [společné rozhraní](/cs/company-gpt/addons/gemeinsame-oberflaeche/) doplňků CompanyGPT: postranní panel s **Neuer Chat** (Nový chat), **Alle Apps** (Všechny aplikace) a oblastmi a nabídku účtu s **Design** (Motiv) a **Abmelden** (Odhlásit se).
+
+| Oblast | Obsah |
+|---|---|
+| **Installation** (Instalace) | Balíček aplikace pro Word, Excel, PowerPoint, Outlook a Teams – nasaďte ho jednou v Centru pro správu Microsoft 365. |
+| **Teams-Bot** (Bot pro Teams) | Propojení bota pro Teams s jeho registrací aplikace, zřízení v Azure a nasazení jako aplikace Teams. |
+| **Agents** (Agenti) | Které agenty sdílené v tenantu bot pro Teams nabízí, pod jakým aliasem a zda vždy odpovídají soukromě. |
+| **Einstellungen** (Nastavení) | Název značky a výchozí agent tohoto tenantu a také offboarding. |
+| **Audit** | Každá změna v administrátorské oblasti, od nejnovější. |
+
+Postranní panel zobrazuje pouze oblasti, které jsou ve vašem prostředí nastaveny. Pokud například není plánován bot pro Teams, oblast **Teams-Bot** chybí.
+
+## Instalace
+
+Balíček aplikace spojuje doplňky pro Word, Excel, PowerPoint a Outlook i kartu v Teams do **jedné** instalace. Nasazení probíhá centrálně přes Centrum pro správu Microsoft 365; koncoví uživatelé nemusí nic instalovat.
+
+1. V oblasti **Installation** stáhněte soubor `teams-app.zip` pomocí **App-Paket herunterladen** (Stáhnout balíček aplikace).
+2. Otevřete admin.microsoft.com a přejděte na **Settings → Integrated apps** (Einstellungen → Integrierte Apps).
+3. Zvolte **Upload custom apps** (Benutzerdefinierte Apps hochladen), vyberte typ aplikace **Teams app** (Teams-App) a vyberte stažený soubor `.zip`. (Typ aplikace je „Teams app“, protože balíček používá jednotný manifest Microsoft 365. V části „Office Add-in“ přijímá centrum pro správu pouze jednotlivé manifesty XML.)
+4. Přiřaďte uživatele – celou organizaci nebo testovací skupinu – a aplikaci nasaďte.
+5. Do 24 hodin (obvykle mnohem dříve) se doplněk objeví na pásu karet aplikací Word, Excel, PowerPoint a Outlook a karta v Teams. Přihlášení probíhá automaticky jednotným přihlašováním (single sign-on) s relací CompanyGPT.
+
+V části **Grenzen & Hinweise** (Omezení a poznámky) oblast shrnuje, kde doplněk běží – Word, Excel, PowerPoint a Outlook ve Windows, na Macu a v prohlížeči (Office na webu) – a jak fungují [režimy úprav](/cs/company-gpt/addons/companym365/office-add-in/#režimy-úprav): změny se ve výchozím stavu zobrazují jako karta s návrhem, v režimu **Direkt** (Přímo) okamžitě a ve Wordu s volbou **Nachverfolgen** (Sledovat) jako sledované změny.
+
+Používejte tento balíček a nenačítejte jednotlivé manifesty XML ručně (sideloading): jednotlivě načtené doplňky XML jsou v novém Outlooku (Windows a Mac) často zašedlé a nelze na ně kliknout.
+
+### Navíc pro Outlook na Macu
+
+Microsoft balíček aplikace v Outlooku na Macu nepodporuje; Word, Excel a PowerPoint na Macu pokryty jsou. Bez následujícího kroku nemají uživatelé Macu v Outlooku žádný doplněk.
+
+1. V centru pro správu znovu zvolte **Settings → Integrated apps → Upload custom apps**.
+2. Tentokrát vyberte typ aplikace **Office Add-in** (Office-Add-In) a zvolte zadání odkazu na soubor manifestu. Vložte adresu, kterou oblast **Installation** zobrazuje pod **Outlook-Manifest (URL)**.
+3. Přiřaďte aplikaci celé organizaci a nasaďte ji.
+
+Aplikace se pak v centru pro správu zobrazí dvakrát pod stejným názvem – je to záměr. Ve Windows a v prohlížeči Office druhou variantu automaticky skryje; po dobu až 24 hodin se tam mohou vedle sebe zobrazovat dvě tlačítka.
+
+Bot pro Teams je samostatná aplikace a nasazuje se v oblasti **Teams-Bot**.
+
+## Nastavení bota pro Teams
+
+:::note[Momentálně pouze v pilotních prostředích]
+Tato funkce je momentálně k dispozici pouze v pilotních prostředích.
+:::
+
+Oblast **Teams-Bot** vás nastavením provede krok za krokem. U každého kroku je uvedena role Microsoft Entra, která ho smí provést; globální správce (Global Administrator) není nikdy potřeba. Pojmy z portálů Microsoftu jsou uvedeny v němčině a angličtině a hodnoty lze kopírovat.
+
+1. **Schritt 1 – App-Registrierung für den Bot anlegen** (Krok 1 – vytvoření registrace aplikace pro bota): v Microsoft Entra, např. jako Application Administrator, Cloud Application Administrator nebo Application Developer. Poté zadáte ID aplikace bota; z něj se odvodí hodnoty pro další kroky.
+2. **Schritt 2 – API verfügbar machen** (Krok 2 – zpřístupnění API).
+3. **Schritt 3 – Berechtigung auf die Tenant-App + Administratorzustimmung** (Krok 3 – oprávnění k aplikaci tenantu + souhlas správce): souhlas správce je povinný (Cloud Application Administrator nebo Application Administrator). **Prüfliste vor dem Speichern** (Kontrolní seznam před uložením) shrnuje kroky v Entra.
+4. **Schritt 4 – Client-Secret eintragen** (Krok 4 – zadání tajného klíče klienta): přihlašovací údaje aplikace bota se ukládají šifrovaně.
+5. **Schritt 4b – Azure-Bot** (Krok 4b – bot Azure): podle prostředí vytvoří companyM365 prostředek Azure Bot automaticky, nebo ho vytvoříte na portálu Azure podle podrobného návodu a poté potvrdíte **Azure-Bot im Portal angelegt und Verbindung getestet** (Bot Azure vytvořen na portálu a připojení otestováno).
+6. **Schritt 5 – Teams-Paket hochladen** (Krok 5 – nahrání balíčku Teams): stáhněte balíček bota, nasaďte ho v Centru pro správu Microsoft 365 (**Settings → Integrated apps → Upload custom apps**, typ aplikace **Teams app**) a přiřaďte uživatele nebo skupiny. Jako správce Teams to můžete udělat také v Centru pro správu Teams v části **Teams apps → Manage apps → Upload**.
+
+Další poznámky:
+
+- **Rezidence dat:** Oblast ukazuje, kterou tokenovou službu vaše prostředí používá. Při vytváření bota Azure zvolte odpovídající rezidenci dat („Europe“ nebo „Global“).
+- **Název bota:** Oblast ukazuje název, pod kterým osoby bota v Teams zmiňují. innFactory pro vaše prostředí nastaví vlastní název.
+- **Osoby z jiných tenantů:** Pokud vaše organizace zahrnuje osoby z jiných tenantů Microsoftu (organizace s více tenanty nebo synchronizace mezi tenanty), obraťte se na innFactory. Bez další konfigurace bot tyto osoby odmítá stejně jako hosty.
+
+## Uvolnění agentů pro Teams
+
+Oblast **Agents** uvádí agenty, kteří jsou v tenantu v CompanyGPT sdíleni (veřejně, se skupinou nebo z knihovny companyADMIN). U každého agenta určíte:
+
+| Sloupec | Význam |
+|---|---|
+| **In Teams** | zda je agent v botovi pro Teams dostupný |
+| **Alias** | zkratka pro `/alias` v botovi: 1–32 znaků z a–z, 0–9, „_“ a „-“. Při prvním uvolnění se odvodí z názvu. Příkazová slova `agent`, `agents`, `neu`, `hilfe`, `öffentlich`, `oeffentlich`, `public` a `standard` nejsou povolena. |
+| **Immer privat** (Vždy soukromě) | Agent odpovídá pouze osobě, která se ptá; ani **Im Thread teilen** (Sdílet ve vlákně) ani `/öffentlich` jeho odpovědi nezveřejní. Předvoleno, pokud agent přistupuje k Microsoft 365, companyFILES nebo companyTRANSCRIBE. |
+| **Standard** (Výchozí) | **Als Tenant-Standard** (Nastavit jako výchozí pro tenant) z agenta udělá výchozího agenta bota pro všechny, kdo si v chatu nenastavili vlastního výchozího agenta. |
+
+Uvolněného agenta, který již není sdílen, lze pouze odvolat. Pokud je zapnuto **Eigene Agents in Teams erlauben** (Povolit vlastní agenty v Teams), nepotřebují vlastní agenti osoby a agenti s ní sdílení žádné uvolnění; osoby je používají pomocí `/agent název`, mimo chaty 1:1 pouze soukromě.
+
+## Nastavení
+
+- **Markenname** (Název značky): zobrazuje se v popisu aplikace bota pro Teams a v administrátorské oblasti. Po změně upozorní **Paket neu hochladen** (Znovu nahrát balíček), že je nutné balíček bota (oblast **Teams-Bot**, krok 5) znovu stáhnout a nahrát. Název v doplňku, na kartě Teams a v odpovědích bota nastavuje innFactory při nasazení.
+- **Standard-Agent (Agent-ID)** (Výchozí agent, ID agenta): agent, kterého bot pro Teams používá bez aliasu. Prázdné pole znamená: žádný výchozí agent, bot odpovídá výchozím modelem.
+- **Eigene Agents in Teams erlauben** (Povolit vlastní agenty v Teams, ve výchozím stavu zapnuto): každý může v botovi pro Teams používat jakéhokoli uloženého agenta, kterého smí používat v CompanyGPT – vlastní i ty s ním sdílené. Mimo chaty 1:1 vidí jejich odpovědi pouze osoba, která se ptá. Pokud je přepínač vypnutý, jsou dostupní pouze agenti uvolnění v části **Agents**.
+
+### Offboarding
+
+V části **Offboarding: Bot-Daten einer Person löschen** (Offboarding: smazání dat bota u osoby) odstraníte všechna mapovací data osoby v botovi pro Teams (čl. 17 GDPR): mapování konverzací, výchozí agenty podle chatu, zapamatované zmínky, otevřené dotazy, sdílené odpovědi a odkazy na zpětnou vazbu.
+
+1. Zadejte **Objekt-ID (Entra oid) der Person** (ID objektu osoby). Najdete ho v Centru pro správu Entra v části **Users**.
+2. Klikněte na **Daten löschen** (Smazat data) a smazání potvrďte. Nelze ho vrátit zpět.
+
+Smazání se zaznamená do auditu, ale pouze s hashem ID objektu. Zhruba 12 minut poté bot pro danou osobu nic neukládá. Chcete-li osobu vyloučit trvale, odeberte jí v companyADMIN oprávnění **Use Microsoft 365**.
+
+## Audit
+
+Oblast **Audit** zobrazuje každou změnu v administrátorské oblasti, od nejnovější – s časem, akcí, aktérem (jako hash), výsledkem a podrobnostmi. Zaznamenávají se mimo jiné nastavené nebo obměněné tajné klíče, běhy zřizování, uvolnění a zablokovaní agenti, změněné aliasy, „Immer privat“, výchozí agent a název značky a také smazaná uživatelská data.
+
+Každý administrátor může provést až 60 změn za minutu. Nad tento limit se zobrazí „Zu viele Änderungen in kurzer Zeit — bitte kurz warten und erneut versuchen.“ (Příliš mnoho změn v krátké době – chvíli počkejte a zkuste to znovu.)
+
+## Souhlasy správce v Microsoft 365
+
+companyM365 přistupuje k Microsoft Graph s delegovanými oprávněními. Administrátor vašeho tenantu Microsoft Entra k tomu musí jednou udělit souhlas správce. Souhlas platí pro oprávnění, která byla v okamžiku udělení souhlasu požadována. Pokud nové funkce přidají oprávnění, je nutný nový souhlas.
+
+Pokud souhlas chybí, nástroje zůstanou viditelné. Pouze dotčený nástroj při volání vrátí `graph_consent_missing`; vše ostatní funguje dál.
+
+| Oprávnění | K čemu | Poznámka |
+|---|---|---|
+| `Mail.Read.Shared` | čtení sdílených poštovních schránek | nový souhlas je nutný, pokud váš tenant udělil souhlas před zavedením této funkce |
+| `Notes.Create`, `Notes.ReadWrite` | vytváření stránek OneNote a jejich doplňování | nový souhlas je nutný, pokud váš tenant udělil souhlas před zavedením této funkce; čtení funguje i bez něj |
+| `Group.Read.All` | skupiny Microsoft 365 a jejich členové (např. pro přiřazení v Planneru) | rozsáhlé oprávnění; bez souhlasu hlásí chybu pouze tyto nástroje |
+| `Calendars.ReadWrite` | vytváření, změna a rušení schůzek | odesílá pozvánky, aktualizace a zrušení |
+| `MailboxSettings.ReadWrite` | kategorie Outlooku a pravidla doručené pošty | |
+| `ChannelMessage.Read.All`, `Chat.Read`, `Files.Read.All` | bot pro Teams: čtení historie vláken a chatů a také příloh souborů | bez souhlasu bot odpovídá bez kontextu nebo bez souboru |
+
+### Přepisy navštívených schůzek
+
+Nástroj `list_attended_meeting_transcripts` čte přepisy všech schůzek, kterých se osoba zúčastnila – nejen těch, které organizovala. K tomu aplikace navíc potřebuje **oprávnění aplikace** `OnlineMeetings.Read.All` a `OnlineMeetingTranscript.Read.All` a také zásadu Application Access Policy, která se nastavuje přes PowerShell v Microsoft Teams. Pokud něco z toho chybí, nástroj vrátí `app_access_missing`. Nastavení koordinujte s innFactory.
+
+## Chybové kódy
+
+| Kód | Význam | Náprava |
+|---|---|---|
+| `graph_consent_missing` | Chybí souhlas správce pro potřebné oprávnění. Selže pouze dotčený nástroj. | Udělte nebo obnovte souhlas správce (viz [výše](#souhlasy-správce-v-microsoft-365)). |
+| `app_access_missing` | Chybí oprávnění aplikace nebo zásada Application Access Policy pro přepisy navštívených schůzek. | Nastavte obojí (viz [Přepisy navštívených schůzek](#přepisy-navštívených-schůzek)). |
+| `reauth_required` | Relace osoby vypršela nebo byla odvolána. | Osoba se odhlásí a znovu přihlásí; zásah administrátora není nutný. |

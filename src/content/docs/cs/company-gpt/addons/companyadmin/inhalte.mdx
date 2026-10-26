@@ -1,0 +1,152 @@
+---
+title: Obsah a viditelnost
+description: Prohlížejte agenty, prompty, skills a nástroje MCP v companyADMIN, kontrolujte jejich původ a rozhodujte, kdo je v CompanyGPT uvidí – jednotlivě nebo pro více položek najednou.
+---
+
+V části **Content** vidíte, jací agenti, prompty, skills a MCP servery v CompanyGPT existují, odkud pocházejí a kdo je vidí. Podstránky jsou **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories** a **Library Sync**. Tato stránka popisuje první čtyři; [Kategorie](/cs/company-gpt/addons/companyadmin/kategorien/) a [Library Sync](/cs/company-gpt/addons/companyadmin/library-sync/) mají vlastní stránky.
+
+## Co vidíte
+
+Co se v seznamech zobrazí, závisí na tom, zda jste superadministrátor:
+
+- **Superadministrátoři** vidí všechny agenty, prompty a skills včetně soukromého obsahu jiných osob.
+- **Administrátoři bez funkcí superadministrátora** vidí veřejné položky, položky sdílené s nimi a položky spravované knihovnou. Toto omezené zobrazení vysvětluje upozornění nad seznamem.
+
+Zda jste superadministrátor, ukazuje nabídka účtu.
+
+## Agenti, prompty a skills
+
+### Seznamy
+
+| Seznam | Sloupce | Vyhledávání |
+|---|---|---|
+| **Agents** | Název, **Owner**, **Model**, **Visibility**, **Origin**, **Requests (30d)**, **Last used** | **Search name, description or repo** |
+| **Prompts** | Název, **Description**, **Visibility**, **Origin** | **Search name, command or repo** |
+| **Skills** | Název, **Description**, **Visibility**, **Origin** | **Search name, description or repo** |
+
+Propagovaní agenti nesou odznak **Promoted**.
+
+Sloupec **Visibility** zobrazuje **Owner only**, **Public** nebo **Groups (n)**. Sloupec **Origin** zobrazuje:
+
+| Odznak | Význam |
+|---|---|
+| **manual** | Vytvořeno v CompanyGPT |
+| **synced** | Pochází z repozitáře Git prostřednictvím [Library Sync](/cs/company-gpt/addons/companyadmin/library-sync/) |
+| **modified in LibreChat** | Synchronizováno, ale od té doby změněno v CompanyGPT. Co s tím udělá příští synchronizace, popisuje stránka [Library Sync](/cs/company-gpt/addons/companyadmin/library-sync/) |
+
+Filtry:
+
+- **Origin**: **From the library** nebo **Created in companyGPT**
+- **Visible to**
+- **Changes**: **Changed in companyGPT** nebo **Same as the repository**
+
+Seznamy při posouvání načítají další položky. Zobrazí se nejvýše 1 000 položek; vyhledávání a filtry pak pracují jen s nimi.
+
+### Stránky s podrobnostmi
+
+Kliknutím na řádek otevřete stránku s podrobnostmi. Konfiguraci položky měníte v CompanyGPT; v companyADMIN ji kontrolujete a řídíte její viditelnost.
+
+**Agent**
+
+- **Overview**: vlastník, model, kategorie, využití za posledních 30 dní a graf **Requests per day (30d)**
+- **Configuration**: **Instructions**, **Tools** se sloupcem **Loading**, **MCP servers**, **Skills**, **Subagents & handoff edges** a **Code & memory**
+- **Visibility**
+- **Origin**
+
+**Prompt**
+
+- **Overview**: **Text (production version)**, **Settings** jako **Command** a kategorie a **Versions**. Synchronizace nahrazuje pouze produkční verzi; starší verze zůstávají zachovány.
+- **Visibility**
+- **Origin**
+
+**Skill**
+
+- **Overview**: **Behaviour** s **Invoked by users**, **Invoked by the model**, **Always applied**, **Allowed tools** a **Version**
+- **Content**: **Instructions (SKILL.md)**, **Files** a **Frontmatter**
+- **Visibility**
+- **Origin**
+
+### Původ
+
+U synchronizovaného obsahu zobrazuje karta **Origin** položky **Repository** (s odkazem na Library Sync), **Path**, **Commit**, **Last written** a **State**. Pokud je zde uvedeno, že položka byla od poslední synchronizace změněna v CompanyGPT, příští synchronizace tuto změnu přepíše. Pouze u repozitáře s volbou **We own this repo (allow write-back/up-sync)** zůstanou změnění agenti a skills zachováni, dokud nejsou zapsáni zpět, pokud je jejich soubor v repozitáři.
+
+U obsahu vytvořeného v CompanyGPT je zde uvedeno **Created in companyGPT, not from the library.**
+
+## Nastavení viditelnosti
+
+Viditelnost nastavíte na stránce s podrobnostmi na kartě **Visibility**. Ta uvádí vlastníka (**Owned by …**) a nabízí tři úrovně:
+
+- **Owner only** – žádné sdílení se všemi a žádné sdílení se skupinami. Sdílení s jednotlivými osobami nebo rolemi zůstávají.
+- **Public — all users of this environment** – položku vidí všichni ve vašem prostředí, s přístupem pro čtení.
+- **Specific groups only** – položku vidí vybrané skupiny a vlastník. Pomocí **Search groups…** najdete skupiny podle názvu nebo ID objektu Entra. Bez výběru skupiny nelze uložit.
+
+Potvrďte tlačítkem **Save**.
+
+:::caution[Uložení nahradí stávající sdílení]
+Uložení vždy uloží zvolenou úroveň jako celek. Nahradí dosavadní sdílení se všemi i dosavadní sdílení se skupinami.
+
+- Přepnutí na **Public** nebo **Owner only** odstraní všechna sdílení se skupinami včetně sdílení s právy editora, která lidé vytvořili v CompanyGPT. **Public** dává všem pouze přístup pro čtení.
+- U synchronizovaného obsahu je vlastníkem systémový účet. **Owner only** zde znamená: položku nevidí žádný uživatel.
+:::
+
+Skupinu Entra lze vybrat teprve tehdy, když ji CompanyGPT zná, tedy jakmile se přihlásí některý její člen nebo byla skupina vytvořena či synchronizována. Sdílení vytvořená v companyADMIN poskytují přístup pro čtení (**Viewer**). Úrovně **Editor** a **Owner** pocházejí ze sdílení, která lidé vytvořili sami v CompanyGPT.
+
+### Kdo smí měnit viditelnost
+
+| Obsah | Změnit může |
+|---|---|
+| Synchronizovaný (z knihovny) | Každý administrátor s odpovídajícím právem správy (**Manage agents**, **Manage prompts** nebo **Manage skills**) |
+| Vytvořený v CompanyGPT (**manual**) | Pouze superadministrátoři. Ostatní administrátoři vidí viditelnost a upozornění |
+
+Vlastník položky může její sdílení v CompanyGPT dále měnit, pokud to jeho role umožňuje. Zda role smí vůbec sdílet nebo sdílet veřejně, rozhodují práva funkcí dané [role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/).
+
+U obsahu vytvořeného v CompanyGPT uvádí **Also individually shared with:** sdílení s jednotlivými osobami nebo rolemi. Superadministrátoři je odvolávají tlačítkem **Revoke**.
+
+### Synchronizovaný obsah a výchozí nastavení repozitáře
+
+Synchronizovaný obsah přebírá viditelnost z repozitáře (**Managed by the repo default (Library Sync)**). Pokud zde viditelnost změníte, platí **Individually managed (overrides the repo default)**: Library Sync pak viditelnost této položky ponechá beze změny. **Reset to repo default** ji vrátí repozitáři; to platí od příští synchronizace.
+
+### Viditelnost pro více položek
+
+V seznamech **Agents**, **Prompts** a **Skills** nastavíte viditelnost pro více položek najednou. Lišta k tomu se zobrazí pouze s odpovídajícím právem správy (**Manage agents**, **Manage prompts** nebo **Manage skills**).
+
+1. Zaškrtávacími políčky vyberte řádky.
+2. V liště nad tabulkou zvolte viditelnost.
+3. Klikněte na **Apply to selection**. U **Public** se nejprve zobrazí dotaz.
+
+Změní se pouze synchronizované položky. Všechny ostatní se přeskočí; jejich viditelnost nastavíte na jejich stránkách s podrobnostmi.
+
+Každá změněná položka je poté **Individually managed (overrides the repo default)**. Pozdější změny výchozí viditelnosti repozitáře se těchto položek již nedotknou. Výchozímu nastavení repozitáře je vrátíte jen jednotlivě, na stránce s podrobnostmi tlačítkem **Reset to repo default**.
+
+### Sdílení agenta se sebou
+
+:::note[Pouze superadministrátoři]
+Superadministrátoři vidí v seznamu soukromé agenty jiných osob, ale nemohou je v CompanyGPT jednoduše používat. **Share with me** vás přidá jako **Owner** agenta.
+:::
+
+- Na stránce s podrobnostmi agenta je **Share with me** vpravo nahoře.
+- V seznamu **Agents** vyberte více řádků a v liště nad tabulkou klikněte na **Share N agents with me**.
+
+Agent se pak zobrazí ve vašem seznamu agentů v CompanyGPT. Jako vlastník ho tam můžete dále sdílet pomocí dialogu sdílení. Stávající sdílení se všemi zůstane beze změny a dosavadní vlastníci si ponechají svá práva.
+
+Tlačítko je skryté, pokud agenta již můžete sdílet díky vlastnímu sdílení, například protože jste jeho vlastníkem. Každé sdílení se zaznamenává v [auditním protokolu](/cs/company-gpt/addons/companyadmin/audit-log/).
+
+## Nástroje MCP
+
+**MCP tools** obsahuje všechny MCP servery vašeho prostředí. companyADMIN nikdy nezobrazuje přihlašovací údaje, jako jsou tokeny nebo hesla.
+
+| Odznak | Význam |
+|---|---|
+| **From the deployment** | Nastaveno společností innFactory v základní konfiguraci; platí tak, jak je nastaveno |
+| **From the admin configuration** | Nastaveno prostřednictvím konfigurace; platí pro zobrazený rozsah (všichni, role nebo skupina) |
+| **From a plugin** | Poskytováno pluginem |
+| **Created by a user** | Vytvořeno osobou v CompanyGPT |
+| **agent-only** | Použitelné pouze prostřednictvím agentů, ne přímo v chatu |
+
+Sloupce **Owner** a **Who sees it** ukazují, kdo server vlastní a na koho se vztahuje. U serverů z nasazení, konfigurace nebo pluginu je uvedeno **as configured (not per group)**. Pomocí **Search servers** a filtru **Origin** seznam zúžíte.
+
+Rozbalený řádek zobrazuje **Connection**, adresu nebo **Command**, zda se používá **Sign-in via OAuth** a které **User-provided values** server očekává.
+
+- Vlastní sdílení mají pouze servery **Created by a user**. Měnit ho smí pouze superadministrátoři; vlastník ho může změnit v CompanyGPT. Podrobnosti soukromých serverů vidí pouze superadministrátoři.
+- MCP servery rozšíření (například companyFILES nebo companyRAG) jsou zpravidla připojeny pro všechny; jejich nástroje se proto mohou zobrazovat i osobám bez práva k jejich používání, viz [Rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/).
+- Které domény smějí MCP servery používat, se nastavuje v části [Domény MCP](/cs/company-gpt/addons/companyadmin/mcp-domains/).

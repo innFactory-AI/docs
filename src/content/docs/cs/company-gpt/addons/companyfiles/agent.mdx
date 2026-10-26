@@ -1,0 +1,114 @@
+---
+title: Nastavení agenta
+description: Nástroje, skills a limity agenta companyFILES v CompanyGPT – od nástroje Files přes přibalené skills až po maximální počet kroků agenta.
+---
+
+Nástroje companyFILES jsou k dispozici v každém chatu. Pro cokoli nad rámec jednoho souboru se přesto vyplatí mít vlastního agenta: ten už má nástroj **Files** a odpovídající skills, takže prompt musí uvést jen cíl. Vytvoří se jako každý jiný agent v části **Agents → Create new agent**.
+
+:::note
+Snímky obrazovky na této stránce ukazují německé rozhraní, protože v tomto jazyce byl pořízen záznam, ze kterého pocházejí. Rozhraní produktu je lokalizované – v anglické relaci se popisky zobrazují anglicky.
+:::
+
+## Základní nastavení
+
+| Pole | Doporučení |
+|---|---|
+| Name | výstižný název, například účel agenta |
+| What this agent does | krátký popis; nepovinné |
+| AI model | stačí malý, rychlý model — práce spočívá převážně ve voláních nástrojů |
+| Category | `General`, pokud neexistuje vlastní kategorie |
+| Instructions | ponechte je krátké; pravidla pocházejí ze skills |
+
+Agent companyFILES nepotřebuje dlouhé systémové instrukce. Dobře se osvědčují dvě kontextové proměnné, které vložíte přes ikonu plus vedle pole **Instructions** a které se vyplní v okamžiku volání:
+
+| Proměnná | Účel |
+|---|---|
+| `{{current_user}}` | kdo dokument požaduje – dostane se například do pole odesílatele v dopise |
+| `{{current_datetime}}` | datum a čas pro záhlaví dokumentů, zápisy a názvy souborů |
+
+## Nástroj Files
+
+![Dialog MCP serveru Files se seznamem nástrojů a postranním panelem agenta](./files-agent-tools.png)
+
+Nástroj **Files** přidáte v části **Tools → Add**. Jde o MCP server, který s sebou přináší celou sadu nástrojů. Kolik přesně, závisí na tom, která rozšíření jsou ve vašem prostředí aktivní; počítadlo v postranním panelu zobrazuje počet vedle názvu, na snímku jako `Files · 56`. Dialog ukazuje stav připojení (**Connected**) a pod ním seznam nástrojů tohoto serveru, ve kterém lze jednotlivé nástroje zrušit – nebo všechny najednou.
+
+Každý řádek má vedle názvu ikonu hodin. Ta označuje líné načítání: nástroj se do kontextu načte, až když je potřeba. To šetří kontext a má smysl téměř u každého nástroje. Výjimkou je `help` – zůstává trvale aktivní, aby agent mohl ostatní nástroje vůbec vyhledat.
+
+### Přehled nástrojů
+
+**Excel:** `create_excel`, `create_excel_from_csv`, `create_excel_from_json`, `create_excel_advanced`, `modify_excel`, `read_excel`, `read_excel_detailed`, `create_excel_from_template`, `fill_excel_template`
+
+**Word a OpenDocument:** `create_word`, `create_word_from_html`, `create_word_from_json`, `read_word`, `read_word_content`, `append_to_word`, `replace_word_content`, `create_word_from_template`, `create_word_from_template_with_images`, `create_odt`, `create_odt_from_html`, `create_odt_from_template`
+
+**PDF:** `create_pdf`, `create_pdf_from_html`, `read_pdf`, `list_pdf_form_templates`, `fill_pdf_form`, `fill_and_flatten_pdf_form`, `read_pdf_form_fields`, `fill_pdf_form_fields`
+
+**PowerPoint:** `create_powerpoint`, `read_powerpoint_slides`, `append_slides_to_powerpoint`, `update_powerpoint_slide`, `create_powerpoint_from_template`, `describe_pptx_template`, `create_powerpoint_from_layouts`, `add_slides_from_layouts`, `set_powerpoint_slide_fields`
+
+**Text, převod, archivy:** `create_text_file`, `convert_document`, `get_supported_conversions`, `create_zip_from_stored_files`
+
+**Správa souborů:** `upload_file`, `download_stored_file`, `list_documents`, `search_documents`, `list_my_files`, `get_settings`, `open_companyfiles_ui`
+
+**Šablony:** `list_templates`, `attach_template_to_chat` – druhý z nich připojí kopii šablony k chatu, aby ji mohl upravit interpret kódu; viz [Předání šablony interpretu kódu](/cs/company-gpt/addons/companyfiles/vorlagen/#předání-šablony-interpretu-kódu)
+
+**Obrázky:** `view_image` – agent si sám prohlédne uložený obrázek (PNG, JPEG, WebP, GIF), například nahranou fotografii nebo exportovaný graf, a může ho popsat nebo analyzovat
+
+**Vizualizace:** `create_chart_document`, `embed_chart_in_document`, `show_interactive_chart`, `show_interactive_diagram`, `show_interactive_map`
+
+**Nápověda:** `help`
+
+Některé nástroje jsou navíc k dispozici pouze s doplňkovým rozšířením:
+
+| Rozšíření | Nástroje | Popis |
+|---|---|---|
+| Čtení dalších formátů | `read_file`, `save_file_part`, `convert_to_markdown` | čtení e-mailů, archivů a starších formátů, ukládání příloh jako samostatných dokumentů, ukládání celých souborů jako Markdown – viz [Čtení e-mailů, archivů a starších formátů](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/#čtení-e-mailů-archivů-a-starších-formátů) |
+| CAD, BIM a 3D | `describe_model`, `query_model`, `get_model_element`, `aggregate_model`, `model_areas`, `create_model_report`, `render_model_view`, `show_model_viewer`, `convert_model`, `edit_model` | analýza, prohlížení, převod a úprava modelů – viz [CAD, BIM a 3D](/cs/company-gpt/addons/companyfiles/cad-und-3d/) |
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+## Skills
+
+companyFILES obsahuje sadu přibalených skills. Neobsahují žádný obsah, pouze pravidla pro práci s nástroji – který nástroj odpovídá za jaký formát, v jakém pořadí postupovat a jak výsledek zkontrolovat. Vybírají se v sekci **Skills** agenta.
+
+| Skill | Odpovídá za |
+|---|---|
+| [`excel-skill`](/cs/tutorials/skills/files/excel-skill/) | tabulky Excel, vzorce a formátování |
+| [`word-odt-skill`](/cs/tutorials/skills/files/word-odt-skill/) | dokumenty Word a OpenDocument |
+| [`pdf-skill`](/cs/tutorials/skills/files/pdf-skill/) | tvorbu PDF a formuláře PDF |
+| [`powerpoint-skill`](/cs/tutorials/skills/files/powerpoint-skill/) | tvorbu a přepracování prezentací |
+| [`templates-skill`](/cs/tutorials/skills/files/templates-skill/) | tvorbu dokumentů ze šablon |
+| [`charts-diagrams-skill`](/cs/tutorials/skills/files/charts-diagram-skill/) | grafy, diagramy a mapy |
+| [`convert-skill`](/cs/tutorials/skills/files/convert-skill/) | převod mezi formáty |
+| [`file-management-skill`](/cs/tutorials/skills/files/file-management-skill/) | ukládání, vyhledávání a stahování souborů |
+| [`settings-ui-skill`](/cs/tutorials/skills/files/settings-ui-skill/) | načtení nastavení a jejich použití v dokumentech |
+
+Agent může používat všechny skills organizace, žádné, nebo jen vybrané. Pro agenta na dokumenty stačí výslovně vybrat skills companyFILES.
+
+:::tip[Poznámka]
+Každý skill je v této dokumentaci popsán samostatně – tabulka na něj odkazuje přímo. Kdo si staví vlastního agenta, může si přečíst, jaký způsob práce který skill předepisuje.
+:::
+
+Obojí je vidět v chatu: nad odpovědí je uvedeno, kolik nástrojů bylo použito a odkud pocházely – například *„2 tools used · skill, Files“* – a za tím skill, který proběhl, a aktivní nástroj.
+
+![Chat s „2 Tools benutzt“, skillem charts-diagrams-skill, který proběhl, a aktivním nástrojem show_interactive_diagram](./files-agent-werkzeuge-chat.png)
+
+## Maximální počet kroků agenta
+
+![Rozšířená nastavení agenta s polem „Maximale Agenten-Schritte“ a sekcí orchestrace více agentů](./files-agent-erweitert.png)
+
+V části **Advanced → Basics** najdete pole pro **maximální počet kroků agenta**. Omezuje, kolik volání nástrojů smí agent provést v jednom průchodu. Bez vlastní hodnoty platí výchozí hodnota vašeho prostředí – v CompanyGPT 150 kroků. To obvykle stačí i pro rozsáhlejší přestavby, jako je přepracování celé prezentace.
+
+:::note
+Vlastní hodnota nahrazuje výchozí – i směrem dolů. Hodnotu proto zadávejte jen tehdy, když agent při velmi rozsáhlých změnách narazí na limit, a pak zvolte hodnotu vyšší než 150. Pokud agent narazí na limit uprostřed práce, zůstane dokument napůl hotový.
+:::
+
+**Sub-agents** a **handoffs** na jiné agenty (obojí Beta) nejsou pro companyFILES potřeba.
+
+## Kombinace s dalšími nástroji
+
+companyFILES lze u stejného agenta kombinovat s dalšími nástroji. V příkladu s mapou je přidáno **vyhledávání na webu**: agent nejprve vyhledá místa a poté je zakreslí pomocí `show_interactive_map`. Bez vyhledávání na webu zná pouze místa uvedená v promptu.
+
+Pro práci s [`attach_template_to_chat`](/cs/company-gpt/addons/companyfiles/vorlagen/#předání-šablony-interpretu-kódu) potřebuje agent navíc **Run Code**, protože připojenou šablonu upravuje interpret kódu.
+
+Dále: [Vytváření dokumentů](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/).

@@ -1,0 +1,67 @@
+---
+title: Více oken Office
+description: Práce s doplňkem pro Office v několika otevřených oknech Office – čtení jiných dokumentů a vkládání obsahu napříč aplikacemi.
+---
+
+Pokud máte [doplněk pro Office](/cs/company-gpt/addons/companym365/office-add-in/) otevřený v několika oknech – například ve dvou dokumentech Word a k tomu v Excelu, PowerPointu nebo Outlooku –, pracuje každý chat ve svém vlastním okně. Na požádání asistent čte i ostatní otevřená okna a vkládá obsah napříč aplikacemi, například tabulku z reportu ve Wordu jako nový list do Excelu. Změnu v jiném okně provede až poté, co ji potvrdíte ve svém vlastním chatu.
+
+Okno se považuje za otevřené, pokud je v něm otevřený panel doplňku. Dokument, ve kterém doplněk otevřený není, asistent nevidí. Požádá vás pak, abyste v tomto okně otevřeli doplněk z pásu karet, místo abyste soubor nahrávali. Vaše organizace může práci s více okny vypnout; každý chat pak pracuje pouze ve svém vlastním okně. Rozhraní doplňku je v němčině; popisky jsou uvedeny německy s českým překladem v závorce.
+
+## Vyhledání otevřených oken
+
+- Zeptejte se asistenta například: „Jaká okna Office mám otevřená?“. Vypíše připojená okna s jejich názvem a aplikací.
+- Napište do vstupního pole `#`: úplně nahoře sekce **Offene Fenster** (Otevřená okna) uvádí všechna ostatní připojená okna. Vybrané okno se zobrazí jako štítek (chip); asistent pak čte právě toto okno.
+
+Pokud mají dvě okna stejný název, doplněk je rozliší číslem, např. „Bericht.docx“ a „Bericht.docx (2)“.
+
+Okna, jejichž spojení se právě přerušilo, asistent uvádí zvlášť; v takovém případě je nemůže číst ani měnit. Klikněte jednou do takového okna nebo v něm znovu otevřete doplněk a okno se opět připojí.
+
+## Čtení jiných oken
+
+Čtení nevyžaduje potvrzení a nic nemění. Podle aplikace asistent čte:
+
+| Aplikace | Co se čte |
+|---|---|
+| Word | text dokumentu |
+| Excel | oblast buněk nebo přehled sešitu |
+| PowerPoint | přehled snímků |
+| Outlook | otevřený e-mail nebo otevřený koncept |
+
+Okna na pozadí někdy odpovídají se zpožděním. Pokud okno neodpoví do 25 sekund, asistent vás požádá, abyste okno krátce přenesli do popředí.
+
+## Vkládání do jiného okna
+
+Asistent může vložit text, formátovaný text nebo tabulku do libovolného připojeného okna – i do jiné aplikace:
+
+| Cíl | Kam se obsah vloží |
+|---|---|
+| Word | na konec dokumentu |
+| Excel | pouze tabulky, vždy jako nový list; existující buňky se nikdy nepřepisují |
+| PowerPoint | jako nový snímek na konec, s nadpisem a tabulkou nebo textem v odrážkách |
+| Outlook | na začátek otevřeného konceptu; do e-mailu v režimu čtení nelze vložit nic |
+
+Nový snímek pojme nejvýše 20 řádků textu nebo tabulku s až 20 řádky a 10 sloupci. Pokud se tabulka nevejde na žádný snímek šablony, asistent snímek nevytvoří.
+
+### Potvrzení ve vlastním chatu
+
+Změna v jiném okně se tam nikdy neprovede přímo – v žádném [režimu úprav](/cs/company-gpt/addons/companym365/office-add-in/#režimy-úprav), ani v režimu **Direkt** (Přímo). Místo toho se ve vašem vlastním chatu zobrazí karta, například **Änderung in „Umsatz.xlsx“ (Excel)** (Změna v „Umsatz.xlsx“ (Excel)).
+
+- **Übernehmen** (Převzít) provede změnu v jiném okně přesně jednou. Poté karta zobrazí „In „Umsatz.xlsx“ übernommen“ (Převzato v „Umsatz.xlsx“) nebo chybu. U některých chyb zůstane karta otevřená, abyste to mohli zkusit znovu.
+- **Verwerfen** (Zahodit), **Alle verwerfen** (Zahodit vše) nebo nový chat změnu zahodí.
+- **Alle übernehmen** (Převzít vše) nepřevezme změny pro jiná okna. Tyto karty převezmete jednotlivě; upozorní na to oznámení. Pokud jsou otevřené už jen takové karty, je **Alle übernehmen** neaktivní.
+- **Alle Änderungen zeigen** (Zobrazit všechny změny) ve vašem vlastním chatu uvádí i změnu v jiném okně.
+- Karta je platná 30 minut. Pokud cílové okno mezitím zobrazuje jiný obsah – například jiný e-mail –, změna se neprovede.
+
+## Omezení
+
+- Současně je připojeno **nejvýše deset oken** na osobu. V jedenáctém okně se zobrazí „Zu viele Fenster verbunden — …“ (Připojeno příliš mnoho oken) s tlačítkem **Erneut verbinden** (Znovu připojit). Zavřete panel doplňku v jiném okně a poté klikněte na **Erneut verbinden**. Do té doby funguje chat v tomto okně jako běžný chat, bez přístupu k dokumentu.
+- **Výběr a kurzor** jiného okna zůstávají nedotčeny. Akce, které pracují s výběrem – například vložení obrázku na vybrané místo –, provádí asistent pouze ve svém vlastním okně.
+
+## Zavření okna během probíhající odpovědi
+
+Pokud zavřete okno nebo panel doplňku, zatímco probíhá odpověď, nemá tato odpověď zprvu žádné okno, do kterého by mohla zapisovat. Co se stane dál, závisí na tom, zda panel doplňku znovu otevřete:
+
+- **Znovu otevřeno:** Pokud panel doplňku znovu otevřete ve stejném uloženém dokumentu nebo stejném e-mailu do 10 minut, doplněk okno rozpozná. Pokud odpověď stále probíhá, je toto okno opět jejím domovem – do 3 minut po zavření nebo dokud v něm sami neodešlete zprávu. Během této doby se zápisy odpovědi provádějí v tomto okně; změny v jiných oknech se zobrazí jako karta v tomto panelu doplňku a provedou se až po **Übernehmen** (Převzít).
+- **Neotevřeno znovu nebo neuloženo:** Bez opětovného otevření a u neuložených dokumentů a konceptů už odpověď nezapisuje do žádného okna. Otevřete tam panel doplňku znovu a odešlete zprávu ještě jednou.
+
+Během prvních 3 minut po zavření může asistent zápis odmítnout s tímto upozorněním: „Das Fenster einer früheren Antwort wurde geschlossen, während sie noch lief; bis 3 Minuten nach dem Schließen ist unklar, aus welchem Fenster ein Schreibaufruf kommt — er wird nicht ausgeführt.“ (Okno dřívější odpovědi bylo zavřeno, zatímco ještě probíhala; do 3 minut po zavření není jasné, ze kterého okna zápis pochází – neprovede se.) Zkuste to znovu, jakmile 3 minuty uplynou.

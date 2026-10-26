@@ -1,0 +1,129 @@
+---
+title: Šablony
+description: Příprava šablon dokumentů se zástupnými symboly pro companyFILES, jejich nahrání a vyplňování v chatu CompanyGPT – od šablony dopisu přes předlohu snímků až po smyčky v tabulkách Word.
+---
+
+Šablony umožňují opakované generování dokumentů se standardizovanou strukturou: formát se definuje jednou a poté se vyplňuje jen obsah. To se vyplatí všude tam, kde dokumenty sdílejí stejné rozvržení – dopisy, průvodní dopisy, zápisy z porad, šablony nabídek.
+
+Šablony Word je k tomu nejprve nutné připravit pomocí **zástupných symbolů** – hotový dokument nelze jednoduše nahrát jako šablonu. U šablon Excel může agent alternativně vyplňovat buňky přímo podle jejich adresy a předlohy snímků PowerPoint bez zástupných symbolů používá prostřednictvím jejich rozvržení.
+
+## Příprava šablon
+
+Otevřete dokument v jeho nativní aplikaci (Word, Excel, PowerPoint) a vložte zástupné symboly všude tam, kam má CompanyGPT vložit dynamický obsah. Názvy zástupných symbolů lze volit libovolně, měly by však být výstižné. Způsob zápisu zástupného symbolu závisí na formátu:
+
+| Formát | Zápis | Příklad |
+|---|---|---|
+| Word (`.docx`) | jednoduché složené závorky: `{Name}` | „Vážený `{Salutation}` `{LastName}`, ...“ nebo buňka tabulky s `{InvoiceAmount}` |
+| Excel (`.xlsx`) | dvojité složené závorky: `{{Name}}` | buňka A1 obsahuje `{{EmployeeName}}`, buňka B1 obsahuje `{{Department}}` |
+| PowerPoint (`.pptx` / `.potx`) | dvojité složené závorky: `{{Name}}` | titulní snímek s `{{ProjectName}}`, obsahový snímek s `{{Summary}}` |
+| OpenDocument (`.odt`) | dvojité složené závorky: `{{Name}}` | `{{CustomerName}}` v textu dokumentu |
+
+![Šablona dopisu Word se zástupnými symboly jako {from_name}, {to_company}, {topic} a {message} a s poznámkou v dolní části stránky](./files-vorlage-platzhalter.png)
+
+V ukázkové šabloně dopisu Word pokrývají zástupné symboly odesílatele (`{from_name}`, `{from_title}`, `{from_company}`, `{from_email}`, `{from_phone}`, `{from_website}`), příjemce (`{to_name}`, `{to_company}`, `{to_address_line1}`, `{to_address_line2}`) a také `{date}`, `{topic}` a `{message}`.
+
+**Šablony Excel** nabízejí druhou možnost: agent může vyplňovat jednotlivé buňky přímo podle jejich adresy, například `A1` nebo `Sheet2!B3`. Šablona Excel s pevným rozvržením k tomu zástupné symboly nepotřebuje.
+
+:::tip[Poznámka]
+Používejte výstižné názvy zástupných symbolů jako `CustomerName` místo `C1`. CompanyGPT tak lépe pochopí kontext a spolehlivěji vyplní zástupné symboly správnými daty. Které zástupné symboly companyFILES v nahrané šabloně rozpoznal, ukazuje její detailní zobrazení v části [Šablony](/cs/company-gpt/addons/companyfiles/oberflaeche/#šablony).
+:::
+
+:::caution
+Běžný, plně vyplněný dokument Word bez zástupných symbolů nelze jako šablonu použít. CompanyGPT potřebuje značky zástupných symbolů, aby rozpoznal, které části se mají dynamicky nahradit.
+:::
+
+## Šablony PowerPoint bez zástupných symbolů
+
+Předloha snímků ve firemním designu obvykle neobsahuje žádné `{{placeholders}}`, pouze rozvržení snímků – titulní snímek, oddělovač sekce, obsah, dva sloupce, závěr. companyFILES dokáže používat i takové šablony:
+
+1. Agent načte rozvržení šablony (`describe_pptx_template`): název a roli každého rozvržení a jeho pole pro nadpis, text a obrázky.
+2. Z nich sestaví novou prezentaci (`create_powerpoint_from_layouts`). Obsah se vloží do polí rozvržení; písma, barvy, loga a uspořádání se beze změny převezmou z předlohy snímků.
+3. Do existující prezentace přidává další snímky (`add_slides_from_layouts`) a jednotlivé snímky cíleně přepracovává (`set_powerpoint_slide_fields`).
+
+Obrázková pole rozvržení lze vyplnit připojenými obrázky nebo obrázky uloženými v companyFILES. Stejný postup funguje i se souborem `.pptx`, který připojíte v chatu – viz [Úprava prezentací](/cs/company-gpt/addons/companyfiles/praesentationen/). Pokud šablona `{{placeholders}}` obsahuje, agent je vyplní, jak je popsáno výše.
+
+## Nahrání a sdílení šablon
+
+Šablony se nahrávají v rozhraní pomocí akce stránky [Template Upload](/cs/company-gpt/addons/companyfiles/oberflaeche/#nahrání-šablony) – jako `.docx`, `.xlsx`, `.potx` nebo `.pptx`. Název šablony smí obsahovat pouze písmena, číslice, pomlčky a podtržítka. Viditelnost pak určuje **rozsah** (scope): **User** znamená, že šablonu můžete používat jen vy; **Global** ji zpřístupní všem uživatelům v organizaci. Globální šablony vytvářejí administrátoři; ti mohou také své vlastní šablony později zpřístupnit pomocí **Promote to Global** a znovu je stáhnout pomocí **Demote to Local**.
+
+![Přehled šablon se čtyřmi šablonami a odznaky rozsahu User a Global](./files-vorlagen-liste.png)
+
+Šablony OpenDocument (`.odt`) a formuláře PDF v současnosti nelze nahrát jako šablony přes rozhraní. PDF s formulářovými poli místo toho vyplňte přímo v chatu – viz [Formuláře PDF](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/#převod-souborů-a-extrakce-dat).
+
+## Pokročilá syntaxe šablon
+
+Kromě jednoduchých značek `{placeholder}` podporují šablony Word pokročilou syntaxi výrazů pro dynamický obsah, například smyčky pro vytváření řádků v tabulkách.
+
+### Smyčky v tabulkách Word
+
+Smyčky v tabulkách Word se řídí pomocí vyhrazených řádků. Příkazy `FOR` a `END-FOR` se umisťují vždy do vlastních řádků tabulky:
+
+| Jméno | Nastoupil(a) |
+|---|---|
+| `{FOR person IN people}` | |
+| `{= $person.name}` | `{= $person.joiningYear}` |
+| `{END-FOR person}` | |
+
+- **Řádek FOR** označuje začátek smyčky – při vykreslování se odstraní.
+- **Řádek těla** se zduplikuje pro každou položku pole.
+- **Řádek END-FOR** smyčku uzavírá – rovněž se odstraní.
+
+:::caution
+Řádky `FOR` a `END-FOR` musí být **úplné řádky tabulky** – příkaz umístěte do první buňky, zbývající buňky řádku zůstanou prázdné. Příkazy uvnitř buňky běžného řádku nefungují jako řízení smyčky.
+:::
+
+### Povolené výrazy
+
+companyFILES vyhodnocuje výrazy v šablonách Word vlastním omezeným vyhodnocovačem; nespouští se žádný JavaScript. Povoleny jsou:
+
+- proměnné a cesty jako `name`, `$person.name` nebo `items[0]`,
+- čísla, text v uvozovkách a také `true`, `false` a `null`,
+- aritmetické a porovnávací operátory (`+ - * / %`, `< <= > >=`, `== != === !==`), logické operátory (`&& || ?? !`) a podmínka `a ? b : c`,
+- příkazy `FOR`/`END-FOR`, `IF`/`END-IF` a `EXEC` s přiřazeními jako `total += $item.amount`,
+- pevný seznam neškodných metod a funkcí, například `toFixed`, `toUpperCase`, `toLowerCase`, `trim`, `replace`, `join`, `toLocaleDateString`, `Math.round`, `parseFloat`, `Object.keys` a `new Date(…)`.
+
+Nepovoleny jsou šipkové funkce, metody jako `.map()` nebo `.filter()`, smyčky uvnitř výrazu a šablonové literály. Pokud šablona takové výrazy obsahuje, vyplnění selže s chybovou zprávou. Text ve složených závorkách, který není platným výrazem, zůstane textem a zobrazí se jako varování.
+
+| Výraz | Výsledek |
+|---|---|
+| `{= $item.quantity * $item.price}` | funguje |
+| `{= $item.price.toFixed(2)}` | funguje |
+| `{= customer.name.toUpperCase()}` | funguje |
+| `{= items.map(i => i.price).join(", ")}` | selže – použijte místo toho smyčku `FOR` |
+
+## Používání šablon v chatu
+
+Po nahrání na šablonu v chatu odkažte a poskytněte data pro zástupné symboly. Pokud informace chybějí, agent se na ně zeptá – vypíše nevyplněné zástupné symboly a zčásti už navrhne hodnoty.
+
+![Odpověď v chatu se seznamem nevyplněných zástupných symbolů, upravitelnou zprávou a tlačítky Cancel, Save a Update & rerun](./files-vorlage-rueckfrage.png)
+
+Údaje zadáte přímo do zprávy: vlastní zprávu lze upravit a znovu odeslat pomocí **Update & rerun**, zatímco **Save** změnu uloží bez nového spuštění. Na pole, která nepotřebujete, můžete výslovně odpovědět *neuplatňuje se*.
+
+companyFILES pak vytvoří dokument: struktura, písmo a zvýrazňující barva se beze změny převezmou ze šablony a poskytnutý obsah stojí tam, kde byly zástupné symboly.
+
+Ukázkový prompt: *„Vytvoř fakturu pomocí šablony 'Invoice Template'. Jméno zákazníka: Sample Inc., částka faktury: 1 500 USD, datum: 15. dubna 2026“*
+
+Pokud otevřete companyFILES uvnitř chatu, nabízí detailní zobrazení šablony navíc **Use Template**: tlačítko napíše do chatu požadavek na vyplnění šablony včetně jejích zástupných symbolů.
+
+:::tip[Poznámka]
+Pokud je ve hře stále stejná šablona, uveďte ji v instrukcích vyhrazeného [agenta](/cs/company-gpt/addons/companyfiles/agent/). Pak už nemusíte uvádět, která šablona je myšlena – agent pracuje přesněji a práce s ním je výrazně jednodušší.
+:::
+
+## Předání šablony interpretu kódu
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+Některé změny přesahují vyplňování zástupných symbolů. Pro takové případy může agent připojit k chatu **kopii** šablony jako soubor (`attach_template_to_chat`). Interpret kódu ji pak otevře pomocí Pythonu, upraví a výsledek uloží jako nový soubor. Samotná šablona zůstane beze změny.
+
+- Funguje to pro šablony Word (`.docx`), Excel (`.xlsx`), PowerPoint (`.potx`) a OpenDocument (`.odt`). Šablona `.potx` dorazí do chatu jako `.pptx`, aby ji interpret kódu mohl otevřít.
+- Pokud mají osobní a globální šablona stejný název, agent použije osobní.
+- Interpret kódu vidí připojený soubor teprve **od vaší příští zprávy** a pouze tehdy, je-li pro chat nebo agenta povoleno **Run Code**.
+- Opětovné připojení stejné šablony nevytvoří druhou kopii: nezměněná šablona se připojí znovu, šablona mezitím změněná nahradí starou kopii.
+
+Ukázkový prompt: *„Připoj k chatu šablonu 'Quote' a přidej do cenové tabulky sloupec pro slevy.“*
+
+## Dokumenty bez šablony
+
+Pokud se nepoužije žádná šablona, uplatní se [nastavení](/cs/company-gpt/addons/companyfiles/einstellungen/): barvy, typografie, rozvržení stránky a logo pak pocházejí z výchozího nastavení organizace nebo z vašich osobních úprav. Do prezentací PowerPoint companyFILES logo automaticky nevkládá; logo tam přidejte jako obrázek.

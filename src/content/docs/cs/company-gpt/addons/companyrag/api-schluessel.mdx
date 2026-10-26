@@ -1,0 +1,35 @@
+---
+title: API klíče
+description: Vytvářejte, používejte a odvolávejte API klíče pro desktopové aplikace, skripty a integrace v companyRAG – včetně poznámek k přístupu vázanému na uživatele.
+---
+
+V části **API Keys** administrátoři vytvářejí a spravují klíče, kterými lze bezpečně připojit jiné programy a vlastní nástroje ke službě RAG – například [Windows Syncer](/cs/company-gpt/addons/companyrag/#ke-stažení), skript, [companyRAG API](/cs/api/company-rag-api/) nebo ingestion endpoint [sbírky typu datová sada](/cs/company-gpt/addons/companyrag/datensaetze/).
+
+Tato oblast se zobrazuje pouze administrátorům companyRAG (viz [Práva a role](/cs/company-gpt/addons/companyrag/#práva-a-role)).
+
+![Přehled API klíčů s dialogem pro vytvoření nového klíče](./api-schluessel.png)
+
+Přehled zobrazuje:
+
+- **Name**: Libovolně zvolený název klíče (např. „Vyhledávání v intranetu“), aby jej bylo možné později identifikovat.
+- **Created** / **Last Used**: Kdy byl klíč vytvořen a kdy byl naposledy použit.
+- **Status**: **Active** nebo **Revoked**.
+- **Actions**: **Revoke** klíč okamžitě a nevratně zablokuje. Všechny programy, které jej používají, okamžitě ztratí přístup.
+
+## Vytvoření klíče
+
+1. Zvolte **Create New Key**.
+2. V dialogu **Create API Key** zadejte **Key Name** a zvolte **Create Key**.
+3. V dialogu **API Key Created** převezměte klíč pomocí **Copy** a uložte jej na bezpečné místo.
+
+Klíč začíná na `rag_` a celý se zobrazí pouze jednou, ihned po vytvoření. Pokud jej ztratíte, vytvořte nový.
+
+## Přístup vázaný na uživatele
+
+API klíč je vázán na osobu, která jej vytvořila, a v rámci správy RAG jedná jejím jménem. Všechna volání proto podléhají přesně sbírkám a oprávněním této osoby.
+
+:::danger
+Nesdílejte API klíče s kolegy – každá osoba a každý systém by měl mít vlastní klíč. Jinak se přes rozhraní může zpřístupnit obsah, který by příjemce sám vidět nesměl.
+:::
+
+Veškerá vytvoření a odvolání se zaznamenávají v [auditních protokolech](/cs/company-gpt/addons/companyrag/audit-protokoll/). Dostupné endpointy jsou popsány v [referenci companyRAG API](/cs/api/company-rag-api/).

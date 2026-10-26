@@ -1,0 +1,136 @@
+---
+title: Role
+description: Vytvářejte role v companyADMIN, nastavujte jejich oprávnění v CompanyGPT a v rozšířeních, uvolňujte modely a přiřazujte osoby na kartě členů.
+---
+
+Role rozhoduje o tom, co smí kdo dělat: funkce v CompanyGPT, modely, schopnosti agentů a oprávnění v rozšířeních. Každý má přesně **jednu** roli. Platí zaškrtnutí této jedné role; z jiných rolí se nic nepřidává. Kdo není přiřazen k jiné roli, má obvykle roli USER (v rozhraní zobrazovanou také jako „User“). Pokud je aktivní automatické přiřazování rolí, může pro tento účel Vaše prostředí nastavit jinou **Fallback role**.
+
+Role najdete v části **Access** → **Roles**.
+
+## Seznam rolí
+
+Nad seznamem stránka vysvětluje, jak se ze skupin Entra stávají role. Pole **Role sync in this tenant** ukazuje, zda je aktivní automatické přiřazování rolí z Microsoft Entra ID, a pokud ano, s údaji **Claim**, **Order**, **Fallback role** a **Admin group**. Pokud je vypnuté, zobrazí se **Role sync is off. Roles are only assigned here.**
+
+| Sloupec | Obsah |
+|---|---|
+| **ID** | Název role |
+| **Description** | Její popis, viditelný pouze pro administrátory |
+| **Users** | Počet osob s touto rolí |
+| **Origin** | **System**, **Role sync**, **Manual** nebo role administrátora |
+
+Pomocí **Search ID or description** a filtru **Origin** seznam zúžíte. Kliknutím na řádek roli otevřete.
+
+**Systémové role** (ADMIN a USER) jsou součástí CompanyGPT a nelze je smazat ani přejmenovat.
+
+## Vytvoření role
+
+1. V části **Create role** zadejte **ID** a volitelně **Description**.
+2. Pokud má role patřit ke skupině Entra, vyberte skupinu v poli **From Entra group**. ID se pak automaticky stane ID objektu skupiny. Tento výběr existuje pouze tehdy, když automatické přiřazování rolí probíhá přes skupiny Entra; v opačném případě zadejte ID objektu ručně jako **ID**.
+3. Klikněte na **Create**.
+
+Nová role začíná s oprávněními k funkcím role USER (karta **companyGPT**). Nepřebírá uvolnění modelů role USER ani oprávnění v rozšířeních, která má role USER sama; oprávnění zpřístupněná pomocí **For everyone** platí i pro novou roli. Pokud je poskytovatel omezen v části **Providers and models**, uvidí nová role jeho modely až poté, co je uvolníte na její kartě **Models & providers**. Roli následně upravte na stránce s podrobnostmi.
+
+### Automatické přiřazování rolí z Entra ID
+
+Skupina Entra sama o sobě roli neuděluje. Aby všichni členové skupiny Entra dostali roli automaticky při přihlášení:
+
+1. Vytvořte roli. ID musí přesně odpovídat ID objektu skupiny Entra (portál Entra → Groups → skupina → Overview → Object ID). Pokud Vaše prostředí místo skupin používá aplikační role, je ID hodnotou aplikační role, například `POWERUSER`.
+2. Požádejte innFactory o registraci role pro Vaše prostředí. Bez této registrace nikdo roli automaticky nedostane.
+3. Nastavte oprávnění, modely a schopnosti agentů dané role.
+4. Osoby se znovu přihlásí. Teprve pak roli mají a dostávají ji znovu při každém přihlášení.
+
+Administrátoři si ponechávají roli ADMIN. Kdo je v několika registrovaných skupinách, dostane roli uvedenou v registraci jako první.
+
+:::caution
+Registrovanou roli nelze smazat ani přejmenovat, protože ji potřebuje automatické přiřazování rolí při přihlášení. Pokud registrovaná role chybí, companyADMIN ji vytvoří sám. Pokud již není potřeba, innFactory nejprve odstraní registraci; poté ji lze smazat.
+:::
+
+## Stránka s podrobnostmi role
+
+Stránka s podrobnostmi má karty **Overview**, **companyGPT**, **Models & providers**, **Extensions** a **Members** a navíc nebezpečnou zónu **Delete role**.
+
+### Overview
+
+- Název změníte pomocí **Rename**. Funguje to pouze tehdy, dokud pro roli ještě nic není nastaveno (modely, schopnosti, oprávnění, sdílení), protože tato nastavení by jinak zůstala pod starým názvem. V takovém případě vytvořte novou roli.
+- **Description** vysvětluje, k čemu role slouží. Vidí ji pouze administrátoři.
+- Kromě toho vidíte **Origin**, **Entra mapping** s **Entra group** a **Members in Entra** a **Notes**, například že synchronizace rolí při přihlášení přepisuje ruční přiřazení.
+
+### companyGPT
+
+Zde rozhodujete, co smějí osoby s touto rolí dělat v CompanyGPT. Zaškrtnutí u funkcí a administrátorských oprávnění platí okamžitě; nepotřebují tlačítko pro uložení. U každé funkce stránka nabízí pouze akce, které CompanyGPT podporuje.
+
+| Funkce | Akce |
+|---|---|
+| **Agents** | **Use**, **Create**, **Share**, **Share publicly** |
+| **Prompts** | **Use**, **Create**, **Share**, **Share publicly** |
+| **Skills** | **Use**, **Create**, **Share**, **Share publicly** |
+| **MCP servers** | **Use**, **Create**, **Share**, **Share publicly**, **Configure OBO** |
+| **Remote agents** | **Use**, **Create**, **Share**, **Share publicly** |
+| **Marketplace** | **Use** |
+| **Memories** | **Use**, **Create**, **Update**, **Read**, **Opt out** |
+| **File search** | **Use** |
+| **File citations** | **Use** |
+| **Run code** | **Use** |
+| **Web search** | **Use** |
+| **Multi-conversation** | **Use** |
+| **Temporary chat** | **Use** |
+| **Scheduled chats** | **Use**, **Create** |
+| **Bookmarks** | **Use** |
+| **Shared links** | **Create**, **Share**, **Share publicly** |
+| **People picker** | **View users**, **View groups**, **View roles** |
+
+- **Share publicly** rozhoduje o tom, zda smějí členové uvolnit obsah pro celé prostředí, nikoli jen pro jednotlivé skupiny.
+- **Remote agents** umožňuje volat agenty zvenčí prostřednictvím API.
+- **Configure OBO** umožňuje nastavit pro MCP servery přístup on-behalf-of, při kterém nástroj přistupuje k systému třetí strany jménem přihlášené osoby. Toto oprávnění udělujte uvážlivě.
+- **Scheduled chats** jsou chaty s agentem, které běží v nastavených časech. Zda je funkce vůbec zapnutá, se řídí v části [Agent runtime](/cs/company-gpt/addons/companyadmin/agent-laufzeit/).
+
+Některá zaškrtnutí jsou uzamčená a nesou poznámku. Tyto hodnoty pocházejí ze základní konfigurace nebo je CompanyGPT při každém restartu resetuje. Týká se to většinou rolí USER a ADMIN. Poznámka uvádí možné řešení, například vlastní roli nebo vypnutí pamětí pro jednotlivé role či skupiny. Změny základní konfigurace provádí innFactory.
+
+#### Administrátorská oprávnění v LibreChat
+
+Tato část uděluje oprávnění pro oblast administrace, například **Access the admin area**, **Manage roles** nebo **View audit log**. Úplný seznam s vysvětlivkami najdete v části [Direct grants](/cs/company-gpt/addons/companyadmin/direkte-berechtigungen/). Odebrání se nejprve potvrzuje; osoby s danou rolí oprávnění okamžitě ztratí.
+
+:::caution
+Kdo má **Manage roles** nebo **Manage groups**, může fakticky komukoli udělit administrátorská oprávnění. Pokud tato oprávnění udělíte jiné roli než ADMIN, companyADMIN si proto vyžádá výslovné potvrzení.
+:::
+
+Následují nastavení role pro paměti, uchovávání dat, tvůrce agentů a nahrávání souborů. Každá z těchto částí má vlastní tlačítko **Save**; teprve to změnu uplatní, jinak se ztratí. Nastavení odpovídají nastavením v části [Agent runtime → Per role or group](/cs/company-gpt/addons/companyadmin/agent-laufzeit/). Jaké schopnosti mají agenti pro tuto roli, najdete v části [Agent capabilities](/cs/company-gpt/addons/companyadmin/agent-capabilities/).
+
+### Models & providers
+
+Které poskytovatele a modely vidí osoby s touto rolí, včetně těch zděděných ze základní konfigurace. Rozbalením řádku zobrazíte jednotlivé modely; odebrání se nejprve potvrzuje. Všechny role najednou upravíte v části [Providers and models → Model access](/cs/company-gpt/addons/companyadmin/modelle/).
+
+### Extensions
+
+Oprávnění této role v rozšířeních, například **Use translation** nebo **Use Microsoft 365**. Zaškrtnutí oprávnění udělí; jeho odebrání se nejprve potvrzuje. Odebrané oprávnění okamžitě zaniká; rozšíření si odpověď ukládají do mezipaměti nejvýše na minutu.
+
+- Role ADMIN má vždy oprávnění třídy **Admins automatically**.
+- Oprávnění třídy **Explicit only** nedostane nikdo automaticky. Udělit je mohou pouze administrátoři s rolí ADMIN; pro všechny ostatní jsou tato oprávnění skrytá, dokud je role nemá.
+- Pokud je oprávnění zpřístupněno pomocí **For everyone**, je to zobrazeno. Změníte to v části [Extensions](/cs/company-gpt/addons/companyadmin/erweiterungen/).
+
+Všechna oprávnění a jejich význam jsou popsány v části [Extensions](/cs/company-gpt/addons/companyadmin/erweiterungen/).
+
+### Members
+
+Zde přiřazujete roli osobám:
+
+1. V části **Add person** zadejte do pole **Search person (name or email)** alespoň dva znaky.
+2. Ve výsledcích klikněte na položku „Add *jméno* (*e-mail*)“.
+
+Kdo je zde přiřazen, ztratí svou dosavadní roli. Osoby, které z role odeberete, dostanou roli USER.
+
+U samotné role USER přidávání nefunguje a odebrání se nenabízí. Chcete-li někomu přidělit roli USER, odeberte jej z jeho aktuální role.
+
+:::caution
+Pokud je aktivní automatické přiřazování rolí z Entra ID, CompanyGPT při příštím přihlášení nastaví roli znovu podle skupin Entra. Zde provedená přiřazení se pak ztratí.
+:::
+
+### Smazání role
+
+**Delete role** v nebezpečné zóně nejprve zobrazí, kolik osob roli má. Všichni členové poté dostanou roli USER. Spolu s rolí se smažou její nastavení (včetně limitů modelů), její sdílení a její oprávnění v CompanyGPT a v rozšířeních. Tuto akci nelze vrátit zpět.
+
+## Související stránky
+
+- [Skupiny](/cs/company-gpt/addons/companyadmin/gruppen/) rozhodují o tom, s kým se obsah sdílí.
+- [Agent capabilities](/cs/company-gpt/addons/companyadmin/agent-capabilities/) určují, které schopnosti mohou agenti používat pro osoby s danou rolí.
+- [Providers and models](/cs/company-gpt/addons/companyadmin/modelle/) řídí modely pro jednotlivé role.

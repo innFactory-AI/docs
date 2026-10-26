@@ -1,0 +1,53 @@
+---
+title: Addon companyFILES
+description: Tvorba dokumentů s podporou AI pro CompanyGPT – vytvářejte, převádějte a spravujte soubory Excel, Word, PowerPoint a PDF pomocí přirozeného jazyka.
+---
+
+companyFILES Vám umožňuje vytvářet, převádět a spravovat dokumenty přímo v CompanyGPT. Addon spojuje práci se soubory, šablony a vizualizace v jednom centrálním rozhraní.
+
+companyFILES má dva vstupní body, které pracují se stejnou sadou souborů: **chat**, kde agent volá nástroje serveru Files a vytváří dokumenty, a **vlastní rozhraní**, které obsahuje tytéž soubory a ve kterém se spravují šablony, vizualizace a výchozí nastavení generovaných dokumentů. Vše, co nahrajete nebo vytvoříte v chatu, najdete také v rozhraní – a naopak.
+
+## Co můžete vytvářet
+
+| Formát | Možnosti |
+|---|---|
+| Excel (`.xlsx`) | tabulky z CSV, JSON a polí; pokročilé tabulky se vzorci, podmíněným formátováním a automatickými filtry; vyplňování šablon |
+| Word (`.docx`) | dokumenty z Markdownu, HTML nebo JSON; šablony se zástupnými symboly; připojování nebo nahrazování obsahu ve stávajících dokumentech |
+| PowerPoint (`.pptx`) | prezentace z textu, šablon nebo rozvržení předlohy snímků; čtení, rozšiřování a přepracování jednotlivých snímků stávajících prezentací |
+| PDF | PDF z Markdownu nebo HTML; čtení a vyplňování formulářů PDF |
+| OpenDocument (`.odt`) | dokumenty z textu, HTML nebo šablon |
+| Text a kód | libovolný textový soubor, například SQL, JSON, YAML, XML, HTML, Python nebo JS |
+| Vizualizace | interaktivní grafy, diagramy Mermaid a mapy; exportovatelné jako obrázky nebo vložitelné do dokumentu |
+
+K tomu přistupuje čtení a extrakce dat ze stávajících souborů (Excel, Word, PDF), převod mezi formáty (např. Excel → CSV/JSON, Markdown/HTML/Word → PDF; viz [Převod souborů](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/#převod-souborů-a-extrakce-dat)) a archivy ZIP pro stažení více dokumentů najednou.
+
+V závislosti na Vašem prostředí umí companyFILES také:
+
+- **číst e-maily, archivy a starší formáty** – zprávy Outlooku včetně příloh, archivy ZIP, `.doc`/`.xls`/`.ppt`, OpenDocument, EPUB a skeny pomocí rozpoznávání textu; viz [Čtení e-mailů, archivů a starších formátů](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/#čtení-e-mailů-archivů-a-starších-formátů).
+- **analyzovat modely CAD, BIM a 3D** – DXF, STEP, IFC, STL a další formáty, s interaktivním prohlížečem v chatu; viz [CAD, BIM a 3D](/cs/company-gpt/addons/companyfiles/cad-und-3d/).
+
+Nově vytvořené dokumenty nesou ve svých metadatech strojově čitelné [označení AI](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/#označování-ai).
+
+## Přístup
+
+K rozhraní se v CompanyGPT dostanete přes **Apps → Files** nebo přes stránku [All apps](/cs/company-gpt/addons/alle-apps/). Používá [společné rozhraní](/cs/company-gpt/addons/gemeinsame-oberflaeche/) addonů CompanyGPT a přihlásí Vás pomocí Vaší relace chatu – samostatné přihlášení není potřeba.
+
+V chatu je companyFILES k dispozici jako nástroj **Files**; obvyklým výchozím bodem je agent s tímto nástrojem a odpovídajícími skills – viz [Nastavení agenta](/cs/company-gpt/addons/companyfiles/agent/).
+
+:::tip[Poznámka]
+Videonávod k používání companyFILES s CompanyGPT najdete zde:
+
+- Video v němčině: [https://www.youtube.com/watch?v=CWYTURftXHI](https://www.youtube.com/watch?v=CWYTURftXHI)
+- Video v angličtině: [https://www.youtube.com/watch?v=DSJNlRxC9nI](https://www.youtube.com/watch?v=DSJNlRxC9nI)
+:::
+
+## Co dál?
+
+- [Rozhraní](/cs/company-gpt/addons/companyfiles/oberflaeche/) – správa dokumentů, šablon a vizualizací, nahrávání souborů.
+- [Nastavení](/cs/company-gpt/addons/companyfiles/einstellungen/) – barvy, typografie, výchozí nastavení dokumentů a logo pro každý generovaný dokument.
+- [Nastavení agenta](/cs/company-gpt/addons/companyfiles/agent/) – nástroje, skills a limity agenta companyFILES.
+- [Vytváření dokumentů](/cs/company-gpt/addons/companyfiles/dokumente-erstellen/) – od CSV k formátované tabulce Excel, od Markdownu k PDF, čtení e-mailů a archivů.
+- [Vizualizace](/cs/company-gpt/addons/companyfiles/visualisierungen/) – grafy, diagramy a mapy v chatu.
+- [Úprava prezentací](/cs/company-gpt/addons/companyfiles/praesentationen/) – přepracování a rozšíření stávajících prezentací.
+- [Šablony](/cs/company-gpt/addons/companyfiles/vorlagen/) – příprava zástupných symbolů, nahrávání šablon a jejich použití v chatu.
+- [CAD, BIM a 3D](/cs/company-gpt/addons/companyfiles/cad-und-3d/) – analýza, zobrazení a převod modelů (není k dispozici ve všech prostředích).

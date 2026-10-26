@@ -1,0 +1,94 @@
+---
+title: companyADMIN
+description: Oblast administrace CompanyGPT – využití a náklady v Insights, provozní stav, role a skupiny, viditelnost obsahu, modely a práva pro všechna rozšíření.
+---
+
+companyADMIN je oblast administrace CompanyGPT. Zde vidíte, jak se CompanyGPT používá a kolik stojí, kontrolujete provozní stav, rozhodujete, kdo smí co dělat, řídíte viditelnost agentů, promptů, skills a nástrojů MCP a konfigurujete modely, agenty a rozšíření.
+
+## Otevření companyADMIN
+
+companyADMIN otevřete přes **All apps** v postranním panelu CompanyGPT. K dispozici jsou dvě dlaždice:
+
+- **Admin** otevře administraci. Tuto dlaždici vidí pouze administrátoři.
+- **Insights** otevře přehled využití a nákladů. Tuto dlaždici vidí každý, kdo smí zobrazovat Insights.
+
+companyADMIN můžete otevřít také přímo na adrese `https://COMPANY.company-gpt.com/companygpt/admin/`. Úvodní stránkou je **Insights**, pokud smíte zobrazovat Insights, jinak **Status**.
+
+## Rozhraní
+
+companyADMIN používá stejné rozhraní jako ostatní rozšíření: postranní panel s **New chat** a **All apps**, pod nimi nabídku a dole nabídku účtu. Jak toto rozhraní funguje, je popsáno v části [Společné rozhraní](/cs/company-gpt/addons/gemeinsame-oberflaeche/).
+
+Nabídka companyADMIN má pět sekcí. Podstránky otevřené sekce jsou zobrazeny odsazeně pod ní.
+
+| Sekce | Podstránky | Účel |
+|---|---|---|
+| **Insights** | – | Využití, náklady a aktivita prostředí |
+| **Status** | – | Co právě platí a zda vše běží, a také protokoly |
+| **Access** | **Users**, **Roles**, **Groups**, **Direct grants** | Kdo smí co dělat a kdo patří do jaké skupiny |
+| **Content** | **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories**, **Library Sync** | Viditelnost a původ obsahu v CompanyGPT |
+| **Configuration** | **Providers and models**, **Model access**, **Labels**, **Agent capabilities**, **Agent runtime**, **MCP domains**, **Baseline & adjustments**, **Tools**, **Extensions** | Jak jsou CompanyGPT a rozšíření nastaveny |
+
+Kliknutím na řádek v seznamu se obvykle otevře stránka s podrobnostmi a kartami. Mazání se nachází tam v části **Danger zone** a vždy si předem vyžádá potvrzení.
+
+V nabídce účtu nastavíte **Theme** a **Language** (Deutsch nebo English). Zobrazuje se tam také vaše e-mailová adresa a pod ní, zda jste **Superadmin** nebo **Admin (no superadmin)**.
+
+## Administrace a Insights
+
+companyADMIN zná dva druhy přístupu:
+
+- **Administrace** otevírá všechny sekce. Kdo je administrátorem, vyplývá ze zdrojů administrátorů vašeho prostředí. V závislosti na prostředí to může být role ADMIN, administrátorská skupina z Microsoft Entra ID, pevně určené osoby nebo právo **Access the admin area** u role. Které zdroje platí, ukazuje [Status → Admin sources](/cs/company-gpt/addons/companyadmin/status/).
+- **Insights** otevírá pouze sekci Insights. Stačí právo **View Insights**, které udělujete rolím nebo skupinám. Role ADMIN ho má automaticky. Kdo je administrátorem jinou cestou, potřebuje ho navíc u své role nebo skupiny. Podrobnosti najdete v části [Insights](/cs/company-gpt/addons/companyadmin/insights/).
+
+## Superadmin a admin
+
+Nabídka účtu ukazuje, jaký pohled máte. Rozdíl se týká hlavně soukromého obsahu jiných osob:
+
+| | Superadmin | Admin (no superadmin) |
+|---|---|---|
+| **Access → Users** | Seznam všech osob, změna role přímo u osoby | Nezobrazuje se. Role přiřazujete u role → **Members** |
+| Seznamy v sekci **Content** | Všichni agenti, prompty a skills včetně soukromých | Veřejné položky, položky sdílené s vámi a položky spravované knihovnou |
+| Viditelnost vlastního obsahu | Lze změnit | Pouze zobrazení |
+| Viditelnost synchronizovaného obsahu | Lze změnit | Lze změnit |
+| MCP servery vytvořené uživateli | Sdílení lze změnit, podrobnosti viditelné i u soukromých serverů | Sdílení pouze k zobrazení, podrobnosti soukromých serverů skryté |
+| **Insights → Agents** | Každý agent jednotlivě | Soukromí agenti jiných osob pouze jako součet |
+
+Zda jsou funkce superadmina pro administrátory vaší organizace zapnuté, dohodnete s innFactory. innFactory je na vaši žádost zapne.
+
+## Role, skupiny a viditelnost
+
+Celá oblast stojí na třech pojmech:
+
+- **Role = co smí někdo dělat.** Role určuje funkce (například vytváření agentů nebo vyhledávání na webu), modely, schopnosti agentů a práva v rozšířeních. Každý má přesně **jednu** roli. Práva z více rolí se nesčítají; pokud skupina osob potřebuje práva dvou rolí, vytvořte pro ni samostatnou roli.
+- **Skupina = s kým se něco sdílí.** Skupiny rozhodují o tom, kdo vidí agenty, prompty, skills a MCP servery. Skupiny mohou také nést práva v rozšířeních a vlastní nastavení. Osoba může být v mnoha skupinách.
+- **Viditelnost** určuje u každé položky, kdo ji vidí: pouze vlastník, všichni uživatelé prostředí, nebo konkrétní skupiny.
+
+## Přehled oblastí
+
+**Insights a stav**
+
+- [Insights](/cs/company-gpt/addons/companyadmin/insights/) – využití, tokeny, odhadované náklady a aktivita
+- [Status](/cs/company-gpt/addons/companyadmin/status/) – dostupnost, aktivní konfigurace, role a zdroje administrátorů
+- [Protokoly](/cs/company-gpt/addons/companyadmin/audit-log/) – kdo co změnil v companyADMIN a v CompanyGPT
+
+**Přístup**
+
+- [Uživatelé](/cs/company-gpt/addons/companyadmin/nutzer/) – osoby, jejich role a jejich efektivní práva
+- [Role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) – vytváření rolí, nastavení práv, přiřazení členů
+- [Skupiny](/cs/company-gpt/addons/companyadmin/gruppen/) – lokální skupiny a skupiny Entra, synchronizace skupin
+- [Přímá oprávnění](/cs/company-gpt/addons/companyadmin/direkte-berechtigungen/) – všechna práva a kdo je má
+
+**Obsah**
+
+- [Obsah a viditelnost](/cs/company-gpt/addons/companyadmin/inhalte/) – agenti, prompty, skills a nástroje MCP
+- [Kategorie](/cs/company-gpt/addons/companyadmin/kategorien/) – kategorie marketplace agentů
+- [Library Sync](/cs/company-gpt/addons/companyadmin/library-sync/) – synchronizace obsahu z repozitářů Git
+
+**Konfigurace**
+
+- [Poskytovatelé a modely](/cs/company-gpt/addons/companyadmin/modelle/) – přístup k modelům podle role a štítky
+- [Schopnosti agentů](/cs/company-gpt/addons/companyadmin/agent-capabilities/) – které schopnosti agentů mohou osoby používat, podle role
+- [Běhové prostředí agentů](/cs/company-gpt/addons/companyadmin/agent-laufzeit/) – plánované chaty, schvalování nástrojů, subagenti a nastavení podle role nebo skupiny
+- [Domény MCP](/cs/company-gpt/addons/companyadmin/mcp-domains/) – povolené domény pro MCP servery
+- [Výchozí stav a úpravy](/cs/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) – co nasazení dodává a co bylo upraveno
+- [Nástroje](/cs/company-gpt/addons/companyadmin/tools/) – vlastní dlaždice v All apps
+- [Rozšíření](/cs/company-gpt/addons/companyadmin/erweiterungen/) – práva pro companyFILES, companyRAG, companyTRANSLATE a všechna další rozšíření

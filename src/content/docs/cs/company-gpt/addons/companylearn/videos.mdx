@@ -1,0 +1,61 @@
+---
+title: Videa
+description: Nahrávání videí pro companyLEARN (MP4 a WebM), jejich používání v lekcích, přehrávání a mazání z knihovny videí.
+---
+
+Video lekce čerpají z **Video library** (knihovny videí) companyLEARN. Video nahrajete jednou a poté ho můžete použít v libovolném počtu lekcí, i v lekcích různých kurzů. Knihovna videí je k dispozici osobám s oprávněním **Manage courses**; otevřete ji přes **Videos** v nabídce.
+
+## Podporované formáty
+
+| Formát | Přípona souboru |
+|---|---|
+| MP4 | `.mp4` |
+| WebM | `.webm` |
+
+Při nahrávání companyLEARN kontroluje příponu souboru, deklarovaný typ souboru a jeho obsah; jiné formáty jsou odmítnuty. Ve výchozím nastavení může mít soubor velikost až 2 GB.
+
+companyLEARN ukládá videa beze změn a nepřevádí je. Studující proto vidí přesně ten soubor, který nahrajete, a ten se tedy musí dát přehrát v běžných prohlížečích.
+
+## Nahrání videa
+
+Máte dvě možnosti:
+
+- **V knihovně videí:** Klikněte vpravo nahoře na **Upload video** a vyberte soubor. Průběh nahrávání ukazuje ukazatel; poté se video objeví v tabulce.
+- **Přímo v lekci:** V dialogu video lekce klikněte na **Choose a video…** a poté v dialogu **Choose a video** na **Upload a new video**. Po nahrání je nové video pro lekci vybráno.
+
+Pokud nahrávání selže, zobrazí se hlášení „The upload failed. Please try again.“
+
+## Knihovna videí
+
+Tabulka **Video library** zobrazuje všechna nahraná videa:
+
+| Sloupec | Obsah |
+|---|---|
+| **Filename** | Název nahraného souboru |
+| **Type** | `video/mp4` nebo `video/webm` |
+| **Size** | Velikost souboru |
+| **Used in** | Počet lekcí, které video používají |
+| **Created** | Datum nahrání |
+| **Actions** | **Delete** (koš) |
+
+## Použití videa v lekci
+
+V dialogu video lekce otevře **Choose a video…** seznam všech videí s názvem souboru a velikostí. Kliknutím video vyberete; vybrané video je označeno zaškrtnutím. Poté lekci uložte. Postup vytváření lekcí je popsán v části [Správa kurzů](/cs/company-gpt/addons/companylearn/kurse-verwalten/#lekce).
+
+## Přehrávání
+
+Studující sledují video v přehrávači svého prohlížeče s obvyklými ovládacími prvky; přeskakování vpřed i vzad je možné. Když se video přehraje do konce, lekce se považuje za dokončenou. V chatu se video přehrává přímo v konverzaci (viz [V chatu](/cs/company-gpt/addons/companylearn/im-chat/)).
+
+Video mohou přehrát pouze osoby, které jsou zapsány v publikovaném kurzu s danou lekcí a mají odemčenou příslušnou kapitolu. Adresy pro přehrávání jsou platné jen krátkou dobu; companyLEARN je během přehrávání automaticky obnovuje.
+
+Samotná knihovna videí nemá náhled. Chcete-li video vidět tak jako studující, otevřete lekci v publikovaném kurzu, do kterého jste zapsáni.
+
+Pokud video nelze načíst, zobrazí se hlášení „The video could not be loaded. Please try again later.“
+
+## Smazání videa
+
+Klikněte na koš v řádku videa a potvrďte **Delete video?**. Soubor bude trvale smazán.
+
+Video, které je stále používáno v lekcích, nelze smazat. companyLEARN pak hlásí například „This video is used by 2 lessons. Remove it from those lessons first.“ V těchto lekcích vyberte jiné video nebo lekce smažte a poté video smažte znovu.
+
+Dále: [Externí API](/cs/company-gpt/addons/companylearn/api/).

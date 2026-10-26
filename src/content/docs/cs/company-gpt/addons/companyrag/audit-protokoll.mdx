@@ -1,0 +1,25 @@
+---
+title: Auditní protokol
+description: Protokol administrativních a správních akcí v companyRAG – pro bezpečnost, dohledatelnost a řešení problémů.
+---
+
+Auditní protokol zaznamenává administrativní a správní akce ve službě RAG. Slouží k bezpečnosti, dohledatelnosti a rychlému řešení problémů.
+
+Tato oblast se zobrazuje pouze superadministrátorům (viz [Práva a role](/cs/company-gpt/addons/companyrag/#práva-a-role)).
+
+U každé položky přehled zobrazuje:
+
+- **Timestamp**: Přesné datum a čas aktivity.
+- **User**: Kdo akci provedl – i v případě, že byla spuštěna pomocí [klíče API](/cs/company-gpt/addons/companyrag/api-schluessel/).
+- **Action**: Co bylo provedeno, např. `file.upload`, `collection.create`, `share.create`, `source.sync` nebo `apikey.revoke`.
+- **Resource Type** a **Resource ID**: Kterého objektu se akce týká, například souboru, sbírky, sdílení nebo zdroje.
+- **Details**: Doplňující informace o události, např. název dotčeného zdroje.
+- **IP Address**: Adresa, ze které akce přišla.
+
+Filtry **User email**, **Action**, **Resource type**, **From** a **To** protokol zužují. **Clear filters** všechny filtry opět odstraní.
+
+Protokol mimo jiné zaznamenává nahrávání, mazání a opětovnou indexaci souborů, akce s úlohami, vytváření, změny a mazání sbírek a sdílení, převod stávajících tabulek na datové sady, změny, mazání a ruční synchronizaci zdrojů (včetně procházení webu), vkládání a vyprazdňování řádků v datových sbírkách se živě definovaným schématem, vytváření a mazání balíčků OKF a vytváření a odvolávání klíčů API.
+
+:::tip[Poznámka]
+Protože klíče API jednají jménem osoby, která je vytvořila, zobrazují se automatizované přístupy v protokolu pod touto osobou. Samostatný klíč pro každý systém proto zachovává vypovídací hodnotu protokolu.
+:::

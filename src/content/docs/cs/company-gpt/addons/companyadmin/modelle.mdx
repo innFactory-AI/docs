@@ -1,0 +1,129 @@
+---
+title: Poskytovatelé a modely
+description: V companyADMIN určíte, která role vidí v CompanyGPT které poskytovatele a modely, upravíte všechny role v matici přístupu k modelům a pomocí štítků zobrazíte modely pod vlastními názvy.
+---
+
+V části **Configuration** určujete, které poskytovatele a modely osoby v CompanyGPT vidí a pod jakým názvem. Patří sem tři stránky:
+
+- **Providers and models** – přístup podle poskytovatele, vždy pro jednu roli
+- **Model access** – všechny role a poskytovatelé v jedné tabulce
+- **Labels** – čitelné názvy modelů a vzhled výběru modelu
+
+Modely patří **rolím**, nikoli skupinám. Skupina Entra získává své modely prostřednictvím role, kterou jí přidělí synchronizace rolí. Protože každý má přesně jednu roli, je výsledek jednoznačný.
+
+## Poskytovatelé a modely
+
+Bez omezení platí základní konfigurace: každý vidí všechny poskytovatele a modely. Tabulka **Access per provider** ukazuje, co platí:
+
+| Sloupec | Obsah |
+|---|---|
+| **Provider** | Poskytovatel, případně s odznakem |
+| **Models** | Počet modelů |
+| **Access** | **All models**, „x of y models“ nebo **No access** pro roli vybranou ve filtru |
+| **Source** | **librechat.yaml** (základní konfigurace, otevřená všem) nebo **companyADMIN** (omezeno zde) |
+
+Filtr **Role** ukazuje, co dostane jedna role. Pomocí **Search provider or model …** najdete položku.
+
+Odznaky u poskytovatele:
+
+- **Custom endpoint** – vlastní poskytovatel. Omezení platí pouze pro tento endpoint. Pro roli bez přístupu je v CompanyGPT zcela skrytý.
+- **Live list** – seznam modelů se načítá od poskytovatele. Zde lze zablokovat pouze celého poskytovatele, nikoli jednotlivé modely.
+- **Save again** – starší omezení nefunguje tak, jak je zobrazeno. Zkontrolujte ho a uložte znovu.
+
+### Změna přístupu pro roli
+
+1. Rozbalte poskytovatele. Uvidíte, která role má jaký model.
+2. Vyberte roli v poli **Edit a role:**.
+3. Zaškrtněte nebo zrušte zaškrtnutí „*Role* uses *Provider*“ a zaškrtnutí jednotlivých modelů.
+4. Klikněte na **Save**. Pokud modely odebíráte, companyADMIN se nejprve zeptá a vypíše modely, které již nebudou k dispozici.
+
+Pokud je dosud otevřený poskytovatel omezen pro jednu roli, všechny ostatní role si ponechají všechny modely, které v daném okamžiku existují. Nové role však poskytovatele uvidí až poté, co jim ho udělíte. **Open for everyone** omezení opět zruší.
+
+:::caution[Nové modely u omezených poskytovatelů]
+**All models** popisuje stav v okamžiku uložení. Jakmile je poskytovatel omezen, companyADMIN uloží pro každou roli pevný seznam modelů. Pokud aktualizace později přidá nový model, žádná role ho u tohoto poskytovatele neuvidí, dokud ho někdo nezaškrtne. Výjimkou jsou poskytovatelé s **Live list**.
+:::
+
+Mějte na paměti:
+
+- Alespoň jedna role si musí poskytovatele ponechat.
+- ADMIN je role jako každá jiná. Pokud roli ADMIN přístup odeberete, přijdou o poskytovatele i administrátoři.
+- U vestavěných poskytovatelů vidí role bez přístupu poskytovatele v CompanyGPT i nadále, ale s prázdným seznamem modelů. Ponechte každé roli alespoň jeden model, abyste se této prázdné položce vyhnuli.
+- Po změně musí osoby CompanyGPT znovu načíst, aby viděly nový výběr.
+
+### AI Gateway
+
+Pokud je ve vašem prostředí nastavena brána innFactory AI Gateway, zobrazí stránka **The AI Gateway manages providers, models and budgets.** Zde pak rozhodujete pouze o tom, která role vidí v chatu které modely. **Open gateway** vás přenese do brány; otevřít ji mohou administrátoři s právy ke konfiguraci.
+
+:::note[Není k dispozici ve všech prostředích]
+O tom, zda je tato funkce ve vašem prostředí k dispozici, rozhoduje vaše organizace. S dotazy se obraťte na svého administrátora.
+:::
+
+## Přístup k modelům
+
+**Model access** zobrazuje všechny role a poskytovatele v jedné tabulce: poskytovatele jako řádky, role jako sloupce, ADMIN a USER na začátku.
+
+- Zaškrtnutí znamená, že role má poskytovatele nebo model. Pomlčka znamená pouze některé modely. Rozbalením poskytovatele zobrazíte jeho modely; **Show all models** rozbalí všechny poskytovatele.
+- U každého poskytovatele je uvedeno, zda je **open to everyone (librechat.yaml)** nebo **restricted by companyADMIN**.
+- Kliknutím na záhlaví sloupce otevřete modely dané role.
+
+Postup změny přístupu:
+
+1. Zaškrtněte nebo zrušte zaškrtnutí. Změnění poskytovatelé jsou označeni.
+2. Klikněte na liště ukládání na **Save** nebo **Discard**.
+3. Pokud modely odebíráte, dialog **Take models away?** se nejprve zeptá a pro každou roli vypíše, co se odebere. Potvrďte tlačítkem **Save and take away**.
+
+I zde si musí každého poskytovatele ponechat alespoň jedna role. Pokud mezitím poskytovatele změnil někdo jiný, companyADMIN nic neuloží a zobrazí **Changed meanwhile – reload**. Poté zkontrolujte uložený stav a uložte znovu.
+
+## Modely podle role a osoby
+
+- **Role** → karta **Models & providers** zobrazuje a mění modely role, viz [Role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/).
+- **User** → karta **Models** ukazuje, které modely osoba vidí, viz [Uživatelé](/cs/company-gpt/addons/companyadmin/nutzer/).
+
+:::note[Pouze pro superadminy]
+Seznam uživatelů, a tedy i kartu **Models** u osoby, vidí pouze superadmini. Bez funkcí superadmina vidíte modely osoby prostřednictvím její role na kartě **Models & providers**.
+:::
+
+## Štítky
+
+Štítky dávají modelům ve výběru modelu čitelné názvy, například „Claude fast“ místo technického ID modelu. Štítek může také odkazovat na konkrétního agenta.
+
+### Správa
+
+Pomocí **Manage model labels from companyADMIN** převezme správu štítků companyADMIN. Dokud políčko není zaškrtnuté, platí štítky ze základní konfigurace, jinak technická ID modelů. Již vytvořením prvního štítku se sem k úpravám zkopírují existující štítky ze základní konfigurace.
+
+Chcete-li správu ukončit, zrušte zaškrtnutí **Manage model labels from companyADMIN**. Dialog **Stop managing labels?** se nejprve zeptá; potvrďte tlačítkem **Stop managing**. Poté opět platí štítky ze základní konfigurace a všechny zde vytvořené nebo změněné štítky budou ztraceny.
+
+### Všechny štítky
+
+Seznam **All labels** zobrazuje **Label**, **Model**, **Source** a **In effect**. Štítky se ve výběru modelu zobrazují v tomto pořadí. **Preselected** označuje štítek předvybraný pro nové chaty. Pokud je u **In effect** uvedeno „No“, model již neexistuje; CompanyGPT takový štítek skryje.
+
+**Add label** a kliknutí na štítek otevřou stránku s podrobnostmi:
+
+| Sekce | Pole |
+|---|---|
+| **Display** | **Label** (nejvýše 128 znaků), **Description (optional)** – zobrazí se ve výběru pod štítkem, **Group** a **Group icon** – seskupují výběr, **Icon URL**, **Preselected for new chats** |
+| **Target** | **Provider** a **Model**, nebo jako poskytovatel **Agent (one specific agent)** a poté **Agent** |
+
+U modelů OpenAI je navíc k dispozici **Use the OpenAI Responses API**. **Move up** a **Move down** mění pořadí. **Remove label** v nebezpečné zóně odebere štítek z výběru pro všechny. Probíhající chaty si svůj model ponechají, dokud je **Only labelled models may be used** vypnuté. Pokud je zapnuté, probíhající chaty s tímto štítkem poté přestanou fungovat; je v nich nutné vybrat nový model.
+
+Karta **Models without a label (N)** uvádí modely, které se stále zobrazují se svým technickým ID. Tam přidáte štítek pro jednotlivé modely nebo převezmete všechny najednou pomocí **Adopt all**.
+
+### Výběr v chatu
+
+Dokud štítky spravuje companyADMIN, řídíte zde vzhled výběru modelu. Nastavení této sekce použijete tlačítkem **Save**.
+
+- **Show labels first in the picker** – štítky jsou nahoře.
+- **Providers that stay selectable** – zaškrtnutí poskytovatelé si ve výběru ponechají vlastní položku vedle štítků. Všichni ostatní jsou dostupní pouze přes štítky. Pokud není zaškrtnutý žádný poskytovatel, CompanyGPT zobrazí všechny poskytovatele. Jde pouze o nastavení zobrazení, které neblokuje žádný model. Skupina nesmí mít stejný název jako zaškrtnutý poskytovatel, jinak její štítky z výběru zmizí.
+- **Only labelled models may be used** – osoby vidí pouze štítky; CompanyGPT skryje volný výběr modelu. Pokud jsou navíc zaškrtnuti poskytovatelé, zobrazí se, ale jejich modely bez štítku při odeslání selžou. Před zapnutím se zobrazí dotaz (**Allow only labelled models?**).
+
+:::caution
+**Only labelled models may be used** platí i pro agenty: každý agent bez odpovídajícího štítku přestane fungovat v okamžiku uložení. Pro každého agenta, kterého osoby skutečně používají, přidejte štítek s poskytovatelem **Agent**. companyADMIN také upozorní, pokud by role pak neměla vůbec žádný použitelný model, a vyžaduje alespoň jeden štítek.
+:::
+
+## Výsledek pro uživatele
+
+Ve výběru modelu vidí osoby pouze poskytovatele a modely, které smí jejich role používat, seskupené a s nastavenými štítky.
+
+![Výběr modelu v konverzaci s uvolněnými poskytovateli](./modell-picker.png)
+
+Které modely jsou ve vašem prostředí obecně k dispozici, je popsáno v části [Výběr modelu](/cs/company-gpt/modellauswahl/).

@@ -1,0 +1,110 @@
+---
+title: Insights
+description: Využití, tokeny, odhadované náklady a aktivita Vašeho prostředí CompanyGPT v companyADMIN – s výběrem období, náklady na přeprodej a exportem do souboru Excel.
+---
+
+**Insights** ukazuje, jak se Vaše prostředí CompanyGPT využívá: kdo je aktivní, o které agenty, modely a nástroje MCP je zájem, kolik tokenů se spotřebuje a přibližně kolik to stojí. Insights nahrazuje dřívější companyDASHBOARD.
+
+Čísla pocházejí z předem vypočtených denních hodnot a obnovují se každých 10 minut. Probíhající den je zahrnut živě a jeho hodnoty ještě nejsou konečné.
+
+## Přístup
+
+Insights otevřete z dlaždice **Insights** v části **All apps** nebo z nabídky companyADMIN.
+
+Insights smí zobrazit každý, kdo má oprávnění **View Insights** (`ext:admin:insights`):
+
+- Role ADMIN má toto oprávnění automaticky. Kdo je administrátorem jinou cestou, například jako pevně určená osoba nebo prostřednictvím oprávnění **Access the admin area** ve vlastní roli, potřebuje ho navíc ve své roli nebo skupině.
+- Dalším osobám ho udělíte prostřednictvím role nebo skupiny, vždy na kartě **Extensions** (viz [Role](/cs/company-gpt/addons/companyadmin/rollen-und-rechte/) a [Skupiny](/cs/company-gpt/addons/companyadmin/gruppen/)).
+- Oprávnění nelze zpřístupnit všem (**For everyone**), protože Insights zobrazuje náklady, tokeny a e-mailové adresy všech uživatelů.
+
+Kdo má pouze toto oprávnění a není administrátorem, vidí v companyADMIN pouze **Insights**. Kliknutí na agenta pak zobrazí jen jeho využití, nikoli jeho konfiguraci.
+
+Starší cesty do Insights nadále platí. Které cesty jsou ve Vašem prostředí nastaveny, uvidíte v části [Status → Admin sources](/cs/company-gpt/addons/companyadmin/status/) s rolí panelu **Insights**.
+
+## Období a export
+
+V horní části stránky zvolíte **Period**:
+
+- **Current month**
+- **Last month**
+- **7 days**
+- **30 days**
+- **Custom** s **From** a **To**, maximálně 366 dní
+
+Každé číslo porovnává zvolené období s **Previous period**:
+
+- U **Current month**, **Last month** a vlastního období pokrývajícího přesně jeden kalendářní měsíc je předchozím obdobím celý předchozí měsíc. V probíhajícím měsíci tedy Insights porovnává právě začatý měsíc s celým měsícem.
+- U **7 days**, **30 days** a všech ostatních období jde o stejně dlouhé období bezprostředně předcházející.
+
+**Export (XLSX)** stáhne čísla za zvolené období jako soubor Excel. Obsahuje listy **Overview**, **Models**, **Agents**, **MCP Tools** a **Costs by user**, vždy se všemi řádky.
+
+## Karty
+
+### Overview
+
+Přehled zobrazuje dlaždice s trendem a porovnáním s předchozím obdobím:
+
+| Dlaždice | Význam |
+|---|---|
+| **Active users** | Různí uživatelé, kteří v daném období odeslali alespoň jednu zprávu |
+| **New users** | Uživatelé, jejichž vůbec první zpráva spadá do daného období |
+| **Churned users** | Uživatelé, jejichž poslední zpráva během období dosáhla stáří 28 dní |
+| **Conversations** | Různé konverzace s alespoň jednou zprávou v daném období |
+| **Requests** | Zprávy uživatelů odeslané modelu nebo agentovi |
+| **Input tokens** / **Output tokens** | Tokeny odeslané modelům a jimi vygenerované |
+| **Estimated token cost** | Odhad na základě pevných cen tokenů, viz níže |
+| **MCP calls** | Volání nástrojů MCP agenty a modely |
+| **Files** | Soubory nahrané v daném období |
+| **STT**, **TTS**, **OCR**, **Images** | Přepsaný zvuk v sekundách, syntetizované znaky, zpracované stránky a vygenerované obrázky, vždy s odhadovanými náklady |
+| **All users** / **All agents** | Všechny účty nebo agenti prostředí, bez ohledu na období |
+
+Následují **Top users** (10 uživatelů s nejvíce požadavky v daném období) a **Churned users**.
+
+#### Náklady na přeprodej
+
+První dlaždice přehledu, **Reselling costs**, zobrazuje částku, kterou innFactory Hub vyúčtuje za kalendářní měsíc. Je k dispozici pouze pro celé měsíce; pro jiná období nabízí rychlá tlačítka **Current month** a **Last month**.
+
+- Probíhající měsíc je označen jako **provisional** a zobrazuje **Forecast**.
+- **As of** uvádí datum fakturačních dat. Poskytovatelé cloudu dodávají údaje o využití se zpožděním nejméně 2–3 dny; čísla jsou konečná do 15 dnů po skončení měsíce.
+- Po najetí myší na částku se zobrazí **Breakdown by workload**.
+- Ikona vpravo nahoře otevře innFactory Hub.
+
+Pokud pro Vaše prostředí není nastavena fakturace přes innFactory Hub, zobrazuje dlaždice **Not configured**.
+
+### Agents
+
+Využití podle agentů. Kliknutím na název otevřete stránku s podrobnostmi agenta.
+
+Bez funkcí superadministrátora vidíte soukromé agenty ostatních osob pouze jako součet v řádku **private agents of other users**, bez názvů a trendu.
+
+### Models
+
+Využití podle modelů. Konverzace s agentem se přiřazují modelu daného agenta.
+
+### MCP tools
+
+Volání podle nástroje MCP a serveru.
+
+### Costs
+
+- **Cost by user** a **Cost by domain**, každý s vyhledáváním
+- **Tokens by provider and model** jako prstencový graf: poskytovatel na vnitřním kruhu, model na vnějším kruhu
+
+### Activity
+
+**Activity by time of day** je teplotní mapa, která ukazuje, ve kterých dnech a v jakých časech se odesílají zprávy.
+
+## Co náklady znamenají
+
+**Estimated token cost** je odhad, nikoli faktura:
+
+- Vypočítává se ze zjednodušených, pevných cen tokenů.
+- Slevy a tokeny mezipaměti nejsou zahrnuty.
+- Modely bez uložené ceny nejsou do odhadu zahrnuty.
+
+Závazná čísla pocházejí z innFactory Hub, v Insights prostřednictvím dlaždice **Reselling costs**.
+
+## Poznámky k číslům
+
+- Pokud je poslední výpočet příliš starý, zobrazí se upozornění **Insights is not up to date**. companyADMIN to sám opakovaně zkouší; pokud upozornění přetrvává, kontaktujte innFactory.
+- companyADMIN denně odstraňuje z Insights jména smazaných účtů.

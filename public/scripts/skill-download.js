@@ -50,7 +50,8 @@
 		// Determine language and filename
 		var isGerman = path.includes('/de/');
 		var slug = path.replace(/\/+$/, '').split('/').pop();
-		var filename = (slug || 'skill') + '.md';
+		// Same as the skill's `name:` (<locale>-<id>), so DE and EN downloads don't overwrite each other.
+		var filename = (slug ? (isGerman ? 'de-' : 'en-') + slug : 'skill') + '.md';
 		var buttonText = isGerman ? 'Skill herunterladen' : 'Download Skill';
 
 		// Create button

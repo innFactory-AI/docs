@@ -14,6 +14,8 @@ if (!existsSync(skillsSidebarFile)) {
 	throw new Error('src/generated/skills-sidebar.json is missing. Run `npm run skills:sync` first.');
 }
 const skillsSidebar = JSON.parse(readFileSync(skillsSidebarFile, 'utf8'));
+// Skill pages lost their `-skill` URL suffix when the skills moved to innFactory-AI/companygpt-library.
+const skillRedirects = JSON.parse(readFileSync(new URL('./src/skill-redirects.json', import.meta.url), 'utf8'));
 
 // Measurement ID of the innfactory.ai GA4 web data stream. docs.company-gpt.com
 // reports into that same stream via cross-domain measurement, so the ID is
@@ -78,6 +80,7 @@ export default defineConfig({
 		'/en/company-gpt/addons/company-dashboard': '/en/company-gpt/addons/companyadmin/insights/',
 		'/de/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/de/company-gpt/addons/companyadmin/gruppen/',
 		'/en/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/en/company-gpt/addons/companyadmin/gruppen/',
+		...skillRedirects,
 	},
 	markdown: {
 		// Astro 7 renders Markdown with Sätteri by default. We stay on the
@@ -449,7 +452,7 @@ export default defineConfig({
 								translations: { en: 'Skills' },
 								items: [
 									{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
-									// Generated from innFactory-AI/company-ai-stack-skills by scripts/sync-skills.mjs
+									// Generated from innFactory-AI/companygpt-library by scripts/sync-skills.mjs
 									...skillsSidebar,
 								]
 							},

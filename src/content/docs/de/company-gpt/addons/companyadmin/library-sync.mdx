@@ -56,17 +56,21 @@ Mit **Repository suchen** finden Sie ein Repository. **Alle synchronisieren** sy
 
 Für Skills durchsucht Library Sync den angegebenen Pfad **beliebig tief**: Jeder Ordner mit einer `SKILL.md` wird zu einem Skill. Weitere Textdateien im selben Ordner (z. B. `references/` oder `scripts/`) werden mit dem Skill übernommen; Binärdateien werden übersprungen. Maßgeblich ist der `name` in der `SKILL.md` – kommt ein Name doppelt vor, wird nur der erste übernommen.
 
-### Fertige Skills von innFactory einbinden
+### Fertige Skills und Agenten von innFactory einbinden
 
-Die [fertigen Skills](/de/tutorials/skills/) liegen im öffentlichen Repository [innFactory-AI/company-ai-stack-skills](https://github.com/innFactory-AI/company-ai-stack-skills) und lassen sich direkt verbinden – ohne Token:
+Die [fertigen Skills](/de/tutorials/skills/) und Agenten liegen im öffentlichen Repository [innFactory-AI/companygpt-library](https://github.com/innFactory-AI/companygpt-library) und lassen sich direkt verbinden – ohne Token:
 
 | Feld | Wert |
 |---|---|
-| Repository | `innFactory-AI/company-ai-stack-skills`, Branch `main` |
-| Structure (sources) | Typ `skill`, Pfad `de/skills` (deutsche Skills) **oder** `en/skills` (englische Skills) |
+| Repository | `innFactory-AI/companygpt-library`, Branch `main` |
+| Structure (sources) | Typ `skill`, Pfad `skills`; optional zusätzlich Typ `agent`, Pfad `agents` |
 | We own this repo | aus |
 
-Verbinden Sie nur **eine** Sprache: Deutsche und englische Fassung tragen denselben Skill-Namen. Alternativ fügen Sie `https://github.com/innFactory-AI/company-ai-stack-skills/tree/main/de/skills` als Repository ein; Branch und Pfad werden dann übernommen. Ein **Sync** holt neue und geänderte Skills; einen automatischen Zeitplan gibt es nicht.
+Deutsche und englische Skills tragen verschiedene Namen (`de-excel`, `en-excel`), Sie können also beide Sprachen gleichzeitig verbinden. Die Skills sind nach Bereichen sortiert; mit einem Pfad wie `skills/files` verbinden Sie nur einen Bereich. Brauchen Sie nur eine Sprache, nehmen Sie die andere unter **Exclude** aus dem Sync. Die Agenten gibt es ebenfalls je Sprache (`de-demogpt.yaml`, `en-demogpt.yaml`); sie verweisen auf die Skills ihrer Sprache. Werkzeuge, die Ihre Umgebung nicht anbietet, lässt der Sync weg und nennt sie unter **Notes**. Ein **Sync** holt neue und geänderte Inhalte; einen automatischen Zeitplan gibt es nicht.
+
+:::caution[Umstieg von company-ai-stack-skills]
+Das frühere Repository `innFactory-AI/company-ai-stack-skills` ist archiviert und bekommt keine Updates mehr. Die Skills heißen im neuen Repository anders (`excel-skill` → `de-excel`). Entfernen Sie das alte Repository unter **Remove repository …** und verbinden Sie das neue. Eigene Agenten, die alte Skill-Namen verwenden, müssen Sie auf die neuen Namen umstellen.
+:::
 
 :::note
 Synchronisierte Skills stehen Agenten sofort zur Verfügung. In der Skill-Auswahl im Chat (`$`) erscheinen sie zunächst inaktiv, bis Nutzer sie einschalten.

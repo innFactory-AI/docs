@@ -8,7 +8,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Sent by innFactory-AI/company-ai-stack-skills on every push to its main branch,
+  # Sent by innFactory-AI/companygpt-library on every push to its main branch,
   # so the generated skill pages are always in sync with the skills repo.
   repository_dispatch:
     types: [skills-updated]
@@ -67,7 +67,7 @@ jobs:
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
-      - name: Sync skills from company-ai-stack-skills
+      - name: Sync skills from companygpt-library
         run: node scripts/sync-skills.mjs
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro

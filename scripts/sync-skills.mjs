@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-// Generates the skill tutorial pages from innFactory-AI/company-ai-stack-skills.
+// Generates the skill tutorial pages from innFactory-AI/companygpt-library.
 //
-// The skills repo is the single source: every skill lives there as
-//   <locale>/skills/<category>/<slug>/SKILL.md   (the skill itself, what users upload in companyGPT)
-//   <locale>/pages/<category>/<slug>.md          (docs wrapper: frontmatter + intro shown above the skill)
-// and catalog.json fixes category/skill order, sidebar labels and the index page texts.
+// The library repo is the single source: every skill lives there as
+//   skills/<locale>-<id>/SKILL.md            (the skill itself, what users upload in companyGPT; name: <locale>-<id>)
+//   pages/<locale>/<category>/<id>.md        (docs wrapper: frontmatter + intro shown above the skill)
+// and catalog.json fixes category/skill order (by <id>), sidebar labels and the index page texts. The library's own
+// `npm run validate` checks the full layout (agents, model labels); this script only checks what the pages need.
 //
 // Every other file in a skill folder (references/, scripts/, …) is bundled with the skill. Such skills also get a
 // zip package (folder <name>/ with SKILL.md + bundled files) that companyGPT imports under Skills. The skill folders
@@ -17,8 +18,8 @@
 //
 // Usage:
 //   node scripts/sync-skills.mjs                     fetch SKILLS_REF (default: main) from GitHub
-//   node scripts/sync-skills.mjs --from ../company-ai-stack-skills   use a local checkout
-//   SKILLS_DIR=../company-ai-stack-skills npm run dev                 same, via env
+//   node scripts/sync-skills.mjs --from ../companygpt-library   use a local checkout
+//   SKILLS_DIR=../companygpt-library npm run dev                 same, via env
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -26,7 +27,7 @@ import { deflateRawSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const REPO = 'innFactory-AI/company-ai-stack-skills';
+const REPO = 'innFactory-AI/companygpt-library';
 const LOCALES = ['de', 'en'];
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -169,9 +170,9 @@ function main() {
 			for (const slug of cat.skills) {
 				const labels = {};
 				for (const locale of LOCALES) {
-					const rel = `${locale}/skills/${cat.id}/${slug}`;
+					const rel = `skills/${locale}-${slug}`;
 					const skillFile = join(src.dir, rel, 'SKILL.md');
-					const pageRel = `${locale}/pages/${cat.id}/${slug}.md`;
+					const pageRel = `pages/${locale}/${cat.id}/${slug}.md`;
 					const pageFile = join(src.dir, pageRel);
 					if (!existsSync(skillFile) || !existsSync(pageFile)) {
 						fail(`${rel}/SKILL.md and ${pageRel} are both required`);
@@ -179,7 +180,7 @@ function main() {
 					}
 					const skill = readFileSync(skillFile, 'utf8').replace(/\s+$/, '') + '\n';
 					const sk = frontmatter(skill, `${rel}/SKILL.md`);
-					if (!sk.data.name) fail(`${rel}/SKILL.md: frontmatter needs name`);
+					if (sk.data.name !== `${locale}-${slug}`) fail(`${rel}/SKILL.md: name must be ${locale}-${slug}`);
 					if (!sk.data.description) fail(`${rel}/SKILL.md: frontmatter needs description`);
 
 					const page = frontmatter(readFileSync(pageFile, 'utf8'), pageRel);
@@ -217,19 +218,18 @@ function main() {
 
 		// Folders that exist in the repo but are missing from catalog.json would silently disappear.
 		const listed = new Set(catalog.categories.flatMap((c) => c.skills.map((s) => `${c.id}/${s}`)));
+		const ids = new Set(catalog.categories.flatMap((c) => c.skills));
+		const skillsDir = join(src.dir, 'skills');
+		for (const d of existsSync(skillsDir) ? readdirSync(skillsDir, { withFileTypes: true }).filter((e) => e.isDirectory()) : []) {
+			const m = d.name.match(/^([a-z]{2})-(.+)$/);
+			if (!m || !LOCALES.includes(m[1]) || !ids.has(m[2])) fail(`skills/${d.name}: not listed in catalog.json`);
+		}
 		for (const locale of LOCALES) {
-			const base = join(src.dir, locale, 'skills');
-			if (!existsSync(base)) continue;
-			for (const cat of readdirSync(base, { withFileTypes: true }).filter((d) => d.isDirectory())) {
-				for (const s of readdirSync(join(base, cat.name), { withFileTypes: true }).filter((d) => d.isDirectory())) {
-					if (!listed.has(`${cat.name}/${s.name}`)) fail(`${locale}/skills/${cat.name}/${s.name}: not listed in catalog.json`);
-				}
-			}
-			const pagesDir = join(src.dir, locale, 'pages');
+			const pagesDir = join(src.dir, 'pages', locale);
 			if (!existsSync(pagesDir)) continue;
 			for (const cat of readdirSync(pagesDir, { withFileTypes: true }).filter((d) => d.isDirectory())) {
 				for (const f of readdirSync(join(pagesDir, cat.name)).filter((n) => n.endsWith('.md'))) {
-					if (!listed.has(`${cat.name}/${f.slice(0, -3)}`)) fail(`${locale}/pages/${cat.name}/${f}: not listed in catalog.json`);
+					if (!listed.has(`${cat.name}/${f.slice(0, -3)}`)) fail(`pages/${locale}/${cat.name}/${f}: not listed in catalog.json`);
 				}
 			}
 		}

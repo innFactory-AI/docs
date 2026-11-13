@@ -8,8 +8,8 @@ read the matching one before adding content. Theme rules are in `README.md` ("De
 
 The pages under `src/content/docs/{de,en}/tutorials/skills/` (every skill page plus `index.md`) and their sidebar
 groups are **generated** from [innFactory-AI/companygpt-library](https://github.com/innFactory-AI/companygpt-library).
-That repo is the single source: one folder per skill and locale, `skills/<locale>-<id>/SKILL.md` (the skill, plus
-optional bundled files such as `references/`), a page wrapper `pages/<locale>/<category>/<id>.md` (title,
+That repo is the single source: one folder per skill and locale, `skills/<category>/<locale>-<id>/SKILL.md` (the skill, plus
+optional bundled files such as `references/`), a page wrapper `pages/<category>/<id>.<locale>.md` (title,
 description, sidebar label, intro), and `catalog.json` (categories, order, index texts). Its `AGENTS.md` has the
 writing rules. Page URLs are `/<locale>/tutorials/skills/<category>/<id>/`; the old `…/<id>-skill` URLs redirect
 via `src/skill-redirects.json`.

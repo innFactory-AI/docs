@@ -11,7 +11,7 @@ The `skills/` folder holds external skill packages copied from elsewhere (`custo
 
 **Where they go:** skill pages are **not** written in this repo. They live in [innFactory-AI/companygpt-library](https://github.com/innFactory-AI/companygpt-library) (check it out next to this repo), and `scripts/sync-skills.mjs` generates the tutorial pages, the skills index and the sidebar from it at build time (see `AGENTS.md`). That repo's `AGENTS.md` is the authoritative layout and writing guide.
 
-**Core principle:** one source skill → two folders `skills/de-<id>/` and `skills/en-<id>/`, each with `SKILL.md` (the skill), plus a docs page wrapper per locale under `pages/<locale>/`. **The skill body is German in `de-<id>` and English in `en-<id>`**.
+**Core principle:** one source skill → two folders `skills/<package>/de-<id>/` and `skills/<package>/en-<id>/`, each with `SKILL.md` (the skill), plus a docs page wrapper per locale, `pages/<package>/<id>.<locale>.md`. **The skill body is German in `de-<id>` and English in `en-<id>`**.
 
 ## Hard Constraints
 
@@ -20,7 +20,7 @@ The `skills/` folder holds external skill packages copied from elsewhere (`custo
 
 ## Files per Skill (both locales)
 
-`pages/<locale>/<package>/<id>.md` (never inside the skill folder; Library Sync would import it as a skill file):
+`pages/<package>/<id>.<locale>.md` (never inside the skill folder; Library Sync would import it as a skill file):
 
 ```markdown
 ---
@@ -32,7 +32,7 @@ label: <localized sidebar/index label>
 <one localized intro paragraph in DU form (DE) / plain (EN): "Verwende diesen Skill, wenn …" / "Use this skill when …">
 ```
 
-`skills/<locale>-<id>/SKILL.md`: the skill body (frontmatter `name`, `description`, then the skill). No outer fence: the generator adds `## Skill` and a fence long enough for any inner code blocks. Reference: `skills/de-onboarding-plan/` in the library repo.
+`skills/<package>/<locale>-<id>/SKILL.md`: the skill body (frontmatter `name`, `description`, then the skill). No outer fence: the generator adds `## Skill` and a fence long enough for any inner code blocks. Reference: `skills/customer-success/de-onboarding-plan/` in the library repo.
 
 ## Per-Skill Rewording Recipe
 
@@ -53,7 +53,7 @@ Inside the fenced skill body:
 
 ## Wiring (in the library repo)
 
-1. Folders `skills/de-<id>/` **and** `skills/en-<id>/`, each with `SKILL.md`, and the wrappers `pages/de/<package>/<id>.md` + `pages/en/<package>/<id>.md`.
+1. Folders `skills/<package>/de-<id>/` **and** `skills/<package>/en-<id>/`, each with `SKILL.md`, and the wrappers `pages/<package>/<id>.de.md` + `pages/<package>/<id>.en.md`.
 2. Add the package to `catalog.json` (`id` = category, `label.de`/`label.en`, `skills` = the `<id>`s in display order). This drives the docs sidebar and index; nothing is edited in `astro.config.mjs` or `index.md` here.
 3. Add the skills to the README table.
 4. Check: `npm run validate` in the library repo. Preview: `SKILLS_DIR=../companygpt-library npm run build` in this repo. Open the PR in the library repo; its CI validates and builds the docs against the branch.

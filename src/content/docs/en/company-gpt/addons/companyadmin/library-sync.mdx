@@ -66,7 +66,7 @@ The [ready-made skills](/en/tutorials/skills/) and agents live in the public rep
 | Structure (sources) | type `skill`, path `skills`; optionally also type `agent`, path `agents` |
 | We own this repo | off |
 
-German and English skills have different names (`de-excel`, `en-excel`), so you can connect both languages at the same time. If you only need one language, take the other one out of the sync under **Exclude**. The agents also exist per language (`de-demogpt.yaml`, `en-demogpt.yaml`) and use the skills of their language. Tools your environment does not offer are left out by the sync and listed under **Notes**. **Sync** fetches new and changed content; there is no automatic schedule.
+German and English skills have different names (`de-excel`, `en-excel`), so you can connect both languages at the same time. The skills are sorted by domain; a path such as `skills/files` connects just one domain. If you only need one language, take the other one out of the sync under **Exclude**. The agents also exist per language (`de-demogpt.yaml`, `en-demogpt.yaml`) and use the skills of their language. Tools your environment does not offer are left out by the sync and listed under **Notes**. **Sync** fetches new and changed content; there is no automatic schedule.
 
 :::caution[Moving from company-ai-stack-skills]
 The previous repository `innFactory-AI/company-ai-stack-skills` is archived and gets no more updates. The skills have new names in the new repository (`excel-skill` → `en-excel`). Remove the old repository with **Remove repository …** and connect the new one. Your own agents that use old skill names have to be switched to the new names.

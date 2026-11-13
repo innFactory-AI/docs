@@ -2,8 +2,8 @@
 // Generates the skill tutorial pages from innFactory-AI/companygpt-library.
 //
 // The library repo is the single source: every skill lives there as
-//   skills/<locale>-<id>/SKILL.md            (the skill itself, what users upload in companyGPT; name: <locale>-<id>)
-//   pages/<locale>/<category>/<id>.md        (docs wrapper: frontmatter + intro shown above the skill)
+//   skills/<category>/<locale>-<id>/SKILL.md   (the skill itself, what users upload in companyGPT; name: <locale>-<id>)
+//   pages/<category>/<id>.<locale>.md          (docs wrapper: frontmatter + intro shown above the skill)
 // and catalog.json fixes category/skill order (by <id>), sidebar labels and the index page texts. The library's own
 // `npm run validate` checks the full layout (agents, model labels); this script only checks what the pages need.
 //
@@ -170,9 +170,9 @@ function main() {
 			for (const slug of cat.skills) {
 				const labels = {};
 				for (const locale of LOCALES) {
-					const rel = `skills/${locale}-${slug}`;
+					const rel = `skills/${cat.id}/${locale}-${slug}`;
 					const skillFile = join(src.dir, rel, 'SKILL.md');
-					const pageRel = `pages/${locale}/${cat.id}/${slug}.md`;
+					const pageRel = `pages/${cat.id}/${slug}.${locale}.md`;
 					const pageFile = join(src.dir, pageRel);
 					if (!existsSync(skillFile) || !existsSync(pageFile)) {
 						fail(`${rel}/SKILL.md and ${pageRel} are both required`);
@@ -218,19 +218,18 @@ function main() {
 
 		// Folders that exist in the repo but are missing from catalog.json would silently disappear.
 		const listed = new Set(catalog.categories.flatMap((c) => c.skills.map((s) => `${c.id}/${s}`)));
-		const ids = new Set(catalog.categories.flatMap((c) => c.skills));
-		const skillsDir = join(src.dir, 'skills');
-		for (const d of existsSync(skillsDir) ? readdirSync(skillsDir, { withFileTypes: true }).filter((e) => e.isDirectory()) : []) {
-			const m = d.name.match(/^([a-z]{2})-(.+)$/);
-			if (!m || !LOCALES.includes(m[1]) || !ids.has(m[2])) fail(`skills/${d.name}: not listed in catalog.json`);
+		const sub = (rel) =>
+			existsSync(join(src.dir, rel)) ? readdirSync(join(src.dir, rel), { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name) : [];
+		for (const cat of sub('skills')) {
+			for (const d of sub(`skills/${cat}`)) {
+				const m = d.match(/^([a-z]{2})-(.+)$/);
+				if (!m || !LOCALES.includes(m[1]) || !listed.has(`${cat}/${m[2]}`)) fail(`skills/${cat}/${d}: not listed in catalog.json`);
+			}
 		}
-		for (const locale of LOCALES) {
-			const pagesDir = join(src.dir, 'pages', locale);
-			if (!existsSync(pagesDir)) continue;
-			for (const cat of readdirSync(pagesDir, { withFileTypes: true }).filter((d) => d.isDirectory())) {
-				for (const f of readdirSync(join(pagesDir, cat.name)).filter((n) => n.endsWith('.md'))) {
-					if (!listed.has(`${cat.name}/${f.slice(0, -3)}`)) fail(`pages/${locale}/${cat.name}/${f}: not listed in catalog.json`);
-				}
+		for (const cat of sub('pages')) {
+			for (const f of readdirSync(join(src.dir, 'pages', cat)).filter((n) => n.endsWith('.md'))) {
+				const m = f.match(/^(.+)\.([a-z]{2})\.md$/);
+				if (!m || !LOCALES.includes(m[2]) || !listed.has(`${cat}/${m[1]}`)) fail(`pages/${cat}/${f}: not listed in catalog.json`);
 			}
 		}
 

@@ -1,9 +1,9 @@
 ---
 title: Extensions
-description: The rights for companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN and Insights in companyADMIN – what each right allows, who holds it automatically and where you grant it.
+description: The rights for companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN, companyVibes and Insights in companyADMIN – what each right allows, who holds it automatically and where you grant it.
 ---
 
-companyADMIN is the central place for rights in the CompanyGPT extensions. Every extension asks companyADMIN whether a person may use or manage it.
+companyADMIN is the central place for rights in the companyGPT extensions. Every extension asks companyADMIN whether a person may use or manage it.
 
 **Configuration** → **Extensions** shows each extension with its status, tile and rights. Rights are granted on the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/) or [group](/en/company-gpt/addons/companyadmin/gruppen/) on the **Extensions** tab; here you open a right to everyone with the **For everyone** tick.
 
@@ -15,9 +15,9 @@ companyADMIN is the central place for rights in the CompanyGPT extensions. Every
 | To a group | Group → **Extensions** tab | Every member of the group |
 | To everyone | Configuration → **Extensions**, tick **For everyone** | Everyone in the environment |
 
-The ADMIN role always holds rights of the class **Admins automatically**; companyADMIN ensures this at every start. Nobody gets rights of the class **Explicit only** automatically, not even administrators. They are never opened to everyone. Only an administrator with the ADMIN role can grant them; for every other administrator they are hidden on the **Extensions** tab. This concerns **Superadmin** of companyRAG, for every further companyRAG instance too.
+The ADMIN role always holds rights of the class **Admins automatically**; companyADMIN ensures this at every start. Nobody gets rights of the class **Explicit only** automatically, not even administrators. They are never opened to everyone. Only an administrator with the ADMIN role can grant them; for every other administrator they are hidden on the **Extensions** tab. This concerns **Superadmin** of companyRAG, for every further companyRAG instance too, as well as **Publish apps publicly** and **Review and approve apps** of companyVibes.
 
-Granting to groups is not possible in every environment. As long as CompanyGPT does not know any members of the Entra groups yet, or your CompanyGPT lacks an update needed for it, a group's **Extensions** tab shows **Group rights locked** with the reason.
+Granting to groups is not possible in every environment. As long as companyGPT does not know any members of the Entra groups yet, or your companyGPT lacks an update needed for it, a group's **Extensions** tab shows **Group rights locked** with the reason.
 
 A revoked right is gone at once; the extensions cache the answer for at most a minute.
 
@@ -34,17 +34,39 @@ The extensions' MCP servers are, as a rule, connected for everyone. Their tools 
 | [companyTRANSCRIBE](/en/company-gpt/addons/company-transcribe/) | **Use transcription** | `ext:transcribe:use` | Transcribe audio and video files |
 | [companyFILES](/en/company-gpt/addons/companyfiles/) | **Use Files** | `ext:files:use` | Create and edit documents from templates |
 | | **Manage global templates** | `ext:files:templates` | Upload, publish and delete global templates; no organisation branding |
+| | **Set personal branding** | `ext:files:branding` | Personal branding for the person's own documents: colours, fonts, logo and header/footer that differ from the organisation branding. Without the right the organisation branding applies read-only; stored personal settings are ignored |
 | | **Manage organisation & branding** | `ext:files:admin` | Organisation settings and branding (logo, colours); global templates are a separate right |
 | [companyRAG](/en/company-gpt/addons/companyrag/) | **Use knowledge** | `ext:rag:use` | Search the knowledge collections the person has access to |
+| | **Create collections and sources** | `ext:rag:create` | Create new knowledge collections, sources and connections. Without the right a person only uses what is assigned to them. See [Migration pending](#migration-pending) |
 | | **Manage RAG settings** | `ext:rag:admin` | Users, API keys and provider settings including connector credentials. Knowledge bases are maintained through collection ownership, not through this right |
 | | **Superadmin** | `ext:rag:superadmin` | Sees every collection of the environment, plus audit log, employee activity and write access to all collections. Class **Explicit only** |
 | [companyM365](/en/company-gpt/addons/companym365/) | **Use Microsoft 365** | `ext:m365:use` | Office add-in (Word, Excel, PowerPoint, Outlook), the Microsoft 365 tools in the chat and the Teams bot, where available in your environment. Revoking the right takes away all three |
 | | **Manage Microsoft 365** | `ext:m365:admin` | companyM365 admin area: set up the Teams bot, release agents for Teams, settings, audit, deletion of individual people's bot data and add-in installation packages. Never for everyone |
 | [companyLEARN](/en/company-gpt/addons/companylearn/) | **Use courses** | `ext:learn:use` | Take courses |
 | | **Manage courses** | `ext:learn:admin` | Manage courses |
+| companyVibes | **Use companyVibes** | `ext:vibes:use` | Open the companyVibes control centre and the environment's apps |
+| | **Create apps** | `ext:vibes:create` | Trigger "Turn this into an app" in the chat and create apps |
+| | **Share apps** | `ext:vibes:share` | Share your own apps with people, groups or the whole company, as far as the group allows. The whole company only after a reviewer approves |
+| | **Publish apps publicly** | `ext:vibes:publish_public` | Publish apps to the internet, reachable anonymously; only if the person's group also allows public apps. Class **Explicit only** |
+| | **Review and approve apps** | `ext:vibes:review` | Review, approve and reject release requests for apps. Whoever owns or edits an app may not review it. Class **Explicit only** |
+| | **Manage companyVibes** | `ext:vibes:admin` | Set the highest release level per group, see all apps, block apps and read the audit log |
 | companyADMIN | **View Insights** | `ext:admin:insights` | Open [Insights](/en/company-gpt/addons/companyadmin/insights/). Never for everyone, because Insights shows every user's costs, tokens and email addresses |
 
-All rights except **Superadmin** of companyRAG belong to the class **Admins automatically**.
+All other rights belong to the class **Admins automatically**. Only **Superadmin** of companyRAG and **Publish apps publicly** and **Review and approve apps** of companyVibes have the class **Explicit only**.
+
+companyVibes only appears in environments where it is set up. Its rights only take effect once the companyVibes card is **Active**.
+
+:::note[Set personal branding]
+The right takes effect as soon as your version of companyFILES checks it. Until then everyone can adjust their branding. Afterwards only administrators and explicitly authorised roles and groups keep it. If everyone should still be allowed to set their own branding, open the right to everyone with **For everyone** before you update companyFILES.
+:::
+
+### Migration pending
+
+Previously, anyone with **Use knowledge** in companyRAG could also create collections, sources and connections. The right **Create collections and sources** now separates this. So that nobody loses anything, companyADMIN copies all existing grants of **Use knowledge** (roles, groups, people) to **Create collections and sources** once after the update. Afterwards the two rights are independent.
+
+- Until the copy is done, the right shows **Migration pending** and its switches are locked. Until then companyRAG treats it as: whoever may use may also create.
+- If nobody except ADMIN holds **Use knowledge** yet, it says **Grant “Use knowledge” first**. After that the right can be changed.
+- The copy gives every role that may use also the right to create, so that nothing changes at first. If roles should only use and not create (viewers), take **Create collections and sources** away from them afterwards. Grant the right to the roles that need it, not **For everyone**: **For everyone** also applies to viewer roles.
 
 If your environment has several companyRAG instances, each further instance has its own card, for example "companyRAG (instance 2)", with rights of its own.
 
@@ -59,7 +81,7 @@ Each extension has a card of its own:
 - For each right its label, technical name, class, an explanation and **Who has it:** with the roles and groups (linked to the role or group), **For everyone** or **nobody yet**.
 - The **For everyone** tick, if the right may be opened to everyone.
 
-For n8n and the AI Gateway there is only the switch **Show in companyTOOLS**. These applications manage access themselves; the switch only shows or hides their tile.
+For n8n and the AI Gateway there is only the switch **Show in companyTOOLS**. companyTOOLS is the [All apps](/en/company-gpt/addons/alle-apps/) overview. These applications manage access themselves; the switch only shows or hides their tile.
 
 ## Opening a right to everyone
 

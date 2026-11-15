@@ -1,9 +1,9 @@
 ---
 title: Roles
-description: Create roles in companyADMIN, set their rights in CompanyGPT and the extensions, release models and assign people through the members tab.
+description: Create roles in companyADMIN, set their rights in companyGPT and the extensions, release models and assign people through the members tab.
 ---
 
-A role decides what someone may do: features in CompanyGPT, models, agent capabilities and rights in the extensions. Everyone has exactly **one** role. The ticks of that one role apply; nothing is added from other roles. Anyone not assigned to another role usually has the USER role (also shown as "User" in the interface). If automatic role assignment is active, your environment can set a different **Fallback role** for this.
+A role decides what someone may do: features in companyGPT, models, agent capabilities and rights in the extensions. Everyone has exactly **one** role. The ticks of that one role apply; nothing is added from other roles. Anyone not assigned to another role usually has the USER role (also shown as "User" in the interface). If automatic role assignment is active, your environment can set a different **Fallback role** for this.
 
 You find the roles under **Access** → **Roles**.
 
@@ -16,11 +16,11 @@ Above the list the page explains how Entra groups become roles. The **Role sync 
 | **ID** | Name of the role |
 | **Description** | Its description, visible to administrators only |
 | **Users** | Number of people with this role |
-| **Origin** | **System**, **Role sync**, **Manual** or the admin role |
+| **Origin** | **System**, **Role sync**, **Manual** or **OPENID_ADMIN_ROLE**. The last one means: ADMIN is assigned at sign-in through the admin group from Entra ID; this is the name of the setting that defines this group |
 
 Use **Search ID or description** and the **Origin** filter to narrow the list. Clicking a row opens the role.
 
-**System roles** (ADMIN and USER) ship with CompanyGPT and can be neither deleted nor renamed.
+**System roles** (ADMIN and USER) ship with companyGPT and can be neither deleted nor renamed.
 
 ## Creating a role
 
@@ -57,7 +57,7 @@ The detail page has the tabs **Overview**, **companyGPT**, **Models & providers*
 
 ### companyGPT
 
-Here you decide what people with this role may do in CompanyGPT. The ticks for features and admin rights apply at once; they need no save button. For each feature the page offers only the actions CompanyGPT supports.
+Here you decide what people with this role may do in companyGPT. The ticks for features and admin rights apply at once; they need no save button. For each feature the page offers only the actions companyGPT supports.
 
 | Feature | Actions |
 |---|---|
@@ -77,14 +77,16 @@ Here you decide what people with this role may do in CompanyGPT. The ticks for f
 | **Scheduled chats** | **Use**, **Create** |
 | **Bookmarks** | **Use** |
 | **Shared links** | **Create**, **Share**, **Share publicly** |
+| **Chat projects** | **Share**, **Share publicly** |
 | **People picker** | **View users**, **View groups**, **View roles** |
 
 - **Share publicly** decides whether members may release content to the whole environment, not just to individual groups.
+- **Chat projects**: everyone has projects; only whether they may share their projects with others or make them public is controlled. The row only appears if your companyGPT knows the function.
 - **Remote agents** allows calling agents from outside through the API.
 - **Configure OBO** allows setting up on-behalf-of access for MCP servers, where a tool accesses a third-party system in the name of the signed-in person. Grant this right deliberately.
 - **Scheduled chats** are chats with an agent that run at set times. Whether the feature is switched on at all is controlled under [Agent runtime](/en/company-gpt/addons/companyadmin/agent-laufzeit/).
 
-Some ticks are locked and carry a note. These values come from the base configuration or are reset by CompanyGPT at every restart. This mostly concerns the USER and ADMIN roles. The note names the way out, such as a custom role or switching memories off per role or group. innFactory makes changes to the base configuration.
+Some ticks are locked and carry a note. These values come from the base configuration or are reset by companyGPT at every restart. This mostly concerns the USER and ADMIN roles. The note names the way out, such as a custom role or switching memories off per role or group. innFactory makes changes to the base configuration.
 
 #### Admin rights in LibreChat
 
@@ -112,22 +114,31 @@ All rights and what they mean are described in [Extensions](/en/company-gpt/addo
 
 ### Members
 
-Here you assign the role to people:
+Here you assign the role to people. This does not apply to roles that Entra ID sets at sign-in, see [Roles from Entra ID](#roles-from-entra-id).
 
 1. In the **Add person** section, type at least two characters into the **Search person (name or email)** field.
 2. In the results, click the entry "Add *name* (*email*)".
 
-Whoever is assigned here loses their previous role. People you remove from the role get the USER role.
+Whoever is assigned here loses their previous role. If the person already has a role other than USER, companyADMIN first asks **Replace the current role?** and names the current and the new role; only **Replace** carries out the change. People you remove from the role get the USER role.
 
 On the USER role itself adding does not work, and removing is not offered. To give someone USER, remove them from their current role.
 
 :::caution
-If automatic role assignment from Entra ID is active, CompanyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
+If automatic role assignment from Entra ID is active, companyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
 :::
+
+#### Roles from Entra ID
+
+At every sign-in Entra ID sets the role ADMIN (if your environment uses an admin group, origin **OPENID_ADMIN_ROLE**) and every role in the role-sync order. For these roles:
+
+- The **Members** tab has no **Add person**. It explains instead in which Entra group you maintain the members. The fallback role and USER do not count. With an identity provider other than Entra ID, its name appears there.
+- **Remove** always works, so that you can take ADMIN away at once. The confirmation points out: if the person is still in the Entra group, they get the role back at the next sign-in. You remove the role for good in Entra ID by taking the person out of the group.
+- The **Origin** column shows for ADMIN and for role-sync roles with a groups claim whether the person is in one of the Entra groups (**Entra group**) or was set by hand (**Manual**). A manual assignment is removed at the next sign-in for ADMIN; for a role-sync role it may be overwritten. The state is that of the last sign-in or the last Entra group sync. The column is missing if companyADMIN does not know all groups.
+- Accounts that do not sign in via OpenID keep their role. You assign it for them on the person's page.
 
 ### Deleting a role
 
-**Delete role** in the danger zone first shows how many people hold the role. All members get the USER role afterwards. Deleted with the role are its settings (including model limits), its shares and its rights in CompanyGPT and the extensions. This cannot be undone.
+**Delete role** in the danger zone first shows how many people hold the role. All members get the USER role afterwards. Deleted with the role are its settings (including model limits), its shares and its rights in companyGPT and the extensions. This cannot be undone.
 
 ## Related pages
 

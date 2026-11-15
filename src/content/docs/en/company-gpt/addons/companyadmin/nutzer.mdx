@@ -3,7 +3,7 @@ title: Users
 description: See people in companyADMIN, change their role and trace which rights, models and groups they have and where each right comes from.
 ---
 
-**Access** → **Users** lists everyone who has signed in to CompanyGPT at least once. People who have never signed in do not appear here.
+**Access** → **Users** lists everyone who has signed in to companyGPT at least once. People who have never signed in do not appear here.
 
 :::note[Superadmins only]
 Only superadmins see the user list. Without the superadmin features the menu entry is missing, and opening the page directly leads to **Roles**. You then assign roles through the role on its **Members** tab, see [Roles](/en/company-gpt/addons/companyadmin/rollen-und-rechte/). The account menu shows whether you are a superadmin.
@@ -17,7 +17,7 @@ Only superadmins see the user list. Without the superadmin features the menu ent
 | **Email** | Email address |
 | **Role** | The person's one role |
 | **Last sign-in** | Approximate time of the last sign-in |
-| **Origin of the role** | **System**, **Role sync** (automatically from Entra ID), **Manual**, or the admin group through which someone becomes ADMIN |
+| **Origin of the role** | **System**, **Role sync** (automatically from Entra ID), **Manual** or **OPENID_ADMIN_ROLE** (ADMIN is assigned at sign-in through the admin group from Entra ID) |
 
 Use **Search name or email** and the **Role** filter to narrow the list. Clicking a row opens the detail page.
 
@@ -25,14 +25,14 @@ Use **Search name or email** and the **Role** filter to narrow the list. Clickin
 
 ### Overview
 
-The **Person** section shows email, name, **Entra object ID**, **Signs in via**, **Account created** and **Last sign-in (approximate)**. CompanyGPT stores no sign-in time; what is shown is the last change to the account, which happens at every sign-in.
+The **Person** section shows email, name, **Entra object ID**, **Signs in via**, **Account created** and **Last sign-in (approximate)**. companyGPT stores no sign-in time; what is shown is the last change to the account, which happens at every sign-in.
 
-In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if CompanyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one.
+In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if companyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one; if the person already has a role other than USER, companyADMIN first asks **Replace the current role?**. The picker shows roles that Entra ID sets at sign-in greyed out. You assign these in Entra ID, see [Roles from Entra ID](/en/company-gpt/addons/companyadmin/rollen-und-rechte/#roles-from-entra-id).
 
-The USER role cannot be assigned here; CompanyGPT refuses it. To set someone back to USER, remove them under their current role → **Members**.
+The USER role cannot be assigned here; companyGPT refuses it. To set someone back to USER, remove them under their current role → **Members**.
 
 :::caution
-If automatic role assignment from Entra ID (role sync) is active in your environment, CompanyGPT sets the role again from the Entra groups at the next sign-in. A role set here is lost then. The page points this out.
+If automatic role assignment from Entra ID (role sync) is active in your environment, companyGPT sets the role again from the Entra groups at the next sign-in. A role set here is lost then. The page points this out.
 :::
 
 **Takes effect at the next sign-in** names Entra and OIDC groups that have become known since the person's last sign-in or the last group sync and that the person is not in yet. If automatic role assignment is active, the notice also names roles newly added to the role sync since then. The notice clears with the next sign-in, and for groups also with the next group sync. Where the displayed group memberships come from (sign-in or group sync) is shown below.
@@ -47,7 +47,7 @@ If automatic role assignment from Entra ID (role sync) is active in your environ
 | **Kind** | **System**, **Extension** or **companyADMIN** |
 | **Source** | Where the right comes from: **Role …**, **Group …**, **Everyone**, **Default for admins** or **Setting …** |
 
-Below, **companyGPT features** shows what the person may do in CompanyGPT (**Allowed** or **Not allowed**). These feature rights are set by the role; you change them there on the **companyGPT** tab.
+Below, **companyGPT features** shows what the person may do in companyGPT (**Allowed** or **Not allowed**). These feature rights are set by the role; you change them there on the **companyGPT** tab.
 
 ### Models
 

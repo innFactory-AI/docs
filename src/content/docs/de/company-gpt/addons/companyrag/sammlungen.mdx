@@ -9,10 +9,11 @@ Die Übersicht unter **Sammlungen** gliedert sich in die Reiter **Alle**, **Mein
 
 ## Sammlung erstellen
 
-Über **Sammlung erstellen** öffnen Sie den Dialog. Zuerst wählen Sie den **Sammlungstyp**:
+Über **Sammlung erstellen** öffnen Sie den Dialog. Neue Sammlungen und Quellen legen nur Personen an, die dafür das Recht **Sammlungen und Quellen anlegen** haben; ohne dieses Recht sind Sie Betrachter, blenden die Anlege-Einstiege aus und sehen einen Hinweis. Zuerst wählen Sie den **Sammlungstyp**:
 
 - **Dokumente**: PDFs, Word-Dokumente, Webseiten und weitere Dateien, die für die semantische Suche indexiert werden.
 - **Datensatz**: Tabellen, die per SQL abfragbar sind. Siehe [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/).
+- **Projekt**: Einträge und Seiten eines Projekts, siehe [Projektwissen](/de/company-gpt/addons/companyrag/projektwissen/). Der Typ erscheint nur, wenn Projektwissen eingeschaltet ist.
 - **OKF-Bundle**: öffnet stattdessen den Assistenten für ein [OKF-Bundle](/de/company-gpt/addons/companyrag/okf-bundles/).
 
 Anschließend legen Sie **Sammlungsname**, **Beschreibung** und **Sichtbarkeit** fest. Der **Technische Name** wird automatisch aus dem Namen generiert – er wird später in Agenten-Prompts und in den MCP-Tools als `collection` verwendet und kann nicht mehr geändert werden.
@@ -87,17 +88,29 @@ Am unteren Rand jeder Sammlung stehen je nach Ihrer Rolle folgende Symbole zur V
 
 - **System-Prompt**: vorbereiteter System-Prompt für einen Agenten, siehe [companyRAG in CompanyGPT nutzen](/de/company-gpt/addons/companyrag/in-companygpt/#beispiel-prompt-aus-der-sammlung).
 - **Ingestion-Anleitung**: nur bei Live-Datensätzen; zeigt die Endpunkte zum Einspielen von Zeilen, siehe [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/#zeilen-einspielen).
-- **Sammlung teilen**: nur für Besitzer (siehe unten).
-- **Sammlung bearbeiten**: für Besitzer und Administratoren der Sammlung.
-- **Sammlung löschen**: nur für Besitzer.
+- **Sammlung teilen**: nur für Owner (siehe unten).
+- **Sammlung bearbeiten**: für Bearbeiter und Owner der Sammlung.
+- **Sammlung löschen**: nur für Owner.
+
+### Rollen in Sammlungen
+
+Jede Sammlung kennt drei Rollen, in Projekten genauso wie in Dokument- und Datensatzsammlungen:
+
+| Rolle | Darf |
+|---|---|
+| **Betrachter** | die Sammlung ansehen und durchsuchen, nicht ändern |
+| **Bearbeiter** | zusätzlich Inhalte hochladen und Einträge speichern, Seiten bearbeiten, Quellen anhängen und ändern sowie Einstellungen ändern; löschen aber nur, was er selbst hinzugefügt hat |
+| **Owner** | alles, dazu Freigaben verwalten, fremde Inhalte löschen, die Sammlung übergeben und löschen |
+
+Neue Freigaben starten als Betrachter. **Schreiben in eine Sammlung, die jemand anderem gehört, braucht die Rolle Bearbeiter oder Owner** – in der Oberfläche, bei Verbindungen und über die Agenten-Tools. In Ihrer eigenen Sammlung können Sie immer schreiben. Ein Superadmin umgeht diese Rollen nicht: Er liest keine Sammlung ohne Leserecht und ändert keine Inhalte ohne eigene Rolle; ihm bleiben Wartungsrechte wie Neuindexieren.
+
+Das Recht **Sammlungen und Quellen anlegen** ist davon getrennt: Es erlaubt, neue Sammlungen, Quellen und Verbindungen mit eigenen Zugangsdaten anzulegen. Wer nur das Recht zum Nutzen hat, kann zugewiesene Sammlungen durchsuchen, das Gesamtwissen und den Wissensgraphen nutzen und die eigene Microsoft- oder Google-Anmeldung verbinden. In einer Sammlung, in der er Bearbeiter ist, darf er hochladen und Einträge ändern; eine neue Quelle dort braucht zusätzlich das Anlege-Recht.
 
 ### Sammlung teilen
 
-Im Dialog **Sammlung teilen** suchen Sie Personen oder Gruppen per Name oder E-Mail (mindestens zwei Zeichen) und legen für jeden Eintrag eine Rolle fest:
+Im Dialog **Sammlung teilen** suchen Sie Personen oder Gruppen per Name oder E-Mail (mindestens zwei Zeichen) und legen für jeden Eintrag eine der drei Rollen fest. Eine Sammlung muss mindestens einen Owner behalten.
 
-- **Betrachter**: Kann die Sammlung ansehen und durchsuchen, aber nicht ändern.
-- **Administrator**: Kann ansehen, Dateien hochladen und Einstellungen ändern.
-- **Besitzer**: Volle Kontrolle, einschließlich Teilen und Löschen. Eine Sammlung muss mindestens einen Besitzer behalten.
+Wird ein Bearbeiter herabgestuft oder entfernt, werden die von ihm angehängten Quellen angehalten und ausgeblendet. Der Owner entscheidet im Dialog, ob sie entfernt oder eingefroren (sichtbar, aber ohne Synchronisation) bleiben.
 
 ![Dialog „Sammlung teilen“ mit Suchfeld für Personen und Gruppen, dem Eintrag des Besitzers mit seiner Rolle und dem Schalter Mit allen teilen](./sammlung-teilen.png)
 

@@ -24,6 +24,16 @@ Importing is also possible as a [source](/en/company-gpt/addons/companyrag/quell
 
 You can see the schema of an imported file under [Files](/en/company-gpt/addons/companyrag/dateien/) via the file's info icon.
 
+## Table hints
+
+Every table of a CSV or Excel file (for Excel, every further sheet) gets a **table hint** (Tabellen-Hinweis): a short page with the topic, the file and where the table is. It makes sure an agent at least knows from search and from the [collective knowledge](/en/company-gpt/addons/companyrag/gesamtwissen/) that a data table exists on a topic.
+
+- **For the values, go one level deeper:** the hint names the SQL table and its columns; it never contains the rows. The agent or you query the values with `execute_sql` (see [Using it in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/#sql-tools-for-datasets-and-structured-data)).
+- **Wide tables are fine:** if the sample does not fit on one page, companyRAG spreads the columns over several pages (for example "Columns 41–80 of 212"). No column is lost.
+- **Description:** if the [curator](/en/company-gpt/addons/companyrag/projektwissen/#curator-and-pages) is set up, it adds a description automatically. An editor can confirm or change it; a confirmed text stays, and new automatic findings appear below it in a separate section. **Create description again** requests a fresh one.
+- **Visibility:** a hint is visible to exactly the readers of its collection, and never to more people than the source file allows.
+- For every table of a database source, a **table page** is created in the same way, with columns, key, figures, date of the data and an example query.
+
 ## Live defined schema
 
 ![Schema definition of a live dataset collection with tables and columns](./datensatz-live-schema.png)
@@ -40,7 +50,7 @@ The call expects an object with a `rows` array; each object in it corresponds to
 
 Details on paths, parameters and responses can be found in the [companyRAG API reference](/en/api/company-rag-api/).
 
-Access requires an [API key](/en/company-gpt/addons/companyrag/api-schluessel/) of a person who is an admin or owner of the collection.
+Access requires an [API key](/en/company-gpt/addons/companyrag/api-schluessel/) of a person who is an editor or owner of the collection.
 
 :::danger
 An API key always acts on behalf of the person who created it. If it is passed on, the recipient can access content via the interface that they would not be allowed to see themselves. Every person and every system should receive their own key.

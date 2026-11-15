@@ -1,11 +1,11 @@
 ---
 title: Rollen
-description: Rollen in companyADMIN anlegen, ihre Rechte in CompanyGPT und den Erweiterungen festlegen, Modelle freigeben und Personen über die Mitglieder zuweisen.
+description: Rollen in companyADMIN anlegen, ihre Rechte in companyGPT und den Erweiterungen festlegen, Modelle freigeben und Personen über die Mitglieder zuweisen.
 ---
 
-Eine Rolle legt fest, was jemand darf: Funktionen in CompanyGPT, Modelle, Agent-Fähigkeiten und Rechte in den Erweiterungen. Jede Person hat genau **eine** Rolle. Es gelten die Häkchen dieser einen Rolle; aus anderen Rollen wird nichts dazugerechnet. Wer keiner anderen Rolle zugeordnet ist, hat in der Regel die Rolle USER (in der Oberfläche auch „Nutzer“). Ist die automatische Rollenvergabe aktiv, kann Ihre Umgebung dafür eine andere **Fallback-Rolle** festlegen.
+Eine Rolle legt fest, was jemand darf: Funktionen in companyGPT, Modelle, Agent-Fähigkeiten und Rechte in den Erweiterungen. Jede Person hat genau **eine** Rolle. Es gelten die Häkchen dieser einen Rolle; aus anderen Rollen wird nichts dazugerechnet. Wer keiner anderen Rolle zugeordnet ist, hat in der Regel die Rolle USER (in der Oberfläche auch „Nutzer“). Ist die automatische Rollenvergabe aktiv, kann deine Umgebung dafür eine andere **Fallback-Rolle** festlegen.
 
-Sie finden die Rollen unter **Zugriff** → **Rollen**.
+Du findest die Rollen unter **Zugriff** → **Rollen**.
 
 ## Rollenliste
 
@@ -14,29 +14,29 @@ Sie finden die Rollen unter **Zugriff** → **Rollen**.
 | Spalte | Inhalt |
 |---|---|
 | **ID** | Name der Rolle |
-| **Beschreibung** | Ihre Beschreibung, nur für Administratoren sichtbar |
+| **Beschreibung** | Deine Beschreibung, nur für Administratoren sichtbar |
 | **Nutzer** | Anzahl der Personen mit dieser Rolle |
 | **Herkunft** | **System**, **Role-Sync**, **Manuell** oder **OPENID_ADMIN_ROLE**. Das Letzte heißt: ADMIN wird bei der Anmeldung über die Admin-Gruppe aus Entra ID vergeben; so heißt die Einstellung, die diese Gruppe festlegt |
 
-Mit **ID oder Beschreibung suchen** und dem Filter **Herkunft** grenzen Sie die Liste ein. Ein Klick auf eine Zeile öffnet die Rolle.
+Mit **ID oder Beschreibung suchen** und dem Filter **Herkunft** grenzt du die Liste ein. Ein Klick auf eine Zeile öffnet die Rolle.
 
-**System-Rollen** (ADMIN und USER) werden mit CompanyGPT ausgeliefert und lassen sich weder löschen noch umbenennen.
+**System-Rollen** (ADMIN und USER) werden mit companyGPT ausgeliefert und lassen sich weder löschen noch umbenennen.
 
 ## Rolle anlegen
 
-1. Geben Sie im Abschnitt **Rolle anlegen** eine **ID** und optional eine **Beschreibung** ein.
-2. Soll die Rolle zu einer Entra-Gruppe gehören, wählen Sie die Gruppe unter **Aus Entra-Gruppe übernehmen**. Die ID wird dann automatisch die Object-ID der Gruppe. Diese Auswahl gibt es nur, wenn die automatische Rollenvergabe über Entra-Gruppen läuft; sonst tragen Sie die Object-ID von Hand als **ID** ein.
-3. Klicken Sie auf **Anlegen**.
+1. Gib im Abschnitt **Rolle anlegen** eine **ID** und optional eine **Beschreibung** ein.
+2. Soll die Rolle zu einer Entra-Gruppe gehören, wählst du die Gruppe unter **Aus Entra-Gruppe übernehmen**. Die ID wird dann automatisch die Object-ID der Gruppe. Diese Auswahl gibt es nur, wenn die automatische Rollenvergabe über Entra-Gruppen läuft; sonst trägst du die Object-ID von Hand als **ID** ein.
+3. Klicke auf **Anlegen**.
 
-Die neue Rolle startet mit den Funktionsrechten von USER (Reiter **companyGPT**). Nicht übernommen werden die Modellfreigaben von USER und die Erweiterungsrechte, die USER eigens hat; Rechte, die über **Für alle** freigegeben sind, gelten auch für die neue Rolle. Ist ein Anbieter unter **Provider und Modelle** eingeschränkt, sieht die neue Rolle dessen Modelle erst, wenn Sie sie ihr im Reiter **Modelle & Provider** freigeben. Passen Sie die Rolle danach auf der Detailseite an.
+Die neue Rolle startet mit den Funktionsrechten von USER (Reiter **companyGPT**). Nicht übernommen werden die Modellfreigaben von USER und die Erweiterungsrechte, die USER eigens hat; Rechte, die über **Für alle** freigegeben sind, gelten auch für die neue Rolle. Ist ein Anbieter unter **Provider und Modelle** eingeschränkt, sieht die neue Rolle dessen Modelle erst, wenn du sie ihr im Reiter **Modelle & Provider** freigibst. Passe die Rolle danach auf der Detailseite an.
 
 ### Rollen automatisch aus Entra ID vergeben
 
 Eine Entra-Gruppe gibt nicht von selbst eine Rolle. Damit alle Mitglieder einer Entra-Gruppe eine Rolle bei der Anmeldung automatisch erhalten:
 
-1. Legen Sie die Rolle an. Die ID muss exakt die Object-ID der Entra-Gruppe sein (Entra-Portal → Gruppen → Gruppe → Übersicht → Objekt-ID). Arbeitet Ihre Umgebung mit App-Rollen statt Gruppen, ist die ID der Wert der App-Rolle, zum Beispiel `POWERUSER`.
-2. Lassen Sie die Rolle von innFactory für Ihre Umgebung registrieren. Ohne diese Registrierung bekommt niemand die Rolle automatisch.
-3. Legen Sie Rechte, Modelle und Agent-Fähigkeiten der Rolle fest.
+1. Lege die Rolle an. Die ID muss exakt die Object-ID der Entra-Gruppe sein (Entra-Portal → Gruppen → Gruppe → Übersicht → Objekt-ID). Arbeitet deine Umgebung mit App-Rollen statt Gruppen, ist die ID der Wert der App-Rolle, zum Beispiel `POWERUSER`.
+2. Lass die Rolle von innFactory für deine Umgebung registrieren. Ohne diese Registrierung bekommt niemand die Rolle automatisch.
+3. Lege Rechte, Modelle und Agent-Fähigkeiten der Rolle fest.
 4. Die Personen melden sich neu an. Erst dann haben sie die Rolle, und sie bekommen sie bei jeder Anmeldung wieder.
 
 Administratoren behalten ADMIN. Wer in mehreren registrierten Gruppen ist, bekommt die Rolle, die in der Registrierung zuerst steht.
@@ -51,13 +51,13 @@ Die Detailseite hat die Reiter **Überblick**, **companyGPT**, **Modelle & Provi
 
 ### Überblick
 
-- Den Namen ändern Sie mit **Umbenennen**. Das geht nur, solange für die Rolle noch nichts eingestellt ist (Modelle, Fähigkeiten, Rechte, Freigaben), denn diese Einstellungen blieben sonst beim alten Namen zurück. Legen Sie in diesem Fall eine neue Rolle an.
+- Den Namen änderst du mit **Umbenennen**. Das geht nur, solange für die Rolle noch nichts eingestellt ist (Modelle, Fähigkeiten, Rechte, Freigaben), denn diese Einstellungen blieben sonst beim alten Namen zurück. Lege in diesem Fall eine neue Rolle an.
 - **Beschreibung** erklärt, wofür es die Rolle gibt. Sie ist nur für Administratoren sichtbar.
 - Dazu kommen die **Herkunft**, die **Entra-Zuordnung** mit **Entra-Gruppe** und **Mitglieder in Entra** sowie **Hinweise**, etwa dass Role-Sync manuelle Zuweisungen bei der Anmeldung überschreibt.
 
 ### companyGPT
 
-Hier legen Sie fest, was Personen mit dieser Rolle in CompanyGPT dürfen. Die Häkchen der Funktionen und der Admin-Rechte gelten sofort; dafür ist kein Speichern-Knopf nötig. Pro Funktion bietet die Seite nur die Aktionen an, die CompanyGPT dafür unterstützt.
+Hier legst du fest, was Personen mit dieser Rolle in companyGPT dürfen. Die Häkchen der Funktionen und der Admin-Rechte gelten sofort; dafür ist kein Speichern-Knopf nötig. Pro Funktion bietet die Seite nur die Aktionen an, die companyGPT dafür unterstützt.
 
 | Funktion | Aktionen |
 |---|---|
@@ -81,26 +81,26 @@ Hier legen Sie fest, was Personen mit dieser Rolle in CompanyGPT dürfen. Die H�
 | **Personenauswahl** | **Nutzer sehen**, **Gruppen sehen**, **Rollen sehen** |
 
 - **Öffentlich teilen** entscheidet, ob Mitglieder Inhalte für die ganze Umgebung freigeben dürfen und nicht nur für einzelne Gruppen.
-- **Chat-Projekte**: Projekte hat jede Person; gesteuert wird nur, ob sie ihre Projekte mit anderen teilen oder öffentlich machen darf. Die Zeile erscheint nur, wenn Ihr CompanyGPT die Funktion kennt.
+- **Chat-Projekte**: Projekte hat jede Person; gesteuert wird nur, ob sie ihre Projekte mit anderen teilen oder öffentlich machen darf. Die Zeile erscheint nur, wenn dein companyGPT die Funktion kennt.
 - **Remote-Agenten** erlaubt, Agents von außen über die API anzusprechen.
-- **OBO konfigurieren** erlaubt, bei MCP-Servern den On-Behalf-Of-Zugriff einzurichten, bei dem ein Tool im Namen der angemeldeten Person auf ein Drittsystem zugreift. Vergeben Sie dieses Recht bewusst.
-- **Geplante Chats** sind Chats mit einem Agent, die zu festen Zeiten laufen. Ob die Funktion überhaupt eingeschaltet ist, steuern Sie unter [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/).
+- **OBO konfigurieren** erlaubt, bei MCP-Servern den On-Behalf-Of-Zugriff einzurichten, bei dem ein Tool im Namen der angemeldeten Person auf ein Drittsystem zugreift. Vergib dieses Recht bewusst.
+- **Geplante Chats** sind Chats mit einem Agent, die zu festen Zeiten laufen. Ob die Funktion überhaupt eingeschaltet ist, steuerst du unter [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/).
 
-Einige Häkchen sind gesperrt und mit einem Hinweis versehen. Diese Werte kommen aus der Grundkonfiguration oder werden von CompanyGPT bei jedem Neustart zurückgesetzt. Meist betrifft das die Rollen USER und ADMIN. Der Hinweis nennt den Ausweg, etwa eine eigene Rolle oder Memories pro Rolle oder Gruppe auszuschalten. Änderungen an der Grundkonfiguration nimmt innFactory vor.
+Einige Häkchen sind gesperrt und mit einem Hinweis versehen. Diese Werte kommen aus der Grundkonfiguration oder werden von companyGPT bei jedem Neustart zurückgesetzt. Meist betrifft das die Rollen USER und ADMIN. Der Hinweis nennt den Ausweg, etwa eine eigene Rolle oder Memories pro Rolle oder Gruppe auszuschalten. Änderungen an der Grundkonfiguration nimmt innFactory vor.
 
 #### Admin-Rechte in LibreChat
 
 Dieser Abschnitt vergibt die Rechte für den Administrationsbereich, etwa **Zugang zum Admin-Bereich**, **Rollen verwalten** oder **Audit-Protokoll ansehen**. Die vollständige Liste mit Erklärungen steht unter [Direkt-Grants](/de/company-gpt/addons/companyadmin/direkte-berechtigungen/). Entziehen fragt nach; Personen mit der Rolle verlieren das Recht sofort.
 
 :::caution
-Wer **Rollen verwalten** oder **Gruppen verwalten** hat, kann praktisch jeder Person Admin-Rechte verschaffen. Vergeben Sie diese Rechte an eine andere Rolle als ADMIN, fragt companyADMIN deshalb ausdrücklich nach.
+Wer **Rollen verwalten** oder **Gruppen verwalten** hat, kann praktisch jeder Person Admin-Rechte verschaffen. Vergibst du diese Rechte an eine andere Rolle als ADMIN, fragt companyADMIN deshalb ausdrücklich nach.
 :::
 
-Darunter folgen die Einstellungen der Rolle für Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Jeder dieser Abschnitte hat einen eigenen Knopf **Speichern**; erst damit übernehmen Sie die Änderung, sonst geht sie verloren. Die Einstellungen entsprechen den Einstellungen unter [Agent-Laufzeit → Pro Rolle oder Gruppe](/de/company-gpt/addons/companyadmin/agent-laufzeit/). Welche Fähigkeiten Agents für diese Rolle haben, steht unter [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/).
+Darunter folgen die Einstellungen der Rolle für Memories, Aufbewahrung, Agent-Builder und Datei-Uploads. Jeder dieser Abschnitte hat einen eigenen Knopf **Speichern**; erst damit übernimmst du die Änderung, sonst geht sie verloren. Die Einstellungen entsprechen den Einstellungen unter [Agent-Laufzeit → Pro Rolle oder Gruppe](/de/company-gpt/addons/companyadmin/agent-laufzeit/). Welche Fähigkeiten Agents für diese Rolle haben, steht unter [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/).
 
 ### Modelle & Provider
 
-Welche Anbieter und Modelle Personen mit dieser Rolle sehen, einschließlich der aus der Grundkonfiguration geerbten. Aufklappen zeigt die einzelnen Modelle; wer etwas wegnimmt, wird vorher gefragt. Alle Rollen auf einmal bearbeiten Sie unter [Provider und Modelle → Modellzugriff](/de/company-gpt/addons/companyadmin/modelle/).
+Welche Anbieter und Modelle Personen mit dieser Rolle sehen, einschließlich der aus der Grundkonfiguration geerbten. Aufklappen zeigt die einzelnen Modelle; wer etwas wegnimmt, wird vorher gefragt. Alle Rollen auf einmal bearbeitest du unter [Provider und Modelle → Modellzugriff](/de/company-gpt/addons/companyadmin/modelle/).
 
 ### Erweiterungen
 
@@ -108,37 +108,37 @@ Die Rechte dieser Rolle in den Erweiterungen, zum Beispiel **Übersetzen nutzen*
 
 - Rechte der Klasse **Admins automatisch** hat ADMIN immer.
 - Rechte der Klasse **Nur ausdrücklich** bekommt niemand automatisch. Vergeben können sie nur Administratoren mit der Rolle ADMIN; für alle anderen sind solche Rechte ausgeblendet, solange die Rolle sie nicht hat.
-- Ist ein Recht über **Für alle** freigegeben, steht das dabei. Das ändern Sie unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
+- Ist ein Recht über **Für alle** freigegeben, steht das dabei. Das änderst du unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 
 Alle Rechte mit Bedeutung beschreibt [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/).
 
 ### Mitglieder
 
-Hier weisen Sie die Rolle Personen zu. Das gilt nicht für Rollen, die Entra ID bei der Anmeldung setzt, siehe [Rollen aus Entra ID](#rollen-aus-entra-id).
+Hier weist du die Rolle Personen zu. Das gilt nicht für Rollen, die Entra ID bei der Anmeldung setzt, siehe [Rollen aus Entra ID](#rollen-aus-entra-id).
 
-1. Geben Sie im Abschnitt **Person hinzufügen** in das Feld **Person suchen (Name oder E-Mail)** mindestens zwei Zeichen ein.
-2. Klicken Sie in der Trefferliste auf den Eintrag „*Name* (*E-Mail*) hinzufügen“.
+1. Gib im Abschnitt **Person hinzufügen** in das Feld **Person suchen (Name oder E-Mail)** mindestens zwei Zeichen ein.
+2. Klicke in der Trefferliste auf den Eintrag „*Name* (*E-Mail*) hinzufügen“.
 
-Wer hier zugewiesen wird, verliert seine bisherige Rolle. Hat die Person schon eine andere Rolle als USER, fragt companyADMIN vorher **Bisherige Rolle ersetzen?** und nennt die bisherige und die neue Rolle; erst **Ersetzen** führt die Änderung aus. Entfernen Sie Personen aus der Rolle, bekommen sie die Rolle USER.
+Wer hier zugewiesen wird, verliert seine bisherige Rolle. Hat die Person schon eine andere Rolle als USER, fragt companyADMIN vorher **Bisherige Rolle ersetzen?** und nennt die bisherige und die neue Rolle; erst **Ersetzen** führt die Änderung aus. Entfernst du Personen aus der Rolle, bekommen sie die Rolle USER.
 
-Bei der Rolle USER selbst funktioniert das Hinzufügen nicht, und Entfernen wird nicht angeboten. Wer USER bekommen soll, den entfernen Sie aus seiner bisherigen Rolle.
+Bei der Rolle USER selbst funktioniert das Hinzufügen nicht, und Entfernen wird nicht angeboten. Wer USER bekommen soll, den entfernst du aus seiner bisherigen Rolle.
 
 :::caution
-Ist die automatische Rollenvergabe aus Entra ID aktiv, setzt CompanyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Zuweisungen hier gehen dann verloren.
+Ist die automatische Rollenvergabe aus Entra ID aktiv, setzt companyGPT die Rolle bei der nächsten Anmeldung wieder aus den Entra-Gruppen. Zuweisungen hier gehen dann verloren.
 :::
 
 #### Rollen aus Entra ID
 
-Entra ID setzt bei jeder Anmeldung die Rolle ADMIN (sofern Ihre Umgebung eine Admin-Gruppe nutzt, Herkunft **OPENID_ADMIN_ROLE**) und jede Rolle der Role-Sync-Reihenfolge. Für diese Rollen gilt:
+Entra ID setzt bei jeder Anmeldung die Rolle ADMIN (sofern deine Umgebung eine Admin-Gruppe nutzt, Herkunft **OPENID_ADMIN_ROLE**) und jede Rolle der Role-Sync-Reihenfolge. Für diese Rollen gilt:
 
-- Der Reiter **Mitglieder** hat kein **Person hinzufügen**. Er erklärt stattdessen, in welcher Entra-Gruppe Sie die Mitglieder pflegen. Die Fallback-Rolle und USER zählen nicht dazu. Bei einem anderen Identitätsanbieter als Entra ID steht dort dessen Name.
-- **Entfernen** funktioniert immer, damit Sie ADMIN sofort entziehen können. Die Rückfrage weist darauf hin: Ist die Person weiterhin in der Entra-Gruppe, bekommt sie die Rolle bei der nächsten Anmeldung zurück. Dauerhaft entziehen Sie die Rolle in Entra ID, indem Sie die Person aus der Gruppe nehmen.
+- Der Reiter **Mitglieder** hat kein **Person hinzufügen**. Er erklärt stattdessen, in welcher Entra-Gruppe du die Mitglieder pflegst. Die Fallback-Rolle und USER zählen nicht dazu. Bei einem anderen Identitätsanbieter als Entra ID steht dort dessen Name.
+- **Entfernen** funktioniert immer, damit du ADMIN sofort entziehen kannst. Die Rückfrage weist darauf hin: Ist die Person weiterhin in der Entra-Gruppe, bekommt sie die Rolle bei der nächsten Anmeldung zurück. Dauerhaft entziehst du die Rolle in Entra ID, indem du die Person aus der Gruppe nimmst.
 - Die Spalte **Herkunft** zeigt bei ADMIN und bei Role-Sync-Rollen mit Gruppen-Claim, ob die Person in einer der Entra-Gruppen steht (**Entra-Gruppe**) oder von Hand gesetzt wurde (**Manuell**). Eine manuelle Zuweisung entfernt die nächste Anmeldung bei ADMIN; bei einer Role-Sync-Rolle kann sie überschrieben werden. Der Stand ist der der letzten Anmeldung oder des letzten Entra-Gruppen-Syncs. Die Spalte fehlt, wenn companyADMIN nicht alle Gruppen kennt.
-- Konten, die sich nicht über OpenID anmelden, behalten ihre Rolle. Für sie weisen Sie die Rolle auf der Seite der Person zu.
+- Konten, die sich nicht über OpenID anmelden, behalten ihre Rolle. Für sie weist du die Rolle auf der Seite der Person zu.
 
 ### Rolle löschen
 
-**Rolle löschen** in der Gefahrenzone zeigt vorher, wie viele Personen die Rolle haben. Alle Mitglieder bekommen danach die Rolle USER. Mit der Rolle gelöscht werden ihre Einstellungen (auch Modell-Einschränkungen), ihre Freigaben und ihre Rechte in CompanyGPT und den Erweiterungen. Das lässt sich nicht rückgängig machen.
+**Rolle löschen** in der Gefahrenzone zeigt vorher, wie viele Personen die Rolle haben. Alle Mitglieder bekommen danach die Rolle USER. Mit der Rolle gelöscht werden ihre Einstellungen (auch Modell-Einschränkungen), ihre Freigaben und ihre Rechte in companyGPT und den Erweiterungen. Das lässt sich nicht rückgängig machen.
 
 ## Verwandte Seiten
 

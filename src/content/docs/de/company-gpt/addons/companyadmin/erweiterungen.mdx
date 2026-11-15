@@ -1,11 +1,11 @@
 ---
 title: Erweiterungen
-description: Die Rechte für companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN, companyVibes und Insights in companyADMIN – was jedes Recht erlaubt, wer es automatisch hat und wo Sie es vergeben.
+description: Die Rechte für companyFILES, companyRAG, companyTRANSLATE, companyTRANSCRIBE, companyM365, companyLEARN, companyVibes und Insights in companyADMIN – was jedes Recht erlaubt, wer es automatisch hat und wo du es vergibst.
 ---
 
-companyADMIN ist die zentrale Stelle für die Rechte in den Erweiterungen von CompanyGPT. Jede Erweiterung fragt bei companyADMIN nach, ob eine Person sie nutzen oder verwalten darf.
+companyADMIN ist die zentrale Stelle für die Rechte in den Erweiterungen von companyGPT. Jede Erweiterung fragt bei companyADMIN nach, ob eine Person sie nutzen oder verwalten darf.
 
-**Konfiguration** → **Erweiterungen** zeigt jede Erweiterung mit Status, Kachel und Rechten. Vergeben werden die Rechte an der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) oder [Gruppe](/de/company-gpt/addons/companyadmin/gruppen/) im Reiter **Erweiterungen**; hier geben Sie ein Recht mit dem Häkchen **Für alle** für alle Personen frei.
+**Konfiguration** → **Erweiterungen** zeigt jede Erweiterung mit Status, Kachel und Rechten. Vergeben werden die Rechte an der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) oder [Gruppe](/de/company-gpt/addons/companyadmin/gruppen/) im Reiter **Erweiterungen**; hier gibst du ein Recht mit dem Häkchen **Für alle** für alle Personen frei.
 
 ## Rechte vergeben
 
@@ -17,12 +17,12 @@ companyADMIN ist die zentrale Stelle für die Rechte in den Erweiterungen von Co
 
 Rechte der Klasse **Admins automatisch** hat die Rolle ADMIN immer; companyADMIN stellt das bei jedem Start sicher. Rechte der Klasse **Nur ausdrücklich** bekommt niemand automatisch, auch nicht Administratoren. Sie werden nie für alle freigegeben. Vergeben kann sie nur ein Administrator mit der Rolle ADMIN; für alle anderen Administratoren sind sie im Reiter **Erweiterungen** ausgeblendet. Das betrifft **Superadmin** von companyRAG, auch bei jeder weiteren companyRAG-Instanz, sowie **Apps öffentlich freigeben** und **Apps prüfen und freigeben** von companyVibes.
 
-Die Vergabe an Gruppen ist nicht in jeder Umgebung möglich. Solange CompanyGPT noch keine Mitglieder der Entra-Gruppen kennt oder Ihrem CompanyGPT eine dafür nötige Aktualisierung fehlt, zeigt der Reiter **Erweiterungen** einer Gruppe **Gruppen-Rechte gesperrt** mit dem Grund.
+Die Vergabe an Gruppen ist nicht in jeder Umgebung möglich. Solange companyGPT noch keine Mitglieder der Entra-Gruppen kennt oder deinem companyGPT eine dafür nötige Aktualisierung fehlt, zeigt der Reiter **Erweiterungen** einer Gruppe **Gruppen-Rechte gesperrt** mit dem Grund.
 
 Ein entzogenes Recht ist sofort weg; die Erweiterungen speichern die Antwort höchstens eine Minute zwischen.
 
 :::note[MCP-Tools im Chat]
-Die MCP-Server der Erweiterungen sind in der Regel für alle eingebunden. Ihre Tools können deshalb im Chat auch Personen ohne Nutzungsrecht angezeigt werden; beim Aufruf prüft die Erweiterung das Recht. Sprechen Sie innFactory an, wenn die Tools nur berechtigten Personen angezeigt werden sollen.
+Die MCP-Server der Erweiterungen sind in der Regel für alle eingebunden. deine Tools können deshalb im Chat auch Personen ohne Nutzungsrecht angezeigt werden; beim Aufruf prüft die Erweiterung das Recht. Sprich innFactory an, wenn die Tools nur berechtigten Personen angezeigt werden sollen.
 :::
 
 ## Die Rechte
@@ -40,7 +40,7 @@ Die MCP-Server der Erweiterungen sind in der Regel für alle eingebunden. Ihre T
 | | **Sammlungen und Quellen anlegen** | `ext:rag:create` | Neue Wissenssammlungen, Quellen und Verbindungen anlegen. Ohne das Recht nutzt die Person nur, was ihr zugewiesen ist. Siehe [Übernahme ausstehend](#übernahme-ausstehend) |
 | | **RAG-Einstellungen verwalten** | `ext:rag:admin` | Benutzer, API-Schlüssel und Anbieter-Einstellungen einschließlich der Zugangsdaten von Konnektoren. Wissensbasen pflegt man über die Eigentümerschaft der Collection, nicht über dieses Recht |
 | | **Superadmin** | `ext:rag:superadmin` | Sieht alle Collections der Umgebung, dazu Audit-Log, Mitarbeiteraktivität und Schreibzugriff auf alle Collections. Klasse **Nur ausdrücklich** |
-| [companyM365](/de/company-gpt/addons/companym365/) | **Microsoft 365 nutzen** | `ext:m365:use` | Office-Add-in (Word, Excel, PowerPoint, Outlook), die Microsoft-365-Werkzeuge im Chat und der Teams-Bot, sofern in Ihrer Umgebung verfügbar. Wer das Recht entzieht, nimmt alle drei weg |
+| [companyM365](/de/company-gpt/addons/companym365/) | **Microsoft 365 nutzen** | `ext:m365:use` | Office-Add-in (Word, Excel, PowerPoint, Outlook), die Microsoft-365-Werkzeuge im Chat und der Teams-Bot, sofern in deiner Umgebung verfügbar. Wer das Recht entzieht, nimmt alle drei weg |
 | | **Microsoft 365 verwalten** | `ext:m365:admin` | Admin-Bereich von companyM365: Teams-Bot einrichten, Agents für Teams freigeben, Einstellungen, Audit, Löschen der Bot-Daten einzelner Personen und Installationspakete des Add-ins. Nie für alle |
 | [companyLEARN](/de/company-gpt/addons/companylearn/) | **Kurse nutzen** | `ext:learn:use` | Kurse belegen |
 | | **Kurse verwalten** | `ext:learn:admin` | Kurse verwalten |
@@ -57,7 +57,7 @@ Alle anderen Rechte gehören zur Klasse **Admins automatisch**. Die Klasse **Nur
 companyVibes erscheint nur in Umgebungen, in denen es eingerichtet ist. Seine Rechte wirken erst, wenn die Karte von companyVibes **Aktiv** ist.
 
 :::note[Eigenes Branding festlegen]
-Das Recht wirkt, sobald Ihre Version von companyFILES es prüft. Bis dahin kann jede Person ihr Branding anpassen. Danach behalten es nur noch Administratoren und ausdrücklich berechtigte Rollen und Gruppen. Soll weiterhin jede Person ihr eigenes Branding festlegen dürfen, geben Sie das Recht vor dem Update von companyFILES mit **Für alle** frei.
+Das Recht wirkt, sobald deine Version von companyFILES es prüft. Bis dahin kann jede Person ihr Branding anpassen. Danach behalten es nur noch Administratoren und ausdrücklich berechtigte Rollen und Gruppen. Soll weiterhin jede Person ihr eigenes Branding festlegen dürfen, gib das Recht vor dem Update von companyFILES mit **Für alle** frei.
 :::
 
 ### Übernahme ausstehend
@@ -66,9 +66,9 @@ Früher durfte jede Person mit **Wissen nutzen** in companyRAG auch Sammlungen, 
 
 - Bis die Kopie fertig ist, steht am Recht **Übernahme ausstehend**, und die Schalter sind gesperrt. Bis dahin gilt in companyRAG: Wer nutzen darf, darf auch anlegen.
 - Hat noch niemand außer ADMIN **Wissen nutzen**, steht dort **Erst „Wissen nutzen“ vergeben**. Danach lässt sich das Recht ändern.
-- Die Kopie gibt jeder Rolle, die nutzen darf, auch das Anlegen, damit sich zunächst nichts ändert. Sollen Rollen nur nutzen und nichts anlegen (Betrachter), entziehen Sie ihnen **Sammlungen und Quellen anlegen** danach. Vergeben Sie das Recht an die Rollen, die es brauchen, nicht **Für alle**: **Für alle** gilt auch für Betrachter-Rollen.
+- Die Kopie gibt jeder Rolle, die nutzen darf, auch das Anlegen, damit sich zunächst nichts ändert. Sollen Rollen nur nutzen und nichts anlegen (Betrachter), entziehe ihnen **Sammlungen und Quellen anlegen** danach. Vergib das Recht an die Rollen, die es brauchen, nicht **Für alle**: **Für alle** gilt auch für Betrachter-Rollen.
 
-Gibt es in Ihrer Umgebung mehrere companyRAG-Instanzen, hat jede weitere Instanz eine eigene Karte, zum Beispiel „companyRAG (Instanz 2)“, mit eigenen Rechten.
+Gibt es in deiner Umgebung mehrere companyRAG-Instanzen, hat jede weitere Instanz eine eigene Karte, zum Beispiel „companyRAG (Instanz 2)“, mit eigenen Rechten.
 
 Die Administration von companyADMIN selbst ist kein vergebbares Recht. Sie hängt an der Rolle ADMIN und den [Admin-Quellen](/de/company-gpt/addons/companyadmin/status/); die Karte von companyADMIN zeigt sie nur an.
 
@@ -87,12 +87,12 @@ Bei n8n und dem AI Gateway gibt es nur den Schalter **In companyTOOLS anzeigen**
 
 Ein Recht für alle freizugeben ist nur Administratoren mit der Rolle ADMIN möglich. Nicht für alle freigeben lassen sich **Insights ansehen**, **Microsoft 365 verwalten** und Rechte der Klasse **Nur ausdrücklich**.
 
-Nehmen Sie **Für alle** zurück, fragt companyADMIN nach. Rollen und Gruppen, die das Recht schon vorher hatten, behalten es, ebenso ADMIN; alle anderen verlieren es.
+Nimmst du **Für alle** zurück, fragt companyADMIN nach. Rollen und Gruppen, die das Recht schon vorher hatten, behalten es, ebenso ADMIN; alle anderen verlieren es.
 
 ## Wenn Agents den Zugriff verlieren
 
-Schränken Sie ein Recht ein, das geteilte Agents brauchen, warnt companyADMIN mit **Zugriff wird eingeschränkt**: Die betroffenen Agents melden danach einen Fehler, bis Sie ihre Freigabe anpassen. Mit **Trotzdem einengen** setzen Sie die Änderung trotzdem um.
+Schränkst du ein Recht ein, das geteilte Agents brauchen, warnt companyADMIN mit **Zugriff wird eingeschränkt**: Die betroffenen Agents melden danach einen Fehler, bis du ihre Freigabe anpasst. Mit **Trotzdem einengen** setzt du die Änderung trotzdem um.
 
 ## Vergabe an Gruppen
 
-Ein Recht an einer Gruppe bekommt jedes Mitglied. Bei Rechten, deren technischer Name auf `:admin` oder `:superadmin` endet, und bei Rechten der Klasse **Nur ausdrücklich** weist companyADMIN darauf hin: Wer die Gruppe verwaltet, verwaltet damit auch das Recht. Das gilt ebenso für **Globale Vorlagen verwalten** und **Insights ansehen**. Nutzen Sie für solche Rechte nur Sicherheitsgruppen mit eingeschränkten Besitzern, keine Microsoft-365-Gruppen, denen Personen selbst beitreten können.
+Ein Recht an einer Gruppe bekommt jedes Mitglied. Bei Rechten, deren technischer Name auf `:admin` oder `:superadmin` endet, und bei Rechten der Klasse **Nur ausdrücklich** weist companyADMIN darauf hin: Wer die Gruppe verwaltet, verwaltet damit auch das Recht. Das gilt ebenso für **Globale Vorlagen verwalten** und **Insights ansehen**. Nutze für solche Rechte nur Sicherheitsgruppen mit eingeschränkten Besitzern, keine Microsoft-365-Gruppen, denen Personen selbst beitreten können.

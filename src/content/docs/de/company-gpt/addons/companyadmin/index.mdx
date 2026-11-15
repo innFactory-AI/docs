@@ -1,18 +1,18 @@
 ---
 title: companyADMIN
-description: Der Administrationsbereich von CompanyGPT – Nutzung und Kosten in Insights, Betriebszustand, Rollen und Gruppen, Sichtbarkeit von Inhalten, Modelle und die Rechte für alle Erweiterungen.
+description: Der Administrationsbereich von companyGPT – Nutzung und Kosten in Insights, Betriebszustand, Rollen und Gruppen, Sichtbarkeit von Inhalten, Modelle und die Rechte für alle Erweiterungen.
 ---
 
-companyADMIN ist der Administrationsbereich von CompanyGPT. Hier sehen Sie, wie CompanyGPT genutzt wird und was es kostet, prüfen den Betriebszustand, legen fest, wer was darf, steuern die Sichtbarkeit von Agents, Prompts, Skills und MCP-Tools und konfigurieren Modelle, Agents und Erweiterungen.
+companyADMIN ist der Administrationsbereich von companyGPT. Hier siehst du, wie companyGPT genutzt wird und was es kostet. Du prüfst den Betriebszustand, legst fest, wer was darf, steuerst die Sichtbarkeit von Agents, Prompts, Skills und MCP-Tools und konfigurierst Modelle, Agents und Erweiterungen.
 
 ## companyADMIN aufrufen
 
-Sie öffnen companyADMIN über **Alle Apps** in der Seitenleiste von CompanyGPT. Dort gibt es zwei Kacheln:
+Du öffnest companyADMIN über **Alle Apps** in der Seitenleiste von companyGPT. Dort gibt es zwei Kacheln:
 
 - **Admin** öffnet die Administration. Die Kachel sehen nur Administratoren.
 - **Insights** öffnet die Nutzungs- und Kostenübersicht. Die Kachel sehen alle, die Insights ansehen dürfen.
 
-Direkt erreichen Sie companyADMIN unter `https://FIRMA.company-gpt.com/companygpt/admin/`. Die Startseite ist **Insights**, sofern Sie Insights ansehen dürfen, sonst **Status**.
+Direkt erreichst du companyADMIN unter `https://FIRMA.company-gpt.com/companygpt/admin/`. Die Startseite ist **Insights**, sofern du Insights ansehen darfst, sonst **Status**.
 
 ## Die Oberfläche
 
@@ -25,40 +25,40 @@ Das Menü von companyADMIN hat fünf Bereiche. Die Unterseiten des gerade geöff
 | **Insights** | – | Nutzung, Kosten und Aktivität der Umgebung |
 | **Status** | – | Was gerade gilt und ob alles läuft, dazu die Protokolle |
 | **Zugriff** | **Nutzer**, **Rollen**, **Gruppen**, **Direkt-Grants** | Wer was darf und wer zu welcher Gruppe gehört |
-| **Inhalte** | **Agents**, **Prompts**, **Skills**, **MCP-Tools**, **Kategorien**, **Bibliotheks-Sync** | Sichtbarkeit und Herkunft der Inhalte in CompanyGPT |
-| **Konfiguration** | **Provider und Modelle**, **Modellzugriff**, **Labels**, **Agent-Fähigkeiten**, **Agent-Laufzeit**, **MCP-Domains**, **Cowork**, **Vorgabe & Anpassungen**, **Tools**, **Erweiterungen** | Wie CompanyGPT und die Erweiterungen eingestellt sind |
+| **Inhalte** | **Agents**, **Prompts**, **Skills**, **MCP-Tools**, **Kategorien**, **Bibliotheks-Sync** | Sichtbarkeit und Herkunft der Inhalte in companyGPT |
+| **Konfiguration** | **Provider und Modelle**, **Modellzugriff**, **Labels**, **Agent-Fähigkeiten**, **Agent-Laufzeit**, **MCP-Domains**, **Cowork**, **Vorgabe & Anpassungen**, **Tools**, **Erweiterungen** | Wie companyGPT und die Erweiterungen eingestellt sind |
 
 Ein Klick auf eine Zeile in einer Liste öffnet meist eine Detailseite mit Reitern. Löschen liegt dort in der **Gefahrenzone** und fragt immer nach.
 
-Im Kontomenü stellen Sie **Design** und **Sprache** (Deutsch oder English) ein. Es zeigt außerdem Ihre E-Mail-Adresse und darunter, ob Sie **Superadmin** oder **Admin (kein Superadmin)** sind.
+Im Kontomenü stellst du **Design** und **Sprache** (Deutsch oder English) ein. Es zeigt außerdem deine E-Mail-Adresse und darunter, ob du **Superadmin** oder **Admin (kein Superadmin)** bist.
 
 ## Administration und Insights
 
 companyADMIN kennt zwei Zugänge:
 
-- **Administration** öffnet alle Bereiche. Wer Administrator ist, ergibt sich aus den Admin-Quellen Ihrer Umgebung. Je nach Umgebung zählen dazu die Rolle ADMIN, eine Admin-Gruppe aus Microsoft Entra ID, fest hinterlegte Personen oder das Recht **Zugang zum Admin-Bereich** an einer Rolle. Welche Quellen gelten, zeigt [Status → Admin-Quellen](/de/company-gpt/addons/companyadmin/status/).
-- **Insights** öffnet nur den Bereich Insights. Dafür genügt das Recht **Insights ansehen**, das Sie an Rollen oder Gruppen vergeben. Die Rolle ADMIN hat es automatisch. Wer auf anderem Weg Administrator ist, braucht es zusätzlich an seiner Rolle oder Gruppe. Details stehen unter [Insights](/de/company-gpt/addons/companyadmin/insights/).
+- **Administration** öffnet alle Bereiche. Wer Administrator ist, ergibt sich aus den Admin-Quellen deiner Umgebung. Je nach Umgebung zählen dazu die Rolle ADMIN, eine Admin-Gruppe aus Microsoft Entra ID, fest hinterlegte Personen oder das Recht **Zugang zum Admin-Bereich** an einer Rolle. Welche Quellen gelten, zeigt [Status → Admin-Quellen](/de/company-gpt/addons/companyadmin/status/).
+- **Insights** öffnet nur den Bereich Insights. Dafür genügt das Recht **Insights ansehen**, das du an Rollen oder Gruppen vergibst. Die Rolle ADMIN hat es automatisch. Wer auf anderem Weg Administrator ist, braucht es zusätzlich an seiner Rolle oder Gruppe. Details stehen unter [Insights](/de/company-gpt/addons/companyadmin/insights/).
 
 ## Superadmin und Admin
 
-Das Kontomenü zeigt, welche Sicht Sie haben. Der Unterschied betrifft vor allem private Inhalte anderer Personen:
+Das Kontomenü zeigt, welche Sicht du hast. Der Unterschied betrifft vor allem private Inhalte anderer Personen:
 
 | | Superadmin | Admin (kein Superadmin) |
 |---|---|---|
-| **Zugriff → Nutzer** | Liste aller Personen, Rolle direkt an der Person ändern | Nicht sichtbar. Rollen weisen Sie unter Rolle → **Mitglieder** zu |
-| Listen unter **Inhalte** | Alle Agents, Prompts und Skills, auch private | Öffentliche, mit Ihnen geteilte und über die Bibliothek verwaltete Einträge |
+| **Zugriff → Nutzer** | Liste aller Personen, Rolle direkt an der Person ändern | Nicht sichtbar. Rollen weist du unter Rolle → **Mitglieder** zu |
+| Listen unter **Inhalte** | Alle Agents, Prompts und Skills, auch private | Öffentliche, mit dir geteilte und über die Bibliothek verwaltete Einträge |
 | Sichtbarkeit selbst angelegter Inhalte | Änderbar | Nur Anzeige |
 | Sichtbarkeit synchronisierter Inhalte | Änderbar | Änderbar |
 | Von Nutzern angelegte MCP-Server | Freigabe änderbar, Details auch privater Server sichtbar | Freigabe nur Anzeige, Details privater Server ausgeblendet |
 | **Insights → Agents** | Jeder Agent einzeln | Private Agents anderer Personen nur als Summe |
 
-**Superadmin** ist eine Sicht in companyADMIN, kein Recht, das Sie an eine Rolle oder Gruppe vergeben. Standardmäßig haben diese Sicht nur Mitarbeitende von innFactory (**innFactory-Superadmin**). Auf Wunsch schaltet innFactory sie für alle Administratoren Ihrer Umgebung ein. Das companyRAG-Recht **Superadmin** (siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/)) ist etwas anderes: Es betrifft nur companyRAG.
+**Superadmin** ist eine Sicht in companyADMIN, kein Recht, das du an eine Rolle oder Gruppe vergibst. Standardmäßig haben diese Sicht nur Mitarbeitende von innFactory (**innFactory-Superadmin**). Auf Wunsch schaltet innFactory sie für alle Administratoren deiner Umgebung ein. Das companyRAG-Recht **Superadmin** (siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/)) ist etwas anderes: Es betrifft nur companyRAG.
 
 ## Rollen, Gruppen und Sichtbarkeit
 
 Drei Begriffe tragen den ganzen Bereich:
 
-- **Rolle = was jemand darf.** Eine Rolle legt Funktionen (etwa Agents erstellen oder Websuche), Modelle, Agent-Fähigkeiten und Rechte in den Erweiterungen fest. Jede Person hat genau **eine** Rolle. Rechte mehrerer Rollen werden nicht zusammengezählt; braucht eine Personengruppe die Rechte zweier Rollen, legen Sie dafür eine eigene Rolle an.
+- **Rolle = was jemand darf.** Eine Rolle legt Funktionen (etwa Agents erstellen oder Websuche), Modelle, Agent-Fähigkeiten und Rechte in den Erweiterungen fest. Jede Person hat genau **eine** Rolle. Rechte mehrerer Rollen werden nicht zusammengezählt; braucht eine Personengruppe die Rechte zweier Rollen, lege dafür eine eigene Rolle an.
 - **Gruppe = mit wem etwas geteilt wird.** Gruppen bestimmen, wer Agents, Prompts, Skills und MCP-Server sieht. Zusätzlich können Gruppen Rechte in den Erweiterungen und eigene Einstellungen tragen. Eine Person kann in vielen Gruppen sein.
 - **Sichtbarkeit** legt je Inhalt fest, wer ihn sieht: nur der Besitzer, alle Nutzer der Umgebung oder bestimmte Gruppen.
 
@@ -68,7 +68,7 @@ Drei Begriffe tragen den ganzen Bereich:
 
 - [Insights](/de/company-gpt/addons/companyadmin/insights/) – Nutzung, Tokens, geschätzte Kosten und Aktivität
 - [Status](/de/company-gpt/addons/companyadmin/status/) – Erreichbarkeit, aktive Konfiguration, Rollen und Admin-Quellen
-- [Protokolle](/de/company-gpt/addons/companyadmin/audit-log/) – wer was in companyADMIN und in CompanyGPT geändert hat
+- [Protokolle](/de/company-gpt/addons/companyadmin/audit-log/) – wer was in companyADMIN und in companyGPT geändert hat
 
 **Zugriff**
 
@@ -89,7 +89,7 @@ Drei Begriffe tragen den ganzen Bereich:
 - [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/) – welche Agent-Fähigkeiten Personen je Rolle nutzen können
 - [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/) – Geplante Chats, Tool-Freigabe, Subagents und Einstellungen je Rolle oder Gruppe
 - [MCP-Domains](/de/company-gpt/addons/companyadmin/mcp-domains/) – erlaubte Domains für MCP-Server
-- **Cowork** – allgemeine Anweisungen für den Cowork-Agent der Desktop-App. Der Text gilt für alle Personen gleich und darf höchstens 20.000 Zeichen lang sein. Ansehen brauchen Sie das Recht **Konfiguration ansehen**, zum Speichern das Recht **Konfiguration bearbeiten**. Skills pflegen Sie hier nicht; die Desktop-App holt sie selbst aus der Skill-Bibliothek
+- **Cowork** – allgemeine Anweisungen für den Cowork-Agent der Desktop-App. Der Text gilt für alle Personen gleich und darf höchstens 20.000 Zeichen lang sein. Ansehen brauchst du das Recht **Konfiguration ansehen**, zum Speichern das Recht **Konfiguration bearbeiten**. Skills pflegst du hier nicht; die Desktop-App holt sie selbst aus der Skill-Bibliothek
 - [Vorgabe & Anpassungen](/de/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) – was das Deployment vorgibt und was angepasst wurde
 - [Tools](/de/company-gpt/addons/companyadmin/tools/) – eigene Kacheln unter Alle Apps
 - [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/) – Rechte für companyFILES, companyRAG, companyTRANSLATE und alle weiteren Erweiterungen
@@ -98,9 +98,9 @@ Drei Begriffe tragen den ganzen Bereich:
 
 | Begriff | Bedeutung |
 |---|---|
-| **LibreChat** | Die technische Basis von CompanyGPT. In manchen Meldungen von companyADMIN steht noch dieser Name, etwa **geändert in LibreChat** |
+| **LibreChat** | Die technische Basis von companyGPT. In manchen Meldungen von companyADMIN steht noch dieser Name, etwa **geändert in LibreChat** |
 | **Grundkonfiguration** (`librechat.yaml`) | Die Konfiguration, die innFactory mit jedem Update ausliefert. Anpassungen in companyADMIN liegen als eigene Schicht darüber, siehe [Vorgabe & Anpassungen](/de/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) |
 | **Recht** (Grant) | Eine einzelne Erlaubnis, etwa **Agenten verwalten** oder **Übersetzen nutzen**. Rechte hängen an Rollen, Gruppen, Personen oder gelten für alle. Die Oberfläche nennt sie teils **Grants**, siehe [Direkt-Grants](/de/company-gpt/addons/companyadmin/direkte-berechtigungen/) |
-| **Role-Sync** | Die automatische Rollenvergabe: CompanyGPT setzt die Rolle einer Person bei jeder Anmeldung aus Microsoft Entra ID, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) |
-| **Down-sync** und **Up-sync** | Richtungen des [Bibliotheks-Syncs](/de/company-gpt/addons/companyadmin/library-sync/): Down-sync holt Inhalte aus einem Git-Repository nach CompanyGPT, Up-sync schreibt Änderungen aus CompanyGPT zurück |
-| **Umgebung** (Tenant) | Ihre eigene CompanyGPT-Installation mit eigenen Daten, Rollen und Einstellungen |
+| **Role-Sync** | Die automatische Rollenvergabe: companyGPT setzt die Rolle einer Person bei jeder Anmeldung aus Microsoft Entra ID, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) |
+| **Down-sync** und **Up-sync** | Richtungen des [Bibliotheks-Syncs](/de/company-gpt/addons/companyadmin/library-sync/): Down-sync holt Inhalte aus einem Git-Repository nach companyGPT, Up-sync schreibt Änderungen aus companyGPT zurück |
+| **Umgebung** (Tenant) | Deine eigene companyGPT-Installation mit eigenen Daten, Rollen und Einstellungen |

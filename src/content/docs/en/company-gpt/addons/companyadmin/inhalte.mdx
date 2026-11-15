@@ -1,9 +1,9 @@
 ---
 title: Content and visibility
-description: See agents, prompts, skills and MCP tools in companyADMIN, check their origin and decide who sees them in CompanyGPT – one at a time or for several items at once.
+description: See agents, prompts, skills and MCP tools in companyADMIN, check their origin and decide who sees them in companyGPT – one at a time or for several items at once.
 ---
 
-Under **Content** you see which agents, prompts, skills and MCP servers exist in CompanyGPT, where they come from and who sees them. The sub-pages are **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories** and **Library Sync**. This page describes the first four; [Categories](/en/company-gpt/addons/companyadmin/kategorien/) and [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) have pages of their own.
+Under **Content** you see which agents, prompts, skills and MCP servers exist in companyGPT, where they come from and who sees them. The sub-pages are **Agents**, **Prompts**, **Skills**, **MCP tools**, **Categories** and **Library Sync**. This page describes the first four; [Categories](/en/company-gpt/addons/companyadmin/kategorien/) and [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) have pages of their own.
 
 ## What you see
 
@@ -28,13 +28,13 @@ Promoted agents carry the badge **Promoted**.
 
 The **Visibility** column shows **Owner only**, **Public** or **Groups (n)**. The **Origin** column shows:
 
-LibreChat is the technical basis of CompanyGPT. companyADMIN still uses the name in some messages, for example in the badge **modified in LibreChat**. It means: changed in CompanyGPT.
+LibreChat is the technical basis of companyGPT. companyADMIN still uses the name in some messages, for example in the badge **modified in LibreChat**. It means: changed in companyGPT.
 
 | Badge | Meaning |
 |---|---|
-| **manual** | Created in CompanyGPT |
+| **manual** | Created in companyGPT |
 | **synced** | Comes from a Git repository through [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
-| **modified in LibreChat** | Synced, but changed in CompanyGPT since. What the next sync does with it is described in [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
+| **modified in LibreChat** | Synced, but changed in companyGPT since. What the next sync does with it is described in [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/) |
 
 Filters:
 
@@ -46,7 +46,7 @@ The lists load more entries as you scroll. At most 1,000 entries are shown; sear
 
 ### Detail pages
 
-Clicking a row opens the detail page. You change an item's configuration in CompanyGPT; in companyADMIN you review it and control its visibility.
+Clicking a row opens the detail page. You change an item's configuration in companyGPT; in companyADMIN you review it and control its visibility.
 
 **Agent**
 
@@ -70,9 +70,9 @@ Clicking a row opens the detail page. You change an item's configuration in Comp
 
 ### Origin
 
-For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents, skills and prompts stay until they are written back, as long as their file is in the repository.
+For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in companyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents, skills and prompts stay until they are written back, as long as their file is in the repository.
 
-For content created in CompanyGPT it says **Created in companyGPT, not from the library.**
+For content created in companyGPT it says **Created in companyGPT, not from the library.**
 
 ## Setting visibility
 
@@ -87,22 +87,22 @@ Confirm with **Save**.
 :::caution[Saving replaces existing shares]
 Saving always stores the chosen level as a whole. It replaces the previous share with everyone and the previous group shares.
 
-- Switching to **Public** or **Owner only** removes every group share, including editor shares that people made in CompanyGPT. **Public** gives everyone read access only.
+- Switching to **Public** or **Owner only** removes every group share, including editor shares that people made in companyGPT. **Public** gives everyone read access only.
 - For synced content the owner is the system account. **Owner only** there means: no user sees the item.
 :::
 
-An Entra group can only be selected once CompanyGPT knows it, that is once a member has signed in or the group was created or synced. Shares made in companyADMIN give read access (**Viewer**). The levels **Editor** and **Owner** come from shares that people made in CompanyGPT themselves.
+An Entra group can only be selected once companyGPT knows it, that is once a member has signed in or the group was created or synced. Shares made in companyADMIN give read access (**Viewer**). The levels **Editor** and **Owner** come from shares that people made in companyGPT themselves.
 
 ### Who may change visibility
 
 | Content | May be changed by |
 |---|---|
 | Synced (from the library) | Any administrator with the matching manage right (**Manage agents**, **Manage prompts** or **Manage skills**) |
-| Created in CompanyGPT (**manual**) | Superadmins only. Other administrators see the visibility and a notice |
+| Created in companyGPT (**manual**) | Superadmins only. Other administrators see the visibility and a notice |
 
-The owner of an item can still change its sharing in CompanyGPT, as far as their role allows sharing. Whether a role may share or share publicly at all is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
+The owner of an item can still change its sharing in companyGPT, as far as their role allows sharing. Whether a role may share or share publicly at all is decided by the feature rights of the [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/).
 
-For content created in CompanyGPT, **Also individually shared with:** lists shares with individual people or roles. Superadmins take them back with **Revoke**.
+For content created in companyGPT, **Also individually shared with:** lists shares with individual people or roles. Superadmins take them back with **Revoke**.
 
 ### Synced content and the repo default
 
@@ -123,13 +123,13 @@ Every changed item is then **Individually managed (overrides the repo default)**
 ### Share an agent with yourself
 
 :::note[Superadmins only]
-Superadmins see other people's private agents in the list, but cannot simply use them in CompanyGPT. **Share with me** adds you as an **Owner** of the agent.
+Superadmins see other people's private agents in the list, but cannot simply use them in companyGPT. **Share with me** adds you as an **Owner** of the agent.
 :::
 
 - On an agent's detail page, **Share with me** is at the top right.
 - In the **Agents** list, select several rows and click **Share N agents with me** in the bar above the table.
 
-The agent then appears in your agent list in CompanyGPT. As an owner you can share it further there with the share dialog. An existing share with everyone stays as it is, and the previous owners keep their rights.
+The agent then appears in your agent list in companyGPT. As an owner you can share it further there with the share dialog. An existing share with everyone stays as it is, and the previous owners keep their rights.
 
 The button is hidden when you can already share the agent through a share of your own, for example because you own it. Every share is recorded in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/).
 
@@ -166,13 +166,13 @@ You **Undo** a run in the result and in the list **Recent changes**. This restor
 | **From the deployment** | Set up by innFactory in the base configuration; applies as set |
 | **From the admin configuration** | Set up through the configuration; applies to the scope shown (everyone, a role or a group) |
 | **From a plugin** | Provided by a plugin |
-| **Created by a user** | Created by a person in CompanyGPT |
+| **Created by a user** | Created by a person in companyGPT |
 | **agent-only** | Usable only through agents, not directly in the chat |
 
 The **Owner** and **Who sees it** columns show who owns a server and whom it applies to. For servers from the deployment, configuration or a plugin it says **as configured (not per group)**. Use **Search servers** and the **Origin** filter to narrow the list.
 
 An expanded row shows the **Connection**, the address or **Command**, whether **Sign-in via OAuth** is used, and which **User-provided values** the server expects.
 
-- Only servers **Created by a user** have sharing of their own. Only superadmins may change it; the owner can change it in CompanyGPT. Only superadmins see the details of private servers.
+- Only servers **Created by a user** have sharing of their own. Only superadmins may change it; the owner can change it in companyGPT. Only superadmins see the details of private servers.
 - The MCP servers of the extensions (such as companyFILES or companyRAG) are, as a rule, connected for everyone; their tools may therefore also be shown to people without the right to use them, see [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/).
 - Which domains MCP servers may use is set under [MCP domains](/en/company-gpt/addons/companyadmin/mcp-domains/).

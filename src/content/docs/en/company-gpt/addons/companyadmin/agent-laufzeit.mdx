@@ -3,11 +3,11 @@ title: Agent runtime
 description: Control scheduled chats, tool approval and the subagent cap in companyADMIN, and set memories, retention, agent builder and file uploads per role or group.
 ---
 
-**Configuration** → **Agent runtime** bundles settings for how agents run in CompanyGPT.
+**Configuration** → **Agent runtime** bundles settings for how agents run in companyGPT.
 
 Viewing needs the right **View configuration**; changing needs the right **Manage configuration**.
 
-You can take over each setting with **Manage via companyADMIN**. As long as it is not managed, the value from the base configuration applies; the page shows it (source **librechat.yaml**). Managed values (source **companyADMIN**) apply to everyone as soon as they reload CompanyGPT. Each section has its own save button.
+You can take over each setting with **Manage via companyADMIN**. As long as it is not managed, the value from the base configuration applies; the page shows it (source **librechat.yaml**). Managed values (source **companyADMIN**) apply to everyone as soon as they reload companyGPT. Each section has its own save button.
 
 ## Scheduled chats
 
@@ -33,7 +33,7 @@ How people use scheduled chats is shown in the preview [New chat interface](/en/
 
 ## Tool approval
 
-With tool approval, CompanyGPT asks the person before an agent runs a tool. Rules are evaluated in the order deny → ask → allow, and also cover MCP and subagent tools.
+With tool approval, companyGPT asks the person before an agent runs a tool. Rules are evaluated in the order deny → ask → allow, and also cover MCP and subagent tools.
 
 :::note[Not available in all environments]
 Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
@@ -53,7 +53,7 @@ The **Mode** decides how prompting works:
 | **dontAsk** | Deny anything not explicitly allowed, without asking. Only useful with explicit allow lists |
 | **bypass** | Approve automatically unless explicitly denied. Equivalent to the person's "stop asking me" toggle |
 
-CompanyGPT loads custom approval rules only from the base configuration; innFactory sets them up.
+companyGPT loads custom approval rules only from the base configuration; innFactory sets them up.
 
 ## Subagent cap
 

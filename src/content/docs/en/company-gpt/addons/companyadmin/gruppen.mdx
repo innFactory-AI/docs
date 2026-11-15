@@ -5,7 +5,7 @@ description: Create local groups, register and sync Entra groups, and manage a g
 
 Groups bundle people. Above all they decide **with whom something is shared**: who sees agents, prompts, skills and MCP servers depends on groups. Groups can also carry rights in the extensions and settings of their own.
 
-What someone may do in CompanyGPT (features) and which models they see depends on their [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/), not on groups.
+What someone may do in companyGPT (features) and which models they see depends on their [role](/en/company-gpt/addons/companyadmin/rollen-und-rechte/), not on groups.
 
 You find the groups under **Access** → **Groups**.
 
@@ -17,7 +17,7 @@ You find the groups under **Access** → **Groups**.
 | **Entra** | Groups from Microsoft Entra ID | Come from Entra, at sign-in or through the group sync; read-only in companyADMIN |
 | **OIDC** | Groups from the sign-in's group claim (OIDC) | Come at sign-in; read-only in companyADMIN |
 
-CompanyGPT only knows an Entra group once a member has signed in or you have registered it in companyADMIN.
+companyGPT only knows an Entra group once a member has signed in or you have registered it in companyADMIN.
 
 ## Group list
 
@@ -48,7 +48,7 @@ An Entra group that already exists cannot be created a second time. companyADMIN
 
 ## Syncing Entra groups
 
-Without a sync, CompanyGPT knows the memberships of an Entra group only from its members' sign-ins. The group sync reads the members of all Entra groups CompanyGPT knows from Microsoft Graph and enters them. It never creates new groups.
+Without a sync, companyGPT knows the memberships of an Entra group only from its members' sign-ins. The group sync reads the members of all Entra groups companyGPT knows from Microsoft Graph and enters them. It never creates new groups.
 
 In some environments the group sync only syncs groups that are used or already have members. A group counts as used if it carries a right, a setting, a share, an entry point, a custom tile or an admin source. Empty, unused groups stay empty; the sync shows their number as **skipped**. A group that becomes used is filled by the next run (daily at 03:00) or **Sync now**. A group that you newly create in companyADMIN is filled at once. Which variant applies to you is set by innFactory.
 
@@ -66,7 +66,7 @@ To sync by hand:
 2. Click **Preview**. The preview says how many groups were read and which people join (**joins**) or drop out (**drops out**).
 3. Click **Sync now**.
 
-companyADMIN and the extensions see the result at once, CompanyGPT within five minutes. Groups that Microsoft Graph does not allow to be read, or for which Graph returns no members, stay unchanged and are reported as not applied.
+companyADMIN and the extensions see the result at once, companyGPT within five minutes. Groups that Microsoft Graph does not allow to be read, or for which Graph returns no members, stay unchanged and are reported as not applied.
 
 If companyADMIN reports that Microsoft Graph refuses the app, the admin consent for `GroupMember.Read.All` is usually missing. If the sync is not set up, the action cannot be clicked and companyADMIN gives the reason **The Entra group sync is not set up.** In that case contact innFactory.
 
@@ -96,7 +96,7 @@ The rights all members of the group receive in the extensions, for example **Use
 Every member gets a right granted to a group, and whoever manages the group in Entra ID thereby manages the right. Grant managing rights only to security groups with restricted owners, not to Microsoft 365 groups that people can join themselves.
 :::
 
-In some environments granting to groups is locked, for example as long as CompanyGPT does not know any members of the Entra groups yet. The tab then shows **Group rights locked** with the reason.
+In some environments granting to groups is locked, for example as long as companyGPT does not know any members of the Entra groups yet. The tab then shows **Group rights locked** with the reason.
 
 ### Configuration
 
@@ -113,4 +113,4 @@ In the **Link with Entra group** section you can couple a local group to one or 
 
 ### Deleting a group
 
-**Delete group** removes the group with every right, share and setting attached to it. This cannot be undone. An Entra group stays in Entra ID; when a member signs in, CompanyGPT creates it again without rights.
+**Delete group** removes the group with every right, share and setting attached to it. This cannot be undone. An Entra group stays in Entra ID; when a member signs in, companyGPT creates it again without rights.

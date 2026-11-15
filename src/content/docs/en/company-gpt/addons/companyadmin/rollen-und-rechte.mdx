@@ -1,9 +1,9 @@
 ---
 title: Roles
-description: Create roles in companyADMIN, set their rights in CompanyGPT and the extensions, release models and assign people through the members tab.
+description: Create roles in companyADMIN, set their rights in companyGPT and the extensions, release models and assign people through the members tab.
 ---
 
-A role decides what someone may do: features in CompanyGPT, models, agent capabilities and rights in the extensions. Everyone has exactly **one** role. The ticks of that one role apply; nothing is added from other roles. Anyone not assigned to another role usually has the USER role (also shown as "User" in the interface). If automatic role assignment is active, your environment can set a different **Fallback role** for this.
+A role decides what someone may do: features in companyGPT, models, agent capabilities and rights in the extensions. Everyone has exactly **one** role. The ticks of that one role apply; nothing is added from other roles. Anyone not assigned to another role usually has the USER role (also shown as "User" in the interface). If automatic role assignment is active, your environment can set a different **Fallback role** for this.
 
 You find the roles under **Access** → **Roles**.
 
@@ -20,7 +20,7 @@ Above the list the page explains how Entra groups become roles. The **Role sync 
 
 Use **Search ID or description** and the **Origin** filter to narrow the list. Clicking a row opens the role.
 
-**System roles** (ADMIN and USER) ship with CompanyGPT and can be neither deleted nor renamed.
+**System roles** (ADMIN and USER) ship with companyGPT and can be neither deleted nor renamed.
 
 ## Creating a role
 
@@ -57,7 +57,7 @@ The detail page has the tabs **Overview**, **companyGPT**, **Models & providers*
 
 ### companyGPT
 
-Here you decide what people with this role may do in CompanyGPT. The ticks for features and admin rights apply at once; they need no save button. For each feature the page offers only the actions CompanyGPT supports.
+Here you decide what people with this role may do in companyGPT. The ticks for features and admin rights apply at once; they need no save button. For each feature the page offers only the actions companyGPT supports.
 
 | Feature | Actions |
 |---|---|
@@ -81,12 +81,12 @@ Here you decide what people with this role may do in CompanyGPT. The ticks for f
 | **People picker** | **View users**, **View groups**, **View roles** |
 
 - **Share publicly** decides whether members may release content to the whole environment, not just to individual groups.
-- **Chat projects**: everyone has projects; only whether they may share their projects with others or make them public is controlled. The row only appears if your CompanyGPT knows the function.
+- **Chat projects**: everyone has projects; only whether they may share their projects with others or make them public is controlled. The row only appears if your companyGPT knows the function.
 - **Remote agents** allows calling agents from outside through the API.
 - **Configure OBO** allows setting up on-behalf-of access for MCP servers, where a tool accesses a third-party system in the name of the signed-in person. Grant this right deliberately.
 - **Scheduled chats** are chats with an agent that run at set times. Whether the feature is switched on at all is controlled under [Agent runtime](/en/company-gpt/addons/companyadmin/agent-laufzeit/).
 
-Some ticks are locked and carry a note. These values come from the base configuration or are reset by CompanyGPT at every restart. This mostly concerns the USER and ADMIN roles. The note names the way out, such as a custom role or switching memories off per role or group. innFactory makes changes to the base configuration.
+Some ticks are locked and carry a note. These values come from the base configuration or are reset by companyGPT at every restart. This mostly concerns the USER and ADMIN roles. The note names the way out, such as a custom role or switching memories off per role or group. innFactory makes changes to the base configuration.
 
 #### Admin rights in LibreChat
 
@@ -124,7 +124,7 @@ Whoever is assigned here loses their previous role. If the person already has a 
 On the USER role itself adding does not work, and removing is not offered. To give someone USER, remove them from their current role.
 
 :::caution
-If automatic role assignment from Entra ID is active, CompanyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
+If automatic role assignment from Entra ID is active, companyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
 :::
 
 #### Roles from Entra ID
@@ -138,7 +138,7 @@ At every sign-in Entra ID sets the role ADMIN (if your environment uses an admin
 
 ### Deleting a role
 
-**Delete role** in the danger zone first shows how many people hold the role. All members get the USER role afterwards. Deleted with the role are its settings (including model limits), its shares and its rights in CompanyGPT and the extensions. This cannot be undone.
+**Delete role** in the danger zone first shows how many people hold the role. All members get the USER role afterwards. Deleted with the role are its settings (including model limits), its shares and its rights in companyGPT and the extensions. This cannot be undone.
 
 ## Related pages
 

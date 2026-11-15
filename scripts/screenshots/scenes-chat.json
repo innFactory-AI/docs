@@ -1,0 +1,850 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "chat-uebersicht",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Gut vorbereiten und moderieren"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Einstellungen\"]"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/de/company-gpt/chat.png"
+    },
+    {
+      "id": "chat-eingabe",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Willkommensbildschirm eines neuen Chats mit leerer Eingabeleiste; Wartezeit, bis die Begrüßung fertig eingeblendet ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Einstellungen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 4000
+        }
+      ],
+      "clip": {
+        "x": 437,
+        "y": 262,
+        "width": 918,
+        "height": 240
+      },
+      "output": "src/content/docs/de/company-gpt/chat-input.png"
+    },
+    {
+      "id": "chat-kontextanzeige",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Aufschlüsselung der Kontextanzeige aufgeklappt; die Nachrichten hinter dem Fenster sind nur im Bild ausgeblendet.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "role=button[name=/^Kontextfenster/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/^Kontextfenster/]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Kontextnutzung\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog[name=\"Kontextnutzung\"] >> role=button >> nth=0"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Kontextnutzung\"] >> role=heading[name=\"Last turn\"]"
+        }
+      ],
+      "clip": {
+        "x": 1052,
+        "y": 288,
+        "width": 340,
+        "height": 590
+      },
+      "css": "main [role=group] { visibility: hidden !important; }",
+      "output": "src/content/docs/de/company-gpt/kontextfenster.png"
+    },
+    {
+      "id": "chat-nachrichtenoptionen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Letzte Antwort mit der Leiste der Nachrichtenoptionen.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Gut vorbereiten und moderieren"
+        }
+      ],
+      "selector": "main >> role=group >> nth=-1",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/chat-quick-actions.png"
+    },
+    {
+      "id": "chat-optionen",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Menü „Chat options“ nur geöffnet; die Nachrichten hinter dem Menü sind nur im Bild ausgeblendet.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Chat options\"]"
+        }
+      ],
+      "clip": {
+        "x": 1215,
+        "y": 0,
+        "width": 225,
+        "height": 383
+      },
+      "css": "main [role=group] { visibility: hidden !important; }",
+      "output": "src/content/docs/de/company-gpt/share-and-export.png"
+    },
+    {
+      "id": "chat-export",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Exportdialog nur geöffnet, nichts exportiert.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Exportieren\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "press",
+          "selector": "role=dialog >> role=textbox",
+          "key": "End"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 8,
+      "output": "src/content/docs/de/company-gpt/export-chat.png"
+    },
+    {
+      "id": "ui-uebersicht",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Neuer Chat mit Seitenleiste und Chatverlauf; Wartezeit, bis die Begrüßung fertig eingeblendet ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Einstellungen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 4000
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/ui.png"
+    },
+    {
+      "id": "ui-modellauswahl",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Modellauswahl geöffnet, Anbieter OpenAI aufgeklappt (nichts gewählt).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Ein KI-Modell auswählen\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "ms": 4000
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Ein KI-Modell auswählen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=option[name=\"OpenAI\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=GPT 5.6 Terra"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 630,
+        "height": 370
+      },
+      "output": "src/content/docs/de/company-gpt/model-selection.png"
+    },
+    {
+      "id": "ui-eingabeleiste",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eingabeleiste mit eingetipptem Prompt und Chip der Websuche (nur im Browser, nicht gesendet).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog[name=\"Attach and tools\"] >> role=button[name=\"Web-Suche\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listitem[name=\"Web-Suche\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=textbox[name=\"Nachrichteneingabe\"]",
+          "value": "Welche Vorteile bieten Videokonferenzen?"
+        }
+      ],
+      "clip": {
+        "x": 437,
+        "y": 358,
+        "width": 918,
+        "height": 138
+      },
+      "output": "src/content/docs/de/company-gpt/chat-input-neu.png"
+    },
+    {
+      "id": "ui-palette",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Menü „Attach and tools“ der Eingabeleiste.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 490
+      },
+      "output": "src/content/docs/de/company-gpt/ui-extend.png"
+    },
+    {
+      "id": "ui-seitenleiste",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Symbolleiste der Seitenleiste (ein Modell ist gewählt, daher mit KI-Einstellungen).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Einstellungen\"]"
+        }
+      ],
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 53,
+        "height": 548
+      },
+      "output": "src/content/docs/de/company-gpt/ui-sidebar.png"
+    },
+    {
+      "id": "ui-chatverlauf",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Bereich Chatverlauf mit Suchfeld, Projekten und Chats; zeigt die aktuellen Chats des Demo-Kontos.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 413
+      },
+      "output": "src/content/docs/de/company-gpt/pinned-chat.png"
+    },
+    {
+      "id": "ui-tastenkuerzel",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Dialog Tastenkürzel über Kontomenü > Hilfe.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Hilfe\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Tastenkürzel\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 0,
+      "output": "src/content/docs/de/company-gpt/shortcuts.png"
+    },
+    {
+      "id": "lesezeichen-menue",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Lesezeichen-Menü im Kopfbereich geöffnet.",
+      "path": "/c/f0908945-75bd-5c7f-8c13-eb5b4eec4124",
+      "waitFor": "main >> role=button[name=/^Lesezeichen/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main >> role=button[name=/^Lesezeichen/]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitemcheckbox[name=\"Meetings\"]"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 420,
+        "height": 152
+      },
+      "output": "src/content/docs/de/company-gpt/bookmark.png"
+    },
+    {
+      "id": "einstellungen-allgemein",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Einstellungen, Bereich Allgemein (Ausschnitt mit der Darstellung).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Kontoeinstellungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Einstellungen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=tabpanel"
+        }
+      ],
+      "clip": {
+        "x": 270,
+        "y": 68,
+        "width": 900,
+        "height": 547
+      },
+      "output": "src/content/docs/de/company-gpt/allgemein.png"
+    },
+    {
+      "id": "ki-einstellungen-panel",
+      "lang": "de",
+      "baseUrl": "demo",
+      "note": "Panel KI-Einstellungen eines Modells; höheres Fenster, damit das ganze Panel sichtbar ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"KI-Einstellungen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Voreinstellung speichern\"]"
+        }
+      ],
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 1172
+      },
+      "output": "src/content/docs/de/company-gpt/ai-settings.png"
+    },
+    {
+      "id": "chat-uebersicht",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Communicate effectively"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Settings\"]"
+        }
+      ],
+      "settleMs": 1000,
+      "output": "src/content/docs/en/company-gpt/chat-en.png"
+    },
+    {
+      "id": "chat-eingabe",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Willkommensbildschirm eines neuen Chats mit leerer Eingabeleiste; Wartezeit, bis die Begrüßung fertig eingeblendet ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Settings\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 4000
+        }
+      ],
+      "clip": {
+        "x": 437,
+        "y": 262,
+        "width": 918,
+        "height": 240
+      },
+      "output": "src/content/docs/en/company-gpt/chat-input-en.png"
+    },
+    {
+      "id": "chat-kontextanzeige",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Aufschlüsselung der Kontextanzeige aufgeklappt; die Nachrichten hinter dem Fenster sind nur im Bild ausgeblendet.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "role=button[name=/^Context window/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/^Context window/]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Context usage\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog[name=\"Context usage\"] >> role=button >> nth=0"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Context usage\"] >> role=heading[name=\"Last turn\"]"
+        }
+      ],
+      "clip": {
+        "x": 1052,
+        "y": 288,
+        "width": 340,
+        "height": 590
+      },
+      "css": "main [role=group] { visibility: hidden !important; }",
+      "output": "src/content/docs/en/company-gpt/kontextfenster-en.png"
+    },
+    {
+      "id": "chat-nachrichtenoptionen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Letzte Antwort mit der Leiste der Nachrichtenoptionen.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main >> text=Communicate effectively"
+        }
+      ],
+      "selector": "main >> role=group >> nth=-1",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/chat-quick-actions.png"
+    },
+    {
+      "id": "chat-optionen",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Menü „Chat options“ nur geöffnet; die Nachrichten hinter dem Menü sind nur im Bild ausgeblendet.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menu[name=\"Chat options\"]"
+        }
+      ],
+      "clip": {
+        "x": 1215,
+        "y": 0,
+        "width": 225,
+        "height": 383
+      },
+      "css": "main [role=group] { visibility: hidden !important; }",
+      "output": "src/content/docs/en/company-gpt/share-and-export-en.png"
+    },
+    {
+      "id": "chat-export",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Exportdialog nur geöffnet, nichts exportiert.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "role=button[name=\"Chat options\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Chat options\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Export\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        },
+        {
+          "action": "press",
+          "selector": "role=dialog >> role=textbox",
+          "key": "End"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 8,
+      "output": "src/content/docs/en/company-gpt/export-chat-en.png"
+    },
+    {
+      "id": "ui-uebersicht",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Neuer Chat mit Seitenleiste und Chatverlauf; Wartezeit, bis die Begrüßung fertig eingeblendet ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Settings\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 4000
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/ui-en.png"
+    },
+    {
+      "id": "ui-modellauswahl",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Modellauswahl geöffnet, Anbieter OpenAI aufgeklappt (nichts gewählt).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Select a model\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "ms": 4000
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Select a model\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=option[name=\"OpenAI\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=GPT 5.6 Terra"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 630,
+        "height": 370
+      },
+      "output": "src/content/docs/en/company-gpt/model-selection-en.png"
+    },
+    {
+      "id": "ui-eingabeleiste",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eingabeleiste mit eingetipptem Prompt und Chip der Websuche (nur im Browser, nicht gesendet).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=dialog[name=\"Attach and tools\"] >> role=button[name=\"Web Search\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listitem[name=\"Web Search\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "role=textbox[name=\"Message input\"]",
+          "value": "What are the benefits of video conferencing?"
+        }
+      ],
+      "clip": {
+        "x": 437,
+        "y": 358,
+        "width": 918,
+        "height": 138
+      },
+      "output": "src/content/docs/en/company-gpt/chat-input-neu-en.png"
+    },
+    {
+      "id": "ui-palette",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Menü „Attach and tools“ der Eingabeleiste.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Attach and tools\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog[name=\"Attach and tools\"]"
+        }
+      ],
+      "clip": {
+        "x": 446,
+        "y": 362,
+        "width": 900,
+        "height": 490
+      },
+      "output": "src/content/docs/en/company-gpt/ui-extend-en.png"
+    },
+    {
+      "id": "ui-seitenleiste",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Symbolleiste der Seitenleiste (ein Modell ist gewählt, daher mit KI-Einstellungen).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"MCP Settings\"]"
+        }
+      ],
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 53,
+        "height": 548
+      },
+      "output": "src/content/docs/en/company-gpt/ui-sidebar-en.png"
+    },
+    {
+      "id": "ui-chatverlauf",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Bereich Chatverlauf mit Suchfeld, Projekten und Chats; zeigt die aktuellen Chats des Demo-Kontos.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 413
+      },
+      "output": "src/content/docs/en/company-gpt/pinned-chat-en.png"
+    },
+    {
+      "id": "ui-tastenkuerzel",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Dialog Tastenkürzel über Kontomenü > Hilfe.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Account Settings\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Help\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Keyboard Shortcuts\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=dialog"
+        }
+      ],
+      "selector": "role=dialog",
+      "padding": 0,
+      "output": "src/content/docs/en/company-gpt/shortcuts-en.png"
+    },
+    {
+      "id": "lesezeichen-menue",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Eigener neutraler Demo-Chat „Vorteile Von Videokonferenzen“ (DE) bzw. „Benefits of Video Conferencing“ (EN) mit zwei Fragen und Antworten und dem Lesezeichen „Meetings“. Lesezeichen-Menü im Kopfbereich geöffnet.",
+      "path": "/c/cfd27696-e35f-52d7-aa73-d6436b5fd9da",
+      "waitFor": "main >> role=button[name=/Bookmark/]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "main >> role=button[name=/Bookmark/]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitemcheckbox[name=\"Meetings\"]"
+        }
+      ],
+      "clip": {
+        "x": 370,
+        "y": 0,
+        "width": 420,
+        "height": 152
+      },
+      "output": "src/content/docs/en/company-gpt/bookmark-en.png"
+    },
+    {
+      "id": "einstellungen-allgemein",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Einstellungen, Bereich Allgemein (Ausschnitt mit der Darstellung).",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Account Settings\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Settings\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=tabpanel"
+        }
+      ],
+      "clip": {
+        "x": 270,
+        "y": 68,
+        "width": 900,
+        "height": 547
+      },
+      "output": "src/content/docs/en/company-gpt/general-en.png"
+    },
+    {
+      "id": "ki-einstellungen-panel",
+      "lang": "en",
+      "baseUrl": "demo",
+      "note": "Panel KI-Einstellungen eines Modells; höheres Fenster, damit das ganze Panel sichtbar ist.",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Attach and tools\"]",
+      "viewport": {
+        "width": 1440,
+        "height": 1200
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Parameters\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=button[name=\"Save As Preset\"]"
+        }
+      ],
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 1115
+      },
+      "output": "src/content/docs/en/company-gpt/ai-settings-en.png"
+    }
+  ]
+}

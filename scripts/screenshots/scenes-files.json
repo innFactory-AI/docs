@@ -1,0 +1,498 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false,
+    "baseUrl": "demo",
+    "settleMs": 1000
+  },
+  "scenes": [
+    {
+      "id": "files-seitenleiste-kontomenue",
+      "lang": "de",
+      "note": "Seitenleiste mit geöffnetem Kontomenü. Die E-Mail-Adresse im Menü wird geschwärzt.",
+      "path": "/companygpt/files",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "waitFor": "aside button[aria-haspopup=menu]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "aside button[aria-haspopup=menu]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=menu]"
+        }
+      ],
+      "mask": [
+        "[role=menu] > div[dir=auto]"
+      ],
+      "maskColor": "#d4d4d4",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 256,
+        "height": 700
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-seitenleiste-kontomenue.png"
+    },
+    {
+      "id": "files-seitenleiste-kontomenue",
+      "lang": "en",
+      "path": "/companygpt/files",
+      "viewport": {
+        "width": 1440,
+        "height": 700
+      },
+      "waitFor": "aside button[aria-haspopup=menu]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "aside button[aria-haspopup=menu]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=menu]"
+        }
+      ],
+      "mask": [
+        "[role=menu] > div[dir=auto]"
+      ],
+      "maskColor": "#d4d4d4",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 256,
+        "height": 700
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-seitenleiste-kontomenue.png"
+    },
+    {
+      "id": "files-dokumente",
+      "lang": "de",
+      "note": "Demo-Inhalte: vier in companyFILES hochgeladene Muster-GmbH-Dateien und ein im Chat angehängtes PDF (Marke CompanyGPT).",
+      "path": "/companygpt/files",
+      "viewport": {
+        "width": 1440,
+        "height": 620
+      },
+      "waitFor": "text=Projektbericht_Muster_GmbH.pdf",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main table img"
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-dokumente.png"
+    },
+    {
+      "id": "files-dokumente",
+      "lang": "en",
+      "path": "/companygpt/files",
+      "viewport": {
+        "width": 1440,
+        "height": 620
+      },
+      "waitFor": "text=Projektbericht_Muster_GmbH.pdf",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main table img"
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-dokumente.png"
+    },
+    {
+      "id": "files-dateien-hochladen",
+      "lang": "de",
+      "path": "/companygpt/files",
+      "waitFor": "text=Projektbericht_Muster_GmbH.pdf",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Dateien hochladen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog]"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-dateien-hochladen.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-dateien-hochladen",
+      "lang": "en",
+      "path": "/companygpt/files",
+      "waitFor": "text=Projektbericht_Muster_GmbH.pdf",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Upload Files\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog]"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-dateien-hochladen.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-email-vorschau",
+      "lang": "de",
+      "note": "Vorschau der Demo-E-Mail (.eml mit CSV-Anhang) mit geöffneter Teil-Auswahl. Braucht die Docs-Erweiterung.",
+      "path": "/companygpt/files",
+      "waitFor": "text=Anfrage_Workshop_Muster_GmbH.eml",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=Anfrage_Workshop_Muster_GmbH.eml"
+        },
+        {
+          "action": "wait",
+          "selector": "#docs-preview-part"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] dl"
+        },
+        {
+          "action": "click",
+          "selector": "#docs-preview-part"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=listbox]"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-email-vorschau.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-email-vorschau",
+      "lang": "en",
+      "path": "/companygpt/files",
+      "waitFor": "text=Anfrage_Workshop_Muster_GmbH.eml",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=Anfrage_Workshop_Muster_GmbH.eml"
+        },
+        {
+          "action": "wait",
+          "selector": "#docs-preview-part"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] dl"
+        },
+        {
+          "action": "click",
+          "selector": "#docs-preview-part"
+        },
+        {
+          "action": "wait",
+          "selector": "[role=listbox]"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-email-vorschau.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-vorlagen-liste",
+      "lang": "de",
+      "note": "Drei globale Vorlagen des Demo-Tenants und die eigene Demo-Vorlage „Musterbrief“ (Bereich Benutzer).",
+      "path": "/companygpt/files/templates",
+      "viewport": {
+        "width": 1440,
+        "height": 600
+      },
+      "waitFor": "text=\"Musterbrief\"",
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-vorlagen-liste.png"
+    },
+    {
+      "id": "files-vorlagen-liste",
+      "lang": "en",
+      "path": "/companygpt/files/templates",
+      "viewport": {
+        "width": 1440,
+        "height": 600
+      },
+      "waitFor": "text=\"Musterbrief\"",
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-vorlagen-liste.png"
+    },
+    {
+      "id": "files-vorlage-details",
+      "lang": "de",
+      "path": "/companygpt/files/templates",
+      "waitFor": "text=\"Musterbrief\"",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=\"Musterbrief\""
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] code"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-vorlage-details.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-vorlage-details",
+      "lang": "en",
+      "path": "/companygpt/files/templates",
+      "waitFor": "text=\"Musterbrief\"",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=\"Musterbrief\""
+        },
+        {
+          "action": "wait",
+          "selector": "[role=dialog] code"
+        }
+      ],
+      "selector": "[role=dialog]",
+      "padding": 12,
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-vorlage-details.png",
+      "css": "main, aside { visibility: hidden !important; }"
+    },
+    {
+      "id": "files-vorlage-hochladen",
+      "lang": "de",
+      "note": "Ansicht ohne Administratorrechte (ohne Feld „Bereich“).",
+      "path": "/companygpt/files/templates/upload",
+      "waitFor": "#template-upload-name",
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/companyfiles-vorlage-hochladen-de.png"
+    },
+    {
+      "id": "files-vorlage-hochladen",
+      "lang": "en",
+      "path": "/companygpt/files/templates/upload",
+      "waitFor": "#template-upload-name",
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/companyfiles-vorlage-hochladen-en.png"
+    },
+    {
+      "id": "files-visualisierungen",
+      "lang": "de",
+      "note": "Das Testkonto hat keine Visualisierungen; die Liste kommt aus einer Fixture mit erfundenen Titeln.",
+      "path": "/companygpt/files/charts",
+      "viewport": {
+        "width": 1440,
+        "height": 790
+      },
+      "routes": [
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/charts(\\?.*)?$/",
+          "method": "GET",
+          "fixture": "files-visualisierungen-de.json"
+        }
+      ],
+      "waitFor": "text=Umsatz nach Quartal 2026",
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/companyfiles-visualisierungen-de.png"
+    },
+    {
+      "id": "files-visualisierungen",
+      "lang": "en",
+      "path": "/companygpt/files/charts",
+      "viewport": {
+        "width": 1440,
+        "height": 790
+      },
+      "routes": [
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/charts(\\?.*)?$/",
+          "method": "GET",
+          "fixture": "files-visualisierungen-en.json"
+        }
+      ],
+      "waitFor": "text=Revenue by quarter 2026",
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/companyfiles-visualisierungen-en.png"
+    },
+    {
+      "id": "files-einstellungen-organisation",
+      "lang": "de",
+      "note": "Tab Organisation in der Ansicht ohne Administratorrechte (nur lesen).",
+      "path": "/companygpt/files/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 680
+      },
+      "waitFor": "role=tab[name=\"Organisation\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=tab[name=\"Organisation\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=Diese Einstellungen werden von deinem Administrator verwaltet."
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-einstellungen-organisation.png"
+    },
+    {
+      "id": "files-einstellungen-organisation",
+      "lang": "en",
+      "path": "/companygpt/files/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 680
+      },
+      "waitFor": "role=tab[name=\"Organization\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=tab[name=\"Organization\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=These settings are managed by your administrator."
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-einstellungen-organisation.png"
+    },
+    {
+      "id": "files-einstellungen-farben",
+      "lang": "de",
+      "note": "Zwei persönliche Farben per Mock (nur im Browser), damit die Marke „Benutzer“ und die Farbfelder zu sehen sind.",
+      "path": "/companygpt/files/settings",
+      "routes": [
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/settings\\/user$/",
+          "method": "GET",
+          "json": {
+            "primaryColor": "#1f4e79",
+            "secondaryColor": "#2e86c1",
+            "updatedAt": "2026-10-16T08:00:00.000Z"
+          }
+        },
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/settings$/",
+          "method": "GET",
+          "json": {
+            "primaryColor": "#1f4e79",
+            "secondaryColor": "#2e86c1",
+            "sources": {
+              "primaryColor": "user",
+              "secondaryColor": "user"
+            },
+            "hasLogo": false,
+            "isAdmin": false,
+            "canManageTemplates": false
+          }
+        }
+      ],
+      "waitFor": "text=Farbüberschreibungen",
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-einstellungen-farben.png"
+    },
+    {
+      "id": "files-einstellungen-farben",
+      "lang": "en",
+      "path": "/companygpt/files/settings",
+      "routes": [
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/settings\\/user$/",
+          "method": "GET",
+          "json": {
+            "primaryColor": "#1f4e79",
+            "secondaryColor": "#2e86c1",
+            "updatedAt": "2026-10-16T08:00:00.000Z"
+          }
+        },
+        {
+          "urlPattern": "/\\/companygpt\\/files\\/api\\/settings$/",
+          "method": "GET",
+          "json": {
+            "primaryColor": "#1f4e79",
+            "secondaryColor": "#2e86c1",
+            "sources": {
+              "primaryColor": "user",
+              "secondaryColor": "user"
+            },
+            "hasLogo": false,
+            "isAdmin": false,
+            "canManageTemplates": false
+          }
+        }
+      ],
+      "waitFor": "text=Color Overrides",
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-einstellungen-farben.png"
+    },
+    {
+      "id": "files-einstellungen-typografie",
+      "lang": "de",
+      "path": "/companygpt/files/settings",
+      "waitFor": "[data-slot=card-title]:text-is(\"Typografie\")",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Typografie\"))",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-einstellungen-typografie.png",
+      "viewport": {
+        "width": 1440,
+        "height": 2600
+      }
+    },
+    {
+      "id": "files-einstellungen-typografie",
+      "lang": "en",
+      "path": "/companygpt/files/settings",
+      "waitFor": "[data-slot=card-title]:text-is(\"Typography\")",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Typography\"))",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-einstellungen-typografie.png",
+      "viewport": {
+        "width": 1440,
+        "height": 2600
+      }
+    },
+    {
+      "id": "files-dokument-standards",
+      "lang": "de",
+      "path": "/companygpt/files/settings",
+      "waitFor": "[data-slot=card-title]:text-is(\"Dokument-Standards\")",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Dokument-Standards\"))",
+      "padding": 16,
+      "output": "src/content/docs/de/company-gpt/addons/companyfiles/files-dokument-standards.png",
+      "viewport": {
+        "width": 1440,
+        "height": 2600
+      }
+    },
+    {
+      "id": "files-dokument-standards",
+      "lang": "en",
+      "path": "/companygpt/files/settings",
+      "waitFor": "[data-slot=card-title]:text-is(\"Document Defaults\")",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Document Defaults\"))",
+      "padding": 16,
+      "output": "src/content/docs/en/company-gpt/addons/companyfiles/files-dokument-standards.png",
+      "viewport": {
+        "width": 1440,
+        "height": 2600
+      }
+    }
+  ]
+}

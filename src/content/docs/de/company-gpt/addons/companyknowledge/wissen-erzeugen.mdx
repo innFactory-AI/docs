@@ -29,7 +29,7 @@ Nach der Bestätigung arbeitet der Agent den Plan ab und macht die Schritte im C
 2. Der Index wird aktualisiert.
 3. Das Änderungsprotokoll wird ergänzt.
 4. Das Bundle wird validiert.
-5. Die Änderungen werden zurückgeschrieben.
+5. Die Änderungen werden gespeichert: bei SharePoint und im Commit-Modus *Direkter Commit* direkt beim Schreiben, im Modus *Pull Request* als Pull Request zur Prüfung.
 
 Bei einem Bundle im Commit-Modus *Pull Request* endet der Ablauf mit einem Änderungsvorschlag zur Prüfung statt mit einem direkten Commit. Damit lässt sich der Wissensbestand genauso behandeln wie Quellcode: Der Agent schlägt vor, ein Mensch gibt frei. Siehe [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/).
 

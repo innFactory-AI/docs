@@ -1,0 +1,3052 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false,
+    "settleMs": 700,
+    "timeoutMs": 60000
+  },
+  "scenes": [
+    {
+      "id": "rag-sammlungen-uebersicht",
+      "lang": "de",
+      "note": "Braucht im Demo-Konto die eigenen Sammlungen Muster-Handbuch (Dokumente, Dateien reisekosten-richtlinie.md und urlaubsregelung.md) und Muster-Verkaufsdaten (Datensatz, Dateien verkaeufe-2026.csv und produkte.csv). Viele Szenen öffnen nur Dialoge und legen nichts an. Bild: Reiter Meine.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 600
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlungen-uebersicht.png"
+    },
+    {
+      "id": "rag-sammlungen-uebersicht",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 600
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlungen-uebersicht.png"
+    },
+    {
+      "id": "rag-seitenleiste",
+      "lang": "de",
+      "note": "Seitenleiste der gemeinsamen Shell mit den companyRAG-Bereichen (Testkonto ohne Admin-Rechte, daher ohne API-Schlüssel/Audit-Protokoll).",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 240,
+        "height": 396
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/rag-seitenleiste.png"
+    },
+    {
+      "id": "rag-seitenleiste",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 240,
+        "height": 396
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/rag-seitenleiste.png"
+    },
+    {
+      "id": "rag-sammlung-erstellen",
+      "lang": "de",
+      "note": "Höheres Fenster, damit der ganze Dialog mit Sammlungstyp und allen Optionen sichtbar ist. Es wird nichts angelegt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1180
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Handbuch"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Richtlinien und Abläufe der Muster GmbH"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-erstellen-basis.png"
+    },
+    {
+      "id": "rag-sammlung-erstellen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1180
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Handbook"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Policies and procedures of Muster GmbH"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-erstellen-basis.png"
+    },
+    {
+      "id": "rag-sammlung-erweitert",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Handbuch"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Richtlinien und Abläufe der Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Erweiterte Einstellungen\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk-Überlappung\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-erstellen-erweitert.png"
+    },
+    {
+      "id": "rag-sammlung-erweitert",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Handbook"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Policies and procedures of Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Advanced Settings\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk Overlap\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-erstellen-erweitert.png"
+    },
+    {
+      "id": "rag-chunking-strategie",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Handbuch"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Richtlinien und Abläufe der Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Erweiterte Einstellungen\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk-Überlappung\""
+        },
+        {
+          "action": "click",
+          "selector": "div.space-y-2:has(> label:text-is(\"Chunking-Strategie\")) button[role=combobox]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listbox"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/chunking-strategie.png"
+    },
+    {
+      "id": "rag-chunking-strategie",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Handbook"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Policies and procedures of Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Advanced Settings\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk Overlap\""
+        },
+        {
+          "action": "click",
+          "selector": "div.space-y-2:has(> label:text-is(\"Chunking Strategy\")) button[role=combobox]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listbox"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/chunking-strategie.png"
+    },
+    {
+      "id": "rag-bildbeschreibung",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Handbuch"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Richtlinien und Abläufe der Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Bilder beschreiben\")"
+        },
+        {
+          "action": "hover",
+          "selector": "label:has-text(\"Tabellen als Datensätze\")"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/bildbeschreibung.png"
+    },
+    {
+      "id": "rag-bildbeschreibung",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Handbook"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "Policies and procedures of Muster GmbH"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Describe images\")"
+        },
+        {
+          "action": "hover",
+          "selector": "label:has-text(\"Tabular files as datasets\")"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/bildbeschreibung.png"
+    },
+    {
+      "id": "rag-sammlung-aktionen",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) div.border-t",
+      "padding": 6,
+      "baseUrl": "demo",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/actions-collections.png"
+    },
+    {
+      "id": "rag-sammlung-aktionen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) div.border-t",
+      "padding": 6,
+      "baseUrl": "demo",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/actions-collections.png"
+    },
+    {
+      "id": "rag-sammlung-teilen",
+      "lang": "de",
+      "note": "Nur geöffnet, nicht gespeichert. E-Mail-Adresse des Testkontos geschwärzt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "mask": [
+        "div.fixed.max-w-2xl p.truncate.text-xs"
+      ],
+      "maskColor": "#9ca3af",
+      "css": "div.fixed.max-w-2xl p.truncate.text-xs { width: fit-content; }",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) button[title=\"Sammlung teilen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"Mit allen teilen\""
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-teilen.png"
+    },
+    {
+      "id": "rag-sammlung-teilen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "mask": [
+        "div.fixed.max-w-2xl p.truncate.text-xs"
+      ],
+      "maskColor": "#9ca3af",
+      "css": "div.fixed.max-w-2xl p.truncate.text-xs { width: fit-content; }",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) button[title=\"Share collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"Share with everyone\""
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-teilen.png"
+    },
+    {
+      "id": "rag-system-prompt",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) button[title=\"System-Prompt\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/beispiel-prompt.png"
+    },
+    {
+      "id": "rag-system-prompt",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div.p-6:has(h3:text-is(\"Muster-Handbuch\")) button[title=\"System Prompt\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/beispiel-prompt.png"
+    },
+    {
+      "id": "rag-datensatz-typ",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1180
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Datensatz\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Bestellungen"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/datensatz-typ.png"
+    },
+    {
+      "id": "rag-datensatz-typ",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1180
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Dataset\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Orders"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/datensatz-typ.png"
+    },
+    {
+      "id": "rag-datensatz-live-schema",
+      "lang": "de",
+      "note": "Schema im Dialog zusammengestellt, nicht angelegt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Datensatz\""
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Live (definiertes Schema)\""
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Bestellungen"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"tabellen_name\"], 1)",
+          "value": "bestellungen"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 1)",
+          "value": "bestellnummer"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 1) >> label:has-text(\"Schlüssel\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 2)",
+          "value": "kunde"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 3)",
+          "value": "betrag"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 3) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"numeric\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 4)",
+          "value": "bestelldatum"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 4) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Tabelle hinzufügen\")"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/datensatz-live-schema.png"
+    },
+    {
+      "id": "rag-datensatz-live-schema",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Dataset\""
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"Live (defined schema)\""
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Orders"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"table_name\"], 1)",
+          "value": "orders"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 1)",
+          "value": "order_number"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 1) >> label:has-text(\"key\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 2)",
+          "value": "customer"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 3)",
+          "value": "amount"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 3) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"numeric\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 4)",
+          "value": "order_date"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 4) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Add table\")"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/datensatz-live-schema.png"
+    },
+    {
+      "id": "rag-extraktion-schema",
+      "lang": "de",
+      "note": "Schema im Dialog zusammengestellt, nicht angelegt. Typauswahl der letzten Spalte geöffnet.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Rechnungen"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Strukturierte Daten extrahieren\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"tabellen_name\"], 1)",
+          "value": "rechnungen"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 1)",
+          "value": "rechnungsnummer"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 2)",
+          "value": "rechnungsdatum"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 2) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 3)",
+          "value": "kunde"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 4)",
+          "value": "gesamtbetrag"
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Tabelle hinzufügen\")"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 4) >> button[role=combobox]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listbox"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/extraktion-schema.png"
+    },
+    {
+      "id": "rag-extraktion-schema",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Invoices"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Extract structured data\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"table_name\"], 1)",
+          "value": "invoices"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 1)",
+          "value": "invoice_number"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 2)",
+          "value": "invoice_date"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 2) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 3)",
+          "value": "customer"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 4)",
+          "value": "total_amount"
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Add table\")"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 4) >> button[role=combobox]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=listbox"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/extraktion-schema.png"
+    },
+    {
+      "id": "rag-extraktion-beziehung",
+      "lang": "de",
+      "note": "Zwei Tabellen: positionen.rechnungsnummer verweist auf den Schlüssel von rechnungen. Nicht angelegt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1300
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Muster-Rechnungen"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Strukturierte Daten extrahieren\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"tabellen_name\"], 1)",
+          "value": "rechnungen"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 1)",
+          "value": "rechnungsnummer"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 1) >> label:has-text(\"Schlüssel\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 2)",
+          "value": "rechnungsdatum"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 2) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Spalte hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 3)",
+          "value": "kunde"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Tabelle hinzufügen\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"tabellen_name\"], 2)",
+          "value": "positionen"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 4)",
+          "value": "rechnungsnummer"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(button:has-text(\"Spalte hinzufügen\"), 2)"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 5)",
+          "value": "artikel"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(button:has-text(\"Spalte hinzufügen\"), 2)"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"spalten_name\"], 6)",
+          "value": "menge"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"spalten_name\"]), 6) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"integer\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Verbindung hinzufügen\")"
+        },
+        {
+          "action": "click",
+          "selector": "button[role=combobox]:has-text(\"Spalte\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"rechnungsnummer\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button[role=combobox]:has-text(\"Tabelle\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=/^rechnungen/]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "hover",
+          "selector": ":nth-match(button:has-text(\"Spalte hinzufügen\"), 2)"
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Tabelle hinzufügen\")"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/extraktion-beziehung.png"
+    },
+    {
+      "id": "rag-extraktion-beziehung",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "viewport": {
+        "width": 1440,
+        "height": 1300
+      },
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Sample Invoices"
+        },
+        {
+          "action": "click",
+          "selector": "label:has-text(\"Extract structured data\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"table_name\"], 1)",
+          "value": "invoices"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 1)",
+          "value": "invoice_number"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 1) >> label:has-text(\"key\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 2)",
+          "value": "invoice_date"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 2) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"date\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add column\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 3)",
+          "value": "customer"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add table\")"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"table_name\"], 2)",
+          "value": "line_items"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 4)",
+          "value": "invoice_number"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(button:has-text(\"Add column\"), 2)"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 5)",
+          "value": "item"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(button:has-text(\"Add column\"), 2)"
+        },
+        {
+          "action": "fill",
+          "selector": ":nth-match(input[placeholder=\"column_name\"], 6)",
+          "value": "quantity"
+        },
+        {
+          "action": "click",
+          "selector": ":nth-match(div.flex.items-center.gap-2:has(> input[placeholder=\"column_name\"]), 6) >> button[role=combobox]"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"integer\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Add connection\")"
+        },
+        {
+          "action": "click",
+          "selector": "button[role=combobox]:has-text(\"column\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"invoice_number\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "click",
+          "selector": "button[role=combobox]:has-text(\"table\")"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=/^invoices/]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "hover",
+          "selector": ":nth-match(button:has-text(\"Add column\"), 2)"
+        },
+        {
+          "action": "hover",
+          "selector": "button:has-text(\"Add table\")"
+        },
+        {
+          "action": "hover",
+          "selector": "div.fixed.max-w-2xl h2"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/extraktion-beziehung.png"
+    },
+    {
+      "id": "rag-okf-details",
+      "lang": "de",
+      "note": "Assistent nur durchgeklickt, kein Bundle angelegt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF-Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]",
+          "value": "Muster-Wissen"
+        },
+        {
+          "action": "fill",
+          "selector": "div.fixed.max-w-2xl textarea",
+          "value": "Wissenssammlung der Muster GmbH"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/okf-bundle-start.png"
+    },
+    {
+      "id": "rag-okf-details",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]",
+          "value": "Sample Knowledge"
+        },
+        {
+          "action": "fill",
+          "selector": "div.fixed.max-w-2xl textarea",
+          "value": "Knowledge collection of Muster GmbH"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/okf-bundle-start.png"
+    },
+    {
+      "id": "rag-okf-quelle",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF-Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]",
+          "value": "Muster-Wissen"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> role=button[name=\"Weiter\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl >> text=\"GitHub\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/okf-bundle-ziel.png"
+    },
+    {
+      "id": "rag-okf-quelle",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]",
+          "value": "Sample Knowledge"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> role=button[name=\"Next\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl >> text=\"GitHub\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/okf-bundle-ziel.png"
+    },
+    {
+      "id": "rag-okf-speicherort",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF-Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"z.B. Engineering-Handbuch\"]",
+          "value": "Muster-Wissen"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> role=button[name=\"Weiter\"]"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"GitHub\""
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl >> input[placeholder=\"owner/repo\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/okf-bundle.png"
+    },
+    {
+      "id": "rag-okf-speicherort",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"OKF Bundle\""
+        },
+        {
+          "action": "wait",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]"
+        },
+        {
+          "action": "fill",
+          "selector": "input[placeholder=\"e.g. Engineering Handbook\"]",
+          "value": "Sample Knowledge"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> role=button[name=\"Next\"]"
+        },
+        {
+          "action": "click",
+          "selector": "div.fixed.max-w-2xl >> text=\"GitHub\""
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl >> input[placeholder=\"owner/repo\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/okf-bundle.png"
+    },
+    {
+      "id": "rag-quellen-uebersicht",
+      "lang": "de",
+      "note": "Quellenliste per Fixture (erfundene, neutrale Quellen mit Sync-Status). Im Demo-Tenant wird nichts angelegt.",
+      "path": "/companygpt/rag/sources",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/api\\/sources$/",
+          "method": "GET",
+          "fixture": "rag/quellen.json"
+        }
+      ],
+      "waitFor": "text=\"Muster GmbH - Handbuch\"",
+      "fixedTime": "2026-10-16T18:00:00+02:00",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 656
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/quellen-uebersicht.png"
+    },
+    {
+      "id": "rag-quellen-uebersicht",
+      "lang": "en",
+      "path": "/companygpt/rag/sources",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/api\\/sources$/",
+          "method": "GET",
+          "fixture": "rag/quellen.json"
+        }
+      ],
+      "waitFor": "text=\"Muster GmbH - Handbuch\"",
+      "fixedTime": "2026-10-16T18:00:00+02:00",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 656
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/quellen-uebersicht.png"
+    },
+    {
+      "id": "rag-webcrawl-urls",
+      "lang": "de",
+      "note": "Formular nur ausgefüllt, nicht gespeichert.",
+      "path": "/companygpt/rag/sources/webcrawl/new",
+      "waitFor": "#sourceName",
+      "clip": {
+        "x": 516,
+        "y": 132,
+        "width": 648,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "fill",
+          "selector": "#sourceName",
+          "value": "Produktdokumentation"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Sammlung auswählen\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "click",
+          "selector": "#syncSchedule"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Wöchentlich\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "fill",
+          "selector": "#urls",
+          "value": "https://docs.company-gpt.com/de/\nhttps://docs.company-gpt.com/de/company-gpt/addons/companyrag/"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/website-crawl.png"
+    },
+    {
+      "id": "rag-webcrawl-urls",
+      "lang": "en",
+      "path": "/companygpt/rag/sources/webcrawl/new",
+      "waitFor": "#sourceName",
+      "clip": {
+        "x": 516,
+        "y": 132,
+        "width": 648,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "fill",
+          "selector": "#sourceName",
+          "value": "Product documentation"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Select a collection\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "click",
+          "selector": "#syncSchedule"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Weekly\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "fill",
+          "selector": "#urls",
+          "value": "https://docs.company-gpt.com/de/\nhttps://docs.company-gpt.com/de/company-gpt/addons/companyrag/"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/website-crawl.png"
+    },
+    {
+      "id": "rag-webcrawl-sitemap",
+      "lang": "de",
+      "path": "/companygpt/rag/sources/webcrawl/new",
+      "waitFor": "#sourceName",
+      "clip": {
+        "x": 516,
+        "y": 132,
+        "width": 648,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sitemap\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "#sitemapUrl"
+        },
+        {
+          "action": "fill",
+          "selector": "#sourceName",
+          "value": "Produktdokumentation"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Sammlung auswählen\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "click",
+          "selector": "#syncSchedule"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Wöchentlich\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "fill",
+          "selector": "#sitemapUrl",
+          "value": "https://docs.company-gpt.com/sitemap-0.xml"
+        },
+        {
+          "action": "fill",
+          "selector": "#pathPrefix",
+          "value": "/de/company-gpt/"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/webcrawl-sitemap.png"
+    },
+    {
+      "id": "rag-webcrawl-sitemap",
+      "lang": "en",
+      "path": "/companygpt/rag/sources/webcrawl/new",
+      "waitFor": "#sourceName",
+      "clip": {
+        "x": 516,
+        "y": 132,
+        "width": 648,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sitemap\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "#sitemapUrl"
+        },
+        {
+          "action": "fill",
+          "selector": "#sourceName",
+          "value": "Product documentation"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Select a collection\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "click",
+          "selector": "#syncSchedule"
+        },
+        {
+          "action": "click",
+          "selector": "role=option[name=\"Weekly\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 200
+        },
+        {
+          "action": "fill",
+          "selector": "#sitemapUrl",
+          "value": "https://docs.company-gpt.com/sitemap-0.xml"
+        },
+        {
+          "action": "fill",
+          "selector": "#pathPrefix",
+          "value": "/de/company-gpt/"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/webcrawl-sitemap.png"
+    },
+    {
+      "id": "rag-ordner-ausschliessen",
+      "lang": "de",
+      "note": "Bearbeiten-Dialog einer Fixture-Quelle; nicht gespeichert.",
+      "path": "/companygpt/rag/sources",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/api\\/sources$/",
+          "method": "GET",
+          "fixture": "rag/quellen.json"
+        }
+      ],
+      "waitFor": "text=\"Muster GmbH - Handbuch\"",
+      "selector": "[data-slot=dialog-content]",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div[data-slot=card]:has-text(\"Muster GmbH - Handbuch\") button[aria-haspopup=menu]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Bearbeiten\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-slot=dialog-content]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-slot=dialog-content] textarea",
+          "value": "# Entwürfe und Archiv nicht indexieren\nArchiv/\n**/Entwurf/\n*.tmp"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/ordner-ausschliessen.png"
+    },
+    {
+      "id": "rag-ordner-ausschliessen",
+      "lang": "en",
+      "path": "/companygpt/rag/sources",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/api\\/sources$/",
+          "method": "GET",
+          "fixture": "rag/quellen.json"
+        }
+      ],
+      "waitFor": "text=\"Muster GmbH - Handbuch\"",
+      "selector": "[data-slot=dialog-content]",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "div[data-slot=card]:has-text(\"Muster GmbH - Handbuch\") button[aria-haspopup=menu]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitem[name=\"Edit\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-slot=dialog-content]"
+        },
+        {
+          "action": "fill",
+          "selector": "[data-slot=dialog-content] textarea",
+          "value": "# Do not index drafts and archive\nArchiv/\n**/Entwurf/\n*.tmp"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/ordner-ausschliessen.png"
+    },
+    {
+      "id": "rag-integrationen",
+      "lang": "de",
+      "path": "/companygpt/rag/integrations",
+      "waitFor": "text=\"Microsoft SharePoint\"",
+      "settleMs": 1500,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 690
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/integrationen.png"
+    },
+    {
+      "id": "rag-integrationen",
+      "lang": "en",
+      "path": "/companygpt/rag/integrations",
+      "waitFor": "text=\"Microsoft SharePoint\"",
+      "settleMs": 1500,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 690
+      },
+      "baseUrl": "demo",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/integrationen.png"
+    },
+    {
+      "id": "rag-auftraege",
+      "lang": "de",
+      "note": "Auftragsliste per Fixture (erfundene Dateien in der Demo-Sammlung, mit Warteschlange).",
+      "path": "/companygpt/rag/jobs",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/jobs\\?/",
+          "method": "GET",
+          "fixture": "rag/auftraege.json"
+        }
+      ],
+      "fixedTime": "2026-10-16T11:00:00+02:00",
+      "waitFor": "text=\"it-richtlinie.pdf\"",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/auftraege.png"
+    },
+    {
+      "id": "rag-auftraege",
+      "lang": "en",
+      "path": "/companygpt/rag/jobs",
+      "routes": [
+        {
+          "urlPattern": "/\\/api\\/jobs\\?/",
+          "method": "GET",
+          "fixture": "rag/auftraege.json"
+        }
+      ],
+      "fixedTime": "2026-10-16T11:00:00+02:00",
+      "waitFor": "text=\"it-richtlinie.pdf\"",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 760
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/auftraege.png"
+    },
+    {
+      "id": "rag-hochladen",
+      "lang": "de",
+      "path": "/companygpt/rag/upload",
+      "waitFor": "input[type=file]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 610
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Sammlung auswählen\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/hochladen.png"
+    },
+    {
+      "id": "rag-hochladen",
+      "lang": "en",
+      "path": "/companygpt/rag/upload",
+      "waitFor": "input[type=file]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 610
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Select a collection\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Handbuch\"))"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/hochladen.png"
+    },
+    {
+      "id": "rag-datensatz-import",
+      "lang": "de",
+      "note": "Zwei erfundene CSV-Dateien aus fixtures/ ausgewählt, aber nicht hochgeladen.",
+      "path": "/companygpt/rag/upload",
+      "waitFor": "input[type=file]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 680
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Sammlung auswählen\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Verkaufsdaten\"))"
+        },
+        {
+          "action": "upload",
+          "selector": "input[type=file]",
+          "file": "rag/verkaeufe-2026.csv"
+        },
+        {
+          "action": "upload",
+          "selector": "input[type=file]",
+          "file": "rag/produkte.csv"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/datensatz-import.png"
+    },
+    {
+      "id": "rag-datensatz-import",
+      "lang": "en",
+      "path": "/companygpt/rag/upload",
+      "waitFor": "input[type=file]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 680
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Select a collection\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has(p:text-is(\"Muster-Verkaufsdaten\"))"
+        },
+        {
+          "action": "upload",
+          "selector": "input[type=file]",
+          "file": "rag/verkaeufe-2026.csv"
+        },
+        {
+          "action": "upload",
+          "selector": "input[type=file]",
+          "file": "rag/produkte.csv"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/datensatz-import.png"
+    },
+    {
+      "id": "rag-dateien",
+      "lang": "de",
+      "path": "/companygpt/rag/files",
+      "waitFor": "table",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 498
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Alle Sammlungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/musterhandbuch/]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"musterhandbuch\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/musterverkaufsdaten/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"produkte.csv\""
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/dateien-uebersicht.png"
+    },
+    {
+      "id": "rag-dateien",
+      "lang": "en",
+      "path": "/companygpt/rag/files",
+      "waitFor": "table",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 498
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"All Collections\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/musterhandbuch/]"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=\"musterhandbuch\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/musterverkaufsdaten/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"produkte.csv\""
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/dateien-uebersicht.png"
+    },
+    {
+      "id": "knowledge-sammlungstyp",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyknowledge/knowledge-sammlungstyp.png"
+    },
+    {
+      "id": "knowledge-sammlungstyp",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyknowledge/knowledge-sammlungstyp.png"
+    },
+    {
+      "id": "knowledge-dateien-indexiert",
+      "lang": "de",
+      "note": "Gefiltert auf die öffentliche Tutorial-Sammlung tutorial_wiki.",
+      "path": "/companygpt/rag/files",
+      "waitFor": "table",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 642
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Alle Sammlungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/tutorial_wiki/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"index.md\""
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/de/company-gpt/addons/companyknowledge/knowledge-dateien-indexiert.png"
+    },
+    {
+      "id": "knowledge-dateien-indexiert",
+      "lang": "en",
+      "path": "/companygpt/rag/files",
+      "waitFor": "table",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 642
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"All Collections\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/tutorial_wiki/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=\"index.md\""
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/en/company-gpt/addons/companyknowledge/knowledge-dateien-indexiert.png"
+    },
+    {
+      "id": "tut-sammlung-erstellen",
+      "lang": "de",
+      "note": "Beispielwerte aus dem Tutorial; nichts angelegt.",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Dokumentation"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "CompanyGPT Dokumentation"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/sammlung-erstellen.png"
+    },
+    {
+      "id": "tut-sammlung-erstellen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Dokumentation"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "CompanyGPT documentation"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/sammlung-erstellen.png"
+    },
+    {
+      "id": "tut-erweiterte-einstellungen",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Sammlung erstellen\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Dokumentation"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "CompanyGPT Dokumentation"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Erweiterte Einstellungen\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk-Überlappung\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/erweiterte-einstellungen.png"
+    },
+    {
+      "id": "tut-erweiterte-einstellungen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "selector": "div.fixed.max-w-2xl",
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Create Collection\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "div.fixed.max-w-2xl"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        },
+        {
+          "action": "fill",
+          "selector": "#displayName",
+          "value": "Dokumentation"
+        },
+        {
+          "action": "fill",
+          "selector": "#description",
+          "value": "CompanyGPT documentation"
+        },
+        {
+          "action": "click",
+          "selector": "text=\"Advanced Settings\""
+        },
+        {
+          "action": "hover",
+          "selector": "text=\"Chunk Overlap\""
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/erweiterte-einstellungen.png"
+    },
+    {
+      "id": "tut-menue-hochladen",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Hochladen\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Hochladen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/manualler-upload.png"
+    },
+    {
+      "id": "tut-menue-hochladen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Upload\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Upload\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/manualler-upload.png"
+    },
+    {
+      "id": "tut-menue-quellen",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Quellen\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Quellen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/quellen.png"
+    },
+    {
+      "id": "tut-menue-quellen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Sources\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Sources\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/quellen.png"
+    },
+    {
+      "id": "tut-menue-integrationen",
+      "lang": "de",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Integrationen\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Integrationen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/integrationen.png"
+    },
+    {
+      "id": "tut-menue-integrationen",
+      "lang": "en",
+      "localStorage": {
+        "collections-active-tab": "mine"
+      },
+      "path": "/companygpt/rag/collections",
+      "waitFor": "text=\"Muster-Handbuch\"",
+      "deviceScaleFactor": 2,
+      "selector": "nav >> role=link[name=\"Integrations\"]",
+      "padding": 6,
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "hover",
+          "selector": "nav >> role=link[name=\"Integrations\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 300
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/integrationen.png"
+    },
+    {
+      "id": "tut-auftraege-doku",
+      "lang": "de",
+      "note": "Aufträge der öffentlichen Sammlung dokumentation (Web-Crawl der CompanyGPT-Doku).",
+      "path": "/companygpt/rag/jobs",
+      "waitFor": "table",
+      "clip": {
+        "x": 240,
+        "y": 64,
+        "width": 1200,
+        "height": 520
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Alle Sammlungen\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/dokumentation$/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=docs.company-gpt.com"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/de/tutorials/addons/auftraege-doku.png"
+    },
+    {
+      "id": "tut-auftraege-doku",
+      "lang": "en",
+      "path": "/companygpt/rag/jobs",
+      "waitFor": "table",
+      "clip": {
+        "x": 240,
+        "y": 64,
+        "width": 1200,
+        "height": 520
+      },
+      "baseUrl": "demo",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"All Collections\"]"
+        },
+        {
+          "action": "click",
+          "selector": "role=menuitemcheckbox[name=/dokumentation$/]"
+        },
+        {
+          "action": "press",
+          "key": "Escape"
+        },
+        {
+          "action": "wait",
+          "selector": "text=docs.company-gpt.com"
+        },
+        {
+          "action": "hover",
+          "selector": "h1",
+          "optional": true
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "output": "src/content/docs/en/tutorials/addons/auftraege-doku.png"
+    }
+  ]
+}

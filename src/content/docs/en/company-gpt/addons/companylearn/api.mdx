@@ -1,0 +1,231 @@
+---
+title: External API
+description: Create scoped API keys in companyLEARN and use the REST API at /api/v1 for integrations – create courses, maintain content and evaluate learning progress.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+companyLEARN has a versioned REST API for integrations, for example to create courses from another system or to evaluate learning progress. It is intended for server-to-server calls and authenticates with API keys instead of a user sign-in. Calls from a browser page loaded from a different address are not supported.
+
+The base URL is:
+
+```
+https://COMPANY.company-gpt.com/companygpt/learn/api/v1
+```
+
+## Keys act on behalf of their owner
+
+Every API key belongs to the person who created it and acts on that person's behalf:
+
+- Courses and videos that a key creates are attributed to that person.
+- The endpoints under `/me` return that person's own enrollments and progress.
+- What a key may do follows from its scopes and that person's permissions in companyLEARN, checked again on every request. If the person no longer has the **Use courses** permission, none of their keys work.
+
+So grant only the scopes an integration actually needs, and revoke keys that are no longer needed.
+
+## Creating an API key
+
+People with the **Manage courses** permission create API keys in companyLEARN under **API keys**. Everyone sees only their own keys there.
+
+<Steps>
+
+1. Click **New key** at the top right. The **Create API key** dialog opens.
+
+2. Under **Name**, enter a label you will recognize the integration by, for example `course-seeder`.
+
+3. Under **Scopes**, select at least one scope. `courses:read` is preselected.
+
+4. Under **Expires**, set an expiry date, tick **Never expires**, or leave the field empty. Without a date, a key expires after 90 days by default.
+
+5. Click **New key**.
+
+6. The **Key created** dialog shows the key. Copy it with **Copy key** and store it somewhere safe. Close the dialog with **Done**.
+
+</Steps>
+
+:::caution[The key is shown only once]
+companyLEARN does not store the key in plain text and cannot show it again later. If you lose it, revoke it and create a new one.
+:::
+
+A key has the form `learn_<prefix>_<secret>`. The leading part `learn_<prefix>` is not secret; it appears in the list under **Key** and identifies the key. By default, each person can have up to 10 active keys.
+
+## Managing and revoking keys
+
+The list under **API keys** shows **Name**, **Key** (the public part), **Scopes**, **Status** (**Active**, **Revoked** or **Expired**), **Last used** and **Expires** for each of your keys.
+
+**Revoke** and the confirmation **Revoke API key?** disable a key. It stops working immediately; any integration using it receives 401 responses from then on. A revocation cannot be undone.
+
+:::caution[Admin permissions removed?]
+If a person loses their admin permissions in companyLEARN, revoke their API keys.
+:::
+
+## Scopes
+
+| Scope | Requires **Manage courses** | Allows |
+|---|---|---|
+| `courses:read` | no | Read courses, chapters and lessons, including unpublished ones, plus all endpoints under `/me` |
+| `courses:write` | yes | Create, change, reorder and delete courses, chapters and lessons |
+| `quizzes:read` | yes | Read quizzes **including** the answer key |
+| `quizzes:write` | yes | Create, replace and delete quizzes |
+| `videos:read` | yes | List and download videos |
+| `videos:write` | yes | Upload and delete videos |
+| `progress:read` | yes | Read other people's enrollments, progress and quiz attempts |
+| `enrollments:write` | yes | Enroll and unenroll other people |
+| `keys:read` | yes | List your own API keys |
+| `keys:write` | yes | Create and revoke keys – never with more scopes than the calling key |
+
+Keys created through the API can receive at most the scopes of the calling key. This lets you rotate keys automatically, but not create broader keys.
+
+## Sending requests
+
+Send the key in one of these two headers:
+
+```bash
+curl -H "Authorization: Bearer learn_..." https://COMPANY.company-gpt.com/companygpt/learn/api/v1/courses
+curl -H "X-API-Key: learn_..."            https://COMPANY.company-gpt.com/companygpt/learn/api/v1/courses
+```
+
+`GET /api/v1/me` returns the key's owner and the scopes the key actually has at that moment. `GET /api/v1/openapi.json` returns the full description of the API in OpenAPI 3.1 format, including the required scope for each endpoint. Both endpoints work with any valid key, regardless of its scopes.
+
+### Example: create and publish a course
+
+The key in this example has the scopes `courses:read` and `courses:write`.
+
+```bash
+BASE=https://COMPANY.company-gpt.com/companygpt/learn/api/v1
+KEY=learn_...   # created under API keys
+
+# 1. Check what the key may do
+curl -s $BASE/me -H "Authorization: Bearer $KEY" | jq .apiKey.effectiveScopes
+
+# 2. Create a course (starts as a draft)
+CID=$(curl -s -X POST $BASE/courses -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Onboarding"}' | jq -r .id)
+
+# 3. Create a chapter
+CHID=$(curl -s -X POST $BASE/courses/$CID/chapters -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"title":"Week 1"}' | jq -r .id)
+
+# 4. Create a text lesson
+curl -s -X POST $BASE/chapters/$CHID/lessons -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"Welcome","type":"text","contentMarkdown":"# Welcome\n\nGood to have you here."}'
+
+# 5. Publish
+curl -s -X PATCH $BASE/courses/$CID -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{"isPublished":true}'
+```
+
+You create a quiz with the `quizzes:write` scope. `PUT` fully replaces an existing quiz and – as in the interface – resets all previous attempts:
+
+```bash
+curl -s -X PUT $BASE/chapters/$CHID/quiz -H "Authorization: Bearer $KEY" \
+  -H 'Content-Type: application/json' -d '{
+    "title": "Week 1 quiz",
+    "passThresholdPercent": 70,
+    "questions": [
+      { "text": "Where do you find companyLEARN?",
+        "options": [
+          { "text": "Under All apps", "isCorrect": true },
+          { "text": "Only by email", "isCorrect": false }
+        ] }
+    ]
+  }'
+```
+
+## Endpoints
+
+All paths are relative to the base URL `…/companygpt/learn/api/v1`.
+
+### Identity
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/me` | any | The key's owner and its effective scopes |
+| GET | `/openapi.json` | any | Description of the API (OpenAPI 3.1) |
+
+### Managing courses, chapters and lessons
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/courses` | `courses:read` | All courses, including unpublished ones, with counters |
+| POST | `/courses` | `courses:write` | Create a course |
+| GET | `/courses/:id` | `courses:read` | Course with its full outline |
+| PATCH | `/courses/:id` | `courses:write` | Change a course, e.g. `isPublished` or `gatingEnabled` (chapter gating) |
+| DELETE | `/courses/:id` | `courses:write` | Delete a course with all its content |
+| GET | `/courses/:id/chapters` | `courses:read` | A course's chapters |
+| POST | `/courses/:id/chapters` | `courses:write` | Create a chapter |
+| PUT | `/courses/:id/chapters/order` | `courses:write` | Reorder chapters |
+| PATCH | `/chapters/:id` | `courses:write` | Change a chapter |
+| DELETE | `/chapters/:id` | `courses:write` | Delete a chapter |
+| POST | `/chapters/:id/lessons` | `courses:write` | Create a lesson |
+| PUT | `/chapters/:id/lessons/order` | `courses:write` | Reorder lessons |
+| GET | `/lessons/:id` | `courses:read` | Get a lesson |
+| PATCH | `/lessons/:id` | `courses:write` | Change a lesson |
+| DELETE | `/lessons/:id` | `courses:write` | Delete a lesson |
+
+### Quizzes
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/chapters/:id/quiz` | `quizzes:read` | Quiz **including** the answer key |
+| PUT | `/chapters/:id/quiz` | `quizzes:write` | Create or replace a quiz |
+| DELETE | `/chapters/:id/quiz` | `quizzes:write` | Delete a quiz |
+
+### Videos
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/videos` | `videos:read` | List videos |
+| POST | `/videos` | `videos:write` | Upload a video (multipart field `file`) |
+| GET | `/videos/:assetId/content` | `videos:read` | Download the video file (no partial download via Range) |
+| DELETE | `/videos/:id` | `videos:write` | Delete a video |
+
+### Enrollments and progress
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/courses/:id/enrollments` | `progress:read` | Everyone enrolled in a course |
+| POST | `/courses/:id/enrollments` | `enrollments:write` | Enroll a person, also in unpublished courses |
+| DELETE | `/courses/:id/enrollments/:userId` | `enrollments:write` | Unenroll a person; their progress is kept |
+| GET | `/courses/:id/progress` | `progress:read` | Progress per person in a course |
+| GET | `/quizzes/:id/attempts` | `progress:read` | All people's attempts, filtered to one person with `?userId=` |
+| GET | `/learners` | `progress:read` | All known user IDs with activity counters |
+| GET | `/learners/:userId/progress` | `progress:read` | One person's progress across all their courses |
+
+People are addressed by the user ID under which companyLEARN knows them; `GET /learners` lists all known IDs.
+
+### Learning as the owner (`/me`)
+
+These endpoints correspond to the learner view and act for the key's owner.
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/me/courses` | `courses:read` | Published courses |
+| GET | `/me/courses/:id` | `courses:read` | A course's outline with lock status |
+| POST | `/me/courses/:id/enroll` | `courses:read` | Enroll |
+| GET | `/me/lessons/:id` | `courses:read` | Get a lesson |
+| POST | `/me/lessons/:id/complete` | `courses:read` | Mark a lesson as done |
+| GET | `/me/progress` | `courses:read` | Own progress |
+| GET | `/me/quizzes/:id` | `courses:read` | Quiz **without** the answer key |
+| POST | `/me/quizzes/:id/attempts` | `courses:read` | Submit an attempt |
+| GET | `/me/quizzes/:id/attempts` | `courses:read` | Own previous attempts |
+
+### Keys
+
+| Method | Path | Scope | Description |
+|---|---|---|---|
+| GET | `/keys` | `keys:read` | List your own keys |
+| POST | `/keys` | `keys:write` | Create a key; scopes at most those of the calling key |
+| DELETE | `/keys/:id` | `keys:write` | Revoke a key |
+
+## Error responses
+
+| Status | Meaning |
+|---|---|
+| 401 | The key is missing, invalid, expired or revoked. |
+| 403 with `INSUFFICIENT_SCOPE` | The key lacks the required scope. The response names it in `requiredScope` and lists the effective scopes in `grantedScopes`. |
+| 403 with `EXT_ACCESS_DENIED` | The key's owner does not have the **Use courses** permission. |
+| 429 | Too many requests with this key. Each key has its own quota, by default 600 requests per minute; the response gives the length of the time window in seconds in `retryAfter` (60 by default). |
+
+Back to the [overview](/en/company-gpt/addons/companylearn/).

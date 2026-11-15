@@ -1,0 +1,17 @@
+{
+  "id": "00000000-0000-4000-8000-0000b0000004",
+  "chapterId": "00000000-0000-4000-8000-0000a0000002",
+  "courseId": "00000000-0000-4000-8000-0000c0000001",
+  "title": "Everyday examples",
+  "type": "text",
+  "contentMarkdown": "A good prompt states the **task**, the **context** and the **result** you want. Three examples from everyday office work:\n\n### Replying to an email\n\n**Prompt:** Write a friendly reply to the following request. Accept the meeting on Tuesday and ask for the agenda. Five sentences at most.\n\n### Summarizing minutes\n\n**Prompt:** Summarize the minutes in five bullet points. At the end, list all open tasks with the person responsible.\n\n### Collecting ideas\n\n**Prompt:** Suggest ten titles for an internal workshop on time management. The titles should be short and motivating.\n\n**Tip:** If a result does not fit, an example or the length you want helps more than sending the same prompt again.",
+  "videoAssetId": null,
+  "position": 2,
+  "completed": false,
+  "lastPositionSeconds": null,
+  "nav": {
+    "prevLessonId": "00000000-0000-4000-8000-0000b0000003",
+    "nextLessonId": "00000000-0000-4000-8000-0000b0000005",
+    "quizId": null
+  }
+}

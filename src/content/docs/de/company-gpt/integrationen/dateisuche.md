@@ -3,7 +3,13 @@ title: Dateisuche
 description: Erfahre, wie die Dateisuche im CompanyGPT interne Dokumente durch RAG (Retrieval Augmented Generation) nutzt, um KI-Antworten mit spezifischem Wissen anzureichern.
 ---
 
-Die Dateisuche ermöglicht es, die Inhalte von Dateien ähnlich der Abfrage zu durchsuchen und die Antworten so durch internes, spezifisches Wissen anzureichern. Die Dateisuche ist immer nur pro Nutzer verfügbar. 
+:::note[Neue Chat-Oberfläche]
+Bilder und Beschriftungen auf dieser Seite zeigen die [neue Chat-Oberfläche](/de/company-gpt/neue-chat-oberflaeche/). Sie ist derzeit im Demo-Zugang und in Pilotumgebungen verfügbar; in anderen Umgebungen können Beschriftungen und Abläufe noch abweichen.
+:::
+
+Die Dateisuche ermöglicht es, die Inhalte von Dateien ähnlich der Abfrage zu durchsuchen und die Antworten so durch internes, spezifisches Wissen anzureichern. Die Dateisuche ist immer nur pro Nutzer verfügbar.
+
+Im Chat aktivieren Sie die Dateisuche über das Plus-Symbol in der Chateingabe (**Attach and tools**) unter **Tools** mit **Dateisuche**. Angehängte Dateien stehen ihr dann bei Bedarf zur Verfügung, ein eigenes Upload-Ziel müssen Sie nicht wählen. In einem [Agenten](/de/company-gpt/agenten/#dateisuche) hinterlegen Sie Dateien dauerhaft unter **Dateisuche**; so kann der Agent auch in größeren Dokumentensammlungen suchen.
 
 :::note[Wofür eignet sich Dateisuche?]
 Am besten für längere Textinhalte, die nicht in Gänze verarbeitet werden müssen, sondern einzelne Abschnitte zur Frage passend gesucht und in Antworten einbezogen werden sollen.

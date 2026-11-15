@@ -1,0 +1,35 @@
+{
+  "baseUrls": {
+    "onboarding": "https://onboarding.company-gpt.com",
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": { "width": 1440, "height": 900 },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "onboarding-portal-start",
+      "lang": "de",
+      "note": "Das Onboarding-Portal hat nur eine englische Oberfläche (keine Sprachwahl, ignoriert Browser-Sprache und Query-Parameter). DE- und EN-Bild zeigen daher denselben Text.",
+      "baseUrl": "onboarding",
+      "path": "/",
+      "public": true,
+      "waitFor": "h1",
+      "clip": { "x": 360, "y": 48, "width": 720, "height": 912 },
+      "output": "src/content/docs/de/einrichtung/onboarding-portal-start.png"
+    },
+    {
+      "id": "onboarding-portal-start",
+      "lang": "en",
+      "baseUrl": "onboarding",
+      "path": "/",
+      "public": true,
+      "waitFor": "h1",
+      "clip": { "x": 360, "y": 48, "width": 720, "height": 912 },
+      "output": "src/content/docs/en/einrichtung/onboarding-portal-start.png"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+---
+title: Videos
+description: Upload videos for companyLEARN (MP4 and WebM), use them in lessons, play them back and delete them from the video library.
+---
+
+Video lessons draw on companyLEARN's **Video library**. You upload a video once and can then use it in as many lessons as you like, including lessons in different courses. The video library is available to people with the **Manage courses** permission; you open it via **Videos** in the menu.
+
+## Supported formats
+
+| Format | File extension |
+|---|---|
+| MP4 | `.mp4` |
+| WebM | `.webm` |
+
+On upload, companyLEARN checks the file extension, the declared file type and the file's content; other formats are rejected. By default, a file can be up to 2 GB in size.
+
+companyLEARN stores videos unchanged and does not convert them. Learners therefore see exactly the file you upload, so it has to play in common browsers.
+
+## Uploading a video
+
+You have two options:
+
+- **In the video library:** Click **Upload video** at the top right and choose the file. A progress bar shows the upload; afterwards the video appears in the table.
+- **Directly in a lesson:** In the dialog of a video lesson, click **Choose a video…** and then **Upload a new video** in the **Choose a video** dialog. After the upload, the new video is selected for the lesson.
+
+If the upload fails, the message "The upload failed. Please try again." appears.
+
+## The video library
+
+The **Video library** table shows all uploaded videos:
+
+| Column | Content |
+|---|---|
+| **Filename** | Name of the uploaded file |
+| **Type** | `video/mp4` or `video/webm` |
+| **Size** | File size |
+| **Used in** | Number of lessons that use the video |
+| **Created** | Upload date |
+| **Actions** | **Delete** (trash can) |
+
+## Using a video in a lesson
+
+In the dialog of a video lesson, **Choose a video…** opens the list of all videos with filename and size. Click a video to select it; the selected video is marked with a check mark. Then save the lesson. How to create lessons is described under [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/#lessons).
+
+## Playback
+
+Learners watch the video in their browser's player with the usual controls; skipping forward and back is possible. When a video plays to the end, the lesson counts as done. In the chat, the video plays right in the conversation (see [In the chat](/en/company-gpt/addons/companylearn/im-chat/)).
+
+A video can only be played by people who are enrolled in a published course with that lesson and have unlocked the corresponding chapter. The playback addresses are only valid for a short time; companyLEARN renews them automatically during playback.
+
+The video library itself has no preview. To see a video the way learners do, open the lesson in a published course you are enrolled in.
+
+If a video cannot be loaded, the message "The video could not be loaded. Please try again later." appears.
+
+## Deleting a video
+
+Click the trash can in the video's row and confirm **Delete video?**. The file is deleted permanently.
+
+A video that is still used in lessons cannot be deleted. companyLEARN then reports, for example, "This video is used by 2 lessons. Remove it from those lessons first." Choose a different video in those lessons or delete the lessons, then delete the video again.
+
+Next: [External API](/en/company-gpt/addons/companylearn/api/).

@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "blobPath": "files/muster/tr-muster-1/result.docx",
+      "fileName": "muster-anschreiben_en.docx",
+      "targetLang": "en",
+      "sizeBytes": 1339,
+      "createdOn": "2026-10-16T08:40:33.000Z",
+      "sourceBlobPath": "files/muster/tr-muster-1/source.docx",
+      "hasTranslation": true,
+      "jobId": "tr-muster-1",
+      "origin": "web",
+      "status": "completed"
+    },
+    {
+      "blobPath": "files/muster/tr-muster-2/result.pdf",
+      "fileName": "produktblatt_fr.pdf",
+      "targetLang": "fr",
+      "sizeBytes": 148213,
+      "createdOn": "2026-10-15T14:05:12.000Z",
+      "sourceBlobPath": "files/muster/tr-muster-2/source.pdf",
+      "hasTranslation": true,
+      "jobId": "tr-muster-2",
+      "origin": "chat",
+      "status": "completed"
+    }
+  ]
+}

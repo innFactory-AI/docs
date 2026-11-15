@@ -1,0 +1,67 @@
+---
+title: Mehrere Office-Fenster
+description: Mit dem Office-Add-in in mehreren geöffneten Office-Fenstern arbeiten – andere Dokumente lesen und Inhalte über App-Grenzen hinweg einfügen.
+---
+
+Haben Sie das [Office-Add-in](/de/company-gpt/addons/companym365/office-add-in/) in mehreren Fenstern geöffnet – zum Beispiel in zwei Word-Dokumenten, dazu in Excel, PowerPoint oder Outlook –, arbeitet jeder Chat in seinem eigenen Fenster. Auf Wunsch liest der Assistent auch die anderen geöffneten Fenster und fügt Inhalte über App-Grenzen hinweg ein, etwa eine Tabelle aus einem Word-Bericht als neues Blatt in Excel. Eine Änderung in einem anderen Fenster führt er erst aus, wenn Sie sie im eigenen Chat bestätigt haben.
+
+Als geöffnet gilt ein Fenster, in dem der Add-in-Bereich geöffnet ist. Ein Dokument, in dem das Add-in nicht geöffnet ist, sieht der Assistent nicht. Er bittet Sie dann, das Add-in in diesem Fenster über das Menüband zu öffnen, statt die Datei hochzuladen. Ihr Unternehmen kann das Arbeiten mit mehreren Fenstern abschalten; dann arbeitet jeder Chat nur in seinem eigenen Fenster.
+
+## Geöffnete Fenster finden
+
+- Fragen Sie den Assistenten zum Beispiel „Welche Office-Fenster habe ich offen?“. Er listet die verbundenen Fenster mit Namen und Anwendung auf.
+- Tippen Sie `#` ins Eingabefeld: Ganz oben steht der Abschnitt **Offene Fenster** mit allen anderen verbundenen Fenstern. Ein gewähltes Fenster erscheint als Chip; der Assistent liest dann genau dieses Fenster.
+
+Gibt es zwei Fenster mit demselben Namen, unterscheidet das Add-in sie mit einer Nummer, z. B. „Bericht.docx“ und „Bericht.docx (2)“.
+
+Fenster, deren Verbindung gerade abgerissen ist, nennt der Assistent gesondert; lesen oder ändern kann er sie dann nicht. Klicken Sie einmal in ein solches Fenster oder öffnen Sie das Add-in dort neu, dann verbindet es sich wieder.
+
+## Andere Fenster lesen
+
+Lesen braucht keine Bestätigung und ändert nichts. Der Assistent liest je nach Anwendung:
+
+| Anwendung | Was gelesen wird |
+|---|---|
+| Word | den Text des Dokuments |
+| Excel | einen Zellbereich oder die Übersicht der Mappe |
+| PowerPoint | die Folienübersicht |
+| Outlook | die geöffnete E-Mail bzw. den geöffneten Entwurf |
+
+Fenster im Hintergrund antworten manchmal verzögert. Reagiert ein Fenster nicht innerhalb von 25 Sekunden, bittet Sie der Assistent, das Fenster kurz in den Vordergrund zu holen.
+
+## In ein anderes Fenster einfügen
+
+Der Assistent kann Text, formatierten Text oder eine Tabelle in jedes verbundene Fenster einfügen – auch in eine andere Anwendung:
+
+| Ziel | Wo der Inhalt landet |
+|---|---|
+| Word | am Ende des Dokuments |
+| Excel | nur Tabellen, immer als neues Blatt; bestehende Zellen werden nie überschrieben |
+| PowerPoint | als neue Folie am Ende, mit Titel und Tabelle oder dem Text als Aufzählung |
+| Outlook | am Anfang eines geöffneten Entwurfs; in eine E-Mail im Lesemodus kann nichts eingefügt werden |
+
+Eine neue Folie fasst höchstens 20 Textzeilen bzw. eine Tabelle mit bis zu 20 Zeilen und 10 Spalten. Passt die Tabelle auf keine Folie der Vorlage, legt der Assistent keine Folie an.
+
+### Bestätigung im eigenen Chat
+
+Eine Änderung in einem anderen Fenster landet nie direkt dort – in jedem [Bearbeitungsmodus](/de/company-gpt/addons/companym365/office-add-in/#bearbeitungsmodi), auch im Modus **Direkt**. Stattdessen zeigt Ihr eigener Chat eine Karte, zum Beispiel **Änderung in „Umsatz.xlsx“ (Excel)**.
+
+- **Übernehmen** führt die Änderung genau einmal im anderen Fenster aus. Danach zeigt die Karte „In „Umsatz.xlsx“ übernommen“ oder den Fehler. Bei manchen Fehlern bleibt die Karte offen, sodass Sie es erneut versuchen können.
+- **Verwerfen**, **Alle verwerfen** oder ein neuer Chat verwerfen die Änderung.
+- **Alle übernehmen** übernimmt keine Änderungen für andere Fenster. Diese Karten übernehmen Sie einzeln; ein Hinweis weist darauf hin. Sind nur noch solche Karten offen, ist **Alle übernehmen** deaktiviert.
+- **Alle Änderungen zeigen** im eigenen Chat führt die Änderung im anderen Fenster mit auf.
+- Eine Karte gilt 30 Minuten. Zeigt das Zielfenster inzwischen einen anderen Inhalt – etwa eine andere E-Mail –, wird die Änderung nicht ausgeführt.
+
+## Grenzen
+
+- **Höchstens zehn Fenster** je Person sind gleichzeitig verbunden. Im elften Fenster erscheint „Zu viele Fenster verbunden — …“ mit **Erneut verbinden**. Schließen Sie den Add-in-Bereich in einem anderen Fenster und klicken Sie dann auf **Erneut verbinden**. Bis dahin funktioniert der Chat in diesem Fenster wie ein normaler Chat, ohne Zugriff auf das Dokument.
+- **Markierung und Cursor** eines anderen Fensters bleiben unberührt. Aktionen, die an der Markierung wirken – etwa ein Bild an der markierten Stelle einfügen –, führt der Assistent nur im eigenen Fenster aus.
+
+## Fenster schließen, während eine Antwort läuft
+
+Schließen Sie das Fenster oder den Add-in-Bereich, während eine Antwort läuft, hat diese Antwort zunächst kein Fenster mehr, in das sie schreiben kann. Was dann geschieht, hängt davon ab, ob Sie den Add-in-Bereich wieder öffnen:
+
+- **Wieder geöffnet:** Öffnen Sie den Add-in-Bereich im selben gespeicherten Dokument bzw. in derselben E-Mail innerhalb von 10 Minuten wieder, erkennt das Add-in das Fenster wieder. Läuft die Antwort noch, ist dieses Fenster wieder ihr Zuhause – bis 3 Minuten nach dem Schließen oder bis Sie dort selbst eine Nachricht senden. In dieser Zeit landen die Schreibvorgänge dieser Antwort in diesem Fenster; Änderungen an anderen Fenstern erscheinen als Karte in diesem Add-in-Bereich und werden erst nach **Übernehmen** ausgeführt.
+- **Nicht wieder geöffnet oder nicht gespeichert:** Ohne erneutes Öffnen sowie bei ungespeicherten Dokumenten und Entwürfen schreibt die Antwort in kein Fenster mehr. Öffnen Sie den Add-in-Bereich dort wieder und senden Sie die Nachricht erneut.
+
+In den ersten 3 Minuten nach dem Schließen kann der Assistent einen Schreibvorgang mit diesem Hinweis ablehnen: „Das Fenster einer früheren Antwort wurde geschlossen, während sie noch lief; bis 3 Minuten nach dem Schließen ist unklar, aus welchem Fenster ein Schreibaufruf kommt — er wird nicht ausgeführt.“ Versuchen Sie es nach Ablauf der 3 Minuten erneut.

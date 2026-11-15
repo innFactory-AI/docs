@@ -1,0 +1,446 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "alle-apps-uebersicht",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt",
+      "waitFor": "role=heading[name=\"Alle Apps\"]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 640
+      },
+      "output": "src/content/docs/de/company-gpt/addons/alle-apps-uebersicht.png"
+    },
+    {
+      "id": "alle-apps-chat",
+      "lang": "de",
+      "note": "Nur die Liste im Bereich „Apps“ der Chat-Seitenleiste (iframe), ohne die Symbolleiste des Pilot-Chats.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Apps\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Apps\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "nav iframe"
+        },
+        {
+          "action": "wait",
+          "ms": 3500
+        }
+      ],
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 482
+      },
+      "output": "src/content/docs/de/company-gpt/addons/alle-apps-chat.png"
+    },
+    {
+      "id": "oberflaeche-seitenleiste",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "waitFor": "main h1",
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-seitenleiste.png"
+    },
+    {
+      "id": "oberflaeche-seitenleiste-eingeklappt",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "waitFor": "main h1",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Seitenleiste schließen\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=link[name=\"Alle Apps\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=tooltip",
+          "optional": true
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 290
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-seitenleiste-eingeklappt.png"
+    },
+    {
+      "id": "oberflaeche-kontomenue",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "note": "E-Mail-Adresse im Kontomenü wird geschwärzt.",
+      "waitFor": "main h1",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Kontoeinstellungen/]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=\"Design\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitemradio >> nth=0"
+        }
+      ],
+      "mask": [
+        "[data-slot=\"dropdown-menu-content\"] > div[dir=\"auto\"]"
+      ],
+      "maskColor": "#d4d4d4",
+      "clip": {
+        "x": 0,
+        "y": 650,
+        "width": 520,
+        "height": 250
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-kontomenue.png"
+    },
+    {
+      "id": "oberflaeche-mobil",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "waitFor": "role=button[name=\"Seitenleiste öffnen\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main textarea"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 330
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-mobil.png"
+    },
+    {
+      "id": "oberflaeche-mobil-navigation",
+      "lang": "de",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/de/text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "waitFor": "role=button[name=\"Seitenleiste öffnen\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Seitenleiste öffnen\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 290
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-mobil-navigation.png"
+    },
+    {
+      "id": "oberflaeche-kein-zugriff",
+      "lang": "de",
+      "note": "Gestellt: Die Zugriffsprüfung von companyLEARN antwortet per Mock mit 403 EXT_ACCESS_DENIED. Ausschnitt nur die Statusmeldung.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/auth/me",
+          "status": 403,
+          "json": {
+            "error": "Forbidden",
+            "code": "EXT_ACCESS_DENIED"
+          }
+        }
+      ],
+      "waitFor": "text=Kein Zugriff",
+      "clip": {
+        "x": 490,
+        "y": 330,
+        "width": 700,
+        "height": 240
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-kein-zugriff.png"
+    },
+    {
+      "id": "oberflaeche-nicht-erreichbar",
+      "lang": "de",
+      "note": "Gestellt: Die Sitzungserneuerung antwortet per Mock mit 503. Ausschnitt nur die Statusmeldung.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/api/auth/refresh",
+          "method": "POST",
+          "status": 503,
+          "json": {
+            "error": "Service Unavailable"
+          }
+        }
+      ],
+      "waitFor": "text=companyGPT ist nicht erreichbar",
+      "clip": {
+        "x": 490,
+        "y": 330,
+        "width": 700,
+        "height": 240
+      },
+      "output": "src/content/docs/de/company-gpt/addons/oberflaeche-nicht-erreichbar.png"
+    },
+    {
+      "id": "alle-apps-uebersicht",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt",
+      "waitFor": "role=heading[name=\"All apps\"]",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 640
+      },
+      "output": "src/content/docs/en/company-gpt/addons/alle-apps-uebersicht.png"
+    },
+    {
+      "id": "alle-apps-chat",
+      "lang": "en",
+      "note": "Nur die Liste im Bereich „Apps“ der Chat-Seitenleiste (iframe), ohne die Symbolleiste des Pilot-Chats.",
+      "baseUrl": "demo",
+      "path": "/c/new",
+      "waitFor": "role=button[name=\"Apps\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Apps\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "nav iframe"
+        },
+        {
+          "action": "wait",
+          "ms": 3500
+        }
+      ],
+      "clip": {
+        "x": 53,
+        "y": 0,
+        "width": 307,
+        "height": 482
+      },
+      "output": "src/content/docs/en/company-gpt/addons/alle-apps-chat.png"
+    },
+    {
+      "id": "oberflaeche-seitenleiste",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "waitFor": "main h1",
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-seitenleiste.png"
+    },
+    {
+      "id": "oberflaeche-seitenleiste-eingeklappt",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "waitFor": "main h1",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Close sidebar\"]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=link[name=\"All apps\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=tooltip",
+          "optional": true
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 290
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-seitenleiste-eingeklappt.png"
+    },
+    {
+      "id": "oberflaeche-kontomenue",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "note": "E-Mail-Adresse im Kontomenü wird geschwärzt.",
+      "waitFor": "main h1",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Account Settings/]"
+        },
+        {
+          "action": "hover",
+          "selector": "role=menuitem[name=\"Theme\"]"
+        },
+        {
+          "action": "wait",
+          "selector": "role=menuitemradio >> nth=0"
+        }
+      ],
+      "mask": [
+        "[data-slot=\"dropdown-menu-content\"] > div[dir=\"auto\"]"
+      ],
+      "maskColor": "#d4d4d4",
+      "clip": {
+        "x": 0,
+        "y": 650,
+        "width": 520,
+        "height": 250
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-kontomenue.png"
+    },
+    {
+      "id": "oberflaeche-mobil",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "waitFor": "role=button[name=\"Open sidebar\"]",
+      "actions": [
+        {
+          "action": "wait",
+          "selector": "main textarea"
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 330
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-mobil.png"
+    },
+    {
+      "id": "oberflaeche-mobil-navigation",
+      "lang": "en",
+      "baseUrl": "demo",
+      "path": "/companygpt/translate/en/text",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "waitFor": "role=button[name=\"Open sidebar\"]",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=\"Open sidebar\"]"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        }
+      ],
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 290
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-mobil-navigation.png"
+    },
+    {
+      "id": "oberflaeche-kein-zugriff",
+      "lang": "en",
+      "note": "Gestellt: Die Zugriffsprüfung von companyLEARN antwortet per Mock mit 403 EXT_ACCESS_DENIED. Ausschnitt nur die Statusmeldung.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/companygpt/learn/api/auth/me",
+          "status": 403,
+          "json": {
+            "error": "Forbidden",
+            "code": "EXT_ACCESS_DENIED"
+          }
+        }
+      ],
+      "waitFor": "text=No access",
+      "clip": {
+        "x": 490,
+        "y": 330,
+        "width": 700,
+        "height": 240
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-kein-zugriff.png"
+    },
+    {
+      "id": "oberflaeche-nicht-erreichbar",
+      "lang": "en",
+      "note": "Gestellt: Die Sitzungserneuerung antwortet per Mock mit 503. Ausschnitt nur die Statusmeldung.",
+      "baseUrl": "demo",
+      "path": "/companygpt/learn/",
+      "routes": [
+        {
+          "urlPattern": "**/api/auth/refresh",
+          "method": "POST",
+          "status": 503,
+          "json": {
+            "error": "Service Unavailable"
+          }
+        }
+      ],
+      "waitFor": "text=companyGPT is not reachable",
+      "clip": {
+        "x": 490,
+        "y": 330,
+        "width": 700,
+        "height": 240
+      },
+      "output": "src/content/docs/en/company-gpt/addons/oberflaeche-nicht-erreichbar.png"
+    }
+  ]
+}

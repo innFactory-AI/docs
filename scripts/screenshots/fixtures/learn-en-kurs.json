@@ -1,0 +1,107 @@
+{
+  "id": "00000000-0000-4000-8000-0000c0000001",
+  "title": "AI at work",
+  "description": "The basics, good prompts and handling data safely – in three short chapters.",
+  "gatingEnabled": true,
+  "enrolled": true,
+  "completedAt": null,
+  "chapters": [
+    {
+      "id": "00000000-0000-4000-8000-0000a0000001",
+      "title": "The basics",
+      "description": null,
+      "position": 1,
+      "locked": false,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000001",
+          "title": "What is a language model?",
+          "type": "video",
+          "position": 1,
+          "completed": true
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000002",
+          "title": "Strengths and limits",
+          "type": "text",
+          "position": 2,
+          "completed": true
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000001",
+        "title": "Quiz: The basics",
+        "passThresholdPercent": 70,
+        "passed": true,
+        "attemptCount": 1
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000a0000002",
+      "title": "Writing good prompts",
+      "description": null,
+      "position": 2,
+      "locked": false,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000003",
+          "title": "Anatomy of a good prompt",
+          "type": "video",
+          "position": 1,
+          "completed": true
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000004",
+          "title": "Everyday examples",
+          "type": "text",
+          "position": 2,
+          "completed": false
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000005",
+          "title": "Refining prompts",
+          "type": "text",
+          "position": 3,
+          "completed": false
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000002",
+        "title": "Quiz: Good prompts",
+        "passThresholdPercent": 70,
+        "passed": false,
+        "attemptCount": 1
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000a0000003",
+      "title": "Handling data safely",
+      "description": null,
+      "position": 3,
+      "locked": true,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000006",
+          "title": "What belongs in the chat",
+          "type": "text",
+          "position": 1,
+          "completed": false
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000007",
+          "title": "Files and knowledge bases",
+          "type": "video",
+          "position": 2,
+          "completed": false
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000003",
+        "title": "Final quiz",
+        "passThresholdPercent": 70,
+        "passed": false,
+        "attemptCount": 0
+      }
+    }
+  ]
+}

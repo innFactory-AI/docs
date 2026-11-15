@@ -1,0 +1,129 @@
+{
+  "jobs": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "fileId": "00000000-0000-4000-9000-000000000001",
+      "fileName": "lieferantenhandbuch.pdf",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "queued",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "queuePosition": 3
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "fileId": "00000000-0000-4000-9000-000000000002",
+      "fileName": "datenschutzhinweise.pdf",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "queued",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "queuePosition": 2
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "fileId": "00000000-0000-4000-9000-000000000003",
+      "fileName": "hausordnung.docx",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "queued",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "queuePosition": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000004",
+      "fileId": "00000000-0000-4000-9000-000000000004",
+      "fileName": "it-richtlinie.pdf",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "running",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "startedAt": "2026-10-16T08:59:12Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000005",
+      "fileId": "00000000-0000-4000-9000-000000000005",
+      "fileName": "onboarding-checkliste.docx",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "completed",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "startedAt": "2026-10-16T08:58:52Z",
+      "completedAt": "2026-10-16T08:59:10Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000006",
+      "fileId": "00000000-0000-4000-9000-000000000006",
+      "fileName": "urlaubsregelung.md",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "completed",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "startedAt": "2026-10-16T08:58:45Z",
+      "completedAt": "2026-10-16T08:58:50Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000007",
+      "fileId": "00000000-0000-4000-9000-000000000007",
+      "fileName": "reisekosten-richtlinie.md",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "completed",
+      "retryCount": 0,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:58:40Z",
+      "startedAt": "2026-10-16T08:58:41Z",
+      "completedAt": "2026-10-16T08:58:44Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000008",
+      "fileId": "00000000-0000-4000-9000-000000000008",
+      "fileName": "scan-lieferschein.pdf",
+      "collectionId": "932af8c8-a517-490c-8a5a-ef06f3752c0b",
+      "collectionName": "musterhandbuch",
+      "type": "index",
+      "status": "failed",
+      "retryCount": 3,
+      "maxRetries": 3,
+      "createdAt": "2026-10-16T08:55:03Z",
+      "startedAt": "2026-10-16T08:55:05Z",
+      "completedAt": "2026-10-16T08:56:30Z",
+      "error": "Die Datei ist beschädigt oder kein gültiges PDF."
+    }
+  ],
+  "total": 8,
+  "page": 1,
+  "pageSize": 20,
+  "totalPages": 1,
+  "statusCounts": {
+    "queued": 3,
+    "running": 1,
+    "completed": 3,
+    "failed": 1,
+    "total": 8
+  },
+  "queueStats": {
+    "queued": 3,
+    "running": 1
+  },
+  "deletableFailedCount": 1
+}

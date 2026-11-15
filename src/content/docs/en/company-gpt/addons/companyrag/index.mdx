@@ -1,55 +1,83 @@
 ---
 title: companyRAG
-description: The companyRAG addon makes large volumes of documents from SharePoint, Nextcloud, Google Drive, GitHub and the web searchable – as semantic search, as structured data, and as datasets for your agents.
+description: The companyRAG addon makes large volumes of documents from SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP, databases and the web searchable – as semantic search, structured data, datasets, project knowledge and collective knowledge with a knowledge graph for your agents.
 ---
 
-With the companyRAG addon, you can make large volumes of documents available to your agents via the MCP interface. Documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/) methodology. There is no limit on the length of individual documents or their total number.
+import seitenleiste from './rag-seitenleiste.png';
 
-Indexing can be implemented as a one-time or recurring process, depending on your use case. In addition to classic semantic search, companyRAG can also [extract structured data](/en/company-gpt/addons/companyrag/strukturierte-daten/) from the same documents and make [tabular datasets](/en/company-gpt/addons/companyrag/datensaetze/) queryable via SQL.
+With the companyRAG addon, you can make large volumes of documents available to your agents via the MCP interface. Documents can be indexed from different sources and integrated using the [RAG - Retrieval Augmented Generation](/en/prompt-engineering/prompt-techniken/rag/) methodology.
 
-companyRAG is available to appropriately authorized users in the **Knowledge** area.
+Indexing can be implemented as a one-time or recurring process, depending on your use case. In addition to classic semantic search, companyRAG can also [extract structured data](/en/company-gpt/addons/companyrag/strukturierte-daten/) from the same documents and make [tabular datasets](/en/company-gpt/addons/companyrag/datensaetze/) queryable via SQL. With [project knowledge](/en/company-gpt/addons/companyrag/projektwissen/), teams collect notes, links and files that are condensed into knowledge pages; the [collective knowledge](/en/company-gpt/addons/companyrag/gesamtwissen/) searches everything you may read, and the knowledge graph shows how it connects. What is new in version 3.0 is described under [What is new in companyRAG 3.0](/en/company-gpt/addons/companyrag/neu-in-3-0/).
+
+companyRAG only reads content from the connected systems. Nothing is written back to SharePoint, Google Drive or other source systems. The only exception are [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/), whose Markdown files are maintained in a GitHub repository or SharePoint folder.
+
+## Opening companyRAG
+
+You open companyRAG via [All apps](/en/company-gpt/addons/alle-apps/) using the **Knowledge** tile, or directly at `https://COMPANY.company-gpt.com/companygpt/rag`. You are usually signed in through your existing CompanyGPT session; in some environments you sign in to companyRAG directly via **Sign in with Microsoft**. If your account has no access to companyRAG, a **No access** notice appears instead of the interface. In that case, contact your administrator.
 
 ## Types of collections
 
-All content in companyRAG lives in collections. The type of a collection determines how its content is stored and queried. It is shown as a badge on every collection in the overview.
+All content in companyRAG lives in collections. You choose the type under **Collection Type** when [creating the collection](/en/company-gpt/addons/companyrag/sammlungen/#creating-a-collection). It determines how the content is stored and queried, and it is shown as a badge on every collection in the overview.
 
 | Type | Content | Query |
 |---|---|---|
-| **Documents** | Documents from upload, SharePoint, Nextcloud, Google Drive, GitHub or web crawl | Semantic search and full-text search; optionally also [structured fields](/en/company-gpt/addons/companyrag/strukturierte-daten/) |
+| **Documents** | Documents from upload, SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP or web crawl | Semantic search and full-text search; optionally also [structured fields](/en/company-gpt/addons/companyrag/strukturierte-daten/) |
 | **Dataset** | Tables from CSV, Excel and Parquet files, or via an ingestion endpoint | SQL queries across one or more tables, including joins |
-| **OKF bundle** | Markdown knowledge collections in the [Open Knowledge Format](/en/company-gpt/addons/companyrag/okf-bundles/) in GitHub or SharePoint | Same as a document collection |
+| **OKF Bundle** | Markdown knowledge collections in the [Open Knowledge Format](/en/company-gpt/addons/companyrag/okf-bundles/) in GitHub or SharePoint | Same as a document collection |
+| **Project** | Entries (notes, links, files) and the knowledge pages condensed from them, see [Project knowledge](/en/company-gpt/addons/companyrag/projektwissen/) | Semantic search, also in the [collective knowledge](/en/company-gpt/addons/companyrag/gesamtwissen/) |
 
 ![Collection overview with type, visibility and role badges](./sammlungen-uebersicht.png)
 
 ## companyRAG user interface
 
-The user interface allows you to add single or multiple files, or entire data sources, for indexing.
-The interface is divided into the following areas:
+companyRAG uses the [shared interface of the CompanyGPT addons](/en/company-gpt/addons/gemeinsame-oberflaeche/): on the left the sidebar with **New chat** and **All apps**, below it the areas of companyRAG, and at the bottom your account with theme and language. The interface is available in German and English.
 
-import sidebarImg from "./rag-sidebar-neu.png";
+The companyRAG sidebar contains the following areas:
 
-<div style="display: flex; gap: 2rem; align-items: flex-start;">
-  <img src={sidebarImg.src} alt="companyRAG sidebar" style="width: 60px; flex-shrink: 0;" />
-  <div>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start;">
+<img src={seitenleiste.src} alt="companyRAG sidebar with New chat, All apps and the areas Collective knowledge, Files, Collections, Sources, Connections, Jobs, Upload, API keys and Admin settings" width="200" style="flex-shrink: 0;" />
+<div style="flex: 1 1 20rem;">
 
-- [Collections](/en/company-gpt/addons/companyrag/sammlungen/) – storage locations for documents and permissions
+- [Collective knowledge](/en/company-gpt/addons/companyrag/gesamtwissen/) – search and knowledge graph across everything you may read *(only if project knowledge is switched on)*
 - [Files](/en/company-gpt/addons/companyrag/dateien/) – all indexed files with their status
-- [Upload](/en/company-gpt/addons/companyrag/hochladen/) – index single or multiple files manually
+- [Collections](/en/company-gpt/addons/companyrag/sammlungen/) – storage locations for documents and permissions
 - [Sources](/en/company-gpt/addons/companyrag/quellen/) – automatic synchronization from connected systems
-- [Integrations](/en/company-gpt/addons/companyrag/integrationen/) – connections to SharePoint, Nextcloud, Google Drive, GitHub and web crawl
+- [Connections](/en/company-gpt/addons/companyrag/integrationen/) – logins and credentials for SharePoint, Nextcloud, Google Drive, WebDAV, FTP, GitHub, databases and Webcrawl
 - [Jobs](/en/company-gpt/addons/companyrag/auftraege/) – indexing jobs and their status
-- [API keys](/en/company-gpt/addons/companyrag/api-schluessel/) *(administrators only)*
-- [Audit log](/en/company-gpt/addons/companyrag/audit-protokoll/) *(administrators only)*
+- [Upload](/en/company-gpt/addons/companyrag/hochladen/) – index single or multiple files manually
+
+Below a divider follow the administration areas:
+
+- [API Keys](/en/company-gpt/addons/companyrag/api-schluessel/) *(administrators only)*
+- **Admin Settings** *(global administrators only)* – switches for [project knowledge and the curator](/en/company-gpt/addons/companyrag/projektwissen/#admin-settings) and for [source types](/en/company-gpt/addons/companyrag/quellen/#switching-source-types-on-and-off)
+- [Audit Logs](/en/company-gpt/addons/companyrag/audit-protokoll/) *(super admins only)*
 
 </div>
+
 </div>
+
+## Rights and roles
+
+What you may do in a collection depends on your role in that collection (**Viewer**, **Editor** or **Owner**, see [Roles in collections](/en/company-gpt/addons/companyrag/sammlungen/#roles-in-collections)). On top of that there are rights for companyRAG as a whole:
+
+| Right | Meaning |
+|---|---|
+| Use | Open companyRAG and search the collections you have access to. |
+| Create collections and sources | Create new collections, sources and connections with your own credentials. Anyone who may only use companyRAG is a viewer: they use the assigned collections but do not create new ones. Administrators have this right automatically. |
+| Administrator | In addition, create and revoke [API keys](/en/company-gpt/addons/companyrag/api-schluessel/). You still maintain the content of collections through your role in each collection. Global administrators also switch project knowledge, the curator and the source types on or off in the **Admin Settings**. |
+| Super admin | In addition, see and manage all collections of the organization and view the [audit logs](/en/company-gpt/addons/companyrag/audit-protokoll/). Even a super admin cannot read the files of other people's collections or change their content; maintenance tasks remain. |
+
+Your organization decides who receives which right. If your environment controls access through companyADMIN, administrators grant the rights there under [Extensions](/en/company-gpt/addons/companyadmin/erweiterungen/) as **Use knowledge**, **Manage RAG settings** and **Superadmin**. The **Superadmin** right is never granted automatically, not even to administrators.
 
 ## Further topics
 
 - [Structured data from documents](/en/company-gpt/addons/companyrag/strukturierte-daten/) – extract typed fields from recurring document types
 - [Dataset collections](/en/company-gpt/addons/companyrag/datensaetze/) – import tables or fill them live via an endpoint
 - [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/) – knowledge collections as Markdown in GitHub or SharePoint
+- [Project knowledge](/en/company-gpt/addons/companyrag/projektwissen/) – projects, entries, curator and knowledge pages
+- [Collective knowledge and knowledge graph](/en/company-gpt/addons/companyrag/gesamtwissen/) – one search across everything you may read, and the map of your knowledge
 - [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/) – the `ai-search` MCP server, its tools and agents
+- [companyRAG API](/en/api/company-rag-api/) – programmatic access to files, collections, jobs and sources
 
 ## Downloads
 

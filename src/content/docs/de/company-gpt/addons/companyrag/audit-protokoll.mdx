@@ -1,17 +1,24 @@
 ---
 title: Audit-Protokoll
-description: Lückenloses Protokoll aller Änderungen und Aktivitäten in companyRAG – für Sicherheit, Nachvollziehbarkeit und Fehlersuche.
+description: Protokoll der administrativen und verwaltungsbezogenen Aktionen in companyRAG – für Sicherheit, Nachvollziehbarkeit und Fehlersuche.
 ---
 
-Das Audit-Protokoll ist ein lückenloses Protokoll (Logbuch), das alle wichtigen Änderungen und Aktivitäten im RAG-Service aufzeichnet. Es dient Administratoren zur Sicherheit, Nachvollziehbarkeit und zur schnellen Fehlersuche.
+Das Audit-Protokoll zeichnet die administrativen und verwaltungsbezogenen Aktionen im RAG-Service auf. Es dient der Sicherheit, der Nachvollziehbarkeit und der schnellen Fehlersuche.
 
-Die Übersicht zeigt:
+Der Bereich erscheint nur für Superadmins (siehe [Rechte und Rollen](/de/company-gpt/addons/companyrag/#rechte-und-rollen)).
+
+Die Übersicht zeigt je Eintrag:
 
 - **Zeitstempel**: Das genaue Datum und die Uhrzeit der Aktivität.
-- **Akteur (Nutzer)**: Wer die Aktion durchgeführt hat (z. B. ein bestimmter Administrator oder ein automatisierter [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/)).
-- **Aktion**: Was genau getan wurde (z. B. „Datei gelöscht", „Integration erstellt", „Sammlung geteilt" oder „API-Schlüssel widerrufen").
-- **Details**: Zusätzliche Informationen zum Ereignis (z. B. der Name der betroffenen Datei oder die ID der geänderten Sammlung).
-- **Suche & Filter**: Ermöglicht es, das Protokoll gezielt nach bestimmten Zeiträumen, Nutzern oder bestimmten Aktionen zu durchsuchen.
+- **Benutzer**: Wer die Aktion durchgeführt hat – auch dann, wenn sie über einen [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) ausgelöst wurde.
+- **Aktion**: Was getan wurde, z. B. `file.upload`, `collection.create`, `share.create`, `source.sync` oder `apikey.revoke`.
+- **Ressourcentyp** und **Ressourcen-ID**: Welches Objekt betroffen ist, etwa eine Datei, eine Sammlung, eine Freigabe oder eine Quelle.
+- **Details**: Zusätzliche Informationen zum Ereignis, z. B. der Name der betroffenen Quelle.
+- **IP-Adresse**: Die Adresse, von der die Aktion kam.
+
+Über die Filter **Benutzer-E-Mail**, **Aktion**, **Ressourcentyp**, **Von** und **Bis** grenzen Sie das Protokoll ein. **Filter zurücksetzen** hebt alle Filter wieder auf.
+
+Protokolliert werden unter anderem Uploads, Löschungen und Neuindexierungen von Dateien, Aktionen an Aufträgen, das Anlegen, Ändern und Löschen von Sammlungen und Freigaben, das Umwandeln bestehender Tabellen in Datensätze, Änderungen, Löschungen und manuell gestartete Synchronisationen von Quellen (auch Web-Crawls), das Einspielen und Leeren von Zeilen in Datensatzsammlungen mit live definiertem Schema, das Anlegen und Löschen von OKF-Bundles sowie das Erstellen und Widerrufen von API-Schlüsseln.
 
 :::tip[Hinweis]
 Da API-Schlüssel im Namen ihrer Erstellerin oder ihres Erstellers handeln, erscheinen automatisierte Zugriffe im Protokoll unter dieser Person. Ein eigener Schlüssel pro System hält das Protokoll dadurch aussagekräftig.

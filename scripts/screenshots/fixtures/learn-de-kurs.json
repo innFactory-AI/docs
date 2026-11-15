@@ -1,0 +1,107 @@
+{
+  "id": "00000000-0000-4000-8000-0000c0000001",
+  "title": "KI im Arbeitsalltag",
+  "description": "Grundlagen, gute Prompts und der sichere Umgang mit Daten – in drei kurzen Kapiteln.",
+  "gatingEnabled": true,
+  "enrolled": true,
+  "completedAt": null,
+  "chapters": [
+    {
+      "id": "00000000-0000-4000-8000-0000a0000001",
+      "title": "Grundlagen",
+      "description": null,
+      "position": 1,
+      "locked": false,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000001",
+          "title": "Was ist ein Sprachmodell?",
+          "type": "video",
+          "position": 1,
+          "completed": true
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000002",
+          "title": "Stärken und Grenzen",
+          "type": "text",
+          "position": 2,
+          "completed": true
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000001",
+        "title": "Quiz: Grundlagen",
+        "passThresholdPercent": 70,
+        "passed": true,
+        "attemptCount": 1
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000a0000002",
+      "title": "Gute Prompts schreiben",
+      "description": null,
+      "position": 2,
+      "locked": false,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000003",
+          "title": "Aufbau eines guten Prompts",
+          "type": "video",
+          "position": 1,
+          "completed": true
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000004",
+          "title": "Beispiele aus dem Alltag",
+          "type": "text",
+          "position": 2,
+          "completed": false
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000005",
+          "title": "Prompts verfeinern",
+          "type": "text",
+          "position": 3,
+          "completed": false
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000002",
+        "title": "Quiz: Gute Prompts",
+        "passThresholdPercent": 70,
+        "passed": false,
+        "attemptCount": 1
+      }
+    },
+    {
+      "id": "00000000-0000-4000-8000-0000a0000003",
+      "title": "Sicher mit Daten umgehen",
+      "description": null,
+      "position": 3,
+      "locked": true,
+      "lessons": [
+        {
+          "id": "00000000-0000-4000-8000-0000b0000006",
+          "title": "Was in den Chat gehört",
+          "type": "text",
+          "position": 1,
+          "completed": false
+        },
+        {
+          "id": "00000000-0000-4000-8000-0000b0000007",
+          "title": "Dateien und Wissensdatenbanken",
+          "type": "video",
+          "position": 2,
+          "completed": false
+        }
+      ],
+      "quiz": {
+        "id": "00000000-0000-4000-8000-0000d0000003",
+        "title": "Abschlussquiz",
+        "passThresholdPercent": 70,
+        "passed": false,
+        "attemptCount": 0
+      }
+    }
+  ]
+}

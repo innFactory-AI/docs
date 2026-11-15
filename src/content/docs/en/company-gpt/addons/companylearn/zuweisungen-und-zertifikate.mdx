@@ -1,0 +1,65 @@
+---
+title: Assignments, Insights and certificates
+description: Assign courses with a due date to people, groups or everyone in companyLEARN, review learning progress and issue certificates from Word templates.
+---
+
+This page is for people with the **Manage courses** permission (see [Permissions](/en/company-gpt/addons/companylearn/#permissions)). **Insights** and **Assignments** are in the menu below the divider; **Certificates** only if the operator has set up PDF conversion for your environment (see [The interface](/en/company-gpt/addons/companylearn/oberflaeche/#menu)). How courses are created is described under [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/).
+
+## Assignments
+
+An assignment makes a **published** course mandatory for people. Assigned people are enrolled automatically and see the course at the top of their dashboard (see [Assigned courses](/en/company-gpt/addons/companylearn/lernen/#assigned-courses)).
+
+Under **Assignments**, click **New assignment**. In the **Assign a course** dialog you choose the course, the target and the due date. You find the target with one search box for people and groups:
+
+| Target | Effect |
+|---|---|
+| **Person** | Exactly this person. The search finds people who have already used companyLEARN, and with a connected directory others as well. |
+| **Group** | A group from the directory (Entra). The members are taken over immediately and re-synced automatically every day. New members get the assignment, members who left lose it. Enrollment and progress stay; the course just stops being mandatory and no longer counts as overdue. |
+| **Everyone** | All people who have already used companyLEARN, and every other person on their first visit. |
+
+Directory groups require the operator to have set up the Microsoft Graph connection for your environment. Without it, companyLEARN rejects group assignments with a note about the missing connection; people and **Everyone** keep working.
+
+As due date you choose **No due date**, **On a date** or **N days after assignment** (0 to 3650). The latter suits onboarding, because it counts from each person's own assignment. Due means the end of that day (time zone Europe/Berlin). If several assignments cover the same course, the earliest due date applies to the person. **Change due date** recalculates the due date for everyone in an assignment.
+
+For each assignment, the detail page shows the status counts (**Assigned**, **In progress**, **Completed**, **Overdue**) and the people list with status, due date and progress. You can filter by status, for example only **Overdue**, and export the list with **Export CSV**. **Delete assignment** withdraws it for all its people; enrollments and progress are kept.
+
+:::note
+For groups, all members receive the assignment, including people who never opened companyLEARN. They are marked **Never signed in** in the list, so the reason for an overdue status is visible. Therefore pick groups whose members have access to companyLEARN.
+:::
+
+**Group sync:** for groups, the detail page shows under **Group sync** when the last sync ran and with what result. **Sync now** starts it right away. If it fails, companyLEARN changes nobody. If a group that had members suddenly returns none, companyLEARN removes nobody as a precaution. If the group really is empty, delete the assignment.
+
+On systems that use Keycloak instead of Entra, group assignments refer to a group name from the sign-in (target **Group (sign-in)**). The name must match exactly. The assignment applies as soon as someone signs in with that group, so only people who have signed in since the assignment are covered.
+
+You can also assign [in the chat](/en/company-gpt/addons/companylearn/im-chat/#creating-and-managing-courses-in-the-chat).
+
+## Insights
+
+**Insights** in the menu shows:
+
+- KPIs with a trend over 7, 30 or 90 days,
+- a course table and course reports with every learner, including the **Stalled** status (no activity for more than 14 days),
+- a list of learners and a person view with courses, quiz attempts, timeline and certificate.
+
+Due dates and assignments also appear in the course and person views. Here you enroll people (**Add participant**, **Enrol in course**) or unenroll them (**Unenrol**) and export with **Export CSV**. Unenrolling keeps progress and quiz results, only the completion date is removed, and the related certificate is no longer available. If you enroll the person again, the course counts as completed again, with the date of the enrollment.
+
+In the person view you also use **Reset attempts** to reset the attempts on a quiz (see [Quiz](/en/company-gpt/addons/companylearn/kurse-verwalten/#quiz)).
+
+## Certificates
+
+Certificates are generated from **Word templates** (`.docx`). Under **Certificates** you upload one **default template** per language (German, English), which applies to every course without its own template. In the course editor you switch **Certificate on completion** on per course (off by default) and can upload a template of its own for each language there. If a language has neither its own nor a default template, there is no certificate in that language.
+
+The template contains fixed placeholders that are replaced as plain text. Nothing is calculated or executed:
+
+| Placeholder | Content |
+|---|---|
+| `{name}` | Name of the learner |
+| `{course}` | Course title |
+| `{completionDate}` | Completion date, formatted in the certificate's language |
+| `{certificateId}` | Certificate number |
+
+On upload, companyLEARN lists the placeholders it found, rejects templates with unknown placeholders and points out missing ones. **Preview** renders a PDF with sample data. If you upload a template again, it keeps its identity and the version counts up.
+
+Every completed enrollment has one certificate with a number of the form `LRN-<year>-<8 characters>`. The PDF is generated on the first download per language, stored, and never regenerated afterwards. A changed template therefore only applies to certificates (or languages) that have not been downloaded yet. The name comes from the person's latest sign-in; if it is unknown, the download fails. Learners download their certificate on the completion page and under **My certificates**, you in the person view.
+
+If an admin unenrolls a person from a course, their certificate is no longer available. If you unpublish a course, certificates already issued stay available.

@@ -1,47 +1,47 @@
 ---
 title: CompanyGPT Help Agent
-description: Crawl a website sitemap on a regular schedule, index every page in a CompanyRAG collection, and make it available as a help agent in CompanyGPT.
+description: Crawl a website sitemap on a regular schedule, index every page in a companyRAG collection, and make it available as a help agent in CompanyGPT.
 ---
 
 import CollectionPromptBuilderEN from '../../../../../components/CollectionPromptBuilderEN.astro'
 
-In this guide we set up a **help agent** that answers questions about a documentation website. To do this, we let the [web crawl source](/en/company-gpt/addons/companyrag/quellen/#web-crawl) of [CompanyRAG](/en/company-gpt/addons/companyrag/) crawl the website's sitemap on a regular schedule, index all pages in a collection, and then make it available to an [agent](/en/company-gpt/agenten/) via the `ai-search` MCP Server.
+In this guide we set up a **help agent** that answers questions about a documentation website. To do this, we let the [web crawl source](/en/company-gpt/addons/companyrag/quellen/#web-crawl) of [companyRAG](/en/company-gpt/addons/companyrag/) crawl the website's sitemap on a regular schedule, index all pages in a collection, and then make it available to an [agent](/en/company-gpt/agenten/) via the `ai-search` MCP Server.
 
 As an example we use the public CompanyGPT documentation with the sitemap `https://docs.company-gpt.com/sitemap-0.xml`. Replace it with the sitemap of your own website.
 
-Prerequisite: You have access to CompanyRAG at `https://COMPANY.company-gpt.com/companygpt/rag` (with a custom domain, just append `/companygpt/rag`) and the right to create agents.
+Prerequisite: You have access to companyRAG – via [All apps](/en/company-gpt/addons/alle-apps/) using the **Knowledge** tile or at `https://COMPANY.company-gpt.com/companygpt/rag` (with a custom domain, just append `/companygpt/rag`) – and the right to create agents.
 
 ## 1. Create a Collection
 
-First we create the collection in which the crawled pages will be indexed. In CompanyRAG, navigate to `Collections` and create a new collection. Select **Documents** as the type, enter a name and a description, and choose the visibility.
+First we create the collection in which the crawled pages will be indexed. In companyRAG, navigate to **Collections** and select **Create Collection**. Select **Documents** as the **Collection Type**, enter a name and a description, and choose the visibility.
 
-![sammlung-erstellen](sammlung-erstellen.png)
+![The "Create Collection" dialog with the collection type Documents, the name Dokumentation and the technical name dokumentation](./sammlung-erstellen.png)
 
 Note the **technical name** (`dokumentation` in the example) – it will be needed later in the agent prompt.
 
-For visibility, you can choose between **Private** and **Public**. A help agent that should be available to all employees usually benefits from a **public** collection. Visibility can be changed at any time.
+For visibility, you can choose between **Private** and **Public**. A help agent that should be available to all employees usually benefits from a **public** collection. Later, a collection can be shared at any time via **Share Collection** – with the **Share with everyone** switch also with all users.
 
 ### Advanced Settings
 
-In the advanced settings you can adjust the search language, chunking strategy, chunk size, and overlap. The default values can be left as-is to get started.
+In the advanced settings you can adjust – depending on the environment – the embedding model, search language, chunking strategy, chunk size, and overlap. The default values can be left as-is to get started.
 
 :::tip
 The search language should ideally match the language of the website. In addition to semantic search, a full-text search is performed that yields better results with the correct language setting.
 :::
 
-![erweiterte-einstellungen](erweiterte-einstellungen.png)
+![Advanced settings in the "Create Collection" dialog with embedding model, search language, chunking strategy, chunk size and chunk overlap](./erweiterte-einstellungen.png)
 
 ## 2. Create a Web Crawl Source
 
 To index the pages automatically and recurrently, we create a web crawl source. Switch to the **Sources** section.
 
-![quellen](quellen.png)
+![The Sources entry in the companyRAG sidebar](./quellen.png)
 
-Click **"+ Web-Crawl"** to create a new source. In the dialog, select the **Sitemap** tab and fill in the fields:
+In the **Webcrawl** tab, click **Add Web Source** to create a new source. On the **New Web Crawl Source** page, select the **Sitemap** tab and fill in the fields:
 
 - **Source name**: A freely chosen name for recognition, e.g. `CGPT Doku`.
 - **Collection**: The collection created in step 1 (`dokumentation`).
-- **Auto-Sync**: The interval at which the sitemap is crawled again, e.g. **Hourly**, **Daily**, or **Weekly**. The source is then synchronized automatically at the chosen interval.
+- **Auto-sync**: The interval at which the sitemap is crawled again: **Hourly**, **Daily**, or **Weekly**. The source is then synchronized automatically at the chosen interval. With **Manual only**, companyRAG only crawls when you trigger it.
 - **Sitemap URL**: `https://docs.company-gpt.com/sitemap-0.xml`
 - **Path prefix filter (optional)**: Restricts which pages are indexed. `/docs/`, for example, would only import URLs whose path begins with `/docs/`. Leave empty to crawl the entire sitemap.
 
@@ -54,22 +54,20 @@ On sitemap crawls, the entire sitemap is indexed on the first run. On every subs
 :::
 
 :::tip
-Instead of a sitemap, you can also crawl individual pages or a CSV-imported list of URLs via the **URL list** tab. For individual pages, the entire page is always re-indexed on every run.
+Instead of a sitemap, you can also crawl individual pages or a CSV-imported list of URLs via the **URL list** tab. Individual pages are fetched again on every run and only re-indexed if their content has changed.
 
 ![website-crawl](website-crawl.png)
 :::
 
 ## 3. Start the Crawl and Check the Status
 
-After creation, the source appears as active under **All sources**. If needed, trigger the first crawl manually via **Sync now**. The discovered pages are then queued as indexing jobs.
+After creation, you can start the first crawl directly via **Sync now**. If you selected an auto-sync interval, companyRAG also starts the first run on its own shortly after creation. The source appears as **Active** under **All Sources**; the discovered pages are queued as indexing jobs.
 
-You can track progress in the **Jobs** section. There you see the status per page (Pending, Running, Completed, or Failed). Once all jobs are **Completed**, the collection is searchable.
+You can track progress in the **Jobs** section. There you see the status per page (**Queued**, **Running**, **Completed**, **Failed**, or **Cancelled**). Once all jobs are **Completed**, the collection is searchable.
 
-:::note[Add screenshot]
-A screenshot of the **Jobs** section showing the running or completed indexing jobs of the web crawl source fits here. *(Placeholder – please add `auftraege-status.png` to this folder and embed it.)*
-:::
+![Jobs of the dokumentation collection with status, type, crawled page and timestamps](./auftraege-doku.png)
 
-Via the **source actions** you can **Pause/Resume** or **Delete** the source at any time. When deleting, already indexed pages remain in the collection.
+Via the source's **…** menu you can **Pause**, **Resume**, **Edit** or **Delete** it at any time. Deleting permanently removes all pages of this source from the collection.
 
 ## 4. Create the Help Agent
 

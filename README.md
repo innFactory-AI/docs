@@ -15,7 +15,7 @@ Diese Dokumentation richtet sich an alle Mitarbeiter, die den CompanyGPT nutzen 
 
 ## Quick Links
 
-*   **Zur CompanyGPT Webseite:** [innFactory CompanyGPT](https://innfactory.ai/company-gpt-dsgvo-konformes-chatgpt-fur-ihr-unternehmen/)
+*   **Zur CompanyGPT Webseite:** [innFactory CompanyGPT](https://innfactory.ai/de/leistungen/companygpt/)
 *   **Zur innFactory Webseite:** [innFactory](https://innfactory.ai/)
 
 ## Beitrag

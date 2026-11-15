@@ -1,0 +1,46 @@
+{
+  "baseUrls": {
+    "demo": "https://companygpt.innfactory.ai"
+  },
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "public": false
+  },
+  "scenes": [
+    {
+      "id": "ai-gateway-kacheln",
+      "lang": "de",
+      "note": "Untere Kachelreihe von Alle Apps: AI Gateway, n8n und die eigene Kachel „AI Gateway Infos“ des Demo-Zugangs. Ausschnitt passt zum Layout von alle-apps-uebersicht (drei Spalten, 1440 px).",
+      "baseUrl": "demo",
+      "path": "/companygpt",
+      "waitFor": "text=AI Gateway Infos",
+      "clip": {
+        "x": 272,
+        "y": 456,
+        "width": 1136,
+        "height": 174
+      },
+      "output": "src/content/docs/de/company-gpt/addons/ai-gateway-kacheln.png"
+    },
+    {
+      "id": "ai-gateway-kacheln",
+      "lang": "en",
+      "note": "Untere Kachelreihe von Alle Apps: AI Gateway, n8n und die eigene Kachel „AI Gateway Infos“ des Demo-Zugangs. Ausschnitt passt zum Layout von alle-apps-uebersicht (drei Spalten, 1440 px).",
+      "baseUrl": "demo",
+      "path": "/companygpt",
+      "waitFor": "text=AI Gateway Infos",
+      "clip": {
+        "x": 272,
+        "y": 456,
+        "width": 1136,
+        "height": 174
+      },
+      "output": "src/content/docs/en/company-gpt/addons/ai-gateway-kacheln.png"
+    }
+  ]
+}

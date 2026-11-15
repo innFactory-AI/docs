@@ -1,0 +1,11 @@
+{
+  "charts": [
+    { "id": "00000000-0000-4000-8000-000000000001", "type": "chart", "chartType": "bar", "title": "Umsatz nach Quartal 2026", "createdAt": "2026-10-15T08:12:00.000Z" },
+    { "id": "00000000-0000-4000-8000-000000000002", "type": "chart", "chartType": "line", "title": "Besucher pro Monat", "createdAt": "2026-10-14T13:40:00.000Z" },
+    { "id": "00000000-0000-4000-8000-000000000003", "type": "chart", "chartType": "doughnut", "title": "Kostenverteilung nach Bereich", "createdAt": "2026-10-14T09:05:00.000Z" },
+    { "id": "00000000-0000-4000-8000-000000000004", "type": "diagram", "diagramType": "flowchart", "title": "Freigabeprozess für Angebote", "createdAt": "2026-10-13T15:22:00.000Z" },
+    { "id": "00000000-0000-4000-8000-000000000005", "type": "map", "mapType": "germany", "title": "Standorte der Muster GmbH", "createdAt": "2026-10-12T10:48:00.000Z" },
+    { "id": "00000000-0000-4000-8000-000000000006", "type": "diagram", "diagramType": "gantt", "title": "Zeitplan Vorlagen-Einführung", "createdAt": "2026-10-09T11:30:00.000Z" }
+  ],
+  "total": 6
+}

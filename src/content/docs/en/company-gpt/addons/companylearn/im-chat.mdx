@@ -1,0 +1,112 @@
+---
+title: companyLEARN in the chat
+description: Use the Learn MCP server to find courses in the CompanyGPT chat, enroll, check your progress and open lessons and quizzes right in the conversation.
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Through the **Learn** MCP server, companyLEARN is also available in the CompanyGPT chat. The assistant finds courses, enrolls you, shows your progress and opens lessons and quizzes right in the conversation. It works with your account: whatever you complete in the chat counts exactly as it does in the interface.
+
+You need the **Use courses** permission (see [Permissions](/en/company-gpt/addons/companylearn/#permissions)).
+
+## Enabling the MCP server
+
+Select the **Learn** MCP server in the chat – the same way you add other MCP servers to a conversation. General information is on [MCP Server](/en/company-gpt/integrationen/mcp-server/). After that, a request in plain language is enough, for example "Which courses are available?".
+
+## The tools
+
+The server provides seven tools for learners. Admins additionally have ten [admin tools](#creating-and-managing-courses-in-the-chat). You don't call them yourself: the assistant picks them based on your request and takes the identifiers (IDs) of courses, lessons and quizzes from its earlier results.
+
+| Tool | Purpose | Inputs |
+|---|---|---|
+| `learn_list_courses` | List published courses, each with enrollment status and progress | optional `enrolledOnly`: only courses you are enrolled in |
+| `learn_course_overview` | Outline of a course with chapters, lessons and quiz, including the final exam and lock and completion status | `courseId` |
+| `learn_enroll` | Enroll in a published course and name the first lesson; calling it again changes nothing | `courseId` |
+| `learn_my_progress` | Progress across all enrolled, published courses, assigned courses first with due date and status, with a suggestion for the next step in each | – |
+| `learn_watch_lesson` | Show a lesson (video or text) in the chat | `lessonId` |
+| `learn_take_quiz` | Show a quiz in the chat | `quizId` |
+| `learn_open_ui` | Open companyLEARN's interface in the chat: dashboard (default), course catalog or a specific course | optional `page` (`dashboard`, `courses` or `course`) and `courseId` (required for `course`) |
+
+The learner tools only list published courses. Lessons and quizzes can only be opened after enrolling and only in unlocked chapters; otherwise the assistant receives a corresponding notice, for example that you need to enroll first. You cannot create or change courses with the learner tools – that is what [course management](/en/company-gpt/addons/companylearn/kurse-verwalten/) is for, and for admins the [admin tools](#creating-and-managing-courses-in-the-chat).
+
+## Lessons and quizzes in the chat
+
+`learn_watch_lesson`, `learn_take_quiz` and `learn_open_ui` show companyLEARN right in the conversation, without sidebar and menu:
+
+- **Lesson:** The title plus course and chapter are shown at the top, below them the **Mark complete** button, then the video or the text. A video that plays to the end is marked as done automatically.
+- **Quiz:** You answer the questions, click **Submit answers** and see the result – just as in the interface (see [Quiz](/en/company-gpt/addons/companylearn/lernen/#quiz)). In addition, the quiz automatically sends your result to the conversation as a message, with score, pass threshold and number of correct answers. This lets the assistant respond to it right away, for example by suggesting the next step. **Retry** starts a new attempt; its result also arrives in the chat as a new message.
+- **Interface:** The dashboard, the course catalog or a course page appear as in companyLEARN, only without the sidebar.
+
+Below an embedded lesson or quiz, **Open full course** opens the course in companyLEARN in a new tab.
+
+When a course is completed, the chat shows a compact completion view. Attachments and certificates cannot be downloaded in the chat: instead of the download button there is a note with a link you can copy or open in companyLEARN.
+
+:::tip
+After a lesson, simply ask for the next step, for example "What's next?". Using `learn_my_progress`, the assistant can then retrieve your current status and suggest the right lesson or quiz. After a quiz, this is not necessary: the assistant receives the result automatically.
+:::
+
+## Creating and managing courses in the chat
+
+People with the **Manage courses** permission can also create and manage courses with the **Learn** MCP server, for example a whole course from a policy or a handbook. Attach the document (or use companyRAG or M365) and ask the model to create a course from it. It reads the document and creates chapters, text lessons, quizzes with explanations and optionally a final exam through `learn_admin_create_course`. The admin tools are available to admins only:
+
+| Tool | Purpose |
+|---|---|
+| `learn_admin_list_courses` | all courses including drafts |
+| `learn_admin_get_course` | the full course with all IDs, answer keys and explanations |
+| `learn_admin_create_course` | creates a whole course as a draft |
+| `learn_admin_update_course` | changes a draft (all or nothing) |
+| `learn_admin_publish` | publishes or unpublishes a course; the model asks you first |
+| `learn_admin_report` | reports: overview, course, person or [assignments](/en/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#assignments) |
+| `learn_admin_enroll` | enrolls or unenrolls a known person; the model asks you first |
+| `learn_admin_reset_quiz_attempts` | resets a person's attempts on one quiz |
+| `learn_admin_find_people` | searches people and groups for an assignment |
+| `learn_admin_assign` | assigns a published course to a person, a group or everyone, with a due date |
+
+This lets you assign straight from the chat, for example "Assign the course to the group All employees, due 30 November". A step-by-step guide with a prompt is provided by the skill [Course authoring](/en/tutorials/skills/company-learn/course-authoring/).
+
+:::caution[The course stays a draft]
+A course created in the chat is always unpublished. The tool gives you a link to the course editor. Review content and quiz questions, add videos and images (those exist only in the editor) and only then publish the course. The chat does not change a course that is already published: unpublish it first or edit it in the editor.
+:::
+
+## Example prompts
+
+| Prompt | Typical tool |
+|---|---|
+| "Which courses are available in companyLEARN?" | `learn_list_courses` |
+| "Which courses am I enrolled in?" | `learn_list_courses` |
+| "How is the course 'Data protection basics' structured?" | `learn_course_overview` |
+| "Enroll me in the course 'Data protection basics'." | `learn_enroll` |
+| "How far am I in my courses, and what's next?" | `learn_my_progress` |
+| "Show me the next lesson." | `learn_my_progress`, then `learn_watch_lesson` |
+| "I'd like to take the quiz for chapter 2." | `learn_course_overview`, then `learn_take_quiz` |
+| "Open my companyLEARN dashboard here in the chat." | `learn_open_ui` |
+
+## Assigning the Learn tools to an agent
+
+Instead of enabling the MCP server in every chat, you can create an agent with the Learn tools, for example as a learning companion for your team. companyLEARN does not ship ready-made agents or skills.
+
+<Steps>
+
+1. Create an agent or open an existing one (see [Agents](/en/company-gpt/agenten/)).
+
+2. Add the **Learn** MCP server to the agent and select the tools it should use. For a learning companion, all seven are usually useful.
+
+3. Add short instructions, for example:
+
+   ```text
+   You support employees learning with companyLEARN.
+   Use the Learn tools to find courses, show progress and open
+   lessons and quizzes directly in the chat. After each step,
+   suggest the next one. When you show a lesson or a quiz, do not
+   write any additional introductory text.
+   ```
+
+4. Save the agent and share it with your team if needed.
+
+</Steps>
+
+:::note
+The agent always works with the account of the person currently chatting with it: it sees that person's enrollments and progress. Everyone who uses the agent needs the **Use courses** permission.
+:::
+
+Next: [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/).

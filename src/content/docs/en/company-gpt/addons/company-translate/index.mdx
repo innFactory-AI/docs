@@ -1,53 +1,76 @@
 ---
 title: companyTRANSLATE
-description: Translation app within the Microsoft tenant — text translation, document translation and glossary management for consistent terminology.
+description: Translation app in CompanyGPT for text and whole documents, with glossaries for consistent terminology and translation in the chat.
 ---
 
-companyTRANSLATE is a translation application that, like CompanyGPT, runs within the company's Microsoft tenant. It supports text and document translation as well as a two-level glossary system.
+companyTRANSLATE translates text and whole documents. Glossaries let you define how technical terms, product names or fixed phrases are translated. Agents in the CompanyGPT chat can use companyTRANSLATE as well and translate files or text directly in the chat.
 
-companyTRANSLATE is available to suitably authorised users in the **Translate** area.
+## Opening and signing in
 
-## Access and Authentication
+You open companyTRANSLATE in CompanyGPT via [**All apps**](/en/company-gpt/addons/alle-apps/) and the **Translate** tile.
 
-Access is exclusively via Microsoft Single Sign-On (SSO) using the existing company account. No separate credentials are required.
+companyTRANSLATE uses your CompanyGPT session. If you are signed in to CompanyGPT, you are signed in to companyTRANSLATE too; there are no separate credentials. This applies regardless of the sign-in method your organization uses for CompanyGPT.
 
-## Translation Services
+## Interface
 
-The translation itself is performed via the Google Translation API and the Azure Translation API. The content to be translated is transmitted to the respective service for this purpose.
+companyTRANSLATE uses the [shared interface of the CompanyGPT extensions](/en/company-gpt/addons/gemeinsame-oberflaeche/). The sidebar holds **New chat** and **All apps**, followed by the three areas of the application. The account menu offers **Theme** and **Language**, among other things; the interface is available in German and English.
 
-## Areas of the Application
+| Area | Page | Content |
+|---|---|---|
+| **Text** | [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) | Translate text in real time, up to 5,000 characters |
+| **Documents** | [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) | Translate whole files up to 40 MB with formatting preserved |
+| **Glossaries** | [Glossaries](/en/company-gpt/addons/company-translate/glossare/) | Manage personal and global glossaries |
 
-import sidebarImg from "./translate-sidebar.png";
+An area's actions sit on the right of the page header: **New translation** in **Text** and **Documents**, **Upload glossary** and – for administrators – **Upload global glossary** in **Glossaries**. On narrow screens you open the areas via the menu in the header bar; the **Glossaries** area is not available on smartphones.
 
-<div style="display: flex; gap: 2rem; align-items: flex-start;">
-  <img src={sidebarImg.src} alt="companyTRANSLATE sidebar" style="width: 60px; flex-shrink: 0;" />
-  <div>
+If you drag a file onto the **Text** page, companyTRANSLATE switches to the **Documents** area and picks up the file there.
 
-- [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – real-time text translation, up to 5,000 characters
-- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – PDF, DOCX and PPTX files up to 40 MB with formatting preserved
-- [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – binding terminology for text and document translation
+## Access and permissions
 
-</div>
-</div>
+Your administrator decides who may use companyTRANSLATE – in companyADMIN via the [extension permissions](/en/company-gpt/addons/companyadmin/erweiterungen/) or, depending on the environment, via groups. companyADMIN has two permissions for this:
 
-:::note
-The sidebar contains further entries that are not documented here yet.
-:::
+- **Use translation** – translate text and documents, manage your own glossaries
+- **Manage glossaries** – additionally create, upload and delete global glossaries for everyone
 
-## Supported Formats and Limits
+If you lack the usage permission, companyTRANSLATE shows the **No access** page. The same permissions apply when an agent translates for you in the chat.
+
+## Translation services and data flow
+
+companyTRANSLATE does not translate by itself; it hands the content to a translation service. The default service is Microsoft's **Azure AI Translator**. **Google Cloud Translation** is optional; whether it is enabled in your environment is decided by your organization.
+
+| Content | Translation service |
+|---|---|
+| Documents in the **Documents** area | Azure AI Translator; **Retry translation** keeps the original service (a translation an agent created via Google in the chat is translated via Google again) |
+| Text in the **Text** area | Azure AI Translator; if Google is enabled in your environment, text translation runs via Google Cloud Translation |
+| Glossaries | are sent to the service along with the translation; if Google is enabled, uploaded glossaries are also stored with Google so that they apply in text translation |
+| [Translating in the chat](/en/company-gpt/addons/company-translate/im-chat/) | Azure AI Translator; Google only for text with a glossary or on explicit request, and only if it is enabled |
+
+For translation, the content – text, files and glossary terms – is transmitted to the respective service. companyTRANSLATE stores uploaded documents and their translations in the storage of your CompanyGPT environment (for retention, see [Translation history](#translation-history-and-retention)).
+
+When translating in the chat, the following also applies:
+
+- companyTRANSLATE fetches the attached file from the CompanyGPT file store and puts the result back there as a chat file. From then on, CompanyGPT handles it like any uploaded file – for Word and PowerPoint results including text recognition (OCR), which can incur costs.
+- If a text translation continues in the background, companyTRANSLATE stores the text briefly (at most one day) in your environment's storage.
+- When translating via Google, terms from the chat or from an attached glossary file are stored temporarily as a glossary with Google and removed again after 7 days at the earliest.
+
+## Supported formats and limits
 
 | Area | Input | Limit |
 |---|---|---|
-| **Translate text** | Direct entry in the interface | 5,000 characters per translation |
-| **Translate document** | PDF, DOCX, PPTX | 40 MB per file |
-| **Glossaries** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | 10 MB per glossary; TMX is converted to XLIFF automatically |
+| **Text** | Direct entry in the interface | 5,000 characters per translation |
+| **Documents** | PDF, Word (`.docx`), PowerPoint (`.pptx`), Excel (`.xlsx`), TXT, Markdown (`.md`), HTML | 40 MB per file |
+| **Glossaries** | CSV, TSV (`.tsv`/`.tab`), XLIFF (`.xlf`), TMX | The translation services limit glossaries to 10 MB; larger TMX files are reduced to a term glossary |
+| **In the chat** | Files in the **Documents** formats, plus text | Files up to 40 MB, text up to 50,000 characters (up to 30,000 characters via Google) |
 
-## Translation History
+## Translation history and retention
 
-All document translations are logged under **Letzte Übersetzungen** (recent translations) with target language, file size and timestamp.
+In the **Documents** area, **Recent translations** lists your document translations – including those an agent created for you in the chat. Each entry shows the file name, target language, file size and time. Running translations are marked **Processing**, failed ones **Failed**; **Retry translation** in the entry's menu starts them again.
 
-## Related Topics
+Translations are kept for 30 days: companyTRANSLATE then hides them, and a storage rule in your environment deletes them. Expired translations can no longer be downloaded or retried; companyTRANSLATE then reports "This translation has expired and is no longer available". Download results you need for longer in good time. The 30 days apply to translations from version 2.0 onward; older entries from before that remain until you delete them.
 
-- [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – language selection, detection and glossary application
-- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – upload, status tracking and download
+## Related topics
+
+- [Translate text](/en/company-gpt/addons/company-translate/text-uebersetzen/) – language selection, detection and glossaries
+- [Translate document](/en/company-gpt/addons/company-translate/dokument-uebersetzen/) – formats, status, download and history
 - [Glossaries](/en/company-gpt/addons/company-translate/glossare/) – structure, upload and application of glossaries
+- [Translating in the chat](/en/company-gpt/addons/company-translate/im-chat/) – translate files and text with an agent

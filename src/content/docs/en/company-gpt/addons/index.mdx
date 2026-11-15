@@ -1,0 +1,73 @@
+---
+title: Addons
+description: Overview of the CompanyGPT addons – what they do, where to find them and who may use them.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Addons extend CompanyGPT with additional applications: making documents searchable, generating files, translating, transcribing, learning and administering CompanyGPT. Many addons have their own interface and also provide their functions as tools for agents in the chat (via [MCP servers](/en/company-gpt/integrationen/mcp-server/)).
+
+## Where to find the addons
+
+You reach the addons with their own interface that are enabled for you through **[All apps](/en/company-gpt/addons/alle-apps/)**: as a page of its own and in the chat through the **Apps** area in the sidebar. companyM365 and companyKNOWLEDGE have no tile – you use them in the chat or in Office.
+
+The interfaces of companyRAG, companyFILES, companyTRANSLATE, companyTRANSCRIBE, companyLEARN, companyADMIN, the companyM365 admin area and All apps share the same structure. They have the same sidebar with **New chat** and **All apps**, the same account menu with theme and language, and the same sign-in as the chat. For details, see [Shared interface](/en/company-gpt/addons/gemeinsame-oberflaeche/).
+
+## Who may use which addons
+
+Which addons are available to you is decided by your organization. Depending on the environment, administrators grant the permissions for them in [companyADMIN](/en/company-gpt/addons/companyadmin/erweiterungen/) or through groups in your directory that innFactory maintains. If an addon you need is missing, contact your administrator.
+
+## The addons at a glance
+
+<CardGrid>
+	<LinkCard
+		title="companyRAG"
+		description="Makes large volumes of documents from SharePoint, Nextcloud, Google Drive, GitHub and the web searchable – as semantic search, as structured data and as datasets for your agents."
+		href="/en/company-gpt/addons/companyrag/"
+	/>
+	<LinkCard
+		title="companyKNOWLEDGE"
+		description="Maintain knowledge as Markdown files in the Open Knowledge Format: an agent keeps a bundle in GitHub or SharePoint up to date, and companyRAG makes it searchable. Currently experimental."
+		href="/en/company-gpt/addons/companyknowledge/"
+	/>
+	<LinkCard
+		title="companyFILES"
+		description="Create, convert and manage Excel, Word, PowerPoint and PDF files using natural language – in the chat and in an interface of its own with templates and visualizations."
+		href="/en/company-gpt/addons/companyfiles/"
+	/>
+	<LinkCard
+		title="companyTRANSLATE"
+		description="Translate texts and whole documents, with glossaries for consistent terminology and translation in the chat."
+		href="/en/company-gpt/addons/company-translate/"
+	/>
+	<LinkCard
+		title="companyTRANSCRIBE"
+		description="Transcribe audio and video files as well as recordings made in the browser, with speaker diarization, transcript history, text-to-speech and a connection to the chat."
+		href="/en/company-gpt/addons/company-transcribe/"
+	/>
+	<LinkCard
+		title="companyLEARN"
+		description="Learning platform with video and text lessons, quizzes and chapters that unlock one after another – in an interface of its own and directly in the chat."
+		href="/en/company-gpt/addons/companylearn/"
+	/>
+	<LinkCard
+		title="companyM365"
+		description="Connects CompanyGPT with Microsoft 365 – as tools in the chat, as an Office add-in in Word, Excel, PowerPoint and Outlook, and in Microsoft Teams. Access is generally limited to the data the signed-in person is allowed to see."
+		href="/en/company-gpt/addons/companym365/"
+	/>
+	<LinkCard
+		title="AI Gateway"
+		description="Optional central interface between CompanyGPT and the AI providers: model approvals, budgets, fallback during bottlenecks, usage and costs per person and cost center, and API access for your own applications."
+		href="/en/company-gpt/addons/ai-gateway/"
+	/>
+	<LinkCard
+		title="companyADMIN"
+		description="The CompanyGPT administration area: system status, roles and groups, visibility of content, models and the permissions for all addons."
+		href="/en/company-gpt/addons/companyadmin/"
+	/>
+	<LinkCard
+		title="Insights (companyADMIN)"
+		description="Analyze CompanyGPT usage and costs. Insights is part of companyADMIN and replaces the former companyDASHBOARD."
+		href="/en/company-gpt/addons/companyadmin/insights/"
+	/>
+</CardGrid>

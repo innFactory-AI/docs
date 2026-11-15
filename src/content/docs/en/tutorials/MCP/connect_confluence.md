@@ -16,12 +16,14 @@ If you use the collaboration tool Confluence, you have the option to connect it 
 
 **2. Configuration in CompanyGPT**
 
-1. In CompanyGPT, go to **MCP Server Settings** and click the **plus sign (+)** to add a new server.
-2. Paste the following address into the URL field: `https://mcp.atlassian.com/v1/mcp`.
+Only a person whose role allows creating MCP servers can carry out this step (see [Add MCP Server](/en/company-gpt/integrationen/mcp-server/#add-mcp-server)).
+
+1. In CompanyGPT, open **MCP Settings** in the left sidebar and click the **plus sign (+)** to add a new server.
+2. Paste the following address into the **MCP Server URL** field: `https://mcp.atlassian.com/v1/mcp`.
 3. Click **Create** to complete the setup.
 
 ![cGPT-add-mcp-settings](cGPT-add-mcp-settings.png)
 
 :::tip[Note]
-For security reasons, external MCP servers are disabled by default. To enable them, simply send a brief message.
+For security reasons, only MCP servers on approved domains are allowed. Which domains are approved is set by administrators in companyADMIN under **Configuration** → **MCP domains**.
 :::

@@ -1,0 +1,44 @@
+---
+title: What is new in companyRAG 3.0
+description: The most important changes in companyRAG 3.0 for users and administrators – project knowledge, collective knowledge with the knowledge graph, roles, connections, source types and table hints.
+---
+
+This page summarizes what has changed with companyRAG 3.0 (current version 3.0.8) for users and administrators. Existing sources, connections and collections keep running unchanged after the update.
+
+## New for all users
+
+| Change | In short |
+|---|---|
+| [Project knowledge](/en/company-gpt/addons/companyrag/projektwissen/) | Projects collect entries (notes, links, emails, files). The curator condenses them into knowledge pages with citations. |
+| [Collective knowledge](/en/company-gpt/addons/companyrag/gesamtwissen/) | One search across everything you may read: project pages, documents and tables. Collections can be muted; you take in other people's public collections yourself. |
+| [Knowledge graph](/en/company-gpt/addons/companyrag/gesamtwissen/#knowledge-graph) | The map of your knowledge with you in the middle, your collections with your role, and their sources and content. With search, full screen and PNG export. |
+| [Roles](/en/company-gpt/addons/companyrag/sammlungen/#roles-in-collections) | Viewer, editor and owner in every collection. Writing into someone else's collection requires editor or owner. |
+| [Table hints](/en/company-gpt/addons/companyrag/datensaetze/#table-hints) | Every table of a CSV or Excel file can be found as a short hint; the agent queries the values by SQL. Wide tables are spread over several pages. |
+| [Connections](/en/company-gpt/addons/companyrag/integrationen/) | Credentials belong to a connection; Nextcloud is a personal connection, others can be shared with people and groups. |
+| [Agent tools](/en/company-gpt/addons/companyrag/in-companygpt/#project-knowledge-and-collective-knowledge) | `list_projects`, `brain_search`, `list_pages`, `read_page`, `save_knowledge`, `create_collection`, `share_collection` and `list_collections`. |
+| [Jobs](/en/company-gpt/addons/companyrag/auftraege/) | Curation jobs appear for owners and editors; filters by kind, status and collection. |
+
+## New for administrators
+
+| Change | In short |
+|---|---|
+| **Project knowledge & Gesamtwissen** card | Switches projects, entries, the curator for projects and the collective knowledge on or off. On by default, saves immediately, deletes nothing. |
+| **Curator** card | Switches the curator on, selects model, daily budgets and quiet period. After an update from an older version it is off. The daily budget defers work instead of limiting it. |
+| **Source types** card | One switch per source type. **Google Drive** and **Databases** are alpha and off by default. Existing sources keep running; Drive sources only while the type is on. |
+| **Google Drive: warning** | Drive sharing is not carried over; all files in the chosen area are visible to all members of the collection. Creating a source requires a checkbox as confirmation. |
+| Right **Create collections and sources** | Separates creating from using. Anyone who may only use is a viewer. |
+| **View as …** | Shows in the knowledge graph which collections a person reaches with which role, without content. Logged. |
+| Super admin | Does not read or change content without a role of their own; maintenance tasks remain. |
+
+## Permissions
+
+SharePoint permissions apply per file, in search, in the collective knowledge, in the knowledge graph and in agent answers. companyRAG never shows more than the source allows and applies changes automatically in the background. See [Permissions](/en/company-gpt/addons/companyrag/quellen/#permissions).
+
+## Improvements since 3.0.0
+
+- **More robust permission handling:** rights changes from SharePoint are applied promptly and without unnecessary load, even for very large collections; restrictions no longer wait behind unchanged files.
+- **The collective knowledge waits longer for large collections** before reporting them as skipped.
+- **Wide tables** no longer fail during indexing.
+- **Alpha source types** Google Drive and Databases can be switched on and off (from 3.0.4 and 3.0.7 respectively).
+
+The programmatic interface is described by the [companyRAG API](/en/api/company-rag-api/).

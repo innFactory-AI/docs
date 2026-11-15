@@ -1,0 +1,65 @@
+---
+title: Zuweisungen, Übersicht und Zertifikate
+description: In companyLEARN Kurse mit Frist an Personen, Gruppen oder alle zuweisen, den Lernstand auswerten und Zertifikate aus Word-Vorlagen ausstellen.
+---
+
+Diese Seite richtet sich an Personen mit dem Recht **Kurse verwalten** (siehe [Rechte](/de/company-gpt/addons/companylearn/#rechte)). Die Bereiche **Übersicht** und **Zuweisungen** stehen im Menü unter der Trennlinie, **Zertifikate** nur, wenn der Betreiber die PDF-Erzeugung für Ihre Umgebung eingerichtet hat (siehe [Die Oberfläche](/de/company-gpt/addons/companylearn/oberflaeche/#menü)). Wie Kurse angelegt werden, steht unter [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/).
+
+## Zuweisungen
+
+Mit einer Zuweisung machen Sie einen **veröffentlichten** Kurs für Personen verpflichtend. Zugewiesene Personen werden automatisch eingeschrieben und sehen den Kurs ganz oben auf ihrem Dashboard (siehe [Zugewiesene Kurse](/de/company-gpt/addons/companylearn/lernen/#zugewiesene-kurse)).
+
+Klicken Sie unter **Zuweisungen** auf **Neue Zuweisung**. Im Dialog **Kurs zuweisen** wählen Sie den Kurs, das Ziel und die Frist. Das Ziel suchen Sie über ein gemeinsames Suchfeld für Personen und Gruppen:
+
+| Ziel | Wirkung |
+|---|---|
+| **Person** | Genau diese Person. Die Suche findet Personen, die companyLEARN schon genutzt haben, bei angebundenem Verzeichnis auch andere. |
+| **Gruppe** | Eine Gruppe aus dem Verzeichnis (Entra). Die Mitglieder werden sofort übernommen und täglich automatisch abgeglichen. Neue Mitglieder erhalten die Zuweisung, ausgeschiedene verlieren sie. Einschreibung und Fortschritt bleiben bestehen, der Kurs ist nur nicht mehr verpflichtend und zählt nicht mehr als überfällig. |
+| **Alle** | Alle Personen, die companyLEARN schon genutzt haben, sowie jede weitere Person bei ihrem ersten Besuch. |
+
+Gruppen aus dem Verzeichnis setzen voraus, dass der Betreiber die Microsoft-Graph-Anbindung für Ihre Umgebung eingerichtet hat. Ohne sie weist companyLEARN Gruppenzuweisungen mit dem Hinweis auf die fehlende Anbindung ab; Personen und **Alle** funktionieren weiter.
+
+Als Frist wählen Sie **Keine Fälligkeit**, **An einem Datum** oder **N Tage nach der Zuweisung** (0 bis 3650). Letzteres eignet sich für das Onboarding, weil es für jede Person ab ihrer eigenen Zuweisung zählt. Fällig ist jeweils das Ende des Tages (Zeitzone Europe/Berlin). Mehrere Zuweisungen desselben Kurses ergeben für die Person die früheste Frist. Mit **Fälligkeit ändern** berechnen Sie die Frist für alle Personen einer Zuweisung neu.
+
+Pro Zuweisung zeigt die Detailseite die Statuszahlen (**Zugewiesen**, **In Bearbeitung**, **Abgeschlossen**, **Überfällig**) und die Personenliste mit Status, Frist und Fortschritt. Sie können nach Status filtern, zum Beispiel nur **Überfällig**, und die Liste mit **CSV exportieren**. **Zuweisung löschen** nimmt die Zuweisung für alle ihre Personen zurück; Einschreibungen und Fortschritt bleiben erhalten.
+
+:::note
+Bei Gruppen erhalten alle Mitglieder die Zuweisung, auch wer companyLEARN noch nie geöffnet hat. Solche Personen sind in der Liste mit **Noch nie angemeldet** markiert, damit klar ist, warum jemand überfällig ist. Wählen Sie deshalb Gruppen, deren Mitglieder Zugriff auf companyLEARN haben.
+:::
+
+**Gruppenabgleich:** Bei Gruppen zeigt die Detailseite unter **Gruppenabgleich**, wann zuletzt abgeglichen wurde und mit welchem Ergebnis. **Jetzt synchronisieren** startet den Abgleich sofort. Schlägt er fehl, ändert companyLEARN niemanden. Liefert eine Gruppe, die vorher Mitglieder hatte, plötzlich keine, trägt companyLEARN sicherheitshalber niemanden aus. Ist die Gruppe wirklich leer, löschen Sie die Zuweisung.
+
+Auf Systemen mit Keycloak statt Entra beziehen sich Gruppenzuweisungen auf einen Gruppennamen aus der Anmeldung (Ziel **Gruppe (Anmeldung)**). Der Name muss genau übereinstimmen. Die Zuweisung greift, sobald sich jemand mit dieser Gruppe anmeldet; erfasst werden also nur Personen, die sich seit der Zuweisung angemeldet haben.
+
+Zuweisen können Sie auch [im Chat](/de/company-gpt/addons/companylearn/im-chat/#kurse-im-chat-erstellen-und-verwalten).
+
+## Übersicht
+
+Die **Übersicht** im Menü zeigt:
+
+- Kennzahlen mit Verlauf über 7, 30 oder 90 Tage,
+- eine Kurstabelle und Kursberichte mit allen Lernenden, darunter der Status **Ins Stocken** (länger als 14 Tage ohne Aktivität),
+- eine Liste der Lernenden und eine Personenansicht mit Kursen, Quiz-Versuchen, Verlauf und Zertifikat.
+
+Fristen und Zuweisungen erscheinen auch in den Kurs- und Personenansichten. Hier schreiben Sie Personen ein (**Teilnehmer hinzufügen**, **In Kurs einschreiben**) oder aus (**Austragen**) und exportieren mit **CSV exportieren**. Beim Austragen bleiben Fortschritt und Quiz-Ergebnisse erhalten, nur das Abschlussdatum entfällt, und das zugehörige Zertifikat ist nicht mehr abrufbar. Schreiben Sie die Person wieder ein, gilt der Kurs wieder als abgeschlossen, mit dem Datum der Einschreibung.
+
+In der Personenansicht setzen Sie außerdem mit **Versuche zurücksetzen** die Versuche bei einem Quiz zurück (siehe [Quiz](/de/company-gpt/addons/companylearn/kurse-verwalten/#quiz)).
+
+## Zertifikate
+
+Zertifikate entstehen aus **Word-Vorlagen** (`.docx`). Unter **Zertifikate** laden Sie pro Sprache (Deutsch, Englisch) eine **Standardvorlage** hoch, die für jeden Kurs ohne eigene Vorlage gilt. Im Kurseditor schalten Sie pro Kurs **Zertifikat bei Abschluss** ein (standardmäßig aus) und können dort eine eigene Vorlage je Sprache hochladen. Gibt es für eine Sprache weder eine eigene noch eine Standardvorlage, gibt es das Zertifikat in dieser Sprache nicht.
+
+In der Vorlage stehen feste Platzhalter, die als Text ersetzt werden. Es wird nichts berechnet oder ausgeführt:
+
+| Platzhalter | Inhalt |
+|---|---|
+| `{name}` | Name der lernenden Person |
+| `{course}` | Kurstitel |
+| `{completionDate}` | Abschlussdatum, in der Sprache des Zertifikats formatiert |
+| `{certificateId}` | Zertifikatsnummer |
+
+Beim Hochladen zeigt companyLEARN die gefundenen Platzhalter an, lehnt Vorlagen mit unbekannten Platzhaltern ab und weist auf fehlende hin. Mit **Vorschau** erzeugen Sie ein PDF mit Beispieldaten. Laden Sie eine Vorlage erneut hoch, behält sie ihre Kennung, und die Version zählt hoch.
+
+Jeder abgeschlossenen Einschreibung gehört ein Zertifikat mit einer Nummer der Form `LRN-<Jahr>-<8 Zeichen>`. Das PDF wird beim ersten Download je Sprache erzeugt und gespeichert und danach nicht mehr neu erstellt. Eine geänderte Vorlage gilt deshalb nur für Zertifikate (oder Sprachen), die noch nicht heruntergeladen wurden. Der Name stammt aus der letzten Anmeldung der Person; ist er unbekannt, schlägt der Download fehl. Lernende laden ihr Zertifikat auf der Abschlussseite und unter **Meine Zertifikate** herunter, Sie in der Personenansicht.
+
+Trägt ein Admin eine Person aus einem Kurs aus, ist ihr Zertifikat nicht mehr abrufbar. Nehmen Sie einen Kurs aus der Veröffentlichung, bleiben bereits ausgestellte Zertifikate abrufbar.

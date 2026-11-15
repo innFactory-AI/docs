@@ -9,7 +9,7 @@ companyRAG liest die Quellsysteme nur. Es schreibt weder Dateien noch Änderunge
 
 Jede Quelle liest über eine [Verbindung](/de/company-gpt/addons/companyrag/integrationen/): Zugangsdaten gehören der Verbindung, die Quelle legt nur fest, was gelesen wird. Neue Quellen legen Personen mit dem Recht **Sammlungen und Quellen anlegen** an, und in einer fremden Sammlung brauchen Sie die Rolle **Bearbeiter** oder **Owner**.
 
-![Übersicht der Quellen mit Filtern je System und Synchronisationsstatus](./quellen-uebersicht.png)
+![Übersicht der Quellen mit Reitern je System (auch Google Drive und Datenbanken mit Alpha-Kennzeichen), Konfiguration und Synchronisationsstatus](./quellen-uebersicht.png)
 
 Die Übersicht hat einen Reiter **Alle Quellen** und je verfügbarem System einen eigenen Reiter. Jede Quelle zeigt ihre Konfiguration, die Zielsammlung und ihren Status (**Aktiv**, **Deaktiviert** oder **Synchronisiert**). Darunter stehen der Zeitpunkt der letzten Synchronisation, das Ergebnis des letzten Laufs (**läuft**, **erfolgreich**, **teilweise** oder **fehlgeschlagen**) mit Kennzahlen wie gefundenen, verarbeiteten, unveränderten und entfernten Dateien, bei Fehlern der **Grund** sowie die Person, die die Quelle hinzugefügt hat.
 
@@ -69,6 +69,8 @@ Im Reiter **Google Drive** öffnet **Google Drive-Quelle hinzufügen** die Auswa
 
 Unter **Google-Formate** legen Sie fest, ob **Google Docs & Sheets exportieren** (Docs als Text, Sheets als CSV) und **Google Slides einbeziehen** (Umwandlung in PDF mit OCR, langsamer und teurer) aktiv sind. Google-Dateien über 10 MB kann Google nicht exportieren; sie werden übersprungen. Die erste Synchronisierung startet direkt nach dem Verbinden.
 
+![Hinweis zu Google Drive mit der Bestätigung, dass Drive-Freigaben nicht übernommen werden, und der Schaltfläche „Google Drive verbinden“](./quelle-google-drive.png)
+
 :::caution[Alpha: Drive-Freigaben werden nicht übernommen]
 Google Drive ist eine Alpha-Quellenart und ab Werk ausgeschaltet. Drive überträgt keine Freigaben einzelner Dateien: **Alle Dateien im gewählten Ordner bzw. Bereich sind für alle Mitglieder der Sammlung sichtbar**, auch später hinzugefügte oder später mit dem Ersteller geteilte Dateien (bei **Für mich freigegeben** auch später geteilte). Der Zugriff wird ausschließlich über die Sammlung gesteuert.
 
@@ -112,6 +114,8 @@ Mit einer Datenbank-Quelle legt companyRAG eine lesende **Kopie** gewählter Tab
 ## Quellenarten ein- und ausschalten
 
 Globale Administratoren steuern in den **Admin-Einstellungen** auf der Karte **Quellenarten**, welche Quellenarten Nutzer neu anlegen dürfen: SharePoint, Google Drive, Nextcloud, GitHub, WebDAV, FTP, Web-Crawl und Datenbanken. Die Änderungen speichern Sie mit **Speichern**.
+
+![Admin-Einstellungen, Karte „Quellenarten“ mit Schaltern je Quellenart, den Alpha-Kennzeichen und dem Hinweis zu Google Drive](./admin-quellenarten.png)
 
 - **Google Drive und Datenbanken** tragen das Kennzeichen **Alpha** und sind ab Werk **aus**. Ein Mandant mit bestehenden Datenbank-Quellen behält diese Art eingeschaltet.
 - Eine abgeschaltete Art verschwindet für Nutzer aus der Auswahl; neue Quellen und neue Verbindungen dieser Art lassen sich nicht anlegen. Globale Administratoren können die Art weiter verbinden.

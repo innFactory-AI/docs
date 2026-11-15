@@ -81,9 +81,22 @@ To create a Drive source you must explicitly confirm this notice with a checkbox
 
 For **Nextcloud**, first create your own Nextcloud connection under **Connections**. Then **Create Source** lets you choose a folder in your Nextcloud, name the source, and set the file types, collection and **Auto-sync**.
 
-For **GitHub**, **Add GitHub Source** lets you choose the repository and branch, optionally a **Subdirectory (optional)**, the **File extensions** (`.md`, `.markdown`, `.mdx`, `.txt`), the target collection and **Auto-sync**. Under **Repository access** there are three options:
+For **GitHub**, **Add GitHub Source** lets you choose the repository and branch, optionally a **Subdirectory (optional)**, the **File extensions** (`.md`, `.markdown`, `.mdx`, `.txt`), the target collection and **Auto-sync**.
 
-- **Creator's token**: The source uses the GitHub token from your [connection](/en/company-gpt/addons/companyrag/integrationen/). If it expires or is removed, the synchronization fails.
+There are two ways to find the repository:
+
+- **My repositories**: the repositories of your GitHub token. This option is only available with a GitHub [connection](/en/company-gpt/addons/companyrag/integrationen/).
+- **Public repository**: enter `owner/repo`, a GitHub URL such as `https://github.com/owner/repo` or a search term and click **Find**. No token is needed. Without a token, only public repositories are possible.
+
+:::note[Request limit without a token]
+Without a token, GitHub allows only a few requests per hour, shared by all users of your environment. A URL or `owner/repo` uses fewer requests than a search. If **GitHub request limit reached** appears, try again later or connect a token.
+:::
+
+For large repositories, it is best to set a **Subdirectory (optional)** so only the part you need is indexed.
+
+Under **Repository access** there are three options:
+
+- **Creator's token**: The source uses the GitHub token from your [connection](/en/company-gpt/addons/companyrag/integrationen/). If it expires or is removed, the synchronization fails. If no token is connected, the source synchronizes without one; this works for public repositories only.
 - **Dedicated personal access token**: A token with read access that is stored encrypted with this source and never shown again.
 - **SSH deploy key**: companyRAG generates a key pair. You add the public key to the repository as a deploy key without write access; only then does the first synchronization succeed.
 

@@ -17,7 +17,7 @@ Only superadmins see the user list. Without the superadmin features the menu ent
 | **Email** | Email address |
 | **Role** | The person's one role |
 | **Last sign-in** | Approximate time of the last sign-in |
-| **Origin of the role** | **System**, **Role sync** (automatically from Entra ID), **Manual**, or the admin group through which someone becomes ADMIN |
+| **Origin of the role** | **System**, **Role sync** (automatically from Entra ID), **Manual** or **OPENID_ADMIN_ROLE** (ADMIN is assigned at sign-in through the admin group from Entra ID) |
 
 Use **Search name or email** and the **Role** filter to narrow the list. Clicking a row opens the detail page.
 
@@ -27,7 +27,7 @@ Use **Search name or email** and the **Role** filter to narrow the list. Clickin
 
 The **Person** section shows email, name, **Entra object ID**, **Signs in via**, **Account created** and **Last sign-in (approximate)**. CompanyGPT stores no sign-in time; what is shown is the last change to the account, which happens at every sign-in.
 
-In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if CompanyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one.
+In the **Role** section you change the person's role with the **Role** picker. The change is saved immediately and applies immediately; if CompanyGPT is open, the person may need to reload the page. Since everyone has exactly one role, the new role replaces the previous one; if the person already has a role other than USER, companyADMIN first asks **Replace the current role?**. The picker shows roles that Entra ID sets at sign-in greyed out. You assign these in Entra ID, see [Roles from Entra ID](/en/company-gpt/addons/companyadmin/rollen-und-rechte/#roles-from-entra-id).
 
 The USER role cannot be assigned here; CompanyGPT refuses it. To set someone back to USER, remove them under their current role → **Members**.
 

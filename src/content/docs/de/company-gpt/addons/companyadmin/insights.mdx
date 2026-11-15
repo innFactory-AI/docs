@@ -17,6 +17,10 @@ Insights ansehen darf, wer das Recht **Insights ansehen** (`ext:admin:insights`)
 - Weiteren Personen geben Sie es über eine Rolle oder eine Gruppe, jeweils im Reiter **Erweiterungen** (siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) und [Gruppen](/de/company-gpt/addons/companyadmin/gruppen/)).
 - **Für alle** lässt sich das Recht nicht freigeben, weil Insights Kosten, Tokens und E-Mail-Adressen aller Nutzer zeigt.
 
+:::note[Nicht in jeder Umgebung]
+Das Recht **Insights ansehen** wirkt nur in Umgebungen, in denen die Admin-Quellen LibreChat-Rechte (Grants) umfassen. Prüfen Sie das unter [Status → Admin-Quellen](/de/company-gpt/addons/companyadmin/status/): Dort muss eine Quelle **LibreChat-Grant** stehen. Fehlt sie, öffnen nur die älteren Wege Insights. Fragen Sie in diesem Fall innFactory.
+:::
+
 Wer nur dieses Recht hat und kein Administrator ist, sieht in companyADMIN ausschließlich **Insights**. Ein Klick auf einen Agent zeigt dann nur dessen Nutzung, nicht seine Konfiguration.
 
 Ältere Wege zu Insights gelten weiter. Welche Wege in Ihrer Umgebung eingerichtet sind, zeigt [Status → Admin-Quellen](/de/company-gpt/addons/companyadmin/status/) mit der Panel-Rolle **Insights**.
@@ -48,7 +52,7 @@ Die Übersicht zeigt Kacheln mit Verlauf und Vergleich zum Vorzeitraum:
 |---|---|
 | **Aktive Nutzer** | Verschiedene Nutzer, die im Zeitraum mindestens eine Nachricht geschickt haben |
 | **Neue Nutzer** | Nutzer, deren allererste Nachricht in den Zeitraum fällt |
-| **Abgewanderte Nutzer** | Nutzer, deren letzte Nachricht im Zeitraum 28 Tage alt wurde |
+| **Abgewanderte Nutzer** | Nutzer, die seit 28 Tagen keine Nachricht mehr geschickt haben. Eine Person zählt an dem Tag als abgewandert, der 28 Tage nach ihrer letzten Nachricht liegt. Sie erscheint in einem Zeitraum, wenn dieser Tag in den Zeitraum fällt und nicht in der Zukunft liegt |
 | **Konversationen** | Verschiedene Konversationen mit mindestens einer Nachricht im Zeitraum |
 | **Anfragen** | Nachrichten von Nutzern an ein Modell oder einen Agent |
 | **Input-Tokens** / **Output-Tokens** | An die Modelle gesendete bzw. von ihnen erzeugte Tokens |

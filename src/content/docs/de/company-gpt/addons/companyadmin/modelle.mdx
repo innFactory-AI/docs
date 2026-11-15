@@ -11,6 +11,8 @@ Unter **Konfiguration** legen Sie fest, welche Anbieter und Modelle Personen in 
 
 Modelle hängen an **Rollen**, nicht an Gruppen. Eine Entra-Gruppe bekommt ihre Modelle über die Rolle, die ihr der Rollen-Sync gibt. Weil jede Person genau eine Rolle hat, ist das Ergebnis eindeutig.
 
+Ansehen brauchen Sie das Recht **Konfiguration ansehen**, zum Ändern das Recht **Konfiguration bearbeiten**.
+
 ## Provider und Modelle
 
 Ohne Einschränkung gilt die Grundkonfiguration: Alle sehen alle Anbieter und Modelle. Die Tabelle **Zugriff je Anbieter** zeigt, was gilt:
@@ -119,6 +121,31 @@ Solange companyADMIN die Labels verwaltet, steuern Sie hier, wie die Modellauswa
 :::caution
 **Nur Modelle mit Label dürfen verwendet werden** gilt auch für Agents: Jeder Agent ohne passendes Label funktioniert ab dem Speichern nicht mehr. Legen Sie für jeden Agent, den Personen wirklich nutzen, ein Label mit dem Anbieter **Agent** an. companyADMIN warnt außerdem, wenn eine Rolle danach kein einziges nutzbares Modell mehr hätte, und verlangt mindestens ein Label.
 :::
+
+### Einstieg für neue Chats
+
+Der **Einstieg für neue Chats** macht einen öffentlichen Agent zum Start jedes neuen Chats, etwa einen vorkonfigurierten Assistenten mit allem, was Ihre Teams brauchen. Technisch ist das ein Label, das auf den Agent zeigt und für neue Chats vorausgewählt ist. Die Seite **Labels** zeigt den Einstieg, seinen Modus und Probleme und kann ihn mit **Einstieg entfernen** zurücknehmen; das Label bleibt dabei in der Liste.
+
+**Setzen:** Öffnen Sie den Agent unter **Inhalte** → **Agents** im Reiter **Überblick** und klicken Sie auf **Als Einstieg setzen**. Wählen Sie den Modus und bestätigen Sie. Der Einstieg gilt für die ganze Umgebung. Es gibt immer nur einen; ein bisheriger Einstieg wird ersetzt. Sie brauchen dafür das Recht **Agenten verwalten**.
+
+| Modus | Wirkung |
+|---|---|
+| **fest** | Jeder neue Chat startet bei diesem Agent, auch bei Personen, die zuletzt ein anderes Modell gewählt haben |
+| **weich** | Neue Chats starten bei diesem Agent, bis eine Person in ihrem Browser selbst ein anderes Modell oder einen anderen Agent wählt |
+
+Den Modus stellen Sie auch unter **Auswahl im Chat** mit **Standard vorauswählen** ein. Er gilt für jedes vorausgewählte Label, nicht nur für Agents.
+
+companyADMIN prüft vor dem Setzen:
+
+- **Der Agent muss öffentlich sein.** Ist er es nicht, gibt companyADMIN ihn beim Setzen für alle frei (Lesen). Das ist nur möglich, wenn Sie das Recht **Agenten verwalten** haben und der Agent aus dem Bibliotheks-Sync stammt; den Agent einer anderen Person kann nur ein innFactory-Superadmin freigeben, sonst der Besitzer selbst im Chat. Andernfalls bleibt der Knopf gesperrt, mit Begründung.
+- **Das Modell des Agents muss für alle Rollen freigegeben sein.** Sonst lehnt CompanyGPT die erste Nachricht dieser Rollen ab. Die Seite nennt die betroffenen Rollen. Geben Sie das Modell unter **Modellzugriff** frei.
+- Als Hinweis, ohne Sperre, nennt companyADMIN Rollen ohne Recht auf Agents (sie behalten ihren bisherigen Start) und nicht öffentliche Skills des Agents (Personen ohne Zugriff bekommen den Agent ohne sie).
+
+:::caution[Wenn der Einstieg ausfällt]
+Wird der Einstiegs-Agent gelöscht oder wieder privat, landen alle anderen Personen bei jedem neuen Chat auf einem Fehler. Die Seite **Labels** und die Agent-Seite warnen davor. Entfernen Sie vorher den Einstieg oder setzen Sie einen anderen Agent.
+:::
+
+**Einstieg pro Rolle oder Gruppe:** Unter **Einstieg pro Rolle oder Gruppe** legen Sie eine geordnete Liste von Regeln an. Jede Regel verbindet eine **Rolle** oder **Gruppe** mit einem **Agent**; **Regel hinzufügen** ergänzt eine Zeile, **Nach oben** und **Nach unten** ändern die Reihenfolge, **Regeln speichern** übernimmt sie. Die erste passende Regel bestimmt den Einstieg einer Person; wer keine Regel trifft, bekommt den Einstieg für alle. Bei einer Rollen-Regel muss das Modell des Agents nur für diese Rolle freigegeben sein, bei einer Gruppen-Regel für alle Rollen. Die Regeln gelten ab dem nächsten Laden von CompanyGPT. Ohne die nötige Aktualisierung in Ihrem CompanyGPT zeigt die Seite stattdessen nur einen Hinweis, und der Einstieg für alle gilt für alle; fragen Sie dann innFactory.
 
 ## Ergebnis für Nutzer
 

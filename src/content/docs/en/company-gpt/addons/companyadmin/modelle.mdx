@@ -11,6 +11,8 @@ Under **Configuration** you decide which providers and models people see in Comp
 
 Models belong to **roles**, not to groups. An Entra group gets its models through the role the role sync gives it. Because everyone has exactly one role, the result is unambiguous.
 
+Viewing needs the right **View configuration**; changing needs the right **Manage configuration**.
+
 ## Providers and models
 
 Without a restriction the base configuration applies: everyone sees every provider and model. The **Access per provider** table shows what applies:
@@ -119,6 +121,31 @@ As long as companyADMIN manages the labels, you control here how the model picke
 :::caution
 **Only labelled models may be used** also applies to agents: every agent without a matching label stops working the moment you save. Add a label with the provider **Agent** for each agent people actually use. companyADMIN also warns if a role would then have no usable model at all, and requires at least one label.
 :::
+
+### Entry point for new chats
+
+The **Entry point for new chats** makes a public agent the start of every new chat, for example a preconfigured assistant with everything your teams need. Technically it is a label that points to the agent and is preselected for new chats. The **Labels** page shows the entry point, its mode and any problems, and can take it back with **Remove entry point**; the label stays in the list.
+
+**Setting it:** open the agent under **Content** → **Agents** on the **Overview** tab and click **Set as entry point**. Choose the mode and confirm. The entry point applies to the whole environment. There is only one; an existing entry point is replaced. You need the right **Manage agents** for this.
+
+| Mode | Effect |
+|---|---|
+| **fixed** | Every new chat starts with this agent, also for people who last picked another model |
+| **soft** | New chats start with this agent until a person picks another model or agent in their browser |
+
+You can also set the mode under **Picker in the chat** with **Preselect the default**. It applies to every preselected label, not just agents.
+
+companyADMIN checks before setting it:
+
+- **The agent must be public.** If it is not, companyADMIN shares it with everyone (read) when you set it. This only works if you have the right **Manage agents** and the agent comes from Library Sync; another person's agent can only be shared by an innFactory superadmin, or by its owner in the chat. Otherwise the button stays locked, with a reason.
+- **The agent's model must be released to all roles.** Otherwise CompanyGPT refuses these roles' first message. The page names the affected roles. Release the model under **Model access**.
+- As a hint without blocking, companyADMIN names roles without the right to use agents (they keep their previous start) and non-public skills of the agent (people without access get the agent without them).
+
+:::caution[If the entry point fails]
+If the entry agent is deleted or becomes private again, everyone else lands on an error in each new chat. The **Labels** page and the agent page warn about this. Remove the entry point or set another agent first.
+:::
+
+**Entry point per role or group:** under **Entry point per role or group** you create an ordered list of rules. Each rule links a **Role** or **Group** to an **Agent**; **Add rule** adds a row, **Move up** and **Move down** change the order, **Save rules** applies them. The first matching rule picks a person's entry point; everyone who matches no rule gets the entry point for everyone. For a role rule the agent's model only has to be released to that role, for a group rule to all roles. The rules apply the next time CompanyGPT loads. Without the required update in your CompanyGPT the page only shows a notice, and the entry point for everyone applies to everyone; ask innFactory in that case.
 
 ## Result for users
 

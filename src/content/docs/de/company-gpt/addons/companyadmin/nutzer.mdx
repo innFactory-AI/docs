@@ -17,7 +17,7 @@ Die Nutzerliste sehen nur Superadmins. Ohne Superadmin-Funktionen fehlt der Men�
 | **E-Mail** | E-Mail-Adresse |
 | **Rolle** | Die eine Rolle der Person |
 | **Letzte Anmeldung** | Ungefährer Zeitpunkt der letzten Anmeldung |
-| **Herkunft der Rolle** | **System**, **Role-Sync** (automatisch aus Entra ID), **Manuell** oder die Admin-Gruppe, über die jemand ADMIN wird |
+| **Herkunft der Rolle** | **System**, **Role-Sync** (automatisch aus Entra ID), **Manuell** oder **OPENID_ADMIN_ROLE** (ADMIN wird bei der Anmeldung über die Admin-Gruppe aus Entra ID vergeben) |
 
 Mit **Name oder E-Mail suchen** und dem Filter **Rolle** grenzen Sie die Liste ein. Ein Klick auf eine Zeile öffnet die Detailseite.
 
@@ -27,7 +27,7 @@ Mit **Name oder E-Mail suchen** und dem Filter **Rolle** grenzen Sie die Liste e
 
 Der Abschnitt **Person** zeigt E-Mail, Name, **Entra-Object-ID**, **Anmeldung über**, **Konto angelegt** und **Letzte Anmeldung (ungefähr)**. CompanyGPT speichert keinen Anmeldezeitpunkt; angezeigt wird die letzte Änderung am Konto, die bei jeder Anmeldung passiert.
 
-Im Abschnitt **Rolle** ändern Sie die Rolle der Person über die Auswahl **Rolle**. Die Änderung wird sofort gespeichert und gilt sofort; in einem geöffneten CompanyGPT muss die Person die Seite gegebenenfalls neu laden. Da jede Person genau eine Rolle hat, ersetzt die neue Rolle die bisherige.
+Im Abschnitt **Rolle** ändern Sie die Rolle der Person über die Auswahl **Rolle**. Die Änderung wird sofort gespeichert und gilt sofort; in einem geöffneten CompanyGPT muss die Person die Seite gegebenenfalls neu laden. Da jede Person genau eine Rolle hat, ersetzt die neue Rolle die bisherige; hat die Person schon eine andere Rolle als USER, fragt companyADMIN vorher **Bisherige Rolle ersetzen?**. Rollen, die Entra ID bei der Anmeldung setzt, zeigt die Auswahl ausgegraut. Diese weisen Sie in Entra ID zu, siehe [Rollen aus Entra ID](/de/company-gpt/addons/companyadmin/rollen-und-rechte/#rollen-aus-entra-id).
 
 Die Rolle USER lässt sich hier nicht zuweisen; CompanyGPT lehnt das ab. Auf USER zurück setzen Sie jemanden, indem Sie ihn unter seiner bisherigen Rolle → **Mitglieder** entfernen.
 

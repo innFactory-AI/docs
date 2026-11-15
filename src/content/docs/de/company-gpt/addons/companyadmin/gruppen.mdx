@@ -50,6 +50,8 @@ Eine Entra-Gruppe, die es schon gibt, lässt sich kein zweites Mal anlegen. comp
 
 Ohne Sync kennt CompanyGPT die Mitgliedschaften einer Entra-Gruppe nur aus den Anmeldungen ihrer Mitglieder. Der Gruppen-Sync liest die Mitglieder aller Entra-Gruppen, die CompanyGPT kennt, aus Microsoft Graph und trägt sie ein. Neue Gruppen legt er nie an.
 
+In manchen Umgebungen synchronisiert der Gruppen-Sync nur Gruppen, die verwendet werden oder schon Mitglieder haben. Als verwendet gilt eine Gruppe, die ein Recht, eine Einstellung, eine Freigabe, einen Einstieg, eine eigene Kachel oder eine Admin-Quelle trägt. Leere, unbenutzte Gruppen bleiben leer; der Sync zeigt ihre Zahl als **übersprungen** an. Eine Gruppe, die neu verwendet wird, füllt der nächste Lauf (täglich um 03:00 Uhr) oder **Jetzt synchronisieren**. Eine Gruppe, die Sie in companyADMIN neu anlegen, füllt companyADMIN sofort. Welche Variante bei Ihnen gilt, legt innFactory fest.
+
 Den Gruppen-Sync richtet innFactory für Ihre Umgebung ein. Zusätzlich braucht er in Microsoft Entra ID die Admin-Zustimmung für die Berechtigung `GroupMember.Read.All`.
 
 Mit dem Recht **Gruppen verwalten** finden Sie oben auf der Gruppenliste die Aktion **Entra-Gruppen synchronisieren**. Sie öffnet den Sync-Bereich. Er zeigt:

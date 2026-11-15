@@ -5,7 +5,14 @@ description: Agents, Prompts und Skills aus Git-Repositories nach CompanyGPT syn
 
 Der **Bibliotheks-Sync** verbindet CompanyGPT mit Git-Repositories und holt **Skills, Agents und Prompts** von dort nach CompanyGPT. So lässt sich die Inhaltsbibliothek versionieren, im Team prüfen und zwischen Umgebungen übertragen. Bei Repositories, die Ihnen gehören, schreibt companyADMIN Änderungen auch nach Git zurück.
 
-Sie finden den Sync unter **Inhalte** → **Bibliotheks-Sync**. Unterstützt werden GitHub und selbst gehostete Git-Server (GitLab, Gitea oder einfaches Git).
+Sie finden den Sync unter **Inhalte** → **Bibliotheks-Sync**. Unterstützt werden GitHub und selbst gehostete Git-Server (GitLab, Gitea oder einfaches Git). Das Repository geben Sie als `besitzer/name` an; GitLab-Untergruppen (`gruppe/untergruppe/repo`) werden nicht unterstützt.
+
+## Zwei Richtungen
+
+- **Down-sync**: Repository → CompanyGPT. Das ist der normale Sync mit **Synchronisieren**.
+- **Up-sync**: CompanyGPT → Repository. Das ist **Zurückschreiben (Up-sync)**: companyADMIN schreibt Änderungen, die in CompanyGPT entstanden sind, als Commit ins Repository. Der Up-sync und der Export bestehender Inhalte gelten nur für Repositories mit **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)**. Setzen Sie das Häkchen, wenn Ihr Team das Repository selbst pflegt und companyADMIN dort Commits schreiben darf.
+
+In den Meldungen von companyADMIN steht für CompanyGPT teils „DB“ (Datenbank) oder „Software“, zum Beispiel in **Änderungen erkennen (DB ↔ Git)**.
 
 ## Repositories
 
@@ -35,26 +42,25 @@ Mit **Repository suchen** finden Sie ein Repository. **Alle synchronisieren** sy
    - **Erkannte Inhalte** – die Anzahl der erkannten Skills, Agents und Prompts.
    - **Struktur (Quellen)** – je Eintrag ein **Typ** und ein **Pfad**, zum Beispiel `agents` oder `library/agents`. Mit **Quelle hinzufügen** ergänzen Sie weitere Pfade.
    - **Sichtbarkeit** – die Standardsichtbarkeit der importierten Inhalte: **Besitzer / System (Standard)**, **Öffentlich (alle Nutzer)** oder **Bestimmte Gruppen**. Mit **Besitzer / System (Standard)** sieht kein Nutzer die importierten Inhalte, bis Sie **Öffentlich** oder Gruppen wählen.
-   - **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)** – erlaubt companyADMIN, Änderungen aus CompanyGPT in das Repository zurückzuschreiben. Mit PAT braucht das Token dafür Schreibrechte (bei GitHub den Scope `repo`); mit SSH schreibt der Deploy-Key zurück.
+   - **Wir besitzen dieses Repo (Rückschreiben/Up-sync erlauben)** – erlaubt companyADMIN, Änderungen aus CompanyGPT in das Repository zurückzuschreiben (Up-sync, siehe [Zwei Richtungen](#zwei-richtungen)). Mit PAT braucht das Token dafür Schreibrechte (bei GitHub den Scope `repo`); mit SSH schreibt der Deploy-Key zurück.
 4. **Speichern & synchronisieren**: Der Knopf **Speichern** legt die Verbindung an. Synchronisiert wird dabei noch nichts; das Repository steht danach auf **Nie**. Den ersten Sync mit Vorschau starten Sie auf der Detailseite mit **Synchronisieren**.
 
 ## Synchronisieren
 
-**Synchronisieren** auf der Detailseite zeigt zuerst eine Vorschau (**Änderungen prüfen & anwenden**): was angelegt, aktualisiert, gelöscht wird oder unverändert bleibt. Geschrieben wird erst nach **Bestätigen & anwenden**. Danach zeigt das **Sync-Ergebnis**, was tatsächlich passiert ist, und unter **Hinweise**, was übersprungen wurde, etwa Tools, die Ihre Umgebung sperrt, nicht erreichbare MCP-Server oder nicht auflösbare Skill-Namen.
+**Synchronisieren** auf der Detailseite zeigt zuerst eine Vorschau (**Änderungen prüfen & anwenden**): was angelegt, aktualisiert, gelöscht wird oder unverändert bleibt. Geschrieben wird erst nach **Bestätigen & anwenden**. Danach zeigt das **Sync-Ergebnis**, was tatsächlich passiert ist, und unter **Hinweise**, was übersprungen wurde, etwa Tools, die Ihre Umgebung sperrt, nicht erreichbare MCP-Server, nicht auflösbare Skill-Namen oder Binärdateien, die Ihre Umgebung nicht übernehmen kann.
 
 :::caution[Löschungen und Änderungen in CompanyGPT]
 - Die Vorschau enthält auch Löschungen: Inhalte, die im Repository entfernt wurden, verschwinden beim Sync auch aus CompanyGPT. Erkennt ein Sync gar keine Inhalte mehr, obwohl vorher welche da waren, löscht companyADMIN nichts und fragt nach, weil meist Branch oder Pfad falsch sind.
 - Fällt die Datei eines Eintrags, seine Quelle oder sein Ordner weg, löscht der Sync den Eintrag auch dann, wenn er in CompanyGPT geändert wurde, selbst bei **Wir besitzen dieses Repo**. Die Änderung ist dann verloren.
 - Wurde ein synchronisierter Inhalt in CompanyGPT bearbeitet und ist **Wir besitzen dieses Repo** nicht gesetzt, **überschreibt der Sync diese Änderung**. Die Vorschau zeigt das als **In companyGPT bearbeitet — wird überschrieben**. Um die Änderung zu behalten, brechen Sie ab und übernehmen sie zuerst ins Repository.
-- Bei Repositories mit **Wir besitzen dieses Repo** bleiben in CompanyGPT geänderte Agents und Skills beim Sync erhalten, solange ihre Datei im Repository liegt. Die Vorschau zeigt sie als **In companyGPT bearbeitet — bleibt erhalten, zuerst nach Git zurückschreiben (Änderungen erkennen)**. Schreiben Sie sie mit **Zurückschreiben (Up-sync)** zurück (siehe [Abgleich mit Git](#abgleich-mit-git)).
-- Prompts schreibt companyADMIN nie zurück. Eine Änderung an einem synchronisierten Prompt in CompanyGPT überschreibt der Sync immer, auch bei **Wir besitzen dieses Repo**. Ändern Sie synchronisierte Prompts deshalb im Repository.
+- Bei Repositories mit **Wir besitzen dieses Repo** bleiben in CompanyGPT geänderte Agents, Skills und Prompts beim Sync erhalten, solange ihre Datei im Repository liegt. Die Vorschau zeigt sie als **In companyGPT bearbeitet — bleibt erhalten, zuerst nach Git zurückschreiben (Änderungen erkennen)**. Schreiben Sie sie mit **Zurückschreiben (Up-sync)** zurück (siehe [Abgleich mit Git](#abgleich-mit-git)).
 :::
 
 Ältere Prompt-Versionen und Freigaben, die Personen in CompanyGPT vergeben haben, bleiben beim Sync erhalten. Avatar, Gesprächseinstiege und hochgeladene Dateien eines Agents bleiben nur erhalten, wenn die YAML-Datei im Repository das jeweilige Feld nicht selbst setzt. Exportierte Agents (siehe [Bestehende Inhalte exportieren](#bestehende-inhalte-exportieren)) haben diese Felder in ihrer YAML-Datei.
 
 ### Ordner mit Skills
 
-Für Skills durchsucht Library Sync den angegebenen Pfad **beliebig tief**: Jeder Ordner mit einer `SKILL.md` wird zu einem Skill. Weitere Textdateien im selben Ordner (z. B. `references/` oder `scripts/`) werden mit dem Skill übernommen; Binärdateien werden übersprungen. Maßgeblich ist der `name` in der `SKILL.md` – kommt ein Name doppelt vor, wird nur der erste übernommen.
+Für Skills durchsucht Library Sync den angegebenen Pfad **beliebig tief**: Jeder Ordner mit einer `SKILL.md` wird zu einem Skill. Weitere Textdateien im selben Ordner (z. B. `references/` oder `scripts/`) werden mit dem Skill übernommen. Binärdateien (z. B. Bilder oder Vorlagen) übernimmt der Sync nur, wenn Ihre Umgebung dafür eingerichtet ist; sonst überspringt er sie und nennt sie unter **Hinweise**. Fragen Sie in diesem Fall innFactory. Ist Ihre Umgebung eingerichtet, stehen die Dateien eines Skills auch der Code-Ausführung von Agents zur Verfügung. Maßgeblich ist der `name` in der `SKILL.md` – kommt ein Name doppelt vor, wird nur der erste übernommen.
 
 ### Fertige Skills und Agenten von innFactory einbinden
 
@@ -63,20 +69,18 @@ Die [fertigen Skills](/de/tutorials/skills/) und Agenten liegen im öffentlichen
 | Feld | Wert |
 |---|---|
 | Repository | `innFactory-AI/companygpt-library`, Branch `main` |
-| Structure (sources) | Typ `skill`, Pfad `skills`; optional zusätzlich Typ `agent`, Pfad `agents` |
-| We own this repo | aus |
+| Struktur (Quellen) | Typ `skill`, Pfad `skills`; optional zusätzlich Typ `agent`, Pfad `agents` |
+| Wir besitzen dieses Repo | aus |
 
-Deutsche und englische Skills tragen verschiedene Namen (`de-excel`, `en-excel`), Sie können also beide Sprachen gleichzeitig verbinden. Die Skills sind nach Bereichen sortiert; mit einem Pfad wie `skills/files` verbinden Sie nur einen Bereich. Brauchen Sie nur eine Sprache, nehmen Sie die andere unter **Exclude** aus dem Sync. Die Agenten gibt es ebenfalls je Sprache (`de-demogpt.yaml`, `en-demogpt.yaml`); sie verweisen auf die Skills ihrer Sprache. Werkzeuge, die Ihre Umgebung nicht anbietet, lässt der Sync weg und nennt sie unter **Notes**. Ein **Sync** holt neue und geänderte Inhalte; einen automatischen Zeitplan gibt es nicht.
+Deutsche und englische Skills tragen verschiedene Namen (`de-excel`, `en-excel`), Sie können also beide Sprachen gleichzeitig verbinden. Die Skills sind nach Bereichen sortiert; mit einem Pfad wie `skills/files` verbinden Sie nur einen Bereich. Brauchen Sie nur eine Sprache, nehmen Sie die andere unter **Herausnehmen** aus dem Sync. Die Agenten gibt es ebenfalls je Sprache (`de-demogpt.yaml`, `en-demogpt.yaml`); sie verweisen auf die Skills ihrer Sprache. Werkzeuge, die Ihre Umgebung nicht anbietet, lässt der Sync weg und nennt sie unter **Hinweise**. Ein **Synchronisieren** holt neue und geänderte Inhalte; einen automatischen Zeitplan gibt es nicht.
 
 :::caution[Umstieg von company-ai-stack-skills]
-Das frühere Repository `innFactory-AI/company-ai-stack-skills` ist archiviert und bekommt keine Updates mehr. Die Skills heißen im neuen Repository anders (`excel-skill` → `de-excel`). Entfernen Sie das alte Repository unter **Remove repository …** und verbinden Sie das neue. Eigene Agenten, die alte Skill-Namen verwenden, müssen Sie auf die neuen Namen umstellen.
+Das frühere Repository `innFactory-AI/company-ai-stack-skills` ist archiviert und bekommt keine Updates mehr. Die Skills heißen im neuen Repository anders (`excel-skill` → `de-excel`). Entfernen Sie das alte Repository mit **Repository entfernen …** und verbinden Sie das neue. Eigene Agenten, die alte Skill-Namen verwenden, müssen Sie auf die neuen Namen umstellen.
 :::
 
 :::note
 Synchronisierte Skills stehen Agenten sofort zur Verfügung. In der Skill-Auswahl im Chat (`$`) erscheinen sie zunächst inaktiv, bis Nutzer sie einschalten.
 :::
-
-## Änderungen prüfen
 
 ## Detailseite eines Repositorys
 
@@ -110,19 +114,23 @@ Darunter steht **Verwaist (N)**: Inhalte mit der Markierung dieses Repositorys, 
 - **synchron**
 - **Datei(en) fehlerhaft** – Dateien, die sich nicht lesen lassen; die Version in CompanyGPT bleibt
 
-Bei Repositories mit **Wir besitzen dieses Repo** schreiben Sie in CompanyGPT geänderte Agents und Skills mit **Zurückschreiben (Up-sync)** nach Git: Erst zeigt companyADMIN eine Vorschau der Dateien, geschrieben wird mit **Commit & push**. companyADMIN erzeugt dabei einen Commit mit sprechender Nachricht und listet die geschriebenen Dateien auf. Hat der Branch im Repository inzwischen neue Commits, synchronisieren Sie zuerst und versuchen es dann erneut. Prompts schreibt companyADMIN nicht zurück.
+Bei Repositories mit **Wir besitzen dieses Repo** schreiben Sie in CompanyGPT geänderte Agents, Skills und Prompts mit **Zurückschreiben (Up-sync)** nach Git: Erst zeigt companyADMIN eine Vorschau der Dateien, geschrieben wird mit **Commit & push**. companyADMIN erzeugt dabei einen Commit mit sprechender Nachricht und listet die geschriebenen Dateien auf. Was sich nicht zurückschreiben lässt, überspringt companyADMIN mit Begründung; die Änderung bleibt dann in CompanyGPT erhalten. Hat der Branch im Repository inzwischen neue Commits, synchronisieren Sie zuerst und versuchen es dann erneut.
 
 Einträge mit **Konflikt** überspringt das Zurückschreiben; ohne weiteres Zutun bleiben sie in diesem Zustand. Um einen solchen Eintrag aufzulösen, setzen Sie vor **Zurückschreiben (Up-sync)** das Häkchen **Konfliktbehaftete Einheiten einschließen (überschreibt die Git-seitige Änderung)**. Die Änderung im Repository wird dabei durch die Fassung aus CompanyGPT ersetzt.
 
 #### Bestehende Inhalte exportieren
 
-Bei Repositories mit **Wir besitzen dieses Repo** schreibt **Bestehende Inhalte exportieren** Agents und Skills, die in CompanyGPT entstanden und noch nie mit einem Repository synchronisiert wurden, erstmals in das Repository. Wählen Sie einzelne Einträge oder **Alle auswählen**, prüfen Sie die Dateien mit **Vorschau** und schreiben Sie mit **Commit & push**.
+Bei Repositories mit **Wir besitzen dieses Repo** schreibt **Bestehende Inhalte exportieren** Agents, Skills und Prompts, die in CompanyGPT entstanden und noch nie mit einem Repository synchronisiert wurden, erstmals in das Repository. Angeboten werden nur Inhalte, die für alle oder für Gruppen freigegeben sind (**Geteilt**), und Ihre eigenen (**Eigen**). Nichts ist vorausgewählt. Wählen Sie einzelne Einträge oder **Alle auswählen**, prüfen Sie die Dateien mit **Vorschau** und schreiben Sie mit **Commit & push**. Die Vorschau zeigt Zielpfade, neue Ordner und jeden übersprungenen Inhalt mit Namen und Grund.
+
+- Ein Prompt ohne Befehl bekommt einen aus seinem Namen, etwa `report` oder `report-2`. Die Vorschau markiert ihn mit **(neu)**. In CompanyGPT erscheint damit ein neuer Slash-Befehl.
+- Ein Skill, dessen Dateien in CompanyGPT hochgeladen wurden, lässt sich nicht exportieren und wird mit Begründung übersprungen. Das gilt auch für Skills mit Binärdateien oder Dateien über dem Größenlimit.
+- Fehlt im Repository der Ordner für eine Inhaltsart, legt der Export `agents/`, `skills/` oder `prompts/` als private Quelle an. Bei einer Ordnerauswahl schreibt er nur in ausgewählte Ordner.
 
 :::caution[Exportierte Inhalte gehören danach zum Repository]
 Nach dem Export sind die Einträge synchronisierte Inhalte dieses Repositorys. Das hat Folgen:
 
 - Wird die Datei im Repository gelöscht oder umbenannt, löscht der nächste Sync den Eintrag in CompanyGPT.
-- Ein exportierter Skill geht sofort an das Systemkonto über und ist für alle aktiv, die ihn sehen dürfen.
+- Ein exportierter Skill oder Prompt geht sofort an das Systemkonto über. Ein Skill ist für alle aktiv, die ihn sehen dürfen. Die bisherige Autorin oder der bisherige Autor behält den Zugriff als Besitzer.
 - Ein exportierter Agent geht mit der ersten Aktualisierung aus dem Repository an das Systemkonto über.
 - Die Sichtbarkeit bleibt **Individuell verwaltet**; die Standardsichtbarkeit des Repositorys gilt für diese Einträge nicht.
 :::
@@ -163,8 +171,8 @@ Zur Bestätigung geben Sie den Namen des Repositorys ein. Läuft gerade ein Sync
 
 ## Zusammenspiel mit der Sichtbarkeit
 
-Synchronisierte Inhalte tragen unter [Inhalte und Sichtbarkeit](/de/company-gpt/addons/companyadmin/inhalte/) die Kennzeichnung **synchronisiert**, nach einer Änderung in CompanyGPT zusätzlich **geändert in LibreChat**. Die Sichtbarkeit kommt aus dem Repo-Standard. Ändern Sie sie an einem einzelnen Eintrag, verwaltet companyADMIN diesen Eintrag individuell, bis Sie ihn auf den Repo-Standard zurücksetzen.
+Synchronisierte Inhalte tragen unter [Inhalte und Sichtbarkeit](/de/company-gpt/addons/companyadmin/inhalte/) die Kennzeichnung **synchronisiert**, nach einer Änderung in CompanyGPT zusätzlich **geändert in LibreChat** (LibreChat ist die technische Basis von CompanyGPT, siehe [Inhalte](/de/company-gpt/addons/companyadmin/inhalte/#listen)). Die Sichtbarkeit kommt aus dem Repo-Standard. Ändern Sie sie an einem einzelnen Eintrag, verwaltet companyADMIN diesen Eintrag individuell, bis Sie ihn auf den Repo-Standard zurücksetzen.
 
 :::note[Benötigte Rechte]
-Ohne das Recht **Skills verwalten** fehlen die Reiter **Herausnehmen** und **Einstellungen**, die Knöpfe **Synchronisieren**, **Alle synchronisieren** und **Repository hinzufügen** sowie die Gefahrenzone. Synchronisieren, Hinzufügen, Herausnehmen und Entfernen brauchen außerdem das Verwalten-Recht für jede Inhaltsart im Repository (**Agenten verwalten**, **Prompts verwalten** bzw. **Skills verwalten**).
+Zum Ansehen des Bibliotheks-Syncs brauchen Sie das Recht **Skills ansehen**. Ohne das Recht **Skills verwalten** fehlen die Reiter **Herausnehmen** und **Einstellungen**, die Knöpfe **Synchronisieren**, **Alle synchronisieren** und **Repository hinzufügen** sowie die Gefahrenzone. Synchronisieren, Hinzufügen, Herausnehmen und Entfernen brauchen außerdem das Verwalten-Recht für jede Inhaltsart im Repository (**Agenten verwalten**, **Prompts verwalten** bzw. **Skills verwalten**).
 :::

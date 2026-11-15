@@ -26,7 +26,7 @@ Das Menü von companyADMIN hat fünf Bereiche. Die Unterseiten des gerade geöff
 | **Status** | – | Was gerade gilt und ob alles läuft, dazu die Protokolle |
 | **Zugriff** | **Nutzer**, **Rollen**, **Gruppen**, **Direkt-Grants** | Wer was darf und wer zu welcher Gruppe gehört |
 | **Inhalte** | **Agents**, **Prompts**, **Skills**, **MCP-Tools**, **Kategorien**, **Bibliotheks-Sync** | Sichtbarkeit und Herkunft der Inhalte in CompanyGPT |
-| **Konfiguration** | **Provider und Modelle**, **Modellzugriff**, **Labels**, **Agent-Fähigkeiten**, **Agent-Laufzeit**, **MCP-Domains**, **Vorgabe & Anpassungen**, **Tools**, **Erweiterungen** | Wie CompanyGPT und die Erweiterungen eingestellt sind |
+| **Konfiguration** | **Provider und Modelle**, **Modellzugriff**, **Labels**, **Agent-Fähigkeiten**, **Agent-Laufzeit**, **MCP-Domains**, **Cowork**, **Vorgabe & Anpassungen**, **Tools**, **Erweiterungen** | Wie CompanyGPT und die Erweiterungen eingestellt sind |
 
 Ein Klick auf eine Zeile in einer Liste öffnet meist eine Detailseite mit Reitern. Löschen liegt dort in der **Gefahrenzone** und fragt immer nach.
 
@@ -52,7 +52,7 @@ Das Kontomenü zeigt, welche Sicht Sie haben. Der Unterschied betrifft vor allem
 | Von Nutzern angelegte MCP-Server | Freigabe änderbar, Details auch privater Server sichtbar | Freigabe nur Anzeige, Details privater Server ausgeblendet |
 | **Insights → Agents** | Jeder Agent einzeln | Private Agents anderer Personen nur als Summe |
 
-Ob die Superadmin-Funktionen für die Administratoren Ihres Unternehmens eingeschaltet sind, legen Sie mit innFactory fest. innFactory schaltet sie auf Wunsch ein.
+**Superadmin** ist eine Sicht in companyADMIN, kein Recht, das Sie an eine Rolle oder Gruppe vergeben. Standardmäßig haben diese Sicht nur Mitarbeitende von innFactory (**innFactory-Superadmin**). Auf Wunsch schaltet innFactory sie für alle Administratoren Ihrer Umgebung ein. Das companyRAG-Recht **Superadmin** (siehe [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/)) ist etwas anderes: Es betrifft nur companyRAG.
 
 ## Rollen, Gruppen und Sichtbarkeit
 
@@ -89,6 +89,18 @@ Drei Begriffe tragen den ganzen Bereich:
 - [Agent-Fähigkeiten](/de/company-gpt/addons/companyadmin/agent-capabilities/) – welche Agent-Fähigkeiten Personen je Rolle nutzen können
 - [Agent-Laufzeit](/de/company-gpt/addons/companyadmin/agent-laufzeit/) – Geplante Chats, Tool-Freigabe, Subagents und Einstellungen je Rolle oder Gruppe
 - [MCP-Domains](/de/company-gpt/addons/companyadmin/mcp-domains/) – erlaubte Domains für MCP-Server
+- **Cowork** – allgemeine Anweisungen für den Cowork-Agent der Desktop-App. Der Text gilt für alle Personen gleich und darf höchstens 20.000 Zeichen lang sein. Ansehen brauchen Sie das Recht **Konfiguration ansehen**, zum Speichern das Recht **Konfiguration bearbeiten**. Skills pflegen Sie hier nicht; die Desktop-App holt sie selbst aus der Skill-Bibliothek
 - [Vorgabe & Anpassungen](/de/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) – was das Deployment vorgibt und was angepasst wurde
 - [Tools](/de/company-gpt/addons/companyadmin/tools/) – eigene Kacheln unter Alle Apps
 - [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/) – Rechte für companyFILES, companyRAG, companyTRANSLATE und alle weiteren Erweiterungen
+
+## Begriffe
+
+| Begriff | Bedeutung |
+|---|---|
+| **LibreChat** | Die technische Basis von CompanyGPT. In manchen Meldungen von companyADMIN steht noch dieser Name, etwa **geändert in LibreChat** |
+| **Grundkonfiguration** (`librechat.yaml`) | Die Konfiguration, die innFactory mit jedem Update ausliefert. Anpassungen in companyADMIN liegen als eigene Schicht darüber, siehe [Vorgabe & Anpassungen](/de/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/) |
+| **Recht** (Grant) | Eine einzelne Erlaubnis, etwa **Agenten verwalten** oder **Übersetzen nutzen**. Rechte hängen an Rollen, Gruppen, Personen oder gelten für alle. Die Oberfläche nennt sie teils **Grants**, siehe [Direkt-Grants](/de/company-gpt/addons/companyadmin/direkte-berechtigungen/) |
+| **Role-Sync** | Die automatische Rollenvergabe: CompanyGPT setzt die Rolle einer Person bei jeder Anmeldung aus Microsoft Entra ID, siehe [Rollen](/de/company-gpt/addons/companyadmin/rollen-und-rechte/) |
+| **Down-sync** und **Up-sync** | Richtungen des [Bibliotheks-Syncs](/de/company-gpt/addons/companyadmin/library-sync/): Down-sync holt Inhalte aus einem Git-Repository nach CompanyGPT, Up-sync schreibt Änderungen aus CompanyGPT zurück |
+| **Umgebung** (Tenant) | Ihre eigene CompanyGPT-Installation mit eigenen Daten, Rollen und Einstellungen |

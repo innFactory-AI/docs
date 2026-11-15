@@ -50,6 +50,8 @@ An Entra group that already exists cannot be created a second time. companyADMIN
 
 Without a sync, CompanyGPT knows the memberships of an Entra group only from its members' sign-ins. The group sync reads the members of all Entra groups CompanyGPT knows from Microsoft Graph and enters them. It never creates new groups.
 
+In some environments the group sync only syncs groups that are used or already have members. A group counts as used if it carries a right, a setting, a share, an entry point, a custom tile or an admin source. Empty, unused groups stay empty; the sync shows their number as **skipped**. A group that becomes used is filled by the next run (daily at 03:00) or **Sync now**. A group that you newly create in companyADMIN is filled at once. Which variant applies to you is set by innFactory.
+
 innFactory sets up the group sync for your environment. In addition it needs admin consent in Microsoft Entra ID for the permission `GroupMember.Read.All`.
 
 With the right **Manage groups** you find the action **Sync Entra groups** at the top of the group list. It opens the sync area, which shows:

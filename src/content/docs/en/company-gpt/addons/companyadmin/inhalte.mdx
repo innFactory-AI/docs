@@ -28,6 +28,8 @@ Promoted agents carry the badge **Promoted**.
 
 The **Visibility** column shows **Owner only**, **Public** or **Groups (n)**. The **Origin** column shows:
 
+LibreChat is the technical basis of CompanyGPT. companyADMIN still uses the name in some messages, for example in the badge **modified in LibreChat**. It means: changed in CompanyGPT.
+
 | Badge | Meaning |
 |---|---|
 | **manual** | Created in CompanyGPT |
@@ -48,7 +50,7 @@ Clicking a row opens the detail page. You change an item's configuration in Comp
 
 **Agent**
 
-- **Overview**: owner, model, category, usage over the last 30 days and the chart **Requests per day (30d)**
+- **Overview**: owner, model, category, usage over the last 30 days and the chart **Requests per day (30d)**. **Set as entry point** is here too; it makes the agent the start of every new chat, see [Entry point for new chats](/en/company-gpt/addons/companyadmin/modelle/#entry-point-for-new-chats)
 - **Configuration**: **Instructions**, **Tools** with the **Loading** column, **MCP servers**, **Skills**, **Subagents & handoff edges** and **Code & memory**
 - **Visibility**
 - **Origin**
@@ -68,7 +70,7 @@ Clicking a row opens the detail page. You change an item's configuration in Comp
 
 ### Origin
 
-For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents and skills stay until they are written back, as long as their file is in the repository.
+For synced content the **Origin** tab shows **Repository** (with a link to Library Sync), **Path**, **Commit**, **Last written** and **State**. If it says the item was changed in CompanyGPT since the last sync, the next sync overwrites that change. Only for a repository with **We own this repo (allow write-back/up-sync)** do changed agents, skills and prompts stay until they are written back, as long as their file is in the repository.
 
 For content created in CompanyGPT it says **Created in companyGPT, not from the library.**
 
@@ -130,6 +132,30 @@ Superadmins see other people's private agents in the list, but cannot simply use
 The agent then appears in your agent list in CompanyGPT. As an owner you can share it further there with the share dialog. An existing share with everyone stays as it is, and the previous owners keep their rights.
 
 The button is hidden when you can already share the agent through a share of your own, for example because you own it. Every share is recorded in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/).
+
+### Change provider and model for several agents
+
+This function changes the provider and model of many agents at once, for example when you move to another gateway. You need the right **Manage agents**. There are two ways:
+
+- **Selection in the list**: select up to 500 rows. In the bar above the table click **Change provider and model**. If you select more than 500 rows, the bar stays locked and points to the second way. **Select all loaded rows** selects only the rows that are already loaded.
+- **All agents of a provider**: the button **Change all agents of a provider …** above the list opens a dialog. Choose the provider under **Current provider**; the list shows the number of agents for each. Under **Model selection** you decide which agents are meant: **All models**, **Only these models** or **All except these models**. One run covers at most 5,000 agents; otherwise narrow the selection by model.
+
+How to proceed:
+
+1. Set the target. **Set provider and model** needs a **Target provider** and a **Target model**. **Keep model, change provider only** changes only the provider: each agent keeps its model, provided the target provider offers it. Otherwise companyADMIN skips the agent and does not change it; the preview lists it with the reason **model does not exist at the target provider**.
+2. Click **Preview**. The preview changes nothing. It shows how many agents change, how many already have the target and what is skipped. The agents can be expanded by name, with old and new value; at most 200 are listed per list, the numbers are complete.
+3. Confirm the question **Change agents?**. The run works in the background and shows its progress. Only one change or undo runs at a time; a second start is rejected until the first has finished.
+
+Note before you start:
+
+:::caution[Check before changing]
+- **Check model access first.** companyADMIN checks that the target provider and target model exist, but not whether people's roles may use the model. Release the model for the affected roles under [Configuration → Model access](/en/company-gpt/addons/companyadmin/modelle/) first, otherwise these people cannot use the agent.
+- **Other people's private agents are changed too.** The preview and the result name the affected agents.
+- **Agents from a repository** are changed as well and listed per repository. If the repository does not have **We own this repo** set, the next sync overwrites the change; change the model in the repository instead. If the box is ticked, the change stays until you write it to the repository with **Write back (up-sync)**, see [Library Sync](/en/company-gpt/addons/companyadmin/library-sync/).
+- An agent's model parameters stay unchanged; only a model entered there is set as well.
+:::
+
+You **Undo** a run in the result and in the list **Recent changes**. This restores only agents nobody has saved since the run. Agents changed since then stay as they are; companyADMIN counts and names them. **Dismiss result** hides the result and clears the selection. How long a run can be undone follows the retention of the audit log, usually 90 days. Every run appears in the [audit log](/en/company-gpt/addons/companyadmin/audit-log/). The search in the agent list also finds by provider and model.
 
 ## MCP tools
 

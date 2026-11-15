@@ -5,7 +5,14 @@ description: Sync agents, prompts and skills from Git repositories into CompanyG
 
 **Library Sync** connects CompanyGPT with Git repositories and pulls **skills, agents and prompts** from there into CompanyGPT. This lets you version the content library, review it as a team and move it between environments. For repositories you own, companyADMIN also writes changes back to Git.
 
-You find it under **Content** → **Library Sync**. GitHub and self-hosted Git servers (GitLab, Gitea or plain Git) are supported.
+You find it under **Content** → **Library Sync**. GitHub and self-hosted Git servers (GitLab, Gitea or plain Git) are supported. You enter the repository as `owner/name`; GitLab subgroups (`group/subgroup/repo`) are not supported.
+
+## Two directions
+
+- **Down-sync**: repository → CompanyGPT. This is the normal sync with **Sync**.
+- **Up-sync**: CompanyGPT → repository. This is **Write back (up-sync)**: companyADMIN writes changes made in CompanyGPT to the repository as a commit. Up-sync and the export of existing content only apply to repositories with **We own this repo (allow write-back/up-sync)**. Tick the box if your team maintains the repository itself and companyADMIN may write commits there.
+
+In companyADMIN's messages, CompanyGPT is sometimes called "DB" (database) or "the app", for example in **Detect changes (DB ↔ Git)**.
 
 ## Repositories
 
@@ -35,26 +42,25 @@ Use **Search repository** to find a repository. **Sync all** syncs all repositor
    - **Detected content** – the number of detected skills, agents and prompts.
    - **Structure (sources)** – one **Kind** and one **Path** per entry, for example `agents` or `library/agents`. Use **Add source** to add further paths.
    - **Visibility** – the default visibility of imported content: **Owner / system (default)**, **Public (all users)** or **Specific groups**. With **Owner / system (default)** no user sees the imported content until you choose **Public** or groups.
-   - **We own this repo (allow write-back/up-sync)** – allows companyADMIN to write changes from CompanyGPT back into the repository. With a PAT the token needs write access (on GitHub the `repo` scope); with SSH the deploy key writes back.
+   - **We own this repo (allow write-back/up-sync)** – allows companyADMIN to write changes from CompanyGPT back into the repository (up-sync, see [Two directions](#two-directions)). With a PAT the token needs write access (on GitHub the `repo` scope); with SSH the deploy key writes back.
 4. **Save & sync**: the **Save** button creates the connection. Nothing is synced yet; the repository shows **Never** afterwards. You start the first sync with a preview on the detail page with **Sync**.
 
 ## Syncing
 
-**Sync** on the detail page first shows a preview (**Review & apply changes**): what will be created, updated, deleted or stay unchanged. Nothing is written until **Confirm & apply**. Afterwards the **Sync result** shows what actually happened, and **Notes** list what was skipped, such as tools your environment blocks, unreachable MCP servers or skill names that cannot be resolved.
+**Sync** on the detail page first shows a preview (**Review & apply changes**): what will be created, updated, deleted or stay unchanged. Nothing is written until **Confirm & apply**. Afterwards the **Sync result** shows what actually happened, and **Notes** list what was skipped, such as tools your environment blocks, unreachable MCP servers, skill names that cannot be resolved or binary files your environment cannot import.
 
 :::caution[Deletions and changes made in CompanyGPT]
 - The preview also contains deletions: content removed from the repository also disappears from CompanyGPT on sync. If a sync detects no content at all although there was some before, companyADMIN deletes nothing and asks first, because the branch or path is usually wrong.
 - If an entry's file, its source or its folder goes away, the sync deletes the entry even if it was changed in CompanyGPT, and even with **We own this repo**. The change is lost then.
 - If a synced item was edited in CompanyGPT and **We own this repo** is not set, **the sync overwrites that change**. The preview shows this as **Edited in companyGPT — will be overwritten**. To keep the change, cancel and bring it into the repository first.
-- For repositories with **We own this repo**, agents and skills changed in CompanyGPT are kept on sync as long as their file is in the repository. The preview shows them as **Edited in companyGPT — kept, write back to git first (Detect changes)**. Write them back with **Write back (up-sync)** (see [Compare with git](#compare-with-git)).
-- companyADMIN never writes prompts back. The sync always overwrites a change to a synced prompt made in CompanyGPT, even with **We own this repo**. Change synced prompts in the repository instead.
+- For repositories with **We own this repo**, agents, skills and prompts changed in CompanyGPT are kept on sync as long as their file is in the repository. The preview shows them as **Edited in companyGPT — kept, write back to git first (Detect changes)**. Write them back with **Write back (up-sync)** (see [Compare with git](#compare-with-git)).
 :::
 
 Older prompt versions and shares that people made in CompanyGPT are kept on sync. An agent's avatar, conversation starters and uploaded files are only kept if the YAML file in the repository does not set the field itself. Exported agents (see [Export existing content](#export-existing-content)) have these fields in their YAML file.
 
 ### Skill folders
 
-For skills, Library Sync searches the given path **at any depth**: every folder that contains a `SKILL.md` becomes one skill. Other text files in the same folder (e.g. `references/` or `scripts/`) are imported with the skill; binary files are skipped. The `name` in `SKILL.md` identifies the skill – if a name occurs twice, only the first one is imported.
+For skills, Library Sync searches the given path **at any depth**: every folder that contains a `SKILL.md` becomes one skill. Other text files in the same folder (e.g. `references/` or `scripts/`) are imported with the skill. Binary files (e.g. images or templates) are only imported if your environment is set up for it; otherwise the sync skips them and lists them under **Notes**. Ask innFactory in that case. If your environment is set up, a skill's files are also available to agents' code execution. The `name` in `SKILL.md` identifies the skill – if a name occurs twice, only the first one is imported.
 
 ### Adding the ready-made skills and agents from innFactory
 
@@ -75,8 +81,6 @@ The previous repository `innFactory-AI/company-ai-stack-skills` is archived and 
 :::note
 Synced skills are available to agents right away. In the chat's skill picker (`$`) they first show as inactive until users switch them on.
 :::
-
-## Reviewing changes
 
 ## A repository's detail page
 
@@ -110,19 +114,23 @@ Below follows **Orphaned (N)**: content marked with this repository that the syn
 - **in sync**
 - **file(s) do not parse** – files that cannot be read; the version in CompanyGPT is kept
 
-For repositories with **We own this repo** you write agents and skills changed in CompanyGPT to Git with **Write back (up-sync)**: companyADMIN first shows a preview of the files, and **Commit & push** writes them. companyADMIN creates a commit with a descriptive message and lists the files written. If the branch in the repository has new commits in the meantime, sync first and then try again. companyADMIN does not write prompts back.
+For repositories with **We own this repo** you write agents, skills and prompts changed in CompanyGPT to Git with **Write back (up-sync)**: companyADMIN first shows a preview of the files, and **Commit & push** writes them. companyADMIN creates a commit with a descriptive message and lists the files written. What cannot be written back is skipped with a reason; the change then stays in CompanyGPT. If the branch in the repository has new commits in the meantime, sync first and then try again.
 
 Write-back skips entries with **Conflict**; left alone, they stay in that state. To resolve such an entry, tick **Include conflicting units (overwrites the git-side change)** before **Write back (up-sync)**. The change in the repository is then replaced by the version from CompanyGPT.
 
 #### Export existing content
 
-For repositories with **We own this repo**, **Export existing content** writes agents and skills that were created in CompanyGPT and never synced with any repository into the repository for the first time. Pick single entries or **Select all**, check the files with **Preview** and write them with **Commit & push**.
+For repositories with **We own this repo**, **Export existing content** writes agents, skills and prompts that were created in CompanyGPT and never synced with any repository into the repository for the first time. Only content that is shared with everyone or with groups (**Shared**) and your own content (**Own**) is offered. Nothing is preselected. Pick single entries or **Select all**, check the files with **Preview** and write them with **Commit & push**. The preview shows target paths, new folders and every skipped item with its name and reason.
+
+- A prompt without a command gets one from its name, such as `report` or `report-2`. The preview marks it **(new)**. This adds a new slash command in CompanyGPT.
+- A skill whose files were uploaded in CompanyGPT cannot be exported and is skipped with a reason. The same applies to skills with binary files or files over the size limit.
+- If the repository has no folder for a content type, the export creates `agents/`, `skills/` or `prompts/` as a private source. With a folder selection it only writes to selected folders.
 
 :::caution[Exported content belongs to the repository afterwards]
 After the export the entries are synced content of this repository. This has consequences:
 
 - If the file is deleted or renamed in the repository, the next sync deletes the entry in CompanyGPT.
-- An exported skill passes to the system account at once and is active for everyone who may see it.
+- An exported skill or prompt passes to the system account at once. A skill is active for everyone who may see it. The previous author keeps access as owner.
 - An exported agent passes to the system account with the first update from the repository.
 - The visibility stays **Individually managed**; the repository's default visibility does not apply to these entries.
 :::
@@ -163,8 +171,8 @@ To confirm, type the repository's name. If a sync is running, removal is possibl
 
 ## Interplay with visibility
 
-Synced content carries the badge **synced** under [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/), and additionally **modified in LibreChat** after a change in CompanyGPT. The visibility comes from the repo default. If you change it on a single entry, companyADMIN manages that entry individually until you reset it to the repo default.
+Synced content carries the badge **synced** under [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/), and additionally **modified in LibreChat** after a change in CompanyGPT (LibreChat is the technical basis of CompanyGPT, see [Content and visibility](/en/company-gpt/addons/companyadmin/inhalte/#lists)). The visibility comes from the repo default. If you change it on a single entry, companyADMIN manages that entry individually until you reset it to the repo default.
 
 :::note[Rights needed]
-Without the right **Manage skills**, the **Exclude** and **Settings** tabs, the **Sync**, **Sync all** and **Add repository** buttons and the danger zone are missing. Syncing, adding, excluding and removing also need the manage right for every content type in the repository (**Manage agents**, **Manage prompts** or **Manage skills**).
+To view Library Sync you need the right **View skills**. Without the right **Manage skills**, the **Exclude** and **Settings** tabs, the **Sync**, **Sync all** and **Add repository** buttons and the danger zone are missing. Syncing, adding, excluding and removing also need the manage right for every content type in the repository (**Manage agents**, **Manage prompts** or **Manage skills**).
 :::

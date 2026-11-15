@@ -16,7 +16,7 @@ Above the list the page explains how Entra groups become roles. The **Role sync 
 | **ID** | Name of the role |
 | **Description** | Its description, visible to administrators only |
 | **Users** | Number of people with this role |
-| **Origin** | **System**, **Role sync**, **Manual** or the admin role |
+| **Origin** | **System**, **Role sync**, **Manual** or **OPENID_ADMIN_ROLE**. The last one means: ADMIN is assigned at sign-in through the admin group from Entra ID; this is the name of the setting that defines this group |
 
 Use **Search ID or description** and the **Origin** filter to narrow the list. Clicking a row opens the role.
 
@@ -77,9 +77,11 @@ Here you decide what people with this role may do in CompanyGPT. The ticks for f
 | **Scheduled chats** | **Use**, **Create** |
 | **Bookmarks** | **Use** |
 | **Shared links** | **Create**, **Share**, **Share publicly** |
+| **Chat projects** | **Share**, **Share publicly** |
 | **People picker** | **View users**, **View groups**, **View roles** |
 
 - **Share publicly** decides whether members may release content to the whole environment, not just to individual groups.
+- **Chat projects**: everyone has projects; only whether they may share their projects with others or make them public is controlled. The row only appears if your CompanyGPT knows the function.
 - **Remote agents** allows calling agents from outside through the API.
 - **Configure OBO** allows setting up on-behalf-of access for MCP servers, where a tool accesses a third-party system in the name of the signed-in person. Grant this right deliberately.
 - **Scheduled chats** are chats with an agent that run at set times. Whether the feature is switched on at all is controlled under [Agent runtime](/en/company-gpt/addons/companyadmin/agent-laufzeit/).
@@ -112,18 +114,27 @@ All rights and what they mean are described in [Extensions](/en/company-gpt/addo
 
 ### Members
 
-Here you assign the role to people:
+Here you assign the role to people. This does not apply to roles that Entra ID sets at sign-in, see [Roles from Entra ID](#roles-from-entra-id).
 
 1. In the **Add person** section, type at least two characters into the **Search person (name or email)** field.
 2. In the results, click the entry "Add *name* (*email*)".
 
-Whoever is assigned here loses their previous role. People you remove from the role get the USER role.
+Whoever is assigned here loses their previous role. If the person already has a role other than USER, companyADMIN first asks **Replace the current role?** and names the current and the new role; only **Replace** carries out the change. People you remove from the role get the USER role.
 
 On the USER role itself adding does not work, and removing is not offered. To give someone USER, remove them from their current role.
 
 :::caution
 If automatic role assignment from Entra ID is active, CompanyGPT sets the role again from the Entra groups at the next sign-in. Assignments made here are lost then.
 :::
+
+#### Roles from Entra ID
+
+At every sign-in Entra ID sets the role ADMIN (if your environment uses an admin group, origin **OPENID_ADMIN_ROLE**) and every role in the role-sync order. For these roles:
+
+- The **Members** tab has no **Add person**. It explains instead in which Entra group you maintain the members. The fallback role and USER do not count. With an identity provider other than Entra ID, its name appears there.
+- **Remove** always works, so that you can take ADMIN away at once. The confirmation points out: if the person is still in the Entra group, they get the role back at the next sign-in. You remove the role for good in Entra ID by taking the person out of the group.
+- The **Origin** column shows for ADMIN and for role-sync roles with a groups claim whether the person is in one of the Entra groups (**Entra group**) or was set by hand (**Manual**). A manual assignment is removed at the next sign-in for ADMIN; for a role-sync role it may be overwritten. The state is that of the last sign-in or the last Entra group sync. The column is missing if companyADMIN does not know all groups.
+- Accounts that do not sign in via OpenID keep their role. You assign it for them on the person's page.
 
 ### Deleting a role
 

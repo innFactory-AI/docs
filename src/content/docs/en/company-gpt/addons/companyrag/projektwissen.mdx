@@ -34,6 +34,8 @@ An **entry** is a note, a chat excerpt, a link, an email, a Teams message or a f
 - A saved **link** is fetched once and stored as a snapshot with the time. The original page may change later.
 - An editor deletes the entries they saved themselves; owners delete any entry.
 
+![Project with saved entries: note, link, chat excerpt, file and mail with source, status and contributors](./projekt-eintraege.png)
+
 ## Curator and pages
 
 The **curator** is a language model that writes **pages** from the entries: one topic per page, with citations that point back to your entries. A page shows its type, tags, a summary, its sources and the pages it links to.
@@ -46,6 +48,8 @@ The **curator** is a language model that writes **pages** from the entries: one 
 - You only see pages you may read. A page is never visible to more people than its most restricted source. A page you may not see does not exist for you.
 - If a source is deleted, the pages based on it are hidden at once and rewritten without the deleted content. Until then the list shows "n pages are being updated and are hidden until then".
 - With **Export as OKF**, editors and owners download the readable pages as a bundle of Markdown files (see [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/)).
+
+![Curated knowledge page of a project with type, confirmed marker, tags, text, evidence, linked pages and history](./projekt-seite.png)
 
 Owners and editors see the curation jobs under [Jobs](/en/company-gpt/addons/companyrag/auftraege/) as **Curation** and **Re-curation**.
 
@@ -62,6 +66,10 @@ Global administrators find three cards in the **Admin Settings** that concern pr
 If your environment has no endpoint or model configured for the curator, the card shows **Not configured** and the switch is locked. Likewise, project knowledge cannot be switched on if your environment does not offer it.
 
 The **Source types** card (one switch per source type) is described under [Sources](/en/company-gpt/addons/companyrag/quellen/#switching-source-types-on-and-off).
+
+![Admin settings, the “Project knowledge & Gesamtwissen” card with the switch for projects, entries, curator and Gesamtwissen](./admin-projektwissen.png)
+
+![Admin settings, the “Curator” card with switch, model, daily budgets and quiet period](./admin-kurator.png)
 
 ## Deleting
 

@@ -9,7 +9,7 @@ companyRAG only reads the source systems. It does not write files or changes bac
 
 Every source reads through a [connection](/en/company-gpt/addons/companyrag/integrationen/): credentials belong to the connection, the source only defines what is read. New sources are created by people with the right **Create collections and sources**, and in someone else's collection you need the role **Editor** or **Owner**.
 
-![Source overview with per-system filters and synchronization status](./quellen-uebersicht.png)
+![Source overview with tabs per system (including Google Drive and databases with the Alpha label), configuration and synchronization status](./quellen-uebersicht.png)
 
 The overview has an **All Sources** tab and a separate tab for each available system. Every source shows its configuration, the target collection and its status (**Active**, **Disabled** or **Syncing**). Below that you see the time of the last synchronization, the result of the last run (**running**, **succeeded**, **partial** or **failed**) with figures such as found, processed, unchanged and removed files, the **Reason** in case of errors, and the person who added the source.
 
@@ -69,6 +69,8 @@ In the **Google Drive** tab, **Add Google Drive Source** opens the selection. Yo
 
 Under **Google Formats** you decide whether **Export Google Docs & Sheets** (Docs as text, Sheets as CSV) and **Include Google Slides** (converted to PDF with OCR, slower and more expensive) are active. Google cannot export Google files larger than 10 MB; they are skipped. The first synchronization starts right after connecting.
 
+![Google Drive notice with the confirmation that Drive sharing is not carried over, and the “Connect Google Drive” button](./quelle-google-drive.png)
+
 :::caution[Alpha: Drive sharing is not carried over]
 Google Drive is an alpha source type and switched off by default. Drive does not transfer the sharing of individual files: **all files in the chosen folder or area are visible to all members of the collection**, including files added later or shared with the creator later (with **Shared with me**, also files shared later). Access is controlled entirely by the collection.
 
@@ -112,6 +114,8 @@ With a database source, companyRAG stores a read-only **copy** of selected table
 ## Switching source types on and off
 
 In the **Admin Settings**, global administrators use the **Source types** card to control which source types users may newly create: SharePoint, Google Drive, Nextcloud, GitHub, WebDAV, FTP, Web crawl and Databases. Save your changes with **Save**.
+
+![Admin settings, the “Source types” card with a switch per source type, the Alpha labels and the Google Drive notice](./admin-quellenarten.png)
 
 - **Google Drive and Databases** carry the label **Alpha** and are **off** by default. A tenant with existing database sources keeps that type switched on.
 - A switched-off type disappears from the selection for users; new sources and new connections of that type cannot be created. Global administrators can still connect the type.

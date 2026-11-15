@@ -34,6 +34,8 @@ Ein **Eintrag** ist eine Notiz, ein Chat-Ausschnitt, ein Link, eine Mail, eine T
 - Ein gespeicherter **Link** wird einmal abgerufen und als Momentaufnahme mit Zeitpunkt abgelegt. Die Originalseite kann sich später ändern.
 - Ein Bearbeiter löscht die Einträge, die er selbst gespeichert hat; Owner löschen jeden Eintrag.
 
+![Projekt mit gespeicherten Einträgen: Notiz, Link, Chat-Auszug, Datei und Mail mit Quelle, Status und Beitragenden](./projekt-eintraege.png)
+
 ## Kurator und Seiten
 
 Der **Kurator** ist ein Sprachmodell, das aus den Einträgen **Seiten** schreibt: ein Thema pro Seite, mit Quellenangaben, die auf Ihre Einträge zurückverweisen. Eine Seite zeigt Typ, Schlagwörter, Zusammenfassung, Quellen und die Seiten, auf die sie verweist.
@@ -46,6 +48,8 @@ Der **Kurator** ist ein Sprachmodell, das aus den Einträgen **Seiten** schreibt
 - Sie sehen nur Seiten, die Sie lesen dürfen. Eine Seite ist nie für mehr Personen sichtbar als ihre am stärksten eingeschränkte Quelle. Eine Seite, die Sie nicht sehen dürfen, ist für Sie wie nicht vorhanden.
 - Wird eine Quelle gelöscht, werden die darauf beruhenden Seiten sofort ausgeblendet und ohne den gelöschten Inhalt neu geschrieben. Die Liste zeigt bis dahin „n Seiten werden aktualisiert und sind bis dahin nicht sichtbar“.
 - Mit **Als OKF exportieren** laden Bearbeiter und Owner die lesbaren Seiten als Bündel von Markdown-Dateien herunter (siehe [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/)).
+
+![Kuratierte Wissensseite eines Projekts mit Typ, Bestätigt-Kennzeichen, Schlagwörtern, Text, Belegen, verknüpften Seiten und Verlauf](./projekt-seite.png)
 
 Die Kuratierungsaufträge sehen Besitzer und Bearbeiter unter [Aufträge](/de/company-gpt/addons/companyrag/auftraege/) als **Kuratierung** und **Neu-Kuratierung**.
 
@@ -62,6 +66,10 @@ Globale Administratoren finden in den **Admin-Einstellungen** drei Karten, die P
 Hat Ihre Umgebung keinen Endpunkt oder kein Modell für den Kurator hinterlegt, zeigt die Karte **Nicht konfiguriert**, und der Schalter ist gesperrt. Ebenso lässt sich Projektwissen nicht einschalten, wenn Ihre Umgebung es nicht anbietet.
 
 Die Karte **Quellenarten** (Schalter je Quellenart) beschreibt [Quellen](/de/company-gpt/addons/companyrag/quellen/#quellenarten-ein--und-ausschalten).
+
+![Admin-Einstellungen, Karte „Projektwissen & Gesamtwissen“ mit dem Schalter für Projekte, Einträge, Kurator und Gesamtwissen](./admin-projektwissen.png)
+
+![Admin-Einstellungen, Karte „Kurator“ mit Schalter, Modell, Tagesbudgets und Ruhezeit](./admin-kurator.png)
 
 ## Löschen
 

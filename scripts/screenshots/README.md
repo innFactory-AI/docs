@@ -195,6 +195,7 @@ Aktionen wie „Speichern“ oder „Löschen“ in einer echten Sitzung ändern
 | `scenes-translate.json` | companyTRANSLATE | Glossar `muster-glossar` (DE↔EN); globales Glossar, Verlauf und Dokumentübersetzung sind per Mock gestellt |
 | `scenes-transcribe.json` | companyTRANSCRIBE | Transkript „Teambesprechung / Planung Sommerfest“ und Sprachausgabe „Begrüßung“; Aufnahmen sind per Mock gestellt (`fakeMedia`) |
 | `scenes-rag.json` | companyRAG | siehe `note` der Szenen |
+| `scenes-rag-local.json` | companyRAG, lokale Aufnahme mit erfundenen Daten (`rag-local.mjs`) | nichts, siehe [Lokale Aufnahme](#lokale-aufnahme-der-companyrag-oberfläche-ohne-tenant-ohne-login) |
 | `scenes-learn.json` | companyLEARN (Lernenden-Ansichten) | nichts; Kurse, Fortschritt und Quiz sind per Mock gestellt |
 | `scenes-chat-preview.json` | Vorschau der neuen Chat-Oberfläche | Chat-Projekt „Newsletter“ mit dem Chat „Spring Newsletter Subject Lines“ |
 | `scenes-chat.json` | Kernseiten Chat, Oberfläche, Lesezeichen, Einstellungen, KI-Einstellungen | die Chats „Vorteile Von Videokonferenzen“ und „Benefits of Video Conferencing“ und das Lesezeichen „Meetings“ |
@@ -209,6 +210,23 @@ Die Demo-Inhalte sind neutral („Muster GmbH“, „Anna Beispiel“) und gehö
 - Das Skript setzt die Browser-Sprache und `localStorage.lang`. Daran orientieren sich der Chat und die gemeinsame Addon-Oberfläche. Speichert eine App ihre Sprache selbst (Kontomenü → Sprache), den Schlüssel per `localStorage` in der Szene setzen oder die Sprache per `actions` umschalten. Im fertigen Bild die Sprache prüfen.
 - **Design hell:** `colorScheme` bleibt `light`. Das Skript setzt zusätzlich `localStorage["color-theme"]`, damit eine in der Sitzung gespeicherte dunkle Einstellung nicht durchschlägt.
 - Das Onboarding-Portal hat nur eine englische Oberfläche (keine Sprachwahl; Browser-Sprache und URL-Parameter ändern nichts). DE- und EN-Bild sind dort gleich.
+
+## Lokale Aufnahme der companyRAG-Oberfläche (ohne Tenant, ohne Login)
+
+Für companyRAG gibt es zusätzlich einen Modus ohne Demo-Tenant: `rag-local.mjs` nimmt die **echte** Oberfläche (`apps/ui` des companyRAG-Repos, Release-Tag) auf, die lokal im Vite-Dev-Server läuft. Alle API-Aufrufe (`/companygpt/rag/api/**`, `/auth/**`) beantwortet Playwright mit erfundenen Daten aus `fixtures/rag-local/` (`data.mjs`: Sammlungen, Verbindungen, Quellen, Aufträge, Admin; `project.mjs`: Projekt, Einträge, Seiten, Wissensgraph). Es wird keine Sitzungsdatei gebraucht und nichts geschrieben; Antworten auf POST/PUT sind leer.
+
+```bash
+# 1. Oberfläche starten (Checkout des companyRAG-Release-Tags, z. B. als Worktree)
+cd <companyRAG>/apps/ui && npm ci
+VITE_API_BASE_URL=/companygpt/rag/api npx vite --port 5179 --strictPort
+
+# 2. im Docs-Repo aufnehmen (Szenen: scenes-rag-local.json, DE und EN)
+node scripts/screenshots/rag-local.mjs                       # alle Szenen, schreibt in die Doku-Ordner
+node scripts/screenshots/rag-local.mjs --id t-graph --lang en --out-dir /tmp/vorschau   # Vorschau (legt /tmp/vorschau/<lang>/ an)
+node scripts/screenshots/rag-local.mjs --list
+```
+
+`--base <url>` bzw. `RAG_UI_URL` ändert die Adresse des Dev-Servers. Das Szenenformat entspricht dem oben beschriebenen (`path`, `waitFor`, `actions`, `selector`/`clip`, `viewport`, `deviceScaleFactor`, `lang`); das Antworten übernimmt der Handler in `data.mjs`, einzelne Szenen können Fähigkeiten über `"capabilities": {...}` überschreiben. Die Antwortformen stammen aus `apps/ui/src/lib/api*.ts` und `src/types`; ändert sich die Oberfläche, melden sich fehlende Routen als `[unbeantwortet]`. Der Wissensgraph ist ein WebGL-Canvas (Sigma) und wird im Headless-Chromium über SwiftShader gerendert. Alle Namen in den Fixtures sind erfunden (`example.com`).
 
 ## Datenschutz und öffentliches Repo
 

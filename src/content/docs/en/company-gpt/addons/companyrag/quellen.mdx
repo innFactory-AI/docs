@@ -1,19 +1,19 @@
 ---
 title: Sources
-description: Sources synchronize documents from SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP and the web into companyRAG – with synchronization behavior, permissions, exclusions and sync status.
+description: Sources synchronize documents from SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP, databases and the web into companyRAG – with synchronization behavior, permissions, source-type switches, exclusions and sync status.
 ---
 
 Sources connect companyRAG permanently to a third-party system and synchronize documents into a [collection](/en/company-gpt/addons/companyrag/sammlungen/). New and changed files are pulled in without you having to upload them again. For file sources such as SharePoint, Google Drive, Nextcloud, GitHub, WebDAV and FTP, files that were removed in the source system are also removed from the index on the next run.
 
 companyRAG only reads the source systems. It does not write files or changes back to SharePoint, Google Drive or any other system. The only exception are [OKF bundles](/en/company-gpt/addons/companyrag/okf-bundles/).
 
-A connected [integration](/en/company-gpt/addons/companyrag/integrationen/) is required. WebDAV and FTP sources bring their own credentials and do not need a prior connection.
+Every source reads through a [connection](/en/company-gpt/addons/companyrag/integrationen/): credentials belong to the connection, the source only defines what is read. New sources are created by people with the right **Create collections and sources**, and in someone else's collection you need the role **Editor** or **Owner**.
 
 ![Source overview with per-system filters and synchronization status](./quellen-uebersicht.png)
 
 The overview has an **All Sources** tab and a separate tab for each available system. Every source shows its configuration, the target collection and its status (**Active**, **Disabled** or **Syncing**). Below that you see the time of the last synchronization, the result of the last run (**running**, **succeeded**, **partial** or **failed**) with figures such as found, processed, unchanged and removed files, the **Reason** in case of errors, and the person who added the source.
 
-Owners and admins of the target collection may change sources. Everyone else sees a source with the notice **View only**.
+Owners and editors of the target collection may change sources; an editor may only delete sources they attached themselves. Everyone else sees a source with the notice **View only**.
 
 ## When synchronization runs
 
@@ -60,7 +60,7 @@ Only folders can be selected. All supported files in this folder and in hierarch
 After connecting, the first synchronization starts automatically. From then on, companyRAG keeps the source up to date on its own when documents change.
 
 :::tip[Permissions]
-When synchronizing from SharePoint, the permissions of the source system are carried over. A user therefore never sees more content through companyRAG than they would see through the SharePoint interface.
+When synchronizing from SharePoint, the permissions of the source system are carried over. A user therefore never sees more content through companyRAG than they would see through the SharePoint interface. More under [Permissions](#permissions).
 :::
 
 ## Connecting Google Drive
@@ -69,17 +69,19 @@ In the **Google Drive** tab, **Add Google Drive Source** opens the selection. Yo
 
 Under **Google Formats** you decide whether **Export Google Docs & Sheets** (Docs as text, Sheets as CSV) and **Include Google Slides** (converted to PDF with OCR, slower and more expensive) are active. Google cannot export Google files larger than 10 MB; they are skipped. The first synchronization starts right after connecting.
 
-:::caution
-No permissions are carried over from Google Drive. Access to the synchronized content is controlled entirely by the collection: everyone with access to the collection can search the documents.
+:::caution[Alpha: Drive sharing is not carried over]
+Google Drive is an alpha source type and switched off by default. Drive does not transfer the sharing of individual files: **all files in the chosen folder or area are visible to all members of the collection**, including files added later or shared with the creator later (with **Shared with me**, also files shared later). Access is controlled entirely by the collection.
+
+To create a Drive source you must explicitly confirm this notice with a checkbox. Drive sources only synchronize while the source type is switched on; if an administrator switches it off, existing Drive sources stop as well.
 :::
 
 ## Nextcloud and GitHub
 
-For **Nextcloud**, **Create Source** lets you choose a folder in your Nextcloud, name the source, and set the file types, collection and **Auto-sync**.
+For **Nextcloud**, first create your own Nextcloud connection under **Connections**. Then **Create Source** lets you choose a folder in your Nextcloud, name the source, and set the file types, collection and **Auto-sync**.
 
 For **GitHub**, **Add GitHub Source** lets you choose the repository and branch, optionally a **Subdirectory (optional)**, the **File extensions** (`.md`, `.markdown`, `.mdx`, `.txt`), the target collection and **Auto-sync**. Under **Repository access** there are three options:
 
-- **Creator's token**: The source uses the GitHub token from your [integration](/en/company-gpt/addons/companyrag/integrationen/). If it expires or is removed, the synchronization fails.
+- **Creator's token**: The source uses the GitHub token from your [connection](/en/company-gpt/addons/companyrag/integrationen/). If it expires or is removed, the synchronization fails.
 - **Dedicated personal access token**: A token with read access that is stored encrypted with this source and never shown again.
 - **SSH deploy key**: companyRAG generates a key pair. You add the public key to the repository as a deploy key without write access; only then does the first synchronization succeed.
 
@@ -95,6 +97,26 @@ Select the collection first, then check the connection with **Test connection an
 :::note[Not available in all environments]
 Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
 :::
+
+## Databases
+
+With a database source, companyRAG stores a read-only **copy** of selected tables of a database (PostgreSQL, MySQL/MariaDB, SQL Server, Oracle) in the collection. Queries run on the copy, never on your database; changed rows arrive with the next synchronization. For each table a table page is created with columns, key, figures, the date of the data and an example query (see [Table hints](/en/company-gpt/addons/companyrag/datensaetze/#table-hints)). Database sources are an alpha source type and switched off by default.
+
+## Permissions
+
+- **SharePoint:** permissions are applied per file. companyRAG therefore never shows you more than SharePoint allows – in search, in the collective knowledge, in the knowledge graph and in your agents' answers. If rights change in the source system, companyRAG applies the change automatically in the background; restrictions arrive quickly. If companyRAG cannot read the permissions of a file reliably, the file stays blocked.
+- **Knowledge pages** built from files inherit the rights of their sources and are never visible to more people than the most restricted source.
+- **Google Drive** does not carry over sharing (see above).
+- **All other source types** control access through the role in the collection.
+
+## Switching source types on and off
+
+In the **Admin Settings**, global administrators use the **Source types** card to control which source types users may newly create: SharePoint, Google Drive, Nextcloud, GitHub, WebDAV, FTP, Web crawl and Databases. Save your changes with **Save**.
+
+- **Google Drive and Databases** carry the label **Alpha** and are **off** by default. A tenant with existing database sources keeps that type switched on.
+- A switched-off type disappears from the selection for users; new sources and new connections of that type cannot be created. Global administrators can still connect the type.
+- **Existing sources keep running** and can still be maintained. The exception is Google Drive: Drive sources only synchronize while the type is switched on.
+- What your environment does not offer cannot be switched on here; the card names the reason.
 
 ## File types and custom extensions
 

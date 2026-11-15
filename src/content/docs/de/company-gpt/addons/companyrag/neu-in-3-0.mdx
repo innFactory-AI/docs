@@ -1,0 +1,44 @@
+---
+title: Was ist neu in companyRAG 3.0
+description: Die wichtigsten Neuerungen von companyRAG 3.0 für Nutzer und Administratoren – Projektwissen, Gesamtwissen mit Wissensgraph, Rollen, Verbindungen, Quellenarten und Tabellen-Hinweise.
+---
+
+Diese Seite fasst zusammen, was sich mit companyRAG 3.0 (aktueller Stand 3.0.8) für Nutzer und Administratoren geändert hat. Bestehende Quellen, Verbindungen und Sammlungen laufen nach dem Update unverändert weiter.
+
+## Neu für alle Nutzer
+
+| Neuerung | Kurz erklärt |
+|---|---|
+| [Projektwissen](/de/company-gpt/addons/companyrag/projektwissen/) | Projekte sammeln Einträge (Notizen, Links, Mails, Dateien). Der Kurator verdichtet sie zu Wissensseiten mit Quellenangaben. |
+| [Gesamtwissen](/de/company-gpt/addons/companyrag/gesamtwissen/) | Eine Suche über alles, was Sie lesen dürfen: Projektseiten, Dokumente und Tabellen. Sammlungen lassen sich stummschalten; öffentliche Sammlungen anderer nehmen Sie selbst auf. |
+| [Wissensgraph](/de/company-gpt/addons/companyrag/gesamtwissen/#wissensgraph) | Die Landkarte Ihres Wissens mit Ihnen in der Mitte, Ihren Sammlungen mit Ihrer Rolle, ihren Quellen und Inhalten. Mit Suche, Vollbild und PNG-Export. |
+| [Rollen](/de/company-gpt/addons/companyrag/sammlungen/#rollen-in-sammlungen) | Betrachter, Bearbeiter und Owner in jeder Sammlung. Schreiben in eine fremde Sammlung braucht Bearbeiter oder Owner. |
+| [Tabellen-Hinweise](/de/company-gpt/addons/companyrag/datensaetze/#tabellen-hinweise) | Jede Tabelle einer CSV- oder Excel-Datei ist als kurzer Hinweis auffindbar; die Werte fragt der Agent per SQL ab. Breite Tabellen werden auf mehrere Seiten verteilt. |
+| [Verbindungen](/de/company-gpt/addons/companyrag/integrationen/) | Zugangsdaten gehören einer Verbindung; Nextcloud ist eine persönliche Verbindung, andere lassen sich mit Personen und Gruppen teilen. |
+| [Agenten-Tools](/de/company-gpt/addons/companyrag/in-companygpt/#projektwissen-und-gesamtwissen) | `list_projects`, `brain_search`, `list_pages`, `read_page`, `save_knowledge`, `create_collection`, `share_collection` und `list_collections`. |
+| [Aufträge](/de/company-gpt/addons/companyrag/auftraege/) | Kuratierungsaufträge erscheinen für Owner und Bearbeiter; Filter nach Art, Status und Sammlung. |
+
+## Neu für Administratoren
+
+| Neuerung | Kurz erklärt |
+|---|---|
+| Karte **Projektwissen & Gesamtwissen** | Schaltet Projekte, Einträge, Kurator für Projekte und Gesamtwissen ein oder aus. Ab Werk an, speichert sofort, löscht nichts. |
+| Karte **Kurator** | Schaltet den Kurator ein, wählt Modell, Tagesbudgets und Ruhezeit. Nach einem Update von einer älteren Version ist er aus. Das Tagesbudget verschiebt Arbeit, statt sie zu begrenzen. |
+| Karte **Quellenarten** | Ein Schalter je Quellenart. **Google Drive** und **Datenbanken** sind Alpha und ab Werk aus. Bestehende Quellen laufen weiter; Drive-Quellen nur, solange die Art an ist. |
+| **Google Drive: Warnung** | Drive-Freigaben werden nicht übernommen, alle Dateien im gewählten Bereich sind für alle Mitglieder der Sammlung sichtbar. Das Anlegen verlangt ein Häkchen als Bestätigung. |
+| Recht **Sammlungen und Quellen anlegen** | Trennt das Anlegen vom Nutzen. Wer nur nutzen darf, ist Betrachter. |
+| **Ansicht als …** | Zeigt im Wissensgraphen, welche Sammlungen eine Person mit welcher Rolle erreicht, ohne Inhalte. Wird protokolliert. |
+| Superadmin | Liest und ändert Inhalte nicht ohne eigene Rolle; ihm bleiben Wartungsaufgaben. |
+
+## Berechtigungen
+
+SharePoint-Berechtigungen gelten je Datei, in der Suche, im Gesamtwissen, im Wissensgraphen und in Agenten-Antworten. companyRAG zeigt nie mehr, als die Quelle erlaubt, und übernimmt Änderungen automatisch im Hintergrund. Siehe [Berechtigungen](/de/company-gpt/addons/companyrag/quellen/#berechtigungen).
+
+## Verbesserungen seit 3.0.0
+
+- **Stabilere Rechteübernahme:** Rechteänderungen aus SharePoint werden auch bei sehr großen Sammlungen zügig und ohne unnötige Last angewendet; Einschränkungen warten nicht mehr hinter unveränderten Dateien.
+- **Gesamtwissen wartet länger auf große Sammlungen**, bevor es sie als übersprungen meldet.
+- **Breite Tabellen** scheitern nicht mehr beim Indizieren.
+- **Alpha-Quellenarten** Google Drive und Datenbanken sind schaltbar (ab 3.0.4 beziehungsweise 3.0.7).
+
+Die Schnittstelle beschreibt die [companyRAG API](/de/api/company-rag-api/).

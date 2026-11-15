@@ -1,19 +1,19 @@
 ---
 title: Quellen
-description: Quellen synchronisieren Dokumente aus SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP und dem Web nach companyRAG – mit Synchronisationsverhalten, Berechtigungen, Ausschlüssen und Sync-Status.
+description: Quellen synchronisieren Dokumente aus SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP, Datenbanken und dem Web nach companyRAG – mit Synchronisationsverhalten, Berechtigungen, Quellenarten-Schaltern, Ausschlüssen und Sync-Status.
 ---
 
 Quellen verbinden companyRAG dauerhaft mit einem Drittsystem und synchronisieren Dokumente in eine [Sammlung](/de/company-gpt/addons/companyrag/sammlungen/). Neue und geänderte Dateien werden nachgezogen, ohne dass Sie sie erneut hochladen müssen. Bei Dateiquellen wie SharePoint, Google Drive, Nextcloud, GitHub, WebDAV und FTP werden Dateien, die im Quellsystem entfernt wurden, beim nächsten Lauf auch aus dem Index entfernt.
 
 companyRAG liest die Quellsysteme nur. Es schreibt weder Dateien noch Änderungen nach SharePoint, Google Drive oder in andere Systeme zurück. Einzige Ausnahme sind [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/).
 
-Voraussetzung ist eine verbundene [Integration](/de/company-gpt/addons/companyrag/integrationen/). WebDAV- und FTP-Quellen bringen ihre Zugangsdaten selbst mit und brauchen keine vorherige Verbindung.
+Jede Quelle liest über eine [Verbindung](/de/company-gpt/addons/companyrag/integrationen/): Zugangsdaten gehören der Verbindung, die Quelle legt nur fest, was gelesen wird. Neue Quellen legen Personen mit dem Recht **Sammlungen und Quellen anlegen** an, und in einer fremden Sammlung brauchen Sie die Rolle **Bearbeiter** oder **Owner**.
 
 ![Übersicht der Quellen mit Filtern je System und Synchronisationsstatus](./quellen-uebersicht.png)
 
 Die Übersicht hat einen Reiter **Alle Quellen** und je verfügbarem System einen eigenen Reiter. Jede Quelle zeigt ihre Konfiguration, die Zielsammlung und ihren Status (**Aktiv**, **Deaktiviert** oder **Synchronisiert**). Darunter stehen der Zeitpunkt der letzten Synchronisation, das Ergebnis des letzten Laufs (**läuft**, **erfolgreich**, **teilweise** oder **fehlgeschlagen**) mit Kennzahlen wie gefundenen, verarbeiteten, unveränderten und entfernten Dateien, bei Fehlern der **Grund** sowie die Person, die die Quelle hinzugefügt hat.
 
-Quellen ändern dürfen Besitzer und Administratoren der Zielsammlung. Alle anderen sehen eine Quelle mit dem Hinweis **Nur Ansicht**.
+Quellen ändern dürfen Owner und Bearbeiter der Zielsammlung; löschen darf ein Bearbeiter nur Quellen, die er selbst angehängt hat. Alle anderen sehen eine Quelle mit dem Hinweis **Nur Ansicht**.
 
 ## Wann synchronisiert wird
 
@@ -60,7 +60,7 @@ Nur Ordner sind auswählbar. Alle unterstützten Dateien in diesem Ordner und in
 Nach dem Verbinden startet die erste Synchronisation automatisch. Anschließend hält companyRAG die Quelle bei Dokumentänderungen selbstständig aktuell.
 
 :::tip[Berechtigungen]
-Bei der Synchronisation aus SharePoint werden die Berechtigungen des Quellsystems mit übergeben. Ein Nutzer sieht über companyRAG damit niemals mehr Inhalte, als er über die SharePoint-Oberfläche sehen würde.
+Bei der Synchronisation aus SharePoint werden die Berechtigungen des Quellsystems mit übergeben. Ein Nutzer sieht über companyRAG damit niemals mehr Inhalte, als er über die SharePoint-Oberfläche sehen würde. Näheres im Abschnitt [Berechtigungen](#berechtigungen).
 :::
 
 ## Google Drive anbinden
@@ -69,17 +69,19 @@ Im Reiter **Google Drive** öffnet **Google Drive-Quelle hinzufügen** die Auswa
 
 Unter **Google-Formate** legen Sie fest, ob **Google Docs & Sheets exportieren** (Docs als Text, Sheets als CSV) und **Google Slides einbeziehen** (Umwandlung in PDF mit OCR, langsamer und teurer) aktiv sind. Google-Dateien über 10 MB kann Google nicht exportieren; sie werden übersprungen. Die erste Synchronisierung startet direkt nach dem Verbinden.
 
-:::caution
-Bei Google Drive werden keine Berechtigungen übernommen. Der Zugriff auf die synchronisierten Inhalte wird ausschließlich über die Sammlung gesteuert: Alle Personen mit Zugriff auf die Sammlung können die Dokumente durchsuchen.
+:::caution[Alpha: Drive-Freigaben werden nicht übernommen]
+Google Drive ist eine Alpha-Quellenart und ab Werk ausgeschaltet. Drive überträgt keine Freigaben einzelner Dateien: **Alle Dateien im gewählten Ordner bzw. Bereich sind für alle Mitglieder der Sammlung sichtbar**, auch später hinzugefügte oder später mit dem Ersteller geteilte Dateien (bei **Für mich freigegeben** auch später geteilte). Der Zugriff wird ausschließlich über die Sammlung gesteuert.
+
+Zum Anlegen einer Drive-Quelle müssen Sie diesen Hinweis mit einem Häkchen ausdrücklich bestätigen. Drive-Quellen synchronisieren nur, solange die Quellenart eingeschaltet ist; schaltet ein Administrator sie aus, stoppen auch bestehende Drive-Quellen.
 :::
 
 ## Nextcloud und GitHub
 
-Bei **Nextcloud** wählen Sie über **Quelle erstellen** einen Ordner Ihrer Nextcloud, vergeben einen Quellennamen und legen Dateitypen, Sammlung und **Auto-Sync** fest.
+Bei **Nextcloud** legen Sie zuerst unter **Verbindungen** Ihre eigene Nextcloud-Verbindung an. Dann wählen Sie über **Quelle erstellen** einen Ordner Ihrer Nextcloud, vergeben einen Quellennamen und legen Dateitypen, Sammlung und **Auto-Sync** fest.
 
 Bei **GitHub** wählen Sie über **GitHub-Quelle hinzufügen** Repository und Branch, optional ein **Unterverzeichnis (optional)**, die **Dateiendungen** (`.md`, `.markdown`, `.mdx`, `.txt`), die Ziel-Kollektion und **Auto-Sync**. Unter **Zugang zum Repository** stehen drei Wege zur Wahl:
 
-- **Token des Erstellers**: Die Quelle nutzt den GitHub-Token aus Ihrer [Integration](/de/company-gpt/addons/companyrag/integrationen/). Läuft er ab oder wird er entfernt, schlägt die Synchronisation fehl.
+- **Token des Erstellers**: Die Quelle nutzt den GitHub-Token aus Ihrer [Verbindung](/de/company-gpt/addons/companyrag/integrationen/). Läuft er ab oder wird er entfernt, schlägt die Synchronisation fehl.
 - **Eigener Personal Access Token**: Ein Token mit Lesezugriff, der verschlüsselt bei dieser Quelle gespeichert und nie wieder angezeigt wird.
 - **SSH-Deploy-Key**: companyRAG erzeugt ein Schlüsselpaar. Den öffentlichen Schlüssel tragen Sie im Repository als Deploy-Key ohne Schreibzugriff ein; erst danach gelingt die erste Synchronisation.
 
@@ -95,6 +97,26 @@ Wählen Sie zuerst die Sammlung, dann prüfen Sie die Verbindung mit **Verbindun
 :::note[Nicht in allen Umgebungen verfügbar]
 Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
 :::
+
+## Datenbanken
+
+Mit einer Datenbank-Quelle legt companyRAG eine lesende **Kopie** gewählter Tabellen einer Datenbank (PostgreSQL, MySQL/MariaDB, SQL Server, Oracle) in der Sammlung ab. Abfragen laufen auf der Kopie, nie auf Ihrer Datenbank; geänderte Zeilen kommen mit der nächsten Synchronisation. Zu jeder Tabelle entsteht eine Tabellen-Seite mit Spalten, Schlüssel, Kennzahlen, Stand der Daten und einer Beispielabfrage (siehe [Tabellen-Hinweise](/de/company-gpt/addons/companyrag/datensaetze/#tabellen-hinweise)). Datenbank-Quellen sind eine Alpha-Quellenart und ab Werk ausgeschaltet.
+
+## Berechtigungen
+
+- **SharePoint:** Die Berechtigungen werden je Datei übernommen. companyRAG zeigt Ihnen damit nie mehr, als SharePoint Ihnen erlaubt – in der Suche, im Gesamtwissen, im Wissensgraphen und in den Antworten Ihrer Agenten. Ändern sich die Rechte im Quellsystem, übernimmt companyRAG die Änderung automatisch im Hintergrund; Einschränkungen kommen schnell an. Kann companyRAG die Berechtigungen einer Datei nicht sicher lesen, bleibt die Datei im Zweifel gesperrt.
+- **Wissensseiten** aus Dateien erben die Rechte ihrer Quellen und sind nie für mehr Personen sichtbar als die am stärksten eingeschränkte Quelle.
+- **Google Drive** übernimmt keine Freigaben (siehe oben).
+- **Alle anderen Quellenarten** legen den Zugriff über die Rolle in der Sammlung fest.
+
+## Quellenarten ein- und ausschalten
+
+Globale Administratoren steuern in den **Admin-Einstellungen** auf der Karte **Quellenarten**, welche Quellenarten Nutzer neu anlegen dürfen: SharePoint, Google Drive, Nextcloud, GitHub, WebDAV, FTP, Web-Crawl und Datenbanken. Die Änderungen speichern Sie mit **Speichern**.
+
+- **Google Drive und Datenbanken** tragen das Kennzeichen **Alpha** und sind ab Werk **aus**. Ein Mandant mit bestehenden Datenbank-Quellen behält diese Art eingeschaltet.
+- Eine abgeschaltete Art verschwindet für Nutzer aus der Auswahl; neue Quellen und neue Verbindungen dieser Art lassen sich nicht anlegen. Globale Administratoren können die Art weiter verbinden.
+- **Bestehende Quellen laufen weiter** und bleiben pflegbar. Ausnahme ist Google Drive: Drive-Quellen synchronisieren nur, solange die Art eingeschaltet ist.
+- Was Ihre Umgebung nicht anbietet, lässt sich hier nicht einschalten; die Karte nennt den Grund.
 
 ## Dateitypen und eigene Endungen
 

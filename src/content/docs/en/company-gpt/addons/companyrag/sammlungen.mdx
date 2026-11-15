@@ -9,11 +9,12 @@ The overview under **Collections** is divided into the tabs **All**, **Mine** (c
 
 ## Creating a collection
 
-**Create Collection** opens the dialog. First you choose the **Collection Type**:
+**Create Collection** opens the dialog. New collections and sources can only be created by people who have the right **Create collections and sources**; without it you are a viewer, the creation entries are hidden and a notice is shown. First you choose the **Collection Type**:
 
 - **Documents**: PDFs, Word documents, web pages and other files that are indexed for semantic search.
 - **Dataset**: tables that can be queried via SQL. See [Dataset collections](/en/company-gpt/addons/companyrag/datensaetze/).
 - **OKF Bundle**: opens the wizard for an [OKF bundle](/en/company-gpt/addons/companyrag/okf-bundles/) instead.
+- **Project**: entries and pages of a project, see [Project knowledge](/en/company-gpt/addons/companyrag/projektwissen/). The type only appears if project knowledge is switched on.
 
 Then you define **Collection Name**, **Description** and **Visibility**. The **Technical Name** is generated automatically from the name – it is later used in agent prompts and in the MCP tools as `collection` and cannot be changed.
 
@@ -88,16 +89,28 @@ Depending on your role, the following icons are available at the bottom of each 
 - **System Prompt**: a prepared system prompt for an agent, see [Using companyRAG in CompanyGPT](/en/company-gpt/addons/companyrag/in-companygpt/#example-prompt-from-the-collection).
 - **Ingestion instructions**: for live datasets only; shows the endpoints for pushing rows, see [Dataset collections](/en/company-gpt/addons/companyrag/datensaetze/#pushing-rows).
 - **Share collection**: owners only (see below).
-- **Edit collection**: for owners and admins of the collection.
+- **Edit collection**: for editors and owners of the collection.
 - **Delete collection**: owners only.
+
+### Roles in collections
+
+Every collection has three roles, in projects just as in document and dataset collections (German interface: Betrachter, Bearbeiter, Owner):
+
+| Role | May |
+|---|---|
+| **Viewer** | view and search the collection, not change it |
+| **Editor** | additionally upload content and save entries, edit pages, attach and change sources, and change settings; deletes only what they added themselves |
+| **Owner** | everything, plus managing shares, deleting other people's content, handing over and deleting the collection |
+
+New shares start as viewer. **Writing into a collection that belongs to someone else requires the role Editor or Owner** – in the interface, for connections and through the agent tools. In your own collection you can always write. A super admin does not bypass these roles: they do not read a collection without a read right and do not change content without a role of their own; maintenance rights such as re-indexing remain.
+
+The right **Create collections and sources** is separate: it allows creating new collections, sources and connections with your own credentials. Anyone who may only use companyRAG can search assigned collections, use the collective knowledge and the knowledge graph, and connect their own Microsoft or Google login. In a collection where they are an editor they may upload and change entries; a new source there additionally needs the create right.
 
 ### Sharing a collection
 
-In the **Share Collection** dialog you search for people or groups by name or email (at least two characters) and set a role for each entry:
+In the **Share Collection** dialog you search for people or groups by name or email (at least two characters) and set one of the three roles for each entry. A collection must keep at least one owner.
 
-- **Viewer**: Can view and search this collection, but not change it.
-- **Admin**: Can view, upload files and change settings.
-- **Owner**: Full control, including sharing and deleting. A collection must keep at least one owner.
+If an editor is downgraded or removed, the sources they attached are put on hold and hidden. In the dialog the owner decides whether they are removed or kept frozen (visible, but not synchronized).
 
 ![The "Share Collection" dialog with the search field for people and groups, the owner entry with its role and the Share with everyone switch](./sammlung-teilen.png)
 

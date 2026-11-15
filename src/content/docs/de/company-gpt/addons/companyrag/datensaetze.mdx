@@ -24,6 +24,16 @@ Der Import ist auch als [Quelle](/de/company-gpt/addons/companyrag/quellen/) mö
 
 Das Schema einer importierten Datei sehen Sie unter [Dateien](/de/company-gpt/addons/companyrag/dateien/) über das Info-Symbol der Datei.
 
+## Tabellen-Hinweise
+
+Jede Tabelle einer CSV- oder Excel-Datei (bei Excel jedes weitere Blatt) bekommt einen **Tabellen-Hinweis**: eine kurze Seite mit Thema, Datei und Fundort der Tabelle. Er sorgt dafür, dass ein Agent in der Suche und im [Gesamtwissen](/de/company-gpt/addons/companyrag/gesamtwissen/) zumindest weiß, dass es zu einem Thema eine Datentabelle gibt.
+
+- **Für die Werte gehen Sie eine Ebene tiefer:** Der Hinweis nennt die SQL-Tabelle und ihre Spalten; die Zeilen selbst enthält er nie. Der Agent oder Sie fragen die Werte mit `execute_sql` ab (siehe [In CompanyGPT nutzen](/de/company-gpt/addons/companyrag/in-companygpt/#sql-tools-für-datensätze-und-strukturierte-daten)).
+- **Breite Tabellen sind kein Problem:** Passt die Stichprobe nicht in eine Seite, verteilt companyRAG die Spalten auf mehrere Seiten (zum Beispiel „Spalten 41–80 von 212“). Keine Spalte geht verloren.
+- **Beschreibung:** Ist der [Kurator](/de/company-gpt/addons/companyrag/projektwissen/#kurator-und-seiten) eingerichtet, ergänzt er automatisch eine Beschreibung. Ein Bearbeiter kann sie bestätigen oder ändern; ein bestätigter Text bleibt, neue automatische Erkenntnisse stehen darunter unter **Neu seit Bestätigung (automatisch)**. **Beschreibung neu erstellen** fordert eine frische an.
+- **Sichtbarkeit:** Ein Hinweis ist genau für die Leser seiner Sammlung sichtbar und nie für mehr Personen, als die Quelldatei erlaubt.
+- Zu jeder Tabelle einer Datenbank-Quelle entsteht entsprechend eine **Tabellen-Seite** mit Spalten, Schlüssel, Kennzahlen, Stand der Daten und einer Beispielabfrage.
+
 ## Live definiertes Schema
 
 ![Schemadefinition einer Live-Datensatzsammlung mit Tabellen und Spalten](./datensatz-live-schema.png)
@@ -40,7 +50,7 @@ Der Aufruf erwartet ein Objekt mit einem `rows`-Array; jedes Objekt darin entspr
 
 Details zu Pfaden, Parametern und Antworten finden Sie in der [companyRAG API-Referenz](/de/api/company-rag-api/).
 
-Für den Zugriff wird ein [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) einer Person benötigt, die Administrator oder Besitzer der Sammlung ist.
+Für den Zugriff wird ein [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) einer Person benötigt, die Bearbeiter oder Owner der Sammlung ist.
 
 :::danger
 Ein API-Schlüssel handelt immer im Namen der Person, die ihn erstellt hat. Wird er weitergegeben, kann die empfangende Person über die Schnittstelle auf Inhalte zugreifen, die sie selbst nicht sehen dürfte. Jede Person und jedes System sollte einen eigenen Schlüssel erhalten.

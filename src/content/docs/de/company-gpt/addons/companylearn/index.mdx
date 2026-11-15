@@ -1,9 +1,9 @@
 ---
 title: companyLEARN
-description: Lernplattform in CompanyGPT mit Video- und Textlektionen, Quizzen mit Bestehensgrenze und Kapiteln, die nacheinander freigeschaltet werden – in der eigenen Oberfläche und direkt im Chat.
+description: Lernplattform in CompanyGPT mit Video- und Textlektionen, Quizzen, Abschlussprüfung, zugewiesenen Pflichtkursen mit Frist und Zertifikaten – in der eigenen Oberfläche und direkt im Chat.
 ---
 
-companyLEARN ist die Lernplattform in CompanyGPT. Kurs-Admins stellen darin Kurse aus Video- und Textlektionen zusammen, ergänzen Quizze und veröffentlichen die Kurse. Lernende schreiben sich ein, arbeiten die Lektionen durch und legen die Quizze ab – in der eigenen Oberfläche von companyLEARN oder direkt im Chat.
+companyLEARN ist die Lernplattform in CompanyGPT. Kurs-Admins stellen darin Kurse aus Video- und Textlektionen zusammen, ergänzen Quizze und veröffentlichen die Kurse. Lernende schreiben sich ein oder bekommen Pflichtkurse mit Frist zugewiesen, arbeiten die Lektionen durch, legen die Quizze ab und laden nach dem Abschluss ihr Zertifikat herunter – in der eigenen Oberfläche von companyLEARN oder direkt im Chat.
 
 :::note[Nicht in allen Umgebungen verfügbar]
 Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen fest. Wenden Sie sich bei Fragen an Ihren Administrator.
@@ -16,9 +16,10 @@ Ob diese Funktion in Ihrer Umgebung zur Verfügung steht, legt Ihr Unternehmen f
 | **Kurs** | Titel, optionale Beschreibung und eine Folge von Kapiteln. Ein neuer Kurs ist zunächst ein Entwurf; Lernende sehen ihn erst, wenn er veröffentlicht ist. |
 | **Kapitel** | Gliedert den Kurs. Jedes Kapitel enthält Lektionen und optional ein Quiz. |
 | **Lektion** | Entweder ein **Video** oder ein **Text**, der in Markdown geschrieben wird. |
-| **Quiz** | Höchstens eines pro Kapitel, mit Fragen, Antwortoptionen und einer **Bestehensgrenze** in Prozent. |
+| **Quiz** | Höchstens eines pro Kapitel, mit Fragen, Antwortoptionen und einer **Bestehensgrenze** in Prozent. Optional mit Erklärungen, zufälliger Fragenauswahl, Versuchslimit und Wartezeit. |
+| **Abschlussprüfung** | Optionales Quiz für den ganzen Kurs. Es wird freigeschaltet, wenn alle Kapitel abgeschlossen sind. |
 
-Ein Kapitel ist abgeschlossen, wenn alle seine Lektionen erledigt sind und – falls vorhanden – sein Quiz bestanden ist. Bei eingeschalteter **Kapitel-Sperre** (Standard für neue Kurse) öffnet sich ein Kapitel erst, wenn das vorherige abgeschlossen ist. Der Fortschritt in einem Kurs ist der Anteil der abgeschlossenen Kapitel.
+Ein Kapitel ist abgeschlossen, wenn alle seine Lektionen erledigt sind und – falls vorhanden – sein Quiz bestanden ist. Bei eingeschalteter **Kapitel-Sperre** (Standard für neue Kurse) öffnet sich ein Kapitel erst, wenn das vorherige abgeschlossen ist. Hat der Kurs eine Abschlussprüfung, gilt er erst nach bestandener Prüfung als abgeschlossen. Der Fortschritt in einem Kurs ist der Anteil der abgeschlossenen Kapitel; die Prüfung zählt als ein weiterer Schritt.
 
 ## Zwei Wege, ein Lernstand
 
@@ -31,8 +32,8 @@ Beide Wege arbeiten auf denselben Daten: Was Sie im Chat erledigen, ist auch in 
 
 | Wer | Aufgaben | Passende Seiten |
 |---|---|---|
-| **Lernende** | Kurse finden, sich einschreiben, Lektionen ansehen, Quizze ablegen | [Lernen](/de/company-gpt/addons/companylearn/lernen/), [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) |
-| **Kurs-Admins und Trainer** | Kurse, Kapitel, Lektionen und Quizze anlegen, Videos hochladen, Kurse veröffentlichen | [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/de/company-gpt/addons/companylearn/videos/) |
+| **Lernende** | Kurse finden oder zugewiesen bekommen, Lektionen ansehen, Quizze und Prüfung ablegen, Zertifikate laden | [Lernen](/de/company-gpt/addons/companylearn/lernen/), [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) |
+| **Kurs-Admins und Trainer** | Kurse, Kapitel, Lektionen und Quizze anlegen, Videos hochladen, Kurse veröffentlichen, zuweisen, auswerten und Zertifikate einrichten | [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/de/company-gpt/addons/companylearn/videos/), [Zuweisungen, Übersicht und Zertifikate](/de/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/) |
 | **Technische Admins** | Rechte vergeben, andere Systeme über die REST-API anbinden | [Rechte](#rechte), [Externe API](/de/company-gpt/addons/companylearn/api/) |
 
 ## Aufruf
@@ -61,8 +62,9 @@ In der Regel vergibt Ihr Administrator die Rechte in companyADMIN unter **Erweit
 ## Wie geht es weiter?
 
 - [Die Oberfläche](/de/company-gpt/addons/companylearn/oberflaeche/) – Menü, Verwaltungsbereich und eingebettete Ansicht im Chat.
-- [Lernen](/de/company-gpt/addons/companylearn/lernen/) – Kurse finden, einschreiben, Lektionen, Quizze und Dashboard.
-- [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) – den MCP-Server Learn nutzen und einem Agenten zuweisen.
-- [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/) – Kurse, Kapitel, Lektionen und Quizze anlegen und veröffentlichen.
+- [Lernen](/de/company-gpt/addons/companylearn/lernen/) – Kurse finden, zugewiesene Kurse, Lektionen, Quizze, Abschlussprüfung, Dashboard und Zertifikate.
+- [Im Chat](/de/company-gpt/addons/companylearn/im-chat/) – den MCP-Server Learn nutzen, Kurse aus einem Dokument erstellen und einem Agenten zuweisen.
+- [Kurse verwalten](/de/company-gpt/addons/companylearn/kurse-verwalten/) – Kurse, Kapitel, Lektionen, Quizze und Abschlussprüfung anlegen, Sichtbarkeit einstellen und veröffentlichen.
+- [Zuweisungen, Übersicht und Zertifikate](/de/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/) – Pflichtkurse mit Frist zuweisen, den Lernstand auswerten und Zertifikatsvorlagen pflegen.
 - [Videos](/de/company-gpt/addons/companylearn/videos/) – Videos hochladen, in Lektionen verwenden und löschen.
 - [Externe API](/de/company-gpt/addons/companylearn/api/) – API-Schlüssel, Scopes und die REST-API für Integrationen.

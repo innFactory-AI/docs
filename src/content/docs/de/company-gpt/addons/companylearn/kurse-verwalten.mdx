@@ -1,6 +1,6 @@
 ---
 title: Kurse verwalten
-description: In companyLEARN Kurse, Kapitel, Lektionen und Quizze anlegen, die Reihenfolge ändern, die Kapitel-Sperre einstellen und Kurse veröffentlichen.
+description: In companyLEARN Kurse, Kapitel, Lektionen und Quizze und eine Abschlussprüfung anlegen, die Reihenfolge ändern, die Kapitel-Sperre und die Sichtbarkeit einstellen und Kurse veröffentlichen.
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -72,7 +72,9 @@ So legen Sie eine Lektion an:
 
 </Steps>
 
-Über **Bearbeiten** öffnet sich derselbe Dialog als **Lektion bearbeiten**. Beim **Löschen** einer Lektion geht auch der Fortschritt aller Lernenden bei dieser Lektion verloren.
+Über **Bearbeiten** öffnet sich derselbe Dialog als **Lektion bearbeiten**. Beim **Löschen** einer Lektion geht auch der Fortschritt aller Lernenden bei dieser Lektion verloren. Ihre Anhänge und Bilder werden mitgelöscht, sofern sie nirgends sonst verwendet werden.
+
+**Bilder und Anhänge:** Speichern Sie die Lektion zuerst, dann können Sie beides hinzufügen. Bei einer Textlektion laden Sie mit **Bild einfügen** ein Bild (PNG, JPEG, WebP oder GIF) an der Cursorposition hoch. Externe Bild-URLs werden aus Sicherheitsgründen nicht geladen, sondern als Link dargestellt. Mit **Anhang hinzufügen** hängen Sie Dateien an (PDF, Word, Excel, PowerPoint, TXT, CSV, ZIP, PNG, JPEG); Sie können sie entfernen und umsortieren. Lernende laden sie unter der Lektion herunter.
 
 ### Quiz
 
@@ -86,6 +88,11 @@ Im Dialog **Quiz** legen Sie fest:
 | **Bestehensgrenze (%)** | ganze Zahl von 0 bis 100; bei einem neuen Quiz mit 70 vorbelegt. Ein leeres Feld wird nicht als 0 % gewertet, sondern verhindert das Speichern. |
 | **Frage 1**, **Frage 2** … | Text der Frage, bis zu 2.000 Zeichen |
 | Antwortoptionen | Text jeder Option, bis zu 500 Zeichen. Das Kästchen vor einer Option markiert sie als **Richtige Antwort**; eine Frage kann mehrere richtige Antworten haben. |
+| **Erklärung (optional, Markdown)** | Pro Frage, bis zu 5.000 Zeichen. Lernende sehen sie nach dem Absenden in der Auswertung. |
+| **Antworten mischen** | Die Reihenfolge der Antwortoptionen wird pro Versuch gemischt. |
+| **Fragen pro Versuch** | Leer = alle Fragen; sonst wird pro Versuch eine feste zufällige Auswahl („N aus M“) gezogen und genau darauf ausgewertet. |
+| **Maximale Versuche** | Leer = unbegrenzt |
+| **Wartezeit (Minuten)** | Wartezeit nach einem nicht bestandenen Versuch. Leer = keine. |
 
 Mit **Option hinzufügen** und **Frage hinzufügen** erweitern Sie das Quiz; der Papierkorb entfernt eine Frage oder Option. Damit sich ein Quiz speichern lässt, braucht es mindestens eine Frage, und jede Frage braucht zwei bis 20 Optionen, davon mindestens eine richtige. Ein Quiz kann bis zu 200 Fragen haben.
 
@@ -95,11 +102,30 @@ Klicken Sie auf **Speichern** und bestätigen Sie die Rückfrage **Quiz speicher
 Beim Speichern eines Quiz werden alle bisherigen Versuche aller Lernenden für dieses Quiz gelöscht – auch bestandene. Bei eingeschalteter Kapitel-Sperre sind die folgenden Kapitel für diese Personen dann wieder gesperrt, bis sie das Quiz erneut bestehen. Ändern Sie Quizze in laufenden Kursen deshalb mit Bedacht.
 :::
 
+Bestehende Quizze behalten ihr Verhalten: Antworten nicht gemischt, alle Fragen, unbegrenzte Versuche, keine Erklärung.
+
+**Versuche zurücksetzen:** Hat jemand alle Versuche eines Quiz verbraucht, setzen Sie sie in der Personenansicht der [Übersicht](/de/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#übersicht) über **Versuche zurücksetzen** zurück (oder im Chat mit `learn_admin_reset_quiz_attempts`). Frühere Versuche bleiben im Verlauf, als zurückgesetzt markiert; nur spätere Versuche zählen zu Limit und Wartezeit.
+
 Wie Lernende ein Quiz ablegen und wie bewertet wird, steht unter [Quiz](/de/company-gpt/addons/companylearn/lernen/#quiz).
+
+### Abschlussprüfung
+
+Im Kurseditor legen Sie unter **Abschlussprüfung** mit **Abschlussprüfung hinzufügen** ein optionales Quiz für den ganzen Kurs an, mit denselben Einstellungen wie bei einem Kapitel-Quiz. Sie wird für Lernende freigeschaltet, wenn alle Kapitel abgeschlossen sind. Mit Prüfung gilt ein Kurs erst nach bestandener Prüfung als abgeschlossen; beim Fortschritt zählt sie als ein weiterer Schritt. Wie beim Quiz setzt das Speichern der Prüfung alle bisherigen Versuche zurück.
+
+:::note
+Abschlüsse sind endgültig. Ergänzen Sie nachträglich ein Kapitel, ein Quiz oder eine Prüfung, werden bereits abgeschlossene Einschreibungen nicht wieder geöffnet, und ihre Zertifikate bleiben gültig. Wer noch nicht fertig ist, muss die neuen Teile absolvieren.
+:::
 
 ## Veröffentlichen
 
-Mit dem Schalter **Veröffentlicht** – in der Kursübersicht oder im Kurseditor – geben Sie einen Kurs frei. Erst dann erscheint er im Kurskatalog und im Chat, und erst dann können sich Lernende einschreiben.
+Mit dem Schalter **Veröffentlicht** – in der Kursübersicht oder im Kurseditor – geben Sie einen Kurs frei. Erst dann erscheint er im Kurskatalog und im Chat, und erst dann können sich Lernende einschreiben. Auch zuweisen lassen sich nur veröffentlichte Kurse (siehe [Zuweisungen](/de/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#zuweisungen)).
+
+Der Schalter **Selbsteinschreibung erlauben** im Kurseditor steuert die Sichtbarkeit:
+
+- **An (Standard):** Der Kurs steht im Katalog, und jede Person darf sich einschreiben. Sie können ihn trotzdem zuweisen.
+- **Aus:** Der Kurs steht nicht im Katalog. Nur Personen mit einer Zuweisung oder einer bestehenden Einschreibung sehen und öffnen ihn, alle anderen erhalten eine „nicht gefunden“-Antwort. Eine Selbsteinschreibung ist nicht möglich. In der Kursübersicht trägt ein solcher Kurs die Markierung **Nur zugewiesen**.
+
+Admins sehen immer alle Kurse.
 
 Schalten Sie einen veröffentlichten Kurs wieder aus, verschwindet er aus dem Katalog und aus dem Dashboard der Eingeschriebenen, und diese können seine Lektionen und Quizze nicht mehr öffnen. Ihr Fortschritt bleibt gespeichert.
 
@@ -113,6 +139,7 @@ companyLEARN berechnet Freischaltung und Fortschritt immer aus dem aktuellen Inh
 
 - Fügen Sie einem Kapitel eine Lektion hinzu, ist es für alle, die es schon abgeschlossen hatten, wieder offen. Bei eingeschalteter Kapitel-Sperre sind die Kapitel danach wieder gesperrt, bis die neue Lektion erledigt ist.
 - Speichern Sie ein Quiz neu, müssen es alle erneut bestehen (siehe oben).
+- Ein bereits abgeschlossener Kurs bleibt für die Person abgeschlossen, auch wenn Sie Kapitel, ein Quiz oder eine Abschlussprüfung ergänzen.
 - Ändern Sie die Reihenfolge der Kapitel, richtet sich auch die Freischaltung nach der neuen Reihenfolge.
 
 ## Einen Kurs löschen

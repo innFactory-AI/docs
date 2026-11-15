@@ -311,6 +311,7 @@ export default defineConfig({
 												{ label: 'Lernen', translations: { en: 'Learning' }, slug: 'company-gpt/addons/companylearn/lernen' },
 												{ label: 'Im Chat', translations: { en: 'In the chat' }, slug: 'company-gpt/addons/companylearn/im-chat' },
 												{ label: 'Kurse verwalten', translations: { en: 'Managing courses' }, slug: 'company-gpt/addons/companylearn/kurse-verwalten' },
+												{ label: 'Zuweisungen und Zertifikate', translations: { en: 'Assignments and certificates' }, slug: 'company-gpt/addons/companylearn/zuweisungen-und-zertifikate' },
 												{ label: 'Videos', translations: { en: 'Videos' }, slug: 'company-gpt/addons/companylearn/videos' },
 												{ label: 'Externe API', translations: { en: 'External API' }, slug: 'company-gpt/addons/companylearn/api' },
 											]

@@ -1,6 +1,6 @@
 ---
 title: Managing courses
-description: Create courses, chapters, lessons and quizzes in companyLEARN, change their order, configure chapter gating and publish courses.
+description: Create courses, chapters, lessons and quizzes in companyLEARN, add a final exam, change their order, configure chapter gating and visibility and publish courses.
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -72,7 +72,9 @@ To create a lesson:
 
 </Steps>
 
-**Edit** opens the same dialog as **Edit lesson**. When you **delete** a lesson, all learners' progress on that lesson is lost as well.
+**Edit** opens the same dialog as **Edit lesson**. When you **delete** a lesson, all learners' progress on that lesson is lost as well. Its attachments and images are deleted too, unless they are used elsewhere.
+
+**Images and attachments:** save the lesson first, then you can add both. In a text lesson, **Insert image** uploads an image (PNG, JPEG, WebP or GIF) at the cursor position. External image URLs are not loaded for security reasons but shown as a link. **Add attachment** attaches files (PDF, Word, Excel, PowerPoint, TXT, CSV, ZIP, PNG, JPEG); you can remove and reorder them. Learners download them below the lesson.
 
 ### Quiz
 
@@ -86,6 +88,11 @@ In the **Quiz** dialog you define:
 | **Pass threshold (%)** | Whole number from 0 to 100; prefilled with 70 for a new quiz. An empty field is not treated as 0% but prevents saving. |
 | **Question 1**, **Question 2** … | Text of the question, up to 2,000 characters |
 | Answer options | Text of each option, up to 500 characters. The checkbox in front of an option marks it as **Correct answer**; a question can have more than one correct answer. |
+| **Explanation (optional, Markdown)** | Per question, up to 5,000 characters. Learners see it in the review after submitting. |
+| **Shuffle answers** | The order of the answer options is shuffled per attempt. |
+| **Questions per attempt** | Empty = all questions; otherwise a fixed random selection ("N out of M") is drawn per attempt and scored on exactly that set. |
+| **Maximum attempts** | Empty = unlimited |
+| **Wait time (minutes)** | Waiting time after a failed attempt. Empty = none. |
 
 **Add option** and **Add question** extend the quiz; the trash can removes a question or option. To save a quiz, it needs at least one question, and each question needs two to 20 options, at least one of them correct. A quiz can have up to 200 questions.
 
@@ -95,11 +102,30 @@ Click **Save** and confirm **Save quiz?**. **Delete quiz** removes the quiz and 
 Saving a quiz deletes all previous attempts of all learners for this quiz – including passed ones. With chapter gating switched on, the following chapters are then locked again for these people until they pass the quiz again. So change quizzes in running courses with care.
 :::
 
+Existing quizzes keep their behavior: answers not shuffled, all questions, unlimited attempts, no explanation.
+
+**Resetting attempts:** if someone has used up all attempts of a quiz, reset them with **Reset attempts** in the person view of [Insights](/en/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#insights) (or in the chat with `learn_admin_reset_quiz_attempts`). Earlier attempts stay in the history, marked as reset; only later attempts count toward the limit and the wait time.
+
 How learners take a quiz and how it is scored is described under [Quiz](/en/company-gpt/addons/companylearn/lernen/#quiz).
+
+### Final exam
+
+In the course editor, **Add final exam** under **Final exam** creates an optional quiz for the whole course, with the same settings as a chapter quiz. It unlocks for learners when all chapters are complete. With an exam, a course counts as completed only after the exam is passed; in the progress it counts as one more step. As with a quiz, saving the exam resets all previous attempts.
+
+:::note
+Completions are final. If you later add a chapter, quiz or exam, enrollments that are already completed are not reopened, and their certificates stay valid. Anyone who has not finished yet must complete the new parts.
+:::
 
 ## Publishing
 
-The **Published** switch – in the course overview or the course editor – releases a course. Only then does it appear in the course catalog and in the chat, and only then can learners enroll.
+The **Published** switch – in the course overview or the course editor – releases a course. Only then does it appear in the course catalog and in the chat, and only then can learners enroll. Only published courses can be assigned as well (see [Assignments](/en/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#assignments)).
+
+The **Allow self-enrolment** switch in the course editor controls visibility:
+
+- **On (default):** the course is in the catalog and anyone may enroll. You can still assign it.
+- **Off:** the course is not in the catalog. Only people with an assignment or an existing enrollment see and open it; everyone else gets a "not found" response. Self-enrollment is not possible. In the course overview such a course carries the **Assigned only** label.
+
+Admins always see every course.
 
 If you switch a published course off again, it disappears from the catalog and from the dashboard of enrolled learners, and they can no longer open its lessons and quizzes. Their progress is kept.
 
@@ -113,6 +139,7 @@ companyLEARN always calculates unlocking and progress from the course's current 
 
 - If you add a lesson to a chapter, the chapter is open again for everyone who had already completed it. With chapter gating switched on, the chapters after it are locked again until the new lesson is done.
 - If you save a quiz again, everyone has to pass it again (see above).
+- A course that someone has already completed stays completed for them, even if you add chapters, a quiz or a final exam.
 - If you change the order of the chapters, unlocking follows the new order as well.
 
 ## Deleting a course

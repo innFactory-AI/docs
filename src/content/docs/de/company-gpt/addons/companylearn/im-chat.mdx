@@ -15,19 +15,19 @@ Wählen Sie im Chat den MCP-Server **Learn** aus – so, wie Sie auch andere MCP
 
 ## Die Tools
 
-Der Server stellt sieben Tools bereit. Sie müssen sie nicht selbst aufrufen: Der Assistent wählt sie anhand Ihrer Anfrage aus und übernimmt die Kennungen (IDs) von Kursen, Lektionen und Quizzen aus seinen vorherigen Ergebnissen.
+Der Server stellt sieben Tools für Lernende bereit. Admins haben zusätzlich zehn [Admin-Tools](#kurse-im-chat-erstellen-und-verwalten). Sie müssen sie nicht selbst aufrufen: Der Assistent wählt sie anhand Ihrer Anfrage aus und übernimmt die Kennungen (IDs) von Kursen, Lektionen und Quizzen aus seinen vorherigen Ergebnissen.
 
 | Tool | Zweck | Eingaben |
 |---|---|---|
 | `learn_list_courses` | Veröffentlichte Kurse auflisten, jeweils mit Einschreibestatus und Fortschritt | optional `enrolledOnly`: nur Kurse, in die Sie eingeschrieben sind |
-| `learn_course_overview` | Aufbau eines Kurses mit Kapiteln, Lektionen und Quiz, einschließlich Sperr- und Erledigt-Status | `courseId` |
+| `learn_course_overview` | Aufbau eines Kurses mit Kapiteln, Lektionen und Quiz, einschließlich Abschlussprüfung sowie Sperr- und Erledigt-Status | `courseId` |
 | `learn_enroll` | In einen veröffentlichten Kurs einschreiben und die erste Lektion nennen; ein erneuter Aufruf ändert nichts | `courseId` |
-| `learn_my_progress` | Fortschritt in allen eingeschriebenen, veröffentlichten Kursen, mit einem Vorschlag für den nächsten Schritt je Kurs | – |
+| `learn_my_progress` | Fortschritt in allen eingeschriebenen, veröffentlichten Kursen, zugewiesene Kurse zuerst mit Frist und Status, mit einem Vorschlag für den nächsten Schritt je Kurs | – |
 | `learn_watch_lesson` | Eine Lektion (Video oder Text) im Chat anzeigen | `lessonId` |
 | `learn_take_quiz` | Ein Quiz im Chat anzeigen | `quizId` |
 | `learn_open_ui` | Die Oberfläche von companyLEARN im Chat öffnen: Dashboard (Standard), Kurskatalog oder einen bestimmten Kurs | optional `page` (`dashboard`, `courses` oder `course`) und `courseId` (nötig bei `course`) |
 
-Die Tools listen nur veröffentlichte Kurse auf. Lektionen und Quizze lassen sich erst nach der Einschreibung und nur in freigeschalteten Kapiteln öffnen; sonst erhält der Assistent einen entsprechenden Hinweis, etwa dass Sie sich zuerst einschreiben müssen. Kurse anlegen oder ändern können Sie über den Chat nicht – dafür gibt es die [Kursverwaltung](/de/company-gpt/addons/companylearn/kurse-verwalten/).
+Die Tools für Lernende listen nur veröffentlichte Kurse auf. Lektionen und Quizze lassen sich erst nach der Einschreibung und nur in freigeschalteten Kapiteln öffnen; sonst erhält der Assistent einen entsprechenden Hinweis, etwa dass Sie sich zuerst einschreiben müssen. Kurse anlegen oder ändern können Sie mit den Lerntools nicht – dafür gibt es die [Kursverwaltung](/de/company-gpt/addons/companylearn/kurse-verwalten/) und für Admins die [Admin-Tools](#kurse-im-chat-erstellen-und-verwalten).
 
 ## Lektionen und Quizze im Chat
 
@@ -39,8 +39,33 @@ Die Tools listen nur veröffentlichte Kurse auf. Lektionen und Quizze lassen sic
 
 Unter einer eingebetteten Lektion oder einem Quiz öffnet **Vollständigen Kurs öffnen** den Kurs in companyLEARN in einem neuen Tab.
 
+Beim Abschluss eines Kurses zeigt der Chat eine kompakte Abschlussansicht. Anhänge und Zertifikate lassen sich im Chat nicht herunterladen: Statt der Download-Schaltfläche steht dort ein Hinweis mit einem Link, den Sie kopieren oder in companyLEARN öffnen.
+
 :::tip
 Fragen Sie nach einer Lektion einfach nach dem nächsten Schritt, etwa „Was steht als Nächstes an?“. Über `learn_my_progress` kann der Assistent dann Ihren aktuellen Stand abrufen und die passende Lektion oder das passende Quiz vorschlagen. Nach einem Quiz ist das nicht nötig: Der Assistent erhält das Ergebnis automatisch.
+:::
+
+## Kurse im Chat erstellen und verwalten
+
+Personen mit dem Recht **Kurse verwalten** können mit dem MCP-Server **Learn** auch Kurse erstellen und verwalten, zum Beispiel einen ganzen Kurs aus einer Richtlinie oder einem Handbuch. Hängen Sie das Dokument an (oder nutzen Sie companyRAG oder M365) und bitten Sie das Modell, einen Kurs daraus zu erstellen. Es liest das Dokument und legt Kapitel, Textlektionen, Quizze mit Erklärungen und optional eine Abschlussprüfung über `learn_admin_create_course` an. Die Admin-Tools stehen nur Admins zur Verfügung:
+
+| Tool | Zweck |
+|---|---|
+| `learn_admin_list_courses` | alle Kurse einschließlich Entwürfen |
+| `learn_admin_get_course` | der vollständige Kurs mit allen IDs, Lösungen und Erklärungen |
+| `learn_admin_create_course` | legt einen ganzen Kurs als Entwurf an |
+| `learn_admin_update_course` | ändert einen Entwurf (alles oder nichts) |
+| `learn_admin_publish` | veröffentlicht einen Kurs oder zieht ihn zurück; das Modell fragt vorher nach |
+| `learn_admin_report` | Auswertungen: Übersicht, Kurs, Person oder [Zuweisungen](/de/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/#zuweisungen) |
+| `learn_admin_enroll` | schreibt eine bekannte Person ein oder aus; das Modell fragt vorher nach |
+| `learn_admin_reset_quiz_attempts` | setzt die Versuche einer Person bei einem Quiz zurück |
+| `learn_admin_find_people` | sucht Personen und Gruppen für eine Zuweisung |
+| `learn_admin_assign` | weist einen veröffentlichten Kurs einer Person, einer Gruppe oder allen zu, mit Frist |
+
+So können Sie auch direkt im Chat zuweisen, zum Beispiel „Weise den Kurs an die Gruppe Alle Mitarbeitenden zu, Frist 30. November“. Eine Schritt-für-Schritt-Anleitung mit Prompt liefert der Skill [Kurse erstellen](/de/tutorials/skills/company-learn/course-authoring/).
+
+:::caution[Der Kurs bleibt ein Entwurf]
+Ein im Chat erzeugter Kurs ist immer unveröffentlicht. Das Tool liefert einen Link zum Kurs-Editor. Prüfen Sie Inhalt und Quizfragen, ergänzen Sie Videos und Bilder (die gibt es nur im Editor) und veröffentlichen Sie den Kurs erst dann. Einen bereits veröffentlichten Kurs lässt der Chat nicht ändern: Ziehen Sie ihn dazu zuerst zurück oder bearbeiten Sie ihn im Editor.
 :::
 
 ## Beispiel-Prompts

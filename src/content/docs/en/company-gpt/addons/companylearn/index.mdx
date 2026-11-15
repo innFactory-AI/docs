@@ -1,9 +1,9 @@
 ---
 title: companyLEARN
-description: Learning platform in CompanyGPT with video and text lessons, quizzes with a pass threshold and chapters that unlock one after another – in its own interface and directly in the chat.
+description: Learning platform in CompanyGPT with video and text lessons, quizzes, a final exam, assigned mandatory courses with due dates and certificates – in its own interface and directly in the chat.
 ---
 
-companyLEARN is the learning platform in CompanyGPT. Course admins put together courses from video and text lessons, add quizzes and publish the courses. Learners enroll, work through the lessons and take the quizzes – in companyLEARN's own interface or directly in the chat.
+companyLEARN is the learning platform in CompanyGPT. Course admins put together courses from video and text lessons, add quizzes and publish the courses. Learners enroll or get mandatory courses with a due date assigned, work through the lessons, take the quizzes and download their certificate after completing – in companyLEARN's own interface or directly in the chat.
 
 :::note[Not available in all environments]
 Whether this feature is available in your environment is decided by your organization. If you have questions, contact your administrator.
@@ -16,9 +16,10 @@ Whether this feature is available in your environment is decided by your organiz
 | **Course** | Title, optional description and a sequence of chapters. A new course starts as a draft; learners only see it once it is published. |
 | **Chapter** | Structures the course. Each chapter contains lessons and, optionally, a quiz. |
 | **Lesson** | Either a **video** or a **text** written in Markdown. |
-| **Quiz** | At most one per chapter, with questions, answer options and a **pass threshold** in percent. |
+| **Quiz** | At most one per chapter, with questions, answer options and a **pass threshold** in percent. Optionally with explanations, random question selection, an attempt limit and a waiting time. |
+| **Final exam** | Optional quiz for the whole course. It unlocks when all chapters are complete. |
 
-A chapter is complete once all of its lessons are done and – if it has one – its quiz is passed. With **chapter gating** switched on (the default for new courses), a chapter only opens once the previous one is complete. The progress in a course is the share of completed chapters.
+A chapter is complete once all of its lessons are done and – if it has one – its quiz is passed. With **chapter gating** switched on (the default for new courses), a chapter only opens once the previous one is complete. If the course has a final exam, it counts as completed only after the exam is passed. The progress in a course is the share of completed chapters; the exam counts as one more step.
 
 ## Two ways in, one learning record
 
@@ -31,8 +32,8 @@ Both work on the same data: whatever you complete in the chat is also marked as 
 
 | Who | Tasks | Relevant pages |
 |---|---|---|
-| **Learners** | Find courses, enroll, watch lessons, take quizzes | [Learning](/en/company-gpt/addons/companylearn/lernen/), [In the chat](/en/company-gpt/addons/companylearn/im-chat/) |
-| **Course admins and trainers** | Create courses, chapters, lessons and quizzes, upload videos, publish courses | [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/en/company-gpt/addons/companylearn/videos/) |
+| **Learners** | Find or get courses assigned, watch lessons, take quizzes and the exam, download certificates | [Learning](/en/company-gpt/addons/companylearn/lernen/), [In the chat](/en/company-gpt/addons/companylearn/im-chat/) |
+| **Course admins and trainers** | Create courses, chapters, lessons and quizzes, upload videos, publish, assign and evaluate courses and set up certificates | [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/), [Videos](/en/company-gpt/addons/companylearn/videos/), [Assignments, Insights and certificates](/en/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/) |
 | **Technical admins** | Grant permissions, connect other systems through the REST API | [Permissions](#permissions), [External API](/en/company-gpt/addons/companylearn/api/) |
 
 ## Opening companyLEARN
@@ -61,8 +62,9 @@ Usually your administrator grants these permissions in companyADMIN under **Exte
 ## What's next?
 
 - [The interface](/en/company-gpt/addons/companylearn/oberflaeche/) – menu, management section and the embedded view in the chat.
-- [Learning](/en/company-gpt/addons/companylearn/lernen/) – finding courses, enrolling, lessons, quizzes and the dashboard.
-- [In the chat](/en/company-gpt/addons/companylearn/im-chat/) – using the Learn MCP server and assigning it to an agent.
-- [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/) – creating and publishing courses, chapters, lessons and quizzes.
+- [Learning](/en/company-gpt/addons/companylearn/lernen/) – finding courses, assigned courses, lessons, quizzes, the final exam, the dashboard and certificates.
+- [In the chat](/en/company-gpt/addons/companylearn/im-chat/) – using the Learn MCP server, creating courses from a document and assigning it to an agent.
+- [Managing courses](/en/company-gpt/addons/companylearn/kurse-verwalten/) – creating courses, chapters, lessons, quizzes and a final exam, setting visibility and publishing.
+- [Assignments, Insights and certificates](/en/company-gpt/addons/companylearn/zuweisungen-und-zertifikate/) – assigning mandatory courses with a due date, reviewing progress and maintaining certificate templates.
 - [Videos](/en/company-gpt/addons/companylearn/videos/) – uploading videos, using them in lessons and deleting them.
 - [External API](/en/company-gpt/addons/companylearn/api/) – API keys, scopes and the REST API for integrations.

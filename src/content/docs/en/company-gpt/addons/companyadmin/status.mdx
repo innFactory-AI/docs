@@ -1,6 +1,6 @@
 ---
 title: Status
-description: The companyADMIN status page shows what is in force in CompanyGPT right now and whether everything is running – service reachability, active configuration, roles, admin sources and logs.
+description: The companyADMIN status page shows what is in force in companyGPT right now and whether everything is running – service reachability, active configuration, roles, admin sources and logs.
 ---
 
 The **Status** page answers two questions: what is in force right now, and is everything running? If you may not view Insights, it is your start page in companyADMIN.
@@ -15,7 +15,7 @@ The page has five sections. Which ones you see depends on your rights:
 
 ## Extensions reachable
 
-This section shows whether the services of your environment answer: CompanyGPT itself and the extensions that are set up. The header summarizes the result, for example "11/12 reachable".
+This section shows whether the services of your environment answer: companyGPT itself and the extensions that are set up. The header summarizes the result, for example "11/12 reachable".
 
 | Column | Content |
 |---|---|
@@ -31,7 +31,7 @@ If something fails, the row gives the reason, such as **No answer within 3 secon
 
 ## Active configuration
 
-This section shows what really applies in CompanyGPT. The settings are made up of layers; a later layer takes precedence over an earlier one:
+This section shows what really applies in companyGPT. The settings are made up of layers; a later layer takes precedence over an earlier one:
 
 1. **Deployment default (YAML)** – the base configuration maintained by innFactory
 2. **Base for everyone** – adjustments for all users
@@ -41,9 +41,9 @@ This section shows what really applies in CompanyGPT. The settings are made up o
 
 Below that you find:
 
-- **Does not apply** – stored adjustments that CompanyGPT does not apply
+- **Does not apply** – stored adjustments that companyGPT does not apply
 - **Where the default wins** – points where the default always takes precedence, such as the upper limit for subagents or MCP servers from the default
-- **Overwritten at start** – rights that CompanyGPT resets at every restart. A change in companyADMIN lasts only until the next restart.
+- **Overwritten at start** – rights that companyGPT resets at every restart. A change in companyADMIN lasts only until the next restart.
 
 **Open default and adjustments** leads to the detailed view under [Baseline & adjustments](/en/company-gpt/addons/companyadmin/vorgabe-und-anpassungen/).
 
@@ -55,7 +55,7 @@ The table shows each role with its **Origin**, the number of **People** and **Hi
 |---|---|
 | **Role sync** | The role is assigned automatically from Entra ID at sign-in |
 | **Admin role** | The role whose name matches the admin group entry exactly (upper or lower case does not matter) |
-| **System** | Shipped with CompanyGPT (ADMIN, USER). ADMIN itself usually appears here |
+| **System** | Shipped with companyGPT (ADMIN, USER). ADMIN itself usually appears here |
 | **By hand** | Created in companyADMIN and assigned by hand |
 
 Possible hints are **No rights**, **Entra group unknown**, **Nobody holds it**, **Not in the role sync** and **Missing although registered**.
@@ -65,9 +65,9 @@ Possible hints are **No rights**, **Entra group unknown**, **Nobody holds it**, 
 
 ### Role mismatches
 
-If someone has a stored role that no longer matches their groups, they appear under **Role mismatches**. CompanyGPT only aligns the role at their next sign-in. **Revoke sessions** sets the role right away and ends running sessions where possible. Administrators are never changed.
+If someone has a stored role that no longer matches their groups, they appear under **Role mismatches**. companyGPT only aligns the role at their next sign-in. **Revoke sessions** sets the role right away and ends running sessions where possible. Administrators are never changed.
 
-The list is based on the group memberships CompanyGPT knows. People who have not signed in since the last reconciliation are missing from it; if CompanyGPT does not know the members of the role and admin groups, mismatches cannot be computed at all. In both cases the next sign-in still aligns the role.
+The list is based on the group memberships companyGPT knows. People who have not signed in since the last reconciliation are missing from it; if companyGPT does not know the members of the role and admin groups, mismatches cannot be computed at all. In both cases the next sign-in still aligns the role.
 
 ## Admin sources
 

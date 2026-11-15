@@ -1,0 +1,589 @@
+{
+  "note": "Lokale Aufnahme der companyRAG-Oberfläche mit erfundenen Daten (rag-local.mjs), kein Tenant, kein Login.",
+  "defaults": {
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "deviceScaleFactor": 1,
+    "settleMs": 900
+  },
+  "scenes": [
+    {
+      "id": "t-jobs",
+      "lang": "de",
+      "path": "/jobs",
+      "waitFor": "text=/Preisliste-2026|Price-list-2026/",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 760
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/auftraege.png"
+    },
+    {
+      "id": "t-jobs",
+      "lang": "en",
+      "path": "/jobs",
+      "waitFor": "text=/Preisliste-2026|Price-list-2026/",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 760
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/auftraege.png"
+    },
+    {
+      "id": "t-sidebar",
+      "lang": "de",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 240,
+        "height": 520
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/rag-seitenleiste.png"
+    },
+    {
+      "id": "t-sidebar",
+      "lang": "en",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "deviceScaleFactor": 2,
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 240,
+        "height": 520
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/rag-seitenleiste.png"
+    },
+    {
+      "id": "t-conn",
+      "lang": "de",
+      "path": "/connections",
+      "waitFor": "text=Webcrawl",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 690
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/integrationen.png"
+    },
+    {
+      "id": "t-conn",
+      "lang": "en",
+      "path": "/connections",
+      "waitFor": "text=Webcrawl",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 690
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/integrationen.png"
+    },
+    {
+      "id": "t-sources",
+      "lang": "de",
+      "path": "/sources",
+      "waitFor": "text=Marketing",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 656
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/quellen-uebersicht.png"
+    },
+    {
+      "id": "t-sources",
+      "lang": "en",
+      "path": "/sources",
+      "waitFor": "text=Marketing",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 656
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/quellen-uebersicht.png"
+    },
+    {
+      "id": "t-share",
+      "lang": "de",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung teilen|Share collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog >> text=/Team Vertrieb|Sales team/"
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-teilen.png"
+    },
+    {
+      "id": "t-share",
+      "lang": "en",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung teilen|Share collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog >> text=/Team Vertrieb|Sales team/"
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-teilen.png"
+    },
+    {
+      "id": "t-create-basis",
+      "lang": "de",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "viewport": {
+        "width": 1440,
+        "height": 1300
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung erstellen|Create collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog input"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog input",
+          "value": "Vertriebsunterlagen"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog textarea",
+          "value": "Preislisten, Angebote und Vertriebsunterlagen"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-erstellen-basis.png"
+    },
+    {
+      "id": "t-create-basis",
+      "lang": "en",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "viewport": {
+        "width": 1440,
+        "height": 1300
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung erstellen|Create collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog input"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog input",
+          "value": "Sales material"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog textarea",
+          "value": "Price lists, offers and sales material"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-erstellen-basis.png"
+    },
+    {
+      "id": "t-create-erweitert",
+      "lang": "de",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "viewport": {
+        "width": 1440,
+        "height": 1800
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung erstellen|Create collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog input"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog input",
+          "value": "Vertriebsunterlagen"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=/Erweiterte Einstellungen|Advanced settings/i]"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/sammlung-erstellen-erweitert.png"
+    },
+    {
+      "id": "t-create-erweitert",
+      "lang": "en",
+      "path": "/collections",
+      "waitFor": "text=/Vertrieb|Sales/",
+      "viewport": {
+        "width": 1440,
+        "height": 1800
+      },
+      "actions": [
+        {
+          "action": "click",
+          "selector": "role=button[name=/Sammlung erstellen|Create collection/i]"
+        },
+        {
+          "action": "wait",
+          "selector": ".bg-surface-dialog input"
+        },
+        {
+          "action": "fill",
+          "selector": ".bg-surface-dialog input",
+          "value": "Sales material"
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=/Erweiterte Einstellungen|Advanced settings/i]"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "selector": ".bg-surface-dialog",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/sammlung-erstellen-erweitert.png"
+    },
+    {
+      "id": "t-graph",
+      "lang": "de",
+      "path": "/brain",
+      "waitFor": "canvas",
+      "settleMs": 4000,
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/wissensgraph-ego.png",
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 830
+      }
+    },
+    {
+      "id": "t-graph",
+      "lang": "en",
+      "path": "/brain",
+      "waitFor": "canvas",
+      "settleMs": 4000,
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/wissensgraph-ego.png",
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 830
+      }
+    },
+    {
+      "id": "t-proj-entries",
+      "lang": "de",
+      "path": "/collections/projekt-alpha",
+      "waitFor": "text=/Kickoff/",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/projekt-eintraege.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1150
+      }
+    },
+    {
+      "id": "t-proj-entries",
+      "lang": "en",
+      "path": "/collections/projekt-alpha",
+      "waitFor": "text=/Kickoff/",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/projekt-eintraege.png",
+      "viewport": {
+        "width": 1440,
+        "height": 1150
+      }
+    },
+    {
+      "id": "t-proj-page",
+      "lang": "de",
+      "path": "/collections/projekt-alpha?tab=knowledge",
+      "waitFor": "text=/Zielbild|Goal and/",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/projekt-seite.png",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=/Zielbild und Meilensteine|Goal and milestones/"
+        },
+        {
+          "action": "wait",
+          "selector": "text=/Offene Punkte|Open points/"
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 1060
+      }
+    },
+    {
+      "id": "t-proj-page",
+      "lang": "en",
+      "path": "/collections/projekt-alpha?tab=knowledge",
+      "waitFor": "text=/Zielbild|Goal and/",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/projekt-seite.png",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "text=/Zielbild und Meilensteine|Goal and milestones/"
+        },
+        {
+          "action": "wait",
+          "selector": "text=/Offene Punkte|Open points/"
+        }
+      ],
+      "viewport": {
+        "width": 1440,
+        "height": 1100
+      },
+      "clip": {
+        "x": 240,
+        "y": 0,
+        "width": 1200,
+        "height": 1060
+      }
+    },
+    {
+      "id": "t-drive",
+      "lang": "de",
+      "path": "/sources/googledrive/new?collection=vertrieb",
+      "viewport": {
+        "width": 1440,
+        "height": 2200
+      },
+      "waitFor": "text=/Marketing/",
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/quelle-google-drive.png",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Marketing\")"
+        },
+        {
+          "action": "wait",
+          "selector": "button:has-text(\"Produktblaetter\"), button:has-text(\"Product-sheets\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Produktblaetter\"), button:has-text(\"Product-sheets\")"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=/Diesen Ordner|this folder/i]"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-testid=drive-permission-warning]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=drive-permission-warning] input[type=checkbox]"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "clip": {
+        "x": 340,
+        "y": 1915,
+        "width": 1000,
+        "height": 265
+      }
+    },
+    {
+      "id": "t-drive",
+      "lang": "en",
+      "path": "/sources/googledrive/new?collection=vertrieb",
+      "viewport": {
+        "width": 1440,
+        "height": 2200
+      },
+      "waitFor": "text=/Marketing/",
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/quelle-google-drive.png",
+      "actions": [
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Marketing\")"
+        },
+        {
+          "action": "wait",
+          "selector": "button:has-text(\"Produktblaetter\"), button:has-text(\"Product-sheets\")"
+        },
+        {
+          "action": "click",
+          "selector": "button:has-text(\"Produktblaetter\"), button:has-text(\"Product-sheets\")"
+        },
+        {
+          "action": "wait",
+          "ms": 800
+        },
+        {
+          "action": "click",
+          "selector": "role=button[name=/Diesen Ordner|this folder/i]"
+        },
+        {
+          "action": "wait",
+          "selector": "[data-testid=drive-permission-warning]"
+        },
+        {
+          "action": "click",
+          "selector": "[data-testid=drive-permission-warning] input[type=checkbox]"
+        },
+        {
+          "action": "wait",
+          "ms": 500
+        }
+      ],
+      "clip": {
+        "x": 340,
+        "y": 1915,
+        "width": 1000,
+        "height": 265
+      }
+    },
+    {
+      "id": "t-admin-quellenarten",
+      "lang": "de",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Quellenarten\"))",
+      "padding": 8,
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/admin-quellenarten.png"
+    },
+    {
+      "id": "t-admin-quellenarten",
+      "lang": "en",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Source types\"))",
+      "padding": 8,
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/admin-quellenarten.png"
+    },
+    {
+      "id": "t-admin-wissen",
+      "lang": "de",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Projektwissen & Gesamtwissen\"))",
+      "padding": 8,
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/admin-projektwissen.png"
+    },
+    {
+      "id": "t-admin-wissen",
+      "lang": "en",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Project knowledge & Gesamtwissen\"))",
+      "padding": 8,
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/admin-projektwissen.png"
+    },
+    {
+      "id": "t-admin-kurator",
+      "lang": "de",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Kurator\"))",
+      "padding": 8,
+      "output": "src/content/docs/de/company-gpt/addons/companyrag/admin-kurator.png"
+    },
+    {
+      "id": "t-admin-kurator",
+      "lang": "en",
+      "path": "/admin/settings",
+      "viewport": {
+        "width": 1440,
+        "height": 1700
+      },
+      "waitFor": "text=/Quellenarten|Source types/",
+      "selector": "[data-slot=card]:has([data-slot=card-title]:text-is(\"Curator\"))",
+      "padding": 8,
+      "output": "src/content/docs/en/company-gpt/addons/companyrag/admin-kurator.png"
+    }
+  ]
+}

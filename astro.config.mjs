@@ -14,6 +14,8 @@ if (!existsSync(skillsSidebarFile)) {
 	throw new Error('src/generated/skills-sidebar.json is missing. Run `npm run skills:sync` first.');
 }
 const skillsSidebar = JSON.parse(readFileSync(skillsSidebarFile, 'utf8'));
+// Skill pages lost their `-skill` URL suffix when the skills moved to innFactory-AI/companygpt-library.
+const skillRedirects = JSON.parse(readFileSync(new URL('./src/skill-redirects.json', import.meta.url), 'utf8'));
 
 // Measurement ID of the innfactory.ai GA4 web data stream. docs.company-gpt.com
 // reports into that same stream via cross-domain measurement, so the ID is
@@ -78,6 +80,7 @@ export default defineConfig({
 		'/en/company-gpt/addons/company-dashboard': '/en/company-gpt/addons/companyadmin/insights/',
 		'/de/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/de/company-gpt/addons/companyadmin/gruppen/',
 		'/en/company-gpt/addons/companyadmin/benutzer-und-gruppen': '/en/company-gpt/addons/companyadmin/gruppen/',
+		...skillRedirects,
 	},
 	markdown: {
 		// Astro 7 renders Markdown with Sätteri by default. We stay on the
@@ -233,14 +236,17 @@ export default defineConfig({
 											translations: { en: 'companyRAG' },
 											items: [
 												{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/addons/companyrag' },
+												{ label: 'Was ist neu in 3.0', translations: { en: 'What is new in 3.0' }, slug: 'company-gpt/addons/companyrag/neu-in-3-0' },
 												{ label: 'Sammlungen', translations: { en: 'Collections' }, slug: 'company-gpt/addons/companyrag/sammlungen' },
+												{ label: 'Projektwissen', translations: { en: 'Project knowledge' }, slug: 'company-gpt/addons/companyrag/projektwissen' },
+												{ label: 'Gesamtwissen und Wissensgraph', translations: { en: 'Collective knowledge and graph' }, slug: 'company-gpt/addons/companyrag/gesamtwissen' },
 												{ label: 'Strukturierte Daten', translations: { en: 'Structured data' }, badge: { text: 'Beta', variant: 'caution' }, slug: 'company-gpt/addons/companyrag/strukturierte-daten' },
 												{ label: 'Datensatzsammlungen', translations: { en: 'Dataset collections' }, slug: 'company-gpt/addons/companyrag/datensaetze' },
 												{ label: 'OKF-Bundles', translations: { en: 'OKF bundles' }, badge: { text: { de: 'Experimentell', en: 'Experimental' }, variant: 'caution' }, slug: 'company-gpt/addons/companyrag/okf-bundles' },
 												{ label: 'Dateien', translations: { en: 'Files' }, slug: 'company-gpt/addons/companyrag/dateien' },
 												{ label: 'Hochladen', translations: { en: 'Upload' }, slug: 'company-gpt/addons/companyrag/hochladen' },
 												{ label: 'Quellen', translations: { en: 'Sources' }, slug: 'company-gpt/addons/companyrag/quellen' },
-												{ label: 'Integrationen', translations: { en: 'Integrations' }, slug: 'company-gpt/addons/companyrag/integrationen' },
+												{ label: 'Verbindungen', translations: { en: 'Connections' }, slug: 'company-gpt/addons/companyrag/integrationen' },
 												{ label: 'Aufträge', translations: { en: 'Jobs' }, slug: 'company-gpt/addons/companyrag/auftraege' },
 												{ label: 'API-Schlüssel', translations: { en: 'API keys' }, slug: 'company-gpt/addons/companyrag/api-schluessel' },
 												{ label: 'Audit-Protokoll', translations: { en: 'Audit log' }, slug: 'company-gpt/addons/companyrag/audit-protokoll' },
@@ -449,7 +455,7 @@ export default defineConfig({
 								translations: { en: 'Skills' },
 								items: [
 									{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'tutorials/skills' },
-									// Generated from innFactory-AI/company-ai-stack-skills by scripts/sync-skills.mjs
+									// Generated from innFactory-AI/companygpt-library by scripts/sync-skills.mjs
 									...skillsSidebar,
 								]
 							},

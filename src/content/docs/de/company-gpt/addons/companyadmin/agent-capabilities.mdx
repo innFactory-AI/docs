@@ -1,14 +1,16 @@
 ---
 title: Agent-Fähigkeiten
-description: In companyADMIN festlegen, welche Agent-Fähigkeiten Personen in CompanyGPT nutzen können – für alle und mit eigener Auswahl pro Rolle, etwa um Code-Ausführung, Websuche oder Subagents zu begrenzen.
+description: In companyADMIN festlegen, welche Agent-Fähigkeiten Personen in companyGPT nutzen können – für alle und mit eigener Auswahl pro Rolle, etwa um Code-Ausführung, Websuche oder Subagents zu begrenzen.
 ---
 
-**Konfiguration** → **Agent-Fähigkeiten** bestimmt, welche Fähigkeiten Personen mit einer Rolle nutzen können, etwa Code-Ausführung, Websuche, Dateisuche oder Subagents. Damit begrenzen Sie teure oder riskante Fähigkeiten auf einzelne Rollen, ohne sie für alle zu sperren.
+**Konfiguration** → **Agent-Fähigkeiten** bestimmt, welche Fähigkeiten Personen mit einer Rolle nutzen können, etwa Code-Ausführung, Websuche, Dateisuche oder Subagents. Damit begrenzt du teure oder riskante Fähigkeiten auf einzelne Rollen, ohne sie für alle zu sperren.
 
-Die Auswahl gilt für Personen mit der jeweiligen Rolle: im Agent-Builder, bei den Tools im Chat und bei den Tools jedes Agents, den sie verwenden. Was Personen in CompanyGPT darüber hinaus dürfen, regeln die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
+Ansehen brauchst du das Recht **Konfiguration ansehen**, zum Ändern das Recht **Konfiguration bearbeiten**.
+
+Die Auswahl gilt für Personen mit der jeweiligen Rolle: im Agent-Builder, bei den Tools im Chat und bei den Tools jedes Agents, den sie verwenden. Was Personen in companyGPT darüber hinaus dürfen, regeln die Funktionsrechte der [Rolle](/de/company-gpt/addons/companyadmin/rollen-und-rechte/).
 
 :::caution[Wirkt auch auf bestehende Agents]
-CompanyGPT prüft die Fähigkeiten beim Chatten für die Person, die gerade schreibt. Fehlt ihrer Rolle eine Fähigkeit, fehlt das passende Tool in jedem Agent, den sie verwendet, auch in geteilten Agents und in Agents aus dem Marktplatz.
+companyGPT prüft die Fähigkeiten beim Chatten für die Person, die gerade schreibt. Fehlt ihrer Rolle eine Fähigkeit, fehlt das passende Tool in jedem Agent, den sie verwendet, auch in geteilten Agents und in Agents aus dem Marktplatz.
 
 - Ohne `tools` laufen keine MCP-Tools und keine anderen Tools mehr.
 - Im normalen Chat verschwinden fehlende Fähigkeiten wie Websuche, Code ausführen, Dateisuche, Artefakte oder Skills aus dem Tool-Menü.
@@ -16,23 +18,23 @@ CompanyGPT prüft die Fähigkeiten beim Chatten für die Person, die gerade schr
 
 ## Steuerung einschalten
 
-Im Abschnitt **Steuerung** schalten Sie **Agent-Fähigkeiten über companyADMIN steuern** ein. Solange das Häkchen fehlt, bekommen alle die Fähigkeiten aus der Grundkonfiguration.
+Im Abschnitt **Steuerung** schaltest du **Agent-Fähigkeiten über companyADMIN steuern** ein. Solange das Häkchen fehlt, bekommen alle die Fähigkeiten aus der Grundkonfiguration.
 
-Hat beim Einschalten noch keine Rolle eine eigene Auswahl, legt companyADMIN sofort eine eigene Auswahl für ADMIN an, als Kopie der Grundkonfiguration. Wenn Sie danach **Für alle** verkleinern, betrifft das ADMIN deshalb nicht.
+Hat beim Einschalten noch keine Rolle eine eigene Auswahl, legt companyADMIN sofort eine eigene Auswahl für ADMIN an, als Kopie der Grundkonfiguration. Wenn du danach **Für alle** verkleinerst, betrifft das ADMIN deshalb nicht.
 
-Um die Steuerung zu beenden, entfernen Sie das Häkchen **Agent-Fähigkeiten über companyADMIN steuern**. Der Dialog **Steuerung beenden?** fragt nach; **Steuerung beenden** entfernt alle Auswahlen. Danach gilt wieder die Grundkonfiguration für alle.
+Um die Steuerung zu beenden, entferne das Häkchen **Agent-Fähigkeiten über companyADMIN steuern**. Der Dialog **Steuerung beenden?** fragt nach; **Steuerung beenden** entfernt alle Auswahlen. Danach gilt wieder die Grundkonfiguration für alle.
 
 ## Für alle
 
-Der Abschnitt **Für alle** ist die Auswahl, die jede Rolle ohne eigene Auswahl bekommt. Setzen Sie die Häkchen und klicken Sie auf **Speichern**.
+Der Abschnitt **Für alle** ist die Auswahl, die jede Rolle ohne eigene Auswahl bekommt. Setze die Häkchen und klicke auf **Speichern**.
 
 ## Eigene Auswahl pro Rolle
 
-1. Wählen Sie unter **Eigene Auswahl pro Rolle** eine Rolle (**Rolle wählen**).
-2. Klicken Sie auf **Eigene Auswahl anlegen**. Die Auswahl startet als Kopie von **Für alle**.
-3. Passen Sie die Häkchen an und speichern Sie den Abschnitt der Rolle.
+1. Wähle unter **Eigene Auswahl pro Rolle** eine Rolle (**Rolle wählen**).
+2. Klicke auf **Eigene Auswahl anlegen**. Die Auswahl startet als Kopie von **Für alle**.
+3. Passe die Häkchen an und speichere den Abschnitt der Rolle.
 
-Eine eigene Auswahl ersetzt die Auswahl **Für alle** für alle mit dieser Rolle; sie kommt nicht dazu. **Eigene Auswahl entfernen** gibt der Rolle wieder **Für alle**. Die letzte eigene Auswahl lässt sich nicht entfernen; um die Steuerung ganz aufzuheben, beenden Sie sie oben.
+Eine eigene Auswahl ersetzt die Auswahl **Für alle** für alle mit dieser Rolle; sie kommt nicht dazu. **Eigene Auswahl entfernen** gibt der Rolle wieder **Für alle**. Die letzte eigene Auswahl lässt sich nicht entfernen; um die Steuerung ganz aufzuheben, beende sie oben.
 
 USER ist dabei eine Rolle wie jede andere. Hat ADMIN keine eigene Auswahl, bekommen auch Administratoren **Für alle**. companyADMIN selbst ist davon nicht betroffen.
 
@@ -52,4 +54,4 @@ USER ist dabei eine Rolle wie jede andere. Hat ADMIN keine eigene Auswahl, bekom
 
 Das Badge **teuer** markiert Fähigkeiten, die teuer oder riskant sind – der Hauptgrund, diese Seite überhaupt zu nutzen. **nicht in der librechat.yaml** bedeutet, dass die Grundkonfiguration die Fähigkeit nicht vorsieht.
 
-Alle übrigen Fähigkeiten, die Ihre Umgebung bereitstellt, steuert diese Seite nicht. Sie folgen der Grundkonfiguration und bleiben in jeder Auswahl erhalten. Welche das sind, nennt die Seite unter **Für alle**.
+Alle übrigen Fähigkeiten, die deine Umgebung bereitstellt, steuert diese Seite nicht. Sie folgen der Grundkonfiguration und bleiben in jeder Auswahl erhalten. Welche das sind, nennt die Seite unter **Für alle**.

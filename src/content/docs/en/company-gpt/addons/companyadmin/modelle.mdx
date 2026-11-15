@@ -1,15 +1,17 @@
 ---
 title: Providers and models
-description: Decide in companyADMIN which role sees which providers and models in CompanyGPT, edit every role in the model access matrix, and show models under names of your own with labels.
+description: Decide in companyADMIN which role sees which providers and models in companyGPT, edit every role in the model access matrix, and show models under names of your own with labels.
 ---
 
-Under **Configuration** you decide which providers and models people see in CompanyGPT and under which name. Three pages belong to this:
+Under **Configuration** you decide which providers and models people see in companyGPT and under which name. Three pages belong to this:
 
 - **Providers and models** – access per provider, one role at a time
 - **Model access** – every role and provider in one table
 - **Labels** – readable names for models and how the model picker looks
 
 Models belong to **roles**, not to groups. An Entra group gets its models through the role the role sync gives it. Because everyone has exactly one role, the result is unambiguous.
+
+Viewing needs the right **View configuration**; changing needs the right **Manage configuration**.
 
 ## Providers and models
 
@@ -26,7 +28,7 @@ The **Role** filter shows what one role gets. Use **Search provider or model …
 
 Badges on a provider:
 
-- **Custom endpoint** – a custom provider. A restriction applies to this endpoint only. For a role without access it is hidden completely in CompanyGPT.
+- **Custom endpoint** – a custom provider. A restriction applies to this endpoint only. For a role without access it is hidden completely in companyGPT.
 - **Live list** – the model list is fetched from the provider. Here only the whole provider can be blocked, not single models.
 - **Save again** – an older restriction does not work as shown. Check it and save it again.
 
@@ -47,8 +49,8 @@ Keep in mind:
 
 - At least one role must keep the provider.
 - ADMIN is a role like any other. If you take access away from ADMIN, administrators lose the provider too.
-- For built-in providers a role without access still sees the provider in CompanyGPT, but with an empty model list. Leave every role at least one model to avoid that empty entry.
-- After a change, people reload CompanyGPT to see the new selection.
+- For built-in providers a role without access still sees the provider in companyGPT, but with an empty model list. Leave every role at least one model to avoid that empty entry.
+- After a change, people reload companyGPT to see the new selection.
 
 ### AI Gateway
 
@@ -95,7 +97,7 @@ To stop managing, untick **Manage model labels from companyADMIN**. The dialog *
 
 ### All labels
 
-The **All labels** list shows **Label**, **Model**, **Source** and **In effect**. The labels appear in the model picker in this order. **Preselected** marks the label preselected for new chats. If **In effect** says "No", the model no longer exists; CompanyGPT hides such a label.
+The **All labels** list shows **Label**, **Model**, **Source** and **In effect**. The labels appear in the model picker in this order. **Preselected** marks the label preselected for new chats. If **In effect** says "No", the model no longer exists; companyGPT hides such a label.
 
 **Add label** and a click on a label open the detail page:
 
@@ -113,12 +115,37 @@ The **Models without a label (N)** card lists models that still appear with thei
 As long as companyADMIN manages the labels, you control here how the model picker looks. Apply this section's settings with **Save**.
 
 - **Show labels first in the picker** – labels are at the top.
-- **Providers that stay selectable** – ticked providers keep their own entry in the picker next to the labels. All others are reachable only through labels. If no provider is ticked, CompanyGPT shows all providers. This is a display setting only and blocks no model. A group must not have the same name as a ticked provider, or its labels disappear from the picker.
-- **Only labelled models may be used** – people only see labels; CompanyGPT hides the free model picker. If providers are ticked as well, they appear, but their models without a label fail when sending. Switching it on asks first (**Allow only labelled models?**).
+- **Providers that stay selectable** – ticked providers keep their own entry in the picker next to the labels. All others are reachable only through labels. If no provider is ticked, companyGPT shows all providers. This is a display setting only and blocks no model. A group must not have the same name as a ticked provider, or its labels disappear from the picker.
+- **Only labelled models may be used** – people only see labels; companyGPT hides the free model picker. If providers are ticked as well, they appear, but their models without a label fail when sending. Switching it on asks first (**Allow only labelled models?**).
 
 :::caution
 **Only labelled models may be used** also applies to agents: every agent without a matching label stops working the moment you save. Add a label with the provider **Agent** for each agent people actually use. companyADMIN also warns if a role would then have no usable model at all, and requires at least one label.
 :::
+
+### Entry point for new chats
+
+The **Entry point for new chats** makes a public agent the start of every new chat, for example a preconfigured assistant with everything your teams need. Technically it is a label that points to the agent and is preselected for new chats. The **Labels** page shows the entry point, its mode and any problems, and can take it back with **Remove entry point**; the label stays in the list.
+
+**Setting it:** open the agent under **Content** → **Agents** on the **Overview** tab and click **Set as entry point**. Choose the mode and confirm. The entry point applies to the whole environment. There is only one; an existing entry point is replaced. You need the right **Manage agents** for this.
+
+| Mode | Effect |
+|---|---|
+| **fixed** | Every new chat starts with this agent, also for people who last picked another model |
+| **soft** | New chats start with this agent until a person picks another model or agent in their browser |
+
+You can also set the mode under **Picker in the chat** with **Preselect the default**. It applies to every preselected label, not just agents.
+
+companyADMIN checks before setting it:
+
+- **The agent must be public.** If it is not, companyADMIN shares it with everyone (read) when you set it. This only works if you have the right **Manage agents** and the agent comes from Library Sync; another person's agent can only be shared by an innFactory superadmin, or by its owner in the chat. Otherwise the button stays locked, with a reason.
+- **The agent's model must be released to all roles.** Otherwise companyGPT refuses these roles' first message. The page names the affected roles. Release the model under **Model access**.
+- As a hint without blocking, companyADMIN names roles without the right to use agents (they keep their previous start) and non-public skills of the agent (people without access get the agent without them).
+
+:::caution[If the entry point fails]
+If the entry agent is deleted or becomes private again, everyone else lands on an error in each new chat. The **Labels** page and the agent page warn about this. Remove the entry point or set another agent first.
+:::
+
+**Entry point per role or group:** under **Entry point per role or group** you create an ordered list of rules. Each rule links a **Role** or **Group** to an **Agent**; **Add rule** adds a row, **Move up** and **Move down** change the order, **Save rules** applies them. The first matching rule picks a person's entry point; everyone who matches no rule gets the entry point for everyone. For a role rule the agent's model only has to be released to that role, for a group rule to all roles. The rules apply the next time companyGPT loads. Without the required update in your companyGPT the page only shows a notice, and the entry point for everyone applies to everyone; ask innFactory in that case.
 
 ## Result for users
 

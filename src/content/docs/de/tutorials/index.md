@@ -17,15 +17,15 @@ In dieser Rubrik finden Sie gebrauchsfertige Agenten-Vorlagen und Anleitungen ru
 ## Skills
 
 - [Übersicht](/de/tutorials/skills/) – Überblick über alle verfügbaren Skills
-- [Charts & Diagramme](/de/tutorials/skills/files/charts-diagram-skill/) – Diagramme und Visualisierungen erstellen
-- [Konvertierung](/de/tutorials/skills/files/convert-skill/) – Dateien zwischen Formaten konvertieren
-- [Excel](/de/tutorials/skills/files/excel-skill/) – Excel-Dateien erstellen und bearbeiten
-- [Dateiverwaltung](/de/tutorials/skills/files/file-management-skill/) – Dateien verwalten und organisieren
-- [PDF](/de/tutorials/skills/files/pdf-skill/) – PDF-Dateien erstellen und bearbeiten
-- [PowerPoint](/de/tutorials/skills/files/powerpoint-skill/) – Präsentationen erstellen und bearbeiten
-- [Einstellungen & UI](/de/tutorials/skills/files/settings-ui-skill/) – Benutzeroberfläche und Einstellungen anpassen
-- [Vorlagen](/de/tutorials/skills/files/templates-skill/) – Vorlagen erstellen und verwenden
-- [Word & ODT](/de/tutorials/skills/files/word-odt-skill/) – Word- und ODT-Dokumente erstellen und bearbeiten
+- [Charts & Diagramme](/de/tutorials/skills/files/charts-diagram/) – Diagramme und Visualisierungen erstellen
+- [Konvertierung](/de/tutorials/skills/files/convert/) – Dateien zwischen Formaten konvertieren
+- [Excel](/de/tutorials/skills/files/excel/) – Excel-Dateien erstellen und bearbeiten
+- [Dateiverwaltung](/de/tutorials/skills/files/file-management/) – Dateien verwalten und organisieren
+- [PDF](/de/tutorials/skills/files/pdf/) – PDF-Dateien erstellen und bearbeiten
+- [PowerPoint](/de/tutorials/skills/files/powerpoint/) – Präsentationen erstellen und bearbeiten
+- [Einstellungen & UI](/de/tutorials/skills/files/settings-ui/) – Benutzeroberfläche und Einstellungen anpassen
+- [Vorlagen](/de/tutorials/skills/files/templates/) – Vorlagen erstellen und verwenden
+- [Word & ODT](/de/tutorials/skills/files/word-odt/) – Word- und ODT-Dokumente erstellen und bearbeiten
 
 ## Agenten
 

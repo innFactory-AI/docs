@@ -17,15 +17,15 @@ This section contains ready-to-use agent templates and guides for CompanyGPT. Al
 ## Skills
 
 - [Overview](/en/tutorials/skills/) – Overview of all available skills
-- [Charts & Diagrams](/en/tutorials/skills/files/charts-diagram-skill/) – Create diagrams and visualizations
-- [Convert](/en/tutorials/skills/files/convert-skill/) – Convert files between formats
-- [Excel](/en/tutorials/skills/files/excel-skill/) – Create and edit Excel files
-- [File Management](/en/tutorials/skills/files/file-management-skill/) – Manage and organize files
-- [PDF](/en/tutorials/skills/files/pdf-skill/) – Create and edit PDF files
-- [PowerPoint](/en/tutorials/skills/files/powerpoint-skill/) – Create and edit presentations
-- [Settings & UI](/en/tutorials/skills/files/settings-ui-skill/) – Customize the user interface and settings
-- [Templates](/en/tutorials/skills/files/templates-skill/) – Create and use templates
-- [Word & ODT](/en/tutorials/skills/files/word-odt-skill/) – Create and edit Word and ODT documents
+- [Charts & Diagrams](/en/tutorials/skills/files/charts-diagram/) – Create diagrams and visualizations
+- [Convert](/en/tutorials/skills/files/convert/) – Convert files between formats
+- [Excel](/en/tutorials/skills/files/excel/) – Create and edit Excel files
+- [File Management](/en/tutorials/skills/files/file-management/) – Manage and organize files
+- [PDF](/en/tutorials/skills/files/pdf/) – Create and edit PDF files
+- [PowerPoint](/en/tutorials/skills/files/powerpoint/) – Create and edit presentations
+- [Settings & UI](/en/tutorials/skills/files/settings-ui/) – Customize the user interface and settings
+- [Templates](/en/tutorials/skills/files/templates/) – Create and use templates
+- [Word & ODT](/en/tutorials/skills/files/word-odt/) – Create and edit Word and ODT documents
 
 ## Agents
 

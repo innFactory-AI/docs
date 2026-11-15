@@ -1,13 +1,13 @@
 ---
 title: companyRAG
-description: Das Addon companyRAG macht große Dokumentenmengen aus SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP und dem Web durchsuchbar – als semantische Suche, als strukturierte Daten und als Datensätze für Ihre Agenten.
+description: Das Addon companyRAG macht große Dokumentenmengen aus SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP, Datenbanken und dem Web durchsuchbar – als semantische Suche, als strukturierte Daten, als Datensätze, als Projektwissen und als Gesamtwissen mit Wissensgraph für Ihre Agenten.
 ---
 
 import seitenleiste from './rag-seitenleiste.png';
 
 Mit dem companyRAG Addon können Sie große Mengen an Dokumenten für Ihre Agenten über die MCP-Schnittstelle verfügbar machen. Die Dokumente können aus unterschiedlichen Quellen indexiert werden und über die [RAG - Retrieval Augmented Generation](/de/prompt-engineering/prompt-techniken/rag/)-Methodik integriert werden.
 
-Die Indexierung kann hierbei einmalig oder wiederkehrend, basierend auf Ihrem Anwendungsfall, implementiert werden. Neben der klassischen semantischen Suche kann companyRAG aus denselben Dokumenten auch [strukturierte Daten extrahieren](/de/company-gpt/addons/companyrag/strukturierte-daten/) und [tabellarische Datensätze](/de/company-gpt/addons/companyrag/datensaetze/) per SQL abfragbar machen.
+Die Indexierung kann hierbei einmalig oder wiederkehrend, basierend auf Ihrem Anwendungsfall, implementiert werden. Neben der klassischen semantischen Suche kann companyRAG aus denselben Dokumenten auch [strukturierte Daten extrahieren](/de/company-gpt/addons/companyrag/strukturierte-daten/) und [tabellarische Datensätze](/de/company-gpt/addons/companyrag/datensaetze/) per SQL abfragbar machen. Mit [Projektwissen](/de/company-gpt/addons/companyrag/projektwissen/) sammeln Teams Notizen, Links und Dateien, die zu Wissensseiten verdichtet werden; das [Gesamtwissen](/de/company-gpt/addons/companyrag/gesamtwissen/) durchsucht alles, was Sie lesen dürfen, und der Wissensgraph zeigt die Zusammenhänge. Was mit Version 3.0 neu ist, steht unter [Was ist neu in companyRAG 3.0](/de/company-gpt/addons/companyrag/neu-in-3-0/).
 
 companyRAG liest Inhalte aus den angebundenen Systemen nur. In SharePoint, Google Drive oder andere Quellsysteme wird nicht zurückgeschrieben. Die einzige Ausnahme sind [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/), deren Markdown-Dateien in einem GitHub-Repository oder SharePoint-Ordner gepflegt werden.
 
@@ -24,6 +24,7 @@ Alle Inhalte in companyRAG liegen in Sammlungen. Den Typ wählen Sie beim [Erste
 | **Dokumente** | Dokumente aus Upload, SharePoint, Nextcloud, Google Drive, GitHub, WebDAV, FTP oder Web-Crawl | Semantische Suche und Volltextsuche; optional zusätzlich [strukturierte Felder](/de/company-gpt/addons/companyrag/strukturierte-daten/) |
 | **Datensatz** | Tabellen aus CSV-, Excel- und Parquet-Dateien oder über einen Ingestion-Endpunkt | SQL-Abfragen über eine oder mehrere Tabellen, inklusive Joins |
 | **OKF-Bundle** | Markdown-Wissenssammlungen im [Open Knowledge Format](/de/company-gpt/addons/companyrag/okf-bundles/) in GitHub oder SharePoint | Wie eine Dokumentensammlung |
+| **Projekt** | Einträge (Notizen, Links, Dateien) und daraus verdichtete Wissensseiten, siehe [Projektwissen](/de/company-gpt/addons/companyrag/projektwissen/) | Semantische Suche, auch im [Gesamtwissen](/de/company-gpt/addons/companyrag/gesamtwissen/) |
 
 ![Übersicht der Sammlungen mit Typ-, Sichtbarkeits- und Rollen-Badges](./sammlungen-uebersicht.png)
 
@@ -34,19 +35,21 @@ companyRAG nutzt die [gemeinsame Oberfläche der CompanyGPT-Addons](/de/company-
 Die Seitenleiste von companyRAG enthält folgende Bereiche:
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start;">
-<img src={seitenleiste.src} alt="Seitenleiste von companyRAG mit Neuer Chat, Alle Apps und den Bereichen Dateien, Sammlungen, Quellen, Integrationen, Aufträge und Hochladen" width="200" style="flex-shrink: 0;" />
+<img src={seitenleiste.src} alt="Seitenleiste von companyRAG mit Neuer Chat, Alle Apps und den Bereichen Gesamtwissen, Dateien, Sammlungen, Quellen, Verbindungen, Aufträge, Hochladen, API-Schlüssel und Admin-Einstellungen" width="200" style="flex-shrink: 0;" />
 <div style="flex: 1 1 20rem;">
 
+- [Gesamtwissen](/de/company-gpt/addons/companyrag/gesamtwissen/) – Suche und Wissensgraph über alles, was Sie lesen dürfen *(nur wenn Projektwissen eingeschaltet ist)*
 - [Dateien](/de/company-gpt/addons/companyrag/dateien/) – alle indexierten Dateien mit Status
 - [Sammlungen](/de/company-gpt/addons/companyrag/sammlungen/) – Speicherorte für Dokumente und Berechtigungen
 - [Quellen](/de/company-gpt/addons/companyrag/quellen/) – automatische Synchronisation aus angebundenen Systemen
-- [Integrationen](/de/company-gpt/addons/companyrag/integrationen/) – Verbindungen zu SharePoint, Nextcloud, Google Drive, WebDAV, FTP, GitHub und Webcrawl
+- [Verbindungen](/de/company-gpt/addons/companyrag/integrationen/) – Anmeldungen und Zugangsdaten für SharePoint, Nextcloud, Google Drive, WebDAV, FTP, GitHub, Datenbanken und Webcrawl
 - [Aufträge](/de/company-gpt/addons/companyrag/auftraege/) – Indexierungsaufträge und deren Status
 - [Hochladen](/de/company-gpt/addons/companyrag/hochladen/) – einzelne und mehrere Dateien manuell indexieren
 
 Unter einer Trennlinie folgen die Bereiche für die Verwaltung:
 
 - [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) *(nur für Administratoren)*
+- **Admin-Einstellungen** *(nur für globale Administratoren)* – Schalter für [Projektwissen und Kurator](/de/company-gpt/addons/companyrag/projektwissen/#admin-einstellungen) und für [Quellenarten](/de/company-gpt/addons/companyrag/quellen/#quellenarten-ein--und-ausschalten)
 - [Audit-Protokoll](/de/company-gpt/addons/companyrag/audit-protokoll/) *(nur für Superadmins)*
 
 </div>
@@ -55,13 +58,14 @@ Unter einer Trennlinie folgen die Bereiche für die Verwaltung:
 
 ## Rechte und Rollen
 
-Was Sie in einer Sammlung tun dürfen, hängt von Ihrer Rolle in dieser Sammlung ab (**Betrachter**, **Administrator** oder **Besitzer**, siehe [Sammlungen](/de/company-gpt/addons/companyrag/sammlungen/#sammlung-teilen)). Darüber hinaus gibt es drei Rechte für companyRAG insgesamt:
+Was Sie in einer Sammlung tun dürfen, hängt von Ihrer Rolle in dieser Sammlung ab (**Betrachter**, **Bearbeiter** oder **Owner**, siehe [Rollen in Sammlungen](/de/company-gpt/addons/companyrag/sammlungen/#rollen-in-sammlungen)). Darüber hinaus gibt es Rechte für companyRAG insgesamt:
 
 | Recht | Bedeutung |
 |---|---|
 | Nutzen | companyRAG öffnen und die Sammlungen durchsuchen, auf die Sie Zugriff haben. |
-| Administrator | Zusätzlich [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) erstellen und widerrufen. Inhalte von Sammlungen pflegen Sie weiterhin über die Rolle in der jeweiligen Sammlung. |
-| Superadmin | Zusätzlich alle Sammlungen der Organisation sehen und verwalten sowie das [Audit-Protokoll](/de/company-gpt/addons/companyrag/audit-protokoll/) einsehen. Die Dateien fremder Sammlungen kann auch ein Superadmin nicht lesen. |
+| Sammlungen und Quellen anlegen | Neue Sammlungen, Quellen und Verbindungen mit eigenen Zugangsdaten anlegen. Wer nur Nutzen darf, ist Betrachter: Er nutzt die zugewiesenen Sammlungen, aber legt keine neuen an. Administratoren haben dieses Recht automatisch. |
+| Administrator | Zusätzlich [API-Schlüssel](/de/company-gpt/addons/companyrag/api-schluessel/) erstellen und widerrufen. Inhalte von Sammlungen pflegen Sie weiterhin über die Rolle in der jeweiligen Sammlung. Globale Administratoren schalten außerdem in den **Admin-Einstellungen** Projektwissen, den Kurator und die Quellenarten ein oder aus. |
+| Superadmin | Zusätzlich alle Sammlungen der Organisation sehen und verwalten sowie das [Audit-Protokoll](/de/company-gpt/addons/companyrag/audit-protokoll/) einsehen. Die Dateien fremder Sammlungen kann auch ein Superadmin nicht lesen und ihre Inhalte nicht ändern; ihm bleiben Wartungsaufgaben. |
 
 Wer welches Recht erhält, legt Ihr Unternehmen fest. Steuert Ihre Umgebung den Zugriff über companyADMIN, vergeben Administratoren die Rechte dort unter [Erweiterungen](/de/company-gpt/addons/companyadmin/erweiterungen/) als **Wissen nutzen**, **RAG-Einstellungen verwalten** und **Superadmin**. Das Recht **Superadmin** wird nie automatisch vergeben, auch nicht an Administratoren.
 
@@ -70,6 +74,8 @@ Wer welches Recht erhält, legt Ihr Unternehmen fest. Steuert Ihre Umgebung den 
 - [Strukturierte Daten aus Dokumenten](/de/company-gpt/addons/companyrag/strukturierte-daten/) – typisierte Felder aus wiederkehrenden Dokumentenarten extrahieren
 - [Datensatzsammlungen](/de/company-gpt/addons/companyrag/datensaetze/) – Tabellen importieren oder live über einen Endpunkt befüllen
 - [OKF-Bundles](/de/company-gpt/addons/companyrag/okf-bundles/) – Wissenssammlungen als Markdown in GitHub oder SharePoint
+- [Projektwissen](/de/company-gpt/addons/companyrag/projektwissen/) – Projekte, Einträge, Kurator und Wissensseiten
+- [Gesamtwissen und Wissensgraph](/de/company-gpt/addons/companyrag/gesamtwissen/) – eine Suche über alles, was Sie lesen dürfen, und die Landkarte Ihres Wissens
 - [companyRAG in CompanyGPT nutzen](/de/company-gpt/addons/companyrag/in-companygpt/) – MCP-Server `ai-search`, Tools und Agenten
 - [companyRAG API](/de/api/company-rag-api/) – programmatischer Zugriff auf Dateien, Sammlungen, Aufträge und Quellen
 

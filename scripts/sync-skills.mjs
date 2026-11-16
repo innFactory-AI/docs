@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 // Generates the skill tutorial pages from innFactory-AI/companygpt-library.
 //
-// The library repo is the single source: every skill lives there as
+// The library repo is the single source of the skills:
 //   skills/<category>/<locale>-<id>/SKILL.md   (the skill itself, what users upload in companyGPT; name: <locale>-<id>)
-//   pages/<category>/<id>.<locale>.md          (docs wrapper: frontmatter + intro shown above the skill)
-// and catalog.json fixes category/skill order (by <id>), sidebar labels and the index page texts. The library's own
-// `npm run validate` checks the full layout (agents, model labels); this script only checks what the pages need.
+// and its catalog.json fixes category/skill order (by <id>), sidebar labels and the index page texts. The library's
+// own `npm run validate` checks the full layout (agents, model labels); this script only checks what the pages need.
+//
+// The docs-only part of each page lives here, in src/skill-pages/<category>/<id>.<locale>.md (frontmatter title,
+// description, label + an intro shown above the skill). A skill without one still gets a page: title and label from
+// the SKILL.md heading, description from the first sentence of its frontmatter description (a warning says so).
 //
 // Every other file in a skill folder (references/, scripts/, …) is bundled with the skill. Such skills also get a
 // zip package (folder <name>/ with SKILL.md + bundled files) that companyGPT imports under Skills. The skill folders
@@ -46,6 +49,8 @@ function sourceDir() {
 
 const errors = [];
 const fail = (msg) => errors.push(msg);
+const warnings = [];
+const PAGES_DIR = join(root, 'src/skill-pages');
 
 function frontmatter(text, file) {
 	const m = text.match(/^---\n([\s\S]*?)\n---\n?/);
@@ -138,6 +143,15 @@ function zip(entries) {
 	return Buffer.concat([...local, ...central, end]);
 }
 
+// Page frontmatter for a skill without an intro in src/skill-pages/.
+function derivedPage(sk, pageRel) {
+	const heading = (sk.body.match(/^#\s+(.+)$/m) || [])[1]?.trim() || sk.data.name;
+	const sentence = String(sk.data.description || '').split(/(?<=[.!?])\s/)[0];
+	warnings.push(`${pageRel}: missing, page built from SKILL.md`);
+	const raw = `title: ${JSON.stringify(heading)}\ndescription: ${JSON.stringify(sentence)}`;
+	return { data: { title: heading, description: sentence, label: heading.replace(/\s+Skill$/i, '') }, raw, body: '' };
+}
+
 const TEXT = {
 	de: {
 		source: 'Quelle',
@@ -172,10 +186,10 @@ function main() {
 				for (const locale of LOCALES) {
 					const rel = `skills/${cat.id}/${locale}-${slug}`;
 					const skillFile = join(src.dir, rel, 'SKILL.md');
-					const pageRel = `pages/${cat.id}/${slug}.${locale}.md`;
-					const pageFile = join(src.dir, pageRel);
-					if (!existsSync(skillFile) || !existsSync(pageFile)) {
-						fail(`${rel}/SKILL.md and ${pageRel} are both required`);
+					const pageRel = `src/skill-pages/${cat.id}/${slug}.${locale}.md`;
+					const pageFile = join(root, pageRel);
+					if (!existsSync(skillFile)) {
+						fail(`${rel}/SKILL.md is missing (listed in catalog.json)`);
 						continue;
 					}
 					const skill = readFileSync(skillFile, 'utf8').replace(/\s+$/, '') + '\n';
@@ -183,7 +197,7 @@ function main() {
 					if (sk.data.name !== `${locale}-${slug}`) fail(`${rel}/SKILL.md: name must be ${locale}-${slug}`);
 					if (!sk.data.description) fail(`${rel}/SKILL.md: frontmatter needs description`);
 
-					const page = frontmatter(readFileSync(pageFile, 'utf8'), pageRel);
+					const page = existsSync(pageFile) ? frontmatter(readFileSync(pageFile, 'utf8'), pageRel) : derivedPage(sk, pageRel);
 					for (const key of ['title', 'description', 'label']) {
 						if (!page.data[key]) fail(`${pageRel}: frontmatter needs ${key}`);
 					}
@@ -193,7 +207,7 @@ function main() {
 					const fm = page.raw.split('\n').filter((l) => !/^label:/.test(l)).join('\n');
 					const fence = fenceFor(skill);
 					const t = TEXT[locale];
-					let content = `---\n${fm}\n---\n\n${page.body.trim()}\n\n`;
+					let content = `---\n${fm}\n---\n\n${page.body.trim() ? `${page.body.trim()}\n\n` : ''}`;
 
 					const bundled = skillFiles(join(src.dir, rel)).filter((f) => f !== 'SKILL.md');
 					if (bundled.length) {
@@ -226,12 +240,14 @@ function main() {
 				if (!m || !LOCALES.includes(m[1]) || !listed.has(`${cat}/${m[2]}`)) fail(`skills/${cat}/${d}: not listed in catalog.json`);
 			}
 		}
-		for (const cat of sub('pages')) {
-			for (const f of readdirSync(join(src.dir, 'pages', cat)).filter((n) => n.endsWith('.md'))) {
+		// Intros for skills the library no longer has: harmless, but should be cleaned up.
+		for (const cat of existsSync(PAGES_DIR) ? readdirSync(PAGES_DIR, { withFileTypes: true }).filter((e) => e.isDirectory()) : []) {
+			for (const f of readdirSync(join(PAGES_DIR, cat.name)).filter((n) => n.endsWith('.md'))) {
 				const m = f.match(/^(.+)\.([a-z]{2})\.md$/);
-				if (!m || !LOCALES.includes(m[2]) || !listed.has(`${cat}/${m[1]}`)) fail(`pages/${cat}/${f}: not listed in catalog.json`);
+				if (!m || !LOCALES.includes(m[2]) || !listed.has(`${cat.name}/${m[1]}`)) warnings.push(`src/skill-pages/${cat.name}/${f}: no such skill in catalog.json`);
 			}
 		}
+		if (warnings.length) console.warn(`skills:sync: ${warnings.length} warning(s):\n  - ${warnings.join('\n  - ')}`);
 
 		if (errors.length) {
 			console.error(`skills:sync: ${errors.length} problem(s) in ${src.label}:\n  - ${errors.join('\n  - ')}`);

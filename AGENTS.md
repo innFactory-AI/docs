@@ -8,10 +8,16 @@ read the matching one before adding content. Theme rules are in `README.md` ("De
 
 The pages under `src/content/docs/{de,en}/tutorials/skills/` (every skill page plus `index.md`) and their sidebar
 groups are **generated** from [innFactory-AI/companygpt-library](https://github.com/innFactory-AI/companygpt-library).
-That repo is the single source: one folder per skill and locale, `skills/<category>/<locale>-<id>/SKILL.md` (the skill, plus
-optional bundled files such as `references/`), a page wrapper `pages/<category>/<id>.<locale>.md` (title,
-description, sidebar label, intro), and `catalog.json` (categories, order, index texts). Its `AGENTS.md` has the
-writing rules. Page URLs are `/<locale>/tutorials/skills/<category>/<id>/`; the old `…/<id>-skill` URLs redirect
+That repo is the single source of the skills: one folder per skill and locale,
+`skills/<category>/<locale>-<id>/SKILL.md` (the skill, plus optional bundled files such as `references/`), and
+`catalog.json` (categories, order, index texts). Its `AGENTS.md` has the writing rules.
+
+The docs-only part of each page is kept **here**, in `src/skill-pages/<category>/<id>.<locale>.md`: frontmatter
+`title`, `description` (one sentence for search and the page header), `label` (sidebar and index entry), and a body
+that is shown above the skill (intro, du-form in DE: "Verwende diesen Skill, wenn …", optional Starlight asides such
+as placeholders the user must replace). A skill without such a file still gets a page (title and label from the
+`SKILL.md` heading, description from its first sentence), and the sync prints a warning; add the intro in a docs PR.
+An intro for a skill the library no longer lists only warns, too; delete it. Page URLs are `/<locale>/tutorials/skills/<category>/<id>/`; the old `…/<id>-skill` URLs redirect
 via `src/skill-redirects.json`.
 
 - `scripts/sync-skills.mjs` (`npm run skills:sync`) downloads `main` of that repo (or `SKILLS_REF`), validates it and

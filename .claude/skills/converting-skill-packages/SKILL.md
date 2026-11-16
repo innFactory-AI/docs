@@ -11,7 +11,7 @@ The `skills/` folder holds external skill packages copied from elsewhere (`custo
 
 **Where they go:** skill pages are **not** written in this repo. They live in [innFactory-AI/companygpt-library](https://github.com/innFactory-AI/companygpt-library) (check it out next to this repo), and `scripts/sync-skills.mjs` generates the tutorial pages, the skills index and the sidebar from it at build time (see `AGENTS.md`). That repo's `AGENTS.md` is the authoritative layout and writing guide.
 
-**Core principle:** one source skill → two folders `skills/<package>/de-<id>/` and `skills/<package>/en-<id>/`, each with `SKILL.md` (the skill), plus a docs page wrapper per locale, `pages/<package>/<id>.<locale>.md`. **The skill body is German in `de-<id>` and English in `en-<id>`**.
+**Core principle:** one source skill → two folders `skills/<package>/de-<id>/` and `skills/<package>/en-<id>/`, each with `SKILL.md` (the skill), plus a docs intro per locale **in this repo**, `src/skill-pages/<package>/<id>.<locale>.md`. **The skill body is German in `de-<id>` and English in `en-<id>`**.
 
 ## Hard Constraints
 
@@ -20,7 +20,7 @@ The `skills/` folder holds external skill packages copied from elsewhere (`custo
 
 ## Files per Skill (both locales)
 
-`pages/<package>/<id>.<locale>.md` (never inside the skill folder; Library Sync would import it as a skill file):
+`src/skill-pages/<package>/<id>.<locale>.md` in **this** repo (docs-only, so it is not part of the library; without it the page falls back to the `SKILL.md` heading and description):
 
 ```markdown
 ---
@@ -53,7 +53,7 @@ Inside the fenced skill body:
 
 ## Wiring (in the library repo)
 
-1. Folders `skills/<package>/de-<id>/` **and** `skills/<package>/en-<id>/`, each with `SKILL.md`, and the wrappers `pages/<package>/<id>.de.md` + `pages/<package>/<id>.en.md`.
+1. Folders `skills/<package>/de-<id>/` **and** `skills/<package>/en-<id>/`, each with `SKILL.md`. The intros `src/skill-pages/<package>/<id>.de.md` + `.en.md` go into a PR in this docs repo (same branch name, so the library CI builds against it).
 2. Add the package to `catalog.json` (`id` = category, `label.de`/`label.en`, `skills` = the `<id>`s in display order). This drives the docs sidebar and index; nothing is edited in `astro.config.mjs` or `index.md` here.
 3. Add the skills to the README table.
 4. Check: `npm run validate` in the library repo. Preview: `SKILLS_DIR=../companygpt-library npm run build` in this repo. Open the PR in the library repo; its CI validates and builds the docs against the branch.
@@ -64,7 +64,7 @@ A package has many skills × 2 locales. Dispatch one subagent per source skill (
 
 ## Checklist (per package)
 
-- [ ] Every source skill → DE + EN `SKILL.md` + page wrapper
+- [ ] Every source skill → DE + EN `SKILL.md` (library) + DE + EN intro in `src/skill-pages/` (docs)
 - [ ] DE body translated to German; EN body English; `name:` = folder = `de-<id>` / `en-<id>`
 - [ ] Connectors reframed (MCP / companyRAG / file upload); "knowledge folders" gone
 - [ ] No mandatory code step; optional code sections have a fallback

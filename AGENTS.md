@@ -37,6 +37,15 @@ via `src/skill-redirects.json`.
 
 Hand-written pages about the Skills *feature* (`company-gpt/skills.md`) are normal docs pages and stay in this repo.
 
+## Desktop app pages follow companyAPP
+
+`company-gpt/desktop-app/` documents the desktop app ([innFactory/companyAPP](https://github.com/innFactory/companyAPP))
+and is kept up to date with it: a user-visible app change comes with a PR here (rule in companyAPP's `AGENTS.md`).
+The screenshots there are **generated** by the app's E2E run and copied in with `npm run docs:screenshots -- <this
+checkout>` in companyAPP (mapping `e2e/docs-screenshots.json`, same file in `de/` and `en/`). Don't edit or replace
+them by hand; change the E2E or the mapping instead. Internal technical overview: companyAPP
+`docs/funktionsuebersicht.md`.
+
 ## Conventions
 
 - Every page exists in `de/` and `en/`; register new pages in `astro.config.mjs` with `translations: { en: … }`

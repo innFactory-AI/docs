@@ -385,6 +385,25 @@ export default defineConfig({
 							]
 						},
 						{
+							label: 'Desktop-App',
+							translations: { en: 'Desktop app' },
+							badge: { text: { de: 'Pilot', en: 'Pilot' }, variant: 'caution' },
+							items: [
+								{ label: 'Übersicht', translations: { en: 'Overview' }, slug: 'company-gpt/desktop-app' },
+								{ label: 'Installation und Anmeldung', translations: { en: 'Installation and sign-in' }, slug: 'company-gpt/desktop-app/einrichtung' },
+								{ label: 'Chat und Apps', translations: { en: 'Chat and apps' }, slug: 'company-gpt/desktop-app/chat-und-apps' },
+								{ label: 'Cowork', translations: { en: 'Cowork' }, slug: 'company-gpt/desktop-app/cowork' },
+								{ label: 'Sicherheit und Freigaben', translations: { en: 'Security and approvals' }, slug: 'company-gpt/desktop-app/sicherheit' },
+								{ label: 'Dateien und Office', translations: { en: 'Files and Office' }, slug: 'company-gpt/desktop-app/dateien-und-office' },
+								{ label: 'Artefakte', translations: { en: 'Artifacts' }, slug: 'company-gpt/desktop-app/artefakte' },
+								{ label: 'Skills, Plugins und Konnektoren', translations: { en: 'Skills, plugins and connectors' }, slug: 'company-gpt/desktop-app/erweiterungen' },
+								{ label: 'Quick-Ask und Diktat', translations: { en: 'Quick-Ask and dictation' }, slug: 'company-gpt/desktop-app/quick-ask' },
+								{ label: 'Einstellungen', translations: { en: 'Settings' }, slug: 'company-gpt/desktop-app/einstellungen' },
+								{ label: 'companyCODE', translations: { en: 'companyCODE' }, slug: 'company-gpt/desktop-app/companycode' },
+								{ label: 'Administration', translations: { en: 'Administration' }, slug: 'company-gpt/desktop-app/administration' },
+							]
+						},
+						{
 							label: 'Prompt Engineering',
 							translations: { en: 'Prompt Engineering' },
 							items: [
